@@ -2,18 +2,29 @@ import { useEffect, useState } from 'react'
 import { useRunSheet, type Mode } from './lib/useRunSheet'
 import Console from './components/Console'
 import DisplayView from './components/DisplayView'
+import KnowledgeBase from './components/KnowledgeBase'
 import Quiz from './components/Quiz'
 
-/** Tři pohledy na jedné adrese: konzole pro lektora, plátno pro sál, kvíz pro účastníky. */
-type View = Mode | 'quiz'
+/**
+ * Čtyři pohledy na jedné adrese: konzole pro lektora, plátno pro sál,
+ * kvíz pro účastníky a knowledge base, ke které se tým vrací i po workshopu.
+ */
+type View = Mode | 'quiz' | 'kb'
 
 const readView = (): View => {
-  if (window.location.hash === '#display') return 'display'
-  if (window.location.hash === '#quiz') return 'quiz'
-  return 'console'
+  switch (window.location.hash) {
+    case '#display':
+      return 'display'
+    case '#quiz':
+      return 'quiz'
+    case '#kb':
+      return 'kb'
+    default:
+      return 'console'
+  }
 }
 
-/** Kvíz běh workshopu nesleduje, takže si run-sheet vůbec nebere. */
+/** Kvíz ani knowledge base běh workshopu nesledují, takže si run-sheet neberou. */
 function RunSheet({ mode }: { mode: Mode }) {
   const run = useRunSheet(mode)
   return mode === 'display' ? <DisplayView run={run} /> : <Console run={run} />
@@ -28,5 +39,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
 
-  return view === 'quiz' ? <Quiz /> : <RunSheet mode={view} />
+  if (view === 'quiz') return <Quiz />
+  if (view === 'kb') return <KnowledgeBase />
+  return <RunSheet mode={view} />
 }

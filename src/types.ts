@@ -8,6 +8,8 @@ export interface Step {
   min?: number
   /** Doplňující věta ke kroku (zadání cvičení, odkaz, poznámka). */
   detail?: string
+  /** Původní název lekce v kurzu, aby se dala dohledat v Claude Academy. */
+  source?: string
 }
 
 /** Cvičný příklad k výběru — konkrétní zadání, které si účastník může vzít. */

@@ -78,8 +78,8 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'talk',
       who: 'Martin',
       steps: [
-        { title: 'What is Claude Cowork', min: 8, detail: 'Chat vs. Code vs. Cowork — kdy sáhnout po čem' },
-        { title: 'Setting up Claude Cowork', min: 7, detail: 'Pracovní složka, konektory, režim oprávnění' },
+        { title: 'Co je Claude Cowork', source: 'What is Claude Cowork', min: 8, detail: 'Chat vs. Code vs. Cowork — kdy sáhnout po čem' },
+        { title: 'Nastavení Coworku', source: 'Setting up Claude Cowork', min: 7, detail: 'Pracovní složka, konektory, režim oprávnění' },
       ],
       notes: [
         'Sál už Claude Code používá — nezdržovat se u toho, co je AI asistent',
@@ -94,7 +94,7 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'Best practices for working safely', min: 8, detail: 'Kontrola plánu i výstupu, než se na něj spolehnu' },
+        { title: 'Jak pracovat bezpečně', source: 'Best practices for working safely', min: 8, detail: 'Kontrola plánu i výstupu, než se na něj spolehnu' },
         { title: 'Co pustit do pracovní složky', min: 7, detail: 'Firemní pravidla pro data a nastavení oprávnění' },
       ],
       notes: [
@@ -109,9 +109,9 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'What Claude Cowork can do for you', min: 7, detail: 'Včetně naplánovaných úkolů a běhu v cloudu' },
-        { title: 'Hand Claude Cowork your first task', min: 7, detail: 'Zadání, doplňující otázky, zásah za běhu' },
-        { title: 'Get better results faster', min: 6 },
+        { title: 'Co všechno Cowork zvládne', source: 'What Claude Cowork can do for you', min: 7, detail: 'Včetně naplánovaných úkolů a běhu v cloudu' },
+        { title: 'Předat Coworku první úkol', source: 'Hand Claude Cowork your first task', min: 7, detail: 'Zadání, doplňující otázky, zásah za běhu' },
+        { title: 'Jak z něj dostat lepší výsledky rychleji', source: 'Get better results faster', min: 6 },
       ],
       notes: [
         'Demo rovnou na paletovém dokladu, ať na to navazuje cvičení',
@@ -169,9 +169,9 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'Standing context: Global instructions and projects', min: 9 },
-        { title: 'Skills: Teach Claude Cowork your way', min: 11, detail: 'Jádro večera — tady je poptávka největší' },
-        { title: "Plugins: Encode your team's expertise", min: 10 },
+        { title: 'Trvalý kontext: globální instrukce a projekty', source: 'Standing context: Global instructions and projects', min: 9 },
+        { title: 'Skills: naučit Cowork váš postup', source: 'Skills: Teach Claude Cowork your way', min: 11, detail: 'Jádro večera — tady je poptávka největší' },
+        { title: 'Pluginy: zabalit know-how týmu', source: "Plugins: Encode your team's expertise", min: 10 },
       ],
       notes: [
         'Automatizace opakovaných úkolů byla v dotazníku skoro u všech — tohle je ten blok',
@@ -236,8 +236,8 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'Claude in Chrome', min: 10, detail: 'Objednávací systém a další webové nástroje' },
-        { title: 'Claude for Microsoft 365', min: 10, detail: 'Excel je tu hodně používaný — začít jím' },
+        { title: 'Claude v Chrome', source: 'Claude in Chrome', min: 10, detail: 'Objednávací systém a další webové nástroje' },
+        { title: 'Claude pro Microsoft 365', source: 'Claude for Microsoft 365', min: 10, detail: 'Excel je tu hodně používaný — začít jím' },
       ],
       notes: [
         'Napojit na palety: čtečka zatím použitelné API nemá, takže import a export je realita',
@@ -250,8 +250,8 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'Validating skills for plugins', min: 5, detail: 'Evals — ověřit skill, než se na něj tým spolehne' },
-        { title: 'Share what you build with your team', min: 5, detail: 'Marketplace organizace' },
+        { title: 'Ověřování skillů před nasazením', source: 'Validating skills for plugins', min: 5, detail: 'Evals — ověřit skill, než se na něj tým spolehne' },
+        { title: 'Sdílet s týmem, co postavíš', source: 'Share what you build with your team', min: 5, detail: 'Marketplace organizace' },
       ],
       notes: ['Rovnou na dnešních skillech — co z nich udělat sdílený plugin'],
     },
@@ -261,7 +261,7 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'qna',
       who: 'Martin',
       steps: [
-        { title: 'Wrap up and next steps', min: 6 },
+        { title: 'Shrnutí a co dál', source: 'Wrap up and next steps', min: 6 },
         {
           title: 'Co by chtěla opravdová aplikace',
           min: 6,

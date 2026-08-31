@@ -27,6 +27,35 @@ kliknutím na řádek se skočí na daný blok.
 
 Pravý sloupec má dvě záložky: **Program** a **Účastníci**.
 
+Aplikace má čtyři pohledy na jedné adrese:
+
+| Adresa | Pro koho |
+| --- | --- |
+| `/` | Konzole lektora — program, odpočet, účastníci |
+| `/#display` | Plátno pro sál — velký odpočet, u cvičení i zadání |
+| `/#quiz` | Vstupní kvíz pro účastníky — rozdělí díly práce podle úrovně |
+| `/#kb` | Knowledge base — úlohy podle agendy, ke kterým se tým vrací |
+
+Odkazy na kvíz a knowledge base jsou i v **Nastavení a program**, ke zkopírování.
+
+### Vstupní kvíz
+
+Osm otázek na rozhodnutí z jejich práce, ne na definice. Z bodů (0–30, čtyři pásma)
+nevypadne známka, ale díl paletové evidence, který si má člověk ve cvičeních vzít —
+od převodu exportu do tabulky až po naplánovanou kontrolu a plugin pro tým.
+
+Odpovědi nikam neodcházejí, zůstávají v prohlížeči účastníka. Na konci se jedním
+tlačítkem zkopíruje shrnutí, které pošle lektorovi vlastním kanálem. Bez backendu
+se centrálně sbírat nedají a předstírat opak by nemělo smysl.
+
+### Knowledge base
+
+Rozcestník pro tým po workshopu: úlohy podle agendy (palety, sklad, objednávky,
+autodoprava, reklamace, faktury, technické listy, zákaznické centrum), u každé co
+Claude dostane na vstupu a co má vypadnout. K tomu pravidla, která platí vždycky.
+Obsah je v [`src/kb.ts`](src/kb.ts) — **žádná firemní data ani jména**, jen postupy,
+takže stránka může být veřejná.
+
 **Plátno** (`/#display`) je druhá obrazovka pro sál: název bloku, obří odpočet a co
 bude následovat. Otevře se tlačítkem *Plátno* nebo klávesou <kbd>D</kbd>, přetáhne se
 na projektor a přepne na celou obrazovku (<kbd>F</kbd> nebo dvojklik). Obě okna drží

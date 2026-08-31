@@ -157,6 +157,11 @@ export default function NowPanel({ run }: { run: RunSheet }) {
                   {step.detail && (
                     <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>{step.detail}</Typography>
                   )}
+                  {step.source && (
+                    <Typography sx={{ fontSize: 12, color: 'text.disabled', mt: 0.25 }}>
+                      lekce „{step.source}“
+                    </Typography>
+                  )}
                 </Box>
                 {step.min != null && (
                   <Typography

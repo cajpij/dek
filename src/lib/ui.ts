@@ -10,6 +10,12 @@ export function quizUrl(): string {
   return `${origin}${pathname}#quiz`
 }
 
+/** Odkaz na knowledge base — rozcestník, ke kterému se tým vrací po workshopu. */
+export function kbUrl(): string {
+  const { origin, pathname } = window.location
+  return `${origin}${pathname}#kb`
+}
+
 export function openDisplayWindow(): void {
   const win = window.open(displayUrl(), 'runsheet-display', 'width=1280,height=800')
   win?.focus()

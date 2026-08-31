@@ -13,7 +13,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import type { RunConfig } from '../types'
 import type { RunSheet } from '../lib/useRunSheet'
 import { configFromState } from '../lib/run'
-import { quizUrl } from '../lib/ui'
+import { kbUrl, quizUrl } from '../lib/ui'
 
 const SHORTCUTS: [string, string][] = [
   ['mezerník', 'spustit / pauza'],
@@ -145,7 +145,7 @@ export default function SettingsPanel({ run }: { run: RunSheet }) {
 
           <Box>
             <Typography variant="overline" sx={{ color: 'text.disabled', fontSize: 12 }}>
-              Odkaz pro účastníky
+              Odkazy pro účastníky
             </Typography>
             <Typography sx={{ fontSize: 13, color: 'text.secondary', mt: 0.5, mb: 1 }}>
               Vstupní kvíz. Rozešli ho před začátkem — z výsledku vypadne, který díl paletové
@@ -181,6 +181,45 @@ export default function SettingsPanel({ run }: { run: RunSheet }) {
                 variant="outlined"
                 color="inherit"
                 onClick={() => window.open(quizUrl(), '_blank')}
+              >
+                Otevřít
+              </Button>
+            </Box>
+
+            <Typography sx={{ fontSize: 13, color: 'text.secondary', mt: 2, mb: 1 }}>
+              Knowledge base — úlohy podle agendy a pravidla, ke kterým se tým vrací po workshopu.
+              Nejsou v ní žádná firemní data ani jména.
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap' }}>
+              <Box
+                component="code"
+                sx={{
+                  px: 1,
+                  py: 0.5,
+                  border: 1,
+                  borderColor: 'divider',
+                  borderRadius: 1,
+                  bgcolor: 'action.hover',
+                  fontFamily: 'ui-monospace, Menlo, monospace',
+                  fontSize: 12,
+                  wordBreak: 'break-all',
+                }}
+              >
+                {kbUrl()}
+              </Box>
+              <Button
+                size="small"
+                variant="outlined"
+                color="inherit"
+                onClick={() => void navigator.clipboard.writeText(kbUrl())}
+              >
+                Zkopírovat
+              </Button>
+              <Button
+                size="small"
+                variant="outlined"
+                color="inherit"
+                onClick={() => window.open(kbUrl(), '_blank')}
               >
                 Otevřít
               </Button>
