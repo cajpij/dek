@@ -1,0 +1,15 @@
+{
+  "name": "mcp-dek",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP server nad veřejným katalogem dek.cz — hledání produktů, detail, kategorie.",
+  "bin": { "mcp-dek": "./server.js" },
+  "scripts": {
+    "start": "node server.js",
+    "index": "node server.js --build-index"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0"
+  }
+}

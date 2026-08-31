@@ -34,6 +34,21 @@ export interface Category {
   cards: Card[]
 }
 
+export interface GuideStep {
+  title: string
+  body: string
+  /** Ukázka kódu nebo konfigurace — vypisuje se neproporcionálním písmem. */
+  code?: string
+}
+
+export interface Guide {
+  title: string
+  intro: string
+  steps: GuideStep[]
+  /** Co tím člověk nedostane — aby to nezjistil až v půlce. */
+  limits?: string[]
+}
+
 export interface Link {
   label: string
   href: string
@@ -305,6 +320,77 @@ export const RULES: { title: string; body: string }[] = [
     title: 'Cloud je rozhodnutí, ne detail',
     body:
       'Nahrát firemní data do externí služby není technická drobnost. Když to začneš potřebovat, ptej se dřív, než to uděláš.',
+  },
+]
+
+export const GUIDES: Guide[] = [
+  {
+    title: 'Postavit si vlastní MCP nad dek.cz',
+    intro:
+      'MCP je způsob, jak dát Claudovi vlastní nástroje — funkce, které si sám zavolá, když je potřebuje. ' +
+      'Hotový server pro náš katalog je v repozitáři workshopu ve složce mcp-dek; celý je to jeden soubor ' +
+      'a jediná závislost. Tenhle návod ukazuje, jak si takový postavit na cokoli dalšího — na interní ' +
+      'systém, na sdílenou složku, na objednávkový systém.',
+    steps: [
+      {
+        title: 'Nejdřív zjisti, co ti zdroj sám nabízí',
+        body:
+          'Než začneš cokoli tahat z HTML, podívej se, co je k tomu určené. U dek.cz to je robots.txt, ' +
+          'který odkazuje na sitemapy, a JSON-LD přímo na stránce produktu. Strukturovaná data se mění ' +
+          'míň často než rozvržení stránky, takže na nich server vydrží stát déle.',
+        code: 'curl https://www.dek.cz/robots.txt\ncurl https://export.dek.cz/dek/sitemap.xml',
+      },
+      {
+        title: 'Respektuj, co je zakázané',
+        body:
+          'robots.txt u nás zakazuje /search*. Vyhledávání na webu se proto nepoužívá vůbec — server si ' +
+          'jednou stáhne rejstřík ze sitemap a hledá v něm lokálně. Vyjde to rychleji a web to nezatěžuje. ' +
+          'Tohle není formalita: nástroj, který leze, kam nemá, se dřív nebo později stane cizím problémem.',
+      },
+      {
+        title: 'Rozmysli nástroje podle otázek, ne podle webu',
+        body:
+          'Nepřevádět stránky na funkce, ale otázky na funkce. „Najdi produkt“, „řekni mi detail“, ' +
+          '„vypiš kategorii“. Popis nástroje si čte Claude, takže do něj patří i to, kdy ho použít — ' +
+          'třeba že na obecný dotaz je lepší kategorie než hledání podle názvu.',
+      },
+      {
+        title: 'Server je jeden soubor',
+        body:
+          'Ohlásíš seznam nástrojů a obsloužíš jejich volání. Komunikace jde přes standardní vstup ' +
+          'a výstup, takže není co nasazovat ani nikam přihlašovat.',
+        code:
+          "import { Server } from '@modelcontextprotocol/sdk/server/index.js'\n" +
+          "import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'\n\n" +
+          "server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: TOOLS }))\n" +
+          "server.setRequestHandler(CallToolRequestSchema, async (req) => { /* … */ })\n\n" +
+          'await server.connect(new StdioServerTransport())',
+      },
+      {
+        title: 'Nechoď na zdroj pokaždé znovu',
+        body:
+          'Rejstřík 81 tisíc produktů se postaví za pár sekund a uloží se na disk na týden. Každé hledání ' +
+          'pak běží lokálně. Kdyby server sahal na web při každém dotazu, byl by pomalý a otravný pro obě strany.',
+      },
+      {
+        title: 'Selhávej čitelně',
+        body:
+          'Když se změní šablona webu nebo dojde neznámý kód, ať nástroj řekne co a proč. Prázdný výsledek ' +
+          'vypadá jako „nic tam není“ a to je nejhorší možná odpověď — člověk pak hledá chybu u sebe.',
+      },
+      {
+        title: 'Zapoj ho do Coworku',
+        body: 'Do konfigurace MCP serverů přidáš příkaz, kterým se server spouští. Pak už stačí normální věta.',
+        code:
+          '{\n  "mcpServers": {\n    "dek": {\n      "command": "node",\n' +
+          '      "args": ["/plná/cesta/k/mcp-dek/server.js"]\n    }\n  }\n}',
+      },
+    ],
+    limits: [
+      'Ceny z veřejného webu jsou bez přihlášení — neodpovídají zákaznickým ani pobočkovým cenám.',
+      'Technické listy a parametry ve veřejném HTML nejsou, dotahují se až v prohlížeči. Kdo je potřebuje, musí sáhnout po interním API — což je ale doma, takže je to schůdnější.',
+      'Výpis kategorie vrací jen první várku produktů, na další je potřeba stránkování webu.',
+    ],
   },
 ]
 

@@ -6,3 +6,6 @@ tsconfig.tsbuildinfo
 
 # Seznam účastníků — údaje o konkrétních lidech, do veřejného repa nepatří.
 ucastnici.json
+
+# MCP server má vlastní závislosti
+mcp-dek/node_modules

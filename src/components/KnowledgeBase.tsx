@@ -7,7 +7,7 @@ import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
 import Typography from '@mui/material/Typography'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
-import { CATEGORIES, LEVEL_LABEL, LINKS, RULES, START_HERE, type Card as KbCard } from '../kb'
+import { CATEGORIES, GUIDES, LEVEL_LABEL, LINKS, RULES, START_HERE, type Card as KbCard } from '../kb'
 
 const LEVEL_COLOR = { zaklad: 'success', stredni: 'primary', pokrocile: 'warning' } as const
 
@@ -131,6 +131,93 @@ export default function KnowledgeBase() {
         </Tabs>
         <Grid cards={category.cards} />
       </Box>
+
+      {GUIDES.map((guide) => (
+        <Box key={guide.title} sx={{ mt: 6 }}>
+          <Typography variant="h6" component="h2" sx={{ fontWeight: 660 }}>
+            {guide.title}
+          </Typography>
+          <Typography sx={{ color: 'text.secondary', mt: 1, maxWidth: '74ch' }}>{guide.intro}</Typography>
+
+          <Box sx={{ mt: 2.5, border: 1, borderColor: 'divider', borderRadius: 2 }}>
+            {guide.steps.map((step, i) => (
+              <Box
+                key={step.title}
+                sx={{ p: 2.5, borderBottom: i < guide.steps.length - 1 ? 1 : 0, borderColor: 'divider' }}
+              >
+                <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'baseline' }}>
+                  <Typography
+                    sx={{ color: 'text.disabled', fontVariantNumeric: 'tabular-nums', fontWeight: 700, fontSize: 14 }}
+                  >
+                    {i + 1}.
+                  </Typography>
+                  <Box sx={{ flex: 1, minWidth: 0 }}>
+                    <Typography sx={{ fontWeight: 650 }}>{step.title}</Typography>
+                    <Typography sx={{ color: 'text.secondary', fontSize: 15, mt: 0.5, maxWidth: '74ch' }}>
+                      {step.body}
+                    </Typography>
+                    {step.code && (
+                      <Box
+                        component="pre"
+                        sx={{
+                          mt: 1.5,
+                          mb: 0,
+                          p: 1.75,
+                          border: 1,
+                          borderColor: 'divider',
+                          borderRadius: 1,
+                          bgcolor: 'action.hover',
+                          fontFamily: 'ui-monospace, Menlo, monospace',
+                          fontSize: 12.5,
+                          lineHeight: 1.6,
+                          overflowX: 'auto',
+                        }}
+                      >
+                        {step.code}
+                      </Box>
+                    )}
+                  </Box>
+                </Box>
+              </Box>
+            ))}
+          </Box>
+
+          {guide.limits && guide.limits.length > 0 && (
+            <Box sx={{ mt: 2 }}>
+              <Typography
+                sx={{ fontSize: 11, letterSpacing: '.06em', textTransform: 'uppercase', color: 'text.disabled', fontWeight: 700 }}
+              >
+                Co tím nedostaneš
+              </Typography>
+              {guide.limits.map((limit) => (
+                <Box
+                  key={limit}
+                  sx={{
+                    pl: 2.25,
+                    mt: 0.75,
+                    position: 'relative',
+                    fontSize: 14,
+                    color: 'text.secondary',
+                    maxWidth: '74ch',
+                    '&::before': {
+                      content: '""',
+                      position: 'absolute',
+                      left: 2,
+                      top: '.6em',
+                      width: 5,
+                      height: 5,
+                      borderRadius: '50%',
+                      bgcolor: 'text.disabled',
+                    },
+                  }}
+                >
+                  {limit}
+                </Box>
+              ))}
+            </Box>
+          )}
+        </Box>
+      ))}
 
       <Box sx={{ mt: 6 }}>
         <Typography variant="h6" component="h2" sx={{ fontWeight: 660, mb: 2 }}>
