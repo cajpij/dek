@@ -66,6 +66,8 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Ověřit, že každý má desktopovou appku a placený plán (Pro / Max / Team / Enterprise)',
         'Všichni na Windows — cesty a příkazy ukazovat ve windowsové podobě',
         'Ať má každý po ruce nějaký svůj export: doklad, CSV, tabulku',
+        'Kdo nevyplnil vstupní kvíz, ať ho udělá teď — odkaz je v Nastavení a program',
+        'Z kvízu vypadne, který díl paletové evidence si má kdo ve cvičeních vzít',
         'Wi-Fi síť a heslo nechat na plátně',
         'Večerní termín — držet tempo, na doháněnost není rezerva',
       ],

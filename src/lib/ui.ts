@@ -4,6 +4,12 @@ export function displayUrl(): string {
   return `${origin}${pathname}${search}#display`
 }
 
+/** Odkaz na kvíz pro účastníky — stejná adresa, jiný pohled. */
+export function quizUrl(): string {
+  const { origin, pathname } = window.location
+  return `${origin}${pathname}#quiz`
+}
+
 export function openDisplayWindow(): void {
   const win = window.open(displayUrl(), 'runsheet-display', 'width=1280,height=800')
   win?.focus()
