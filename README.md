@@ -25,6 +25,8 @@ skluz proti plánu a odhad konce akce. Vlevo běží aktuální blok s odpočtem
 vnitřním programem k odškrtávání a poznámkami. Vpravo je celý harmonogram —
 kliknutím na řádek se skočí na daný blok.
 
+Pravý sloupec má dvě záložky: **Program** a **Účastníci**.
+
 **Plátno** (`/#display`) je druhá obrazovka pro sál: název bloku, obří odpočet a co
 bude následovat. Otevře se tlačítkem *Plátno* nebo klávesou <kbd>D</kbd>, přetáhne se
 na projektor a přepne na celou obrazovku (<kbd>F</kbd> nebo dvojklik). Obě okna drží
@@ -52,6 +54,72 @@ Modrá běží normálně, zelená je pauza, oranžová poslední minuta, červe
 Počítá se jen z uzavřených bloků: kolik času blok reálně sežral proti tomu, kolik
 měl. Během běžícího bloku se tedy nehýbe a nerozhodí ho pauznutí odpočtu.
 Odhad konce akce naopak počítá se zbytkem aktuálního bloku i všemi dalšími.
+
+## Seznam účastníků
+
+Záložka *Účastníci* drží u každého člověka odhad úrovně, co už umí, co od školení
+potřebuje a poznámku pro lektora — aby bylo při cvičeních jasné, koho obejít dřív a
+komu dát těžší zadání.
+
+**Ve zdrojáku je `participants` prázdné schválně.** Jsou to údaje o konkrétních lidech
+a repozitář je veřejný. Skutečný seznam žije v `ucastnici.json`, který je v `.gitignore`.
+Na plátno se účastníci nedostanou nikdy.
+
+Do aplikace se dostanou dvěma cestami:
+
+1. **Lokálně** — **Nastavení a program → Načíst ze souboru**. Jména neopustí notebook.
+2. **Zašifrovaně v nasazení** — viz níž. Na webu je zamčená obrazovka na heslo.
+
+Soubor jen s klíčem `participants` se přilije ke stávajícímu programu. Soubor, který má
+i `agenda`, nahradí celý program. Tvar je v [`ucastnici.example.json`](ucastnici.example.json):
+
+```jsonc
+{
+  "participants": [
+    {
+      "name": "Jméno",
+      "role": "pozice",                  // nepovinné
+      "level": "advanced",               // unknown | beginner | intermediate | advanced
+      "work": "na čem hlavně pracuje",   // z úvodního dotazníku
+      "claudeCode": "Používám dost…",    // z úvodního dotazníku
+      "wants": ["Automatizace opakovaných úkolů"],
+      "knows": ["co už používá"],
+      "needs": ["co od školení potřebuje"],
+      "note": "Jak s ním pracovat."
+    }
+  ]
+}
+```
+
+Tlačítko *Uložit do souboru* vyexportuje aktuální program i s účastníky — hodí se na
+přenos mezi notebooky. Takový export už osobní údaje obsahuje, takže ho necommituj.
+Tlačítko *Zapomenout* v záhlaví seznamu smaže účastníky z prohlížeče.
+
+### Zašifrovaný seznam v nasazení
+
+GitHub Pages neumí přihlašování — cokoli tam leží, je veřejné. Proto se na web nedává
+seznam, ale jeho **šifra**: AES-256-GCM, klíč odvozený z hesla přes PBKDF2-SHA256
+(600 000 iterací, doporučení OWASP). Aplikace se zeptá na heslo a dešifruje v prohlížeči;
+heslo se nikam neodesílá ani neukládá.
+
+```bash
+npm run encrypt:participants        # zeptá se na heslo, přečte ucastnici.json
+git add public/ucastnici.enc        # commituje se jen šifra
+```
+
+Heslo se zadává na terminálu, takže se nedostane do historie shellu. Skript odmítne heslo
+kratší než 12 znaků a umí i jiný vstup a výstup:
+`node scripts/encrypt-participants.mjs zdroj.json cil.enc`.
+
+Co je potřeba vědět, než se to nasadí:
+
+- **Heslo předej lidem jinou cestou než tímhle repem** — ne v commitu, ne v README.
+- Šifru si kdokoli stáhne a může na ní **hádat heslo offline**. Proto to dlouhé odvozování
+  klíče a proto musí být heslo silné; „cowork2026“ nestačí.
+- Git historie je trvalá. Když heslo někdy unikne, dá se z historie vytáhnout i starý
+  `.enc`. Při změně hesla je proto potřeba počítat s tím, že staré verze zůstávají.
+- Chce-li to opravdový login a přehled, kdo se díval, patří to na hosting s ověřováním
+  (Cloudflare Pages + Access), ne na GitHub Pages.
 
 ## Úprava programu
 

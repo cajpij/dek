@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
@@ -46,6 +46,7 @@ function Kbd({ children }: { children: string }) {
 
 export default function SettingsPanel({ run }: { run: RunSheet }) {
   const { state } = run
+  const fileRef = useRef<HTMLInputElement>(null)
   const serialized = JSON.stringify(configFromState(state), null, 2)
   const [draft, setDraft] = useState(serialized)
   const [error, setError] = useState('')
@@ -70,6 +71,45 @@ export default function SettingsPanel({ run }: { run: RunSheet }) {
     }
     setError('')
     run.applyConfig(cfg)
+  }
+
+  /**
+   * Načte lokální .json — nic se nikam neodesílá. Soubor s `agenda` nahradí celý
+   * program; soubor jen s `participants` se přilije ke stávajícímu programu,
+   * takže seznam lidí může žít v samostatném souboru mimo repozitář.
+   */
+  const importFile = (file: File) => {
+    const reader = new FileReader()
+    reader.onload = () => {
+      let cfg: RunConfig
+      try {
+        cfg = JSON.parse(String(reader.result)) as RunConfig
+      } catch (e) {
+        setError(`Chyba v JSONu: ${(e as Error).message}`)
+        return
+      }
+      if (cfg?.agenda?.length) {
+        setError('')
+        setDraft(String(reader.result))
+        run.applyConfig(cfg)
+      } else if (cfg?.participants?.length) {
+        setError('')
+        run.setParticipants(cfg.participants)
+      } else {
+        setError('Soubor nemá ani „agenda“, ani „participants“.')
+      }
+    }
+    reader.readAsText(file)
+  }
+
+  const exportFile = () => {
+    const blob = new Blob([serialized], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'run-sheet.json'
+    a.click()
+    URL.revokeObjectURL(url)
   }
 
   return (
@@ -120,8 +160,9 @@ export default function SettingsPanel({ run }: { run: RunSheet }) {
 
           <Box>
             <Typography sx={{ fontSize: 13, color: 'text.secondary', mb: 1 }}>
-              Program ve formátu JSON. Po úpravě dej <em>Použít</em> — uloží se do prohlížeče, takže přežije
-              zavření stránky i pád notebooku.
+              Program a seznam účastníků ve formátu JSON. Po úpravě dej <em>Použít</em> — uloží se do
+              prohlížeče, takže to přežije zavření stránky i pád notebooku. Údaje o účastnících zůstávají
+              jen tady, do repozitáře ani na plátno se nedostanou.
             </Typography>
             <TextField
               multiline
@@ -145,6 +186,23 @@ export default function SettingsPanel({ run }: { run: RunSheet }) {
               <Button variant="outlined" color="inherit" onClick={() => setDraft(serialized)}>
                 Zahodit změny
               </Button>
+              <Button variant="outlined" color="inherit" onClick={() => fileRef.current?.click()}>
+                Načíst ze souboru
+              </Button>
+              <Button variant="outlined" color="inherit" onClick={exportFile}>
+                Uložit do souboru
+              </Button>
+              <input
+                ref={fileRef}
+                type="file"
+                accept="application/json,.json"
+                hidden
+                onChange={(e) => {
+                  const file = e.target.files?.[0]
+                  if (file) importFile(file)
+                  e.target.value = ''
+                }}
+              />
               <Button
                 variant="outlined"
                 color="inherit"

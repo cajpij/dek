@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { RunConfig, RunState } from '../types'
+import type { Participant, RunConfig, RunState } from '../types'
 import { DEFAULT_CONFIG } from '../config'
 import { elapsedMs, remainSec, stateFromConfig } from './run'
 import { playBeep } from './beep'
@@ -20,6 +20,7 @@ function loadState(): RunState | null {
     if (!s || !Array.isArray(s.agenda) || s.agenda.length === 0) return null
     // Starší uložený stav nemusí mít všechna pole.
     s.actualSec ??= []
+    s.participants ??= []
     s.stepDone ??= s.agenda.map((b) => (b.steps ?? []).map(() => false))
     return s
   } catch {
@@ -46,6 +47,7 @@ export interface RunSheet {
   bump: (sec: number) => void
   toggleStep: (block: number, step: number) => void
   applyConfig: (cfg: RunConfig) => void
+  setParticipants: (people: Participant[]) => void
   loadDefaults: () => void
   setOption: <K extends 'autoNext' | 'beep'>(key: K, value: RunState[K]) => void
 }
@@ -165,6 +167,10 @@ export function useRunSheet(mode: Mode): RunSheet {
     })
   }, [])
 
+  const setParticipants = useCallback((people: Participant[]) => {
+    setState((s) => ({ ...s, participants: people }))
+  }, [])
+
   const loadDefaults = useCallback(() => applyConfig(DEFAULT_CONFIG), [applyConfig])
 
   const setOption = useCallback(<K extends 'autoNext' | 'beep'>(key: K, value: RunState[K]) => {
@@ -184,5 +190,17 @@ export function useRunSheet(mode: Mode): RunSheet {
     if (state.autoNext && state.idx < state.agenda.length - 1) goTo(state.idx + 1)
   }, [mode, now, state, goTo])
 
-  return { state, now, toggle, goTo, resetBlock, bump, toggleStep, applyConfig, loadDefaults, setOption }
+  return {
+    state,
+    now,
+    toggle,
+    goTo,
+    resetBlock,
+    bump,
+    toggleStep,
+    applyConfig,
+    setParticipants,
+    loadDefaults,
+    setOption,
+  }
 }

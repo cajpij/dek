@@ -1,0 +1,20 @@
+{
+  "participants": [
+    {
+      "name": "Jméno Příjmení",
+      "role": "pozice ve firmě",
+      "level": "advanced",
+      "work": "na čem hlavně pracuje",
+      "claudeCode": "Používám dost, ale vím, že z něj tahám zlomek",
+      "wants": ["Automatizace opakovaných úkolů", "Objednávky, sklady a evidence zásob"],
+      "knows": ["co už používá", "co zvládl sám"],
+      "needs": ["co od školení potřebuje"],
+      "note": "Jak s ním pracovat — poznámka pro lektora."
+    },
+    {
+      "name": "Druhý účastník",
+      "level": "unknown",
+      "needs": ["zjistit úroveň hned v úvodním kolečku"]
+    }
+  ]
+}

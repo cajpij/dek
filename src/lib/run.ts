@@ -1,10 +1,17 @@
-import type { Kind, RunConfig, RunState, Tone } from '../types'
+import type { Kind, Level, RunConfig, RunState, Tone } from '../types'
 
 export const KIND_LABEL: Record<Kind, string> = {
   talk: 'Přednáška',
   work: 'Cvičení',
   qna: 'Otázky',
   break: 'Pauza',
+}
+
+export const LEVEL_LABEL: Record<Level, string> = {
+  unknown: 'úroveň neznámá',
+  beginner: 'začátečník',
+  intermediate: 'středně pokročilý',
+  advanced: 'pokročilý',
 }
 
 const KIND_SET = new Set<Kind>(['talk', 'work', 'qna', 'break'])
@@ -29,6 +36,7 @@ export function stateFromConfig(cfg: RunConfig): RunState {
     startedAt: null,
     accumulated: 0,
     actualSec: [],
+    participants: cfg.participants ?? [],
     stepDone: agenda.map((b) => (b.steps ?? []).map(() => false)),
     autoNext: false,
     beep: false,
@@ -39,6 +47,7 @@ export function stateFromConfig(cfg: RunConfig): RunState {
 export function configFromState(s: RunState): RunConfig {
   return {
     event: s.event,
+    ...(s.participants.length ? { participants: s.participants } : {}),
     agenda: s.agenda.map((b) => ({
       title: b.title,
       min: b.min,

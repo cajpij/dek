@@ -15,6 +15,10 @@ export const DEFAULT_CONFIG: RunConfig = {
     venue: 'Místo konání',
     startsAt: '09:00',
   },
+  // Údaje o konkrétních lidech tady záměrně nejsou — repozitář je veřejný.
+  // Seznam se načítá v aplikaci (Nastavení a program → Načíst ze souboru)
+  // z lokálního ucastnici.json, který je v .gitignore. Tvar viz ucastnici.example.json.
+  participants: [],
   agenda: [
     {
       title: 'Příchod, káva, kontrola nastavení',
@@ -22,6 +26,8 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'break',
       notes: [
         'Ověřit, že každý má desktopovou appku a placený plán (Pro / Max / Team / Enterprise)',
+        'Všichni na Windows — cesty a příkazy ukazovat ve windowsové podobě',
+        'Projít firemní pravidla pro data: co Claude smí vidět a jaký režim oprávnění nastavit',
         'Wi-Fi síť a heslo nechat na plátně',
       ],
     },

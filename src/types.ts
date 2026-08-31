@@ -33,9 +33,41 @@ export interface EventInfo {
 }
 
 /** To, co se dá vyexportovat a znovu naimportovat v editoru programu. */
+/** Odhad úrovně účastníka — řídí štítek v seznamu, nic víc. */
+export type Level = 'unknown' | 'beginner' | 'intermediate' | 'advanced'
+
+/**
+ * Účastník školení. Drží se jen to, co lektorovi pomůže vést hodinu:
+ * co člověk umí, co od školení potřebuje a jak s ním pracovat.
+ */
+export interface Participant {
+  name: string
+  /** Pozice ve firmě. */
+  role?: string
+  level?: Level
+  /** Na čem hlavně pracuje — z úvodního dotazníku. */
+  work?: string
+  /** Jak je na tom s Claude Code, vlastními slovy z dotazníku. */
+  claudeCode?: string
+  /** Na co chce Claude Code hlavně použít — z dotazníku. */
+  wants?: string[]
+  /** Co už používá nebo zvládl. */
+  knows?: string[]
+  /** Co od školení potřebuje. */
+  needs?: string[]
+  /** Poznámka pro lektora — jak s ním pracovat. */
+  note?: string
+}
+
 export interface RunConfig {
   event: EventInfo
   agenda: Block[]
+  /**
+   * Seznam účastníků. Ve zdrojáku zůstává prázdný — jsou to údaje o konkrétních
+   * lidech a repozitář je veřejný. Skutečný seznam se načítá ze souboru
+   * v aplikaci a zůstává v prohlížeči.
+   */
+  participants?: Participant[]
 }
 
 /** Blok obohacený o ruční úpravu délky (tlačítka ±1 min). */
@@ -56,6 +88,7 @@ export interface RunState {
   accumulated: number
   /** Skutečně strávený čas v už uzavřených blocích (s). */
   actualSec: number[]
+  participants: Participant[]
   /** Odškrtnuté kroky, indexováno [blok][krok]. */
   stepDone: boolean[][]
   autoNext: boolean

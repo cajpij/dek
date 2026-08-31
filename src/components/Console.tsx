@@ -1,14 +1,18 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
+import Tab from '@mui/material/Tab'
+import Tabs from '@mui/material/Tabs'
 import type { RunSheet } from '../lib/useRunSheet'
 import { isTypingTarget, openDisplayWindow, toggleFullscreen } from '../lib/ui'
 import TopBar from './TopBar'
 import NowPanel from './NowPanel'
 import AgendaList from './AgendaList'
+import Participants from './Participants'
 import SettingsPanel from './SettingsPanel'
 
 export default function Console({ run }: { run: RunSheet }) {
   const { state } = run
+  const [tab, setTab] = useState(0)
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -69,7 +73,15 @@ export default function Console({ run }: { run: RunSheet }) {
       >
         <NowPanel run={run} />
         <Box sx={{ minHeight: 0, overflow: { lg: 'auto' } }}>
-          <AgendaList run={run} />
+          <Tabs
+            value={tab}
+            onChange={(_, v: number) => setTab(v)}
+            sx={{ borderBottom: 1, borderColor: 'divider', minHeight: 42, px: 1 }}
+          >
+            <Tab label="Program" sx={{ minHeight: 42 }} />
+            <Tab label={`Účastníci (${state.participants.length})`} sx={{ minHeight: 42 }} />
+          </Tabs>
+          {tab === 0 ? <AgendaList run={run} /> : <Participants run={run} />}
           <SettingsPanel run={run} />
         </Box>
       </Box>

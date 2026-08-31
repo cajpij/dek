@@ -3,3 +3,6 @@ dist
 .DS_Store
 *.local
 tsconfig.tsbuildinfo
+
+# Seznam účastníků — údaje o konkrétních lidech, do veřejného repa nepatří.
+ucastnici.json
