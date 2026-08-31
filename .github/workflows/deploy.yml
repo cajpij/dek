@@ -28,11 +28,10 @@ jobs:
         env:
           # Projektový web běží na /<jmeno-repa>/, ne v kořeni domény.
           BASE_PATH: /${{ github.event.repository.name }}/
+      # Pages musí být v repu jednou ručně zapnuté: Settings → Pages → Source:
+      # GitHub Actions. Sám si je workflow založit neumí — Create Pages site
+      # vyžaduje admin práva, která výchozí GITHUB_TOKEN nemá.
       - uses: actions/configure-pages@v5
-        with:
-          # Když v repu Pages ještě nejsou zapnuté, workflow si je založí samo
-          # a nastaví build type na GitHub Actions.
-          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
