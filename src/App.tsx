@@ -3,13 +3,14 @@ import { useRunSheet, type Mode } from './lib/useRunSheet'
 import Console from './components/Console'
 import DisplayView from './components/DisplayView'
 import KnowledgeBase from './components/KnowledgeBase'
+import McpPage from './components/McpPage'
 import Quiz from './components/Quiz'
 
 /**
- * Čtyři pohledy na jedné adrese: konzole pro lektora, plátno pro sál,
- * kvíz pro účastníky a knowledge base, ke které se tým vrací i po workshopu.
+ * Pět pohledů na jedné adrese: konzole pro lektora, plátno pro sál, kvíz pro
+ * účastníky, knowledge base pro tým a stránka o MCP serveru nad katalogem.
  */
-type View = Mode | 'quiz' | 'kb'
+type View = Mode | 'quiz' | 'kb' | 'mcp'
 
 const readView = (): View => {
   switch (window.location.hash) {
@@ -19,6 +20,8 @@ const readView = (): View => {
       return 'quiz'
     case '#kb':
       return 'kb'
+    case '#mcp':
+      return 'mcp'
     default:
       return 'console'
   }
@@ -41,5 +44,6 @@ export default function App() {
 
   if (view === 'quiz') return <Quiz />
   if (view === 'kb') return <KnowledgeBase />
+  if (view === 'mcp') return <McpPage />
   return <RunSheet mode={view} />
 }

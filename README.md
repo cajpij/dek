@@ -35,6 +35,7 @@ Aplikace má čtyři pohledy na jedné adrese:
 | `/#display` | Plátno pro sál — velký odpočet, u cvičení i zadání |
 | `/#quiz` | Vstupní kvíz pro účastníky — rozdělí díly práce podle úrovně |
 | `/#kb` | Knowledge base — úlohy podle agendy, ke kterým se tým vrací |
+| `/#mcp` | Stránka o MCP serveru nad katalogem dek.cz — příklady a zapojení |
 
 Odkazy na kvíz a knowledge base jsou i v **Nastavení a program**, ke zkopírování.
 
@@ -176,6 +177,14 @@ Struktura bloku:
 `kind` řídí barvu a štítek: `break` je zelená pauza, `work` cvičení, `qna` otázky.
 Časy v levém sloupci harmonogramu se dopočítávají z `event.startsAt` a délek bloků —
 nezadávají se ručně.
+
+## MCP server nad katalogem dek.cz
+
+Ve složce [`mcp-dek/`](mcp-dek/) je hotový MCP server s pěti nástroji nad veřejným
+katalogem. Stránka `/#mcp` ukazuje, co umí, příklady dotazů a jak si ho kdo zapojí;
+podrobnosti a hranice jsou v [`mcp-dek/README.md`](mcp-dek/README.md).
+
+Návod, podle kterého si tým postaví vlastní MCP na cokoli dalšího, je v knowledge base.
 
 ## Nasazení na GitHub Pages
 

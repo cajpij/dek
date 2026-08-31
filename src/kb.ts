@@ -396,6 +396,11 @@ export const GUIDES: Guide[] = [
 
 export const LINKS: Link[] = [
   {
+    label: 'MCP server nad naším katalogem',
+    href: '#mcp',
+    note: 'Co umí, příklady dotazů a jak si ho zapojit',
+  },
+  {
     label: 'Introduction to Claude Cowork',
     href: 'https://academy.claude.com/courses/introduction-to-claude-cowork',
     note: 'Kurz, ze kterého workshop vychází — 14 lekcí a kvíz, dá se dodělat po svém',

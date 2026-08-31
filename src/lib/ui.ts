@@ -16,6 +16,12 @@ export function kbUrl(): string {
   return `${origin}${pathname}#kb`
 }
 
+/** Odkaz na stránku o MCP serveru nad katalogem dek.cz. */
+export function mcpUrl(): string {
+  const { origin, pathname } = window.location
+  return `${origin}${pathname}#mcp`
+}
+
 export function openDisplayWindow(): void {
   const win = window.open(displayUrl(), 'runsheet-display', 'width=1280,height=800')
   win?.focus()
