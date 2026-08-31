@@ -9,6 +9,7 @@ import NowPanel from './NowPanel'
 import AgendaList from './AgendaList'
 import Participants from './Participants'
 import SettingsPanel from './SettingsPanel'
+import UpdateBanner from './UpdateBanner'
 
 export default function Console({ run }: { run: RunSheet }) {
   const { state } = run
@@ -61,6 +62,7 @@ export default function Console({ run }: { run: RunSheet }) {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
       <TopBar state={state} now={run.now} />
+      <UpdateBanner run={run} />
       <Box
         component="main"
         sx={{

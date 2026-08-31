@@ -53,6 +53,9 @@ export default function NowPanel({ run }: { run: RunSheet }) {
         {block.who && (
           <Typography sx={{ color: 'text.secondary', mt: 0.5 }}>{block.who}</Typography>
         )}
+        {block.brief && (
+          <Typography sx={{ mt: 1.5, color: 'text.secondary', maxWidth: '68ch' }}>{block.brief}</Typography>
+        )}
       </Box>
 
       <Box>
@@ -161,6 +164,31 @@ export default function NowPanel({ run }: { run: RunSheet }) {
                   >
                     {step.min} min
                   </Typography>
+                )}
+              </Box>
+            ))}
+          </Stack>
+        </Box>
+      )}
+
+      {block.examples && block.examples.length > 0 && (
+        <Box>
+          <Typography variant="overline" sx={{ color: 'text.disabled', fontSize: 12 }}>
+            Zadání k výběru
+          </Typography>
+          <Stack sx={{ mt: 0.5 }}>
+            {block.examples.map((example, i) => (
+              <Box
+                key={i}
+                sx={{
+                  py: 1,
+                  borderBottom: i < block.examples!.length - 1 ? 1 : 0,
+                  borderColor: 'divider',
+                }}
+              >
+                <Typography sx={{ fontWeight: 600 }}>{example.title}</Typography>
+                {example.detail && (
+                  <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>{example.detail}</Typography>
                 )}
               </Box>
             ))}

@@ -18,14 +18,30 @@ const KIND_SET = new Set<Kind>(['talk', 'work', 'qna', 'break'])
 const asKind = (k: unknown): Kind => (KIND_SET.has(k as Kind) ? (k as Kind) : 'talk')
 
 /** Čerstvý stav běhu ze zadaného programu. */
+/**
+ * Otisk programu (FNV-1a). Slouží jen k poznání, že se nasazený výchozí
+ * program změnil od chvíle, kdy tenhle prohlížeč naposledy koukal.
+ */
+export function fingerprint(cfg: RunConfig): string {
+  const s = JSON.stringify(cfg)
+  let h = 2166136261
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i)
+    h = Math.imul(h, 16777619)
+  }
+  return (h >>> 0).toString(36)
+}
+
 export function stateFromConfig(cfg: RunConfig): RunState {
   const agenda = (cfg.agenda ?? []).map((b) => ({
     title: b.title || 'Blok',
     min: Number(b.min) || 0,
     kind: asKind(b.kind),
     who: b.who,
+    brief: b.brief,
     notes: b.notes,
     steps: b.steps,
+    examples: b.examples,
     deltaSec: 0,
   }))
   return {
@@ -40,6 +56,7 @@ export function stateFromConfig(cfg: RunConfig): RunState {
     stepDone: agenda.map((b) => (b.steps ?? []).map(() => false)),
     autoNext: false,
     beep: false,
+    seenDefault: '',
   }
 }
 
@@ -53,8 +70,10 @@ export function configFromState(s: RunState): RunConfig {
       min: b.min,
       kind: b.kind,
       ...(b.who ? { who: b.who } : {}),
+      ...(b.brief ? { brief: b.brief } : {}),
       ...(b.notes?.length ? { notes: b.notes } : {}),
       ...(b.steps?.length ? { steps: b.steps } : {}),
+      ...(b.examples?.length ? { examples: b.examples } : {}),
     })),
   }
 }

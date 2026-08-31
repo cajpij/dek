@@ -10,6 +10,13 @@ export interface Step {
   detail?: string
 }
 
+/** Cvičný příklad k výběru — konkrétní zadání, které si účastník může vzít. */
+export interface Example {
+  title: string
+  /** Co přesně po Claudovi chtít a co má vypadnout. */
+  detail?: string
+}
+
 /** Jeden blok programu tak, jak ho zadává moderátor. */
 export interface Block {
   title: string
@@ -18,10 +25,17 @@ export interface Block {
   kind: Kind
   /** Kdo blok vede. */
   who?: string
+  /** Odstavec kontextu — u společného projektu popis zadání, ze kterého se krájí. */
+  brief?: string
   /** Odrážky pro moderátora — co říct, na co nezapomenout. */
   notes?: string[]
   /** Vnitřní program bloku — jednotlivá cvičení a kapitoly, dají se odškrtávat. */
   steps?: Step[]
+  /**
+   * Nabídka konkrétních zadání pro cvičení. U bloků typu `work` se ukazuje
+   * i na plátně, aby si sál mohl vybrat, aniž by si úkol musel vymýšlet.
+   */
+  examples?: Example[]
 }
 
 export interface EventInfo {
@@ -93,6 +107,11 @@ export interface RunState {
   stepDone: boolean[][]
   autoNext: boolean
   beep: boolean
+  /**
+   * Otisk nasazeného výchozího programu, který tenhle prohlížeč naposledy viděl.
+   * Když se liší od aktuálního, nabídne se načtení novějšího programu.
+   */
+  seenDefault: string
 }
 
 export type Tone = 'ok' | 'warn' | 'over'

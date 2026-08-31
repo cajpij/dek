@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Participant, RunConfig, RunState } from '../types'
 import { DEFAULT_CONFIG } from '../config'
-import { elapsedMs, remainSec, stateFromConfig } from './run'
+import { elapsedMs, fingerprint, remainSec, stateFromConfig } from './run'
 import { playBeep } from './beep'
 
 const KEY = 'runsheet.v1'
 const CHANNEL = 'runsheet.v1'
+
+/** Otisk programu zabudovaného do téhle verze nasazení. */
+const DEFAULT_FINGERPRINT = fingerprint(DEFAULT_CONFIG)
 
 /** Konzole ovládá běh, plátno ho jen zrcadlí. */
 export type Mode = 'console' | 'display'
@@ -21,6 +24,8 @@ function loadState(): RunState | null {
     // Starší uložený stav nemusí mít všechna pole.
     s.actualSec ??= []
     s.participants ??= []
+    // Starší uložený stav otisk nemá — bere se jako „nasazený program neviděl“.
+    s.seenDefault ??= ''
     s.stepDone ??= s.agenda.map((b) => (b.steps ?? []).map(() => false))
     return s
   } catch {
@@ -39,6 +44,10 @@ function commitElapsed(s: RunState, at: number): RunState {
 
 export interface RunSheet {
   state: RunState
+  /** Nasazený výchozí program se od posledně změnil. */
+  defaultChanged: boolean
+  /** Nechat si vlastní program a přestat na novější upozorňovat. */
+  keepMine: () => void
   /** Tiká 4× za sekundu, aby se přepočítal odpočet. */
   now: number
   toggle: () => void
@@ -53,7 +62,11 @@ export interface RunSheet {
 }
 
 export function useRunSheet(mode: Mode): RunSheet {
-  const [state, setState] = useState<RunState>(() => loadState() ?? stateFromConfig(DEFAULT_CONFIG))
+  const [state, setState] = useState<RunState>(
+    // Čerstvý prohlížeč dostane nasazený program rovnou jako viděný,
+    // ať mu pruh o novější verzi neskočí hned na uvítanou.
+    () => loadState() ?? { ...stateFromConfig(DEFAULT_CONFIG), seenDefault: DEFAULT_FINGERPRINT },
+  )
   const [now, setNow] = useState(() => Date.now())
 
   const channelRef = useRef<BroadcastChannel | null>(null)
@@ -163,8 +176,18 @@ export function useRunSheet(mode: Mode): RunSheet {
   const applyConfig = useCallback((cfg: RunConfig) => {
     setState((s) => {
       armedRef.current = true
-      return { ...stateFromConfig(cfg), autoNext: s.autoNext, beep: s.beep }
+      return {
+        ...stateFromConfig(cfg),
+        autoNext: s.autoNext,
+        beep: s.beep,
+        // Uživatel právě program vědomě zvolil — o tom nasazeném už ví.
+        seenDefault: DEFAULT_FINGERPRINT,
+      }
     })
+  }, [])
+
+  const keepMine = useCallback(() => {
+    setState((s) => ({ ...s, seenDefault: DEFAULT_FINGERPRINT }))
   }, [])
 
   const setParticipants = useCallback((people: Participant[]) => {
@@ -193,6 +216,8 @@ export function useRunSheet(mode: Mode): RunSheet {
   return {
     state,
     now,
+    defaultChanged: mode === 'console' && state.seenDefault !== DEFAULT_FINGERPRINT,
+    keepMine,
     toggle,
     goTo,
     resetBlock,

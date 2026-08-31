@@ -30,6 +30,9 @@ export default function DisplayView({ run }: { run: RunSheet }) {
   const color = paletteFor(toneOf(remain), block.kind)
   const progress = duration > 0 ? Math.min(100, Math.max(0, (1 - remain / duration) * 100)) : 0
   const next = state.agenda[state.idx + 1]
+  // U cvičení má sál mít zadání před očima; časovka pak ustoupí, ať se to vejde.
+  const examples = block.kind === 'work' ? (block.examples ?? []) : []
+  const compact = examples.length > 0
 
   return (
     <Box
@@ -41,9 +44,9 @@ export default function DisplayView({ run }: { run: RunSheet }) {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '2.5vh',
+        gap: compact ? '1.6vh' : '2.5vh',
         px: '5vw',
-        py: '5vh',
+        py: '4vh',
       }}
     >
       <Typography
@@ -75,7 +78,7 @@ export default function DisplayView({ run }: { run: RunSheet }) {
       <Typography
         component="div"
         sx={{
-          fontSize: 'clamp(5rem, 25vw, 26rem)',
+          fontSize: compact ? 'clamp(3rem, 12vw, 11rem)' : 'clamp(5rem, 25vw, 26rem)',
           fontWeight: 700,
           lineHeight: 0.82,
           letterSpacing: '-.045em',
@@ -93,7 +96,48 @@ export default function DisplayView({ run }: { run: RunSheet }) {
         sx={{ width: 'min(70vw, 900px)', height: 8 }}
       />
 
-      {next && (
+      {examples.length > 0 && (
+        <Box sx={{ width: 'min(88vw, 1400px)', textAlign: 'left', mt: '1vh' }}>
+          <Typography
+            sx={{
+              fontSize: 'clamp(.8rem, 1.4vw, 1.1rem)',
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              color: 'text.disabled',
+              mb: 1,
+            }}
+          >
+            Vyber si zadání
+          </Typography>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: examples.length > 4 ? 'repeat(2, minmax(0, 1fr))' : '1fr',
+              columnGap: 4,
+            }}
+          >
+            {examples.map((example, i) => (
+              <Box key={i} sx={{ display: 'flex', gap: 1.5, py: '.6vh', alignItems: 'baseline' }}>
+                <Typography
+                  sx={{
+                    fontSize: 'clamp(.9rem, 1.5vw, 1.3rem)',
+                    color: 'text.disabled',
+                    fontVariantNumeric: 'tabular-nums',
+                  }}
+                >
+                  {i + 1}.
+                </Typography>
+                <Typography sx={{ fontSize: 'clamp(.95rem, 1.7vw, 1.5rem)', fontWeight: 600 }}>
+                  {example.title}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      )}
+
+      {next && !compact && (
         <Typography sx={{ fontSize: 'clamp(.95rem, 1.8vw, 1.4rem)', color: 'text.secondary' }}>
           Pak: {next.title}
         </Typography>
