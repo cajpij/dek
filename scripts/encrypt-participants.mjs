@@ -7,7 +7,8 @@
  * Heslo se zadává na terminálu a nikam se neukládá — ani do souboru, ani do
  * historie shellu. Pro neinteraktivní běh jde nasypat na stdin:
  *
- *   printf '%s' 'heslo' | node scripts/encrypt-participants.mjs
+ *   read -rs PASS && printf '%s' "$PASS" | node scripts/encrypt-participants.mjs
+ *   RUNSHEET_PASSPHRASE='heslo' node scripts/encrypt-participants.mjs
  *
  * Výsledný .enc se commituje a nasazuje. ucastnici.json zůstává v .gitignore.
  */
@@ -34,7 +35,10 @@ const DEL = '\u007f'
 
 const b64 = (bytes) => Buffer.from(bytes).toString('base64')
 
-/** Načte heslo bez vypisování na obrazovku. Z roury si ho vezme rovnou. */
+/**
+ * Načte heslo. Na terminálu ho maskuje hvězdičkami, aby bylo poznat, že se
+ * píše; z roury si ho vezme rovnou a nic nevypisuje.
+ */
 function askHidden(question) {
   return new Promise((resolve) => {
     const stdin = process.stdin
@@ -64,9 +68,13 @@ function askHidden(question) {
         process.stdout.write('\n')
         process.exit(130)
       } else if (ch === DEL || ch === '\b') {
-        buf = buf.slice(0, -1)
-      } else {
+        if (buf.length > 0) {
+          buf = buf.slice(0, -1)
+          process.stdout.write('\b \b')
+        }
+      } else if (ch >= ' ') {
         buf += ch
+        process.stdout.write('*')
       }
     }
     stdin.on('data', onData)
@@ -95,7 +103,11 @@ if (!Array.isArray(parsed.participants) || parsed.participants.length === 0) {
   die('ucastnici.json nemá neprázdné pole „participants“.')
 }
 
-const passphrase = await askHidden('Heslo pro zašifrování: ')
+const fromEnv = process.env.RUNSHEET_PASSPHRASE
+if (fromEnv) {
+  console.log('Beru heslo z proměnné RUNSHEET_PASSPHRASE.')
+}
+const passphrase = fromEnv ?? (await askHidden('Heslo pro zašifrování (píše se, jen se maskuje): '))
 if (passphrase.length < MIN_LENGTH) {
   die(
     `Heslo má ${passphrase.length} znaků, potřebuje aspoň ${MIN_LENGTH}.\n` +
@@ -103,7 +115,7 @@ if (passphrase.length < MIN_LENGTH) {
       '  hádat offline. Krátké heslo tu neochrání nic.',
   )
 }
-if (process.stdin.isTTY) {
+if (!fromEnv && process.stdin.isTTY) {
   const again = await askHidden('Heslo znovu pro kontrolu: ')
   if (again !== passphrase) die('Hesla se neshodují, nic jsem nezapsal.')
 }

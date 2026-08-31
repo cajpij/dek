@@ -20,6 +20,18 @@ import type { RunConfig } from './types'
  *    svá pravidla a v týmu je obava ze ztráty dat.
  *  - Všichni jsou na Windows.
  *
+ * Workshop je večerní, 16:00–20:00, tvrdě omezený na 240 minut. Aby se to vešlo,
+ * odpadlo oproti celodenní verzi tohle:
+ *
+ *  - Samostatné cvičení na Excel a Chrome. Modul zůstává jako ukázka, ale
+ *    hands-on na něj není čas — Excel se dá vzít v cvičení 2 jako vlastní úkol.
+ *  - Kvíz a completion badge. Kvíz je online a dá se dodělat po workshopu;
+ *    v sále by sežral 15 minut, které jsou potřebnější na cvičení.
+ *
+ * Poměr vyšel na 115 minut výkladu, 75 minut cvičení, 25 minut pauz a 20 minut
+ * na závěr. Žádný blok není delší než 45 minut a pauza je dvakrát, protože jde
+ * o večer po pracovní době.
+ *
  * Délky bloků jsou odhad k doladění. Program se dá přepsat přímo v aplikaci
  * (Nastavení a program → JSON) a uloží se do prohlížeče; tenhle soubor je stav,
  * ke kterému se lze vždycky vrátit.
@@ -33,18 +45,19 @@ export const DEFAULT_CONFIG: RunConfig = {
     title: 'Claude Cowork — školení',
     date: '31. 8. 2026',
     venue: 'Místo konání',
-    startsAt: '09:00',
+    startsAt: '16:00',
   },
   participants: [],
   agenda: [
     {
-      title: 'Příchod, káva, kontrola nastavení',
-      min: 15,
+      title: 'Příchod a kontrola nastavení',
+      min: 10,
       kind: 'break',
       notes: [
         'Ověřit, že každý má desktopovou appku a placený plán (Pro / Max / Team / Enterprise)',
         'Všichni na Windows — cesty a příkazy ukazovat ve windowsové podobě',
         'Wi-Fi síť a heslo nechat na plátně',
+        'Večerní termín — držet tempo, na doháněnost není rezerva',
       ],
     },
     {
@@ -79,17 +92,13 @@ export const DEFAULT_CONFIG: RunConfig = {
     },
     {
       title: 'Co Cowork zvládne a první úkol',
-      min: 30,
+      min: 20,
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        {
-          title: 'What Claude Cowork can do for you',
-          min: 10,
-          detail: 'Včetně naplánovaných úkolů a běhu v cloudu',
-        },
-        { title: 'Hand Claude Cowork your first task', min: 10, detail: 'Zadání, doplňující otázky, zásah za běhu' },
-        { title: 'Get better results faster', min: 10 },
+        { title: 'What Claude Cowork can do for you', min: 7, detail: 'Včetně naplánovaných úkolů a běhu v cloudu' },
+        { title: 'Hand Claude Cowork your first task', min: 7, detail: 'Zadání, doplňující otázky, zásah za běhu' },
+        { title: 'Get better results faster', min: 6 },
       ],
       notes: [
         'Demo na skladovém exportu nebo objednávce, ne na obecném příkladu',
@@ -119,17 +128,18 @@ export const DEFAULT_CONFIG: RunConfig = {
     },
     {
       title: 'Kontext, skills a pluginy',
-      min: 35,
+      min: 30,
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'Standing context: Global instructions and projects', min: 11 },
-        { title: 'Skills: Teach Claude Cowork your way', min: 12, detail: 'Jádro dne — tady je poptávka největší' },
-        { title: "Plugins: Encode your team's expertise", min: 12 },
+        { title: 'Standing context: Global instructions and projects', min: 9 },
+        { title: 'Skills: Teach Claude Cowork your way', min: 11, detail: 'Jádro večera — tady je poptávka největší' },
+        { title: "Plugins: Encode your team's expertise", min: 10 },
       ],
       notes: [
         'Automatizace opakovaných úkolů byla v dotazníku skoro u všech — tohle je ten blok',
         'Příklady stavět na jejich procesech: objednávky, reklamace, reporty',
+        'Držet se stopáže, aby cvičení 2 nezačalo pozdě — je to nejcennější část večera',
       ],
     },
     {
@@ -143,11 +153,14 @@ export const DEFAULT_CONFIG: RunConfig = {
         { title: 'Vyzkoušet na reálných datech a doladit', min: 12 },
         { title: 'Naplánovat úkol, ať běží sám', min: 8 },
       ],
-      notes: ['Nejdelší blok dne — počítat s tím, že se sem přetáhne i část dotazů'],
+      notes: [
+        'Nejdelší blok večera a hlavní důvod, proč tu lidi jsou',
+        'Kdo chce Excel, ať si vezme excelový úkol — samostatné cvičení na Office není',
+      ],
     },
     {
-      title: 'Oběd',
-      min: 45,
+      title: 'Krátká pauza',
+      min: 10,
       kind: 'break',
     },
     {
@@ -159,32 +172,17 @@ export const DEFAULT_CONFIG: RunConfig = {
         { title: 'Claude in Chrome', min: 10, detail: 'Objednávací systém a další webové nástroje' },
         { title: 'Claude for Microsoft 365', min: 10, detail: 'Excel je tu hodně používaný — začít jím' },
       ],
-    },
-    {
-      title: 'Cvičení 3 — Excel, reporty a reklamace',
-      min: 30,
-      kind: 'work',
-      who: 'Lektor + asistence',
-      steps: [
-        { title: 'Nechat si zpracovat report nad vlastní tabulkou', min: 15 },
-        { title: 'Proklikat webový systém přes Claude in Chrome', min: 15 },
-      ],
+      notes: ['Jen ukázka, hands-on na tohle ve čtyřech hodinách nezbyl čas'],
     },
     {
       title: 'Sdílení v týmu a validace skillů',
-      min: 15,
+      min: 10,
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'Validating skills for plugins', min: 8, detail: 'Evals — ověřit skill, než se na něj tým spolehne' },
-        { title: 'Share what you build with your team', min: 7, detail: 'Marketplace organizace' },
+        { title: 'Validating skills for plugins', min: 5, detail: 'Evals — ověřit skill, než se na něj tým spolehne' },
+        { title: 'Share what you build with your team', min: 5, detail: 'Marketplace organizace' },
       ],
-    },
-    {
-      title: 'Kvíz a completion badge',
-      min: 15,
-      kind: 'qna',
-      notes: ['Kvíz je součástí kurzu — nechat čas i na badge'],
     },
     {
       title: 'Otázky, co si kdo odnese, závěr',
@@ -194,6 +192,7 @@ export const DEFAULT_CONFIG: RunConfig = {
       steps: [{ title: 'Wrap up and next steps', min: 8 }],
       notes: [
         'Nechat každého říct jeden úkol, který zautomatizuje do příště',
+        'Kvíz a completion badge zůstávají na doma — poslat odkaz',
         'Mít připravené dvě vlastní otázky, kdyby se sál styděl',
         'Odkaz na materiály a dotazník',
       ],
