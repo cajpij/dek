@@ -2765,11 +2765,25 @@ exit 0`,
           'ano, jinak se dá jen otevřít rozepsaný mail',
         ],
         [
-          'Nic dalšího',
-          'soubory bere z disku, ne přes konektor — složka je nasyncovaná',
-          'ne',
+          'Žádný konektor na Excel',
+          'soubory bere přímo z disku — složka je nasyncovaná',
+          'ne. Konektor na tabulky neexistuje a nepotřebuješ ho.',
         ],
       ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Na .xlsx konektor není',
+      text:
+        'Tohle se ptá skoro každý. Konektor je přípojka na službu na internetu — na poštu, na Teams, na SharePoint jako web. Soubor, který máš nasyncovaný na disku, žádnou přípojku nepotřebuje: Claude Code ho otevře stejně jako kterýkoli jiný soubor ve složce. Konektor by přišel na řadu jedině tehdy, kdyby ten export v knihovně zůstal jen online a ty sis ho nikdy nestáhla — a i pak je jednodušší zapnout sync než řešit oprávnění.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Excel ale není text — Claude si na něj napíše skript',
+      text:
+        'Nečeká tě u toho nic navíc, jen ať tě to nepřekvapí: .xlsx je zabalený balík, ne text, takže Claude na jeho čtení a zápis napíše a spustí kratičký skript v Pythonu (openpyxl nebo pandas). Poprvé si může chtít knihovnu doinstalovat. Proto se ve skillu vyplatí napsat, na kterém listu vstup je a jak se jmenují sloupce — ušetří to jedno kolo hádání a skript pak vypadá pokaždé stejně.',
     },
     {
       kind: 'note',
