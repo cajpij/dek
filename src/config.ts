@@ -323,6 +323,8 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Naplánovat hned na začátku bloku, ať to stihne doběhnout',
         'Tohle není látka, je to důkaz — nechat to zapůsobit a nekomentovat to moc',
         'Zmínit, že u e-mailu je potřeba opatrnost: odeslaná pošta se nevrací',
+        'Odesílání e-mailu neukazovat naživo — ukázka je notifikace a soubor, to stačí',
+        'Když padne dotaz na e-mail: Claude sám neposílá, potřebuje konektor nebo skript. Konektor na M365 čte, ale neodesílá — schvaluje ho správce.',
         'Odkázat na lekci Nech to běžet bez sebe — checklist, runbook, co když spadne',
       ],
     },

@@ -2475,9 +2475,55 @@ kontrolní protokol do vystupy/."`,
         [
           'E-mail příjemcům',
           'podklad dorazí bez tvého zásahu',
-          'jde to, ale zaslouží si vlastní opatrnost — viz níž',
+          'nejde to samo od sebe — potřebuje konektor nebo skript, viz níž',
         ],
       ],
+    },
+    { kind: 'h', text: 'Čím se ten e-mail vlastně odešle' },
+    {
+      kind: 'p',
+      text:
+        'Claude sám o sobě e-maily neposílá. Aby odeslal, musí mu to někdo umožnit — a to je přesně to, čemu se říká konektor: napojení na službu, přes které Claude umí něco udělat mimo tvůj disk. Než si naplánuješ běh, který má něco odeslat, potřebuješ vědět, kterou z těchhle cest použiješ. Rozdíl mezi nimi je hlavně v tom, kdo to musí povolit.',
+    },
+    {
+      kind: 'table',
+      head: ['Cesta', 'Co je k tomu potřeba', 'Kdy ji zvolit'],
+      rows: [
+        [
+          'Nechat rozepsaný koncept',
+          'nic navíc — Claude napíše text do souboru nebo do konceptu, ty ho odklikneš',
+          'vždycky napoprvé. Devadesát procent užitku a nulové riziko.',
+        ],
+        [
+          'Konektor Microsoft 365',
+          'schválení firemního správce a přihlášení pracovním účtem',
+          'když potřebuješ, aby si Claude četl v Outlooku, Teamsech a na SharePointu',
+        ],
+        [
+          'Outlook na tvém počítači',
+          'skript, který Claude spustí — na Macu AppleScript, na Windows PowerShell',
+          'když má odejít pošta z tvojí adresy a Outlook stejně máš puštěný',
+        ],
+        [
+          'Tok v Power Automate',
+          'nastaví IT, jednou. Claude jen položí soubor do knihovny.',
+          'když to má běžet nezávisle na tvém počítači a firma je na M365',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Konektor na Microsoft 365 čte, ale neodesílá',
+      text:
+        'Tohle je nejčastější omyl. Konektor umí hledat v poště, v Teamsech a na SharePointu a číst, co najde — proto jsou v jeho nástrojích samá „search". Odeslat zprávu přes něj nejde. Kdo chce, aby něco skutečně odešlo, potřebuje kromě konektoru ještě jednu ze zbylých tří cest v tabulce.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Konektor si nezapneš sám',
+      text:
+        'Firemní konektory schvaluje správce Microsoft 365 a přihlašuje se do nich pracovním účtem — osobní outlook.com nebo hotmail.com nefungují. Pokud ho ve svém Claudovi nevidíš, není to chyba nastavení: nikdo ho pro firmu ještě nepovolil. Řekni si o to dřív, než na něm postavíš úlohu.',
     },
     {
       kind: 'note',
