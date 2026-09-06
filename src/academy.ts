@@ -22,7 +22,7 @@ export type Block =
   | { kind: 'code'; text: string; caption?: string }
   | { kind: 'note'; tone: 'info' | 'warn' | 'ok'; title: string; text: string }
   | { kind: 'table'; head: string[]; rows: string[][] }
-  | { kind: 'figure'; name: 'regal-flow' | 'sync-map'; caption: string }
+  | { kind: 'figure'; name: 'regal-flow' | 'sync-map' | 'project-tree'; caption: string }
   | { kind: 'checklist'; title: string; items: string[] }
   | { kind: 'task'; title: string; intro: string; items: string[]; hint?: string }
   | { kind: 'video'; title: string; items: VideoRef[] }
@@ -81,6 +81,190 @@ export interface Upcoming {
 }
 
 /* --------------------------------------------------------------- obsah */
+
+const VIDEOS_CLAUDE_CODE: VideoRef[] = [
+  {
+    id: 'inxAjCRHe2o',
+    title: 'Claude Code Tutorial for Non-Coders',
+    author: 'Kevin Stratvert',
+    note: 'Od instalace po první úlohu, bez předpokladu, že umíš programovat.',
+  },
+  {
+    id: 'cV52QdcfA0s',
+    title: 'How to Use CLAUDE.md, Skills, and Hooks',
+    author: 'Code With Robby',
+    note: 'Konkrétně k CLAUDE.md a skillům — pusť si to, až budeš psát svůj první.',
+  },
+]
+
+const LESSON_PROJEKT: Lesson = {
+  slug: 'projekt-v-claude-code',
+  module: 'start',
+  title: 'Projekt v Claude Code: co si založit',
+  summary:
+    'Projekt, CLAUDE.md, skill, artefakt, konektor — co který pojem znamená a co si musíš vytvořit, než začneš automatizovat.',
+  minutes: 20,
+  kind: 'lekce',
+  outcomes: [
+    'vysvětlit, co je v Claude Code projekt, sezení, skill, artefakt a konektor',
+    'rozhodnout, co patří do CLAUDE.md a co do skillu',
+    'založit si složku projektu se správnou strukturou',
+    'napsat CLAUDE.md, který nemusíš každé ráno opakovat v chatu',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Claude Code se nespouští „v aplikaci“. Spouští se ve složce — a všechno, co si v něm nastavíš, jsou obyčejné soubory v té složce. To je dobrá zpráva: nastavení se dá číst, poslat kolegovi a verzovat. Tahle lekce projde pojmy, o které se opřeš, a končí seznamem toho, co musíš mít vytvořené, než začneš automatizovat vlastní agendu.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Pro koho to je',
+      text:
+        'Pro lidi z logistiky, dopravy, BI, marketingu a vedení, kteří nechtějí programovat, ale chtějí, aby se opakovaná práce dělala sama. Nic z toho, co je níž, není kód — jsou to textové soubory a složky.',
+    },
+    { kind: 'h', text: 'Projekt je složka' },
+    {
+      kind: 'p',
+      text:
+        'Claude vidí obsah složky, ve které ho spustíš, a nic nad ní. Proto platí jednoduché pravidlo: jedna agenda = jedna složka. Ne jedna velká složka „AI“, do které se sype všechno. Když si založíš zvlášť akční regál, zvlášť reporty a zvlášť ceníky, každý projekt si drží svoje pravidla a nepletou se dohromady.',
+    },
+    {
+      kind: 'figure',
+      name: 'project-tree',
+      caption: 'Struktura, která se osvědčila. Nic z toho není povinné — a přesto se všechno vyplatí.',
+    },
+    { kind: 'h', text: 'CLAUDE.md je paměť projektu' },
+    {
+      kind: 'p',
+      text:
+        'Textový soubor v kořeni složky, který se načte na začátku každého sezení. Sem patří to, co bys jinak vysvětlovala pokaždé znovu: firemní slovník (co je min/max, CS-ko, produkťák, divize), kde leží která data, jak se mají jmenovat výstupy a co se nikdy nesmí. Pravidlo, kdy něco dopsat: když stejnou opravu píšeš podruhé.',
+    },
+    {
+      kind: 'code',
+      text: `# Akční regál
+
+## Slovník
+- CS = centrální sklad
+- produkťák = produktový manažer divize, vybírá položky do regálu
+- min/max = doporučené množství na pobočku
+
+## Kde jsou data
+- data/ — export z Google Tabulky, vždy nejnovější soubor podle data v názvu
+- vystupy/ — sem ukládej všechno, co vytvoříš
+
+## Pravidla
+- Nikdy nepřepisuj soubory v data/. Výsledek ulož jako nový soubor do vystupy/.
+- Názvy výstupů: <agenda>-<divize>-<RRRR-MM-DD>.xlsx
+- Když si nejsi jistý, kterou verzi vzít, zeptej se místo hádání.`,
+      caption: 'Takhle vypadá CLAUDE.md, který dává smysl. Drž ho pod dvěma sty řádky a piš konkrétně.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Nemusíš ho psát na prázdno',
+      text:
+        'Příkaz /init si projde složku a vygeneruje první verzi. Příkaz /memory ukáže, které soubory s pravidly se do sezení načetly, a otevře je k úpravě. Claude si navíc sám zapisuje opravy, které mu dáš — i ty najdeš přes /memory.',
+    },
+    { kind: 'h', text: 'Sezení začíná načisto' },
+    {
+      kind: 'p',
+      text:
+        'Každý nový rozhovor začíná bez paměti na ten předchozí — kromě CLAUDE.md a poznámek, které si Claude zapsal sám. Zní to jako nevýhoda, ale je to ochrana: dlouhé sezení, ve kterém se míchá pět různých úloh, dává horší výsledky než pět krátkých. Jedna úloha = jedno sezení, mezi nimi /clear.',
+    },
+    { kind: 'h', text: 'Skill je zabalený postup' },
+    {
+      kind: 'p',
+      text:
+        'Když stejný postup popisuješ potřetí, přestaň ho popisovat a udělej z něj skill. Je to složka se souborem SKILL.md: nahoře pár řádků o tom, co skill dělá a kdy se má použít, pod tím samotný postup. Claude si ho pak vybere sám, když na takovou úlohu narazí — nebo ho spustíš lomítkem podle jména.',
+    },
+    {
+      kind: 'code',
+      text: `.claude/skills/rozpad-divizi/SKILL.md
+
+---
+name: rozpad-divizi
+description: Rozdělí velký Excel s položkami magazínu na čtyři divizní soubory (nářadí, dekton, elektro, voda-topo). Použij, když je v data/ nový export a mají se rozeslat produkťákům.
+---
+
+1. Najdi v data/ nejnovější export podle data v názvu.
+2. Zkontroluj, že má sloupce Kód, Název, Divize, Min, Max.
+3. Pro každou divizi vytvoř samostatný soubor do vystupy/.
+...`,
+      caption: 'Řádek description rozhoduje o tom, kdy se skill sám nabídne. Piš do něj i slova, která bys sama napsala do zadání.',
+    },
+    { kind: 'h', text: 'Artefakt je publikovaná stránka' },
+    {
+      kind: 'p',
+      text:
+        'Přehled, dashboard, kalkulačka, checklist pro tým. Na rozdíl od souboru má vlastní adresu, dá se poslat kolegovi odkazem a příště se aktualizuje na stejném místě, takže nikomu nezůstane v ruce stará verze. Tahle akademie je taky jen publikovaná stránka.',
+    },
+    {
+      kind: 'table',
+      head: ['Chceš…', 'Uděláš z toho'],
+      rows: [
+        ['pravidlo, které platí pořád', 'řádek v CLAUDE.md'],
+        ['postup, který opakuješ každý týden', 'skill v .claude/skills/'],
+        ['přehled, do kterého se bude někdo dívat', 'artefakt'],
+        ['soubor, který někomu pošleš mailem', 'obyčejný výstup do vystupy/'],
+        ['přístup do systému, kde data žijí', 'konektor'],
+      ],
+    },
+    { kind: 'h', text: 'Konektor napojí systém' },
+    {
+      kind: 'p',
+      text:
+        'Konektor (technicky MCP server) dá Claudovi nástroje k jednomu konkrétnímu systému — katalogu, úložišti, ticketovacímu nástroji. Zapojuj jen to, co pro danou agendu opravdu potřebuješ: každý konektor navíc je další místo, kde se dá něco splést, a další účet, který někdo spravuje.',
+    },
+    { kind: 'h', text: 'Než se něco změní, ptá se' },
+    {
+      kind: 'p',
+      text:
+        'U věcí, které mění soubory, se vyplatí nechat si nejdřív napsat plán, přečíst ho a teprve pak odsouhlasit. Claude se navíc ptá, než něco zapíše nebo spustí; mazání souborů je vypnuté, dokud ho výslovně nepovolíš. Neber ta potvrzení jako obtěžování — je to jediné místo, kde chybu chytíš dřív, než se stane.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Do složky projektu nepatří všechno',
+      text:
+        'Claude vidí celý obsah složky. Nedávej do ní věci, které s agendou nesouvisejí — osobní dokumenty, hesla, exporty s údaji, které tam nemají co dělat. Platí to samé, co u sdílené složky pro kolegu.',
+    },
+    {
+      kind: 'video',
+      title: 'Videa k Claude Code',
+      items: VIDEOS_CLAUDE_CODE,
+    },
+    {
+      kind: 'checklist',
+      title: 'Co mít vytvořené, než začneš',
+      items: [
+        'Složka pojmenovaná po agendě, ne po nástroji',
+        'CLAUDE.md se slovníkem, cestami k datům a zákazy',
+        'Podsložka data/ s reálným vzorkem, ne s celou databází',
+        'Podsložka vystupy/, kam jdou výsledky',
+        'První skill na postup, který děláš každý týden',
+        'Jeden artefakt jako živý přehled pro tým',
+        'Zapojený konektor, pokud data žijí v systému',
+      ],
+    },
+    {
+      kind: 'task',
+      title: 'Cvičení: založ projekt na svoji agendu',
+      intro:
+        'Vyber si jednu činnost, kterou děláš každý týden a která tě štve. Nezačínej tou nejsložitější.',
+      items: [
+        'Založ složku pojmenovanou po té agendě a v ní data/ a vystupy/.',
+        'Do data/ dej jeden reálný soubor, se kterým běžně pracuješ.',
+        'Napiš CLAUDE.md: pět řádků slovníku, kde jsou data, dvě pravidla, co se nesmí.',
+        'Spusť Clauda v té složce a nech ho popsat vlastními slovy, čemu ta agenda slouží. Co nesedí, dopiš do CLAUDE.md.',
+        'Zadej mu první úlohu a všímej si, kolikrát mu musíš něco vysvětlit. Každé takové vysvětlení je kandidát na řádek v CLAUDE.md.',
+      ],
+      hint:
+        'Nesnaž se napsat dokonalé CLAUDE.md napoprvé. Vzniká tak, že do něj týden dopisuješ věci, které ses přistihla vysvětlovat podruhé.',
+    },
+  ],
+}
 
 const VIDEOS_SHAREPOINT: VideoRef[] = [
   {
@@ -531,10 +715,15 @@ export const COURSES: Course[] = [
     summary:
       'Napojit Claudovi složku, ve které pracuješ, a naučit se v ní zadávat práci. Končí zadáním nad reálným procesem.',
     intro:
-      'Kurz pro lidi, kteří každý týden přeskládávají tytéž tabulky. Nejdřív napojíš Claudovi složku, ve které ta práce žije, pak si ohraničíš, co v ní smí a nesmí — a nakonec si na reálném procesu akčního regálu vyzkoušíš najít místa, kde se dá práce automatizovat.',
+      'Kurz pro lidi, kteří každý týden přeskládávají tytéž tabulky a chtějí, aby se to dělalo samo. Nejdřív si založíš projekt a napíšeš pravidla, která se nemusí opakovat. Nejdřív napojíš Claudovi složku, ve které ta práce žije, pak si ohraničíš, co v ní smí a nesmí — a nakonec si na reálném procesu akčního regálu vyzkoušíš najít místa, kde se dá práce automatizovat.',
     level: 'Začátečník',
     section: 'Začni tady',
     modules: [
+      {
+        key: 'start',
+        title: 'Než začneš',
+        summary: 'Pojmy a nastavení projektu, o které se opře všechno ostatní.',
+      },
       {
         key: 'napojeni',
         title: 'Napojení dat',
@@ -546,8 +735,10 @@ export const COURSES: Course[] = [
         summary: 'Reálný proces z logistiky, na kterém se hledají automatizace.',
       },
     ],
-    lessons: [LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_REGAL],
+    lessons: [LESSON_PROJEKT, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_REGAL],
     learn: [
+      'založit projekt tak, aby se pravidla nemusela opakovat každé ráno',
+      'poznat, co patří do CLAUDE.md, co do skillu a co do artefaktu',
       'nasyncovat knihovnu ze SharePointu do Macu a připojit ji Claudovi',
       'poznat, kdy jsou soubory jen zástupci a Claude v nich nic nepřečte',
       'napsat zadání tak, aby nevznikaly přepsané originály',
@@ -556,7 +747,8 @@ export const COURSES: Course[] = [
       'odlišit, co má převzít automatizace a co má zůstat člověku',
     ],
     prerequisites: [
-      'Mac s aplikací OneDrive přihlášenou firemním účtem',
+      'Nainstalovaný Claude Code',
+      'Počítač s aplikací OneDrive přihlášenou firemním účtem',
       'Desktopová aplikace Claude',
       'Přístup do knihovny na SharePointu, se kterou pracuješ',
     ],

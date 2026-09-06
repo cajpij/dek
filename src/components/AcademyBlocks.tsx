@@ -17,6 +17,7 @@ import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
 import type { Block, VideoRef } from '../academy'
 import { usePlatform } from '../lib/academyPlatform'
+import ProjectTree from './ProjectTree'
 import RegalFlow from './RegalFlow'
 import SyncMap from './SyncMap'
 
@@ -343,7 +344,7 @@ export default function BlockView({ block }: { block: Block }) {
       return (
         <Paper variant="outlined" component="figure" sx={{ my: 3.5, mx: 0, borderRadius: 2, overflow: 'hidden' }}>
           <Box sx={{ p: { xs: 1.5, md: 2.5 } }}>
-            {block.name === 'sync-map' ? <SyncMap /> : <RegalFlow />}
+            {block.name === 'sync-map' ? <SyncMap /> : block.name === 'project-tree' ? <ProjectTree /> : <RegalFlow />}
           </Box>
           <Typography
             component="figcaption"
