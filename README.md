@@ -4,10 +4,11 @@ Jedna stránka, ze které se dá odmoderovat celodenní školení: program po bl
 odpočet běžícího bloku, druhá obrazovka s velkým časem na plátno a průběžný
 přehled o tom, jestli jedeš podle plánu.
 
-Výchozí program je školení podle kurzu
-[Introduction to Claude Cowork](https://academy.claude.com/courses/introduction-to-claude-cowork)
-— 4 moduly, 14 lekcí a cvičení mezi nimi. Délky bloků jsou odhad, program se přepisuje
-přímo v aplikaci.
+Výchozí program je čtyřhodinový workshop **DEK Academy** — dvanáct bloků
+od úvodu po živou ukázku naplánovaného běhu, včetně dvou přestávek. Odpovídá
+1:1 lekci „Jak workshop poběží“ v akademii na `/#academy`; když se změní tam,
+musí se změnit i v [`src/config.ts`](src/config.ts). Délky bloků se dají
+přepsat přímo v aplikaci.
 
 ## Spuštění
 

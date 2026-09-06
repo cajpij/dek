@@ -1,284 +1,299 @@
 import type { RunConfig } from './types'
 
 /**
- * Výchozí program — večerní workshop Claude Cowork pro DEK, 16:00–20:00.
+ * Výchozí program — čtyřhodinový workshop DEK Academy.
  *
- * Obsah stojí na kurzu „Introduction to Claude Cowork“
- * (academy.claude.com/courses/introduction-to-claude-cowork). Všech 14 lekcí
- * v programu je, ale pořadí a váhy jsou přeskládané podle úvodního dotazníku:
+ * Odpovídá 1:1 lekci „Jak workshop poběží“ v akademii
+ * (/#academy/claude-a-firemni-data/program-dne). Když se změní tam, musí se
+ * změnit i tady — jsou to dva pohledy na tentýž den, jeden pro účastníky
+ * a jeden pro moderátora.
  *
- *  - Nikdo není začátečník — všichni respondenti už Claude Code používají,
- *    zhruba půl na půl „používám dost“ a „používám základně“. Úvod je proto
- *    krátký a stojí na rozdílu mezi Code a Coworkem, ne na základech. Pozor:
- *    dotazník byl o Claude Code, kurz je o Coworku — jiné produkty, takže
- *    technická pohoda ještě neznamená znalost Coworku.
- *  - Nejsilnější poptávka je automatizace opakovaných úkolů, pak objednávky,
- *    sklady a evidence zásob, reklamace a reporty.
- *  - Bezpečná práce s daty je vytažená dopředu, ne na konec — firma má svá
- *    pravidla a v týmu je obava ze ztráty dat.
- *  - Všichni jsou na Windows.
+ * Proč zrovna takhle:
  *
- * Cvičení nejsou samostatné úlohy, ale jedna osa: celý večer se staví kontrola
- * paletových převodů mezi pobočkou a třídírnou. Cvičení 1 řeší vstupy, cvičení 2
- * samotné srovnání a co z něj plyne. Každý si bere jeden díl a na konci se
- * skládají dohromady. Nabídka dílů se ukazuje i na plátně, aby si nikdo nemusel
- * úkol vymýšlet.
+ *  - Obsah akademie je na čtyři hodiny a v sále je jen to, co se nedá udělat
+ *    samostatně. Nastavení složky ze SharePointu jde domů předem, skilly,
+ *    hooky a běh bez dozoru do samostudia potom.
+ *  - Celý den stojí na jednom vzoru: proces akčního regálu z logistiky.
+ *    Nejdřív se projde společně, pak si každý zmapuje vlastní agendu a nakonec
+ *    z ní postaví první automatizaci.
+ *  - Dva bloky jsou nedotknutelné — mapování ve dvojicích a stavění. Když se
+ *    program rozjede, škrtá se všechno ostatní. Jsou to jediné části, ze
+ *    kterých si lidi odnesou něco vlastního.
+ *  - Poslední blok je živá ukázka: naplánovaný běh za pět minut. Není to
+ *    látka, je to důkaz, že těch pět schodů někam vede.
  *
- * Co večer reálně přinese: skill, který kontrolu udělá nad exportovanými soubory.
- * Ne hotovou webovou aplikaci se čtečkou a čtením mailu — čtečka zatím použitelné
- * API nemá a napojení mailu je samostatná práce. Závěrečný blok to říká nahlas,
- * aby nikdo neodcházel se zkreslenou představou.
+ * Publikum jsou lidé z logistiky, autodopravy, BI, marketingu a vedení. Chtějí
+ * Claude Code, ne Cowork, a neprogramují — všechno, co se v sále dělá, jsou
+ * textové soubory a složky.
  *
- * Do 240 minut se oproti celodenní verzi nevešlo samostatné cvičení na Excel
- * a Chrome (modul zůstal jako ukázka) a kvíz s completion badge (je online,
- * dá se dodělat po workshopu).
- *
- * Délky bloků jsou odhad k doladění. Program se dá přepsat přímo v aplikaci
- * (Nastavení a program → JSON) a uloží se do prohlížeče; tenhle soubor je stav,
- * ke kterému se lze vždycky vrátit.
+ * Délky bloků se dají přepsat přímo v aplikaci (Nastavení a program → JSON)
+ * a uloží se do prohlížeče; tenhle soubor je stav, ke kterému se lze vrátit.
  *
  * Seznam účastníků tu schválně není — jsou to údaje o konkrétních lidech
  * a repozitář je veřejný. Načítá se lokálně nebo ze zašifrovaného souboru,
  * viz README.
  */
 
-/** Proces, ze kterého se večer krájí. Opakuje se u obou cvičení. */
-const PALETY_BRIEF =
-  'Pobočka pošle palety s dokladem — až pět set kusů různých druhů. Zásilka jde na třídírnu, ' +
-  'ta ji vytřídí a pošle CSV mailem. Teprve pak přijde kontrola: co pobočka poslala navíc a ' +
-  'nenapsala na doklad, chceme po ní; co je na dokladu a nedorazilo, vracíme jí. Doklad za ' +
-  'pobočku vystavit nejde a tak to zůstane. Dnes večer stavíme právě tuhle kontrolu.'
+/** Vzor, na kterém se ukazuje všechno ostatní. Opakuje se v několika blocích. */
+const REGAL_BRIEF =
+  'Produkťáci nasypou obsah magazínu do sdílené Google Tabulky. Logistika si vezme svých sedm ' +
+  'sloupců, dotáhne k položkám skladová data, rozpadne to na čtyři divizní soubory a rozešle je ' +
+  'e-mailem. Produkťáci vyberou, co půjde do regálu, a pošlou to e-mailem zpátky — někdo tabulkou, ' +
+  'někdo print screenem. Pak se jde fyzicky zkoušet, jestli se tři kufry vejdou vedle sebe, ' +
+  'protože měrné jednotky neodpovídají skutečnosti. Na konci vznikají tři různé podklady pro ' +
+  'marketing, centrální sklad a backoffice.'
 
 export const DEFAULT_CONFIG: RunConfig = {
   event: {
-    title: 'Claude Cowork — workshop pro DEK',
-    date: '31. 8. 2026',
+    title: 'DEK Academy — workshop',
+    date: 'doplnit datum',
     venue: 'Místo konání',
-    startsAt: '16:00',
+    startsAt: '9:00',
   },
   participants: [],
   agenda: [
     {
-      title: 'Příchod a kontrola nastavení',
+      title: 'Úvod: proč to děláme',
       min: 10,
-      kind: 'break',
-      notes: [
-        'Ověřit, že každý má desktopovou appku a placený plán (Pro / Max / Team / Enterprise)',
-        'Všichni na Windows — cesty a příkazy ukazovat ve windowsové podobě',
-        'Ať má každý po ruce nějaký svůj export: doklad, CSV, tabulku',
-        'Kdo nevyplnil vstupní kvíz, ať ho udělá teď — odkaz je v Nastavení a program',
-        'Z kvízu vypadne, který díl paletové evidence si má kdo ve cvičeních vzít',
-        'Wi-Fi síť a heslo nechat na plátně',
-        'Večerní termín — držet tempo, na doháněnost není rezerva',
-      ],
-    },
-    {
-      title: 'Úvod: Cowork vedle Claude Code',
-      min: 15,
       kind: 'talk',
       who: 'Martin',
       steps: [
-        { title: 'Co je Claude Cowork', source: 'What is Claude Cowork', min: 8, detail: 'Chat vs. Code vs. Cowork — kdy sáhnout po čem' },
-        { title: 'Nastavení Coworku', source: 'Setting up Claude Cowork', min: 7, detail: 'Pracovní složka, konektory, režim oprávnění' },
+        { title: 'Co dnes vznikne', min: 3, detail: 'Mapa vlastního procesu a jedna hotová automatizace' },
+        { title: 'Pět schodů automatizace', min: 5, detail: 'Zadání → pravidlo → skill → hook → běh bez tebe' },
+        { title: 'Co je předem hotové a co se dnes nestihne', min: 2 },
       ],
       notes: [
-        'Sál už Claude Code používá — nezdržovat se u toho, co je AI asistent',
-        'Těžiště je rozdíl: Code píše kód, Cowork přebírá celý úkol nad soubory',
-        'Říct rovnou, k čemu večer směřuje: kontrola paletových převodů',
-        'Přiznat, že Cowork je jiný produkt než ten, co znají — ne nadstavba',
+        'Ověřit, že mají všichni nainstalovaný Claude Code a nasyncovanou složku — mělo být předem',
+        'Kdo to nemá, ať si sedne vedle někoho, kdo ano; nastavování v sále sežere hodinu',
+        'Ukázat schéma pěti schodů z akademie — vrátíme se k němu na konci',
+        'Říct rovnou, kam den směřuje: naplánovaný běh, který doběhne, když u toho nikdo nesedí',
+        'Odkaz na akademii nechat na plátně',
       ],
     },
     {
-      title: 'Bezpečně s firemními daty',
-      min: 15,
+      title: 'Vzor: Od magazínu do regálu',
+      min: 25,
       kind: 'talk',
       who: 'Lektor',
+      brief: REGAL_BRIEF,
       steps: [
-        { title: 'Jak pracovat bezpečně', source: 'Best practices for working safely', min: 8, detail: 'Kontrola plánu i výstupu, než se na něj spolehnu' },
-        { title: 'Co pustit do pracovní složky', min: 7, detail: 'Firemní pravidla pro data a nastavení oprávnění' },
+        { title: 'Projít proces po krocích', min: 12, detail: 'Deset kroků od sdílené tabulky po tři finální podklady' },
+        { title: 'Kde data mění formu ručně', min: 8, detail: 'Nechat sál hádat, než ukážeš tři označená místa' },
+        { title: 'Co má zůstat člověku', min: 5, detail: 'Vzorování v regálu — data o měrných jednotkách lžou' },
       ],
       notes: [
-        'Zařazeno na začátek schválně — v týmu je obava ze ztráty dat',
-        'Ukázat náhled na to, co Claude mění, a jak se změna vezme zpět',
-        'Zmínit zálohu a verzování dřív, než se kdokoli pustí do většího úkolu',
+        'Tohle je jediný blok, kde se hodně mluví. Držet ho.',
+        'Nechat sál hádat, kde se přepisuje — nejde o to říct jim to, jde o to, aby si toho všimli',
+        'Zmínit, že jeden krok už dnes běží s Claudem (Logistické dostupnosti), takže to není od nuly',
+        'Ukázat i sloupce, které vyplňuje produkťák — AKČNÍ REGÁL, POZNÁMKA, PRIORITA',
+        'Nezabíhat do výpočtu MINMAX, ten přijde odpoledne u kontroly',
       ],
     },
     {
-      title: 'Co Cowork zvládne a první úkol',
-      min: 20,
-      kind: 'talk',
-      who: 'Lektor',
-      steps: [
-        { title: 'Co všechno Cowork zvládne', source: 'What Claude Cowork can do for you', min: 7, detail: 'Včetně naplánovaných úkolů a běhu v cloudu' },
-        { title: 'Předat Coworku první úkol', source: 'Hand Claude Cowork your first task', min: 7, detail: 'Zadání, doplňující otázky, zásah za běhu' },
-        { title: 'Jak z něj dostat lepší výsledky rychleji', source: 'Get better results faster', min: 6 },
-      ],
-      notes: [
-        'Demo rovnou na paletovém dokladu, ať na to navazuje cvičení',
-        'Ukázat na vlastní obrazovce, ne ze slidů',
-      ],
-    },
-    {
-      title: 'Cvičení 1 — vstupy do evidence palet',
-      min: 30,
+      title: 'Cvičení 1 — rozhovory ve dvojicích',
+      min: 40,
       kind: 'work',
       who: 'Lektor + asistence',
-      brief: PALETY_BRIEF + ' V tomhle bloku jde o vstupy: dostat každý zdroj do stejného tvaru, aby se pak daly porovnat.',
+      brief:
+        'Ve dvojicích si navzájem vyzpovídáte kus vlastní práce — takový, kde někde vstupuje e-mail ' +
+        'nebo tabulka a někam něco posíláte dál. Technika je kontextové dotazování: neptej se „jak to ' +
+        'děláš“, ale „ukaž mi, jak jsi to dělala naposledy“. Uklizená verze bez výjimek je k ničemu.',
       steps: [
-        { title: 'Založit pracovní složku a nastavit oprávnění', min: 7 },
-        { title: 'Vzít si jeden díl a nechat Clauda převést ho do tabulky', min: 15 },
-        { title: 'Zkontrolovat výstup a doladit, co se rozsypalo', min: 8 },
+        { title: 'Každý si vybere svůj výsek a napíše ho jednou větou', min: 5 },
+        { title: 'A se ptá, B popisuje. Nahrávat na telefon.', min: 15 },
+        { title: 'Prohodit se — B se ptá, A popisuje', min: 15 },
+        { title: 'Uložit nahrávku do projektu do podklady/', min: 5 },
       ],
       examples: [
         {
-          title: 'Doklad z pobočky ze čtečky',
-          detail:
-            'Z exportu ze čtečky udělat čistou tabulku: druh palety, počet, pobočka, datum, číslo dokladu. Ošetřit, že se druhy palet píšou pokaždé trochu jinak.',
+          title: 'Něco, co děláš každý týden',
+          detail: 'Ne to nejsložitější, co máš. Stačí výsek od „přijde mi to“ po „pošlu to dál“.',
         },
         {
-          title: 'CSV z třídírny',
-          detail:
-            'Načíst přílohu, kterou posílá třídírna, a převést ji do stejného tvaru jako doklad z pobočky — jinak se srovnávat nedá.',
+          title: 'Kde vstupuje e-mail nebo tabulka',
+          detail: 'Právě tam se data přelévají ručně a právě to hledáme.',
         },
         {
-          title: 'Evidence USZ dokladů',
-          detail:
-            'Z dosavadních dokladů udělat přehled: co je vystavené, co už vrácené a co visí déle, než by mělo.',
+          title: 'Kde na někoho čekáš',
+          detail: 'Kroky, kde proces stojí a čeká na odpověď, bývají nejdražší.',
         },
         {
-          title: 'Žádost o USZ z mailu',
-          detail:
-            'Z e-mailové žádosti vytáhnout údaje a založit záznam ve stejné struktuře jako zbytek evidence.',
+          title: 'Co bys musela vysvětlovat náhradě',
+          detail: 'Když si nemůžeš vzpomenout na žádný proces, tohle je ta správná otázka.',
         },
       ],
       notes: [
-        'Zadání jsou na plátně — ať si každý vezme jeden díl, ne všechny',
-        'Domluvit se na společných názvech sloupců, jinak to po pauze nepůjde slepit',
-        'Obejít sál, kdo se zasekl',
+        'Kreslí ten, kdo se ptal — ne majitel agendy. Říct to nahlas hned na začátku.',
+        'Připomenout, ať se zeptají, než začnou nahrávat',
+        'Deset otázek a tabulka signálních slov jsou v akademii — nechat odkaz na plátně',
+        'Obcházet a hlídat, jestli se tazatelé neptají obecně místo na poslední konkrétní případ',
+        'Hlídat čas u prohození — druhý rozhovor bývá kratší, protože už vědí jak',
+      ],
+    },
+    {
+      title: 'Cvičení 1b — kresba flow a označení míst',
+      min: 20,
+      kind: 'work',
+      who: 'Lektor + asistence',
+      steps: [
+        { title: 'Nakreslit flow do tří pruhů', min: 12, detail: 'Kdo dodává vstup / ty / kdo dostává výstup' },
+        { title: 'Popsat šipky — čím se co přenáší', min: 3, detail: 'E-mail, sdílená tabulka, print screen, telefon' },
+        { title: 'Označit každý krok jednou ze tří značek', min: 5 },
+      ],
+      examples: [
+        { title: 'Ruční přenos', detail: 'Data mění formu nebo místo a dělá to člověk. Nejsilnější kandidát.' },
+        { title: 'Rozhoduje člověk', detail: 'Krok závisí na něčem, co v datech není. Zapsat, podle čeho se rozhoduje.' },
+        { title: 'Počítá se z pravidel', detail: 'Výsledek jde odvodit ze vstupů, i když se dnes dělá ručně.' },
+      ],
+      notes: [
+        'Papír na šířku, tři barvy fixů. Kresba nemusí být hezká, musí být čitelná pro cizího.',
+        'Popis šipky je důležitější než boxy — automatizuje se přenos, ne práce',
+        'Nejzajímavější je hranice mezi „rozhoduje člověk“ a „počítá se z pravidel“',
+        'Kdo se zasekne, ať označí místo, kde to nejde dokreslit — tam informace chybí i v reálu',
       ],
     },
     {
       title: 'Pauza',
+      min: 10,
+      kind: 'break',
+      notes: ['Odpočet nechat na plátně', 'Kresby vylepit na zeď, ať jsou po pauze vidět'],
+    },
+    {
+      title: 'Sdílení map',
       min: 15,
-      kind: 'break',
-      notes: ['Odpočet nechat na plátně', 'Zkontrolovat kávu a vodu'],
-    },
-    {
-      title: 'Kontext, skills a pluginy',
-      min: 30,
-      kind: 'talk',
-      who: 'Lektor',
-      steps: [
-        { title: 'Trvalý kontext: globální instrukce a projekty', source: 'Standing context: Global instructions and projects', min: 9 },
-        { title: 'Skills: naučit Cowork váš postup', source: 'Skills: Teach Claude Cowork your way', min: 11, detail: 'Jádro večera — tady je poptávka největší' },
-        { title: 'Pluginy: zabalit know-how týmu', source: "Plugins: Encode your team's expertise", min: 10 },
-      ],
-      notes: [
-        'Automatizace opakovaných úkolů byla v dotazníku skoro u všech — tohle je ten blok',
-        'Příklady stavět na paletách, ať to drží linku k druhému cvičení',
-        'Držet stopáž, aby cvičení 2 nezačalo pozdě — je to nejcennější část večera',
-      ],
-    },
-    {
-      title: 'Cvičení 2 — kontrola palet jako skill',
-      min: 45,
-      kind: 'work',
-      who: 'Lektor + asistence',
-      brief:
-        'Vstupy máte z prvního cvičení. Teď z kontroly uděláme skill, který ji zvládne sám: na vstupu ' +
-        'doklad pobočky a CSV z třídírny, na výstupu dva seznamy — co chceme po pobočce a co jí vracíme.',
-      steps: [
-        { title: 'Vzít si jeden díl a napsat k němu skill', min: 20 },
-        { title: 'Pustit ho na reálných datech a doladit', min: 15 },
-        { title: 'Naplánovat, ať běží sám', min: 10 },
-      ],
-      examples: [
-        {
-          title: 'Samotné srovnání dokladu a CSV',
-          detail:
-            'Dva seznamy: posláno navíc a nenapsáno na dokladu, a naopak na dokladu a nedorazilo. Vyřešit, když se druh palety v obou zdrojích nejmenuje stejně.',
-        },
-        {
-          title: 'Zpráva pobočce o rozdílech',
-          detail:
-            'Z rozdílů vygenerovat srozumitelný text pro pobočku. Doklad za ni nevystavovat — jen popsat, co má opravit.',
-        },
-        {
-          title: 'Měsíční přehled rozdílů',
-          detail:
-            'Které pobočky mají nejvíc rozdílů, u kterých druhů palet a kolik to dělá kusů. Podklad k tomu, kde zasáhnout.',
-        },
-        {
-          title: 'Naplánovaná kontrola',
-          detail:
-            'Ať kontrola proběhne sama, jakmile dorazí nové CSV, a výsledek přijde mailem. Zatím nad složkou, kam se soubor uloží.',
-        },
-        {
-          title: 'Zabalit do pluginu pro tým',
-          detail:
-            'Aby to nespustil jen ten, kdo to napsal, a aby se to dalo předat dál i s postupem a názvoslovím.',
-        },
-      ],
-      notes: [
-        'Nejdelší blok večera a hlavní důvod, proč tu lidi jsou',
-        'Kdo si vzal v prvním cvičení vstup, ať tady bere navazující díl',
-        'Kdo chce Excel, ať si vezme excelový výstup — samostatné cvičení na Office není',
-      ],
-    },
-    {
-      title: 'Krátká pauza',
-      min: 10,
-      kind: 'break',
-    },
-    {
-      title: 'Claude v Chrome a v Office',
-      min: 20,
-      kind: 'talk',
-      who: 'Lektor',
-      steps: [
-        { title: 'Claude v Chrome', source: 'Claude in Chrome', min: 10, detail: 'Objednávací systém a další webové nástroje' },
-        { title: 'Claude pro Microsoft 365', source: 'Claude for Microsoft 365', min: 10, detail: 'Excel je tu hodně používaný — začít jím' },
-      ],
-      notes: [
-        'Napojit na palety: čtečka zatím použitelné API nemá, takže import a export je realita',
-        'Jen ukázka, hands-on na tohle ve čtyřech hodinách nezbyl čas',
-      ],
-    },
-    {
-      title: 'Sdílení v týmu a validace skillů',
-      min: 10,
-      kind: 'talk',
-      who: 'Lektor',
-      steps: [
-        { title: 'Ověřování skillů před nasazením', source: 'Validating skills for plugins', min: 5, detail: 'Evals — ověřit skill, než se na něj tým spolehne' },
-        { title: 'Sdílet s týmem, co postavíš', source: 'Share what you build with your team', min: 5, detail: 'Marketplace organizace' },
-      ],
-      notes: ['Rovnou na dnešních skillech — co z nich udělat sdílený plugin'],
-    },
-    {
-      title: 'Poskládat díly a co dál',
-      min: 20,
       kind: 'qna',
       who: 'Martin',
       steps: [
-        { title: 'Shrnutí a co dál', source: 'Wrap up and next steps', min: 6 },
-        {
-          title: 'Co by chtěla opravdová aplikace',
-          min: 6,
-          detail: 'Jen ukázka, bez sahání na klávesnici — backend, databáze, čtečka, čtení mailu',
-        },
-        { title: 'Kdo si co odnáší a co zautomatizuje do příště', min: 8 },
+        { title: 'Každá dvojice dvě minuty', min: 12, detail: 'Jeden nejhorší krok a jeden nápad' },
+        { title: 'Co se opakuje napříč odděleními', min: 3 },
       ],
       notes: [
-        'Projít, co dnes vzniklo, a ukázat, jak díly zapadají do sebe',
-        'Říct nahlas, co dnes NEvzniklo: napojení na čtečku a čtení mailu je samostatná práce',
-        'U „opravdové aplikace“ nic neinstalovat — Docker chce na firemních Windows WSL2 a práva správce, na to ve cvičení není prostor',
-        'Když bude potřeba něco ukládat, doporučit SQLite: jeden soubor vedle exportů, žádný server ani kontejner',
-        'Supabase a jiný cloud jsou rozhodnutí přes firemní pravidla pro data, ne přes workshop',
-        'Backend a databázi nabídnout jako samostatné pokračování pro dva tři nejsilnější podle kvízu',
-        'Nechat každého říct jeden úkol, který zautomatizuje do příště',
-        'Kvíz a completion badge z Academy zůstávají na doma — poslat odkaz',
-        'Odkaz na knowledge base a dotazník',
+        'Držet dvě minuty na dvojici, jinak se to rozjede',
+        'Zapisovat si na flip, co se opakuje — to je materiál pro příště',
+        'Nekomentovat každou mapu, jen si všímat vzorců',
+      ],
+    },
+    {
+      title: 'Projekt: co si založit',
+      min: 20,
+      kind: 'work',
+      who: 'Lektor',
+      steps: [
+        { title: 'Založit složku podle agendy', min: 4, detail: 'Jedna agenda = jedna složka, ne jedna velká „AI“' },
+        { title: 'Napsat CLAUDE.md', min: 10, detail: 'Pět řádků slovníku, kde jsou data, dvě pravidla co se nesmí' },
+        { title: 'Podsložky data/ a vystupy/, dát dovnitř reálný soubor', min: 4 },
+        { title: 'Spustit Clauda ve složce a nechat ho popsat, čemu agenda slouží', min: 2 },
+      ],
+      notes: [
+        'Poprvé u vlastního počítače — počítat s tím, že to bude drhnout',
+        'Ukázat hotový CLAUDE.md akčního regálu jako vzor, ať neopisují ze vzduchu',
+        'Kdo má složku v nasyncované knihovně, upozornit, že to uvidí celý tým',
+        'Nezdržovat se u toho, kdo si vybral moc složitou agendu — ať si vezme výsek',
+      ],
+    },
+    {
+      title: 'Zadání nad tabulkou a kontrola výsledku',
+      min: 25,
+      kind: 'talk',
+      who: 'Lektor',
+      steps: [
+        { title: 'Struktura zadání, které projde napoprvé', min: 8, detail: 'Co vzít, co udělat, kam uložit, co s výjimkou' },
+        { title: 'Pasti, které tabulka nastraží', min: 7, detail: 'Kódy jako čísla, prázdno vs. nula, hlavička na třetím řádku' },
+        { title: 'Tři otázky na každý výstup', min: 10, detail: 'Sedí počty, sedí součty, sedí vzorek' },
+      ],
+      notes: [
+        'Kontrola je nejdůležitější věc celého dne — bez ní nikdo nikdy nepustí nic bez dozoru',
+        'Říct nahlas: „neptej se, jestli je to správně“. Odpověď ano je tvrzení o tvrzení.',
+        'Ukázat vyplněný kontrolní protokol z akčního regálu, včetně toho řádku o nesedících datech',
+        'Pasti ukázat na listu Logistika, ne obecně',
+      ],
+    },
+    {
+      title: 'Pauza',
+      min: 10,
+      kind: 'break',
+    },
+    {
+      title: 'Cvičení 2 — postav si první automatizaci',
+      min: 50,
+      kind: 'work',
+      who: 'Lektor + asistence',
+      brief:
+        'Vezmi jedno místo ze své mapy — to, kde se přenáší data ručně — a dotáhni ho do skillu, ' +
+        'který má na konci vlastní kontrolu. Ne to nejbolestivější. Ber ten krok, který se dá dokončit.',
+      steps: [
+        { title: 'Vybrat krok a připravit si vstup i výsledek z minula', min: 8 },
+        { title: 'Udělat to jednou zadáním a zapisovat si doříkání', min: 15 },
+        { title: 'Doříkání, která platí pořád, přepsat do CLAUDE.md', min: 5 },
+        { title: 'Nechat si napsat skill a opravit mu description', min: 12 },
+        { title: 'Spustit na datech z jiného měsíce', min: 10 },
+      ],
+      examples: [
+        {
+          title: 'Rozpad exportu na divizní soubory',
+          detail:
+            'Vzor: skill logisticke-dostupnosti. Ze sdílené tabulky čtyři soubory pro produkťáky — Nářadí, Elektro, VTS, Piekarová — uvnitř list na každého PM a sloupce k vyplnění prázdné.',
+        },
+        {
+          title: 'Spojení tří zdrojů k položkám',
+          detail:
+            'Ke každé položce dotáhnout min/max, SD CS a zásobu na CS. Kde údaj chybí, nechat prázdno a vypsat čísla těch položek.',
+        },
+        {
+          title: 'Týdenní přehled z exportu',
+          detail:
+            'Z pravidelného exportu udělat přehled, který jinak skládáš ručně. Autodoprava, BI, marketing — každý má svůj.',
+        },
+        {
+          title: 'Vyčištění tabulky do použitelného tvaru',
+          detail:
+            'Sloučené buňky, hlavička na třetím řádku, kódy jako text. Vyčištěná kopie do vystupy/, originál se nesahá.',
+        },
+        {
+          title: 'Kontrolní protokol k hotovému výstupu',
+          detail:
+            'Kdo má hotovo dřív: nechat si k výstupu vyrobit kontrolu — počty, součty, vzorek a seznam položek bez dat.',
+        },
+      ],
+      notes: [
+        'Nejdelší blok a hlavní důvod, proč tu lidi jsou',
+        'Obcházet — tady se pozná, komu chybí pravidlo a kdo si vzal moc velké sousto',
+        'Připomínat: doříkání jsou to nejcennější, ať si je zapisují',
+        'Kdo skončí dřív, ať přidá ke skillu kontrolu na konec',
+        'Hotovo je, když to projde dvakrát po sobě bez opravy — ne když to vyjde jednou',
+      ],
+    },
+    {
+      title: 'Živá ukázka: naplánovaný běh',
+      min: 10,
+      kind: 'talk',
+      who: 'Lektor',
+      steps: [
+        { title: 'Naplánovat běh na čas za pět minut', min: 3 },
+        { title: 'Zavřít to a mluvit o něčem jiném', min: 5, detail: 'Zbylé dva schody: hook a běh bez dozoru' },
+        { title: 'Podívat se, co přibylo', min: 2, detail: 'Notifikace, soubor s dnešním datem, kontrolní protokol' },
+      ],
+      notes: [
+        'Naplánovat hned na začátku bloku, ať to stihne doběhnout',
+        'Tohle není látka, je to důkaz — nechat to zapůsobit a nekomentovat to moc',
+        'Zmínit, že u e-mailu je potřeba opatrnost: odeslaná pošta se nevrací',
+        'Odkázat na lekci Nech to běžet bez sebe — checklist, runbook, co když spadne',
+      ],
+    },
+    {
+      title: 'Domluva, co do příště',
+      min: 5,
+      kind: 'qna',
+      who: 'Martin',
+      steps: [
+        { title: 'Úkol na týden: pustit to naostro', min: 3 },
+        { title: 'Kam se vracet v akademii', min: 2 },
+      ],
+      notes: [
+        'Úkol je jediný: pustit svoji úlohu na skutečné práci a přinést zpátky, co se stalo',
+        'Říct nahlas, že „nepustila jsem to a tady je proč“ je platná odpověď — nejcennější z celého úkolu',
+        'Lekce označené štítkem potom jsou referenční, ať je nečtou dopředu',
+        'Nahrávky a přepisy z dnešních rozhovorů ať zůstanou v projektech',
       ],
     },
   ],
