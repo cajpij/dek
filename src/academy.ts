@@ -106,7 +106,7 @@ const LESSON_PROGRAM: Lesson = {
     {
       kind: 'p',
       text:
-        'V sále máme čtyři hodiny a v akademii je látky na sedm. Není to omyl: v sále děláme jenom to, co se nedá udělat samostatně — rozhovory ve dvojicích a stavění na vlastních datech, kde je potřeba mít po ruce někoho, kdo poradí. Zbytek jsou lekce, které si projdete sami, a jsou označené podle toho, kdy na ně dojde řada.',
+        'Oba kurzy dohromady jsou na čtyři hodiny a víc jich není schválně. Z toho je zhruba půl hodiny doma předem, dvě a půl hodiny v sále a zbytek referenční materiál, ke kterému se vracíte, až budete stavět. V sále děláme jenom to, co se nedá udělat samostatně: rozhovory ve dvojicích a stavění na vlastních datech.',
     },
     {
       kind: 'table',
@@ -178,10 +178,9 @@ const LESSON_PROGRAM: Lesson = {
       head: ['Až budete potřebovat', 'Vraťte se do'],
       rows: [
         ['zabalit postup, který opakujete', 'Jak napsat skill'],
-        ['pochopit, kam až se dá zajít', 'Jak se v projektu nastaví automatizace'],
-        ['zamknout složku s daty', 'Hooky: zábrany, které drží samy'],
-        ['pustit to bez sebe', 'Nech to běžet bez sebe'],
-        ['předat to kolegovi', 'Aby to uměl i kolega'],
+        ['vědět, kam až se dá zajít', 'Jak se v projektu nastaví automatizace'],
+        ['pustit to bez sebe a nespálit se', 'Nech to běžet bez sebe'],
+        ['předat to kolegovi', 'Zadání: pusť to naostro'],
       ],
     },
     {
@@ -215,7 +214,7 @@ const LESSON_PROJEKT: Lesson = {
   title: 'Projekt v Claude Code: co si založit',
   summary:
     'Projekt, CLAUDE.md, skill, artefakt, konektor — co který pojem znamená, na hotových příkladech z logistiky, dopravy, BI, marketingu a vedení.',
-  minutes: 30,
+  minutes: 20,
   kind: 'lekce',
   track: 'v sále',
   outcomes: [
@@ -874,7 +873,7 @@ const LESSON_CO_VIDI: Lesson = {
   title: 'Co Claude ve složce vidí a co ne',
   summary:
     'Hranice připojené složky: co si přečte, co změní, kdy potřebuje povolení a kdy je offline.',
-  minutes: 8,
+  minutes: 5,
   kind: 'lekce',
   track: 'předem',
   outcomes: [
@@ -933,7 +932,7 @@ const LESSON_REGAL: Lesson = {
   title: 'Zadání: Od magazínu do regálu',
   summary:
     'Reálný proces akčního regálu rozepsaný na kroky. Úkolem je najít místa, kde se dá práce automatizovat.',
-  minutes: 40,
+  minutes: 25,
   kind: 'zadání',
   track: 'v sále',
   outcomes: [
@@ -1164,11 +1163,11 @@ const LESSON_REGAL: Lesson = {
 
 const LESSON_AUTOMATIZACE: Lesson = {
   slug: 'jak-se-nastavuje-automatizace',
-  module: 'automatizace',
+  module: 'potom',
   title: 'Jak se v projektu nastaví automatizace',
   summary:
     'Pět stupňů od ručního zadání po běh bez tebe — na reálném rozpadu divizních Excelů, krok po kroku.',
-  minutes: 25,
+  minutes: 10,
   kind: 'lekce',
   track: 'potom',
   outcomes: [
@@ -1283,6 +1282,17 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
       ],
     },
     {
+      kind: 'table',
+      head: ['Co chceš', 'Hook, nebo pravidlo?'],
+      rows: [
+        ['Do data/ se nikdy nezapisuje', 'hook — je to zábrana, ne doporučení'],
+        ['Výstupy se jmenují podle vzoru', 'pravidlo — je to konvence, ne bezpečnost'],
+        ['Před přepsáním vznikne záloha', 'hook — má platit i tehdy, když na to nikdo nemyslí'],
+        ['Když chybí sloupec, zastav se', 'pravidlo — vyžaduje to posouzení'],
+        ['Dej vědět, až je hotovo', 'hook — nemá to co dělat s obsahem práce'],
+      ],
+    },
+    {
       kind: 'note',
       tone: 'warn',
       title: 'Hook není místo na rozhodování',
@@ -1346,11 +1356,11 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
 
 const LESSON_SKILL: Lesson = {
   slug: 'jak-napsat-skill',
-  module: 'automatizace',
+  module: 'potom',
   title: 'Jak napsat skill (a nechat si ho napsat)',
   summary:
     'Z čeho se skill skládá, proč o všem rozhoduje jediný řádek, a co dát Claudovi, aby ti skill napsal sám a dobře.',
-  minutes: 20,
+  minutes: 10,
   kind: 'lekce',
   track: 'potom',
   outcomes: [
@@ -1628,7 +1638,7 @@ const LESSON_CVICENI: Lesson = {
   title: 'Cvičení ve dvojicích: zmapuj kolegovi workflow',
   summary:
     'Ve dvojici si navzájem vyzpovídáte kus vlastní práce, nakreslíte z toho flow a označíte místa k automatizaci. Rozhovor nahrajete na telefon a přepis i reálné soubory skončí v projektu.',
-  minutes: 75,
+  minutes: 65,
   kind: 'zadání',
   track: 'v sále',
   outcomes: [
@@ -1935,7 +1945,7 @@ const L2_TABULKY: Lesson = {
   title: 'Zadání práce nad tabulkou',
   summary:
     'Devadesát procent téhle práce jsou tabulky. Čím se v nich dá splést a jak napsat zadání, které projde napoprvé.',
-  minutes: 25,
+  minutes: 15,
   kind: 'lekce',
   track: 'v sále',
   outcomes: [
@@ -2095,7 +2105,7 @@ const L2_KONTROLA: Lesson = {
   title: 'Jak poznáš, že je výsledek špatně',
   summary:
     'Dovednost, na které stojí všechno ostatní. Bez ní nikdo nikdy nepustí nic bez dozoru — a pak se nic neušetří.',
-  minutes: 20,
+  minutes: 15,
   kind: 'lekce',
   track: 'v sále',
   outcomes: [
@@ -2254,7 +2264,7 @@ const L2_POSTAV: Lesson = {
   title: 'Postav si první automatizaci',
   summary:
     'Vezmi jedno místo z mapy vlastního procesu a dotáhni ho až do skillu, který má vlastní kontrolu.',
-  minutes: 45,
+  minutes: 40,
   kind: 'zadání',
   track: 'v sále',
   outcomes: [
@@ -2352,110 +2362,14 @@ const L2_POSTAV: Lesson = {
   ],
 }
 
-const L2_HOOKY: Lesson = {
-  slug: 'hooky-zabrany',
-  module: 'postav',
-  title: 'Hooky: zábrany, které drží samy',
-  summary:
-    'Tři konfigurace, které se vyplatí nastavit dřív, než něco pustíš bez dozoru — zákaz zápisu do dat, záloha a upozornění.',
-  minutes: 20,
-  kind: 'lekce',
-  track: 'potom',
-  outcomes: [
-    'rozlišit, co patří do pravidla a co do hooku',
-    'zakázat zápis do složky s daty tak, aby to platilo vždycky',
-    'nastavit zálohu před přepsáním souboru',
-    'nechat si dát vědět, když je práce hotová',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Pravidlo v CLAUDE.md je prosba. Hook je zámek. Rozdíl je v tom, že pravidlo Claude přečte a vezme v úvahu, kdežto hook se spustí vždycky, bez ohledu na to, co si zrovna myslí. Proto se hodí přesně na jednu věc: na zábrany, u kterých nechceš spoléhat na úsudek.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Tohle je jediné místo v kurzu, kde se píše do konfiguráku',
-      text:
-        'Je to obyčejný textový soubor .claude/settings.json ve složce projektu. Když ti to nesedí, přeskoč to — všechno ostatní funguje i bez hooků. Ale než něco pustíš běžet samo, vrať se sem.',
-    },
-    { kind: 'h', text: 'Tři, které dávají smysl hned' },
-    {
-      kind: 'code',
-      text: `.claude/settings.json
-
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          { "type": "command",
-            "command": "case \\"$CLAUDE_FILE_PATH\\" in */data/*) echo 'Do data/ se nezapisuje'; exit 2;; esac" }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          { "type": "command",
-            "command": "mkdir -p ~/zalohy && cp \\"$CLAUDE_FILE_PATH\\" ~/zalohy/" }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          { "type": "command",
-            "command": "osascript -e 'display notification \\"Hotovo\\" with title \\"Akční regál\\"'" }
-        ]
-      }
-    ]
-  }
-}`,
-      caption: 'První zakáže zápis do data/ a nedá se obejít. Druhý zálohuje každý přepsaný soubor. Třetí dá vědět na plochu, až je práce hotová — na macOS; ve Windows se místo osascript použije msg nebo powershell.',
-    },
-    {
-      kind: 'table',
-      head: ['Co chceš', 'Hook, nebo pravidlo?'],
-      rows: [
-        ['Do data/ se nikdy nezapisuje', 'hook — je to zábrana, ne doporučení'],
-        ['Výstupy se jmenují podle vzoru', 'pravidlo — je to konvence, ne bezpečnost'],
-        ['Před přepsáním vznikne záloha', 'hook — má platit i tehdy, když na to nikdo nemyslí'],
-        ['Když chybí sloupec, zastav se', 'pravidlo — vyžaduje to posouzení'],
-        ['Dej vědět, až je hotovo', 'hook — nemá to co dělat s obsahem práce'],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Hook nemá úsudek',
-      text:
-        'Spustí se vždycky a udělá přesně to, co je v něm napsané. To je jeho síla u zábran a jeho slabina všude jinde. Když má něco záviset na posouzení situace, patří to do skillu nebo do pravidla — hook by to jenom zablokoval ve chvíli, kdy to bylo v pořádku.',
-    },
-    {
-      kind: 'task',
-      title: 'Cvičení: zamkni si data',
-      intro: 'Ve svém projektu.',
-      items: [
-        'Přidej hook, který zakáže zápis do data/.',
-        'Vyzkoušej, že to funguje — zadej úmyslně něco, co by do data/ zapsalo.',
-        'Přidej zálohu a ověř, že se soubor objevil ve složce se zálohami.',
-        'Rozmysli si jednu věc ze svého procesu, která se nikdy nesmí stát, a napiš si, jestli je to hook, nebo pravidlo.',
-      ],
-    },
-  ],
-}
 
 const L2_BEH: Lesson = {
   slug: 'nech-to-bezet-bez-sebe',
-  module: 'pust',
+  module: 'potom',
   title: 'Nech to běžet bez sebe',
   summary:
     'Poslední schod. Co musí platit, než něco pustíš na plán, jak to spustit a co si napsat pro chvíli, kdy to spadne.',
-  minutes: 25,
+  minutes: 10,
   kind: 'lekce',
   track: 'potom',
   outcomes: [
@@ -2656,95 +2570,14 @@ V aplikaci Claude → naplánované úlohy → vypnout.`,
   ],
 }
 
-const L2_KOLEGA: Lesson = {
-  slug: 'aby-to-umel-i-kolega',
-  module: 'pust',
-  title: 'Aby to uměl i kolega',
-  summary:
-    'Automatizace, kterou umí spustit jeden člověk, je riziko, ne úspora. Jak ji předat, aby to fungovalo i bez tebe.',
-  minutes: 20,
-  kind: 'lekce',
-  track: 'potom',
-  outcomes: [
-    'předat projekt tak, aby v něm kolega našel všechno potřebné',
-    'otestovat předání mlčením',
-    'poznat, co v projektu obvykle chybí',
-    'domluvit se v týmu, kdo CLAUDE.md udržuje',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Dokud to umíš spustit jenom ty, je to koníček. Firmě se to začne vyplácet ve chvíli, kdy to zvládne i někdo, kdo tu agendu nikdy nedělal — protože teprve tehdy se dá jet dovolená, marodka i odchod. A hezké na tom je, že projekt na tohle nepotřebuje nic navíc: všechno, co má kolega vědět, už v něm buď je, nebo tam chybí i tobě.',
-    },
-    { kind: 'h', text: 'Co se předává' },
-    {
-      kind: 'table',
-      head: ['Věc', 'Co v ní má být', 'Jak poznáš, že chybí'],
-      rows: [
-        ['Složka projektu', 'data/, vystupy/, podklady/, .claude/', 'kolega neví, kam co dát'],
-        ['CLAUDE.md', 'slovník, cesty, pravidla, co se nepočítá', 'kolega se ptá na zkratky'],
-        ['Skilly', 'postupy s description a zastavovacími pravidly', 'kolega neví, čím začít'],
-        ['Runbook', 'co to dělá, kdy běží, kde je výsledek, co dělat když spadne', 'kolega volá tobě'],
-        ['Kontrolní protokoly z minula', 'jak vypadá výsledek, když je v pořádku', 'kolega nepozná, že něco nesedí'],
-      ],
-    },
-    { kind: 'h', text: 'Test mlčením' },
-    {
-      kind: 'p',
-      text:
-        'Posaď kolegu k počítači, dej mu projekt a nic neříkej. Ne půl věty, ne „jenom klikni tamhle“. Dívej se a zapisuj si každou otázku, kterou položí. Každá taková otázka je řádek, který v projektu chybí — a chybí tam i pro tebe, jenom ty to nepoznáš, protože si to pamatuješ.',
-    },
-    {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Nech ho úlohu spustit',
-          body: 'Bez nápovědy. Když se zasekne na tom, kde vůbec začít, chybí ti runbook nebo popis skillu.',
-        },
-        {
-          title: 'Nech ho výsledek zkontrolovat',
-          body: 'Podle kontrolního protokolu. Když neví, co v něm znamená „nesedí počty“, chybí ti věta o tom, jak vypadá výsledek v pořádku.',
-        },
-        {
-          title: 'Zeptej se ho, čemu nerozuměl',
-          body: 'Ne „bylo to jasné?“, ale „co bys musel dohledávat, kdybych tu nebyla?“.',
-        },
-        {
-          title: 'Doplň to a nech ho to zkusit znovu',
-          body: 'Podruhé už by měl projít bez otázky. Když ne, doplnila jsi špatnou věc.',
-        },
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Sdílené skilly jsou týmová dohoda',
-      text:
-        'Když projekt leží v nasyncované knihovně, CLAUDE.md a skilly vidí celé oddělení. To znamená, že pravidlo, které tam napíšeš, přestává být tvoje — a taky že ho může někdo změnit. Domluvte se, kdo ho udržuje a co se dělá, když s pravidlem někdo nesouhlasí. Bez téhle dohody se soubor buď nikdy nemění, nebo se rozpadne.',
-    },
-    {
-      kind: 'task',
-      title: 'Cvičení: předej to a mlč',
-      intro: 'Ve dvojici — klidně s tím samým člověkem, se kterým jsi mapovala proces.',
-      items: [
-        'Dej mu projekt a nechej ho úlohu spustit. Nemluv.',
-        'Zapisuj si každou otázku. Neodpovídej, dokud neskončí.',
-        'Každou otázku převeď na řádek do CLAUDE.md, skillu, nebo runbooku.',
-        'Nechte ho to zkusit podruhé.',
-        'Zapiš si, kolik otázek padlo napoprvé a kolik podruhé. Ten rozdíl je to, co jsi předala.',
-      ],
-    },
-  ],
-}
 
 const L2_NAOSTRO: Lesson = {
   slug: 'pust-to-naostro',
-  module: 'pust',
+  module: 'potom',
   title: 'Zadání: pusť to naostro',
   summary:
     'Úkol na týden mezi setkáními. Nechat to běžet na skutečné práci a přinést zpátky, co se stalo.',
-  minutes: 30,
+  minutes: 5,
   kind: 'zadání',
   track: 'potom',
   outcomes: [
@@ -2769,6 +2602,21 @@ const L2_NAOSTRO: Lesson = {
         'Když jsi ho poslala, zapiš si, jestli se někdo ozval s chybou.',
         'Změř, jak dlouho to trvalo celé — včetně oprav a kontroly.',
         'Když jsi to nepustila vůbec, zapiš proč. To je nejcennější odpověď z celého úkolu.',
+      ],
+    },
+    { kind: 'h', text: 'A ještě jedna věc: předej to' },
+    {
+      kind: 'p',
+      text:
+        'Automatizace, kterou umí spustit jediný člověk, je riziko, ne úspora. Test je jednoduchý a trvá deset minut: posaď kolegu k počítači, dej mu projekt a nic neříkej. Každá otázka, kterou položí, je řádek, který v projektu chybí — a chybí tam i tobě, jenom ty to nepoznáš, protože si to pamatuješ.',
+    },
+    {
+      kind: 'list',
+      items: [
+        'Nech ho úlohu spustit bez nápovědy. Když neví, kde začít, chybí runbook.',
+        'Nech ho výsledek zkontrolovat. Když neví, co znamená „nesedí počty“, chybí věta o tom, jak vypadá výsledek v pořádku.',
+        'Zeptej se ho, co by musel dohledávat, kdybys tam nebyla. Ne „bylo to jasné?“.',
+        'Doplň to a nech ho to zkusit znovu. Podruhé už by měl projít bez otázky.',
       ],
     },
     { kind: 'h', text: 'Co přinést zpátky' },
@@ -2822,26 +2670,19 @@ export const COURSES: Course[] = [
         summary: 'Jednorázové nastavení a hranice, ve kterých se pak pracuje.',
       },
       {
-        key: 'automatizace',
-        title: 'Automatizace',
-        summary: 'Pět stupňů od ručního zadání po běh, který si ráno jen zkontroluješ — a jak napsat skill, na kterém to stojí.',
-      },
-      {
         key: 'zadani',
         title: 'Zadání a cvičení',
         summary:
           'Nejdřív hotový proces z logistiky jako vzor, pak totéž ve dvojicích na vlastní agendě.',
       },
     ],
-    lessons: [LESSON_PROGRAM, LESSON_PROJEKT, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_AUTOMATIZACE, LESSON_SKILL, LESSON_REGAL, LESSON_CVICENI],
+    lessons: [LESSON_PROGRAM, LESSON_PROJEKT, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_REGAL, LESSON_CVICENI],
     learn: [
       'založit projekt tak, aby se pravidla nemusela opakovat každé ráno',
       'poznat, co patří do CLAUDE.md, co do skillu a co do artefaktu',
       'nasyncovat knihovnu ze SharePointu do Macu a připojit ji Claudovi',
       'poznat, kdy jsou soubory jen zástupci a Claude v nich nic nepřečte',
       'napsat zadání tak, aby nevznikaly přepsané originály',
-      'zabalit opakovaný postup do skillu a nechat ho běžet bez sebe',
-      'napsat description tak, aby se skill spouštěl ve správnou chvíli',
       'číst pracovní proces jako tok dat mezi lidmi a soubory',
       'najít kroky, ve kterých data mění formu ručně',
       'odlišit, co má převzít automatizace a co má zůstat člověku',
@@ -2872,23 +2713,22 @@ export const COURSES: Course[] = [
       {
         key: 'postav',
         title: 'Postav to',
-        summary: 'Od jednoho místa na mapě ke skillu, který má vlastní zábrany.',
+        summary: 'Vezmi jedno místo z mapy a dotáhni ho do skillu.',
       },
       {
-        key: 'pust',
-        title: 'Pusť to',
-        summary: 'Poslední schod — a co musí platit, aby na něm bylo bezpečno.',
+        key: 'potom',
+        title: 'Potom, až budeš stavět',
+        summary: 'Referenční část. Vracej se sem, až narazíš na to, co lekce řeší.',
       },
     ],
-    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, L2_HOOKY, L2_BEH, L2_KOLEGA, L2_NAOSTRO],
+    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, LESSON_SKILL, LESSON_AUTOMATIZACE, L2_BEH, L2_NAOSTRO],
     learn: [
       'napsat zadání nad tabulkou, které projde napoprvé',
       'zkontrolovat výstup třemi čísly místo čtení řádek po řádku',
       'dotáhnout jedno místo z mapy až do skillu s vlastní kontrolou',
-      'zamknout složku s daty hookem, který drží vždycky',
       'spustit úlohu bez rozhovoru a naplánovat ji',
-      'napsat runbook, kterému bude rozumět kolega',
-      'předat automatizaci tak, aby ji zvládl i někdo jiný',
+      'zabalit opakovaný postup do skillu a trefit se v description',
+      'napsat runbook a předat automatizaci tak, aby ji zvládl i někdo jiný',
     ],
     prerequisites: [
       'Dokončený kurz Claude a firemní data',
