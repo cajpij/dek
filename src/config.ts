@@ -324,7 +324,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Tohle není látka, je to důkaz — nechat to zapůsobit a nekomentovat to moc',
         'Zmínit, že u e-mailu je potřeba opatrnost: odeslaná pošta se nevrací',
         'Odesílání e-mailu neukazovat naživo — ukázka je notifikace a soubor, to stačí',
-        'Když padne dotaz na e-mail: Claude sám neposílá, potřebuje konektor nebo skript. Konektor na M365 čte, ale neodesílá — schvaluje ho správce.',
+        'Když padne dotaz na e-mail: konektor M365 odesílat umí, ale write tools musí zapnout správce a nejde přes ně poslat příloha — výstup do knihovny, do mailu odkaz',
         'Odkázat na lekci Nech to běžet bez sebe — checklist, runbook, co když spadne',
       ],
     },

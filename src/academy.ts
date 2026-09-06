@@ -2713,9 +2713,14 @@ kontrolní protokol do vystupy/."`,
           'vždycky napoprvé. Devadesát procent užitku a nulové riziko.',
         ],
         [
-          'Konektor Microsoft 365',
-          'schválení firemního správce a přihlášení pracovním účtem',
-          'když potřebuješ, aby si Claude četl v Outlooku, Teamsech a na SharePointu',
+          'Konektor Microsoft 365 — čtení',
+          'schválení správce Entra a přihlášení pracovním účtem',
+          'když má Claude hledat v poště, v Teamsech a na SharePointu',
+        ],
+        [
+          'Konektor Microsoft 365 — odesílání',
+          'navíc zapnuté „write tools" — správce k tomu musí dát druhý souhlas',
+          'když má e-mail odejít z tvojí adresy, tvým jménem, i když u toho nejsi',
         ],
         [
           'Outlook na tvém počítači',
@@ -2729,19 +2734,49 @@ kontrolní protokol do vystupy/."`,
         ],
       ],
     },
+    { kind: 'h', text: 'Konektor na Microsoft 365: čtení a odesílání jsou dvě různá povolení' },
+    {
+      kind: 'p',
+      text:
+        'Konektor umí obojí — jenže každé se zapíná zvlášť a odesílání je vypnuté, dokud ho někdo nepovolí. Když se v seznamu nástrojů konektoru díváš na samá „search", vidíš první sloupec téhle tabulky. Odesílat se z něj tím pádem nedá, i když je konektor připojený.',
+    },
+    {
+      kind: 'table',
+      head: ['', 'Čtení (read tools)', 'Odesílání (write tools)'],
+      rows: [
+        [
+          'Co to umí',
+          'hledat v poště, kalendáři, Teamsech a na SharePointu a číst, co najde',
+          'napsat koncept, odeslat i přeposlat poštu, zakládat schůzky, ukládat soubory',
+        ],
+        [
+          'Jak se to zapíná',
+          'souhlas správce Entra pro celou firmu, pak se každý přihlásí pracovním účtem',
+          'druhý, samostatný souhlas správce k rozšířeným oprávněním',
+        ],
+        ['Ve výchozím stavu', 'k dispozici', 'zablokované — je potřeba si o to říct'],
+      ],
+    },
     {
       kind: 'note',
       tone: 'warn',
-      title: 'Konektor na Microsoft 365 čte, ale neodesílá',
+      title: 'Přes konektor neodejde příloha',
       text:
-        'Tohle je nejčastější omyl. Konektor umí hledat v poště, v Teamsech a na SharePointu a číst, co najde — proto jsou v jeho nástrojích samá „search". Odeslat zprávu přes něj nejde. Kdo chce, aby něco skutečně odešlo, potřebuje kromě konektoru ještě jednu ze zbylých tří cest v tabulce.',
+        'Tohle je u nás ta nejdůležitější věta z celé lekce. Odesílání přes konektor zatím neumí přílohy — Claude nepošle, nepřepošle ani nerozepíše e-mail s připojeným souborem. Pro naši práci to znamená, že „pošli produkťákům divizní soubory" takhle neuděláš. Uděláš to jinak: výstup se uloží do sdílené knihovny (nasyncuje se sám) a e-mail nese odkaz, ne přílohu. Což je stejně lepší — všichni pak čtou tu samou verzi.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Konektor si nezapneš sám',
       text:
-        'Firemní konektory schvaluje správce Microsoft 365 a přihlašuje se do nich pracovním účtem — osobní outlook.com nebo hotmail.com nefungují. Pokud ho ve svém Claudovi nevidíš, není to chyba nastavení: nikdo ho pro firmu ještě nepovolil. Řekni si o to dřív, než na něm postavíš úlohu.',
+        'Souhlas dává správce Microsoft 365 a přihlašuje se pracovním účtem — osobní outlook.com nebo hotmail.com nefungují. Pokud konektor ve svém Claudovi nevidíš, není to chyba nastavení: nikdo ho pro firmu ještě nepovolil. A firmy, které konektor připojily dřív, než odesílání vůbec vzniklo, ho mají zablokované i tehdy, když čtení dávno funguje. Řekni si o to dřív, než na tom postavíš úlohu.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Naplánovaná úloha konektory používat umí',
+      text:
+        'Takže ano: jde nastavit úlohu, která se v šest ráno spustí sama, něco spočítá a pošle kolegovi e-mail z tvojí adresy tvým jménem. Musí k tomu platit tři věci najednou — zapnuté odesílání v konektoru, žádná příloha, a když má úloha sáhnout i do složky na disku, tak zapnutý počítač.',
     },
     {
       kind: 'note',
