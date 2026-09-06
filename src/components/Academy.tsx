@@ -245,6 +245,12 @@ function CourseList() {
         Krátké lekce, které se dají projít u vlastního počítače. Každá končí něčím, co si zkusíš na
         vlastních datech — ne testem.
       </Typography>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, alignItems: 'center', mt: 2 }}>
+        <Typography sx={{ fontSize: 13.5, color: 'text.disabled' }}>Lekce jsou označené podle toho, kdy na ně dojde:</Typography>
+        <Chip size="small" variant="outlined" label="předem" sx={{ height: 20, fontSize: 11.5 }} />
+        <Chip size="small" color="primary" label="v sále" sx={{ height: 20, fontSize: 11.5 }} />
+        <Chip size="small" variant="outlined" label="potom" sx={{ height: 20, fontSize: 11.5 }} />
+      </Box>
 
       {sections.map(([title, courses]) => (
         <Section key={title} title={title}>
@@ -264,6 +270,21 @@ function CourseList() {
 }
 
 /* --------------------------------------------------------- detail kurzu */
+
+const TRACK_COLOR = { 'předem': 'default', 'v sále': 'primary', 'potom': 'default' } as const
+
+function TrackChip({ track }: { track?: 'předem' | 'v sále' | 'potom' }) {
+  if (!track) return null
+  return (
+    <Chip
+      size="small"
+      variant={track === 'v sále' ? 'filled' : 'outlined'}
+      color={TRACK_COLOR[track]}
+      label={track}
+      sx={{ height: 20, fontSize: 11.5 }}
+    />
+  )
+}
 
 function LessonRow({
   course,
@@ -307,6 +328,7 @@ function LessonRow({
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <TrackChip track={lesson.track} />
         {lesson.kind === 'zadání' ? <Chip size="small" color="primary" variant="outlined" label="zadání" /> : null}
         <Typography sx={{ fontSize: 13.5, color: 'text.disabled', whiteSpace: 'nowrap' }}>
           {lesson.minutes} min
@@ -529,6 +551,7 @@ function LessonPage({ course, lesson }: { course: Course; lesson: Lesson }) {
             </Typography>
             <Box sx={{ width: 3, height: 3, borderRadius: '50%', bgcolor: 'text.disabled' }} aria-hidden />
             <Typography sx={{ fontSize: 13.5, color: 'text.disabled' }}>{lesson.minutes} min</Typography>
+            <TrackChip track={lesson.track} />
           </Box>
           <Typography
             variant="h3"
