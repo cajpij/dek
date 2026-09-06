@@ -248,41 +248,53 @@ description: Rozdělí velký Excel s položkami magazínu na čtyři divizní s
       text: `akcni-regal/
 ├── CLAUDE.md
 ├── data/
-│   ├── magazin-2026-09-export.xlsx
-│   ├── minmax-2026-09.csv
-│   └── sklad-pobocky-2026-09.csv
+│   ├── 20260902_Data_CS_skladem.xlsx
+│   ├── 20260902_SD_CS.xlsx
+│   ├── 20260901_minmax.xlsx
+│   └── Magazin2026_Logistika_export.csv
 ├── vystupy/
+│   ├── Magazín ŘÍJEN - Nářadí.xlsx
+│   ├── Magazín ŘÍJEN - Elektro.xlsx
+│   ├── Magazín ŘÍJEN - VTS.xlsx
+│   └── Magazín ŘÍJEN - Piekarová.xlsx
 └── .claude/
     └── skills/
-        └── rozpad-divizi/SKILL.md`,
-      caption: 'Data zůstávají v data/ nedotčená, všechno nové vzniká ve vystupy/.',
+        └── logisticke-dostupnosti/SKILL.md`,
+      caption: 'Reálné názvy z té agendy. Data zůstávají v data/ nedotčená, všechno nové vzniká ve vystupy/.',
     },
     {
       kind: 'code',
       text: `# Akční regál
 
 Připravuju obsah akčního regálu na pobočkách podle tištěného magazínu.
-Cyklus začíná ~6 týdnů před vydáním magazínu.
+Zdroj je Google Tabulka Magazín 2026, list Logistika. Cyklus začíná
+zhruba šest týdnů před vydáním magazínu.
 
 ## Slovník
 - CS = centrální sklad
-- produkťák = produktový manažer divize; vybírá, co půjde do regálu
-- min/max = doporučené množství položky na jednu pobočku
-- divize = nářadí, dekton, elektro, voda-topo
-- vzorování = fyzická zkouška, jestli se položky vejdou do regálu (130 × 900 cm)
+- SD = skladová dostupnost (SD celkem, SD sklad, SD prodejna, SD na CS)
+- PM / produkťák = produktový manažer, vybírá co půjde do regálu
+- divize = Nářadí, Elektro, VTS, Piekarová
+- barva = zelená / oranžová / šedá podle klíče v řádku 1 a 2 listu Logistika
+- vzorování = fyzická zkouška v regálu, varianty 1,33 m a 1,00 m,
+  vždy pro jeden i dva regály
 
 ## Kde jsou data
-- data/magazin-*.xlsx — obsah magazínu, export ze sdílené Google Tabulky
-- data/minmax-*.csv — doporučená množství
-- data/sklad-pobocky-*.csv — zásoby na pobočkách
-- Vždy ber nejnovější soubor podle data v názvu. Když si nejsi jistý, zeptej se.
+- data/<RRRRMMDD>_Data_CS_skladem — zásoby na centrálním skladu
+- data/<RRRRMMDD>_SD_CS — skladová dostupnost CS
+- data/<RRRRMMDD>_minmax — doporučená množství
+- Ber vždy nejnovější podle data v názvu. Když u všech tří není stejné,
+  napiš to a zastav se.
 
 ## Pravidla
-- Do data/ nikdy nezapisuj. Výsledky ukládej do vystupy/.
-- Názvy výstupů: regal-<divize>-<RRRR-MM-DD>.xlsx
-- Kódy položek se nesmí měnit ani doplňovat o nuly — jsou to textové kódy.
-- Když v exportu chybí sloupec, napiš to a zastav se. Nedopočítávej.
-- Prodeje počítám za posledních 12 měsíců, ne za kalendářní rok.`,
+- Do data/ nezapisuj. Výstupy patří do vystupy/.
+- Názvy výstupů: Magazín <MĚSÍC> - <divize>
+- Čísla položek a katalogová čísla jsou text. Nepřevádět na čísla,
+  nedoplňovat nuly.
+- Sloupce, které vyplňuje produkťák, nechávej prázdné:
+  AKČNÍ REGÁL (ANO/NE), POZNÁMKA, PRIORITA.
+- Prodeje počítám za posledních 12 měsíců, ne za kalendářní rok.
+- Když v exportu chybí sloupec, napiš to a zastav se. Nedopočítávej.`,
       caption: 'Celý CLAUDE.md téhle agendy. Většina řádků vznikla tak, že se něco pokazilo a příště se to nemělo opakovat.',
     },
     {
@@ -292,9 +304,9 @@ Cyklus začíná ~6 týdnů před vydáním magazínu.
     {
       kind: 'list',
       items: [
-        '„Podívej se do data/ a řekni mi, kolik položek je v nejnovějším exportu a kolika divizí se týkají.“ — ověření, že rozumí datům.',
-        '„Ke každé položce z exportu dotáhni min/max a zásobu na pobočkách. Kde data chybí, nech prázdno a na konci mi vypiš, u kolika položek to bylo.“ — spojení tří zdrojů.',
-        '„Rozděl to na čtyři soubory podle divize a ulož do vystupy/ podle pojmenování z CLAUDE.md.“ — to, co se dělalo ručně.',
+        '„Podívej se do data/ a řekni mi, který soubor je u každého ze tří zdrojů nejnovější a jestli mají stejné datum.“ — ověření, že rozumí pojmenování.',
+        '„Ke každé položce z exportu listu Logistika dotáhni min/max, SD CS a zásobu na CS. Kde data chybí, nech prázdno a na konci vypiš, u kolika položek to bylo.“ — spojení tří zdrojů.',
+        '„Rozděl to podle divize na soubory Magazín ŘÍJEN - Nářadí, - Elektro, - VTS a - Piekarová do vystupy/. Sloupce AKČNÍ REGÁL, POZNÁMKA a PRIORITA nech prázdné.“ — to, co se dělalo ručně.',
       ],
     },
     { kind: 'h', text: 'Dobré a špatné zadání' },
@@ -319,7 +331,7 @@ Cyklus začíná ~6 týdnů před vydáním magazínu.
         ],
         [
           '„Udělej to jako minule.“',
-          '„Postupuj podle skillu rozpad-divizi.“',
+          '„Postupuj podle skillu logisticke-dostupnosti.“',
           'Minule si nepamatuje. Skill ano.',
         ],
       ],
@@ -736,7 +748,7 @@ const LESSON_REGAL: Lesson = {
   title: 'Zadání: Od magazínu do regálu',
   summary:
     'Reálný proces akčního regálu rozepsaný na kroky. Úkolem je najít místa, kde se dá práce automatizovat.',
-  minutes: 30,
+  minutes: 40,
   kind: 'zadání',
   outcomes: [
     'přečíst pracovní proces jako tok dat mezi lidmi a soubory',
@@ -824,6 +836,73 @@ const LESSON_REGAL: Lesson = {
         },
       ],
     },
+    { kind: 'h', text: 'Soubory, o kterých je řeč' },
+    {
+      kind: 'p',
+      text:
+        'Než začneš hledat automatizace, podívej se, mezi čím se data přelévají. Tohle jsou skutečné soubory téhle agendy — ne zjednodušený model.',
+    },
+    {
+      kind: 'table',
+      head: ['Soubor', 'Co v něm je', 'Kdo ho vlastní'],
+      rows: [
+        [
+          'Google Tabulka „Magazín 2026“, list Logistika',
+          'Kompletní obsah magazínu, tisíce řádků seskupených po měsících. Sloupce Číslo položky, Název, MJ, PM, Typ skladování, SD celkem / sklad / prodejna, Skladem na CS, Barva, Poznámka Logistika, Výsledek v magazínu.',
+          'Marketing. Logistika smí zapisovat jen do svých sloupců.',
+        ],
+        [
+          '<RRRRMMDD>_Data_CS_skladem, _SD_CS, _minmax',
+          'Tři exporty z agend, každý s datem v názvu. Doplňují k položkám zásoby a doporučená množství.',
+          'Agendy',
+        ],
+        [
+          'Magazín <MĚSÍC> - <divize>',
+          'To, co dostane produkťák. Uvnitř list na každého PM, položky s barvou dostupnosti a prázdné sloupce k vyplnění.',
+          'Logistika',
+        ],
+        [
+          'Magazín <MĚSÍC> - Kontrola umístění + MINMAX',
+          'Výsledek vzorování. U každé položky ANO/NE pro regál 1,33 m a 1,00 m, ve variantě jeden i dva regály, plus POS značení. Listy Umístěné položky, Kontrola MIN_MAX, Volná plocha, Prodeje, Skladem.',
+          'Logistika',
+        ],
+        [
+          'Freelo',
+          'Krok za krokem manuál, aby se na nic nezapomnělo. Veřejný, kdyby náhodou. Do samotného magazínu nevstupuje.',
+          'Logistika',
+        ],
+      ],
+    },
+    { kind: 'h', text: 'Co vyplňuje produkťák' },
+    {
+      kind: 'p',
+      text:
+        'V souboru, který mu přijde, jsou položky jeho sekce a k nim čtyři sloupce, které jsou na něm. Tohle je přesně ta odpověď, která se pak ručně přepisuje zpátky.',
+    },
+    {
+      kind: 'table',
+      head: ['Sloupec', 'Co do něj patří'],
+      rows: [
+        ['AKČNÍ REGÁL (ANO/NE)', 'jestli položka půjde do regálu'],
+        ['POZNÁMKA', 'všechny sestavy / největší / velké — co s položkou udělat'],
+        ['PRIORITA', '1 = nejvyšší, 2 = nízká, 3 = nejnižší'],
+        ['Opakuje se', 'položka byla v regálu i minule'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Barva už něco říká',
+      text:
+        'Zelená, oranžová a šedá u položky nejsou dekorace — přiřazují se podle klíče z prvních dvou řádků listu Logistika a nesou dostupnost. Produkťák tedy nerozhoduje ve vzduchoprázdnu: část odpovědi mu data napovídají dřív, než na soubor sáhne.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Jeden krok už dnes běží s AI',
+      text:
+        'Ve složce s podklady leží vedle sebe „Logistické dostupnosti (vzorce)“ a „Logistické dostupnosti Claude“. Ten druhý soubor vzniká s pomocí Clauda. Tenhle proces tedy není nedotčený — jen se zatím automatizoval jeden krok z deseti.',
+    },
     {
       kind: 'task',
       title: 'Zadání',
@@ -834,6 +913,7 @@ const LESSON_REGAL: Lesson = {
         'Vyber tři kroky, ve kterých se nejvíc přepisuje. U každého napiš, mezi jakými dvěma formáty se data překlápějí.',
         'U toho nejhoršího navrhni, co by se muselo změnit, aby přepis úplně zmizel — ne jak to zrychlit, ale jak to zrušit.',
         'Najdi jeden krok, který má zůstat člověku, a napiš proč. Pojmenuj, co konkrétně tam člověk ví a data ne.',
+        'Podívej se na čtyři sloupce, které vyplňuje produkťák. Který z nich by šel předvyplnit z dat, a proč zbylé ne?',
         'Napiš jednu změnu, kterou by šlo zkusit do týdne bez souhlasu IT.',
       ],
       hint:
@@ -928,22 +1008,28 @@ Kde data chybí, nech prázdno a na konci mi napiš, u kolika položek to bylo.`
     },
     {
       kind: 'code',
-      text: `.claude/skills/rozpad-divizi/SKILL.md
+      text: `.claude/skills/logisticke-dostupnosti/SKILL.md
 
 ---
-name: rozpad-divizi
-description: Rozdělí obsah magazínu na čtyři divizní soubory (nářadí, dekton,
-  elektro, voda-topo) a připraví je k rozeslání produkťákům. Použij, když je
-  v data/ nový export magazínu.
+name: logisticke-dostupnosti
+description: Z exportu listu Logistika dotáhne skladová data a připraví
+  soubory pro produkťáky po divizích (Nářadí, Elektro, VTS, Piekarová).
+  Použij, když je v data/ nový export magazínu.
 ---
 
-1. Najdi v data/ nejnovější magazin-*.xlsx podle data v názvu.
-2. Ověř, že má sloupce Kód, Název, Divize. Když některý chybí, zastav se a napiš to.
-3. Dotáhni min/max a zásoby poboček z odpovídajících souborů se stejným měsícem.
-4. Pro každou ze čtyř divizí vytvoř samostatný soubor do vystupy/
-   podle pojmenování regal-<divize>-<RRRR-MM-DD>.xlsx.
-5. Na konci vypiš počet položek po divizích a seznam položek, u kterých
-   chyběla data.`,
+1. Najdi v data/ nejnovější export listu Logistika a nejnovější trojici
+   <RRRRMMDD>_Data_CS_skladem, _SD_CS a _minmax. Když nemají stejné datum,
+   napiš to a zastav se.
+2. Ověř, že export má sloupce Číslo položky, Katalogové číslo, Název, MJ,
+   PM a Určení barvy. Když některý chybí, zastav se.
+3. Ke každé položce dotáhni počet kusů na CS, SD na pobočce a min/max.
+   Kde údaj chybí, nech prázdno.
+4. Rozděl položky podle divize a pro každou založ soubor
+   vystupy/Magazín <MĚSÍC> - <divize>.xlsx, uvnitř list na každého PM.
+5. Přidej prázdné sloupce AKČNÍ REGÁL (ANO/NE), POZNÁMKA a PRIORITA
+   (1=nejvyšší, 2=nízká, 3=nejnižší).
+6. Na konci vypiš počet položek po divizích a seznam položek,
+   u kterých chyběla data.`,
       caption: 'Řádek description rozhoduje o tom, kdy si skill Claude vybere sám. Piš do něj i slova, která bys napsala do zadání ty.',
     },
     {
