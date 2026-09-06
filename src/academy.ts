@@ -367,15 +367,21 @@ Zadání na začátek:
           blocks: [
             {
               kind: 'code',
-              text: `reporting/
-├── CLAUDE.md      # definice metrik: co je aktivní zákazník, jak počítáme marži
-├── data/          # exporty, každý s datem v názvu
-└── vystupy/
+              text: `bi-logistika/
+├── CLAUDE.md      # zkratky ŘZ, CS, ARG, SD_CZ; co musí obsahovat požadavek
+├── data/          # export požadavků z nástěnky, exporty k modelům
+└── vystupy/       # zadání pro realizaci, datové slovníky
+
+U BI se nepřelévají data mezi soubory, ale zadání mezi lidmi:
+nástěnka jde Nové požadavky → Specifikace → Analýza BI → Tvorba zadání
+→ Připraveno k realizaci → Realizace.
 
 Zadání na začátek:
+- „Vezmi tenhle požadavek a napiš ho ve tvaru, který projde ze Specifikace
+   do Analýzy napoprvé. Co chybí, vypiš jako otázky na zadavatele.“
 - „Porovnej sloupce dvou exportů a vypiš, kde se schéma rozešlo.“
-- „Zkontroluj, jestli součty za pobočky sedí na celkový součet, a ukaž rozdíly.“
-- „Napiš datový slovník k tomuhle exportu podle definic z CLAUDE.md.“`,
+- „Projdi požadavky za poslední půlrok a řekni, které se opakují natolik,
+   že mají být modelem, ne jednorázovkou.“`,
             },
           ],
         },
@@ -873,6 +879,25 @@ const LESSON_REGAL: Lesson = {
         ],
       ],
     },
+    { kind: 'h', text: 'Kde se počítá min/max' },
+    {
+      kind: 'p',
+      text:
+        'V souboru Kontrola umístění + MINMAX je vedle výsledku vzorování i celý výpočet. Pro každou položku a každou variantu regálu je dvojice Min a Max, a za nimi sloupce, které se dopočítávají ze zásob a prodejů. Tohle je nejzajímavější místo celého procesu — část těch sloupců je čistá aritmetika, část ne.',
+    },
+    {
+      kind: 'table',
+      head: ['Sloupec', 'Odkud se bere'],
+      rows: [
+        ['Min / Max pro variantu regálu', 'z průměrného 14denního prodeje za poslední půlrok a počtu poboček dané varianty'],
+        ['Stav SD prodejna, Stav CS, Objednáno CS', 'ze skladových exportů'],
+        ['Potřebný počet', 'výpočet z min/max a počtu poboček'],
+        ['ROZDÍL', 'Stav CS + objednáno − potřebný počet; záporná čísla červeně'],
+        ['Dostatečný počet na CS', 'ANO / NE podle znaménka rozdílu'],
+        ['Poznámka', 'ručně: „na pob. 7“, „na pob. 15, obj. 320“'],
+        ['ANO / NE u 1,33 m a 1,00 m', 'fyzické vzorování — spočítat se nedá'],
+      ],
+    },
     { kind: 'h', text: 'Co vyplňuje produkťák' },
     {
       kind: 'p',
@@ -914,6 +939,7 @@ const LESSON_REGAL: Lesson = {
         'U toho nejhoršího navrhni, co by se muselo změnit, aby přepis úplně zmizel — ne jak to zrychlit, ale jak to zrušit.',
         'Najdi jeden krok, který má zůstat člověku, a napiš proč. Pojmenuj, co konkrétně tam člověk ví a data ne.',
         'Podívej se na čtyři sloupce, které vyplňuje produkťák. Který z nich by šel předvyplnit z dat, a proč zbylé ne?',
+        'V tabulce MINMAX rozděl sloupce na dvě hromádky: co je čistý výpočet a co ne. U té první napiš, co by se muselo zajistit, aby se počítala sama.',
         'Napiš jednu změnu, kterou by šlo zkusit do týdne bez souhlasu IT.',
       ],
       hint:
