@@ -30,6 +30,8 @@ export type Block =
   | { kind: 'platform'; mac: Block[]; win: Block[] }
   /** Táž látka na příkladech z různých agend — každý si najde tu svoji. */
   | { kind: 'tabs'; items: { label: string; blocks: Block[] }[] }
+  /** Odkazy ven — oficiální dokumentace, ke které se dá vrátit. */
+  | { kind: 'links'; title: string; items: { label: string; href: string; note?: string }[] }
 
 export interface VideoRef {
   /** ID z YouTube, tedy to za `watch?v=`. */
@@ -1364,12 +1366,53 @@ Na konec přidej sekci "Na co si dát pozor" s věcmi, které se tady dají
 splést. Pak mi ho ukaž, ať ho projdu, než ho uložíš.`,
       caption: 'Tenhle prompt napiš hned po tom, co úloha doběhla správně. Ne druhý den — kontext je to nejcennější, co v tu chvíli máš.',
     },
+    { kind: 'h', text: 'Zkratka: skill na psaní skillů' },
+    {
+      kind: 'p',
+      text:
+        'Nemusíš na to sama. V Claude Code je skill-creator — napiš lomítko a jeho jméno a provede tě založením nového skillu, úpravou existujícího i tím, jestli se spouští ve správných situacích. Výsledek se ukládá přes kartu, kterou si nejdřív projdeš, ne tak, že by ti někdo psal do souborů za zády.',
+    },
+    {
+      kind: 'code',
+      text: `muj-skill/
+├── SKILL.md          ← povinné, jediné co musí být
+├── references/       ← delší dokumentace, načte se až když je potřeba
+├── scripts/          ← spustitelné skripty
+└── assets/           ← šablony, obrázky`,
+      caption: 'Obsah se načítá postupně: nejdřív jen description, pak SKILL.md, a přílohy teprve když na ně dojde. Proto drž SKILL.md stručný — pod pět set řádků — a detaily odsuň do references/.',
+    },
     {
       kind: 'note',
       tone: 'ok',
-      title: 'Nebo použij skill na psaní skillů',
+      title: 'Tři věci, které rozhodují o kvalitě',
       text:
-        'V Claude Code je k dispozici skill-creator: provede tě založením skillu, úpravou existujícího i tím, jestli se spouští ve správných situacích. Spustíš ho lomítkem. Hodí se hlavně tehdy, když chceš skill sdílet dál a záleží ti na tom, aby byl pořádně popsaný.',
+        'Jméno složky = jméno skillu. Description musí říct co to dělá i kdy to použít, slovy, která uživatel opravdu napíše. A tělo drž krátké, protože každý řádek navíc soutěží o pozornost s tím podstatným.',
+    },
+    {
+      kind: 'links',
+      title: 'Oficiální dokumentace',
+      items: [
+        {
+          label: 'Skill authoring best practices',
+          href: 'https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices',
+          note: 'Nejužitečnější stránka z celé čtveřice. Začni tady.',
+        },
+        {
+          label: 'Agent Skills — overview',
+          href: 'https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview',
+          note: 'Co skilly jsou a jak se načítají.',
+        },
+        {
+          label: 'Extend Claude with skills (Claude Code)',
+          href: 'https://code.claude.com/docs/en/skills',
+          note: 'Umístění složek a všechna pole hlavičky.',
+        },
+        {
+          label: 'The Complete Guide to Building Skills for Claude (PDF)',
+          href: 'https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf',
+          note: 'Delší materiál na jedno odpoledne.',
+        },
+      ],
     },
     { kind: 'h', text: 'Co Claudovi dát, aby vyšel dobře' },
     {

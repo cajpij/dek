@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import Link from '@mui/material/Link'
 import Paper from '@mui/material/Paper'
 import Tab from '@mui/material/Tab'
 import Table from '@mui/material/Table'
@@ -240,6 +241,38 @@ function Videos({ title, items }: { title: string; items: VideoRef[] }) {
   )
 }
 
+/** Odkazy do oficiální dokumentace — místo, kam se člověk vrátí, až mu text nestačí. */
+function Links({ title, items }: { title: string; items: { label: string; href: string; note?: string }[] }) {
+  return (
+    <Paper variant="outlined" sx={{ my: 3, borderRadius: 2, p: 2.5 }}>
+      <Typography
+        sx={{
+          fontSize: 11.5,
+          letterSpacing: '.14em',
+          textTransform: 'uppercase',
+          fontWeight: 700,
+          color: 'text.disabled',
+          mb: 1.5,
+        }}
+      >
+        {title}
+      </Typography>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.25 }}>
+        {items.map((l) => (
+          <Box key={l.href}>
+            <Link href={l.href} target="_blank" rel="noopener" underline="hover" sx={{ fontSize: 15.5, fontWeight: 550 }}>
+              {l.label} ↗
+            </Link>
+            {l.note ? (
+              <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>{l.note}</Typography>
+            ) : null}
+          </Box>
+        ))}
+      </Box>
+    </Paper>
+  )
+}
+
 /** Táž látka na příkladech z různých agend. */
 function AgendaTabs({ items }: { items: { label: string; blocks: Block[] }[] }) {
   const [tab, setTab] = useState(0)
@@ -396,5 +429,8 @@ export default function BlockView({ block }: { block: Block }) {
 
     case 'tabs':
       return <AgendaTabs items={block.items} />
+
+    case 'links':
+      return <Links title={block.title} items={block.items} />
   }
 }
