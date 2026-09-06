@@ -1,7 +1,7 @@
 import type { RunConfig } from './types'
 
 /**
- * Výchozí program — čtyřhodinový workshop DEK Academy.
+ * Výchozí program — čtyřhodinový workshop DEK Academy, 16:00–20:00.
  *
  * Odpovídá 1:1 lekci „Jak workshop poběží“ v akademii
  * (/#academy/claude-a-firemni-data/program-dne). Když se změní tam, musí se
@@ -21,6 +21,9 @@ import type { RunConfig } from './types'
  *    kterých si lidi odnesou něco vlastního.
  *  - Poslední blok je živá ukázka: naplánovaný běh za pět minut. Není to
  *    látka, je to důkaz, že těch pět schodů někam vede.
+ *  - Začíná se po pracovním dni, takže hned po úvodu je rozehřívačka: lidé
+ *    se postaví, promluví a rozdělí se do dvojic napříč odděleními. Dvojice
+ *    zůstávají na celé odpoledne — cizí člověk se ptá líp než kolega z týmu.
  *
  * Publikum jsou lidé z logistiky, autodopravy, BI, marketingu a vedení. Chtějí
  * Claude Code, ne Cowork, a neprogramují — všechno, co se v sále dělá, jsou
@@ -48,7 +51,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     title: 'DEK Academy — workshop',
     date: 'doplnit datum',
     venue: 'Místo konání',
-    startsAt: '9:00',
+    startsAt: '16:00',
   },
   participants: [],
   agenda: [
@@ -71,15 +74,44 @@ export const DEFAULT_CONFIG: RunConfig = {
       ],
     },
     {
+      title: 'Rozehřívačka: co jsem dneska dělal ručně',
+      min: 10,
+      kind: 'work',
+      who: 'Martin',
+      brief:
+        'Postavte se. Najděte si dvojici z jiného oddělení, než jste vy — ne souseda, se kterým ' +
+        'sedíte každý den. S tou dvojicí zůstanete celé odpoledne. Pak si každý dostane minutu ' +
+        'na jednu věc, kterou dneska dělal ručně a štvalo ho to.',
+      steps: [
+        { title: 'Vstát a najít si dvojici z jiného oddělení', min: 2 },
+        { title: 'Minuta na každého — co jsem dneska dělal ručně', min: 3 },
+        { title: 'Kolečko: každá dvojice řekne jednu věc nahlas', min: 5 },
+      ],
+      examples: [
+        { title: 'Něco, co jsem dneska přeťukával z jednoho okna do druhého' },
+        { title: 'Něco, u čeho jsem čekal, až mi někdo odpoví' },
+        { title: 'Něco, co jsem dělal potřetí tenhle týden' },
+        { title: 'Něco, co bych nemohl nechat na kolegovi, protože to mám v hlavě' },
+      ],
+      notes: [
+        'Je po pracovním dni — sál potřebuje vstát a promluvit dřív, než začne poslouchat',
+        'Dvojice napříč odděleními jsou schválně: cizí člověk se ptá líp než kolega, který to zná',
+        'Tyhle dvojice drží celé odpoledne, včetně obou cvičení — říct to hned',
+        'Nesbírat řešení, jen sbírat. Kdo začne radit, zarazit ho — přijde to za dvě hodiny.',
+        'Držet minutu na člověka, jinak se z toho stane porada',
+        'To, co v kolečku zazní, si zapsat — jsou to kandidáti na cvičení 2',
+      ],
+    },
+    {
       title: 'Vzor: Od magazínu do regálu',
-      min: 25,
+      min: 20,
       kind: 'talk',
       who: 'Lektor',
       brief: REGAL_BRIEF,
       steps: [
-        { title: 'Projít proces po krocích', min: 12, detail: 'Deset kroků od sdílené tabulky po tři finální podklady' },
-        { title: 'Kde data mění formu ručně', min: 8, detail: 'Nechat sál hádat, než ukážeš tři označená místa' },
-        { title: 'Co má zůstat člověku', min: 5, detail: 'Vzorování v regálu — data o měrných jednotkách lžou' },
+        { title: 'Projít proces po krocích', min: 10, detail: 'Deset kroků od sdílené tabulky po tři finální podklady' },
+        { title: 'Kde data mění formu ručně', min: 7, detail: 'Nechat sál hádat, než ukážeš tři označená místa' },
+        { title: 'Co má zůstat člověku', min: 3, detail: 'Vzorování v regálu — data o měrných jednotkách lžou' },
       ],
       notes: [
         'Tohle je jediný blok, kde se hodně mluví. Držet ho.',
@@ -160,12 +192,12 @@ export const DEFAULT_CONFIG: RunConfig = {
     },
     {
       title: 'Sdílení map',
-      min: 15,
+      min: 10,
       kind: 'qna',
       who: 'Martin',
       steps: [
-        { title: 'Každá dvojice dvě minuty', min: 12, detail: 'Jeden nejhorší krok a jeden nápad' },
-        { title: 'Co se opakuje napříč odděleními', min: 3 },
+        { title: 'Každá dvojice dvě minuty', min: 8, detail: 'Jeden nejhorší krok a jeden nápad' },
+        { title: 'Co se opakuje napříč odděleními', min: 2 },
       ],
       notes: [
         'Držet dvě minuty na dvojici, jinak se to rozjede',
