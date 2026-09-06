@@ -3575,13 +3575,14 @@ const L2_MCP: Lesson = {
   module: 'potom',
   title: 'MCP nad katalogem dek.cz',
   summary:
-    'Zeptat se na sortiment, produkt nebo návod vlastními slovy, bez klikání ve webu. Jak server připojit, jak ověřit, že jede, a na co se ho ptát.',
+    'Zeptat se na sortiment vlastními slovy, bez klikání ve webu. Jak server rozjet na svém počítači za dvě minuty, jak ověřit, že jede, a na co se ho ptát.',
   minutes: 10,
   kind: 'lekce',
   track: 'potom',
   outcomes: [
     'vysvětlit, co MCP server přidává oproti běžnému Claudovi',
-    'připojit server v Claude Code a ověřit, že se opravdu spojil',
+    'rozjet server na svém počítači a připojit ho v Claude Code',
+    'ověřit přes /mcp, že se opravdu spojil, a poradit si, když ne',
     'poznat, na které dotazy je dobrý a na které ne',
     'zkombinovat katalog s vlastní složkou v jednom zadání',
   ],
@@ -3598,17 +3599,55 @@ const L2_MCP: Lesson = {
       text:
         'Ve webu hledáš jeden produkt a klikáš. Přes MCP se dá ptát na to, co se klikáním dělá špatně: porovnej mi tyhle tři, projdi tenhle seznam kódů a řekni, které už nevedeme, nebo vezmi kategorii a udělej z ní tabulku. Claude si tam sáhne kolikrát potřebuje a odpověď složí sám.',
     },
-    { kind: 'h', text: 'Co server umí' },
+    { kind: 'h', text: 'Dvě varianty, se kterými se potkáš' },
     {
       kind: 'table',
-      head: ['Nástroj', 'Co dělá', 'Kdy po něm Claude sáhne'],
+      head: ['', 'mcp-dek — běží u tebe', 'Hotový server s adresou'],
       rows: [
-        ['eshop_search_products', 'najde produkty podle názvu, značky nebo kódu', 'když se ptáš na konkrétní věc'],
-        ['eshop_list_products', 'vypíše, co je v kategorii', 'když je dotaz obecný — „co vedeme v…“'],
-        ['eshop_get_product', 'detail jednoho produktu', 'když už ví, o který jde, a potřebuje podrobnosti'],
-        ['content_search', 'hledá v návodech, příručkách a článcích', 'když se ptáš „jak se to dělá“, ne „co to stojí“'],
-        ['content_get_document', 'vytáhne celý dokument i s odkazem na zdroj', 'když má z návodu citovat nebo shrnout'],
-        ['content_get_multilingual', 'tentýž obsah v jiném jazyce', 'když píšeš podklad pro kolegy mimo ČR'],
+        ['Kde běží', 'na tvém počítači, jako program', 'někde na síti, ty jen znáš adresu'],
+        ['Odkud ho vezmeš', 'je ve složce mcp-dek v repu akademie', 'adresu ti dá ten, kdo ho provozuje'],
+        ['Co umí', 'produkty a kategorie z veřejného katalogu', 'produkty i obsah — návody, příručky, články'],
+        ['Přihlášení', 'žádné, čte jen veřejný web', 'podle toho, jak je postavený'],
+        ['Kdy ho použít', 'hned. Rozjede se za dvě minuty a nikoho nemusíš prosit.', 'když ho ve firmě někdo provozuje'],
+      ],
+    },
+    { kind: 'h', text: 'Nástroje' },
+    {
+      kind: 'tabs',
+      items: [
+        {
+          label: 'mcp-dek (lokální)',
+          blocks: [
+            {
+              kind: 'table',
+              head: ['Nástroj', 'Co dělá'],
+              rows: [
+                ['hledat_produkt', 'najde produkty podle názvu nebo kódu v lokálním rejstříku'],
+                ['detail_produktu', 'název, popis, značka, veřejná cena, dostupnost, zařazení'],
+                ['hledat_kategorii', 'najde kategorie podle názvu'],
+                ['produkty_v_kategorii', 'vypíše produkty z kategorie — na obecné dotazy lepší než hledání'],
+                ['stav_rejstriku', 'kolik toho rejstřík zná a kdy se stavěl; umí ho postavit znovu'],
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Hotový server',
+          blocks: [
+            {
+              kind: 'table',
+              head: ['Nástroj', 'Co dělá'],
+              rows: [
+                ['eshop_search_products', 'najde produkty podle názvu, značky nebo kódu'],
+                ['eshop_list_products', 'vypíše, co je v kategorii'],
+                ['eshop_get_product', 'detail jednoho produktu'],
+                ['content_search', 'hledá v návodech, příručkách a článcích'],
+                ['content_get_document', 'vytáhne celý dokument i s odkazem na zdroj'],
+                ['content_get_multilingual', 'tentýž obsah v jiném jazyce'],
+              ],
+            },
+          ],
+        },
       ],
     },
     {
@@ -3616,84 +3655,83 @@ const L2_MCP: Lesson = {
       tone: 'ok',
       title: 'Nemusíš vědět, který nástroj je který',
       text:
-        'Tabulka je tu proto, abys poznala, co se děje, když Claude odpovídá — ne proto, aby ses to učila. Nástroje si vybírá sám podle toho, na co se ptáš. Ptej se jako člověka, ne jako vyhledávače.',
+        'Tabulky jsou tu proto, abys poznala, co se děje, když Claude odpovídá — ne proto, aby ses je učila. Nástroje si vybírá sám podle toho, na co se ptáš. Ptej se jako člověka, ne jako vyhledávače.',
     },
-    { kind: 'h', text: 'Připojení' },
+    { kind: 'h', text: 'Jak ho rozjet lokálně' },
     {
-      kind: 'tabs',
-      items: [
-        {
-          label: 'Claude Code — jednou pro všechny projekty',
-          blocks: [
-            {
-              kind: 'p',
-              text:
-                'Nejběžnější případ. Server se přidá jedním příkazem v terminálu a je pak k dispozici ve všech tvých projektech.',
-            },
-            {
-              kind: 'code',
-              text: `claude mcp add --transport http --scope user dek <adresa serveru>
-
-# ověření
-claude mcp list
-claude mcp get dek`,
-              caption:
-                'Adresu serveru ti dá ten, kdo ho provozuje. Když se server přihlašuje, přidej po prvním spuštění claude mcp login dek.',
-            },
-          ],
-        },
-        {
-          label: 'Sdílet ho s týmem',
-          blocks: [
-            {
-              kind: 'p',
-              text:
-                'Když má server používat celé oddělení, patří do projektu, ne do osobního nastavení. Soubor .mcp.json leží v kořeni projektové složky a nese se s ním.',
-            },
-            {
-              kind: 'code',
-              text: `.mcp.json
-
-{
-  "mcpServers": {
-    "dek": {
-      "type": "http",
-      "url": "<adresa serveru>"
-    }
-  }
-}`,
-              caption:
-                'Kdo si složku otevře, dostane při prvním spuštění dotaz, jestli serveru věří. Do souboru nikdy nepiš token natvrdo — použij ${PROMENNA}.',
-            },
-          ],
-        },
-        {
-          label: 'Server běžící u tebe na počítači',
-          blocks: [
-            {
-              kind: 'p',
-              text:
-                'Starší varianta, která si katalog stahuje sama a běží jako program na tvém disku. Poznáš ji podle toho, že místo adresy dostaneš složku se soubory.',
-            },
-            {
-              kind: 'code',
-              text: `cd mcp-dek
+      kind: 'p',
+      text:
+        'Tohle je celé. Server je jeden soubor a nemá žádnou závislost kromě oficiálního SDK — proto se dá rozjet dřív, než se stihneš někoho zeptat, jestli smíš. Potřebuješ jen Node (příkaz node --version musí něco vypsat) a staženou složku mcp-dek z repa akademie.',
+    },
+    {
+      kind: 'code',
+      text: `cd ~/dek/mcp-dek
 npm install
-node server.js --build-index
-
-claude mcp add --scope user dek -- node /plná/cesta/k/mcp-dek/server.js`,
-              caption: 'Dvě pomlčky před příkazem tam patří — oddělují nastavení Clauda od toho, co se má spustit.',
-            },
-          ],
-        },
-      ],
+node server.js --build-index`,
+      caption:
+        'Poslední řádek stáhne 42 sitemap a postaví z nich rejstřík — asi 81 tisíc produktů a 4 650 kategorií. Trvá to pár vteřin a je to nepovinné: bez něj se rejstřík postaví sám při prvním hledání, jen to první hledání bude pomalejší.',
+    },
+    {
+      kind: 'code',
+      text: `claude mcp add --scope user dek -- node ~/dek/mcp-dek/server.js`,
+      caption:
+        'Dvě pomlčky před node tam patří — oddělují nastavení Clauda od příkazu, který se má spustit. Cestu piš celou, ne relativní.',
     },
     {
       kind: 'note',
       tone: 'warn',
-      title: 'Ověř si, že se opravdu spojil',
+      title: 'Ověř /mcp, než se začneš ptát',
       text:
-        'Napiš v Claude Code /mcp. U serveru musí svítit Connected. „Needs authentication" znamená, že se máš přihlásit; „Failed to connect" nejčastěji špatnou adresu nebo že server neběží. Dokud tam nesvítí Connected, Claude odpovídá z hlavy a tváří se přitom stejně jistě — což je ten nejhorší možný stav.',
+        'Napiš v Claude Code /mcp. U serveru dek musí svítit Connected. Dokud tam nesvítí, Claude odpovídá z hlavy a tváří se přitom stejně jistě — což je ten nejhorší možný stav. Failed to connect u lokálního serveru znamená skoro vždycky špatnou cestu k server.js nebo neproběhlé npm install.',
+    },
+    {
+      kind: 'table',
+      head: ['Když to nejede', 'Co s tím'],
+      rows: [
+        ['claude: command not found', 'nemáš Claude Code v terminálu. Lekce Projekt v Claude Code.'],
+        ['node: command not found', 'chybí Node. Nainstaluj ho z nodejs.org, verze 18 a výš.'],
+        ['Failed to connect', 'zkontroluj cestu k server.js a jestli proběhlo npm install'],
+        ['Hledání nic nenajde', 'napiš „jaký je stav rejstříku" — server na to má nástroj a umí ho postavit znovu'],
+        ['Stažení rejstříku skončí chybou', 'firemní síť blokuje dek.cz. Zkus to z jiné sítě.'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Rejstřík se obnovuje sám',
+      text:
+        'Leží v ~/.cache/mcp-dek/index.json a platí týden, pak se postaví znovu. Když se katalog výrazně změní dřív, řekni Claudovi, ať rejstřík obnoví — nástroj stav_rejstriku to umí a nemusíš kvůli tomu do terminálu.',
+    },
+    { kind: 'h', text: 'Sdílet ho s kolegy' },
+    {
+      kind: 'p',
+      text:
+        'Když ho má používat celé oddělení, nepatří do osobního nastavení, ale do projektu. Soubor .mcp.json leží v kořeni projektové složky a nese se s ní — kdo si složku otevře, dostane při prvním spuštění dotaz, jestli serveru věří.',
+    },
+    {
+      kind: 'code',
+      text: `.mcp.json
+
+{
+  "mcpServers": {
+    "dek": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/plná/cesta/k/mcp-dek/server.js"]
+    }
+  }
+}`,
+      caption: 'Pro hotový server s adresou je to místo command a args jen "type": "http" a "url". Token do souboru nikdy nepiš natvrdo — použij ${PROMENNA}.',
+    },
+    {
+      kind: 'code',
+      text: `# hotový server s adresou, jednou pro všechny tvoje projekty
+claude mcp add --transport http --scope user dek <adresa serveru>
+
+# přehled a odebrání
+claude mcp list
+claude mcp remove dek`,
+      caption: 'Když se server přihlašuje, přidej po prvním spuštění claude mcp login dek.',
     },
     { kind: 'h', text: 'Zkouška na pět minut' },
     {
