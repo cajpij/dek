@@ -2646,18 +2646,103 @@ Nejnovější .xlsx v data/, list "slozeny".
 - víc než 5 % položek nemá produkťáka`,
       caption: 'Všimni si, že polovina skillu je o kontrole. To není opatrnictví — bez ní se ten skill nedá pustit bez dozoru.',
     },
-    { kind: 'h', text: '3. Zábrana a notifikace' },
+    { kind: 'h', text: '3. Dva hooky: zábrana a notifikace' },
     {
       kind: 'p',
       text:
-        'Než se cokoli plánuje, musí platit dvě věci: že se nemůže stát to nejhorší, a že se pozná, že to doběhlo. To jsou dva hooky z lekce Jak se v projektu nastaví automatizace — zábrana na zápis do data/ a notifikace na událost Stop. Bez nich naplánovaný běh nezakládej.',
+        'Než se cokoli plánuje, musí platit dvě věci: že se nemůže stát to nejhorší, a že se pozná, že to doběhlo. Obojí zařídí hook — příkaz, který Claude Code spustí sám při určité události, ať si zrovna myslí cokoli. Konkrétně tady jde o zápis do data/ a o zprávu na konci běhu.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Originál exportu je jediná kopie, kterou máš',
       text:
-        'Kdyby skill omylem přepsal soubor v data/, přijdeš o vstup celého cyklu a nikdo si toho nevšimne, dokud nesedí čísla. Proto je zábrana hook, ne věta v CLAUDE.md: hook nemá úsudek a nedá se přemluvit.',
+        'Kdyby skill omylem přepsal soubor v data/, přijdeš o vstup celého cyklu — a nikdo si toho nevšimne, dokud nesedí čísla. Proto je zábrana hook, ne věta v CLAUDE.md: hook nemá úsudek a nedá se přemluvit ani přeřečnit.',
+    },
+    {
+      kind: 'code',
+      text: `.claude/hooks/chran-data.sh
+
+#!/bin/bash
+INPUT=$(cat)
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+FILE_PATH="\${FILE_PATH//\\//}"
+
+if [[ "$FILE_PATH" == *"/data/"* ]]; then
+  echo "Blokováno: do data/ se nezapisuje. Export magazínu je jediná kopie, divizní soubory patří do vystupy/." >&2
+  exit 2
+fi
+exit 0`,
+      caption:
+        'Zpráva v chybovém výstupu se vrací Claudovi jako vysvětlení, proč to nešlo — takže se místo hádání rovnou opraví a uloží jinam. Návratový kód 2 je to, co zápis zastaví.',
+    },
+    {
+      kind: 'code',
+      text: `chmod +x .claude/hooks/chran-data.sh
+
+.claude/settings.json
+
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\\"$CLAUDE_PROJECT_DIR\\"/.claude/hooks/chran-data.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \\"Rozpad divizí doběhl\\" with title \\"Akční regál\\"'"
+          }
+        ]
+      }
+    ]
+  }
+}`,
+      caption:
+        'Oba hooky v jednom souboru. PreToolUse hlídá každý zápis, Stop se ozve na konci běhu. Na Windows se místo osascript použije powershell.exe — celé znění je v lekci Jak se v projektu nastaví automatizace.',
+    },
+    {
+      kind: 'table',
+      head: ['Co má platit', 'Kam to patří', 'Proč zrovna tam'],
+      rows: [
+        [
+          'Do data/ se nikdy nezapisuje',
+          'hook PreToolUse',
+          'je to zámek. Nesmí záviset na tom, jestli si na to Claude vzpomene.',
+        ],
+        [
+          'Divizní soubor se jmenuje <divize>-<datum>.xlsx',
+          'CLAUDE.md',
+          'je to konvence, ne bezpečnost. Když ji jednou poruší, nic se nestane.',
+        ],
+        [
+          'Když chybí sloupec, zastav se',
+          'skill',
+          'vyžaduje to posouzení — hook neumí poznat, který sloupec je který.',
+        ],
+        [
+          'Dej vědět, až je hotovo',
+          'hook Stop',
+          'nemá to co dělat s obsahem práce, má se to stát pokaždé.',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Otestuj zábranu dřív, než ji budeš potřebovat',
+      text:
+        'Řekni Claudovi „přidej řádek do souboru v data/" a chtěj vidět, že to odmítne. Zábrana, kterou jsi nikdy neviděla zafungovat, je jenom soubor na disku. Trvá to patnáct vteřin a je to jediný způsob, jak si být jistá, že se hook vůbec zaregistroval — druhý je napsat v Claude Code /hooks a podívat se do seznamu.',
     },
     { kind: 'h', text: '4. Konektory: co připojit a proč' },
     {
