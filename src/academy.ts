@@ -634,6 +634,27 @@ Zadání na začátek:
   ],
 }
 
+const VIDEOS_PLAN: VideoRef[] = [
+  {
+    id: 'tYOI-WoLS_o',
+    title: 'Delegate and schedule tasks in Claude Cowork',
+    author: 'Claude (Anthropic)',
+    note: 'Oficiální, čtyři minuty. Přesně to, co budeme dělat: zadat úlohu a nechat ji běžet na plán.',
+  },
+  {
+    id: 'o-5Esj459GQ',
+    title: 'How to Use Claude Cowork Scheduled Tasks (Step-by-Step Tutorial)',
+    author: 'Ryan & Matt Data Science',
+    note: 'Delší a pomalejší, klikací. Pusť si to, když ti čtyřminutové oficiální video ujede.',
+  },
+  {
+    id: 'U_cDKkDvPAQ',
+    title: 'Claude Code Scheduled Tasks Are Insane',
+    author: 'Tyler Germain | AI Automation',
+    note: 'Naplánované běhy z pohledu Claude Code, ne aplikace. Až budeš chtít víc než jednu úlohu.',
+  },
+]
+
 const VIDEOS_SHAREPOINT: VideoRef[] = [
   {
     id: 'lM7feEPhtgE',
@@ -1267,13 +1288,24 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
       {
         "matcher": "Edit|Write",
         "hooks": [
-          { "type": "command", "command": "cp \\"$CLAUDE_FILE_PATH\\" ~/zalohy/" }
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path' | xargs -I{} cp {} ~/zalohy/"
+          }
         ]
       }
     ]
   }
 }`,
-      caption: 'Po každém zápisu souboru se udělá kopie. Hook je shellový příkaz, takže dělá přesně to, co je v něm napsané.',
+      caption:
+        'Po každém zápisu souboru se udělá kopie. Hook je shellový příkaz — na vstup dostane JSON s tím, co se právě dělo, a `jq` z něj vytáhne cestu k souboru.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Nemusíš to psát ručně',
+      text:
+        'V Claude Code napiš `/hooks` — otevře se prohlížeč hooků, kde vidíš všechny události, kolik jich máš nastavených a co přesně který spouští. Je to nejrychlejší způsob, jak zjistit, jestli se hook vůbec zaregistroval. A samotný soubor settings.json ti klidně napíše Claude: řekni mu, co se má stát a při jaké události.',
     },
     {
       kind: 'table',
@@ -1305,6 +1337,130 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
       text:
         'Spustí se vždycky a nemá úsudek. To je jeho síla u zábran („do data/ se nezapisuje“) a jeho slabina všude jinde. Když má něco záviset na posouzení, patří to do skillu, ne do hooku.',
     },
+    { kind: 'h', text: 'Dva hooky, které stojí za to mít hned' },
+    {
+      kind: 'p',
+      text:
+        'Zbytek si nastavíš, až na něj narazíš. Tyhle dva se ale vyplatí mít od začátku: jeden ti dá vědět, že je hotovo, druhý ohlídá, že se nesáhne do dat. Dohromady jsou to přesně ty dvě věci, bez kterých se nedá pustit naplánovaný běh.',
+    },
+    {
+      kind: 'platform',
+      mac: [
+        {
+          kind: 'code',
+          text: `~/.claude/settings.json
+
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \\"Doběhlo to\\" with title \\"Claude Code\\"'"
+          }
+        ]
+      }
+    ]
+  }
+}`,
+          caption: 'Notifikace na plochu, jakmile Claude práci dokončí.',
+        },
+        {
+          kind: 'note',
+          tone: 'warn',
+          title: 'Když se nic neukáže',
+          text:
+            'osascript posílá notifikace přes aplikaci Script Editor. Spusť si v Terminálu `osascript -e \'display notification "test"\'` — nic se neobjeví, ale Script Editor se tím zapíše do Nastavení systému → Oznámení, kde mu povolíš oznámení. Pak to funguje.',
+        },
+      ],
+      win: [
+        {
+          kind: 'code',
+          text: `%UserProfile%\\.claude\\settings.json
+
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -Command \\"[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); [System.Windows.Forms.MessageBox]::Show('Doběhlo to', 'Claude Code')\\""
+          }
+        ]
+      }
+    ]
+  }
+}`,
+          caption: 'Na Windows to není notifikace v rohu, ale dialogové okno — a může se otevřít za terminálem.',
+        },
+      ],
+    },
+    {
+      kind: 'p',
+      text:
+        'Druhý hook je zábrana. Zapisuje se do `vystupy/`, do `data/` nikdy — jenže „nikdy" napsané v CLAUDE.md je doporučení, ne zámek. Tohle je zámek: skript, který se spustí před každým zápisem a nepovolený zápis rovnou odmítne.',
+    },
+    {
+      kind: 'code',
+      text: `.claude/hooks/chran-data.sh
+
+#!/bin/bash
+INPUT=$(cat)
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+FILE_PATH="\${FILE_PATH//\\//}"
+
+if [[ "$FILE_PATH" == *"/data/"* ]]; then
+  echo "Blokováno: do data/ se nezapisuje, výstupy patří do vystupy/" >&2
+  exit 2
+fi
+exit 0`,
+      caption: 'Návratový kód 2 zápis zastaví a text z chybového výstupu se vrátí Claudovi jako vysvětlení, proč to nešlo.',
+    },
+    {
+      kind: 'code',
+      text: `chmod +x .claude/hooks/chran-data.sh
+
+.claude/settings.json
+
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\\"$CLAUDE_PROJECT_DIR\\"/.claude/hooks/chran-data.sh"
+          }
+        ]
+      }
+    ]
+  }
+}`,
+      caption: 'Na Macu skript nejdřív zpřístupni přes chmod, jinak se nespustí. Pak ho zaregistruj na událost PreToolUse.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Tohle je ta dvojice, o kterou jde',
+      text:
+        'Zábrana plus notifikace. Zábrana je důvod, proč se dá běh pustit bez dozoru — nemůže se stát to nejhorší. Notifikace je důvod, proč se pozná, že doběhl. Naplánovaná úloha bez těch dvou je jenom rychlejší způsob, jak si nadělat škodu.',
+    },
+    {
+      kind: 'links',
+      title: 'Když budeš chtít víc',
+      items: [
+        {
+          label: 'Automate actions with hooks — dokumentace',
+          href: 'https://code.claude.com/docs/en/hooks-guide',
+          note: 'Všechny události, příklady pro Mac, Windows i Linux, ladění.',
+        },
+      ],
+    },
     { kind: 'h', text: '5. Běh bez tebe' },
     {
       kind: 'p',
@@ -1314,7 +1470,7 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
     {
       kind: 'code',
       text: `claude -p "Postupuj podle skillu rozpad-divizi a výsledek ulož do vystupy/."`,
-      caption: 'Jeden běh bez rozhovoru. Tohle je věta, kterou se dá naplánovat — ať už přes naplánovanou úlohu v Claude appce, nebo přes plánovač v systému.',
+      caption: 'Jeden běh bez rozhovoru. Tohle je věta, kterou vložíš do naplánované úlohy — v aplikaci Claude vlevo Scheduled → New task. Podrobně je to v lekci Nech to běžet bez sebe.',
     },
     {
       kind: 'note',
@@ -2380,7 +2536,8 @@ const L2_BEH: Lesson = {
   track: 'potom',
   outcomes: [
     'ověřit na checklistu, že je úloha připravená běžet bez dozoru',
-    'spustit úlohu bez rozhovoru a naplánovat ji',
+    'spustit úlohu bez rozhovoru a naplánovat ji jako Scheduled task',
+    'vědět, kdy naplánovaná úloha potřebuje zapnutý počítač a kdy ne',
     'napsat runbook, kterému bude rozumět i kolega',
     'vědět, co dělat, když naplánovaný běh selže',
   ],
@@ -2415,10 +2572,71 @@ claude -p "Postupuj podle skillu logisticke-dostupnosti. Na konec ulož
 kontrolní protokol do vystupy/."`,
       caption: 'Spusť si to nejdřív ručně přesně takhle. Když to takhle nedoběhne, na plánu to nedoběhne taky.',
     },
+    { kind: 'h', text: 'Naplánovaná úloha v aplikaci Claude' },
     {
       kind: 'p',
       text:
-        'Naplánovat to jde dvěma způsoby: přes naplánovanou úlohu v aplikaci Claude, nebo přes plánovač v systému. První je jednodušší a vidíš historii běhů; druhý funguje i bez otevřené aplikace. Začni tím prvním.',
+        'V levém panelu aplikace je položka Scheduled. Tam se zakládají úlohy, které se spustí samy — a je to nejjednodušší cesta, jak se dostat na poslední schod. Běží na serverech Anthropicu, takže se spustí i ve chvíli, kdy máš zavřený notebook, a u každé úlohy vidíš historii běhů: co kdy doběhlo a co ne.',
+    },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Scheduled → New task',
+          body:
+            'Nabídne se Create with Claude a Set up manually. První se tě doptá a úlohu ti sepíše samo — pro první úlohu je to lepší volba. Ve druhé vyplňuješ pole sama.',
+        },
+        {
+          title: 'Vyplnit zadání, režim schvalování a frekvenci',
+          body:
+            'Zadání je ta jedna věta, kterou jsi před chvílí spouštěla ručně. Frekvence jde nastavit po hodině, denně, týdně, jen v pracovní dny, nebo vůbec — úloha, která se spouští jen na kliknutí, je taky legitimní.',
+        },
+        {
+          title: 'Volitelně vybrat složku',
+          body:
+            'Tady se rozhoduje to podstatné: jestli úloha uvidí data na tvém disku. Bez připojené složky pracuje jen s tím, co má v účtu a v konektorech.',
+        },
+        {
+          title: 'Schedule / Save',
+          body:
+            'Hotovou úlohu je pak vidět v seznamu — dá se pozastavit, přepsat zadání, spustit hned ručně nebo smazat.',
+        },
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Běží v cloudu — a to je ta past',
+      text:
+        'Naplánovaná úloha běží na serveru, ne u tebe. To je výhoda: nemusíš mít puštěný počítač. Jenže tvoje data leží v nasyncované knihovně na disku — a k té se server sám nedostane. Úloha, která má sáhnout do tvojí složky, potřebuje ten počítač zapnutý a připojený, přesně jak píše ta modrá lišta v seznamu úloh. Kdo chce běh úplně nezávislý na svém notebooku, musí mít data někde, kam Claude dosáhne i bez něj — přes konektor, nebo si nechat od IT postavit tok v Power Automate.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Co k tomu potřebuješ',
+      text:
+        'Placený plán (Pro, Max, Team nebo Enterprise) a desktopovou aplikaci. Naplánované úlohy nejsou ve webové verzi. Druhá cesta — plánovač přímo v systému, tedy cron na Macu nebo Plánovač úloh na Windows — existuje taky a spouští `claude -p` bez aplikace, ale nemá historii běhů ani notifikace. Začni tou první.',
+    },
+    {
+      kind: 'video',
+      title: 'Jak naplánovaná úloha vypadá',
+      items: VIDEOS_PLAN,
+    },
+    {
+      kind: 'links',
+      title: 'Oficiální návody',
+      items: [
+        {
+          label: 'Schedule recurring tasks — nápověda Claude',
+          href: 'https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork',
+          note: 'Krok za krokem, včetně toho, co úloha vidí a co ne.',
+        },
+        {
+          label: 'Delegating and scheduling tasks — tutoriál',
+          href: 'https://claude.com/resources/tutorials/delegating-and-scheduling-tasks-in-claude-cowork',
+          note: 'Stránka s tím čtyřminutovým videem.',
+        },
+      ],
     },
     { kind: 'h', text: 'Živá ukázka: nastav to na za pět minut' },
     {
