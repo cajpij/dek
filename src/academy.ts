@@ -3,8 +3,9 @@
  *
  * Struktura je vzatá z Claude Academy: rozcestník kurzů po sekcích, detail
  * kurzu se sylabem po modulech a stránka lekce se sidebarem a postupem.
- * Rozdíl je v tom, že tady nejsou videa. Lekce jsou psané tak, aby se daly
- * odklikat u vlastního Macu — každý krok má být něco, co jde udělat hned.
+ * Rozdíl je v tom, že tady se nenatáčí. Lekce jsou psané tak, aby se daly
+ * odklikat u vlastního počítače — každý krok má být něco, co jde udělat hned;
+ * videa jsou jen odkazy na cizí, když to někdo ukázal líp než text.
  *
  * Obsah je oddělený od komponent schválně: doplnit lekci znamená přidat objekt
  * do LESSONS, ne sahat do UI.
@@ -21,9 +22,21 @@ export type Block =
   | { kind: 'code'; text: string; caption?: string }
   | { kind: 'note'; tone: 'info' | 'warn' | 'ok'; title: string; text: string }
   | { kind: 'table'; head: string[]; rows: string[][] }
-  | { kind: 'figure'; name: 'regal-flow'; caption: string }
+  | { kind: 'figure'; name: 'regal-flow' | 'sync-map'; caption: string }
   | { kind: 'checklist'; title: string; items: string[] }
   | { kind: 'task'; title: string; intro: string; items: string[]; hint?: string }
+  | { kind: 'video'; title: string; items: VideoRef[] }
+  /** Stejný krok, jiný systém — čtenář si přepne a vidí jen svou variantu. */
+  | { kind: 'platform'; mac: Block[]; win: Block[] }
+
+export interface VideoRef {
+  /** ID z YouTube, tedy to za `watch?v=`. */
+  id: string
+  title: string
+  author: string
+  /** Proč to sem patří — jedna věta, ať je jasné, jestli to má cenu pouštět. */
+  note: string
+}
 
 export interface Lesson {
   slug: string
@@ -69,17 +82,170 @@ export interface Upcoming {
 
 /* --------------------------------------------------------------- obsah */
 
+const VIDEOS_SHAREPOINT: VideoRef[] = [
+  {
+    id: 'lM7feEPhtgE',
+    title: 'Sync vs Add shortcut to OneDrive for SharePoint library?',
+    author: 'SharePoint Wizard',
+    note: 'Rozdíl mezi Synchronizovat a Přidat zástupce do OneDrivu. Pusť si to, než se rozhodneš, kterou cestou jít.',
+  },
+  {
+    id: 'EGWuRI5oYg0',
+    title: 'Learn how to work properly with "Add Shortcut to OneDrive"',
+    author: 'SharePoint Wizard',
+    note: 'Celý postup naklikaný v knihovně dokumentů — i to, co se stane, když zástupce odeberete.',
+  },
+  {
+    id: 'SQIIah7EIGM',
+    title: 'Always Keep on this Device Option',
+    author: 'TutorTube',
+    note: 'Files On-Demand a proč jsou soubory prázdné, dokud je nestáhnete do zařízení.',
+  },
+]
+
+const STEPS_MAC: Block[] = [
+  {
+    kind: 'steps',
+    items: [
+      {
+        title: 'Otevři knihovnu v prohlížeči',
+        body:
+          'V SharePointu jdi do týmového webu a otevři knihovnu dokumentů, se kterou chceš pracovat — třeba Dokumenty nebo konkrétní podsložku s podklady. Pracuj radši s podsložkou než s celou knihovnou: syncovat stovky gigabajtů podkladů, ze kterých potřebuješ tři, nemá smysl.',
+      },
+      {
+        title: 'Klikni na Přidat zástupce do OneDrivu',
+        body:
+          'V horní liště knihovny je Synchronizovat a vedle Přidat zástupce do OneDrivu (Add shortcut to OneDrive). Vezmi zástupce — chová se stejně, ale funguje i na jiných počítačích, kde jsi přihlášený, a dá se snáz odebrat. Systém se zeptá, jestli má otevřít OneDrive, potvrď to.',
+      },
+      {
+        title: 'Počkej, až OneDrive dosyncuje',
+        body:
+          'Ikona mráčku v horní liště Macu ukazuje průběh. Než je hotovo, ve složce jsou jen názvy souborů bez obsahu.',
+      },
+      {
+        title: 'Najdi složku ve Finderu',
+        body:
+          'Ve Finderu v levém panelu přibude OneDrive – <název firmy> a v něm ta knihovna. Když ji tam nevidíš, otevři ji přes Finder → Otevřít složku (⇧⌘G) a vlož cestu níž. Složka Library je normálně skrytá, proto se tam nedostaneš klikáním.',
+        code: '~/Library/CloudStorage/',
+      },
+      {
+        title: 'Řekni Macu, ať soubory drží u sebe',
+        body:
+          'Pravý klik na složku → Vždy ponechat v tomto zařízení (Always Keep on This Device). Bez tohohle kroku má většina souborů na disku jen zástupce a Claude v nich nic nepřečte — vidí název, ale ne obsah.',
+      },
+      {
+        title: 'Připoj složku v Claudovi',
+        body:
+          'V desktopové aplikaci Claude otevři úkol v Coworku a použij tlačítko Add folder / Přidat složku. Vyber tu nasyncovanou složku. Od téhle chvíle v ní Claude umí číst, hledat a zakládat soubory.',
+      },
+      {
+        title: 'Ověř to jednou větou',
+        body:
+          'Napiš Claudovi zadání níž. Když ti vypíše skutečné názvy souborů a velikosti, je hotovo.',
+        code: 'Vypiš mi, co je v připojené složce — kolik souborů, jaké typy a jak jsou staré.',
+      },
+    ],
+  },
+  {
+    kind: 'table',
+    head: ['Co se děje', 'Čím to je', 'Co s tím'],
+    rows: [
+      [
+        'Složku ve Finderu nevidím',
+        'OneDrive syncuje do skryté složky Library',
+        '⇧⌘G a vlož ~/Library/CloudStorage/ — pak si ji přetáhni do levého panelu',
+      ],
+      [
+        'Soubory jsou prázdné nebo se nedají otevřít',
+        'Files On-Demand — na disku je jen zástupce',
+        'Pravý klik na složku → Vždy ponechat v tomto zařízení',
+      ],
+      [
+        'U složky svítí mráček místo zelené fajfky',
+        'Obsah ještě není stažený',
+        'Počkej, až se ikona změní; velké knihovny to můžou táhnout desítky minut',
+      ],
+    ],
+  },
+]
+
+const STEPS_WIN: Block[] = [
+  {
+    kind: 'steps',
+    items: [
+      {
+        title: 'Otevři knihovnu v prohlížeči',
+        body:
+          'V SharePointu jdi do týmového webu a otevři knihovnu dokumentů, se kterou chceš pracovat — třeba Dokumenty nebo konkrétní podsložku s podklady. Pracuj radši s podsložkou než s celou knihovnou: syncovat stovky gigabajtů podkladů, ze kterých potřebuješ tři, nemá smysl.',
+      },
+      {
+        title: 'Klikni na Přidat zástupce do OneDrivu',
+        body:
+          'V horní liště knihovny je Synchronizovat a vedle Přidat zástupce do OneDrivu (Add shortcut to OneDrive). Vezmi zástupce — chová se stejně, ale funguje i na jiných počítačích, kde jsi přihlášený, a dá se snáz odebrat.',
+      },
+      {
+        title: 'Počkej, až OneDrive dosyncuje',
+        body:
+          'Modrý mráček v oznamovací oblasti u hodin ukazuje průběh. Než je hotovo, ve složce jsou jen názvy souborů bez obsahu.',
+      },
+      {
+        title: 'Najdi složku v Průzkumníku',
+        body:
+          'V levém panelu Průzkumníka přibude položka s názvem firmy a ikonou budovy, a v ní ta knihovna. Na disku je pod tvým profilem — cestu níž můžeš vložit rovnou do adresního řádku.',
+        code: '%UserProfile%\\<název firmy>\\',
+      },
+      {
+        title: 'Řekni Windows, ať soubory drží u sebe',
+        body:
+          'Pravý klik na složku → Vždy zachovat v tomto zařízení (Always keep on this device). Bez tohohle kroku má většina souborů na disku jen zástupce a Claude v nich nic nepřečte — vidí název, ale ne obsah.',
+      },
+      {
+        title: 'Připoj složku v Claudovi',
+        body:
+          'V desktopové aplikaci Claude otevři úkol v Coworku a použij tlačítko Add folder / Přidat složku. Vyber tu nasyncovanou složku. Od téhle chvíle v ní Claude umí číst, hledat a zakládat soubory.',
+      },
+      {
+        title: 'Ověř to jednou větou',
+        body:
+          'Napiš Claudovi zadání níž. Když ti vypíše skutečné názvy souborů a velikosti, je hotovo.',
+        code: 'Vypiš mi, co je v připojené složce — kolik souborů, jaké typy a jak jsou staré.',
+      },
+    ],
+  },
+  {
+    kind: 'table',
+    head: ['Co se děje', 'Čím to je', 'Co s tím'],
+    rows: [
+      [
+        'Soubory mají u sebe modrý mráček',
+        'Files On-Demand — na disku je jen zástupce',
+        'Pravý klik na složku → Vždy zachovat v tomto zařízení',
+      ],
+      [
+        'Cesta je moc dlouhá, něco se nenasyncuje',
+        'Limit délky cesty ve Windows',
+        'Připoj radši podsložku níž, nebo zkrať názvy složek v knihovně',
+      ],
+      [
+        'Složka v Průzkumníku není',
+        'Zástupce se přidal do jiného účtu OneDrivu',
+        'Klikni na ikonu mráčku → ozubené kolo → Nastavení → Účet a zkontroluj, kterým účtem jsi přihlášený',
+      ],
+    ],
+  },
+]
+
 const LESSON_SHAREPOINT: Lesson = {
   slug: 'sdilena-slozka-sharepoint',
   module: 'napojeni',
-  title: 'Sdílená složka ze SharePointu na Macu',
+  title: 'Sdílená složka ze SharePointu',
   summary:
-    'Nasyncovat týmovou knihovnu do Macu a připojit ji Claudovi, aby si v ní mohl číst a psát.',
+    'Nasyncovat týmovou knihovnu do počítače a připojit ji Claudovi, aby si v ní mohl číst a psát. Pro Mac i Windows.',
   minutes: 15,
   kind: 'lekce',
   outcomes: [
-    'nasyncovat knihovnu ze SharePointu do Macu přes OneDrive',
-    'najít, kde ta složka na disku fyzicky leží',
+    'nasyncovat knihovnu ze SharePointu do počítače přes OneDrive',
+    'najít, kde ta složka na disku fyzicky leží — na Macu i ve Windows',
     'připojit ji jako složku do úkolu v Claudovi',
     'ověřit, že Claude opravdu vidí soubory, ne jen prázdné placeholdery',
   ],
@@ -87,91 +253,45 @@ const LESSON_SHAREPOINT: Lesson = {
     {
       kind: 'p',
       text:
-        'Claude se do SharePointu sám nepřihlásí. Umí ale pracovat se složkou, která je fyzicky na tvém Macu — a přesně tím se nasyncovaná knihovna stává. Cíl téhle lekce je jednorázové nastavení: jednou to proklikáš a pak už jen v každém úkolu vybereš složku ze seznamu.',
+        'Claude se do SharePointu sám nepřihlásí. Umí ale pracovat se složkou, která je fyzicky na tvém počítači — a přesně tím se nasyncovaná knihovna stává. Cíl téhle lekce je jednorázové nastavení: jednou to proklikáš a pak už jen v každém úkolu vybereš složku ze seznamu.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Co k tomu potřebuješ',
       text:
-        'Mac s nainstalovanou aplikací OneDrive přihlášenou firemním účtem, přístup do knihovny na SharePointu a desktopovou aplikaci Claude. Nic dalšího se neinstaluje.',
+        'Počítač s nainstalovanou aplikací OneDrive přihlášenou firemním účtem, přístup do knihovny na SharePointu a desktopovou aplikaci Claude. Nic dalšího se neinstaluje.',
+    },
+    {
+      kind: 'figure',
+      name: 'sync-map',
+      caption:
+        'Knihovna se přes OneDrive stane běžnou složkou na disku. Liší se jen cesta — a tu si Claude pamatuje sám, jakmile složku jednou vybereš.',
     },
     { kind: 'h', text: 'Postup' },
     {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Otevři knihovnu v prohlížeči',
-          body:
-            'V SharePointu jdi do týmového webu a otevři knihovnu dokumentů, se kterou chceš pracovat — třeba Dokumenty nebo konkrétní podsložku s podklady. Pracuj radši s podsložkou než s celou knihovnou: syncovat stovky gigabajtů podkladů, ze kterých potřebuješ tři, nemá smysl.',
-        },
-        {
-          title: 'Klikni na Přidat zástupce do OneDrivu',
-          body:
-            'V horní liště knihovny je Synchronizovat a vedle Přidat zástupce do OneDrivu (Add shortcut to OneDrive). Vezmi zástupce — chová se stejně, ale funguje i na jiných počítačích, kde jsi přihlášený, a dá se snáz odebrat. Systém se zeptá, jestli má otevřít OneDrive, potvrď to.',
-        },
-        {
-          title: 'Počkej, až OneDrive dosyncuje',
-          body:
-            'Ikona mráčku v horní liště Macu ukazuje průběh. Než je hotovo, ve složce jsou jen názvy souborů bez obsahu.',
-        },
-        {
-          title: 'Najdi složku ve Finderu',
-          body:
-            'Ve Finderu v levém panelu přibude OneDrive – <název firmy> a v něm ta knihovna. Když ji tam nevidíš, otevři ji přes Finder → Otevřít složku (⇧⌘G) a vlož cestu níž. Složka Library je normálně skrytá, proto se tam nedostaneš klikáním.',
-          code: '~/Library/CloudStorage/',
-        },
-        {
-          title: 'Řekni Macu, ať soubory drží u sebe',
-          body:
-            'Pravý klik na složku → Vždy ponechat v tomto zařízení (Always Keep on This Device). Bez tohohle kroku má většina souborů na disku jen zástupce a Claude v nich nic nepřečte — vidí název, ale ne obsah.',
-        },
-        {
-          title: 'Připoj složku v Claudovi',
-          body:
-            'V desktopové aplikaci Claude otevři úkol v Coworku a použij tlačítko Add folder / Přidat složku. Vyber tu nasyncovanou složku. Od téhle chvíle v ní Claude umí číst, hledat a zakládat soubory.',
-        },
-        {
-          title: 'Ověř to jednou větou',
-          body:
-            'Napiš Claudovi zadání níž. Když ti vypíše skutečné názvy souborů a velikosti, je hotovo. Když hlásí, že složku nevidí, projdi si sekci Když to nefunguje.',
-          code: 'Vypiš mi, co je v připojené složce — kolik souborů, jaké typy a jak jsou staré.',
-        },
-      ],
+      kind: 'p',
+      text: 'Kroky jsou stejné, cesty a názvy voleb ne. Přepni si systém, na kterém sedíš.',
     },
-    { kind: 'h', text: 'Když to nefunguje' },
-    {
-      kind: 'table',
-      head: ['Co se děje', 'Čím to je', 'Co s tím'],
-      rows: [
-        [
-          'Claude hlásí, že složku nevidí',
-          'Desktopová aplikace Claude není spuštěná nebo ztratila spojení',
-          'Nech aplikaci otevřenou; přes cloudové sezení se k souborům dostane jen dokud běží',
-        ],
-        [
-          'Soubory jsou prázdné nebo se nedají otevřít',
-          'Files On-Demand — na disku je jen zástupce',
-          'Pravý klik na složku → Vždy ponechat v tomto zařízení',
-        ],
-        [
-          'Složka v seznamu vůbec není',
-          'Sync ještě neproběhl, nebo byl zástupce přidán do jiného účtu',
-          'Zkontroluj v OneDrive appce, kterým účtem jsi přihlášený',
-        ],
-        [
-          'Claude nemůže smazat soubor',
-          'Mazání je vypnuté, dokud ho výslovně nepovolíš',
-          'Claude si o povolení řekne — pak platí do konce sezení',
-        ],
-      ],
-    },
+    { kind: 'platform', mac: STEPS_MAC, win: STEPS_WIN },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Práva se dědí ze SharePointu',
       text:
         'Připojením složky nikomu nic nepůjčuješ navíc — Claude vidí přesně to, co vidíš ty. Co se ale změní: soubory, které Claude zapíše, se nasyncují zpátky do knihovny a uvidí je celý tým. Pracovní verze si proto zakládej do vlastní podsložky.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Claude musí být spuštěný',
+      text:
+        'K souborům se sezení dostane jen dokud běží desktopová aplikace Claude. Když ji zavřeš nebo počítač usne, Claude hlásí, že složku nevidí — nic se nerozbilo, jen se přerušilo spojení.',
+    },
+    {
+      kind: 'video',
+      title: 'Videa k SharePointu a OneDrivu',
+      items: VIDEOS_SHAREPOINT,
     },
     {
       kind: 'task',
@@ -191,7 +311,7 @@ const LESSON_SHAREPOINT: Lesson = {
       kind: 'checklist',
       title: 'Hotovo, když',
       items: [
-        'Složka je vidět ve Finderu v levém panelu',
+        'Složka je vidět ve Finderu nebo v Průzkumníku v levém panelu',
         'Soubory jdou otevřít offline (mají u sebe zelenou fajfku, ne mráček)',
         'V Claudovi je složka v seznamu připojených',
         'Claude vypsal skutečný obsah složky',

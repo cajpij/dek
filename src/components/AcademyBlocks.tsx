@@ -7,14 +7,18 @@ import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
+import ToggleButton from '@mui/material/ToggleButton'
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
-import type { Block } from '../academy'
+import type { Block, VideoRef } from '../academy'
+import { usePlatform } from '../lib/academyPlatform'
 import RegalFlow from './RegalFlow'
+import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
 function Code({ children }: { children: string }) {
@@ -191,6 +195,71 @@ function Task({
   )
 }
 
+/** Vložené YouTube — cizí videa, kde to někdo ukázal líp než text. */
+function Videos({ title, items }: { title: string; items: VideoRef[] }) {
+  return (
+    <Box sx={{ my: 4 }}>
+      <Typography variant="h5" sx={{ fontWeight: 680, mb: 0.5 }}>
+        {title}
+      </Typography>
+      <Typography sx={{ color: 'text.disabled', fontSize: 14, mb: 2 }}>
+        Cizí videa v angličtině. Nejsou povinná — jsou tu pro případ, že si to potřebuješ vidět
+        naklikané.
+      </Typography>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
+          gap: 2.5,
+        }}
+      >
+        {items.map((v) => (
+          <Paper key={v.id} variant="outlined" sx={{ borderRadius: 2, overflow: 'hidden' }}>
+            <Box
+              component="iframe"
+              src={`https://www.youtube-nocookie.com/embed/${v.id}`}
+              title={v.title}
+              loading="lazy"
+              allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture"
+              allowFullScreen
+              sx={{ display: 'block', width: '100%', aspectRatio: '16 / 9', border: 0 }}
+            />
+            <Box sx={{ p: 2 }}>
+              <Typography sx={{ fontWeight: 620, fontSize: 15, lineHeight: 1.35 }}>{v.title}</Typography>
+              <Typography sx={{ fontSize: 13, color: 'text.disabled', mt: 0.25 }}>{v.author}</Typography>
+              <Typography sx={{ fontSize: 14, color: 'text.secondary', mt: 1 }}>{v.note}</Typography>
+            </Box>
+          </Paper>
+        ))}
+      </Box>
+    </Box>
+  )
+}
+
+/** Přepínač Mac / Windows — ukáže jen tu variantu, na které člověk sedí. */
+function PlatformSwitch({ mac, win }: { mac: Block[]; win: Block[] }) {
+  const [platform, choose] = usePlatform()
+  const blocks = platform === 'mac' ? mac : win
+  return (
+    <Box sx={{ my: 2 }}>
+      <ToggleButtonGroup
+        exclusive
+        size="small"
+        value={platform}
+        onChange={(_, next) => next && choose(next)}
+        aria-label="Operační systém"
+        sx={{ mb: 1 }}
+      >
+        <ToggleButton value="mac">macOS</ToggleButton>
+        <ToggleButton value="win">Windows</ToggleButton>
+      </ToggleButtonGroup>
+      {blocks.map((b, i) => (
+        <BlockView key={i} block={b} />
+      ))}
+    </Box>
+  )
+}
+
 const TONE = { info: 'info', warn: 'warning', ok: 'success' } as const
 
 /** Vykreslí jeden blok obsahu lekce. */
@@ -274,7 +343,7 @@ export default function BlockView({ block }: { block: Block }) {
       return (
         <Paper variant="outlined" component="figure" sx={{ my: 3.5, mx: 0, borderRadius: 2, overflow: 'hidden' }}>
           <Box sx={{ p: { xs: 1.5, md: 2.5 } }}>
-            <RegalFlow />
+            {block.name === 'sync-map' ? <SyncMap /> : <RegalFlow />}
           </Box>
           <Typography
             component="figcaption"
@@ -290,5 +359,11 @@ export default function BlockView({ block }: { block: Block }) {
 
     case 'task':
       return <Task title={block.title} intro={block.intro} items={block.items} hint={block.hint} />
+
+    case 'video':
+      return <Videos title={block.title} items={block.items} />
+
+    case 'platform':
+      return <PlatformSwitch mac={block.mac} win={block.win} />
   }
 }
