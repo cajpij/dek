@@ -260,11 +260,13 @@ function CourseList() {
         </Section>
       ))}
 
-      <Section title="Připravujeme">
-        {UPCOMING.map((u) => (
-          <UpcomingCard key={u.title} title={u.title} summary={u.summary} note={u.note} />
-        ))}
-      </Section>
+      {UPCOMING.length > 0 ? (
+        <Section title="Připravujeme">
+          {UPCOMING.map((u) => (
+            <UpcomingCard key={u.title} title={u.title} summary={u.summary} note={u.note} />
+          ))}
+        </Section>
+      ) : null}
     </Box>
   )
 }

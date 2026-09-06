@@ -3362,6 +3362,205 @@ Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
 }
 
 
+const L2_MCP: Lesson = {
+  slug: 'mcp-nad-katalogem',
+  module: 'potom',
+  title: 'MCP nad katalogem dek.cz',
+  summary:
+    'Zeptat se na sortiment, produkt nebo návod vlastními slovy, bez klikání ve webu. Jak server připojit, jak ověřit, že jede, a na co se ho ptát.',
+  minutes: 10,
+  kind: 'lekce',
+  track: 'potom',
+  outcomes: [
+    'vysvětlit, co MCP server přidává oproti běžnému Claudovi',
+    'připojit server v Claude Code a ověřit, že se opravdu spojil',
+    'poznat, na které dotazy je dobrý a na které ne',
+    'zkombinovat katalog s vlastní složkou v jednom zadání',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Konektor je přípojka na službu mimo tvůj disk — to už znáš. MCP je způsob, jak se taková přípojka píše: server nabídne pár nástrojů, Claude si mezi nimi sám vybere a použije je, když je potřeba. U nás jde o katalog dek.cz. Ty se zeptáš normální větou a Claude si sám dojde pro produkt, kategorii nebo návod.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Proč to není totéž jako otevřít web',
+      text:
+        'Ve webu hledáš jeden produkt a klikáš. Přes MCP se dá ptát na to, co se klikáním dělá špatně: porovnej mi tyhle tři, projdi tenhle seznam kódů a řekni, které už nevedeme, nebo vezmi kategorii a udělej z ní tabulku. Claude si tam sáhne kolikrát potřebuje a odpověď složí sám.',
+    },
+    { kind: 'h', text: 'Co server umí' },
+    {
+      kind: 'table',
+      head: ['Nástroj', 'Co dělá', 'Kdy po něm Claude sáhne'],
+      rows: [
+        ['eshop_search_products', 'najde produkty podle názvu, značky nebo kódu', 'když se ptáš na konkrétní věc'],
+        ['eshop_list_products', 'vypíše, co je v kategorii', 'když je dotaz obecný — „co vedeme v…“'],
+        ['eshop_get_product', 'detail jednoho produktu', 'když už ví, o který jde, a potřebuje podrobnosti'],
+        ['content_search', 'hledá v návodech, příručkách a článcích', 'když se ptáš „jak se to dělá“, ne „co to stojí“'],
+        ['content_get_document', 'vytáhne celý dokument i s odkazem na zdroj', 'když má z návodu citovat nebo shrnout'],
+        ['content_get_multilingual', 'tentýž obsah v jiném jazyce', 'když píšeš podklad pro kolegy mimo ČR'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Nemusíš vědět, který nástroj je který',
+      text:
+        'Tabulka je tu proto, abys poznala, co se děje, když Claude odpovídá — ne proto, aby ses to učila. Nástroje si vybírá sám podle toho, na co se ptáš. Ptej se jako člověka, ne jako vyhledávače.',
+    },
+    { kind: 'h', text: 'Připojení' },
+    {
+      kind: 'tabs',
+      items: [
+        {
+          label: 'Claude Code — jednou pro všechny projekty',
+          blocks: [
+            {
+              kind: 'p',
+              text:
+                'Nejběžnější případ. Server se přidá jedním příkazem v terminálu a je pak k dispozici ve všech tvých projektech.',
+            },
+            {
+              kind: 'code',
+              text: `claude mcp add --transport http --scope user dek <adresa serveru>
+
+# ověření
+claude mcp list
+claude mcp get dek`,
+              caption:
+                'Adresu serveru ti dá ten, kdo ho provozuje. Když se server přihlašuje, přidej po prvním spuštění claude mcp login dek.',
+            },
+          ],
+        },
+        {
+          label: 'Sdílet ho s týmem',
+          blocks: [
+            {
+              kind: 'p',
+              text:
+                'Když má server používat celé oddělení, patří do projektu, ne do osobního nastavení. Soubor .mcp.json leží v kořeni projektové složky a nese se s ním.',
+            },
+            {
+              kind: 'code',
+              text: `.mcp.json
+
+{
+  "mcpServers": {
+    "dek": {
+      "type": "http",
+      "url": "<adresa serveru>"
+    }
+  }
+}`,
+              caption:
+                'Kdo si složku otevře, dostane při prvním spuštění dotaz, jestli serveru věří. Do souboru nikdy nepiš token natvrdo — použij ${PROMENNA}.',
+            },
+          ],
+        },
+        {
+          label: 'Server běžící u tebe na počítači',
+          blocks: [
+            {
+              kind: 'p',
+              text:
+                'Starší varianta, která si katalog stahuje sama a běží jako program na tvém disku. Poznáš ji podle toho, že místo adresy dostaneš složku se soubory.',
+            },
+            {
+              kind: 'code',
+              text: `cd mcp-dek
+npm install
+node server.js --build-index
+
+claude mcp add --scope user dek -- node /plná/cesta/k/mcp-dek/server.js`,
+              caption: 'Dvě pomlčky před příkazem tam patří — oddělují nastavení Clauda od toho, co se má spustit.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Ověř si, že se opravdu spojil',
+      text:
+        'Napiš v Claude Code /mcp. U serveru musí svítit Connected. „Needs authentication" znamená, že se máš přihlásit; „Failed to connect" nejčastěji špatnou adresu nebo že server neběží. Dokud tam nesvítí Connected, Claude odpovídá z hlavy a tváří se přitom stejně jistě — což je ten nejhorší možný stav.',
+    },
+    { kind: 'h', text: 'Zkouška na pět minut' },
+    {
+      kind: 'p',
+      text:
+        'Než na tom něco postavíš, projdi si tyhle čtyři dotazy. Nejsou to ukázky, je to přejímka: u každého víš dopředu, jak má odpověď vypadat, takže hned poznáš, jestli si server sáhl do katalogu, nebo si vymýšlí.',
+    },
+    {
+      kind: 'checklist',
+      title: 'Čtyři dotazy a co u nich sleduješ',
+      items: [
+        'Zeptej se na produkt, který znáš zpaměti. Sedí název, značka i zařazení?',
+        'Zeptej se na kód, který jsme loni vyřadili. Má odpovědět, že ho nenašel — ne si ho domyslet.',
+        'Zeptej se, co vedeme v jedné konkrétní kategorii. Je výpis úplný, nebo končí po deseti položkách?',
+        'Zeptej se na návod nebo příručku. Přišel s odkazem na zdroj, který se dá otevřít?',
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Nejdůležitější je ten druhý dotaz',
+      text:
+        'Vyřazený kód je zkouška poctivosti. Server, který místo „nenašel jsem" vrátí něco podobného, se nedá použít na kontrolu seznamů — a přitom je to ta práce, kvůli které by člověk katalog v Claudovi nejvíc chtěl. Zkus to na třech kódech, ne na jednom.',
+    },
+    { kind: 'h', text: 'Na co se ho ptát' },
+    {
+      kind: 'table',
+      head: ['Kdo', 'Dotaz, který se klikáním dělá špatně'],
+      rows: [
+        ['Logistika', 'Projdi tenhle seznam kódů z loňského magazínu a řekni, které už v katalogu nejsou.'],
+        ['Obchod', 'Zákazník chce hydroizolaci na plochou střechu. Co mu můžu nabídnout a čím se to liší?'],
+        ['Marketing', 'Vezmi kategorii technických izolací a udělej z ní tabulku: název, značka, cena.'],
+        ['BI', 'K těmhle kódům z exportu doplň názvy a zařazení do kategorií.'],
+        ['Kdokoli', 'Najdi návod na tenhle postup a shrň mi ho do pěti bodů i s odkazem.'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Sílu to dostane až ve spojení s tvojí složkou',
+      text:
+        'Katalog sám o sobě je hezký, ale ty ho potřebuješ propojit se svými daty. Když máš připojenou složku i tenhle server, jde napsat zadání, které sáhne do obojího: „vezmi divizní soubor z vystupy/, ke každé položce dohledej v katalogu aktuální název a zařazení a rozdíly zapiš do nového sloupce". Tohle je ten okamžik, kdy MCP přestane být hračka.',
+    },
+    { kind: 'h', text: 'Co nezvládne' },
+    {
+      kind: 'list',
+      items: [
+        'Zákaznické a pobočkové ceny. Vrací veřejnou cenu bez přihlášení — do nabídky ji nedávej.',
+        'Skladové zásoby po pobočkách. Zná jen obecnou dostupnost z webu.',
+        'Technické listy a podrobné parametry. Ve veřejném obsahu nejsou.',
+        'Objednávky, doklady a cokoli za přihlášením. Je to nástroj nad katalogem, ne nad systémy.',
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Cenu z katalogu nikdy nekopíruj do nabídky',
+      text:
+        'Je to veřejná cena bez přihlášení a od té zákaznické se liší. Na porovnávání a orientaci je dobrá, do dokumentu, který někomu pošleš, nepatří. Napiš si to rovnou do CLAUDE.md, ať to nemusíš hlídat hlavou.',
+    },
+    {
+      kind: 'task',
+      title: 'Cvičení: přejímka a jeden reálný dotaz',
+      intro: 'Patnáct minut, žádná příprava.',
+      items: [
+        'Připoj server a ověř /mcp, že svítí Connected.',
+        'Projdi všechny čtyři dotazy z přejímky a poznamenej si, co nesedělo.',
+        'Vezmi jeden skutečný seznam kódů ze své agendy a nech ho zkontrolovat proti katalogu.',
+        'Napiš jednou větou, co by ti to ušetřilo za měsíc — a jestli to stojí za to.',
+      ],
+      hint: 'Když u přejímky něco nesedí, není to tvoje chyba a nemá cenu to obcházet promptem. Řekni to tomu, kdo server provozuje.',
+    },
+  ],
+}
+
 const L2_NAOSTRO: Lesson = {
   slug: 'pust-to-naostro',
   module: 'potom',
@@ -3513,7 +3712,7 @@ export const COURSES: Course[] = [
         summary: 'Referenční část. Vracej se sem, až narazíš na to, co lekce řeší.',
       },
     ],
-    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, LESSON_SKILL, LESSON_AUTOMATIZACE, L2_BEH, L2_CELY_PRIKLAD, L2_NAOSTRO],
+    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, LESSON_SKILL, LESSON_AUTOMATIZACE, L2_BEH, L2_CELY_PRIKLAD, L2_MCP, L2_NAOSTRO],
     learn: [
       'napsat zadání nad tabulkou, které projde napoprvé',
       'zkontrolovat výstup třemi čísly místo čtení řádek po řádku',
@@ -3522,6 +3721,7 @@ export const COURSES: Course[] = [
       'zabalit opakovaný postup do skillu a trefit se v description',
       'napsat runbook a předat automatizaci tak, aby ji zvládl i někdo jiný',
       'projít si celý příklad od složky po rozeslané maily a ověřit si, že ti nic nechybí',
+      'připojit MCP server nad katalogem dek.cz a ověřit si, že opravdu odpovídá z katalogu',
     ],
     prerequisites: [
       'Dokončený kurz Claude a firemní data',
@@ -3531,14 +3731,7 @@ export const COURSES: Course[] = [
   },
 ]
 
-export const UPCOMING: Upcoming[] = [
-  {
-    section: 'Připravujeme',
-    title: 'MCP nad katalogem dek.cz',
-    summary: 'Zeptat se na sortiment, cenu a dostupnost vlastními slovy, bez klikání ve webu.',
-    note: 'Stránka už existuje, dělá se z ní lekce',
-  },
-]
+export const UPCOMING: Upcoming[] = []
 
 /* ------------------------------------------------------------ pomocníci */
 
