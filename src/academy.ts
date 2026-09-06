@@ -1513,14 +1513,15 @@ const LESSON_CVICENI: Lesson = {
   module: 'zadani',
   title: 'Cvičení ve dvojicích: zmapuj kolegovi workflow',
   summary:
-    'Ve dvojici si navzájem vyzpovídáte kus vlastní práce, nakreslíte z toho flow a označíte místa k automatizaci. Stejný výstup jako u vzoru, jen na vaší agendě.',
-  minutes: 60,
+    'Ve dvojici si navzájem vyzpovídáte kus vlastní práce, nakreslíte z toho flow a označíte místa k automatizaci. Rozhovor nahrajete na telefon a přepis i reálné soubory skončí v projektu.',
+  minutes: 75,
   kind: 'zadání',
   outcomes: [
     'vést rozhovor o práci tak, aby vyšlo najevo i to, co je pro majitele agendy neviditelné',
     'zapsat cizí proces jako tok dat mezi lidmi a soubory',
     'nakreslit flow do tří pruhů podle toho, kdo co drží',
     'označit místa, kde se data přenášejí ručně',
+    'dostat nahrávku, přepis i reálné soubory do projektu, aby se s nimi dalo dál pracovat',
     'odlišit, co má převzít automatizace a co má zůstat člověku',
   ],
   body: [
@@ -1570,6 +1571,7 @@ const LESSON_CVICENI: Lesson = {
         'Po každém kroku se zeptej: „a co se stane pak?“ Dokud nedojdete na konec.',
         'Když někdo přeskočí dva kroky najednou, vrať se: „a to se stane kde?“',
         'Během rozhovoru nenavrhuj řešení. Jakmile začneš radit, druhý přestane popisovat a začne se obhajovat.',
+        'Nahraj si to na telefon — ale zeptej se, jestli může. Zapíšeš vždycky míň, než zazní.',
       ],
     },
     { kind: 'h', text: 'Otázky, které se dají použít rovnou' },
@@ -1652,6 +1654,117 @@ Kdyby ses zítra nemohla dostat k počítači, co by kolega nevěděl?`,
       text:
         'Spousta kroků vypadá jako rozhodování, ale ve skutečnosti se počítá — jen to pravidlo nikdo nikdy nenapsal. Když u kroku umíte říct „dělám to tak, že když je tohle větší než tamto, tak…“, není to rozhodnutí. Je to vzorec.',
     },
+    { kind: 'h', text: 'Nahrajte si to a dejte do projektu' },
+    {
+      kind: 'p',
+      text:
+        'Rozhovor si nahrajte na telefon — stačí diktafon, který v něm máte. Zápisky z rozhovoru jsou dobré na kreslení, ale nahrávka drží to, co jste nestihli zapsat: přesné názvy souborů, poznámky mimochodem, věty typu „to mi vždycky pošle print screenem“. Z nahrávky pak vznikne přepis a z přepisu podklad, ke kterému se dá vrátit za měsíc.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Zeptejte se, než zmáčknete nahrávání',
+      text:
+        'Nahráváte kolegu při práci. Řekněte, k čemu to bude a kde to skončí, a nechte ho říct ne. Když nahrávat nechce, cvičení funguje i bez toho — jen si víc zapisujte.',
+    },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Na začátku nahrávky řekněte, o co jde',
+          body:
+            'Jedna věta do mikrofonu: kdo mluví, jaká agenda, jaké datum. Za tři týdny, až budete mít nahrávek pět, to bude jediné, podle čeho je rozeznáte.',
+          code: 'Šestého října, logistika, akční regál. Ptá se Martin, popisuje Katka.',
+        },
+        {
+          title: 'Přesuňte nahrávku do projektu',
+          body:
+            'Pošlete si ji z telefonu do počítače a uložte do složky projektu, do podsložky podklady/. Ne na plochu — projekt je to, co Claude vidí.',
+        },
+        {
+          title: 'Nechte ji přepsat',
+          body:
+            'Použijte skill prepis-rozhovoru, který je popsaný níž. Vznikne textový přepis s časy, ve kterém se dá hledat.',
+          code: 'Přepiš nahrávku z podklady/ a ulož přepis vedle ní.',
+        },
+        {
+          title: 'Doplňte reálné soubory, ne screenshoty',
+          body:
+            'Screenshot ukáže, jak to vypadá. Soubor ukáže, co v tom je — a s tím se dá pracovat. Vezměte kopii exportu, se kterým kolega pracuje, jeden e-mail, kterým mu přijde zadání, a jeden hotový výstup z minula. Když je zdrojem sdílená tabulka ze SharePointu, stáhněte si její kopii do podklady/ a nechte originál na pokoji.',
+        },
+        {
+          title: 'Nechte si udělat flow z přepisu',
+          body:
+            'Až máte přepis i soubory pohromadě, zadání zní takhle. Výsledek porovnejte s tím, co jste nakreslili na papír — rozdíly jsou zajímavější než shody.',
+          code: `Přečti přepis v podklady/ a soubory vedle něj.
+
+Rozepiš proces na kroky: kdo co dělá, čím se data přenášejí
+a kde mění formu. U každého kroku napiš, jestli je to ruční
+přenos, rozhodnutí člověka, nebo výpočet z pravidel.
+
+Na konec vypiš tři místa, kde se nejvíc přepisuje.`,
+        },
+      ],
+    },
+    {
+      kind: 'code',
+      text: `svozy/
+├── CLAUDE.md                 ← slovník téhle agendy, vzniká z rozhovoru
+├── podklady/
+│   ├── 20261006_rozhovor-katka.m4a
+│   ├── 20261006_rozhovor-katka.txt      ← přepis
+│   ├── Magazin2026_Logistika_kopie.xlsx ← kopie sdílené tabulky
+│   ├── zadani-od-produktaka.eml         ← jeden reálný e-mail
+│   └── vystup-zari.xlsx                 ← jak to vypadalo minule
+├── vystupy/
+└── .claude/skills/prepis-rozhovoru/SKILL.md`,
+      caption:
+        'Podklady zůstávají pohromadě u nahrávky, ze které vznikly. Sdílený soubor ze SharePointu se sem kopíruje — originál zůstává tam, kde je, a nikdo ho omylem nepřepíše.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Kopie, ne originál',
+      text:
+        'Když projekt leží uvnitř nasyncované knihovny, všechno, co do něj dáte, uvidí celý tým. Kopie exportu je v pořádku. Cokoli, co do sdílené složky nepatří — osobní údaje, ceny, které nemají být venku — tam nedávejte a v přepisu to smažte.',
+    },
+    {
+      kind: 'h', text: 'Skill na přepis',
+    },
+    {
+      kind: 'p',
+      text:
+        'Tenhle skill napíšete jednou a použijete ho na každý další rozhovor. Je to přesně ten případ z minulé lekce: postup, který se opakuje, a stačí ho popsat jednou.',
+    },
+    {
+      kind: 'code',
+      text: `.claude/skills/prepis-rozhovoru/SKILL.md
+
+---
+name: prepis-rozhovoru
+description: Přepíše nahrávku rozhovoru o něčí práci do textu s časy
+  a připraví ji jako podklad pro mapování procesu. Použij, když je
+  v podklady/ nová zvuková nahrávka z rozhovoru s kolegou.
+---
+
+1. Najdi v podklady/ nejnovější zvukový soubor, ke kterému ještě není
+   přepis se stejným názvem.
+2. Přepiš ho do češtiny. Ke každému úseku napiš čas ve tvaru [MM:SS].
+3. Ulož přepis vedle nahrávky pod stejným názvem s příponou .txt.
+4. Na začátek přepisu napiš tři řádky: datum, agendu a kdo mluví —
+   ber je z první věty nahrávky.
+5. Nakonec vypiš:
+   - názvy souborů, systémů a zkratek, které v rozhovoru zazněly
+   - věty, ve kterých někdo popisuje ruční přenos dat
+   - místa, kde je nahrávka nesrozumitelná, s časem
+
+## Na co si dát pozor
+- Přepis je strojový. Firemní zkratky a jména se komolí — proto ten
+  seznam pojmů na konci, aby šly opravit na jednom místě.
+- Nic nedomýšlej. Když je něco nesrozumitelné, napiš to.`,
+      caption:
+        'Poslední bod výpisu je ten důležitý — věty o ručním přenosu dat jsou seznam kandidátů na automatizaci ještě předtím, než někdo něco nakreslí.',
+    },
     {
       kind: 'task',
       title: 'Výstup dvojice',
@@ -1664,6 +1777,7 @@ Kdyby ses zítra nemohla dostat k počítači, co by kolega nevěděl?`,
         'Vypsaná tři místa, kde se nejvíc přepisuje, seřazená podle toho, jak moc to štve.',
         'U toho nejhoršího jedna věta o tom, co by se muselo změnit, aby přepis úplně zmizel.',
         'Jeden krok, který má zůstat člověku, a proč — co tam ten člověk ví a data ne.',
+        'Nahrávka a její přepis ve složce projektu, vedle kopií reálných souborů, o kterých byla řeč.',
       ],
       hint:
         'U posledního bodu nebuďte skromní. Krok, který vypadá jako administrativa, ale ve skutečnosti opravuje data, která lžou, je ten nejcennější kus práce v celém procesu.',
