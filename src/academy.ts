@@ -1508,6 +1508,196 @@ se spustí, když stejnou úlohu zadám jinými slovy.`,
   ],
 }
 
+const LESSON_CVICENI: Lesson = {
+  slug: 'zmapuj-kolegovi-workflow',
+  module: 'zadani',
+  title: 'Cvičení ve dvojicích: zmapuj kolegovi workflow',
+  summary:
+    'Ve dvojici si navzájem vyzpovídáte kus vlastní práce, nakreslíte z toho flow a označíte místa k automatizaci. Stejný výstup jako u vzoru, jen na vaší agendě.',
+  minutes: 60,
+  kind: 'zadání',
+  outcomes: [
+    'vést rozhovor o práci tak, aby vyšlo najevo i to, co je pro majitele agendy neviditelné',
+    'zapsat cizí proces jako tok dat mezi lidmi a soubory',
+    'nakreslit flow do tří pruhů podle toho, kdo co drží',
+    'označit místa, kde se data přenášejí ručně',
+    'odlišit, co má převzít automatizace a co má zůstat člověku',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Předchozí lekce byla vzor — hotový proces akčního regálu, na kterém jste si vyzkoušeli hledat automatizace. Teď to samé uděláte na vlastní agendě. Ve dvojicích, protože sám sobě proces nikdo nepopíše dobře: to, co děláte každý týden, se vám dávno slilo do jednoho kroku, a ten se rozpadne na pět, teprve když se někdo zeptá.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Co si vybrat',
+      text:
+        'Kus práce, který děláte pravidelně a ve kterém někde vstupuje e-mail nebo tabulka a někam něco posíláte dál. Nemusí to být celá agenda — stačí výsek od „přijde mi to“ po „pošlu to dál“. Nezačínejte tím nejsložitějším, co máte.',
+    },
+    { kind: 'h', text: 'Jak to poběží' },
+    {
+      kind: 'table',
+      head: ['Čas', 'Co se děje', 'Kdo mluví'],
+      rows: [
+        ['5 min', 'Každý si vybere svůj výsek a napíše ho jednou větou', 'oba'],
+        ['15 min', 'Rozhovor: A se ptá, B popisuje svoji práci. A si zapisuje.', 'B'],
+        ['15 min', 'Prohodíte se. B se ptá, A popisuje.', 'A'],
+        ['10 min', 'Každý nakreslí flow toho druhého', 'oba, mlčky'],
+        ['10 min', 'Ukážete si kresby a společně označíte místa k automatizaci', 'oba'],
+        ['5 min', 'Každá dvojice řekne ostatním jeden krok, který je nejhorší', 'oba'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Kreslí ten, kdo se ptal',
+      text:
+        'Ne majitel agendy. Je to schválně: co tazatel nedokáže nakreslit, to se v rozhovoru nedozvěděl — a to je přesně ta informace, která v procesu chybí i všem ostatním.',
+    },
+    { kind: 'h', text: 'Technika: kontextové dotazování' },
+    {
+      kind: 'p',
+      text:
+        'V UX se tomuhle typu rozhovoru říká kontextové dotazování a stojí na jednom rozdílu: lidé popisují svoji práci jinak, než ji dělají. Když se zeptáte „jak to děláš“, dostanete uklizenou verzi bez výjimek. Když se zeptáte „ukaž mi, jak jsi to dělala naposledy“, dostanete tu skutečnou — i s tím, že jeden člověk posílá print screeny a jedna položka se musí přeťukat ručně.',
+    },
+    {
+      kind: 'list',
+      items: [
+        'Ptej se na poslední konkrétní případ, ne na to, jak se to dělá obecně.',
+        'Nech ho otevřít ten soubor. Papír zapomíná, obrazovka ne.',
+        'Po každém kroku se zeptej: „a co se stane pak?“ Dokud nedojdete na konec.',
+        'Když někdo přeskočí dva kroky najednou, vrať se: „a to se stane kde?“',
+        'Během rozhovoru nenavrhuj řešení. Jakmile začneš radit, druhý přestane popisovat a začne se obhajovat.',
+      ],
+    },
+    { kind: 'h', text: 'Otázky, které se dají použít rovnou' },
+    {
+      kind: 'code',
+      text: `Jak se dozvíš, že máš začít? Přijde e-mail, je to termín, nebo se podíváš sám?
+Co je vstup? Kdo ti ho posílá a v čem?
+Ukaž mi ten soubor. Co v něm musíš najít jako první?
+Co s tím uděláš, než to pošleš dál? Krok po kroku.
+Kolikrát se ta data překlopí z jednoho souboru do druhého?
+Komu to posíláš a v čem? Odpoví ti zpátky, nebo je to jednosměrka?
+Co děláš, když někdo neodpoví?
+Kde se to nejčastěji pokazí? Co jsi naposledy musela opravovat?
+Co z toho víš z hlavy a není to nikde napsané?
+Kdyby ses zítra nemohla dostat k počítači, co by kolega nevěděl?`,
+      caption: 'Poslední dvě otázky bývají nejcennější. Odhalí to, co v žádném manuálu není.',
+    },
+    { kind: 'h', text: 'Slova, na která nastražit uši' },
+    {
+      kind: 'p',
+      text:
+        'Lidé zmiňují ruční práci mimochodem, jako by to byla samozřejmost. Když některé z těchhle slov padne, zapiš si celý krok — skoro vždycky je to místo k automatizaci.',
+    },
+    {
+      kind: 'table',
+      head: ['Když zazní', 'Znamená to'],
+      rows: [
+        ['„to si pak vykopíruju“', 'data se přenášejí ručně mezi dvěma soubory'],
+        ['„to si vždycky musím zkontrolovat“', 'nikdo nevěří vstupu — chybí pravidlo nebo validace'],
+        ['„to mi pošle print screenem“', 'odpověď přichází ve formátu, ze kterého se musí přeťukávat'],
+        ['„to mám v hlavě“', 'pravidlo, které není nikde zapsané a odejde s člověkem'],
+        ['„to už dělám tak dlouho, že…“', 'krok, který si nikdo nepamatuje proč'],
+        ['„a pak čekám, až mi odpoví“', 'proces stojí na e-mailu jako na frontě'],
+        ['„občas se stane, že…“', 'výjimka, na kterou se v návrhu zapomene'],
+      ],
+    },
+    { kind: 'h', text: 'Kresba: tři pruhy' },
+    {
+      kind: 'p',
+      text:
+        'Vezmi papír na šířku a rozděl ho třemi vodorovnými pruhy: nahoře kdo dodává vstup, uprostřed člověk, o kterém je řeč, dole kdo dostává výstup. Kroky piš zleva doprava. Nad každou šipku napiš, čím se to přenáší — e-mail, sdílená tabulka, print screen, telefon. Ten popis šipky je důležitější než samotné boxy: automatizuje se přenos, ne práce.',
+    },
+    {
+      kind: 'figure',
+      name: 'regal-flow',
+      caption:
+        'Vzor z předchozí lekce, jak to má vypadat. Vaše kresba nemusí být hezká — musí být čitelná pro někoho, kdo tu agendu nedělá.',
+    },
+    { kind: 'h', text: 'Označení míst' },
+    {
+      kind: 'p',
+      text:
+        'Až je flow nakreslené, projděte ho spolu a označte každý krok jednou ze tří značek. Použijte tři barvy fixů nebo tři značky, na kterých se domluvíte.',
+    },
+    {
+      kind: 'table',
+      head: ['Značka', 'Znamená', 'Co s tím'],
+      rows: [
+        [
+          'Ruční přenos',
+          'data mění formu nebo místo a dělá to člověk',
+          'nejsilnější kandidát na automatizaci — ptejte se, proč data vůbec opouštějí původní soubor',
+        ],
+        [
+          'Rozhoduje člověk',
+          'krok závisí na něčem, co v datech není',
+          'nechte být, ale zapište, podle čeho se rozhoduje — třeba to jde do dat doplnit',
+        ],
+        [
+          'Počítá se z pravidel',
+          'výsledek jde odvodit ze vstupů',
+          'automatizovatelné do posledního sloupce, i když se to dnes dělá ručně',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Nejzajímavější je hranice mezi druhou a třetí',
+      text:
+        'Spousta kroků vypadá jako rozhodování, ale ve skutečnosti se počítá — jen to pravidlo nikdo nikdy nenapsal. Když u kroku umíte říct „dělám to tak, že když je tohle větší než tamto, tak…“, není to rozhodnutí. Je to vzorec.',
+    },
+    {
+      kind: 'task',
+      title: 'Výstup dvojice',
+      intro:
+        'Na konci má každá dvojice dvě kresby — jednu za každého. Vyfoťte je a nahrajte tam, kde se sbírají podklady z workshopu.',
+      items: [
+        'Flow ve třech pruzích, od „přijde mi to“ po „pošlu to dál“.',
+        'Popsané šipky — čím se co přenáší.',
+        'Každý krok označený jednou ze tří značek.',
+        'Vypsaná tři místa, kde se nejvíc přepisuje, seřazená podle toho, jak moc to štve.',
+        'U toho nejhoršího jedna věta o tom, co by se muselo změnit, aby přepis úplně zmizel.',
+        'Jeden krok, který má zůstat člověku, a proč — co tam ten člověk ví a data ne.',
+      ],
+      hint:
+        'U posledního bodu nebuďte skromní. Krok, který vypadá jako administrativa, ale ve skutečnosti opravuje data, která lžou, je ten nejcennější kus práce v celém procesu.',
+    },
+    { kind: 'h', text: 'Když se to zasekne' },
+    {
+      kind: 'table',
+      head: ['Zádrhel', 'Co s tím'],
+      rows: [
+        [
+          '„Já žádný proces nemám.“',
+          'Vezmi cokoli, co děláš každý týden a co bys musela vysvětlovat náhradě. To je proces.',
+        ],
+        [
+          'Dvojice se zasekne na jednom kroku',
+          'Držte časy. Nedopovězený detail je lepší než nedokreslené flow.',
+        ],
+        [
+          'Majitel agendy se začne obhajovat',
+          'Tazatel se ptá, ne hodnotí. Vrať se k „ukaž mi, jak jsi to dělala naposledy“.',
+        ],
+        [
+          'Proces se větví do tří variant',
+          'Nakresli tu nejčastější a větve si poznač stranou. Výjimky řešte až u návrhu.',
+        ],
+        [
+          'Kresba nejde dokončit',
+          'To je taky výsledek. Označ místo, kde jsi se zasekl — tam informace chybí i v reálu.',
+        ],
+      ],
+    },
+  ],
+}
+
 export const COURSES: Course[] = [
   {
     slug: 'claude-a-firemni-data',
@@ -1536,11 +1726,12 @@ export const COURSES: Course[] = [
       },
       {
         key: 'zadani',
-        title: 'Zadání',
-        summary: 'Reálný proces z logistiky, na kterém se hledají automatizace.',
+        title: 'Zadání a cvičení',
+        summary:
+          'Nejdřív hotový proces z logistiky jako vzor, pak totéž ve dvojicích na vlastní agendě.',
       },
     ],
-    lessons: [LESSON_PROJEKT, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_AUTOMATIZACE, LESSON_SKILL, LESSON_REGAL],
+    lessons: [LESSON_PROJEKT, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_AUTOMATIZACE, LESSON_SKILL, LESSON_REGAL, LESSON_CVICENI],
     learn: [
       'založit projekt tak, aby se pravidla nemusela opakovat každé ráno',
       'poznat, co patří do CLAUDE.md, co do skillu a co do artefaktu',
@@ -1552,6 +1743,7 @@ export const COURSES: Course[] = [
       'číst pracovní proces jako tok dat mezi lidmi a soubory',
       'najít kroky, ve kterých data mění formu ručně',
       'odlišit, co má převzít automatizace a co má zůstat člověku',
+      'vyzpovídat kolegu tak, aby jeho proces šel nakreslit',
     ],
     prerequisites: [
       'Nainstalovaný Claude Code',
