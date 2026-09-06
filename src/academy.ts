@@ -2681,16 +2681,74 @@ kontrolní protokol do vystupy/."`,
     {
       kind: 'p',
       text:
-        'Nic z téhle lekce nedocvakne, dokud to člověk jednou neuvidí. Tak si to udělejte hned: naplánujte běh na čas za pět minut, zavřete počítač a jděte si pro kávu. Když se vrátíte, bude ve vystupy/ soubor, který jste nevyrobili.',
+        'Nic z téhle lekce nedocvakne, dokud to člověk jednou neuvidí. Tak si to udělejte hned: naplánujte běh na čas za pět minut, zavřete počítač a jděte si pro kávu. Když se vrátíte, bude ve vystupy/ soubor, který jste nevyrobili — a kolegovi ve schránce zpráva, kterou jste neposlali.',
+    },
+    { kind: 'h', text: 'Co si na to dát za úlohu' },
+    {
+      kind: 'p',
+      text:
+        'Na první běh nebeř nic z ostré práce. Chceš úlohu, která je hotová do minuty, nemůže nic pokazit a jejíž výsledek je vidět i z poslední řady. Nejlíp funguje tahle: ať spočítá, co má ve složce, zapíše to do souboru a dá o tom vědět kolegovi vedle sebe. Adresát je člověk z dvojice, se kterou jsi mapovala workflow — ten pak nahlas potvrdí, že mu něco přišlo, i když u toho nikdo neseděl.',
+    },
+    {
+      kind: 'tabs',
+      items: [
+        {
+          label: 'Když konektor odesílat umí',
+          blocks: [
+            {
+              kind: 'code',
+              text: `Založ mi naplánovanou úlohu, která se spustí za pět minut.
+
+Zadání: spočítej, kolik souborů leží ve složce data/ a jaká je
+jejich celková velikost. Zapiš to do vystupy/kontrola-<dnešní datum>.md.
+Pak pošli e-mail na petra.novakova@dek.cz s předmětem
+„Automat doběhl — <datum a čas>". Do těla dej ta dvě čísla a větu,
+že tohle psal automat a nikdo u toho neseděl. Přílohu nepřikládej.
+Když ve složce data/ nic není, e-mail neposílej a jenom mi to napiš.`,
+              caption:
+                'Poslední řádek tam patří i u nevinné ukázky. Zvyk psát podmínku „kdy neodesílat" se buduje od první úlohy, ne až u té ostré.',
+            },
+          ],
+        },
+        {
+          label: 'Když konektor odesílat neumí',
+          blocks: [
+            {
+              kind: 'p',
+              text:
+                'Tohle je pravděpodobnější stav a na plátně vypadá skoro stejně dobře: e-mail neodejde sám, ale sám se otevře rozepsaný v Outlooku. Vidí to celý sál a nepotřebuješ k tomu vůbec nikoho z IT.',
+            },
+            {
+              kind: 'code',
+              text: `Založ mi naplánovanou úlohu, která se spustí za pět minut.
+
+Zadání: spočítej, kolik souborů leží ve složce data/ a jaká je
+jejich celková velikost. Zapiš to do vystupy/kontrola-<dnešní datum>.md.
+Pak mi otevři rozepsaný e-mail pro petra.novakova@dek.cz — na Macu
+příkazem open, na Windows příkazem start, přes odkaz mailto:
+s vyplněným předmětem a tělem. Předmět „Automat doběhl", v těle ta
+dvě čísla. Neodesílej ho, jenom ho otevři.`,
+              caption:
+                'Za pět minut se sama od sebe otevře Outlook s hotovým e-mailem. Odeslání zůstává na člověku — což je stejně ten režim, ve kterém má každý první měsíc jet.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Proč zrovna počítání souborů',
+      text:
+        'Protože to nemůže dopadnout špatně, doběhne to za vteřinu a každý si výsledek ověří vlastníma očima. Až tenhle běh proběhne, vyměníš zadání za svoji skutečnou úlohu — všechno ostatní kolem zůstane stejné.',
     },
     {
       kind: 'steps',
       items: [
         {
-          title: 'Naplánuj to na za pět minut',
+          title: 'Naplánuj to na za pět minut — větou, ne formulářem',
           body:
-            'Nejrychlejší je o to prostě říct: napiš Claudovi „založ mi úlohu, která se spustí za pět minut" a jako zadání dej tu jednu větu, kterou jsi před chvílí spouštěla ručně. Nebo klikačkou přes Routines → New routine → Local.',
-          code: 'Postupuj podle skillu logisticke-dostupnosti. Na konec ulož kontrolní protokol do vystupy/ a dej mi vědět, až je hotovo.',
+            'Formulář si otevřeš jindy. Teď prostě vlep do chatu zadání z předchozí kartičky. Claude si sám doplní čas, složku i rozvrh a úlohu ti založí. Odpoví ti, kdy poběží — a to je celé.',
         },
         {
           title: 'Nedívej se na to',
@@ -2700,7 +2758,7 @@ kontrolní protokol do vystupy/."`,
         {
           title: 'Za pět minut se podívej, co přibylo',
           body:
-            'Notifikace na ploše, ve vystupy/ soubory s dnešním datem a vedle nich kontrolní protokol. Nikdo u toho nebyl.',
+            'Notifikace na ploše, ve vystupy/ soubor s dnešním datem — a kolega vedle tebe ať nahlas řekne, jestli mu něco přišlo. Nikdo u toho nebyl.',
         },
         {
           title: 'Rozhodni se podle kontroly',
@@ -2835,6 +2893,13 @@ Když protokol hlásí nesrovnalost, e-mail neposílej a jenom mi to napiš.`,
       title: 'S e-mailem opatrně',
       text:
         'Odeslaná pošta se nevrací. Než necháš cokoli odesílat samo, nech to nejdřív měsíc připravovat rozepsaný e-mail, který odklikneš ty. Teprve až budeš mít měsíc bez překvapení, přemýšlej o odesílání bez potvrzení — a i pak jenom tam, kde nejhorší možný následek je, že někdo dostane zprávu navíc.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Na plátně je věta lepší než formulář',
+      text:
+        'Když se tahle ukázka dělá před lidmi, nepouštěj se do vyplňování polí. Formulář má název, popis, instrukce, model, režim povolování, složku a rozvrh — než to všechno naklikáš, sál ti usne a hlavní myšlenka se v tom ztratí. Napsaná věta je jeden řádek a dělá totéž. A ještě ukazuje mimochodem to podstatné: že se s tím dá mluvit jako s člověkem, kterému něco zadáváš, ne jako s aplikací, kterou musíš umět ovládat.',
     },
     {
       kind: 'note',
