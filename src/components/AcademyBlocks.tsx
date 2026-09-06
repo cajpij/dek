@@ -23,6 +23,7 @@ import { usePlatform } from '../lib/academyPlatform'
 import AutomationLadder from './AutomationLadder'
 import ProjectTree from './ProjectTree'
 import RegalFlow from './RegalFlow'
+import RoutineForm from './RoutineForm'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
@@ -404,7 +405,17 @@ export default function BlockView({ block }: { block: Block }) {
       return (
         <Paper variant="outlined" component="figure" sx={{ my: 3.5, mx: 0, borderRadius: 2, overflow: 'hidden' }}>
           <Box sx={{ p: { xs: 1.5, md: 2.5 } }}>
-            {block.name === 'sync-map' ? <SyncMap /> : block.name === 'project-tree' ? <ProjectTree /> : block.name === 'automation-ladder' ? <AutomationLadder /> : <RegalFlow />}
+            {block.name === 'sync-map' ? (
+              <SyncMap />
+            ) : block.name === 'project-tree' ? (
+              <ProjectTree />
+            ) : block.name === 'automation-ladder' ? (
+              <AutomationLadder />
+            ) : block.name === 'routine-form' ? (
+              <RoutineForm />
+            ) : (
+              <RegalFlow />
+            )}
           </Box>
           <Typography
             component="figcaption"
