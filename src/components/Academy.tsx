@@ -65,6 +65,25 @@ function Crumbs({ items }: { items: { label: string; href?: string }[] }) {
 function Shell({ children }: { children: React.ReactNode }) {
   return (
     <Box sx={{ minHeight: '100dvh', bgcolor: 'background.default' }}>
+      <Link
+        href="#obsah"
+        sx={{
+          position: 'absolute',
+          left: 12,
+          top: -48,
+          zIndex: 3,
+          px: 1.5,
+          py: 1,
+          bgcolor: 'background.paper',
+          border: 1,
+          borderColor: 'primary.main',
+          borderRadius: 1,
+          fontSize: 14,
+          '&:focus': { top: 12 },
+        }}
+      >
+        Přeskočit na obsah
+      </Link>
       <Box
         component="header"
         sx={{
@@ -90,11 +109,13 @@ function Shell({ children }: { children: React.ReactNode }) {
         >
           <Wordmark />
           <Link href="#" underline="hover" sx={{ fontSize: 14, color: 'text.secondary' }}>
-            Zpět na run-sheet
+            Program dne (pro lektora)
           </Link>
         </Box>
       </Box>
-      {children}
+      <Box component="main" id="obsah">
+        {children}
+      </Box>
       <Box
         component="footer"
         sx={{ borderTop: 1, borderColor: 'divider', mt: 10, py: 4, px: { xs: 2.5, md: 4 } }}
@@ -114,9 +135,12 @@ function Shell({ children }: { children: React.ReactNode }) {
 
 function Meta({ course, done }: { course: Course; done?: number }) {
   const total = course.lessons.length
+  const inRoom = courseMinutes(course, 'v sále')
+  const after = courseMinutes(course, 'potom') + courseMinutes(course, 'předem')
   const parts = [
     plural(total, 'lekce', 'lekce', 'lekcí'),
-    formatDuration(courseMinutes(course)),
+    `v sále ${formatDuration(inRoom)}`,
+    `potom ${formatDuration(after)}`,
     course.level,
   ]
   return (
@@ -237,6 +261,7 @@ function CourseList() {
       <Typography
         variant="h3"
         component="h1"
+        tabIndex={-1}
         sx={{ fontWeight: 750, letterSpacing: '-.03em', fontSize: 'clamp(2rem, 5vw, 3rem)' }}
       >
         Kurzy
@@ -355,6 +380,7 @@ function CoursePage({ course }: { course: Course }) {
           <Typography
             variant="h3"
             component="h1"
+        tabIndex={-1}
             sx={{ fontWeight: 750, letterSpacing: '-.03em', fontSize: 'clamp(1.9rem, 4.4vw, 2.7rem)' }}
           >
             {course.title}
@@ -464,11 +490,11 @@ function CoursePage({ course }: { course: Course }) {
 function LessonSidebar({ course, current }: { course: Course; current: Lesson }) {
   const { isDone } = useProgress()
   return (
-    <Box sx={{ position: { md: 'sticky' }, top: { md: 88 } }}>
+    <Box component="nav" aria-label="Obsah kurzu" sx={{ position: { md: 'sticky' }, top: { md: 88 } }}>
       <Link
         href={academyHref({ view: 'course', course: course.slug })}
         underline="hover"
-        sx={{ fontSize: 14, color: 'text.secondary' }}
+        sx={{ fontSize: 14, color: 'text.secondary', display: 'inline-block', py: 0.5 }}
       >
         ← {course.title}
       </Link>
@@ -479,11 +505,11 @@ function LessonSidebar({ course, current }: { course: Course; current: Lesson })
           <Box key={mod.key} sx={{ mt: 3 }}>
             <Typography
               sx={{
-                fontSize: 11.5,
-                letterSpacing: '.12em',
+                fontSize: 12.5,
+                letterSpacing: '.1em',
                 textTransform: 'uppercase',
                 fontWeight: 700,
-                color: 'text.disabled',
+                color: 'text.secondary',
                 mb: 1,
               }}
             >
@@ -497,6 +523,7 @@ function LessonSidebar({ course, current }: { course: Course; current: Lesson })
                     key={lesson.slug}
                     href={academyHref({ view: 'lesson', course: course.slug, lesson: lesson.slug })}
                     underline="none"
+                    aria-current={active ? 'page' : undefined}
                     sx={{
                       display: 'flex',
                       gap: 1,
@@ -511,7 +538,12 @@ function LessonSidebar({ course, current }: { course: Course; current: Lesson })
                       '&:hover': { color: 'text.primary' },
                     }}
                   >
-                    <Box component="span" sx={{ color: 'success.main', width: 12 }} aria-hidden>
+                    <Box
+                      component="span"
+                      sx={{ color: 'success.main', width: 12 }}
+                      aria-label={isDone(course.slug, lesson.slug) ? 'hotovo' : undefined}
+                      aria-hidden={isDone(course.slug, lesson.slug) ? undefined : true}
+                    >
                       {isDone(course.slug, lesson.slug) ? '✓' : ''}
                     </Box>
                     {lesson.title}
@@ -535,11 +567,17 @@ function LessonPage({ course, lesson }: { course: Course; lesson: Lesson }) {
   return (
     <Box sx={{ maxWidth: 1180, mx: 'auto', px: { xs: 2.5, md: 4 }, pt: { xs: 3.5, md: 5 } }}>
       <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '256px 1fr' }, gap: { xs: 4, md: 6 } }}>
-        <Box sx={{ order: { xs: 2, md: 1 } }}>
+        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
           <LessonSidebar course={course} current={lesson} />
         </Box>
 
-        <Box sx={{ order: { xs: 1, md: 2 }, minWidth: 0, maxWidth: 800 }}>
+        <Box sx={{ minWidth: 0, maxWidth: 800 }}>
+          <Box component="details" sx={{ display: { md: 'none' }, mb: 2.5, '& summary': { cursor: 'pointer', fontSize: 14.5, color: 'text.secondary', py: 1 } }}>
+            <Box component="summary">Obsah kurzu — lekce {index + 1} z {course.lessons.length}</Box>
+            <Box sx={{ pt: 1 }}>
+              <LessonSidebar course={course} current={lesson} />
+            </Box>
+          </Box>
           <Crumbs
             items={[
               { label: 'Kurzy', href: academyHref({ view: 'list' }) },
@@ -548,16 +586,17 @@ function LessonPage({ course, lesson }: { course: Course; lesson: Lesson }) {
             ]}
           />
           <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center', flexWrap: 'wrap', mb: 1 }}>
-            <Typography sx={{ fontSize: 13.5, color: 'text.disabled' }}>
-              {lesson.kind === 'zadání' ? 'Zadání' : `Lekce ${index + 1} z ${course.lessons.length}`}
+            <Typography sx={{ fontSize: 13.5, color: 'text.secondary' }}>
+              {`Lekce ${index + 1} z ${course.lessons.length}`}
             </Typography>
             <Box sx={{ width: 3, height: 3, borderRadius: '50%', bgcolor: 'text.disabled' }} aria-hidden />
-            <Typography sx={{ fontSize: 13.5, color: 'text.disabled' }}>{lesson.minutes} min</Typography>
+            <Typography sx={{ fontSize: 13.5, color: 'text.secondary' }}>{lesson.minutes} min čtení</Typography>
             <TrackChip track={lesson.track} />
           </Box>
           <Typography
             variant="h3"
             component="h1"
+        tabIndex={-1}
             sx={{ fontWeight: 750, letterSpacing: '-.03em', fontSize: 'clamp(1.8rem, 4.2vw, 2.5rem)' }}
           >
             {lesson.title}
@@ -593,8 +632,9 @@ function LessonPage({ course, lesson }: { course: Course; lesson: Lesson }) {
               variant={done ? 'outlined' : 'contained'}
               color={done ? 'success' : 'primary'}
               onClick={() => toggle(course.slug, lesson.slug)}
+              aria-pressed={done}
             >
-              {done ? '✓ Hotovo' : 'Označit jako hotové'}
+              {done ? '✓ Hotovo (kliknutím zrušíš)' : 'Označit jako hotové'}
             </Button>
             {next ? (
               <Button
@@ -639,10 +679,32 @@ export default function Academy() {
   const [route, setRoute] = useState<AcademyRoute>(() => readAcademyRoute())
 
   useEffect(() => {
-    const onHash = () => setRoute(readAcademyRoute())
+    const onHash = () => {
+      setRoute(readAcademyRoute())
+      window.scrollTo({ top: 0 })
+      // Po přepnutí lekce přenést fokus na nadpis, ať čtečka i klávesnice
+      // začnou od začátku nové stránky a ne od tlačítka dole.
+      window.setTimeout(() => {
+        const h1 = document.querySelector<HTMLElement>('main h1')
+        h1?.focus()
+      }, 0)
+    }
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
+
+  useEffect(() => {
+    const course = route.view === 'list' ? undefined : findCourse(route.course)
+    const lesson = route.view === 'lesson' && course ? findLesson(course, route.lesson) : undefined
+    document.title = lesson
+      ? `${lesson.title} · DEK Academy`
+      : course
+        ? `${course.title} · DEK Academy`
+        : 'DEK Academy'
+    return () => {
+      document.title = 'Run-sheet'
+    }
+  }, [route])
 
   if (route.view === 'list') {
     return (

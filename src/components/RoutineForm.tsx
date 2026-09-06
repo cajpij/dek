@@ -15,7 +15,7 @@ type Field = {
 const FIELDS: Field[] = [
   {
     label: 'Name',
-    value: ['rozpad-divizi'],
+    value: ['logisticke-dostupnosti'],
     y: 78,
     h: 32,
     mono: true,
@@ -30,7 +30,7 @@ const FIELDS: Field[] = [
   {
     label: 'Instructions',
     value: [
-      'Postupuj podle skillu rozpad-divizi.',
+      'Postupuj podle skillu logisticke-dostupnosti.',
       'Vstup je nejnovější export v data/.',
       'Rozpad na 4 divizní soubory do vystupy/ a kontrolní protokol.',
       'Pak pošli každému produkťákovi mail s odkazem na jeho soubor.',
@@ -81,12 +81,12 @@ export default function RoutineForm() {
   const x0 = 16
 
   return (
-    <Box sx={{ overflowX: 'auto', color: 'text.secondary' }}>
+    <Box tabIndex={0} sx={{ overflowX: 'auto', color: 'text.secondary', '&:focus-visible': { outline: '2px solid', outlineColor: 'primary.main', outlineOffset: 2 } }}>
       <Box
         component="svg"
         viewBox="0 0 900 560"
         role="img"
-        aria-label="Vyplněný formulář nové naplánované úlohy: název rozpad-divizi, popis rozpad magazínu na divizní soubory, instrukce odkazující na skill rozpad-divizi s podmínkou neodesílat při nesrovnalosti, režim Accept edits, složka Akcni-regal na OneDrive a rozvrh každé pondělí v šest ráno."
+        aria-label="Vyplněný formulář nové naplánované úlohy: název logisticke-dostupnosti, popis rozpad magazínu na divizní soubory, instrukce odkazující na skill logisticke-dostupnosti s podmínkou neodesílat při nesrovnalosti, režim Accept edits, složka Akcni-regal na OneDrive a rozvrh každé pondělí v šest ráno."
         sx={{ display: 'block', width: '100%', minWidth: 720, height: 'auto' }}
       >
         {/* rám okna */}

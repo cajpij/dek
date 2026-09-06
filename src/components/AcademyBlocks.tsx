@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useId, useRef, useState } from 'react'
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 import Box from '@mui/material/Box'
@@ -27,21 +27,36 @@ import RoutineForm from './RoutineForm'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
-function Code({ children }: { children: string }) {
-  const [copied, setCopied] = useState(false)
+function Code({ children, label }: { children: string; label?: string }) {
+  const [state, setState] = useState<'idle' | 'ok' | 'fail'>('idle')
+  const preRef = useRef<HTMLPreElement>(null)
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(children)
-      setCopied(true)
-      window.setTimeout(() => setCopied(false), 2000)
+      setState('ok')
     } catch {
-      setCopied(false)
+      // Schránka není k dispozici (http, zakázané oprávnění) — aspoň text označit,
+      // ať stačí Ctrl+C / Cmd+C.
+      const el = preRef.current
+      if (el) {
+        const range = document.createRange()
+        range.selectNodeContents(el)
+        const sel = window.getSelection()
+        sel?.removeAllRanges()
+        sel?.addRange(range)
+      }
+      setState('fail')
     }
+    window.setTimeout(() => setState('idle'), 2500)
   }
+  const text =
+    state === 'ok' ? 'Zkopírováno' : state === 'fail' ? 'Označeno — stiskni Ctrl+C' : 'Kopírovat'
   return (
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start', flexWrap: 'wrap', my: 1.5 }}>
       <Box
         component="pre"
+        ref={preRef}
+        tabIndex={0}
         sx={{
           flex: '1 1 320px',
           m: 0,
@@ -59,9 +74,19 @@ function Code({ children }: { children: string }) {
       >
         {children}
       </Box>
-      <Button size="small" variant="outlined" color="inherit" onClick={copy} sx={{ mt: 0.25 }}>
-        {copied ? 'Zkopírováno' : 'Kopírovat'}
+      <Button
+        size="small"
+        variant="outlined"
+        color="inherit"
+        onClick={copy}
+        sx={{ mt: 0.25 }}
+        aria-label={label ? `Kopírovat: ${label}` : undefined}
+      >
+        {text}
       </Button>
+      <Box component="span" role="status" aria-live="polite" sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
+        {state === 'ok' ? 'Zkopírováno do schránky' : state === 'fail' ? 'Text je označený, zkopíruj ho klávesovou zkratkou' : ''}
+      </Box>
     </Box>
   )
 }
@@ -232,8 +257,18 @@ function Videos({ title, items }: { title: string; items: VideoRef[] }) {
             />
             <Box sx={{ p: 2 }}>
               <Typography sx={{ fontWeight: 620, fontSize: 15, lineHeight: 1.35 }}>{v.title}</Typography>
-              <Typography sx={{ fontSize: 13, color: 'text.disabled', mt: 0.25 }}>{v.author}</Typography>
+              <Typography sx={{ fontSize: 13, color: 'text.secondary', mt: 0.25 }}>{v.author}</Typography>
               <Typography sx={{ fontSize: 14, color: 'text.secondary', mt: 1 }}>{v.note}</Typography>
+              <Link
+                href={`https://www.youtube.com/watch?v=${v.id}`}
+                target="_blank"
+                rel="noopener"
+                underline="hover"
+                sx={{ fontSize: 13.5, mt: 1, display: 'inline-block' }}
+              >
+                Otevřít na YouTube <span aria-hidden>↗</span>
+                <Box component="span" sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}> (otevře se v novém okně)</Box>
+              </Link>
             </Box>
           </Paper>
         ))}
@@ -248,11 +283,11 @@ function Links({ title, items }: { title: string; items: { label: string; href: 
     <Paper variant="outlined" sx={{ my: 3, borderRadius: 2, p: 2.5 }}>
       <Typography
         sx={{
-          fontSize: 11.5,
-          letterSpacing: '.14em',
+          fontSize: 12.5,
+          letterSpacing: '.1em',
           textTransform: 'uppercase',
           fontWeight: 700,
-          color: 'text.disabled',
+          color: 'text.secondary',
           mb: 1.5,
         }}
       >
@@ -262,7 +297,8 @@ function Links({ title, items }: { title: string; items: { label: string; href: 
         {items.map((l) => (
           <Box key={l.href}>
             <Link href={l.href} target="_blank" rel="noopener" underline="hover" sx={{ fontSize: 15.5, fontWeight: 550 }}>
-              {l.label} ↗
+              {l.label} <span aria-hidden>↗</span>
+              <Box component="span" sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}> (otevře se v novém okně)</Box>
             </Link>
             {l.note ? (
               <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>{l.note}</Typography>
@@ -277,6 +313,7 @@ function Links({ title, items }: { title: string; items: { label: string; href: 
 /** Táž látka na příkladech z různých agend. */
 function AgendaTabs({ items }: { items: { label: string; blocks: Block[] }[] }) {
   const [tab, setTab] = useState(0)
+  const tabsId = useId()
   const current = items[tab] ?? items[0]!
   return (
     <Box sx={{ my: 3 }}>
@@ -285,15 +322,24 @@ function AgendaTabs({ items }: { items: { label: string; blocks: Block[] }[] }) 
         onChange={(_, v) => setTab(v)}
         variant="scrollable"
         scrollButtons="auto"
+        aria-label="Varianty"
         sx={{ borderBottom: 1, borderColor: 'divider', minHeight: 40, mb: 1 }}
       >
-        {items.map((it) => (
-          <Tab key={it.label} label={it.label} sx={{ minHeight: 40, py: 1 }} />
+        {items.map((it, i) => (
+          <Tab
+            key={it.label}
+            label={it.label}
+            id={`${tabsId}-tab-${i}`}
+            aria-controls={`${tabsId}-panel-${i}`}
+            sx={{ minHeight: 40, py: 1 }}
+          />
         ))}
       </Tabs>
-      {current.blocks.map((b, i) => (
-        <BlockView key={i} block={b} />
-      ))}
+      <Box role="tabpanel" id={`${tabsId}-panel-${tab}`} aria-labelledby={`${tabsId}-tab-${tab}`}>
+        {current.blocks.map((b, i) => (
+          <BlockView key={i} block={b} />
+        ))}
+      </Box>
     </Box>
   )
 }
@@ -358,9 +404,9 @@ export default function BlockView({ block }: { block: Block }) {
     case 'code':
       return (
         <Box sx={{ my: 2 }}>
-          <Code>{block.text}</Code>
+          <Code label={block.caption}>{block.text}</Code>
           {block.caption ? (
-            <Typography sx={{ fontSize: 13.5, color: 'text.disabled' }}>{block.caption}</Typography>
+            <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>{block.caption}</Typography>
           ) : null}
         </Box>
       )

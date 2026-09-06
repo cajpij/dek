@@ -323,6 +323,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         { title: 'Podívat se, co přibylo', min: 2, detail: 'Notifikace, soubor s dnešním datem, a kolegovi ve schránce zpráva — ať to potvrdí nahlas' },
       ],
       notes: [
+        'Blok má vlastní lekci v akademii: Živá ukázka: za pět minut to doběhne samo — zadání úlohy je tam ve dvou variantách',
         'Naplánovat hned na začátku bloku, ať to stihne doběhnout',
         'V Claude Code: Code → Routines → New routine → Local. Cloud varianta nevidí složku na disku.',
         'Tohle není látka, je to důkaz — nechat to zapůsobit a nekomentovat to moc',
@@ -344,7 +345,7 @@ export const DEFAULT_CONFIG: RunConfig = {
           title: 'Kam se vracet v akademii',
           min: 2,
           detail:
-            'Celý příklad (od magazínu po mail) · Jak napsat skill (rozbor skutečného) · Jak se nastaví automatizace (hooky) · Nech to běžet bez sebe · MCP nad katalogem',
+            'Slovníček · Celý příklad (od magazínu po mail) · Rozbor skutečného skillu · Jak se nastaví automatizace (hooky) · Naplánovaná úloha · Nech to běžet bez sebe · E-mail z automatu · MCP nad katalogem',
         },
       ],
       notes: [

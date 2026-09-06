@@ -4,9 +4,12 @@
  * Žádné účty, žádný server — akademie je statická stránka a odškrtnuté lekce
  * jsou osobní poznámka, ne firemní evidence. Když si někdo vyčistí prohlížeč,
  * přijde o fajfky a o nic jiného.
+ *
+ * Stav je jeden pro celou stránku (malý externí store), aby se fajfka po
+ * odškrtnutí objevila hned i v postranním panelu, ne až po obnovení stránky.
  */
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useSyncExternalStore } from 'react'
 
 const KEY = 'dek-academy-progress-v1'
 
@@ -33,11 +36,42 @@ function write(store: Store): void {
   }
 }
 
-export function useProgress() {
-  const [store, setStore] = useState<Store>({})
+const EMPTY: Store = {}
+let snapshot: Store | null = null
+const listeners = new Set<() => void>()
 
-  // Čte se až po připojení komponenty, aby build nespadl na chybějícím window.
-  useEffect(() => setStore(read()), [])
+function getSnapshot(): Store {
+  if (snapshot === null) snapshot = typeof window === 'undefined' ? EMPTY : read()
+  return snapshot
+}
+
+function getServerSnapshot(): Store {
+  return EMPTY
+}
+
+function subscribe(cb: () => void): () => void {
+  listeners.add(cb)
+  const onStorage = (e: StorageEvent) => {
+    if (e.key === KEY) {
+      snapshot = read()
+      cb()
+    }
+  }
+  window.addEventListener('storage', onStorage)
+  return () => {
+    listeners.delete(cb)
+    window.removeEventListener('storage', onStorage)
+  }
+}
+
+function set(next: Store): void {
+  snapshot = next
+  write(next)
+  listeners.forEach((l) => l())
+}
+
+export function useProgress() {
+  const store = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 
   const isDone = useCallback(
     (course: string, lesson: string) => store[lessonKey(course, lesson)] === true,
@@ -45,14 +79,11 @@ export function useProgress() {
   )
 
   const toggle = useCallback((course: string, lesson: string) => {
-    setStore((prev) => {
-      const key = lessonKey(course, lesson)
-      const next = { ...prev }
-      if (next[key]) delete next[key]
-      else next[key] = true
-      write(next)
-      return next
-    })
+    const key = lessonKey(course, lesson)
+    const next = { ...getSnapshot() }
+    if (next[key]) delete next[key]
+    else next[key] = true
+    set(next)
   }, [])
 
   const doneCount = useCallback(

@@ -110,13 +110,13 @@ const LESSON_PROGRAM: Lesson = {
     {
       kind: 'p',
       text:
-        'Oba kurzy dohromady jsou na čtyři hodiny a víc jich není schválně. Předem po vás nechceme skoro nic — nastavení složky i projektu děláme společně hned na začátku večera, takže si nikdo nemusí lámat hlavu doma. Zbytek akademie je referenční materiál, ke kterému se vracíte, až budete stavět.',
+        'Workshop v sále má čtyři hodiny a víc ne schválně. K tomu je v akademii asi hodina a půl referenčních lekcí na potom — nečtou se dopředu. Předem po vás nechceme skoro nic — nastavení složky i projektu děláme společně hned na začátku večera, takže si nikdo nemusí lámat hlavu doma. Zbytek akademie je referenční materiál, ke kterému se vracíte, až budete stavět.',
     },
     {
       kind: 'table',
       head: ['Štítek', 'Znamená'],
       rows: [
-        ['předem', 'stačí přinést s sebou. Je to jediná položka a je krátká.'],
+        ['předem', 'dvě věci, které stačí mít s sebou — viz níž.'],
         ['v sále', 'děláme společně. Jsou to hlavně cvičení, ne přednášky.'],
         ['potom', 'referenční materiál. Vracejte se k němu, až budete stavět.'],
       ],
@@ -168,7 +168,7 @@ const LESSON_PROGRAM: Lesson = {
       tone: 'info',
       title: 'Začíná se po pracovním dni',
       text:
-        'Proto je hned po úvodu rozehřívačka: postavíte se, najdete si dvojici z jiného oddělení a každý řekne jednu věc, kterou dneska dělal ručně a štvalo ho to. Ta dvojice s vámi zůstane celé odpoledne — cizí člověk se ptá líp než kolega, který vaši agendu zná a domýšlí si.',
+        'Proto je hned po úvodu rozehřívačka: postavíte se, najdete si dvojici z jiného oddělení a každý řekne jednu věc, kterou dneska dělal nebo dělala ručně a štvalo ho to. Ta dvojice s vámi zůstane celé odpoledne — cizí člověk se ptá líp než kolega, který vaši agendu zná a domýšlí si.',
     },
     {
       kind: 'note',
@@ -181,18 +181,22 @@ const LESSON_PROGRAM: Lesson = {
     {
       kind: 'p',
       text:
-        'Do čtyř hodin se toho vejde jen tolik, kolik se dá udělat společně. Všechno ostatní z akademie nezmizelo — je označené štítkem potom a čeká, až na něj dojde řada. Nečtěte to dopředu a nesnažte se to stihnout: vracejte se k tomu ve chvíli, kdy narazíte na to, co ta lekce řeší. Kostra je pořád stejná — pět schodů od zadání po běh bez tebe — jen první dva jste prošli v sále a zbylé tři si projdete sami. Když si máte vybrat jednu, vezměte Celý příklad — je to tentýž akční regál, ale dotažený od prázdné složky až po naplánovaný běh, který rozešle maily.',
+        'Do čtyř hodin se toho vejde jen tolik, kolik se dá udělat společně. Všechno ostatní z akademie nezmizelo — je označené štítkem potom a čeká, až na něj dojde řada. Nečtěte to dopředu a nesnažte se to stihnout: vracejte se k tomu ve chvíli, kdy narazíte na to, co ta lekce řeší. Kostra je pořád stejná — pět schodů: zadání, pravidlo, skill, hook, běh bez tebe. První tři jste prošli v sále a poslední dva viděli v živé ukázce; do hloubky si je projdete sami. Když si máte vybrat jednu, vezměte Celý příklad — je to tentýž akční regál, ale dotažený od prázdné složky až po naplánovaný běh, který rozešle maily.',
     },
     {
       kind: 'table',
       head: ['Až budete potřebovat', 'Vraťte se do'],
       rows: [
+        ['nevíte, co které slovo znamená', 'Slovníček'],
         ['vidět celou cestu na jednom příkladu', 'Celý příklad: od magazínu po mail produkťákům'],
-        ['zabalit postup, který opakujete', 'Jak napsat skill — s rozborem toho skutečného z logistiky'],
+        ['zabalit postup, který opakujete', 'Jak napsat skill'],
+        ['zjistit, co skillu chybí, aby běžel sám', 'Rozbor skutečného skillu'],
         ['zamknout data a dostat notifikaci', 'Jak se v projektu nastaví automatizace'],
+        ['založit úlohu, která se spustí sama', 'Naplánovaná úloha v Claude Code'],
         ['pustit to bez sebe a nespálit se', 'Nech to běžet bez sebe'],
+        ['poslat z automatu e-mail', 'E-mail z automatu'],
         ['ptát se na katalog vlastními slovy', 'MCP nad katalogem dek.cz'],
-        ['předat to kolegovi', 'Zadání: pusť to naostro'],
+        ['předat to kolegovi', 'Pusť to naostro'],
       ],
     },
     {
@@ -200,7 +204,7 @@ const LESSON_PROGRAM: Lesson = {
       tone: 'info',
       title: 'Mezi setkáními',
       text:
-        'Úkol na týden je jediný: pustit svoji úlohu na skutečné práci a přinést zpátky, co se stalo. Je popsaný v lekci Zadání: pusť to naostro. I „nepustila jsem to a tady je proč“ je platná odpověď.',
+        'Úkol na týden je jediný: pustit svoji úlohu na skutečné práci a přinést zpátky, co se stalo. Je popsaný v lekci Pusť to naostro. I „nepustila jsem to a tady je proč“ je platná odpověď.',
     },
   ],
 }
@@ -219,6 +223,84 @@ const VIDEOS_CLAUDE_CODE: VideoRef[] = [
     note: 'Konkrétně k CLAUDE.md a skillům — pusť si to, až budeš psát svůj první.',
   },
 ]
+
+const LESSON_SLOVNICEK: Lesson = {
+  slug: 'slovnicek',
+  module: 'start',
+  title: 'Slovníček',
+  summary:
+    'Dvacet slov, která se v lekcích opakují. Každé jednou větou, bez techniky. Vracejte se sem, kdykoli něčemu nerozumíte.',
+  minutes: 5,
+  kind: 'lekce',
+  track: 'potom',
+  outcomes: ['rozumět slovům, která se v lekcích používají bez dalšího vysvětlování'],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Lekce se snaží mluvit česky a bez žargonu, ale pár slov se nedá obejít — jsou to názvy věcí, které v Claude Code skutečně existují a takhle se jmenují i v aplikaci. Tady jsou pohromadě. Nemusíte si je pamatovat, stačí vědět, kde je najít.',
+    },
+    { kind: 'h', text: 'Základ' },
+    {
+      kind: 'table',
+      head: ['Slovo', 'Co znamená'],
+      rows: [
+        ['Claude Code', 'aplikace (nebo příkaz claude v terminálu), ve které se pracuje nad složkou s vlastními soubory. Není to chat na webu.'],
+        ['Terminál', 'okno, do kterého se píšou příkazy textem. Na Macu aplikace Terminál, na Windows PowerShell. Většinu lekcí zvládnete bez něj.'],
+        ['Projekt', 'obyčejná složka, kterou v Claude Code otevřete. Všechno, co v ní je, Claude vidí.'],
+        ['CLAUDE.md', 'textový soubor v projektu s pravidly a slovníkem vaší agendy. Claude si ho přečte na začátku každého sezení, takže ho nemusíte opakovat.'],
+        ['Sezení', 'jeden rozhovor s Claudem od otevření po zavření. Co v něm řeknete, si pamatuje jen do konce sezení — trvalé věci patří do CLAUDE.md.'],
+        ['Zadání (prompt)', 'to, co Claudovi napíšete. V lekcích má vždycky čtyři části: co vzít, co udělat, kam uložit, co s výjimkou.'],
+      ],
+    },
+    { kind: 'h', text: 'Pět schodů' },
+    {
+      kind: 'table',
+      head: ['Slovo', 'Co znamená'],
+      rows: [
+        ['Pravidlo', 'věta v CLAUDE.md, která platí pořád — třeba „čísla položek jsou text, ne čísla".'],
+        ['Skill', 'zabalený postup: složka se souborem SKILL.md, ve kterém je krok za krokem, jak se něco dělá. Claude ho použije sám, když pozná, že se hodí.'],
+        ['description', 'jeden řádek na začátku skillu, který říká, co skill dělá a kdy se má použít. Podle něj Claude pozná, že ho má sáhnout.'],
+        ['Hook', 'příkaz, který se spustí sám při určité události — třeba před každým zápisem souboru. Nemá úsudek, proto se hodí na zámky a upozornění, ne na rozhodování.'],
+        ['Naplánovaná úloha (routine)', 'zadání, které se spustí samo v daný čas — v pondělí v šest, každou hodinu. Local běží na vašem počítači, Cloud na serveru.'],
+        ['Kontrolní protokol', 'krátký soubor, který úloha zapíše na konec běhu: kolik čeho bylo na vstupu, kolik na výstupu, co nesedělo. Z něj poznáte, jestli to dopadlo, aniž byste otevírali výstupy.'],
+        ['Runbook', 'jedna stránka pro chvíli, kdy něco spadne a vy jste na dovolené: co to dělá, kdy běží, co zkontrolovat, komu napsat.'],
+      ],
+    },
+    { kind: 'h', text: 'Napojení' },
+    {
+      kind: 'table',
+      head: ['Slovo', 'Co znamená'],
+      rows: [
+        ['Sync (synchronizace)', 'OneDrive drží kopii knihovny ze SharePointu na vašem disku a průběžně ji srovnává. Díky tomu s ní Claude umí pracovat jako s obyčejnou složkou.'],
+        ['Zástupce souboru', 'soubor, který ve složce vidíte, ale jeho obsah je jen v cloudu. Claude v něm nic nepřečte. Řeší to „Vždy ponechat v tomto zařízení".'],
+        ['Konektor', 'přípojka na službu mimo váš disk — na poštu, Teams, SharePoint jako web, katalog. Bez konektoru Claude vidí jen soubory ve složce.'],
+        ['MCP server', 'způsob, jakým se konektor píše. Když někdo řekne „máme MCP na katalog", myslí konektor, přes který se Claude umí ptát katalogu.'],
+        ['Write tools', 'část konektoru, která umí něco odeslat nebo změnit — třeba poslat e-mail. Zapíná se zvlášť a musí ji povolit správce.'],
+        ['Správce (admin)', 'člověk z IT, který ve firmě povoluje konektory a oprávnění. Bez něj některé věci prostě nepůjdou — ptejte se ho dřív, než na nich něco postavíte.'],
+      ],
+    },
+    { kind: 'h', text: 'Soubory' },
+    {
+      kind: 'table',
+      head: ['Slovo', 'Co znamená'],
+      rows: [
+        ['data/', 'složka v projektu se vstupy. Nikdy se do ní nezapisuje — originál je jediná kopie.'],
+        ['vystupy/', 'složka v projektu, kam jdou výsledky. Když se něco pokazí, smaže se a udělá znovu.'],
+        ['.claude/', 'skrytá složka v projektu, ve které jsou skilly a nastavení hooků. Tečka na začátku znamená, že ji Průzkumník ani Finder normálně neukazují.'],
+        ['.xlsx', 'soubor Excelu. Není to text, proto si na něj Claude napíše kratičký skript — toho si ani nevšimnete.'],
+        ['Repozitář (repo)', 'složka projektu uložená na GitHubu, aby se dala stáhnout a sdílet. Potkáte ho jen u MCP serveru — stačí vědět, že „stáhnout repozitář" znamená stáhnout složku.'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Když tu slovo není',
+      text:
+        'Zeptejte se Clauda: „co znamená X, řekni mi to jednou větou bez techniky". Odpoví lépe než jakýkoli slovník, protože ví, v jakém kontextu jste na to slovo narazili. A řekněte to lektorovi — doplní se sem.',
+    },
+  ],
+}
 
 const LESSON_PROJEKT: Lesson = {
   slug: 'projekt-v-claude-code',
@@ -371,18 +453,20 @@ const LESSON_PROJEKT: Lesson = {
     },
     {
       kind: 'code',
-      text: `.claude/skills/rozpad-divizi/SKILL.md
+      text: `.claude/skills/logisticke-dostupnosti/SKILL.md
 
 ---
-name: rozpad-divizi
-description: Rozdělí velký Excel s položkami magazínu na čtyři divizní soubory (nářadí, dekton, elektro, voda-topo). Použij, když je v data/ nový export a mají se rozeslat produkťákům.
+name: logisticke-dostupnosti
+description: Z exportu listu Logistika připraví soubory pro produkťáky
+  po divizích (Nářadí, Elektro, VTS, Piekarová). Použij, když je v data/
+  nový export magazínu a mají se rozeslat podklady produkťákům.
 ---
 
 1. Najdi v data/ nejnovější export podle data v názvu.
-2. Zkontroluj, že má sloupce Kód, Název, Divize, Min, Max.
-3. Pro každou divizi vytvoř samostatný soubor do vystupy/.
+2. Ověř, že má sloupce Číslo položky, Katalogové číslo, Název, MJ, PM.
+3. Pro každou divizi ulož soubor Magazín <MĚSÍC> - <divize>.xlsx do vystupy/.
 ...`,
-      caption: 'Řádek description rozhoduje o tom, kdy se skill sám nabídne. Piš do něj i slova, která bys sama napsala do zadání.',
+      caption: 'Řádek description rozhoduje o tom, kdy se skill sám nabídne. Piš do něj i slova, která se běžně říkají v zadání. Celý skill je rozebraný v lekci Rozbor skutečného skillu.',
     },
     { kind: 'h', text: 'Artefakt je publikovaná stránka' },
     {
@@ -546,7 +630,7 @@ zhruba šest týdnů před vydáním magazínu.
 Zadání na začátek:
 - „Spočítej z jízd za minulý týden podíl prázdných kilometrů po vozidlech.“
 - „Vypiš tři vozidla s nejhorším poměrem a u každého tři nejdelší prázdné úseky.“
-- „Ulož to jako přehled do vystupy/ a shrň do pěti vět, co bych měl řešit.“`,
+- „Ulož to jako přehled do vystupy/ a shrň do pěti vět, co je potřeba řešit.“`,
             },
           ],
         },
@@ -635,7 +719,7 @@ Zadání na začátek:
         'Zadej mu první úlohu a všímej si, kolikrát mu musíš něco vysvětlit. Každé takové vysvětlení je kandidát na řádek v CLAUDE.md.',
       ],
       hint:
-        'Nesnaž se napsat dokonalé CLAUDE.md napoprvé. Vzniká tak, že do něj týden dopisuješ věci, které ses přistihla vysvětlovat podruhé.',
+        'Nesnaž se napsat dokonalé CLAUDE.md napoprvé. Vzniká tak, že do něj týden dopisuješ věci, u kterých se přistihneš, že je vysvětluješ podruhé.',
     },
   ],
 }
@@ -694,7 +778,7 @@ const STEPS_MAC: Block[] = [
       {
         title: 'Klikni na Přidat zástupce do OneDrivu',
         body:
-          'V horní liště knihovny je Synchronizovat a vedle Přidat zástupce do OneDrivu (Add shortcut to OneDrive). Vezmi zástupce — chová se stejně, ale funguje i na jiných počítačích, kde jsi přihlášený, a dá se snáz odebrat. Systém se zeptá, jestli má otevřít OneDrive, potvrď to.',
+          'V horní liště knihovny je Synchronizovat a vedle Přidat zástupce do OneDrivu (Add shortcut to OneDrive). Vezmi zástupce — chová se stejně, ale funguje i na jiných počítačích, kde je člověk přihlášený, a dá se snáz odebrat. Systém se zeptá, jestli má otevřít OneDrive, potvrď to.',
       },
       {
         title: 'Počkej, až OneDrive dosyncuje',
@@ -713,9 +797,10 @@ const STEPS_MAC: Block[] = [
           'Pravý klik na složku → Vždy ponechat v tomto zařízení (Always Keep on This Device). Bez tohohle kroku má většina souborů na disku jen zástupce a Claude v nich nic nepřečte — vidí název, ale ne obsah.',
       },
       {
-        title: 'Připoj složku v Claudovi',
+        title: 'Otevři složku v Claude Code',
         body:
-          'V desktopové aplikaci Claude otevři úkol v Coworku a použij tlačítko Add folder / Přidat složku. Vyber tu nasyncovanou složku. Od téhle chvíle v ní Claude umí číst, hledat a zakládat soubory.',
+          'V desktopové aplikaci Claude Code (záložka Code) klikni na Open folder / Otevřít složku a vyber tu nasyncovanou. Když se zeptá, jestli složce věříš, potvrď. Od téhle chvíle v ní Claude umí číst, hledat a zakládat soubory. Kdo pracuje v terminálu, udělá totéž příkazem níž.',
+        code: 'cd ~/Library/CloudStorage/OneDrive-<firma>/<knihovna>\nclaude',
       },
       {
         title: 'Ověř to jednou větou',
@@ -760,7 +845,7 @@ const STEPS_WIN: Block[] = [
       {
         title: 'Klikni na Přidat zástupce do OneDrivu',
         body:
-          'V horní liště knihovny je Synchronizovat a vedle Přidat zástupce do OneDrivu (Add shortcut to OneDrive). Vezmi zástupce — chová se stejně, ale funguje i na jiných počítačích, kde jsi přihlášený, a dá se snáz odebrat.',
+          'V horní liště knihovny je Synchronizovat a vedle Přidat zástupce do OneDrivu (Add shortcut to OneDrive). Vezmi zástupce — chová se stejně, ale funguje i na jiných počítačích, kde je člověk přihlášený, a dá se snáz odebrat.',
       },
       {
         title: 'Počkej, až OneDrive dosyncuje',
@@ -779,9 +864,10 @@ const STEPS_WIN: Block[] = [
           'Pravý klik na složku → Vždy zachovat v tomto zařízení (Always keep on this device). Bez tohohle kroku má většina souborů na disku jen zástupce a Claude v nich nic nepřečte — vidí název, ale ne obsah.',
       },
       {
-        title: 'Připoj složku v Claudovi',
+        title: 'Otevři složku v Claude Code',
         body:
-          'V desktopové aplikaci Claude otevři úkol v Coworku a použij tlačítko Add folder / Přidat složku. Vyber tu nasyncovanou složku. Od téhle chvíle v ní Claude umí číst, hledat a zakládat soubory.',
+          'V desktopové aplikaci Claude Code (záložka Code) klikni na Open folder / Otevřít složku a vyber tu nasyncovanou. Když se zeptá, jestli složce věříš, potvrď. Od téhle chvíle v ní Claude umí číst, hledat a zakládat soubory. Kdo pracuje v terminálu, udělá totéž příkazem níž.',
+        code: 'cd %UserProfile%\\<firma>\\<knihovna>\nclaude',
       },
       {
         title: 'Ověř to jednou větou',
@@ -808,7 +894,7 @@ const STEPS_WIN: Block[] = [
       [
         'Složka v Průzkumníku není',
         'Zástupce se přidal do jiného účtu OneDrivu',
-        'Klikni na ikonu mráčku → ozubené kolo → Nastavení → Účet a zkontroluj, kterým účtem jsi přihlášený',
+        'Klikni na ikonu mráčku → ozubené kolo → Nastavení → Účet a zkontroluj, kterým účtem je OneDrive přihlášený',
       ],
     ],
   },
@@ -840,7 +926,7 @@ const LESSON_SHAREPOINT: Lesson = {
       tone: 'info',
       title: 'Co k tomu potřebuješ',
       text:
-        'Počítač s nainstalovanou aplikací OneDrive přihlášenou firemním účtem, přístup do knihovny na SharePointu a desktopovou aplikaci Claude. Nic dalšího se neinstaluje.',
+        'Počítač s nainstalovanou aplikací OneDrive přihlášenou firemním účtem, přístup do knihovny na SharePointu a Claude Code. Nic dalšího se neinstaluje.',
     },
     {
       kind: 'figure',
@@ -918,7 +1004,7 @@ const LESSON_CO_VIDI: Lesson = {
     {
       kind: 'p',
       text:
-        'Připojená složka není přístup do počítače. Je to přesně vymezený kus disku — ten, který jsi vybrala — a všechno ostatní zůstává mimo dosah. Vyplatí se vědět, kde ta hranice vede, protože podle toho se píše zadání.',
+        'Připojená složka není přístup do počítače. Je to přesně vymezený kus disku — ten, který si vybereš — a všechno ostatní zůstává mimo dosah. Vyplatí se vědět, kde ta hranice vede, protože podle toho se píše zadání.',
     },
     { kind: 'h', text: 'Uvnitř složky' },
     {
@@ -935,8 +1021,8 @@ const LESSON_CO_VIDI: Lesson = {
       kind: 'list',
       items: [
         'Cokoli mimo připojené složky — jiné disky, plocha, pošta.',
-        'Mazání souborů. Je vypnuté, dokud ho výslovně nepovolíš, a povolení platí jen do konce sezení.',
-        'Práce se soubory, když je desktopová aplikace Claude zavřená.',
+        'Mazání souborů bez dotazu. Na smazání se Claude Code zeptá a ty ho musíš odkliknout — pokud si to výslovně nepovolíš jinak.',
+        'Práce se soubory, když je Claude Code zavřený — nic neběží na pozadí, dokud si to nenaplánuješ (to je až poslední lekce).',
       ],
     },
     {
@@ -962,7 +1048,7 @@ const LESSON_CO_VIDI: Lesson = {
 const LESSON_REGAL: Lesson = {
   slug: 'od-magazinu-do-regalu',
   module: 'zadani',
-  title: 'Zadání: Od magazínu do regálu',
+  title: 'Od magazínu do regálu',
   summary:
     'Reálný proces akčního regálu rozepsaný na kroky. Úkolem je najít místa, kde se dá práce automatizovat.',
   minutes: 25,
@@ -985,7 +1071,7 @@ const LESSON_REGAL: Lesson = {
       head: ['Parametr', 'Hodnota'],
       rows: [
         ['Předstih', '~6 týdnů, bez pevného termínu'],
-        ['Divize', '4 — nářadí, dekton, elektro, voda-topo'],
+        ['Divize', '4 — Nářadí, Elektro, VTS, Piekarová (podle souborů, které se rozesílají)'],
         ['Produkťáci', '11, každý má svoje značky a sekce'],
         ['Plocha regálu', '130 × 900 cm'],
         ['Položky', 'z ~150 v magazínu se do regálu vejde ~80'],
@@ -1213,7 +1299,7 @@ const LESSON_AUTOMATIZACE: Lesson = {
     {
       kind: 'p',
       text:
-        'Automatizace nevznikne tím, že si řekneš „automatizuj to“. Vzniká po schodech: nejdřív úlohu uděláš ručně a popíšeš výsledek, pak z toho, co jsi musela vysvětlit, uděláš pravidlo, pak z celého postupu skill — a teprve když skill několikrát doběhl správně, má smysl ho spouštět bez sebe. Schody se nedají přeskočit. Kdo začne posledním, nastaví automat na postup, který si nikdy neověřil.',
+        'Automatizace nevznikne tím, že si řekneš „automatizuj to“. Vzniká po schodech: nejdřív úlohu uděláš ručně a popíšeš výsledek, pak z toho, co bylo potřeba vysvětlit, uděláš pravidlo, pak z celého postupu skill — a teprve když skill několikrát doběhl správně, má smysl ho spouštět bez sebe. Schody se nedají přeskočit. Kdo začne posledním, nastaví automat na postup, který si nikdy neověřil.',
     },
     {
       kind: 'figure',
@@ -1237,7 +1323,7 @@ Kde data chybí, nech prázdno a na konci mi napiš, u kolika položek to bylo.`
     {
       kind: 'p',
       text:
-        'Musela jsi říct, že kódy položek se nesmí měnit na čísla? Že se bere nejnovější soubor podle data v názvu? To nejsou postupy, to jsou fakta o agendě — patří do CLAUDE.md a od té chvíle platí v každém sezení. Tenhle stupeň je nejlevnější a nejvíc se vyplatí: většina „Claude to udělal blbě“ je ve skutečnosti pravidlo, které nikdo nenapsal.',
+        'Bylo potřeba říct, že kódy položek se nesmí měnit na čísla? Že se bere nejnovější soubor podle data v názvu? To nejsou postupy, to jsou fakta o agendě — patří do CLAUDE.md a od té chvíle platí v každém sezení. Tenhle stupeň je nejlevnější a nejvíc se vyplatí: většina „Claude to udělal blbě“ je ve skutečnosti pravidlo, které nikdo nenapsal.',
     },
     { kind: 'h', text: '3. Skill — zabal celý postup' },
     {
@@ -1269,7 +1355,7 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
    (1=nejvyšší, 2=nízká, 3=nejnižší).
 6. Na konci vypiš počet položek po divizích a seznam položek,
    u kterých chyběla data.`,
-      caption: 'Řádek description rozhoduje o tom, kdy si skill Claude vybere sám. Piš do něj i slova, která bys napsala do zadání ty.',
+      caption: 'Řádek description rozhoduje o tom, kdy si skill Claude vybere sám. Piš do něj i slova, která do zadání píšeš ty.',
     },
     {
       kind: 'note',
@@ -1475,7 +1561,7 @@ exit 0`,
     },
     {
       kind: 'code',
-      text: `claude -p "Postupuj podle skillu rozpad-divizi a výsledek ulož do vystupy/."`,
+      text: `claude -p "Postupuj podle skillu logisticke-dostupnosti a výsledek ulož do vystupy/."`,
       caption: 'Jeden běh bez rozhovoru. Tohle je věta, kterou vložíš do naplánované úlohy — v Claude Code záložka Code → Routines → New routine → Local. Podrobně je to v lekci Nech to běžet bez sebe.',
     },
     {
@@ -1511,7 +1597,7 @@ exit 0`,
         'Vezmi svoji agendu a v ní jeden krok, který děláš každý týden. Nezačínej tím nejsložitějším.',
       items: [
         'Napiš, na kterém stupni ten krok dneska je.',
-        'Udělej ho jednou se zadáním a zapiš si každé doříkání, které jsi musela dodat.',
+        'Udělej ho jednou se zadáním a zapiš si každé doříkání, které bylo potřeba dodat.',
         'Doříkání, která platí pořád, přepiš do CLAUDE.md.',
         'Zbytek — samotný postup — přepiš do SKILL.md a spusť ho znovu na jiných datech.',
         'Napiš jednu větu o tom, jak poznáš, že výsledek je špatně. Bez ní na další stupeň nechoď.',
@@ -1527,15 +1613,14 @@ const LESSON_SKILL: Lesson = {
   module: 'potom',
   title: 'Jak napsat skill (a nechat si ho napsat)',
   summary:
-    'Z čeho se skill skládá, proč o všem rozhoduje jediný řádek, a rozbor skutečného skillu z logistiky — co mu chybí, aby se dal pustit bez dozoru.',
-  minutes: 15,
+    'Z čeho se skill skládá, proč o všem rozhoduje jediný řádek, a co dát Claudovi, aby ti skill napsal sám a dobře.',
+  minutes: 10,
   kind: 'lekce',
   track: 'potom',
   outcomes: [
     'poznat, kdy je čas udělat ze zadání skill',
     'napsat description tak, aby se skill spouštěl ve správnou chvíli',
     'rozdělit obsah mezi SKILL.md a přílohy',
-    'poznat na hotovém skillu, co mu chybí, aby mohl běžet bez dozoru',
     'dát Claudovi podklady, ze kterých ti skill napíše sám',
     'ověřit, že skill funguje i na jiných datech než na těch, ze kterých vznikl',
   ],
@@ -1594,7 +1679,7 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
     {
       kind: 'p',
       text:
-        'Tělo skillu se načte, až když si ho Claude vybere. A vybírá si ho podle jednoho jediného řádku — podle description. Když je vágní, skill se nespustí nikdy, nebo se naopak plete do věcí, kam nepatří. Piš do něj dvě věci: co skill dělá a kdy se má použít. A používej slova, která bys sama napsala do zadání.',
+        'Tělo skillu se načte, až když si ho Claude vybere. A vybírá si ho podle jednoho jediného řádku — podle description. Když je vágní, skill se nespustí nikdy, nebo se naopak plete do věcí, kam nepatří. Piš do něj dvě věci: co skill dělá a kdy se má použít. A používej slova, která do zadání běžně píšeš.',
     },
     {
       kind: 'table',
@@ -1638,7 +1723,184 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
     └── kontrola.py   ← pokud postup potřebuje něco spustit`,
       caption: 'Přílohy jsou volitelné. Většina užitečných skillů je jen SKILL.md.',
     },
-    { kind: 'h', text: 'Rozbor skutečného skillu' },
+    { kind: 'h', text: 'Nech si ho napsat' },
+    {
+      kind: 'p',
+      text:
+        'Nejrychlejší cesta k prvnímu skillu není psát ho na prázdno. Je udělat tu úlohu jednou ručně se zadáním a pak říct Claudovi, ať z toho, co se právě stalo, udělá skill. On zná průběh — včetně toho, co jsi mu musela doříct.',
+    },
+    {
+      kind: 'code',
+      text: `Z toho, co jsme teď udělali, napiš skill do .claude/skills/.
+
+Dej mu jméno podle úlohy a do description napiš, co dělá a kdy se má
+použít — takovými slovy, jaká bych do zadání napsala já.
+
+V postupu drž pořadí kroků, které jsme prošli, a doplň místa, kde ses
+mě ptal nebo kde jsem tě opravovala — z nich udělej buď krok navíc,
+nebo zastavovací pravidlo.
+
+Na konec přidej sekci "Na co si dát pozor" s věcmi, které se tady dají
+splést. Pak mi ho ukaž, ať ho projdu, než ho uložíš.`,
+      caption: 'Tenhle prompt napiš hned po tom, co úloha doběhla správně. Ne druhý den — kontext je to nejcennější, co v tu chvíli máš.',
+    },
+    { kind: 'h', text: 'Zkratka: skill na psaní skillů' },
+    {
+      kind: 'p',
+      text:
+        'Nemusíš na to být sám či sama. V Claude Code je skill-creator — napiš lomítko a jeho jméno a provede tě založením nového skillu, úpravou existujícího i tím, jestli se spouští ve správných situacích. Výsledek se ukládá přes kartu, kterou si nejdřív projdeš, ne tak, že by ti někdo psal do souborů za zády.',
+    },
+    {
+      kind: 'code',
+      text: `muj-skill/
+├── SKILL.md          ← povinné, jediné co musí být
+├── references/       ← delší dokumentace, načte se až když je potřeba
+├── scripts/          ← spustitelné skripty
+└── assets/           ← šablony, obrázky`,
+      caption: 'Obsah se načítá postupně: nejdřív jen description, pak SKILL.md, a přílohy teprve když na ně dojde. Proto drž SKILL.md stručný — pod pět set řádků — a detaily odsuň do references/.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Nemusíš vědět, co po něm chceš technicky. Řekni mu to vlastními slovy — umí skill založit, opravit i vyzkoušet, jestli se vůbec spouští.',
+    },
+    {
+      kind: 'code',
+      text: `/skill-creator
+Chci skill, který mi z nového exportu magazínu udělá čtyři divizní
+soubory pro produkťáky.
+
+/skill-creator
+Mám skill logisticke-dostupnosti, ale nespustí se, když napíšu
+„připrav podklady pro produkťáky". Sprav mi to.
+
+/skill-creator
+Z toho, co jsme právě udělali, udělej skill. Pak mi řekni, jestli
+se spustí, když stejnou úlohu zadám jinými slovy.`,
+      caption: 'Tři věci, na které se hodí: založit nový, opravit spouštění existujícího, a zabalit něco, co jsi právě odpracovala.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Tři věci, které rozhodují o kvalitě',
+      text:
+        'Jméno složky = jméno skillu. Description musí říct co to dělá i kdy to použít, slovy, která uživatel opravdu napíše. A tělo drž krátké, protože každý řádek navíc soutěží o pozornost s tím podstatným.',
+    },
+    {
+      kind: 'links',
+      title: 'Oficiální dokumentace',
+      items: [
+        {
+          label: 'Skill authoring best practices',
+          href: 'https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices',
+          note: 'Nejužitečnější stránka z celé čtveřice. Začni tady.',
+        },
+        {
+          label: 'Agent Skills — overview',
+          href: 'https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview',
+          note: 'Co skilly jsou a jak se načítají.',
+        },
+        {
+          label: 'Extend Claude with skills (Claude Code)',
+          href: 'https://code.claude.com/docs/en/skills',
+          note: 'Umístění složek a všechna pole hlavičky.',
+        },
+        {
+          label: 'The Complete Guide to Building Skills for Claude (PDF)',
+          href: 'https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf',
+          note: 'Delší materiál na jedno odpoledne.',
+        },
+      ],
+    },
+    { kind: 'h', text: 'Co Claudovi dát, aby vyšel dobře' },
+    {
+      kind: 'p',
+      text:
+        'Kvalita skillu se odvíjí od toho, kolik ze svého tichého vědění mu předáš. Tohle je pořadí podle užitku.',
+    },
+    {
+      kind: 'table',
+      head: ['Dej mu', 'Co z toho vytěží'],
+      rows: [
+        ['Reálný vstupní soubor a hotový výstup z minula', 'Pozná formát, pojmenování i to, co se ve výstupu očekává. Nic z toho nemusí hádat.'],
+        ['Průběh jedné ruční úlohy', 'Zná pořadí kroků i všechna tvá doříkání — ta jsou v postupu nejcennější.'],
+        ['Seznam věcí, které se dají splést', 'Vznikne sekce „na co si dát pozor“, díky které skill nespadne u kolegy.'],
+        ['Kdy se má zastavit a zeptat', 'Skill přestane hádat tam, kde je odhad horší než otázka.'],
+        ['Jak poznáš, že je výsledek špatně', 'Přidá si kontrolní krok na konec a sám ti řekne, když něco nesedí.'],
+        ['Kdo ho bude spouštět a jak to řekne', 'Trefí se v description do slov, která ti lidé opravdu píšou.'],
+      ],
+    },
+    { kind: 'h', text: 'Otestuj ho' },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Pusť ho na jiných datech',
+          body:
+            'Ne na těch, ze kterých vznikl. Skill, který funguje jen na zářijovém exportu, není skill, ale poznámka.',
+        },
+        {
+          title: 'Zkus ho vyvolat nepřímo',
+          body:
+            'Napiš úlohu vlastními slovy a nezmiňuj jméno skillu. Když se nespustí, problém je v description, ne v postupu.',
+        },
+        {
+          title: 'Nech ho spustit někoho jiného',
+          body:
+            'To, co je pro tebe samozřejmé, v postupu chybí. Pozná se to jedině tak, že to zkusí člověk, který agendu nedělá.',
+        },
+        {
+          title: 'Když vyjde jinak než minule, doplň pravidlo',
+          body:
+            'Rozdíl mezi dvěma běhy je skoro vždycky chybějící informace, ne chyba postupu. Přidej ji a zkus to znovu.',
+        },
+      ],
+    },
+    {
+      kind: 'table',
+      head: ['Častá chyba', 'Jak se projeví', 'Oprava'],
+      rows: [
+        ['Vágní description', 'skill se nikdy sám nespustí', 'dopiš, kdy se má použít, a slovy ze zadání'],
+        ['Postup jako souvislý text', 'kroky se přeskakují', 'rozepiš na číslovaný seznam'],
+        ['Fakta o agendě uvnitř skillu', 'jinde ta pravidla neplatí', 'přesuň je do CLAUDE.md'],
+        ['Skill napsaný na jeden soubor', 'příští měsíc nefunguje', 'popiš vzor názvu, ne konkrétní jméno'],
+        ['Žádné zastavovací pravidlo', 'dopočítá si, co nemá', 'napiš, kdy se má zastavit a zeptat'],
+        ['Příliš dlouhý SKILL.md', 'kroky se ztrácejí', 'detaily do souboru vedle, odkaz v postupu'],
+      ],
+    },
+    {
+      kind: 'task',
+      title: 'Cvičení: napiš první skill z toho, co právě proběhlo',
+      intro:
+        'Vezmi úlohu, kterou máš z cvičení Postav si první automatizaci. Nezakládej nový soubor ručně.',
+      items: [
+        'Nech Clauda napsat skill promptem výš a přečti si, co vygeneroval.',
+        'Zkontroluj description: trefil by se do zadání, jaké napíšeš příště? Když ne, přepiš ho.',
+        'Projdi kroky a doplň jedno zastavovací pravidlo, které tam chybí.',
+        'Spusť skill na datech z jiného měsíce.',
+        'Vyvolej ho podruhé bez toho, aby zaznělo jeho jméno — jen popiš úlohu.',
+      ],
+      hint:
+        'Když se skill nespustí sám, nepiš delší postup. Přepiš description. Devět z deseti případů je tam.',
+    },
+  ],
+}
+
+const L2_ROZBOR: Lesson = {
+  slug: 'rozbor-skillu',
+  module: 'potom',
+  title: 'Rozbor skutečného skillu',
+  summary:
+    'Skill logisticke-dostupnosti tak, jak ho napsala logistika: co je na něm dobře, čtyři místa, kde selže potichu, a vylepšená verze, která se dá pustit bez dozoru.',
+  minutes: 8,
+  kind: 'lekce',
+  track: 'potom',
+  outcomes: [
+    'poznat na hotovém skillu, co mu chybí, aby mohl běžet bez dozoru',
+    'odlišit chybu, která spadne nahlas, od chyby, která projde potichu',
+    'použít čtyři otázky z rozboru na vlastní skill',
+  ],
+  body: [
     {
       kind: 'p',
       text:
@@ -1845,166 +2107,6 @@ Do data/ se nezapisuje. Všechno nové jde do vystupy/.
       ],
       hint: 'Když u některé odpovíš „nevím", je to ta, kterou máš opravit jako první.',
     },
-    { kind: 'h', text: 'Nech si ho napsat' },
-    {
-      kind: 'p',
-      text:
-        'Nejrychlejší cesta k prvnímu skillu není psát ho na prázdno. Je udělat tu úlohu jednou ručně se zadáním a pak říct Claudovi, ať z toho, co se právě stalo, udělá skill. On zná průběh — včetně toho, co jsi mu musela doříct.',
-    },
-    {
-      kind: 'code',
-      text: `Z toho, co jsme teď udělali, napiš skill do .claude/skills/.
-
-Dej mu jméno podle úlohy a do description napiš, co dělá a kdy se má
-použít — takovými slovy, jaká bych do zadání napsala já.
-
-V postupu drž pořadí kroků, které jsme prošli, a doplň místa, kde ses
-mě ptal nebo kde jsem tě opravovala — z nich udělej buď krok navíc,
-nebo zastavovací pravidlo.
-
-Na konec přidej sekci "Na co si dát pozor" s věcmi, které se tady dají
-splést. Pak mi ho ukaž, ať ho projdu, než ho uložíš.`,
-      caption: 'Tenhle prompt napiš hned po tom, co úloha doběhla správně. Ne druhý den — kontext je to nejcennější, co v tu chvíli máš.',
-    },
-    { kind: 'h', text: 'Zkratka: skill na psaní skillů' },
-    {
-      kind: 'p',
-      text:
-        'Nemusíš na to sama. V Claude Code je skill-creator — napiš lomítko a jeho jméno a provede tě založením nového skillu, úpravou existujícího i tím, jestli se spouští ve správných situacích. Výsledek se ukládá přes kartu, kterou si nejdřív projdeš, ne tak, že by ti někdo psal do souborů za zády.',
-    },
-    {
-      kind: 'code',
-      text: `muj-skill/
-├── SKILL.md          ← povinné, jediné co musí být
-├── references/       ← delší dokumentace, načte se až když je potřeba
-├── scripts/          ← spustitelné skripty
-└── assets/           ← šablony, obrázky`,
-      caption: 'Obsah se načítá postupně: nejdřív jen description, pak SKILL.md, a přílohy teprve když na ně dojde. Proto drž SKILL.md stručný — pod pět set řádků — a detaily odsuň do references/.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Nemusíš vědět, co po něm chceš technicky. Řekni mu to vlastními slovy — umí skill založit, opravit i vyzkoušet, jestli se vůbec spouští.',
-    },
-    {
-      kind: 'code',
-      text: `/skill-creator
-Chci skill, který mi z nového exportu magazínu udělá čtyři divizní
-soubory pro produkťáky.
-
-/skill-creator
-Mám skill logisticke-dostupnosti, ale nespustí se, když napíšu
-„připrav podklady pro produkťáky". Sprav mi to.
-
-/skill-creator
-Z toho, co jsme právě udělali, udělej skill. Pak mi řekni, jestli
-se spustí, když stejnou úlohu zadám jinými slovy.`,
-      caption: 'Tři věci, na které se hodí: založit nový, opravit spouštění existujícího, a zabalit něco, co jsi právě odpracovala.',
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Tři věci, které rozhodují o kvalitě',
-      text:
-        'Jméno složky = jméno skillu. Description musí říct co to dělá i kdy to použít, slovy, která uživatel opravdu napíše. A tělo drž krátké, protože každý řádek navíc soutěží o pozornost s tím podstatným.',
-    },
-    {
-      kind: 'links',
-      title: 'Oficiální dokumentace',
-      items: [
-        {
-          label: 'Skill authoring best practices',
-          href: 'https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices',
-          note: 'Nejužitečnější stránka z celé čtveřice. Začni tady.',
-        },
-        {
-          label: 'Agent Skills — overview',
-          href: 'https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview',
-          note: 'Co skilly jsou a jak se načítají.',
-        },
-        {
-          label: 'Extend Claude with skills (Claude Code)',
-          href: 'https://code.claude.com/docs/en/skills',
-          note: 'Umístění složek a všechna pole hlavičky.',
-        },
-        {
-          label: 'The Complete Guide to Building Skills for Claude (PDF)',
-          href: 'https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf',
-          note: 'Delší materiál na jedno odpoledne.',
-        },
-      ],
-    },
-    { kind: 'h', text: 'Co Claudovi dát, aby vyšel dobře' },
-    {
-      kind: 'p',
-      text:
-        'Kvalita skillu se odvíjí od toho, kolik ze svého tichého vědění mu předáš. Tohle je pořadí podle užitku.',
-    },
-    {
-      kind: 'table',
-      head: ['Dej mu', 'Co z toho vytěží'],
-      rows: [
-        ['Reálný vstupní soubor a hotový výstup z minula', 'Pozná formát, pojmenování i to, co se ve výstupu očekává. Nic z toho nemusí hádat.'],
-        ['Průběh jedné ruční úlohy', 'Zná pořadí kroků i všechna tvá doříkání — ta jsou v postupu nejcennější.'],
-        ['Seznam věcí, které se dají splést', 'Vznikne sekce „na co si dát pozor“, díky které skill nespadne u kolegy.'],
-        ['Kdy se má zastavit a zeptat', 'Skill přestane hádat tam, kde je odhad horší než otázka.'],
-        ['Jak poznáš, že je výsledek špatně', 'Přidá si kontrolní krok na konec a sám ti řekne, když něco nesedí.'],
-        ['Kdo ho bude spouštět a jak to řekne', 'Trefí se v description do slov, která ti lidé opravdu píšou.'],
-      ],
-    },
-    { kind: 'h', text: 'Otestuj ho' },
-    {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Pusť ho na jiných datech',
-          body:
-            'Ne na těch, ze kterých vznikl. Skill, který funguje jen na zářijovém exportu, není skill, ale poznámka.',
-        },
-        {
-          title: 'Zkus ho vyvolat nepřímo',
-          body:
-            'Napiš úlohu vlastními slovy a nezmiňuj jméno skillu. Když se nespustí, problém je v description, ne v postupu.',
-        },
-        {
-          title: 'Nech ho spustit někoho jiného',
-          body:
-            'To, co je pro tebe samozřejmé, v postupu chybí. Pozná se to jedině tak, že to zkusí člověk, který agendu nedělá.',
-        },
-        {
-          title: 'Když vyjde jinak než minule, doplň pravidlo',
-          body:
-            'Rozdíl mezi dvěma běhy je skoro vždycky chybějící informace, ne chyba postupu. Přidej ji a zkus to znovu.',
-        },
-      ],
-    },
-    {
-      kind: 'table',
-      head: ['Častá chyba', 'Jak se projeví', 'Oprava'],
-      rows: [
-        ['Vágní description', 'skill se nikdy sám nespustí', 'dopiš, kdy se má použít, a slovy ze zadání'],
-        ['Postup jako souvislý text', 'kroky se přeskakují', 'rozepiš na číslovaný seznam'],
-        ['Fakta o agendě uvnitř skillu', 'jinde ta pravidla neplatí', 'přesuň je do CLAUDE.md'],
-        ['Skill napsaný na jeden soubor', 'příští měsíc nefunguje', 'popiš vzor názvu, ne konkrétní jméno'],
-        ['Žádné zastavovací pravidlo', 'dopočítá si, co nemá', 'napiš, kdy se má zastavit a zeptat'],
-        ['Příliš dlouhý SKILL.md', 'kroky se ztrácejí', 'detaily do souboru vedle, odkaz v postupu'],
-      ],
-    },
-    {
-      kind: 'task',
-      title: 'Cvičení: napiš první skill z toho, co jsi právě udělala',
-      intro:
-        'Vezmi úlohu, kterou jsi v předchozí lekci prošla ručně. Nezakládej nový soubor sama.',
-      items: [
-        'Nech Clauda napsat skill promptem výš a přečti si, co vygeneroval.',
-        'Zkontroluj description: trefil by se do zadání, které bys napsala příště? Když ne, přepiš ho.',
-        'Projdi kroky a doplň jedno zastavovací pravidlo, které tam chybí.',
-        'Spusť skill na datech z jiného měsíce.',
-        'Vyvolej ho podruhé, aniž bys řekla jeho jméno — jen popiš úlohu.',
-      ],
-      hint:
-        'Když se skill nespustí sám, nepiš delší postup. Přepiš description. Devět z deseti případů je tam.',
-    },
   ],
 }
 
@@ -2062,7 +2164,7 @@ const LESSON_CVICENI: Lesson = {
     {
       kind: 'p',
       text:
-        'V UX se tomuhle typu rozhovoru říká kontextové dotazování a stojí na jednom rozdílu: lidé popisují svoji práci jinak, než ji dělají. Když se zeptáte „jak to děláš“, dostanete uklizenou verzi bez výjimek. Když se zeptáte „ukaž mi, jak jsi to dělala naposledy“, dostanete tu skutečnou — i s tím, že jeden člověk posílá print screeny a jedna položka se musí přeťukat ručně.',
+        'V UX se tomuhle typu rozhovoru říká kontextové dotazování a stojí na jednom rozdílu: lidé popisují svoji práci jinak, než ji dělají. Když se zeptáte „jak to děláš“, dostanete uklizenou verzi bez výjimek. Když se zeptáte „ukaž mi, jak to bylo naposledy“, dostanete tu skutečnou — i s tím, že jeden člověk posílá print screeny a jedna položka se musí přeťukat ručně.',
     },
     {
       kind: 'list',
@@ -2183,10 +2285,10 @@ Kdyby ses zítra nemohla dostat k počítači, co by kolega nevěděl?`,
             'Pošlete si ji z telefonu do počítače a uložte do složky projektu, do podsložky podklady/. Ne na plochu — projekt je to, co Claude vidí.',
         },
         {
-          title: 'Nechte ji přepsat',
+          title: 'Nechte ji přepsat — ale ne Claudem',
           body:
-            'Použijte skill prepis-rozhovoru, který je popsaný níž. Vznikne textový přepis s časy, ve kterém se dá hledat.',
-          code: 'Přepiš nahrávku z podklady/ a ulož přepis vedle ní.',
+            'Claude Code zvuk neslyší. Přepis udělá jiná věc a Claude pak pracuje s textem. Nejjednodušší je nechat si nahrávku přepsat rovnou v telefonu: Hlasové záznamy na iPhonu (od iOS 18) i Rekordér na Androidu mají přepis vestavěný — text zkopírujte do souboru vedle nahrávky, stejný název, přípona .txt. Kdo to v telefonu nemá, použije skript na přepis, který dostanete od lektora; položí .txt vedle nahrávky sám. Teprve pak přijde na řadu skill níž — ten přepis uklidí, doplní časy a vytáhne z něj pojmy.',
+          code: 'V podklady/ je nahrávka a vedle ní přepis. Postupuj podle skillu prepis-rozhovoru.',
         },
         {
           title: 'Doplňte reálné soubory, ne screenshoty',
@@ -2235,7 +2337,7 @@ Na konec vypiš tři místa, kde se nejvíc přepisuje.`,
     {
       kind: 'p',
       text:
-        'Tenhle skill napíšete jednou a použijete ho na každý další rozhovor. Je to přesně ten případ z minulé lekce: postup, který se opakuje, a stačí ho popsat jednou.',
+        'Tenhle skill napíšete jednou a použijete ho na každý další rozhovor. Je to přesně ten případ z lekce Projekt v Claude Code: postup, který se opakuje, a stačí ho popsat jednou. Jak se skill zakládá, nemusíte teď vědět — stačí vytvořit v projektu složku .claude/skills/prepis-rozhovoru/ a do ní uložit soubor SKILL.md s textem níž. Nebo to celé řekněte Claudovi: „založ mi skill prepis-rozhovoru s tímhle obsahem".',
     },
     {
       kind: 'code',
@@ -2243,17 +2345,20 @@ Na konec vypiš tři místa, kde se nejvíc přepisuje.`,
 
 ---
 name: prepis-rozhovoru
-description: Přepíše nahrávku rozhovoru o něčí práci do textu s časy
-  a připraví ji jako podklad pro mapování procesu. Použij, když je
-  v podklady/ nová zvuková nahrávka z rozhovoru s kolegou.
+description: Uklidí strojový přepis rozhovoru o něčí práci, doplní časy
+  a vytáhne z něj pojmy a místa ručního přenosu dat. Použij, když je
+  v podklady/ nový přepis rozhovoru s kolegou o jeho agendě.
 ---
 
-1. Najdi v podklady/ nejnovější zvukový soubor, ke kterému ještě není
-   přepis se stejným názvem.
-2. Přepiš ho do češtiny. Ke každému úseku napiš čas ve tvaru [MM:SS].
-3. Ulož přepis vedle nahrávky pod stejným názvem s příponou .txt.
+1. Najdi v podklady/ nejnovější přepis (.txt) vedle zvukové nahrávky.
+   Když u nahrávky přepis chybí, zastav se a řekni to — sám ji
+   přepsat neumíš.
+2. Přepis uklid: rozděl na úseky po mluvčích a ke každému napiš čas
+   ve tvaru [MM:SS], pokud v přepisu je.
+3. Uklizený přepis ulož vedle původního jako <název>-prepis.txt.
+   Původní soubor nech beze změny.
 4. Na začátek přepisu napiš tři řádky: datum, agendu a kdo mluví —
-   ber je z první věty nahrávky.
+   ber je z první věty rozhovoru.
 5. Nakonec vypiš:
    - názvy souborů, systémů a zkratek, které v rozhovoru zazněly
    - věty, ve kterých někdo popisuje ruční přenos dat
@@ -2290,7 +2395,7 @@ description: Přepíše nahrávku rozhovoru o něčí práci do textu s časy
       rows: [
         [
           '„Já žádný proces nemám.“',
-          'Vezmi cokoli, co děláš každý týden a co bys musela vysvětlovat náhradě. To je proces.',
+          'Vezmi cokoli, co děláš každý týden a co by bylo potřeba vysvětlovat náhradě. To je proces.',
         ],
         [
           'Dvojice se zasekne na jednom kroku',
@@ -2298,7 +2403,7 @@ description: Přepíše nahrávku rozhovoru o něčí práci do textu s časy
         ],
         [
           'Majitel agendy se začne obhajovat',
-          'Tazatel se ptá, ne hodnotí. Vrať se k „ukaž mi, jak jsi to dělala naposledy“.',
+          'Tazatel se ptá, ne hodnotí. Vrať se k „ukaž mi, jak to bylo naposledy“.',
         ],
         [
           'Proces se větví do tří variant',
@@ -2306,7 +2411,7 @@ description: Přepíše nahrávku rozhovoru o něčí práci do textu s časy
         ],
         [
           'Kresba nejde dokončit',
-          'To je taky výsledek. Označ místo, kde jsi se zasekl — tam informace chybí i v reálu.',
+          'To je taky výsledek. Označ místo, kde to drhlo — tam informace chybí i v reálu.',
         ],
       ],
     },
@@ -2494,7 +2599,7 @@ const L2_KONTROLA: Lesson = {
     {
       kind: 'p',
       text:
-        'Tahle lekce je nudná a je nejdůležitější v celém kurzu. Důvod je jednoduchý: dokud neumíš rychle ověřit, že je výsledek v pořádku, budeš kontrolovat všechno ručně — a pak je jedno, jak dobře to Claude spočítal, protože jsi neušetřila nic. Automatizace začíná fungovat ve chvíli, kdy kontrola trvá minutu místo hodiny.',
+        'Tahle lekce je nudná a je nejdůležitější v celém kurzu. Důvod je jednoduchý: dokud neumíš rychle ověřit, že je výsledek v pořádku, budeš kontrolovat všechno ručně — a pak je jedno, jak dobře to Claude spočítal, protože se neušetřilo nic. Automatizace začíná fungovat ve chvíli, kdy kontrola trvá minutu místo hodiny.',
     },
     { kind: 'h', text: 'Tři otázky na každý výstup' },
     {
@@ -2531,7 +2636,7 @@ const L2_KONTROLA: Lesson = {
     {
       kind: 'p',
       text:
-        'Místo abys kontrolu dělala pokaždé znovu, udělej z ní součást úlohy. Ke každému výstupu ať vznikne krátký soubor, ve kterém je všechno, co potřebuješ k rozhodnutí „můžu to poslat“.',
+        'Místo opakování kontroly pokaždé znovu, udělej z ní součást úlohy. Ke každému výstupu ať vznikne krátký soubor, ve kterém je všechno, co potřebuješ k rozhodnutí „můžu to poslat“.',
     },
     {
       kind: 'code',
@@ -2622,11 +2727,11 @@ Divné:  Použité soubory nemají stejné datum (0901 vs 0902).
       title: 'Cvičení: napiš si kontrolu pro svoji úlohu',
       intro: 'Vezmi výstup, který někomu pravidelně posíláš.',
       items: [
-        'Napiš tři čísla, která musí sedět, aby ses odvážila ho poslat.',
+        'Napiš tři čísla, která musí sedět, aby se dal s klidem poslat.',
         'Nech si k poslednímu výstupu vyrobit kontrolní protokol podle šablony výš.',
         'Porovnej ho s výstupem z minulého měsíce a najdi největší rozdíl.',
         'Ten rozdíl vysvětli. Když ho vysvětlit neumíš, máš první nález.',
-        'Kontrolu přidej jako poslední krok do svého skillu.',
+        'Kontrolu přidej jako poslední krok do svého zadání — a až budeš mít skill, do něj.',
       ],
       hint:
         'Když ti kontrola trvá dýl než samotná úloha, je moc podrobná. Cílem není jistota, ale to, abys chybu chytila dřív než příjemce.',
@@ -2689,22 +2794,28 @@ const L2_POSTAV: Lesson = {
         {
           title: 'Udělej to jednou zadáním',
           body:
-            'Napiš zadání podle struktury z první lekce: co vzít, co udělat, kam uložit, co s výjimkou. A pak si všímej, kolikrát musíš něco doříct.',
+            'Napiš zadání podle struktury z lekce Zadání nad tabulkou: co vzít, co udělat, kam uložit, co s výjimkou. A pak si všímej, kolikrát musíš něco doříct.',
         },
         {
           title: 'Porovnej s tím, co je správně',
           body:
-            'Použij tři otázky z minulé lekce — počty, součty, vzorek. Tady se skoro vždycky ukáže první chybějící pravidlo.',
+            'Použij tři otázky z lekce Jak poznáš, že je to špatně — počty, součty, vzorek. Tady se skoro vždycky ukáže první chybějící pravidlo.',
         },
         {
           title: 'Doříkání přepiš do CLAUDE.md',
           body:
-            'Všechno, co jsi musela vysvětlit a co platí i mimo tuhle úlohu, je pravidlo. Do skillu to nepatří.',
+            'Všechno, co bylo potřeba vysvětlit a co platí i mimo tuhle úlohu, je pravidlo. Do skillu to nepatří.',
         },
         {
           title: 'Nech si napsat skill',
           body:
-            'Promptem z lekce o psaní skillů. Pak ho přečti a oprav description tak, aby se trefil do zadání, které bys napsala příště.',
+            'Hned po tom, co úloha doběhla správně, vlep do chatu zadání níž. Claude z právě proběhlého rozhovoru vyrobí soubor SKILL.md. Pak ho přečti a oprav řádek description tak, aby se trefil do slov, kterými bys tu úlohu zadával příště. Jak skill funguje uvnitř, je v lekci Jak napsat skill — teď to nepotřebuješ.',
+          code: `Z toho, co jsme teď udělali, napiš skill do .claude/skills/.
+Dej mu jméno podle úlohy a do description napiš, co dělá a kdy se má
+použít — takovými slovy, jaká bych do zadání napsal já. V postupu drž
+pořadí kroků, které jsme prošli, a z míst, kde jsi se ptal nebo kde jsem
+tě opravoval, udělej krok navíc nebo zastavovací pravidlo. Na konec
+přidej sekci "Na co si dát pozor". Pak mi ho ukaž, než ho uložíš.`,
         },
         {
           title: 'Přidej na konec kontrolu',
@@ -2732,7 +2843,7 @@ const L2_POSTAV: Lesson = {
       items: [
         'Jméno skillu a jeho description — jednou větou, co dělá a kdy se použije.',
         'Kolik doříkání bylo potřeba, než to vyšlo. To číslo je zajímavější než výsledek.',
-        'Jedno pravidlo, které jsi přidala do CLAUDE.md a které předtím existovalo jenom v tvojí hlavě.',
+        'Jedno pravidlo, které přibylo do CLAUDE.md a které předtím existovalo jenom v tvojí hlavě.',
       ],
     },
   ],
@@ -2758,7 +2869,7 @@ const L2_CELY_PRIKLAD: Lesson = {
     {
       kind: 'p',
       text:
-        'Všechny ostatní lekce ukazují jeden kus. Tahle skládá celý příklad dohromady: bereme hotspot 2 z akčního regálu — rozpad složeného listu na divizní soubory a jejich rozeslání produkťákům — a dotáhneme ho od prázdné složky až k úloze, která běží v pondělí v šest ráno. Je to reference, ne cvičení. Otevři si ji ve chvíli, kdy budeš stavět svoje, a ber to jako vzor, na kterém si ověříš, že ti nic nechybí.',
+        'Všechny ostatní lekce ukazují jeden kus. Tahle skládá celý příklad dohromady: bereme druhé ze tří míst k automatizaci z akčního regálu — rozpad složeného listu na divizní soubory a jejich rozeslání produkťákům — a dotáhneme ho od prázdné složky až k úloze, která běží v pondělí v šest ráno. Je to reference, ne cvičení. Otevři si ji ve chvíli, kdy budeš stavět svoje, a ber to jako vzor, na kterém si ověříš, že ti nic nechybí.',
     },
     {
       kind: 'note',
@@ -2806,8 +2917,8 @@ const L2_CELY_PRIKLAD: Lesson = {
 ## Slovník
 Složený list = jeden list, do kterého se slily položky magazínu ze
 všech divizí. Vstup pro rozpad.
-Divize = nářadí, dekton (pěny a silikony), elektro, voda-topo.
-Produkťák = vlastník značky. Každý má svoje položky, nikdy ne cizí.
+Divize = Nářadí, Elektro, VTS, Piekarová. Podle nich se dělí soubory.
+Produkťák (PM) = vlastník značky. Každý má svoje položky, nikdy ne cizí.
 
 ## Pravidla
 Do data/ se nikdy nezapisuje. Výstupy jdou do vystupy/.
@@ -2820,41 +2931,32 @@ Když v exportu chybí sloupec, zastav se a zeptej se. Nedomýšlej.`,
     {
       kind: 'p',
       text:
-        'Postup se opakuje každý cyklus, takže patří do skillu, ne do chatu. Skill je obyčejný soubor — jak se píše, je v lekci Jak napsat skill; tady je jenom kostra, aby bylo vidět, co v něm u tohohle příkladu musí být.',
+        'Postup se opakuje každý cyklus, takže patří do skillu, ne do chatu. Používáme skill logisticke-dostupnosti — ten skutečný z logistiky, ve vylepšené verzi z lekce Rozbor skutečného skillu. Tady je jen hlavička a dvě sekce, na kterých stojí to, že se dá pustit bez dozoru.',
     },
     {
       kind: 'code',
-      text: `.claude/skills/rozpad-divizi/SKILL.md
+      text: `.claude/skills/logisticke-dostupnosti/SKILL.md — výňatek
 
 ---
-name: rozpad-divizi
-description: Rozdělí složený list magazínu na divizní soubory pro
-  produkťáky a vyrobí kontrolní protokol. Použij, když přijde nový
-  export magazínu nebo když někdo řekne "rozpad" či "divizní soubory".
+name: logisticke-dostupnosti
+description: Z exportu listu Logistika dotáhne skladová data, připraví
+  soubory pro produkťáky po divizích (Nářadí, Elektro, VTS, Piekarová)
+  a vyrobí kontrolní protokol. Použij, když je v data/ nový export
+  magazínu a mají se rozeslat podklady produkťákům.
 ---
 
-## Vstup
-Nejnovější .xlsx v data/, list "slozeny".
-
-## Postup
-1. Načti list a zkontroluj, že obsahuje sloupce: kód, název, divize,
-   produkťák, min, max, stav zásoby. Když některý chybí, zastav se.
-2. Rozděl řádky podle sloupce divize na čtyři skupiny.
-3. Pro každou divizi ulož vystupy/<divize>-<datum>.xlsx — jen sloupce
-   pro produkťáky, marketingové sloupce vynech.
-4. Vyrob vystupy/protokol-<datum>.md podle šablony níž.
-
-## Kontrolní protokol
-- kolik řádků bylo na vstupu a kolik je v součtu ve čtyřech souborech
-- kolik položek nemá vyplněnou divizi (mají zůstat stranou, ne zmizet)
-- kolik položek nemá produkťáka
-- seznam divizí, které vyšly prázdné
+## Kontrolní protokol → vystupy/protokol-<RRRRMMDD>.md
+- které soubory se použily, i s datem v názvu
+- počet řádků na vstupu a v součtu všech výstupů — rozdíl musí být nula
+- počty položek po divizích a po PM
+- seznam nezařazených položek
 
 ## Zastav se, když
-- součet řádků nesedí
-- vyjde pátá divize, kterou slovník nezná
-- víc než 5 % položek nemá produkťáka`,
-      caption: 'Všimni si, že polovina skillu je o kontrole. To není opatrnictví — bez ní se ten skill nedá pustit bez dozoru.',
+- vstupní a výstupní počet řádků nesedí
+- vyjde divize, která není v seznamu čtyř
+- víc než 5 % položek nemá dotažená skladová data`,
+      caption:
+        'Polovina skillu je o kontrole. Není to opatrnictví — bez protokolu a zastavovacích pravidel se skill nedá pustit v šest ráno bez dozoru. Celé znění včetně postupu je v lekci Rozbor skutečného skillu.',
     },
     { kind: 'h', text: '3. Dva hooky: zábrana a notifikace' },
     {
@@ -2931,7 +3033,7 @@ exit 0`,
           'je to zámek. Nesmí záviset na tom, jestli si na to Claude vzpomene.',
         ],
         [
-          'Divizní soubor se jmenuje <divize>-<datum>.xlsx',
+          'Divizní soubor se jmenuje Magazín <MĚSÍC> - <divize>.xlsx',
           'CLAUDE.md',
           'je to konvence, ne bezpečnost. Když ji jednou poruší, nic se nestane.',
         ],
@@ -2952,7 +3054,7 @@ exit 0`,
       tone: 'ok',
       title: 'Otestuj zábranu dřív, než ji budeš potřebovat',
       text:
-        'Řekni Claudovi „přidej řádek do souboru v data/" a chtěj vidět, že to odmítne. Zábrana, kterou jsi nikdy neviděla zafungovat, je jenom soubor na disku. Trvá to patnáct vteřin a je to jediný způsob, jak si být jistá, že se hook vůbec zaregistroval — druhý je napsat v Claude Code /hooks a podívat se do seznamu.',
+        'Řekni Claudovi „přidej řádek do souboru v data/" a chtěj vidět, že to odmítne. Zábrana, kterou nikdo neviděl zafungovat, je jenom soubor na disku. Trvá to patnáct vteřin a je to jediný způsob, jak si být jistá, že se hook vůbec zaregistroval — druhý je napsat v Claude Code /hooks a podívat se do seznamu.',
     },
     { kind: 'h', text: '4. Konektory: co připojit a proč' },
     {
@@ -3020,7 +3122,7 @@ exit 0`,
           title: 'Instructions — celé zadání',
           body:
             'Píše se to jako zpráva do chatu, ne jako příkaz. Odkazuje se na skill, aby se postup neopakoval v zadání.',
-          code: `Postupuj podle skillu rozpad-divizi.
+          code: `Postupuj podle skillu logisticke-dostupnosti.
 Vstup je nejnovější export v data/.
 Když protokol hlásí nesrovnalost, nic neodesílej a jenom mi napiš.
 Jinak pošli každému produkťákovi mail s předmětem
@@ -3055,7 +3157,7 @@ a odkaz do knihovny na jeho divizní soubor. Přílohu nepřikládej.`,
       head: ['Kde', 'Co tam přibude'],
       rows: [
         ['vystupy/', 'čtyři divizní soubory s dnešním datem'],
-        ['vystupy/protokol-<datum>.md', 'počty řádků, položky bez divize, položky bez produkťáka'],
+        ['vystupy/protokol-<RRRRMMDD>.md', 'počty řádků, nezařazené položky, položky bez skladových dat'],
         ['knihovna na SharePointu', 'totéž, samo, protože složka je nasyncovaná'],
         ['plocha', 'notifikace, že běh skončil'],
         ['schránky produkťáků', 'jedenáct mailů s odkazem na jejich soubor — nebo nic, když protokol nesedí'],
@@ -3100,57 +3202,30 @@ a odkaz do knihovny na jeho divizní soubor. Přílohu nepřikládej.`,
         'Založ úlohu na Manual a pusť ji přes Run now aspoň třikrát na různých datech.',
         'Teprve pak jí dej rozvrh — a jako první ať jen ukládá soubory, bez odesílání.',
       ],
-      hint: 'Odesílání zapínej jako poslední, ideálně po měsíci, kdy jsi maily odklikávala ručně a nic tě nepřekvapilo.',
+      hint: 'Odesílání zapínej jako poslední, ideálně po měsíci, kdy se maily odklikávaly ručně a nic nepřekvapilo.',
     },
   ],
 }
 
-const L2_BEH: Lesson = {
-  slug: 'nech-to-bezet-bez-sebe',
+const L2_PLAN: Lesson = {
+  slug: 'naplanovana-uloha',
   module: 'potom',
-  title: 'Nech to běžet bez sebe',
+  title: 'Naplánovaná úloha v Claude Code',
   summary:
-    'Poslední schod. Co musí platit, než něco pustíš na plán, jak to spustit a co si napsat pro chvíli, kdy to spadne.',
+    'Kde se úloha zakládá, proč pro nás platí Local a ne Cloud, co vyplnit, a co se stane, když počítač spal.',
   minutes: 10,
   kind: 'lekce',
   track: 'potom',
   outcomes: [
-    'ověřit na checklistu, že je úloha připravená běžet bez dozoru',
-    'spustit úlohu bez rozhovoru a naplánovat ji jako Scheduled task',
-    'vědět, kdy naplánovaná úloha potřebuje zapnutý počítač a kdy ne',
-    'napsat runbook, kterému bude rozumět i kolega',
-    'vědět, co dělat, když naplánovaný běh selže',
+    'založit naplánovanou úlohu v Claude Code — klikáním i větou',
+    'rozhodnout mezi Local a Cloud a vědět, proč je pro nás skoro vždycky Local',
+    'vědět, co se stane se zmeškaným během a jak na to napsat zadání',
   ],
   body: [
     {
       kind: 'p',
       text:
-        'Sem směřovalo všechno předtím. Naplánovaný běh není odměna za odvahu — je to důsledek toho, že postup několikrát doběhl správně a že máš čím poznat, kdy nedoběhl. Když jedna z těch dvou věcí chybí, nepouštěj to.',
-    },
-    {
-      kind: 'checklist',
-      title: 'Než to pustíš na plán',
-      items: [
-        'Skill proběhl třikrát po sobě na různých datech bez opravy',
-        'Poslední krok skillu vyrábí kontrolní protokol',
-        'Ve skillu jsou zastavovací pravidla — ví, kdy se má zastavit místo hádání',
-        'Výstupy jdou do vystupy/, do dat se nezapisuje (a hlídá to hook)',
-        'Umíš jednou větou popsat, jak poznáš, že výsledek je špatně',
-        'Víš, co se stane, když vstupní data ten den nepřijdou',
-      ],
-    },
-    { kind: 'h', text: 'Spuštění bez rozhovoru' },
-    {
-      kind: 'p',
-      text:
-        'Claude Code umí dostat zadání, odpracovat ho a skončit — bez toho, aby u toho někdo seděl. Ta jedna věta je pak to, co se dá naplánovat.',
-    },
-    {
-      kind: 'code',
-      text: `cd ~/akcni-regal
-claude -p "Postupuj podle skillu logisticke-dostupnosti. Na konec ulož
-kontrolní protokol do vystupy/."`,
-      caption: 'Spusť si to nejdřív ručně přesně takhle. Když to takhle nedoběhne, na plánu to nedoběhne taky.',
+        'Tohle je technická část posledního schodu: samotné založení úlohy, která se spustí sama. Kdy ji pustit a co k tomu musí platit, řeší lekce Nech to běžet bez sebe. Tady jen jak.',
     },
     { kind: 'h', text: 'Naplánovaná úloha v Claude Code' },
     {
@@ -3160,7 +3235,7 @@ kontrolní protokol do vystupy/."`,
     },
     {
       kind: 'table',
-      head: ['', 'Local — na tvém počítači', 'Cloud (routine) — na serveru'],
+      head: ['Vlastnost', 'Local — na tvém počítači', 'Cloud — na serveru'],
       rows: [
         [
           'Vidí soubory na tvém disku',
@@ -3191,7 +3266,7 @@ kontrolní protokol do vystupy/."`,
         {
           title: 'Vyplnit název, popis a instrukce',
           body:
-            'Instrukce píšeš úplně stejně, jako bys psala Claudovi do chatu. Tady vybereš i model a režim povolování.',
+            'Instrukce píšeš úplně stejně, jako když píšeš Claudovi do chatu. Tady vybereš i model a režim povolování.',
         },
         {
           title: 'Vybrat pracovní složku',
@@ -3215,7 +3290,7 @@ kontrolní protokol do vystupy/."`,
       tone: 'ok',
       title: 'Nemusíš to klikat — stačí si o to říct',
       text:
-        'Úlohu založíš i tím, že ji v běžném sezení popíšeš. „Založ mi úlohu, která každé pondělí v šest ráno projede export a připraví divizní soubory" udělá opakovanou úlohu. „Připomeň mi zítra ve tři, ať zkontroluju ten běh" udělá jednorázovou, která se po odpálení sama vypne. Stejně tak se dá říct „pozastav mi úlohu rozpad-divizi" nebo „ukaž mi moje naplánované úlohy".',
+        'Úlohu založíš i tím, že ji v běžném sezení popíšeš. „Založ mi úlohu, která každé pondělí v šest ráno projede export a připraví divizní soubory" udělá opakovanou úlohu. „Připomeň mi zítra ve tři, ať zkontroluju ten běh" udělá jednorázovou, která se po odpálení sama vypne. Stejně tak se dá říct „pozastav mi úlohu logisticke-dostupnosti" nebo „ukaž mi moje naplánované úlohy".',
     },
     {
       kind: 'note',
@@ -3257,17 +3332,35 @@ kontrolní protokol do vystupy/."`,
         },
       ],
     },
+  ],
+}
+
+const L2_UKAZKA: Lesson = {
+  slug: 'ziva-ukazka',
+  module: 'postav',
+  title: 'Živá ukázka: za pět minut to doběhne samo',
+  summary:
+    'Poslední čtvrthodina workshopu. Naplánujeme úlohu na čas za pět minut, odejdeme od počítače a vrátíme se k hotovému souboru a zprávě kolegovi.',
+  minutes: 10,
+  kind: 'lekce',
+  track: 'v sále',
+  outcomes: [
+    'založit úlohu jednou větou v chatu',
+    'zažít, že běh proběhne bez toho, aby u něj někdo seděl',
+    'poznat výsledek z jedné stránky kontroly, ne z výstupů',
+  ],
+  body: [
     { kind: 'h', text: 'Živá ukázka: nastav to na za pět minut' },
     {
       kind: 'p',
       text:
-        'Nic z téhle lekce nedocvakne, dokud to člověk jednou neuvidí. Tak si to udělejte hned: naplánujte běh na čas za pět minut, zavřete počítač a jděte si pro kávu. Když se vrátíte, bude ve vystupy/ soubor, který jste nevyrobili — a kolegovi ve schránce zpráva, kterou jste neposlali.',
+        'Nic z téhle lekce nedocvakne, dokud to člověk jednou neuvidí. Tak si to udělejte hned: naplánujte běh na čas za pět minut, nechte počítač otevřený a odejděte od něj. Když se vrátíte, bude ve vystupy/ soubor, který jste nevyrobili — a kolegovi ve schránce zpráva, kterou jste neposlali.',
     },
     { kind: 'h', text: 'Co si na to dát za úlohu' },
     {
       kind: 'p',
       text:
-        'Na první běh nebeř nic z ostré práce. Chceš úlohu, která je hotová do minuty, nemůže nic pokazit a jejíž výsledek je vidět i z poslední řady. Nejlíp funguje tahle: ať spočítá, co má ve složce, zapíše to do souboru a dá o tom vědět kolegovi vedle sebe. Adresát je člověk z dvojice, se kterou jsi mapovala workflow — ten pak nahlas potvrdí, že mu něco přišlo, i když u toho nikdo neseděl.',
+        'Na první běh nebeř nic z ostré práce. Chceš úlohu, která je hotová do minuty, nemůže nic pokazit a jejíž výsledek je vidět i z poslední řady. Nejlíp funguje tahle: ať spočítá, co má ve složce, zapíše to do souboru a dá o tom vědět kolegovi vedle sebe. Adresát je člověk z dvojice, se kterou se mapovalo workflow — ten pak nahlas potvrdí, že mu něco přišlo, i když u toho nikdo neseděl.',
     },
     {
       kind: 'tabs',
@@ -3341,38 +3434,48 @@ dvě čísla. Neodesílej ho, jenom ho otevři.`,
             'Notifikace na ploše, ve vystupy/ soubor s dnešním datem — a kolega vedle tebe ať nahlas řekne, jestli mu něco přišlo. Nikdo u toho nebyl.',
         },
         {
-          title: 'Rozhodni se podle kontroly',
+          title: 'Otevři jen kontrola-<datum>.md',
           body:
-            'Otevři jenom protokol, ne výstupy. Sedí počty, sedí součty, je seznam položek bez dat krátký? Pak to jde poslat. Tohle je celý ten trik: rozhoduješ se z jedné stránky místo z tisíce řádků.',
+            'Ne výstupy, jen ten jeden soubor. Sedí počet souborů s tím, co vidíš ve složce? Pak to funguje. Tohle je celý ten trik, který se pak opakuje u každé skutečné úlohy: rozhoduješ se z jedné stránky místo z tisíce řádků.',
         },
       ],
     },
-    { kind: 'h', text: 'Co ještě může na konci udělat' },
     {
-      kind: 'table',
-      head: ['Na konci běhu', 'K čemu to je', 'Jak'],
-      rows: [
-        [
-          'Notifikace na plochu',
-          'víš, že doběhlo, i když jsi u něčeho jiného',
-          'hook na události Stop',
-        ],
-        [
-          'Soubor do sdílené složky',
-          'výstup uvidí celý tým, aniž bys ho posílala',
-          'projekt leží v nasyncované knihovně, výstup se nasyncuje sám',
-        ],
-        [
-          'Krátká zpráva o tom, co se stalo',
-          'zůstane stopa i za dny, kdy se nic nezměnilo',
-          'poslední krok skillu zapíše shrnutí do vystupy/',
-        ],
-        [
-          'E-mail příjemcům',
-          'podklad dorazí bez tvého zásahu',
-          'konektor Microsoft 365 — ale musí být zapnutý a nepřenese přílohu, viz níž',
-        ],
-      ],
+      kind: 'note',
+      tone: 'ok',
+      title: 'Věta je lepší než formulář',
+      text:
+        'Formulář úlohy má sedm polí — název, popis, instrukce, model, režim povolování, složku a rozvrh. Napsaná věta je jeden řádek a dělá totéž. A ukazuje mimochodem to podstatné: s Claudem se mluví jako s člověkem, kterému něco zadáváš, ne jako s aplikací, kterou musíš umět ovládat. Formulář si otevři, až budeš chtít úlohu upravit.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Tohle je ta chvíle',
+      text:
+        'Když se lidem po pěti minutách objeví hotový soubor, na kterém nikdo nepracoval, dojde jim to rychleji než z jakéhokoli vysvětlování. Proto je tahle ukázka na konci workshopu — ne jako látka, ale jako důkaz, že těch pět schodů někam vede.',
+    },
+  ],
+}
+
+const L2_EMAIL: Lesson = {
+  slug: 'email-z-automatu',
+  module: 'potom',
+  title: 'E-mail z automatu',
+  summary:
+    'Čím se z naplánovaného běhu odešle e-mail, co k tomu musí povolit správce, proč neodejde příloha, a jak napsat zadání, které pošle mail kolegovi.',
+  minutes: 10,
+  kind: 'lekce',
+  track: 'potom',
+  outcomes: [
+    'vybrat cestu, kterou má e-mail odejít, a vědět, kdo ji musí povolit',
+    'rozlišit čtení a odesílání u konektoru Microsoft 365',
+    'napsat zadání úlohy, která pošle mail — včetně podmínky, kdy ho neposlat',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Odeslat e-mail je věc, na kterou se ptá každý hned po první naplánované úloze. Jde to — ale ne samo od sebe a ne bez správce. Tahle lekce říká, co přesně k tomu musí platit, aby to v pondělí v šest ráno nezůstalo jen u souboru ve složce.',
     },
     { kind: 'h', text: 'Čím se ten e-mail vlastně odešle' },
     {
@@ -3414,7 +3517,7 @@ dvě čísla. Neodesílej ho, jenom ho otevři.`,
     },
     {
       kind: 'table',
-      head: ['', 'Čtení (read tools)', 'Odesílání (write tools)'],
+      head: ['Vlastnost', 'Čtení (read tools)', 'Odesílání (write tools)'],
       rows: [
         [
           'Co to umí',
@@ -3470,23 +3573,92 @@ Když protokol hlásí nesrovnalost, e-mail neposílej a jenom mi to napiš.`,
     {
       kind: 'note',
       tone: 'warn',
-      title: 'S e-mailem opatrně',
+      title: 'S e-mailem opatrně: první měsíc jen koncepty',
       text:
         'Odeslaná pošta se nevrací. Než necháš cokoli odesílat samo, nech to nejdřív měsíc připravovat rozepsaný e-mail, který odklikneš ty. Teprve až budeš mít měsíc bez překvapení, přemýšlej o odesílání bez potvrzení — a i pak jenom tam, kde nejhorší možný následek je, že někdo dostane zprávu navíc.',
     },
+  ],
+}
+
+const L2_BEH: Lesson = {
+  slug: 'nech-to-bezet-bez-sebe',
+  module: 'potom',
+  title: 'Nech to běžet bez sebe',
+  summary:
+    'Poslední schod. Co musí platit, než něco pustíš na plán, co po sobě má běh nechat a co si napsat pro chvíli, kdy spadne.',
+  minutes: 10,
+  kind: 'lekce',
+  track: 'potom',
+  outcomes: [
+    'ověřit na checklistu, že je úloha připravená běžet bez dozoru',
+    'spustit úlohu bez rozhovoru jedním příkazem',
+    'napsat runbook, kterému bude rozumět i kolega',
+    'vědět, co dělat, když naplánovaný běh selže',
+  ],
+  body: [
     {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Na plátně je věta lepší než formulář',
+      kind: 'p',
       text:
-        'Když se tahle ukázka dělá před lidmi, nepouštěj se do vyplňování polí. Formulář má název, popis, instrukce, model, režim povolování, složku a rozvrh — než to všechno naklikáš, sál ti usne a hlavní myšlenka se v tom ztratí. Napsaná věta je jeden řádek a dělá totéž. A ještě ukazuje mimochodem to podstatné: že se s tím dá mluvit jako s člověkem, kterému něco zadáváš, ne jako s aplikací, kterou musíš umět ovládat.',
+        'Sem směřovalo všechno předtím. Naplánovaný běh není odměna za odvahu — je to důsledek toho, že postup několikrát doběhl správně a že máš čím poznat, kdy nedoběhl. Když jedna z těch dvou věcí chybí, nepouštěj to.',
+    },
+    {
+      kind: 'checklist',
+      title: 'Než to pustíš na plán',
+      items: [
+        'Skill proběhl třikrát po sobě na různých datech bez opravy',
+        'Poslední krok skillu vyrábí kontrolní protokol',
+        'Ve skillu jsou zastavovací pravidla — ví, kdy se má zastavit místo hádání',
+        'Výstupy jdou do vystupy/, do dat se nezapisuje (a hlídá to hook)',
+        'Umíš jednou větou popsat, jak poznáš, že výsledek je špatně',
+        'Víš, co se stane, když vstupní data ten den nepřijdou',
+      ],
+    },
+    { kind: 'h', text: 'Spuštění bez rozhovoru' },
+    {
+      kind: 'p',
+      text:
+        'Claude Code umí dostat zadání, odpracovat ho a skončit — bez toho, aby u toho někdo seděl. Ta jedna věta je pak to, co se dá naplánovat.',
+    },
+    {
+      kind: 'code',
+      text: `cd <složka projektu — ta nasyncovaná z lekce Sdílená složka>
+claude -p "Postupuj podle skillu logisticke-dostupnosti. Na konec ulož
+kontrolní protokol do vystupy/."`,
+      caption: 'Spusť si to nejdřív ručně přesně takhle. Když to takhle nedoběhne, na plánu to nedoběhne taky.',
     },
     {
       kind: 'note',
-      tone: 'ok',
-      title: 'Tohle je ta chvíle',
+      tone: 'info',
+      title: 'Jak se úloha zakládá, je v samostatné lekci',
       text:
-        'Když se lidem po pěti minutách objeví hotový soubor, na kterém nikdo nepracoval, dojde jim to rychleji než z jakéhokoli vysvětlování. Proto je tahle ukázka na konci workshopu — ne jako látka, ale jako důkaz, že těch pět schodů někam vede.',
+        'Klikání ve formuláři, rozdíl mezi Local a Cloud a to, co se stane, když počítač spal — to všechno je v lekci Naplánovaná úloha v Claude Code. Tady zůstává to, co platí bez ohledu na formulář: kdy to pustit a co po sobě má běh nechat.',
+    },
+    { kind: 'h', text: 'Co ještě může na konci udělat' },
+    {
+      kind: 'table',
+      head: ['Na konci běhu', 'K čemu to je', 'Jak'],
+      rows: [
+        [
+          'Notifikace na plochu',
+          'víš, že doběhlo, i když jsi u něčeho jiného',
+          'hook na události Stop',
+        ],
+        [
+          'Soubor do sdílené složky',
+          'výstup uvidí celý tým, aniž bys ho posílala',
+          'projekt leží v nasyncované knihovně, výstup se nasyncuje sám',
+        ],
+        [
+          'Krátká zpráva o tom, co se stalo',
+          'zůstane stopa i za dny, kdy se nic nezměnilo',
+          'poslední krok skillu zapíše shrnutí do vystupy/',
+        ],
+        [
+          'E-mail příjemcům',
+          'podklad dorazí bez tvého zásahu',
+          'konektor Microsoft 365 — má vlastní lekci E-mail z automatu',
+        ],
+      ],
     },
     { kind: 'h', text: 'Runbook' },
     {
@@ -3515,8 +3687,8 @@ a vedle toho kontrola-<datum>.md
 
 ## Co dělat, když to spadne
 1. Podívej se, jestli jsou v data/ soubory z aktuálního týdne.
-2. Pusť to ručně: cd ~/akcni-regal && claude -p "..."
-3. Když to spadne i ručně, běh vypni a napiš <kdo>.
+2. Pusť to ručně: v terminálu ve složce projektu claude -p "..."
+3. Když to spadne i ručně, běh vypni a napiš Petře (logistika, l. 123).
 
 ## Jak to vypnout
 Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
@@ -3563,7 +3735,7 @@ Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
       items: [
         'Projdi checklist a čestně si odškrtej, co platí.',
         'Spusť svůj skill jedním příkazem bez rozhovoru.',
-        'Přečti kontrolní protokol a rozhodni se, jestli bys výsledek poslala, aniž bys otevřela soubor.',
+        'Přečti kontrolní protokol a rozhodni se, jestli by se výsledek dal poslat bez otevření souboru.',
         'Napiš runbook podle šablony — všech šest nadpisů.',
         'Teprve pak to naplánuj, a to zatím na den, kdy jsi u počítače.',
       ],
@@ -3657,7 +3829,7 @@ const L2_MCP: Lesson = {
       tone: 'ok',
       title: 'Nemusíš vědět, který nástroj je který',
       text:
-        'Tabulky jsou tu proto, abys poznala, co se děje, když Claude odpovídá — ne proto, aby ses je učila. Nástroje si vybírá sám podle toho, na co se ptáš. Ptej se jako člověka, ne jako vyhledávače.',
+        'Tabulky jsou tu proto, aby bylo poznat, co se děje, když Claude odpovídá — ne k učení nazpaměť. Nástroje si vybírá sám podle toho, na co se ptáš. Ptej se jako člověka, ne jako vyhledávače.',
     },
     { kind: 'h', text: 'Jak ho rozjet lokálně' },
     {
@@ -3745,11 +3917,11 @@ claude mcp add --scope user dek -- node ~/Documents/dek/mcp-dek/server.js`,
                 {
                   title: 'Spustit tři příkazy',
                   body: 'V terminálu, s tou cestou místo té naší.',
-                  code: `cd /cesta/kterou/jsi/zkopírovala/mcp-dek
+                  code: `cd /zkopírovaná/cesta/mcp-dek
 npm install
 node server.js --build-index
 
-claude mcp add --scope user dek -- node /cesta/kterou/jsi/zkopírovala/mcp-dek/server.js`,
+claude mcp add --scope user dek -- node /zkopírovaná/cesta/mcp-dek/server.js`,
                 },
               ],
             },
@@ -3897,7 +4069,7 @@ claude mcp remove dek`,
 const L2_NAOSTRO: Lesson = {
   slug: 'pust-to-naostro',
   module: 'potom',
-  title: 'Zadání: pusť to naostro',
+  title: 'Pusť to naostro',
   summary:
     'Úkol na týden mezi setkáními. Nechat to běžet na skutečné práci a přinést zpátky, co se stalo.',
   minutes: 5,
@@ -3948,9 +4120,9 @@ const L2_NAOSTRO: Lesson = {
       head: ['Otázka', 'Proč se ptáme'],
       rows: [
         ['Kolikrát to doběhlo bez zásahu?', 'ukáže, jestli je postup hotový, nebo pořád hledá pravidla'],
-        ['Co jsi musela doplnit?', 'chybějící pravidla se u různých lidí opakují — z toho vznikne společná část'],
+        ['Co bylo potřeba doplnit?', 'chybějící pravidla se u různých lidí opakují — z toho vznikne společná část'],
         ['Kolik času to zabralo proti ručnímu?', 'první kolo bývá pomalejší. To je v pořádku a je dobré to říct nahlas'],
-        ['Poslala jsi výsledek dál?', 'jestli ne, chybí důvěra — a ta se buduje kontrolou, ne přesvědčováním'],
+        ['Šel výsledek dál, ke kolegům?', 'jestli ne, chybí důvěra — a ta se buduje kontrolou, ne přesvědčováním'],
         ['Co tě na tom naštvalo?', 'obvykle nejlepší nápad na to, co udělat příště'],
       ],
     },
@@ -3959,7 +4131,7 @@ const L2_NAOSTRO: Lesson = {
       tone: 'ok',
       title: 'Neúspěch je taky výsledek',
       text:
-        'Když jsi to nepustila, protože jsi neměla čas, protože přišel jiný formát dat nebo protože sis netroufla — přijď to říct. Tyhle důvody jsou přesně to, co potřebujeme vědět, a bývají užitečnější než tři úspěšné běhy.',
+        'Když to nepustíš — nebyl čas, přišel jiný formát dat, nebo se do toho nechtělo — přijď to říct. Tyhle důvody jsou přesně to, co potřebujeme vědět, a bývají užitečnější než tři úspěšné běhy.',
     },
     {
       kind: 'note',
@@ -4000,11 +4172,11 @@ export const COURSES: Course[] = [
           'Nejdřív hotový proces z logistiky jako vzor, pak totéž ve dvojicích na vlastní agendě.',
       },
     ],
-    lessons: [LESSON_PROGRAM, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL, LESSON_CVICENI],
+    lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL, LESSON_CVICENI],
     learn: [
       'založit projekt tak, aby se pravidla nemusela opakovat každé ráno',
       'poznat, co patří do CLAUDE.md, co do skillu a co do artefaktu',
-      'nasyncovat knihovnu ze SharePointu do Macu a připojit ji Claudovi',
+      'nasyncovat knihovnu ze SharePointu do počítače a otevřít ji v Claude Code',
       'poznat, kdy jsou soubory jen zástupci a Claude v nich nic nepřečte',
       'napsat zadání tak, aby nevznikaly přepsané originály',
       'číst pracovní proces jako tok dat mezi lidmi a soubory',
@@ -4015,7 +4187,7 @@ export const COURSES: Course[] = [
     prerequisites: [
       'Nainstalovaný Claude Code',
       'Počítač s aplikací OneDrive přihlášenou firemním účtem',
-      'Desktopová aplikace Claude',
+      'Claude Code — desktopová aplikace, nebo příkaz claude v terminálu',
       'Přístup do knihovny na SharePointu, se kterou pracuješ',
     ],
   },
@@ -4045,7 +4217,7 @@ export const COURSES: Course[] = [
         summary: 'Referenční část. Vracej se sem, až narazíš na to, co lekce řeší.',
       },
     ],
-    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, LESSON_SKILL, LESSON_AUTOMATIZACE, L2_BEH, L2_CELY_PRIKLAD, L2_MCP, L2_NAOSTRO],
+    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, L2_UKAZKA, LESSON_SKILL, L2_ROZBOR, LESSON_AUTOMATIZACE, L2_PLAN, L2_BEH, L2_EMAIL, L2_CELY_PRIKLAD, L2_MCP, L2_NAOSTRO],
     learn: [
       'napsat zadání nad tabulkou, které projde napoprvé',
       'zkontrolovat výstup třemi čísly místo čtení řádek po řádku',
@@ -4076,8 +4248,10 @@ export function findLesson(course: Course, slug: string): Lesson | undefined {
   return course.lessons.find((l) => l.slug === slug)
 }
 
-export function courseMinutes(course: Course): number {
-  return course.lessons.reduce((sum, l) => sum + l.minutes, 0)
+export function courseMinutes(course: Course, track?: Lesson['track']): number {
+  return course.lessons
+    .filter((l) => (track ? l.track === track : true))
+    .reduce((sum, l) => sum + l.minutes, 0)
 }
 
 /** „1 lekce“ / „2 lekce“ / „5 lekcí“ — čeština se na plurálu pozná. */

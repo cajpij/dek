@@ -26,6 +26,9 @@ export const theme = createTheme({
         error: { main: '#c31f38' },
         background: { default: '#ffffff', paper: '#ffffff' },
         divider: '#e4e6ea',
+        // Pomocný text (popisky pod kódem, čas lekce, nadpisy modulů) musí
+        // projít kontrastem 4,5:1 i ve světlém tématu — výchozí .38 neprojde.
+        text: { disabled: 'rgba(0, 0, 0, 0.58)' },
       },
     },
     dark: {
@@ -50,6 +53,19 @@ export const theme = createTheme({
   components: {
     MuiPaper: { defaultProps: { elevation: 0 } },
     MuiButton: { defaultProps: { disableElevation: true } },
+    // Viditelný fokus pro klávesnici: MUI tlačítka mají jen ripple, což
+    // netechnický uživatel s Tabem nevidí.
+    MuiButtonBase: {
+      styleOverrides: {
+        root: {
+          '&.Mui-focusVisible': {
+            outline: '2px solid var(--mui-palette-primary-main)',
+            outlineOffset: 2,
+          },
+        },
+      },
+    },
+    MuiAlert: { defaultProps: { role: 'note' } },
     MuiLinearProgress: {
       styleOverrides: {
         root: { height: 6, borderRadius: 999 },

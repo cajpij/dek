@@ -12,7 +12,7 @@ export default function SyncMap() {
   const accent = theme.palette.primary.main
 
   return (
-    <Box sx={{ overflowX: 'auto', color: 'text.secondary' }}>
+    <Box tabIndex={0} sx={{ overflowX: 'auto', color: 'text.secondary', '&:focus-visible': { outline: '2px solid', outlineColor: 'primary.main', outlineOffset: 2 } }}>
       <Box
         component="svg"
         viewBox="0 0 900 300"
