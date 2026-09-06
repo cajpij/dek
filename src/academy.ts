@@ -1382,6 +1382,26 @@ splést. Pak mi ho ukaž, ať ho projdu, než ho uložíš.`,
       caption: 'Obsah se načítá postupně: nejdřív jen description, pak SKILL.md, a přílohy teprve když na ně dojde. Proto drž SKILL.md stručný — pod pět set řádků — a detaily odsuň do references/.',
     },
     {
+      kind: 'p',
+      text:
+        'Nemusíš vědět, co po něm chceš technicky. Řekni mu to vlastními slovy — umí skill založit, opravit i vyzkoušet, jestli se vůbec spouští.',
+    },
+    {
+      kind: 'code',
+      text: `/skill-creator
+Chci skill, který mi z nového exportu magazínu udělá čtyři divizní
+soubory pro produkťáky.
+
+/skill-creator
+Mám skill logisticke-dostupnosti, ale nespustí se, když napíšu
+„připrav podklady pro produkťáky". Sprav mi to.
+
+/skill-creator
+Z toho, co jsme právě udělali, udělej skill. Pak mi řekni, jestli
+se spustí, když stejnou úlohu zadám jinými slovy.`,
+      caption: 'Tři věci, na které se hodí: založit nový, opravit spouštění existujícího, a zabalit něco, co jsi právě odpracovala.',
+    },
+    {
       kind: 'note',
       tone: 'ok',
       title: 'Tři věci, které rozhodují o kvalitě',
