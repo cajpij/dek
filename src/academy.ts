@@ -3661,21 +3661,106 @@ const L2_MCP: Lesson = {
     {
       kind: 'p',
       text:
-        'Tohle je celé. Server je jeden soubor a nemá žádnou závislost kromě oficiálního SDK — proto se dá rozjet dřív, než se stihneš někoho zeptat, jestli smíš. Potřebuješ jen Node (příkaz node --version musí něco vypsat) a staženou složku mcp-dek z repa akademie.',
+        'Tohle je celé. Server je jeden soubor a nemá žádnou závislost kromě oficiálního SDK — proto se dá rozjet dřív, než se stihneš někoho zeptat, jestli smíš. Jediné, co musíš mít, je Node: napiš v terminálu node --version a musí něco vypsat. Když ne, stáhni si ho z nodejs.org.',
     },
     {
-      kind: 'code',
-      text: `cd ~/dek/mcp-dek
+      kind: 'p',
+      text:
+        'Stahuješ si to k sobě na počítač, do vlastní složky — třeba do Dokumentů. Server pak běží u tebe a je jedno, na kterém projektu zrovna pracuješ: připojuje se jednou pro všechny.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Jenom ne do nasyncované knihovny',
+      text:
+        'Instalace vyrobí složku node_modules s tisícovkami drobných souborů. Kdyby ležela ve sdílené knihovně, OneDrive by je začal syncovat kolegům a zbytečně by se s tím trápil celé odpoledne. Dej mcp-dek někam na svůj disk mimo nasyncované složky. Do projektu nepatří a nic tím neztratíš — díky přepínači --scope user ho Claude vidí ve všech projektech včetně toho na SharePointu.',
+    },
+    {
+      kind: 'tabs',
+      items: [
+        {
+          label: 'Nech to na Claudovi',
+          blocks: [
+            {
+              kind: 'p',
+              text:
+                'Nejrychlejší cesta a nemusíš u toho rozumět ani jednomu příkazu. Otevři Claude Code ve složce, kam to chceš stáhnout, a vlep tohle:',
+            },
+            {
+              kind: 'code',
+              text: `Stáhni mi repozitář https://github.com/cajpij/dek do složky
+Dokumenty — je v něm složka mcp-dek, což je MCP server nad katalogem
+dek.cz. Nainstaluj závislosti, postav rejstřík a připoj ho jako MCP
+server pod názvem dek se scope user, ať ho mám ve všech projektech.
+Nedávej to do nasyncované složky na OneDrivu. Pak mi napiš, kam jsi
+to dala a jestli se to povedlo.`,
+              caption:
+                'Claude si stažení, instalaci i připojení udělá sám a řekne ti, kde to skončilo. Když se něco nepovede, rovnou to i vysvětlí.',
+            },
+          ],
+        },
+        {
+          label: 'Terminál, když máš git',
+          blocks: [
+            {
+              kind: 'code',
+              text: `# 1. stáhnout k sobě
+git clone https://github.com/cajpij/dek.git ~/Documents/dek
+
+# 2. připravit server
+cd ~/Documents/dek/mcp-dek
 npm install
-node server.js --build-index`,
-      caption:
-        'Poslední řádek stáhne 42 sitemap a postaví z nich rejstřík — asi 81 tisíc produktů a 4 650 kategorií. Trvá to pár vteřin a je to nepovinné: bez něj se rejstřík postaví sám při prvním hledání, jen to první hledání bude pomalejší.',
+node server.js --build-index
+
+# 3. připojit ho Claudovi
+claude mcp add --scope user dek -- node ~/Documents/dek/mcp-dek/server.js`,
+              caption:
+                'Když už repozitář máš, první krok přeskoč. Krok 2 stáhne 42 sitemap a postaví z nich rejstřík — asi 81 tisíc produktů a 4 650 kategorií, pár vteřin. Je nepovinný: bez něj se rejstřík postaví sám při prvním hledání.',
+            },
+          ],
+        },
+        {
+          label: 'Bez gitu, přes ZIP',
+          blocks: [
+            {
+              kind: 'steps',
+              items: [
+                {
+                  title: 'Stáhnout ZIP z GitHubu',
+                  body:
+                    'Otevři github.com/cajpij/dek, klikni na zelené tlačítko Code a dole na Download ZIP. Stáhne se dek-main.zip.',
+                },
+                {
+                  title: 'Rozbalit a najít složku mcp-dek',
+                  body:
+                    'Rozbal ho k sobě do Dokumentů — ne do sdílené knihovny. Uvnitř je složka mcp-dek, a v ní soubor server.js. To je celý ten server.',
+                },
+                {
+                  title: 'Zkopírovat si cestu k té složce',
+                  body:
+                    'Na Macu na ni klikni pravým tlačítkem, podrž Alt a vyber „Kopírovat jako název cesty". Na Windows Shift + pravé tlačítko a „Kopírovat jako cestu".',
+                },
+                {
+                  title: 'Spustit tři příkazy',
+                  body: 'V terminálu, s tou cestou místo té naší.',
+                  code: `cd /cesta/kterou/jsi/zkopírovala/mcp-dek
+npm install
+node server.js --build-index
+
+claude mcp add --scope user dek -- node /cesta/kterou/jsi/zkopírovala/mcp-dek/server.js`,
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
-      kind: 'code',
-      text: `claude mcp add --scope user dek -- node ~/dek/mcp-dek/server.js`,
-      caption:
-        'Dvě pomlčky před node tam patří — oddělují nastavení Clauda od příkazu, který se má spustit. Cestu piš celou, ne relativní.',
+      kind: 'note',
+      tone: 'info',
+      title: 'Dvě pomlčky před node tam patří',
+      text:
+        'V příkazu claude mcp add oddělují nastavení Clauda od příkazu, který se má spustit. Bez nich to skončí hláškou, které nebudeš rozumět. A cestu k server.js piš vždycky celou, ne relativní — server se spouští odjinud než ze složky, ve které zrovna stojíš.',
     },
     {
       kind: 'note',
