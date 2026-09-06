@@ -27,7 +27,7 @@ kliknutím na řádek se skočí na daný blok.
 
 Pravý sloupec má dvě záložky: **Program** a **Účastníci**.
 
-Aplikace má čtyři pohledy na jedné adrese:
+Aplikace má šest pohledů na jedné adrese:
 
 | Adresa | Pro koho |
 | --- | --- |
@@ -36,6 +36,7 @@ Aplikace má čtyři pohledy na jedné adrese:
 | `/#quiz` | Vstupní kvíz pro účastníky — rozdělí díly práce podle úrovně |
 | `/#kb` | Knowledge base — úlohy podle agendy, ke kterým se tým vrací |
 | `/#mcp` | Stránka o MCP serveru nad katalogem dek.cz — příklady a zapojení |
+| `/#academy` | DEK Academy — inline lekce, které si člověk projde sám u počítače |
 
 Odkazy na kvíz a knowledge base jsou i v **Nastavení a program**, ke zkopírování.
 
@@ -179,6 +180,28 @@ Struktura bloku:
 nezadávají se ručně.
 
 ## MCP server nad katalogem dek.cz
+
+## DEK Academy
+
+Na `/#academy` běží akademie s inline lekcemi — rozcestník kurzů, detail kurzu se
+sylabem a stránka lekce se sidebarem, postupem a odškrtáváním. Adresy jsou v hashi
+(`#academy/<kurz>/<lekce>`), protože GitHub Pages neumí přesměrovat hluboký odkaz
+zpátky na `index.html`.
+
+Obsah je oddělený od UI v [`src/academy.ts`](src/academy.ts): přidat lekci znamená
+přidat objekt do pole `lessons`, ne sahat do komponent. Tělo lekce se skládá z bloků
+(`p`, `h`, `steps`, `note`, `table`, `task`, `checklist`, `figure`), které vykresluje
+[`AcademyBlocks.tsx`](src/components/AcademyBlocks.tsx).
+
+První kurz **Claude a firemní data** má tři lekce:
+
+1. **Sdílená složka ze SharePointu na Macu** — nasyncovat knihovnu přes OneDrive
+   a připojit ji Claudovi, včetně toho, proč jsou soubory jinak prázdné.
+2. **Co Claude ve složce vidí a co ne** — hranice připojené složky.
+3. **Zadání: Od magazínu do regálu** — reálný proces akčního regálu s diagramem,
+   na kterém účastníci hledají místa k automatizaci.
+
+Odškrtnuté lekce se drží v `localStorage`, žádný účet ani server za tím není.
 
 Ve složce [`mcp-dek/`](mcp-dek/) je hotový MCP server s pěti nástroji nad veřejným
 katalogem. Stránka `/#mcp` ukazuje, co umí, příklady dotazů a jak si ho kdo zapojí;

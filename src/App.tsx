@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRunSheet, type Mode } from './lib/useRunSheet'
+import Academy from './components/Academy'
 import Console from './components/Console'
 import DisplayView from './components/DisplayView'
 import KnowledgeBase from './components/KnowledgeBase'
@@ -7,12 +8,15 @@ import McpPage from './components/McpPage'
 import Quiz from './components/Quiz'
 
 /**
- * Pět pohledů na jedné adrese: konzole pro lektora, plátno pro sál, kvíz pro
- * účastníky, knowledge base pro tým a stránka o MCP serveru nad katalogem.
+ * Šest pohledů na jedné adrese: konzole pro lektora, plátno pro sál, kvíz pro
+ * účastníky, knowledge base pro tým, stránka o MCP serveru nad katalogem
+ * a DEK Academy s inline lekcemi.
  */
-type View = Mode | 'quiz' | 'kb' | 'mcp'
+type View = Mode | 'quiz' | 'kb' | 'mcp' | 'academy'
 
 const readView = (): View => {
+  // Akademie má vlastní podadresy (#academy/<kurz>/<lekce>), proto prefix.
+  if (window.location.hash.startsWith('#academy')) return 'academy'
   switch (window.location.hash) {
     case '#display':
       return 'display'
@@ -45,5 +49,6 @@ export default function App() {
   if (view === 'quiz') return <Quiz />
   if (view === 'kb') return <KnowledgeBase />
   if (view === 'mcp') return <McpPage />
+  if (view === 'academy') return <Academy />
   return <RunSheet mode={view} />
 }
