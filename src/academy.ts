@@ -22,12 +22,14 @@ export type Block =
   | { kind: 'code'; text: string; caption?: string }
   | { kind: 'note'; tone: 'info' | 'warn' | 'ok'; title: string; text: string }
   | { kind: 'table'; head: string[]; rows: string[][] }
-  | { kind: 'figure'; name: 'regal-flow' | 'sync-map' | 'project-tree'; caption: string }
+  | { kind: 'figure'; name: 'regal-flow' | 'sync-map' | 'project-tree' | 'automation-ladder'; caption: string }
   | { kind: 'checklist'; title: string; items: string[] }
   | { kind: 'task'; title: string; intro: string; items: string[]; hint?: string }
   | { kind: 'video'; title: string; items: VideoRef[] }
   /** Stejný krok, jiný systém — čtenář si přepne a vidí jen svou variantu. */
   | { kind: 'platform'; mac: Block[]; win: Block[] }
+  /** Táž látka na příkladech z různých agend — každý si najde tu svoji. */
+  | { kind: 'tabs'; items: { label: string; blocks: Block[] }[] }
 
 export interface VideoRef {
   /** ID z YouTube, tedy to za `watch?v=`. */
@@ -102,8 +104,8 @@ const LESSON_PROJEKT: Lesson = {
   module: 'start',
   title: 'Projekt v Claude Code: co si založit',
   summary:
-    'Projekt, CLAUDE.md, skill, artefakt, konektor — co který pojem znamená a co si musíš vytvořit, než začneš automatizovat.',
-  minutes: 20,
+    'Projekt, CLAUDE.md, skill, artefakt, konektor — co který pojem znamená, na hotových příkladech z logistiky, dopravy, BI, marketingu a vedení.',
+  minutes: 30,
   kind: 'lekce',
   outcomes: [
     'vysvětlit, co je v Claude Code projekt, sezení, skill, artefakt a konektor',
@@ -234,6 +236,172 @@ description: Rozdělí velký Excel s položkami magazínu na čtyři divizní s
       kind: 'video',
       title: 'Videa k Claude Code',
       items: VIDEOS_CLAUDE_CODE,
+    },
+    { kind: 'h', text: 'Konkrétní příklad: projekt akčního regálu' },
+    {
+      kind: 'p',
+      text:
+        'Takhle to vypadá u agendy, kterou v tomhle kurzu rozebíráme celou. Logistika dostává od produkťáků obsah magazínu ve sdílené tabulce, doplňuje k položkám skladová data, rozpadá to na čtyři divizní soubory a rozesílá produkťákům. Projekt na tuhle agendu vypadá takhle — a všechno v něm je obyčejný text.',
+    },
+    {
+      kind: 'code',
+      text: `akcni-regal/
+├── CLAUDE.md
+├── data/
+│   ├── magazin-2026-09-export.xlsx
+│   ├── minmax-2026-09.csv
+│   └── sklad-pobocky-2026-09.csv
+├── vystupy/
+└── .claude/
+    └── skills/
+        └── rozpad-divizi/SKILL.md`,
+      caption: 'Data zůstávají v data/ nedotčená, všechno nové vzniká ve vystupy/.',
+    },
+    {
+      kind: 'code',
+      text: `# Akční regál
+
+Připravuju obsah akčního regálu na pobočkách podle tištěného magazínu.
+Cyklus začíná ~6 týdnů před vydáním magazínu.
+
+## Slovník
+- CS = centrální sklad
+- produkťák = produktový manažer divize; vybírá, co půjde do regálu
+- min/max = doporučené množství položky na jednu pobočku
+- divize = nářadí, dekton, elektro, voda-topo
+- vzorování = fyzická zkouška, jestli se položky vejdou do regálu (130 × 900 cm)
+
+## Kde jsou data
+- data/magazin-*.xlsx — obsah magazínu, export ze sdílené Google Tabulky
+- data/minmax-*.csv — doporučená množství
+- data/sklad-pobocky-*.csv — zásoby na pobočkách
+- Vždy ber nejnovější soubor podle data v názvu. Když si nejsi jistý, zeptej se.
+
+## Pravidla
+- Do data/ nikdy nezapisuj. Výsledky ukládej do vystupy/.
+- Názvy výstupů: regal-<divize>-<RRRR-MM-DD>.xlsx
+- Kódy položek se nesmí měnit ani doplňovat o nuly — jsou to textové kódy.
+- Když v exportu chybí sloupec, napiš to a zastav se. Nedopočítávej.
+- Prodeje počítám za posledních 12 měsíců, ne za kalendářní rok.`,
+      caption: 'Celý CLAUDE.md téhle agendy. Většina řádků vznikla tak, že se něco pokazilo a příště se to nemělo opakovat.',
+    },
+    {
+      kind: 'h',
+      text: 'První tři zadání, která v tom projektu dávají smysl',
+    },
+    {
+      kind: 'list',
+      items: [
+        '„Podívej se do data/ a řekni mi, kolik položek je v nejnovějším exportu a kolika divizí se týkají.“ — ověření, že rozumí datům.',
+        '„Ke každé položce z exportu dotáhni min/max a zásobu na pobočkách. Kde data chybí, nech prázdno a na konci mi vypiš, u kolika položek to bylo.“ — spojení tří zdrojů.',
+        '„Rozděl to na čtyři soubory podle divize a ulož do vystupy/ podle pojmenování z CLAUDE.md.“ — to, co se dělalo ručně.',
+      ],
+    },
+    { kind: 'h', text: 'Dobré a špatné zadání' },
+    {
+      kind: 'table',
+      head: ['Místo tohohle', 'Napiš tohle', 'Proč'],
+      rows: [
+        [
+          '„Zpracuj mi ten Excel.“',
+          '„Vezmi nejnovější magazin-*.xlsx z data/, dotáhni k položkám min/max a ulož výsledek do vystupy/.“',
+          'Pojmenuj vstup, operaci i místo výsledku. Jinak hádá všechno tři.',
+        ],
+        [
+          '„Uprav to, ať je to hezčí.“',
+          '„Sloupce Kód, Název, Divize, Min, Max v tomhle pořadí, zamrazený první řádek, čísla bez desetinných míst.“',
+          'Ověřitelné zadání se dá zkontrolovat. „Hezčí“ ne.',
+        ],
+        [
+          '„Doplň chybějící hodnoty.“',
+          '„Kde min/max chybí, nech prázdno a vypiš mi seznam těch položek.“',
+          'Nechceš odhad tam, kde má být otazník.',
+        ],
+        [
+          '„Udělej to jako minule.“',
+          '„Postupuj podle skillu rozpad-divizi.“',
+          'Minule si nepamatuje. Skill ano.',
+        ],
+      ],
+    },
+    { kind: 'h', text: 'A co u jiných agend' },
+    {
+      kind: 'p',
+      text:
+        'Struktura je pokaždé stejná, mění se jen slovník a pravidla. Přepni si agendu, která je nejblíž té tvojí.',
+    },
+    {
+      kind: 'tabs',
+      items: [
+        {
+          label: 'Autodoprava',
+          blocks: [
+            {
+              kind: 'code',
+              text: `svozy/
+├── CLAUDE.md      # turnus, dispečer, prázdný km, kdo je dopravce
+├── data/          # export z knihy jízd, CSV po týdnech
+└── vystupy/       # týdenní přehledy
+
+Zadání na začátek:
+- „Spočítej z jízd za minulý týden podíl prázdných kilometrů po vozidlech.“
+- „Vypiš tři vozidla s nejhorším poměrem a u každého tři nejdelší prázdné úseky.“
+- „Ulož to jako přehled do vystupy/ a shrň do pěti vět, co bych měl řešit.“`,
+            },
+          ],
+        },
+        {
+          label: 'BI a reporting',
+          blocks: [
+            {
+              kind: 'code',
+              text: `reporting/
+├── CLAUDE.md      # definice metrik: co je aktivní zákazník, jak počítáme marži
+├── data/          # exporty, každý s datem v názvu
+└── vystupy/
+
+Zadání na začátek:
+- „Porovnej sloupce dvou exportů a vypiš, kde se schéma rozešlo.“
+- „Zkontroluj, jestli součty za pobočky sedí na celkový součet, a ukaž rozdíly.“
+- „Napiš datový slovník k tomuhle exportu podle definic z CLAUDE.md.“`,
+            },
+          ],
+        },
+        {
+          label: 'Marketing',
+          blocks: [
+            {
+              kind: 'code',
+              text: `magazin/
+├── CLAUDE.md      # tón, délky textů, zakázaná slova, jak píšeme ceny
+├── data/          # tabulka položek, podklady od dodavatelů
+└── vystupy/       # texty pro web a leták
+
+Zadání na začátek:
+- „Z tabulky položek napiš popisky pro web, každý do 200 znaků, podle tónu z CLAUDE.md.“
+- „Zkontroluj, jestli někde nepoužíváme zakázaná slova ze seznamu.“
+- „Udělej přehled, které položky mají hotový text a které ne.“`,
+            },
+          ],
+        },
+        {
+          label: 'Vedení',
+          blocks: [
+            {
+              kind: 'code',
+              text: `porady/
+├── CLAUDE.md      # kdo je kdo, co sledujeme, jak vypadá úkol
+├── data/          # přepisy porad, podklady
+└── vystupy/       # zápisy a přehledy
+
+Zadání na začátek:
+- „Z přepisu porady vytáhni rozhodnutí, úkoly a kdo je vlastní. Co není jasné, označ.“
+- „Porovnej úkoly z posledních tří porad a řekni, co se veze bez pohybu.“
+- „Shrň mi to na jednu stránku pro vedení — bez omáčky, jen stav a rizika.“`,
+            },
+          ],
+        },
+      ],
     },
     {
       kind: 'checklist',
@@ -708,6 +876,181 @@ const LESSON_REGAL: Lesson = {
   ],
 }
 
+const LESSON_AUTOMATIZACE: Lesson = {
+  slug: 'jak-se-nastavuje-automatizace',
+  module: 'automatizace',
+  title: 'Jak se v projektu nastaví automatizace',
+  summary:
+    'Pět stupňů od ručního zadání po běh bez tebe — na reálném rozpadu divizních Excelů, krok po kroku.',
+  minutes: 25,
+  kind: 'lekce',
+  outcomes: [
+    'popsat pět stupňů, po kterých se z ruční práce stane automatizace',
+    'napsat skill, který spustí celý postup jednou větou',
+    'nastavit hook, který se spustí sám při konkrétní události',
+    'poznat, kdy je na další stupeň brzo — a co nikdy neautomatizovat',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Automatizace nevznikne tím, že si řekneš „automatizuj to“. Vzniká po schodech: nejdřív úlohu uděláš ručně a popíšeš výsledek, pak z toho, co jsi musela vysvětlit, uděláš pravidlo, pak z celého postupu skill — a teprve když skill několikrát doběhl správně, má smysl ho spouštět bez sebe. Schody se nedají přeskočit. Kdo začne posledním, nastaví automat na postup, který si nikdy neověřil.',
+    },
+    {
+      kind: 'figure',
+      name: 'automation-ladder',
+      caption: 'Každý stupeň staví na tom předchozím. Na další jdeš, až když ten současný funguje bez oprav.',
+    },
+    { kind: 'h', text: '1. Zadání — udělej to jednou ručně' },
+    {
+      kind: 'p',
+      text:
+        'Otevři Clauda ve složce projektu a popiš, co má vzniknout. Ne jak to má udělat — co má být na konci. A pak si všímej, kolikrát mu musíš něco doříct. Každé takové doříkání je informace, která zatím chybí v projektu.',
+    },
+    {
+      kind: 'code',
+      text: `Vezmi nejnovější magazin-*.xlsx z data/, ke každé položce dotáhni min/max
+a zásobu na pobočkách a ulož výsledek do vystupy/ podle pojmenování z CLAUDE.md.
+Kde data chybí, nech prázdno a na konci mi napiš, u kolika položek to bylo.`,
+      caption: 'Zadání, ze kterého se dá poznat, jestli výsledek sedí. To je celý rozdíl proti „zpracuj mi to“.',
+    },
+    { kind: 'h', text: '2. Pravidlo — ať to nemusíš vysvětlovat podruhé' },
+    {
+      kind: 'p',
+      text:
+        'Musela jsi říct, že kódy položek se nesmí měnit na čísla? Že se bere nejnovější soubor podle data v názvu? To nejsou postupy, to jsou fakta o agendě — patří do CLAUDE.md a od té chvíle platí v každém sezení. Tenhle stupeň je nejlevnější a nejvíc se vyplatí: většina „Claude to udělal blbě“ je ve skutečnosti pravidlo, které nikdo nenapsal.',
+    },
+    { kind: 'h', text: '3. Skill — zabal celý postup' },
+    {
+      kind: 'p',
+      text:
+        'Když stejný postup projde třikrát bez oprav, zapiš ho. Skill je složka se souborem SKILL.md: v hlavičce jméno a popis, kdy se má použít, pod tím kroky. Od té chvíle stačí jedna věta — nebo lomítko a jméno skillu.',
+    },
+    {
+      kind: 'code',
+      text: `.claude/skills/rozpad-divizi/SKILL.md
+
+---
+name: rozpad-divizi
+description: Rozdělí obsah magazínu na čtyři divizní soubory (nářadí, dekton,
+  elektro, voda-topo) a připraví je k rozeslání produkťákům. Použij, když je
+  v data/ nový export magazínu.
+---
+
+1. Najdi v data/ nejnovější magazin-*.xlsx podle data v názvu.
+2. Ověř, že má sloupce Kód, Název, Divize. Když některý chybí, zastav se a napiš to.
+3. Dotáhni min/max a zásoby poboček z odpovídajících souborů se stejným měsícem.
+4. Pro každou ze čtyř divizí vytvoř samostatný soubor do vystupy/
+   podle pojmenování regal-<divize>-<RRRR-MM-DD>.xlsx.
+5. Na konci vypiš počet položek po divizích a seznam položek, u kterých
+   chyběla data.`,
+      caption: 'Řádek description rozhoduje o tom, kdy si skill Claude vybere sám. Piš do něj i slova, která bys napsala do zadání ty.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Skill je obyčejný soubor',
+      text:
+        'Leží v projektu, dá se poslat kolegovi a dá se opravit tak, že do něj dopíšeš řádek. Když skill v projektu funguje a chceš ho mít všude, přesuň ho do ~/.claude/skills/.',
+    },
+    { kind: 'h', text: '4. Hook — ať se to spustí samo při události' },
+    {
+      kind: 'p',
+      text:
+        'Skill se pořád musí vyvolat. Hook ne — je to příkaz, který Claude Code spustí vždycky, když nastane určitá událost, bez ohledu na to, co si zrovna myslí. Hodí se na kontroly a zábrany, ne na složité úvahy: zálohuj před zápisem, odmítni sáhnout do data/, dej vědět, když je něco hotové.',
+    },
+    {
+      kind: 'code',
+      text: `.claude/settings.json
+
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          { "type": "command", "command": "cp \\"$CLAUDE_FILE_PATH\\" ~/zalohy/" }
+        ]
+      }
+    ]
+  }
+}`,
+      caption: 'Po každém zápisu souboru se udělá kopie. Hook je shellový příkaz, takže dělá přesně to, co je v něm napsané.',
+    },
+    {
+      kind: 'table',
+      head: ['Událost', 'Kdy se spustí', 'K čemu se hodí'],
+      rows: [
+        ['SessionStart', 'na začátku sezení', 'připomenout kontext, načíst aktuální data'],
+        ['UserPromptSubmit', 'když odešleš zadání', 'doplnit k zadání stálou poznámku'],
+        ['PreToolUse', 'před tím, než se něco provede', 'zablokovat zápis do chráněné složky'],
+        ['PostToolUse', 'po úspěšném kroku', 'záloha, kontrola formátu, přejmenování'],
+        ['Notification', 'když Claude čeká na tebe', 'upozornění na plochu, ať to nehlídáš'],
+        ['Stop', 'když práci dokončí', 'poslat výsledek dál, zapsat do logu'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Hook není místo na rozhodování',
+      text:
+        'Spustí se vždycky a nemá úsudek. To je jeho síla u zábran („do data/ se nezapisuje“) a jeho slabina všude jinde. Když má něco záviset na posouzení, patří to do skillu, ne do hooku.',
+    },
+    { kind: 'h', text: '5. Běh bez tebe' },
+    {
+      kind: 'p',
+      text:
+        'Poslední stupeň má smysl teprve tehdy, když všechno předchozí běželo několikrát správně a ty víš, jak poznáš, že výsledek je špatně. Claude Code umí běžet i bez rozhovoru — dostane zadání, odpracuje ho a skončí. Takový běh se dá naplánovat na čas a jeho výsledek si ráno jen zkontroluješ.',
+    },
+    {
+      kind: 'code',
+      text: `claude -p "Postupuj podle skillu rozpad-divizi a výsledek ulož do vystupy/."`,
+      caption: 'Jeden běh bez rozhovoru. Tohle je věta, kterou se dá naplánovat — ať už přes naplánovanou úlohu v Claude appce, nebo přes plánovač v systému.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Vždycky nech po sobě stopu',
+      text:
+        'Naplánovaný běh nikdo nesleduje. Ať proto vždycky vzniká krátký zápis toho, co se udělalo a co nesedělo — soubor ve vystupy/ nebo zpráva do chatu. Automat, po kterém nezůstane nic, se pozná až ve chvíli, kdy měsíc mlčky nedělá nic.',
+    },
+    { kind: 'h', text: 'Kdy na další stupeň' },
+    {
+      kind: 'table',
+      head: ['Poznáš to podle', 'Další krok'],
+      rows: [
+        ['Vysvětluješ tutéž věc podruhé', 'řádek do CLAUDE.md'],
+        ['Píšeš stejné zadání potřetí', 'skill'],
+        ['Skill třikrát doběhl bez oprav', 'zvaž naplánovaný běh'],
+        ['Bojíš se, že něco přepíše', 'hook, který to zakáže'],
+        ['Musíš u toho rozhodovat', 'zůstaň u zadání — tohle se neautomatizuje'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Co automatizovat nechceš',
+      text:
+        'Kroky, kde se rozhoduje podle věcí, které nejsou v datech. Vzorování v regálu je učebnicový příklad: měrné jednotky lžou, takže žádný automat neřekne, jestli se tři kufry vejdou vedle sebe. Automatizace má takovým krokům uvolnit čas, ne je nahradit.',
+    },
+    {
+      kind: 'task',
+      title: 'Cvičení: posuň jeden krok o stupeň výš',
+      intro:
+        'Vezmi svoji agendu a v ní jeden krok, který děláš každý týden. Nezačínej tím nejsložitějším.',
+      items: [
+        'Napiš, na kterém stupni ten krok dneska je.',
+        'Udělej ho jednou se zadáním a zapiš si každé doříkání, které jsi musela dodat.',
+        'Doříkání, která platí pořád, přepiš do CLAUDE.md.',
+        'Zbytek — samotný postup — přepiš do SKILL.md a spusť ho znovu na jiných datech.',
+        'Napiš jednu větu o tom, jak poznáš, že výsledek je špatně. Bez ní na další stupeň nechoď.',
+      ],
+      hint:
+        'Když ti u druhého běhu skill vyjde jinak než u prvního, není to chyba skillu — je to chybějící pravidlo. Doplň ho a zkus to znovu.',
+    },
+  ],
+}
+
 export const COURSES: Course[] = [
   {
     slug: 'claude-a-firemni-data',
@@ -730,18 +1073,24 @@ export const COURSES: Course[] = [
         summary: 'Jednorázové nastavení a hranice, ve kterých se pak pracuje.',
       },
       {
+        key: 'automatizace',
+        title: 'Automatizace',
+        summary: 'Pět stupňů od ručního zadání po běh, který si ráno jen zkontroluješ.',
+      },
+      {
         key: 'zadani',
         title: 'Zadání',
         summary: 'Reálný proces z logistiky, na kterém se hledají automatizace.',
       },
     ],
-    lessons: [LESSON_PROJEKT, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_REGAL],
+    lessons: [LESSON_PROJEKT, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_AUTOMATIZACE, LESSON_REGAL],
     learn: [
       'založit projekt tak, aby se pravidla nemusela opakovat každé ráno',
       'poznat, co patří do CLAUDE.md, co do skillu a co do artefaktu',
       'nasyncovat knihovnu ze SharePointu do Macu a připojit ji Claudovi',
       'poznat, kdy jsou soubory jen zástupci a Claude v nich nic nepřečte',
       'napsat zadání tak, aby nevznikaly přepsané originály',
+      'zabalit opakovaný postup do skillu a nechat ho běžet bez sebe',
       'číst pracovní proces jako tok dat mezi lidmi a soubory',
       'najít kroky, ve kterých data mění formu ručně',
       'odlišit, co má převzít automatizace a co má zůstat člověku',

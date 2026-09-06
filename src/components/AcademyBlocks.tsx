@@ -6,7 +6,9 @@ import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Paper from '@mui/material/Paper'
+import Tab from '@mui/material/Tab'
 import Table from '@mui/material/Table'
+import Tabs from '@mui/material/Tabs'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import TableBody from '@mui/material/TableBody'
@@ -17,6 +19,7 @@ import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
 import type { Block, VideoRef } from '../academy'
 import { usePlatform } from '../lib/academyPlatform'
+import AutomationLadder from './AutomationLadder'
 import ProjectTree from './ProjectTree'
 import RegalFlow from './RegalFlow'
 import SyncMap from './SyncMap'
@@ -237,6 +240,30 @@ function Videos({ title, items }: { title: string; items: VideoRef[] }) {
   )
 }
 
+/** Táž látka na příkladech z různých agend. */
+function AgendaTabs({ items }: { items: { label: string; blocks: Block[] }[] }) {
+  const [tab, setTab] = useState(0)
+  const current = items[tab] ?? items[0]!
+  return (
+    <Box sx={{ my: 3 }}>
+      <Tabs
+        value={tab}
+        onChange={(_, v) => setTab(v)}
+        variant="scrollable"
+        scrollButtons="auto"
+        sx={{ borderBottom: 1, borderColor: 'divider', minHeight: 40, mb: 1 }}
+      >
+        {items.map((it) => (
+          <Tab key={it.label} label={it.label} sx={{ minHeight: 40, py: 1 }} />
+        ))}
+      </Tabs>
+      {current.blocks.map((b, i) => (
+        <BlockView key={i} block={b} />
+      ))}
+    </Box>
+  )
+}
+
 /** Přepínač Mac / Windows — ukáže jen tu variantu, na které člověk sedí. */
 function PlatformSwitch({ mac, win }: { mac: Block[]; win: Block[] }) {
   const [platform, choose] = usePlatform()
@@ -344,7 +371,7 @@ export default function BlockView({ block }: { block: Block }) {
       return (
         <Paper variant="outlined" component="figure" sx={{ my: 3.5, mx: 0, borderRadius: 2, overflow: 'hidden' }}>
           <Box sx={{ p: { xs: 1.5, md: 2.5 } }}>
-            {block.name === 'sync-map' ? <SyncMap /> : block.name === 'project-tree' ? <ProjectTree /> : <RegalFlow />}
+            {block.name === 'sync-map' ? <SyncMap /> : block.name === 'project-tree' ? <ProjectTree /> : block.name === 'automation-ladder' ? <AutomationLadder /> : <RegalFlow />}
           </Box>
           <Typography
             component="figcaption"
@@ -366,5 +393,8 @@ export default function BlockView({ block }: { block: Block }) {
 
     case 'platform':
       return <PlatformSwitch mac={block.mac} win={block.win} />
+
+    case 'tabs':
+      return <AgendaTabs items={block.items} />
   }
 }
