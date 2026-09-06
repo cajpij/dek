@@ -8,7 +8,7 @@ const ROWS: { text: string; note?: string; indent: number; accent?: boolean }[] 
   { text: '├── vystupy/', note: 'sem jdou výsledky, originály zůstanou celé', indent: 0 },
   { text: '└── .claude/', indent: 0 },
   { text: '└── skills/', note: 'zabalené postupy, které se opakují', indent: 1, accent: true },
-  { text: '└── rozpad-divizi/SKILL.md', indent: 2 },
+  { text: '└── logisticke-dostupnosti/SKILL.md', indent: 2 },
 ]
 
 /**

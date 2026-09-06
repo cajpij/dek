@@ -137,6 +137,72 @@ const LESSON_PROJEKT: Lesson = {
       name: 'project-tree',
       caption: 'Struktura, která se osvědčila. Nic z toho není povinné — a přesto se všechno vyplatí.',
     },
+    { kind: 'h', text: 'A když ta složka je sdílená knihovna?' },
+    {
+      kind: 'p',
+      text:
+        'Většina agend nemá data na ploše, ale ve sdílené knihovně na SharePointu. Dobrá zpráva: nic zvláštního se nekoná. Nasyncovaná knihovna je pro počítač obyčejná složka, takže projekt může ležet přímo v ní — struktura je úplně stejná, mění se jenom cesta.',
+    },
+    {
+      kind: 'platform',
+      mac: [
+        {
+          kind: 'code',
+          text: `~/Library/CloudStorage/OneDrive-SharedLibraries-DEK/Magazín/
+└── akcni-regal/
+    ├── CLAUDE.md
+    ├── data/
+    ├── vystupy/
+    └── .claude/skills/`,
+          caption: 'Na Macu je složka Library skrytá — do Finderu se dostaneš přes ⇧⌘G. Složka .claude začíná tečkou, takže ji Finder taky nezobrazuje; ⇧⌘. skryté soubory přepne.',
+        },
+      ],
+      win: [
+        {
+          kind: 'code',
+          text: `C:\\Users\\<jmeno>\\DEK\\Magazín\\
+└── akcni-regal\\
+    ├── CLAUDE.md
+    ├── data\\
+    ├── vystupy\\
+    └── .claude\\skills\\`,
+          caption: 'Ve Windows je knihovna pod profilem uživatele, v Průzkumníku s ikonou budovy. Složku .claude Průzkumník normálně ukazuje.',
+        },
+      ],
+    },
+    {
+      kind: 'table',
+      head: ['Co se změní', 'Proč na tom záleží'],
+      rows: [
+        [
+          'CLAUDE.md a skilly se nasyncují celému týmu',
+          'To je většinou výhoda: pravidla přestanou být tvoje a stanou se týmová. Zároveň to znamená, že do nich nepiš nic osobního.',
+        ],
+        [
+          'Všechno ve vystupy/ uvidí ostatní',
+          'Rozpracované věci pojmenovávej tak, aby bylo poznat, že rozpracované jsou. Nikdo nemá poznat verzi podle data změny.',
+        ],
+        [
+          'Soubory musí být stažené v zařízení',
+          'Files On-Demand jinak nechá na disku jen zástupce a Claude v nich nic nepřečte. Pravý klik na složku → Vždy ponechat v tomto zařízení.',
+        ],
+        [
+          'Dva lidi ve stejné složce naráz',
+          'OneDrive udělá konfliktní kopii. Nespouštěj Clauda nad stejnou složkou ze dvou počítačů současně.',
+        ],
+        [
+          'Práva se dědí ze SharePointu',
+          'Claude vidí přesně to, co vidíš ty. Nic víc, nic míň.',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Druhá varianta: projekt lokálně, knihovna jako zdroj',
+      text:
+        'Když nechceš svoje pokusy syncovat celému oddělení, nech projekt u sebe na disku a knihovnu připoj jako druhou složku. Claude pak čte data z knihovny a zapisuje k tobě. Nevýhoda: pravidla ani skilly nikdo jiný neuvidí. Rozhodni se podle toho, jestli je agenda tvoje, nebo týmová.',
+    },
     { kind: 'h', text: 'CLAUDE.md je paměť projektu' },
     {
       kind: 'p',
@@ -1163,6 +1229,222 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
   ],
 }
 
+const LESSON_SKILL: Lesson = {
+  slug: 'jak-napsat-skill',
+  module: 'automatizace',
+  title: 'Jak napsat skill (a nechat si ho napsat)',
+  summary:
+    'Z čeho se skill skládá, proč o všem rozhoduje jediný řádek, a co dát Claudovi, aby ti skill napsal sám a dobře.',
+  minutes: 20,
+  kind: 'lekce',
+  outcomes: [
+    'poznat, kdy je čas udělat ze zadání skill',
+    'napsat description tak, aby se skill spouštěl ve správnou chvíli',
+    'rozdělit obsah mezi SKILL.md a přílohy',
+    'dát Claudovi podklady, ze kterých ti skill napíše sám',
+    'ověřit, že skill funguje i na jiných datech než na těch, ze kterých vznikl',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Skill je zabalený postup: složka se souborem SKILL.md, ve kterém je nahoře pár řádků o tom, co skill dělá a kdy se má použít, a pod tím samotný postup. Nic víc. Celá dovednost je v tom napsat ty dvě části tak, aby si je Claude vybral ve správnou chvíli a odpracoval je pokaždé stejně.',
+    },
+    { kind: 'h', text: 'Kdy z toho udělat skill' },
+    {
+      kind: 'list',
+      items: [
+        'Stejné zadání píšeš potřetí.',
+        'Postup má víc než tři kroky a pořadí na nich záleží.',
+        'Existuje způsob, jak se v tom splést, a ty ho pokaždé připomínáš.',
+        'Chceš, aby to uměl i někdo jiný než ty.',
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Co skill není',
+      text:
+        'Není to místo na fakta o agendě — ta patří do CLAUDE.md a platí pořád. Skill je postup, který se spustí, když je potřeba. Když si nejsi jistá, zeptej se: platí to i ve chvíli, kdy tenhle úkol nedělám? Když ano, je to pravidlo, ne skill.',
+    },
+    { kind: 'h', text: 'Kam skill patří' },
+    {
+      kind: 'code',
+      text: `.claude/skills/<jmeno-skillu>/SKILL.md     ← platí jen v tomhle projektu
+~/.claude/skills/<jmeno-skillu>/SKILL.md   ← platí ve všech tvých projektech`,
+      caption: 'Začni v projektu. Když se skill osvědčí a používáš ho i jinde, přesuň složku do domovské.',
+    },
+    { kind: 'h', text: 'Anatomie souboru' },
+    {
+      kind: 'code',
+      text: `---
+name: logisticke-dostupnosti
+description: Z exportu listu Logistika dotáhne skladová data a připraví
+  soubory pro produkťáky po divizích. Použij, když je v data/ nový export
+  magazínu a mají se rozeslat podklady produkťákům.
+---
+
+# Logistické dostupnosti
+
+1. Najdi v data/ nejnovější export a trojici skladových souborů.
+   Když nemají stejné datum, napiš to a zastav se.
+2. Ověř sloupce Číslo položky, Katalogové číslo, Název, MJ, PM, Určení barvy.
+3. …
+
+## Na co si dát pozor
+- Čísla položek jsou text. Excel je rád převádí na čísla a ukusuje nuly.`,
+      caption: 'Otevírací --- musí být úplně první řádek souboru, jinak se hlavička nenačte.',
+    },
+    { kind: 'h', text: 'Description rozhoduje o všem' },
+    {
+      kind: 'p',
+      text:
+        'Tělo skillu se načte, až když si ho Claude vybere. A vybírá si ho podle jednoho jediného řádku — podle description. Když je vágní, skill se nespustí nikdy, nebo se naopak plete do věcí, kam nepatří. Piš do něj dvě věci: co skill dělá a kdy se má použít. A používej slova, která bys sama napsala do zadání.',
+    },
+    {
+      kind: 'table',
+      head: ['Špatně', 'Dobře', 'V čem je rozdíl'],
+      rows: [
+        [
+          'description: Zpracuje data',
+          'description: Rozdělí export magazínu na divizní soubory pro produkťáky. Použij, když je v data/ nový export.',
+          'Vágní popis se netrefí do žádného zadání. Konkrétní se trefí do toho svého.',
+        ],
+        [
+          'description: Skill na Excel',
+          'description: Dotáhne k položkám min/max a zásoby z CS. Použij před rozesláním podkladů produkťákům.',
+          'Nástroj není spouštěč. Spouštěč je situace.',
+        ],
+        [
+          'description: Pro Katku',
+          'description: Připraví podklady pro backoffice a centrální sklad ze schválené tabulky.',
+          'Claude nezná Katku. Zná úlohu.',
+        ],
+      ],
+    },
+    { kind: 'h', text: 'Jak psát tělo' },
+    {
+      kind: 'list',
+      items: [
+        'Kroky, ne esej. Číslovaný seznam, jedna akce na krok.',
+        'Ověřitelně. „Sloupce v pořadí Kód, Název, Divize“ místo „správně naformátovat“.',
+        'Se zastavovacími pravidly. Napiš, kdy se má zastavit a zeptat, místo aby hádal.',
+        'S pastmi. Sekce „na co si dát pozor“ ušetří víc než tři kroky navíc.',
+        'Krátce. Když SKILL.md přeroste pár set řádků, přesuň detaily do souboru vedle a odkaž na něj.',
+      ],
+    },
+    {
+      kind: 'code',
+      text: `.claude/skills/logisticke-dostupnosti/
+├── SKILL.md          ← postup, krátký
+├── references/
+│   └── sloupce.md    ← úplný popis sloupců, načte se až když je potřeba
+└── scripts/
+    └── kontrola.py   ← pokud postup potřebuje něco spustit`,
+      caption: 'Přílohy jsou volitelné. Většina užitečných skillů je jen SKILL.md.',
+    },
+    { kind: 'h', text: 'Nech si ho napsat' },
+    {
+      kind: 'p',
+      text:
+        'Nejrychlejší cesta k prvnímu skillu není psát ho na prázdno. Je udělat tu úlohu jednou ručně se zadáním a pak říct Claudovi, ať z toho, co se právě stalo, udělá skill. On zná průběh — včetně toho, co jsi mu musela doříct.',
+    },
+    {
+      kind: 'code',
+      text: `Z toho, co jsme teď udělali, napiš skill do .claude/skills/.
+
+Dej mu jméno podle úlohy a do description napiš, co dělá a kdy se má
+použít — takovými slovy, jaká bych do zadání napsala já.
+
+V postupu drž pořadí kroků, které jsme prošli, a doplň místa, kde ses
+mě ptal nebo kde jsem tě opravovala — z nich udělej buď krok navíc,
+nebo zastavovací pravidlo.
+
+Na konec přidej sekci "Na co si dát pozor" s věcmi, které se tady dají
+splést. Pak mi ho ukaž, ať ho projdu, než ho uložíš.`,
+      caption: 'Tenhle prompt napiš hned po tom, co úloha doběhla správně. Ne druhý den — kontext je to nejcennější, co v tu chvíli máš.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Nebo použij skill na psaní skillů',
+      text:
+        'V Claude Code je k dispozici skill-creator: provede tě založením skillu, úpravou existujícího i tím, jestli se spouští ve správných situacích. Spustíš ho lomítkem. Hodí se hlavně tehdy, když chceš skill sdílet dál a záleží ti na tom, aby byl pořádně popsaný.',
+    },
+    { kind: 'h', text: 'Co Claudovi dát, aby vyšel dobře' },
+    {
+      kind: 'p',
+      text:
+        'Kvalita skillu se odvíjí od toho, kolik ze svého tichého vědění mu předáš. Tohle je pořadí podle užitku.',
+    },
+    {
+      kind: 'table',
+      head: ['Dej mu', 'Co z toho vytěží'],
+      rows: [
+        ['Reálný vstupní soubor a hotový výstup z minula', 'Pozná formát, pojmenování i to, co se ve výstupu očekává. Nic z toho nemusí hádat.'],
+        ['Průběh jedné ruční úlohy', 'Zná pořadí kroků i všechna tvá doříkání — ta jsou v postupu nejcennější.'],
+        ['Seznam věcí, které se dají splést', 'Vznikne sekce „na co si dát pozor“, díky které skill nespadne u kolegy.'],
+        ['Kdy se má zastavit a zeptat', 'Skill přestane hádat tam, kde je odhad horší než otázka.'],
+        ['Jak poznáš, že je výsledek špatně', 'Přidá si kontrolní krok na konec a sám ti řekne, když něco nesedí.'],
+        ['Kdo ho bude spouštět a jak to řekne', 'Trefí se v description do slov, která ti lidé opravdu píšou.'],
+      ],
+    },
+    { kind: 'h', text: 'Otestuj ho' },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Pusť ho na jiných datech',
+          body:
+            'Ne na těch, ze kterých vznikl. Skill, který funguje jen na zářijovém exportu, není skill, ale poznámka.',
+        },
+        {
+          title: 'Zkus ho vyvolat nepřímo',
+          body:
+            'Napiš úlohu vlastními slovy a nezmiňuj jméno skillu. Když se nespustí, problém je v description, ne v postupu.',
+        },
+        {
+          title: 'Nech ho spustit někoho jiného',
+          body:
+            'To, co je pro tebe samozřejmé, v postupu chybí. Pozná se to jedině tak, že to zkusí člověk, který agendu nedělá.',
+        },
+        {
+          title: 'Když vyjde jinak než minule, doplň pravidlo',
+          body:
+            'Rozdíl mezi dvěma běhy je skoro vždycky chybějící informace, ne chyba postupu. Přidej ji a zkus to znovu.',
+        },
+      ],
+    },
+    {
+      kind: 'table',
+      head: ['Častá chyba', 'Jak se projeví', 'Oprava'],
+      rows: [
+        ['Vágní description', 'skill se nikdy sám nespustí', 'dopiš, kdy se má použít, a slovy ze zadání'],
+        ['Postup jako souvislý text', 'kroky se přeskakují', 'rozepiš na číslovaný seznam'],
+        ['Fakta o agendě uvnitř skillu', 'jinde ta pravidla neplatí', 'přesuň je do CLAUDE.md'],
+        ['Skill napsaný na jeden soubor', 'příští měsíc nefunguje', 'popiš vzor názvu, ne konkrétní jméno'],
+        ['Žádné zastavovací pravidlo', 'dopočítá si, co nemá', 'napiš, kdy se má zastavit a zeptat'],
+        ['Příliš dlouhý SKILL.md', 'kroky se ztrácejí', 'detaily do souboru vedle, odkaz v postupu'],
+      ],
+    },
+    {
+      kind: 'task',
+      title: 'Cvičení: napiš první skill z toho, co jsi právě udělala',
+      intro:
+        'Vezmi úlohu, kterou jsi v předchozí lekci prošla ručně. Nezakládej nový soubor sama.',
+      items: [
+        'Nech Clauda napsat skill promptem výš a přečti si, co vygeneroval.',
+        'Zkontroluj description: trefil by se do zadání, které bys napsala příště? Když ne, přepiš ho.',
+        'Projdi kroky a doplň jedno zastavovací pravidlo, které tam chybí.',
+        'Spusť skill na datech z jiného měsíce.',
+        'Vyvolej ho podruhé, aniž bys řekla jeho jméno — jen popiš úlohu.',
+      ],
+      hint:
+        'Když se skill nespustí sám, nepiš delší postup. Přepiš description. Devět z deseti případů je tam.',
+    },
+  ],
+}
+
 export const COURSES: Course[] = [
   {
     slug: 'claude-a-firemni-data',
@@ -1187,7 +1469,7 @@ export const COURSES: Course[] = [
       {
         key: 'automatizace',
         title: 'Automatizace',
-        summary: 'Pět stupňů od ručního zadání po běh, který si ráno jen zkontroluješ.',
+        summary: 'Pět stupňů od ručního zadání po běh, který si ráno jen zkontroluješ — a jak napsat skill, na kterém to stojí.',
       },
       {
         key: 'zadani',
@@ -1195,7 +1477,7 @@ export const COURSES: Course[] = [
         summary: 'Reálný proces z logistiky, na kterém se hledají automatizace.',
       },
     ],
-    lessons: [LESSON_PROJEKT, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_AUTOMATIZACE, LESSON_REGAL],
+    lessons: [LESSON_PROJEKT, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_AUTOMATIZACE, LESSON_SKILL, LESSON_REGAL],
     learn: [
       'založit projekt tak, aby se pravidla nemusela opakovat každé ráno',
       'poznat, co patří do CLAUDE.md, co do skillu a co do artefaktu',
@@ -1203,6 +1485,7 @@ export const COURSES: Course[] = [
       'poznat, kdy jsou soubory jen zástupci a Claude v nich nic nepřečte',
       'napsat zadání tak, aby nevznikaly přepsané originály',
       'zabalit opakovaný postup do skillu a nechat ho běžet bez sebe',
+      'napsat description tak, aby se skill spouštěl ve správnou chvíli',
       'číst pracovní proces jako tok dat mezi lidmi a soubory',
       'najít kroky, ve kterých data mění formu ručně',
       'odlišit, co má převzít automatizace a co má zůstat člověku',
