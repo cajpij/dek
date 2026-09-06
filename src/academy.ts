@@ -2693,7 +2693,7 @@ kontrolní protokol do vystupy/."`,
         [
           'E-mail příjemcům',
           'podklad dorazí bez tvého zásahu',
-          'nejde to samo od sebe — potřebuje konektor nebo skript, viz níž',
+          'konektor Microsoft 365 — ale musí být zapnutý a nepřenese přílohu, viz níž',
         ],
       ],
     },
@@ -2701,7 +2701,7 @@ kontrolní protokol do vystupy/."`,
     {
       kind: 'p',
       text:
-        'Claude sám o sobě e-maily neposílá. Aby odeslal, musí mu to někdo umožnit — a to je přesně to, čemu se říká konektor: napojení na službu, přes které Claude umí něco udělat mimo tvůj disk. Než si naplánuješ běh, který má něco odeslat, potřebuješ vědět, kterou z těchhle cest použiješ. Rozdíl mezi nimi je hlavně v tom, kdo to musí povolit.',
+        'Claude sám od sebe do pošty nevidí ani do ní nepíše. Musí mu to někdo umožnit — a tomu napojení se říká konektor: přípojka na službu, přes kterou Claude umí něco udělat mimo tvůj disk. Cesty jsou čtyři a liší se hlavně tím, kdo je musí povolit a jestli přenesou přílohu.',
     },
     {
       kind: 'table',
@@ -2713,19 +2713,14 @@ kontrolní protokol do vystupy/."`,
           'vždycky napoprvé. Devadesát procent užitku a nulové riziko.',
         ],
         [
-          'Konektor Microsoft 365 — čtení',
-          'schválení správce Entra a přihlášení pracovním účtem',
-          'když má Claude hledat v poště, v Teamsech a na SharePointu',
-        ],
-        [
-          'Konektor Microsoft 365 — odesílání',
-          'navíc zapnuté „write tools" — správce k tomu musí dát druhý souhlas',
-          'když má e-mail odejít z tvojí adresy, tvým jménem, i když u toho nejsi',
+          'Konektor Microsoft 365',
+          'zapnuté write tools — správce Entra k tomu musí dát druhý souhlas',
+          'když má mail odejít z tvojí adresy tvým jménem, i když u toho nejsi. Bez přílohy.',
         ],
         [
           'Outlook na tvém počítači',
           'skript, který Claude spustí — na Macu AppleScript, na Windows PowerShell',
-          'když má odejít pošta z tvojí adresy a Outlook stejně máš puštěný',
+          'když musí odejít příloha a Outlook stejně máš puštěný',
         ],
         [
           'Tok v Power Automate',
@@ -2767,16 +2762,33 @@ kontrolní protokol do vystupy/."`,
     {
       kind: 'note',
       tone: 'info',
-      title: 'Konektor si nezapneš sám',
+      title: 'Konektor si nezapneš sám — a jak si o to říct',
       text:
-        'Souhlas dává správce Microsoft 365 a přihlašuje se pracovním účtem — osobní outlook.com nebo hotmail.com nefungují. Pokud konektor ve svém Claudovi nevidíš, není to chyba nastavení: nikdo ho pro firmu ještě nepovolil. A firmy, které konektor připojily dřív, než odesílání vůbec vzniklo, ho mají zablokované i tehdy, když čtení dávno funguje. Řekni si o to dřív, než na tom postavíš úlohu.',
+        'Souhlas dává správce Microsoft 365 a přihlašuje se pracovním účtem; osobní outlook.com nebo hotmail.com nefungují. Pokud konektor ve svém Claudovi nevidíš, není to chyba nastavení — nikdo ho pro firmu nepovolil. Napiš správci rovnou konkrétně: „potřebujeme u konektoru Claude na Microsoft 365 zapnout write tools pro odesílání pošty, vyžaduje to druhý souhlas v Entra". Bez té věty se ptáš na něco, co zní jako obecná otázka, a odpověď přijde za měsíc.',
+    },
+    { kind: 'h', text: 'Takže ano — úloha, která ráno pošle kolegovi mail' },
+    {
+      kind: 'p',
+      text:
+        'Když je odesílání zapnuté, jde založit naplánovanou úlohu, která se v šest ráno spustí sama, něco spočítá, uloží výstup do knihovny a pošle kolegovi e-mail z tvojí adresy tvým jménem. Zadání úlohy vypadá takhle:',
+    },
+    {
+      kind: 'code',
+      text: `Postupuj podle skillu logisticke-dostupnosti.
+Výstupy ulož do vystupy/ a kontrolní protokol vedle nich.
+Pak pošli e-mail na jan.novak@dek.cz s předmětem
+„Divizní dostupnosti — <dnešní datum>". Do těla dej tři čísla
+z protokolu a odkaz do knihovny na SharePointu. Přílohu nepřikládej.
+Když protokol hlásí nesrovnalost, e-mail neposílej a jenom mi to napiš.`,
+      caption:
+        'Všimni si poslední věty. Zadání, které umí odeslat poštu, musí vždycky obsahovat i podmínku, kdy ji neodeslat.',
     },
     {
       kind: 'note',
-      tone: 'ok',
-      title: 'Naplánovaná úloha konektory používat umí',
+      tone: 'warn',
+      title: 'Musí platit tři věci najednou',
       text:
-        'Takže ano: jde nastavit úlohu, která se v šest ráno spustí sama, něco spočítá a pošle kolegovi e-mail z tvojí adresy tvým jménem. Musí k tomu platit tři věci najednou — zapnuté odesílání v konektoru, žádná příloha, a když má úloha sáhnout i do složky na disku, tak zapnutý počítač.',
+        'Zapnuté write tools v konektoru. Žádná příloha — v mailu je odkaz. A když má úloha sáhnout do složky na tvém disku, tak zapnutý a připojený počítač, protože sama úloha běží v cloudu. Když jedna z těch tří chybí, úloha doběhne, ale mail neodejde — a ty se to dozvíš až od kolegy, že mu nic nepřišlo.',
     },
     {
       kind: 'note',
