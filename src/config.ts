@@ -321,6 +321,7 @@ export const DEFAULT_CONFIG: RunConfig = {
       ],
       notes: [
         'Naplánovat hned na začátku bloku, ať to stihne doběhnout',
+        'V Claude Code: Code → Routines → New routine → Local. Cloud varianta nevidí složku na disku.',
         'Tohle není látka, je to důkaz — nechat to zapůsobit a nekomentovat to moc',
         'Zmínit, že u e-mailu je potřeba opatrnost: odeslaná pošta se nevrací',
         'Odesílání e-mailu neukazovat naživo — ukázka je notifikace a soubor, to stačí',

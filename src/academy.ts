@@ -636,22 +636,22 @@ Zadání na začátek:
 
 const VIDEOS_PLAN: VideoRef[] = [
   {
-    id: 'tYOI-WoLS_o',
-    title: 'Delegate and schedule tasks in Claude Cowork',
-    author: 'Claude (Anthropic)',
-    note: 'Oficiální, čtyři minuty. Přesně to, co budeme dělat: zadat úlohu a nechat ji běžet na plán.',
-  },
-  {
-    id: 'o-5Esj459GQ',
-    title: 'How to Use Claude Cowork Scheduled Tasks (Step-by-Step Tutorial)',
-    author: 'Ryan & Matt Data Science',
-    note: 'Delší a pomalejší, klikací. Pusť si to, když ti čtyřminutové oficiální video ujede.',
-  },
-  {
     id: 'U_cDKkDvPAQ',
     title: 'Claude Code Scheduled Tasks Are Insane',
     author: 'Tyler Germain | AI Automation',
-    note: 'Naplánované běhy z pohledu Claude Code, ne aplikace. Až budeš chtít víc než jednu úlohu.',
+    note: 'Naplánované úlohy v Claude Code od nuly. Nejblíž tomu, co budeme dělat.',
+  },
+  {
+    id: 'ZbawXiYm4Go',
+    title: "Claude Code's New Upgrade Lets You Automate Any Task",
+    author: 'Rob The AI Guy',
+    note: 'Delší a pomalejší, klikací. Pusť si to, když ti to první video ujede.',
+  },
+  {
+    id: 'xIjUdWMgzbM',
+    title: 'Turn Claude Code Into an Employee That Works 24/7',
+    author: 'Achuth G. Ramesh',
+    note: 'Až budeš mít první úlohu a začneš přemýšlet, co dál.',
   },
 ]
 
@@ -1470,7 +1470,7 @@ exit 0`,
     {
       kind: 'code',
       text: `claude -p "Postupuj podle skillu rozpad-divizi a výsledek ulož do vystupy/."`,
-      caption: 'Jeden běh bez rozhovoru. Tohle je věta, kterou vložíš do naplánované úlohy — v aplikaci Claude vlevo Scheduled → New task. Podrobně je to v lekci Nech to běžet bez sebe.',
+      caption: 'Jeden běh bez rozhovoru. Tohle je věta, kterou vložíš do naplánované úlohy — v Claude Code záložka Code → Routines → New routine → Local. Podrobně je to v lekci Nech to běžet bez sebe.',
     },
     {
       kind: 'note',
@@ -2572,50 +2572,84 @@ claude -p "Postupuj podle skillu logisticke-dostupnosti. Na konec ulož
 kontrolní protokol do vystupy/."`,
       caption: 'Spusť si to nejdřív ručně přesně takhle. Když to takhle nedoběhne, na plánu to nedoběhne taky.',
     },
-    { kind: 'h', text: 'Naplánovaná úloha v aplikaci Claude' },
+    { kind: 'h', text: 'Naplánovaná úloha v Claude Code' },
     {
       kind: 'p',
       text:
-        'V levém panelu aplikace je položka Scheduled. Tam se zakládají úlohy, které se spustí samy — a je to nejjednodušší cesta, jak se dostat na poslední schod. Běží na serverech Anthropicu, takže se spustí i ve chvíli, kdy máš zavřený notebook, a u každé úlohy vidíš historii běhů: co kdy doběhlo a co ne.',
+        'V desktopové aplikaci Claude Code je v záložce Code v levém panelu položka Routines. Tam se zakládají úlohy, které se spustí samy. Hned u zakládání se ale rozhoduje jedna věc, na které to buď stojí, nebo padá: jestli má úloha běžet na tvém počítači, nebo v cloudu.',
     },
     {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Scheduled → New task',
-          body:
-            'Nabídne se Create with Claude a Set up manually. První se tě doptá a úlohu ti sepíše samo — pro první úlohu je to lepší volba. Ve druhé vyplňuješ pole sama.',
-        },
-        {
-          title: 'Vyplnit zadání, režim schvalování a frekvenci',
-          body:
-            'Zadání je ta jedna věta, kterou jsi před chvílí spouštěla ručně. Frekvence jde nastavit po hodině, denně, týdně, jen v pracovní dny, nebo vůbec — úloha, která se spouští jen na kliknutí, je taky legitimní.',
-        },
-        {
-          title: 'Volitelně vybrat složku',
-          body:
-            'Tady se rozhoduje to podstatné: jestli úloha uvidí data na tvém disku. Bez připojené složky pracuje jen s tím, co má v účtu a v konektorech.',
-        },
-        {
-          title: 'Schedule / Save',
-          body:
-            'Hotovou úlohu je pak vidět v seznamu — dá se pozastavit, přepsat zadání, spustit hned ručně nebo smazat.',
-        },
+      kind: 'table',
+      head: ['', 'Local — na tvém počítači', 'Cloud (routine) — na serveru'],
+      rows: [
+        [
+          'Vidí soubory na tvém disku',
+          'ano, pracuje přímo v tvojí složce',
+          'ne. Naklonuje si repozitář z GitHubu a pracuje v něm.',
+        ],
+        ['Potřebuje zapnutý počítač', 'ano, a puštěnou aplikaci', 'ne, běží i když máš zavřený notebook'],
+        ['Nejkratší interval', 'minuta', 'hodina'],
+        ['Povolování nástrojů', 'nastavíš si režim, může se doptat', 'běží samo, na nic se neptá'],
+        ['Kdy ji zvolit', 'skoro vždycky u nás — data máme ve složce', 'když je práce nad repozitářem a nesmí čekat na notebook'],
       ],
     },
     {
       kind: 'note',
       tone: 'warn',
-      title: 'Běží v cloudu — a to je ta past',
+      title: 'Pro naši práci je správně Local — a to je ta nepříjemná zpráva',
       text:
-        'Naplánovaná úloha běží na serveru, ne u tebe. To je výhoda: nemusíš mít puštěný počítač. Jenže tvoje data leží v nasyncované knihovně na disku — a k té se server sám nedostane. Úloha, která má sáhnout do tvojí složky, potřebuje ten počítač zapnutý a připojený, přesně jak píše ta modrá lišta v seznamu úloh. Kdo chce běh úplně nezávislý na svém notebooku, musí mít data někde, kam Claude dosáhne i bez něj — přes konektor, nebo si nechat od IT postavit tok v Power Automate.',
+        'Cloudová varianta zní líp: běží, i když máš zavřený notebook. Jenže tvoje data leží v nasyncované knihovně na disku a cloudová úloha si místo toho klonuje repozitář z GitHubu — do tvojí složky se nedostane vůbec. Takže pro nás platí Local, a ten běží jen tehdy, když je počítač zapnutý a aplikace puštěná. Ve chvíli, kdy má běh vyjít i přes zavřený notebook, musí data přestat žít jen na disku: buď přes konektor, nebo tokem v Power Automate.',
+    },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Routines → New routine → Local',
+          body:
+            'Volba Cloud udělá tu druhou věc z tabulky. Pro práci nad vlastní složkou chceš Local.',
+        },
+        {
+          title: 'Vyplnit název, popis a instrukce',
+          body:
+            'Instrukce píšeš úplně stejně, jako bys psala Claudovi do chatu. Tady vybereš i model a režim povolování.',
+        },
+        {
+          title: 'Vybrat pracovní složku',
+          body:
+            'Bez složky se úloha nedá uložit. Vyber tu svoji projektovou — tu, ve které máš CLAUDE.md, data/ a vystupy/. Když ji ještě nemáš označenou jako důvěryhodnou, aplikace se na to zeptá.',
+        },
+        {
+          title: 'Nastavit rozvrh',
+          body:
+            'Na výběr je Manual (spustí se jen na kliknutí), Hourly, Daily, Weekdays a Weekly. Cokoli jinačího — třeba každých patnáct minut nebo prvního v měsíci — řekni Claudovi v chatu vlastními slovy.',
+        },
+        {
+          title: 'Hned kliknout na Run now',
+          body:
+            'Tohle nepřeskakuj. První běh si odklikáš oprávnění a u každého dáš „always allow". Bez toho se úloha při ostrém běhu zastaví na dotazu, na který nikdo neodpoví, a ty si budeš myslet, že spadla.',
+        },
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Nemusíš to klikat — stačí si o to říct',
+      text:
+        'Úlohu založíš i tím, že ji v běžném sezení popíšeš. „Založ mi úlohu, která každé pondělí v šest ráno projede export a připraví divizní soubory" udělá opakovanou úlohu. „Připomeň mi zítra ve tři, ať zkontroluju ten běh" udělá jednorázovou, která se po odpálení sama vypne. Stejně tak se dá říct „pozastav mi úlohu rozpad-divizi" nebo „ukaž mi moje naplánované úlohy".',
     },
     {
       kind: 'note',
       tone: 'info',
-      title: 'Co k tomu potřebuješ',
+      title: 'Zadání úlohy je obyčejný SKILL.md',
       text:
-        'Placený plán (Pro, Max, Team nebo Enterprise) a desktopovou aplikaci. Naplánované úlohy nejsou ve webové verzi. Druhá cesta — plánovač přímo v systému, tedy cron na Macu nebo Plánovač úloh na Windows — existuje taky a spouští `claude -p` bez aplikace, ale nemá historii běhů ani notifikace. Začni tou první.',
+        'Text úlohy leží na disku v ~/.claude/scheduled-tasks/<název>/SKILL.md — tedy přesně ten formát, který znáš z lekce o skillech: YAML hlavička s name a description a pod tím zadání. Dá se editovat ručně a projeví se to při dalším běhu. Rozvrh, složka a model v tom souboru nejsou, ty se mění ve formuláři.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Když počítač spal, běh se přeskočí',
+      text:
+        'Úloha běží jen při puštěné aplikaci a probuzeném počítači. Zaspaný běh se zahodí a při probuzení se dohání jenom ten poslední zmeškaný — úloha, která nešla šest dní, doběhne jednou. To znamená, že se ranní úloha může spustit v jedenáct večer. Piš proto zadání tak, aby s tím počítalo: „Pracuj jenom s dnešním exportem. Když je po páté odpoledne, nic nepočítej a jenom mi napiš, že se to nestihlo." V Nastavení → Aplikace → Obecné se dá zapnout Keep computer awake, ale zavřené víko uspí počítač tak jako tak.',
     },
     {
       kind: 'video',
@@ -2624,17 +2658,22 @@ kontrolní protokol do vystupy/."`,
     },
     {
       kind: 'links',
-      title: 'Oficiální návody',
+      title: 'Dokumentace',
       items: [
         {
-          label: 'Schedule recurring tasks — nápověda Claude',
-          href: 'https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork',
-          note: 'Krok za krokem, včetně toho, co úloha vidí a co ne.',
+          label: 'Schedule recurring tasks in Claude Code Desktop',
+          href: 'https://code.claude.com/docs/en/desktop-scheduled-tasks',
+          note: 'Ta varianta Local. Rozvrhy, oprávnění, zmeškané běhy.',
         },
         {
-          label: 'Delegating and scheduling tasks — tutoriál',
-          href: 'https://claude.com/resources/tutorials/delegating-and-scheduling-tasks-in-claude-cowork',
-          note: 'Stránka s tím čtyřminutovým videem.',
+          label: 'Automate work with routines',
+          href: 'https://code.claude.com/docs/en/routines',
+          note: 'Cloudová varianta — až budeš mít práci nad repozitářem.',
+        },
+        {
+          label: 'Automate actions with hooks',
+          href: 'https://code.claude.com/docs/en/hooks-guide',
+          note: 'Zábrany a notifikace, které k naplánovanému běhu patří.',
         },
       ],
     },
@@ -2650,7 +2689,7 @@ kontrolní protokol do vystupy/."`,
         {
           title: 'Naplánuj to na za pět minut',
           body:
-            'V aplikaci Claude si založ naplánovanou úlohu, jako čas dej pět minut od teď a jako zadání tu jednu větu, kterou jsi před chvílí spouštěla ručně.',
+            'Nejrychlejší je o to prostě říct: napiš Claudovi „založ mi úlohu, která se spustí za pět minut" a jako zadání dej tu jednu větu, kterou jsi před chvílí spouštěla ručně. Nebo klikačkou přes Routines → New routine → Local.',
           code: 'Postupuj podle skillu logisticke-dostupnosti. Na konec ulož kontrolní protokol do vystupy/ a dej mi vědět, až je hotovo.',
         },
         {
@@ -2788,7 +2827,7 @@ Když protokol hlásí nesrovnalost, e-mail neposílej a jenom mi to napiš.`,
       tone: 'warn',
       title: 'Musí platit tři věci najednou',
       text:
-        'Zapnuté write tools v konektoru. Žádná příloha — v mailu je odkaz. A když má úloha sáhnout do složky na tvém disku, tak zapnutý a připojený počítač, protože sama úloha běží v cloudu. Když jedna z těch tří chybí, úloha doběhne, ale mail neodejde — a ty se to dozvíš až od kolegy, že mu nic nepřišlo.',
+        'Zapnuté write tools v konektoru. Žádná příloha — v mailu je odkaz. A protože úloha sahá do složky na tvém disku, běží jako Local: zapnutý počítač a puštěná aplikace. Když jedna z těch tří chybí, mail neodejde — a ty se to dozvíš až od kolegy, že mu nic nepřišlo.',
     },
     {
       kind: 'note',
@@ -2835,7 +2874,7 @@ a vedle toho kontrola-<datum>.md
 3. Když to spadne i ručně, běh vypni a napiš <kdo>.
 
 ## Jak to vypnout
-V aplikaci Claude → naplánované úlohy → vypnout.`,
+Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
       caption: 'Šest nadpisů. Kratší runbook nikdo nenapíše, delší nikdo nepřečte.',
     },
     { kind: 'h', text: 'Co se stane, když' },
