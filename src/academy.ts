@@ -93,12 +93,12 @@ const LESSON_PROGRAM: Lesson = {
   module: 'start',
   title: 'Jak workshop poběží',
   summary:
-    'Čtyři hodiny v sále, něco předem doma a zbytek potom. Přehled, co kdy a proč zrovna takhle.',
+    'Čtyři hodiny v sále, skoro nic předem a zbytek potom. Přehled, co kdy a proč zrovna takhle.',
   minutes: 5,
   kind: 'lekce',
   track: 'předem',
   outcomes: [
-    'vědět, co si připravit před workshopem',
+    'vědět, co si přinést s sebou',
     'vědět, co se bude dít v sále a co si z toho odnesete',
     'vědět, ke kterým lekcím se vrátit potom',
   ],
@@ -106,33 +106,31 @@ const LESSON_PROGRAM: Lesson = {
     {
       kind: 'p',
       text:
-        'Oba kurzy dohromady jsou na čtyři hodiny a víc jich není schválně. Z toho je zhruba půl hodiny doma předem, dvě a půl hodiny v sále a zbytek referenční materiál, ke kterému se vracíte, až budete stavět. V sále děláme jenom to, co se nedá udělat samostatně: rozhovory ve dvojicích a stavění na vlastních datech.',
+        'Oba kurzy dohromady jsou na čtyři hodiny a víc jich není schválně. Předem po vás nechceme skoro nic — nastavení složky i projektu děláme společně hned na začátku večera, takže si nikdo nemusí lámat hlavu doma. Zbytek akademie je referenční materiál, ke kterému se vracíte, až budete stavět.',
     },
     {
       kind: 'table',
       head: ['Štítek', 'Znamená'],
       rows: [
-        ['předem', 'projděte si to doma, než přijdete. Bez toho vám v sále nepojede počítač.'],
+        ['předem', 'stačí přinést s sebou. Je to jediná položka a je krátká.'],
         ['v sále', 'děláme společně. Jsou to hlavně cvičení, ne přednášky.'],
         ['potom', 'referenční materiál. Vracejte se k němu, až budete stavět.'],
       ],
     },
-    { kind: 'h', text: 'Předem: čtvrt hodiny doma' },
+    { kind: 'h', text: 'Předem: dvě věci, deset minut' },
     {
       kind: 'list',
       items: [
-        'Nainstalovaný Claude Code a přihlášený firemní účet.',
-        'Nasyncovaná složka, ve které máte data ke své agendě — lekce Sdílená složka ze SharePointu.',
-        'Přečtená lekce Co Claude ve složce vidí a co ne.',
-        'Jeden reálný soubor, se kterým každý týden pracujete, uložený lokálně. Vezměte kopii.',
+        'Nainstalovaný Claude Code a přihlášený firemní účet. Nic víc se instalovat nebude.',
+        'Vědět, kterou svoji agendu chcete večer řešit, a mít k ní jeden reálný soubor — tabulku nebo dokument, se kterým každý týden pracujete. Klidně jen v hlavě, soubor najdeme společně.',
       ],
     },
     {
       kind: 'note',
-      tone: 'warn',
-      title: 'Tohle opravdu udělejte předem',
+      tone: 'ok',
+      title: 'Nasyncovanou složku ani nic přečteného předem nechceme',
       text:
-        'Kdyby se nastavovalo v sále, sníme tím hodinu ze čtyř — a je to jediná část, u které nepotřebujete nikoho vedle sebe. Kdyby to nešlo, napište to dopředu, ne až ráno.',
+        'SharePoint, projekt, CLAUDE.md i videa k tomu jsou první blok v sále — přesunuli jsme je tam schválně. Když někomu nepojede sync, chceme to vidět v 16:20 a vyřešit to na místě, ne aby na to seděl sám doma. Kdo si to udělá dopředu, má první půlhodinu volnou a může pomoct sousedovi.',
     },
     {
       kind: 'note',
@@ -148,15 +146,15 @@ const LESSON_PROGRAM: Lesson = {
       rows: [
         ['16:00', 'Úvod — proč to děláme a co si odnesete'],
         ['16:10', 'Rozehřívačka — postavíme se a řekneme, co jsme dneska dělali ručně'],
-        ['16:20', 'Vzor: Od magazínu do regálu. Projdeme spolu jeden reálný proces.'],
-        ['16:40', 'Cvičení ve dvojicích — rozhovory o vlastní práci'],
-        ['17:20', 'Kresba flow a označení míst k automatizaci'],
-        ['17:40', 'Pauza'],
-        ['17:50', 'Sdílení map — každá dvojice dvě minuty'],
-        ['18:00', 'Projekt: co si založit. Poprvé u vlastního počítače.'],
-        ['18:20', 'Zadání nad tabulkou a kontrola výsledku'],
-        ['18:45', 'Pauza'],
-        ['18:55', 'Postav si první automatizaci na vlastních datech'],
+        ['16:20', 'Nastavení: sdílená složka a projekt. U vlastního počítače, s asistencí.'],
+        ['16:50', 'Vzor: Od magazínu do regálu. Projdeme spolu jeden reálný proces.'],
+        ['17:10', 'Cvičení ve dvojicích — rozhovory o vlastní práci'],
+        ['17:50', 'Kresba flow a označení míst k automatizaci'],
+        ['18:05', 'Pauza'],
+        ['18:15', 'Sdílení map — každá dvojice dvě minuty'],
+        ['18:25', 'Zadání nad tabulkou a kontrola výsledku'],
+        ['18:50', 'Pauza'],
+        ['19:00', 'Postav si první automatizaci na vlastních datech'],
         ['19:45', 'Živá ukázka: naplánujeme běh na za pět minut a necháme ho proběhnout'],
         ['19:55', 'Doběhlo to samo. Domluva, co do příště.'],
       ],
@@ -173,7 +171,7 @@ const LESSON_PROGRAM: Lesson = {
       tone: 'ok',
       title: 'Nejdůležitější jsou dva bloky',
       text:
-        'Cvičení ve dvojicích a stavění první automatizace. Když z programu něco vypadne, vypadne všechno ostatní — tyhle dva zůstanou. Jsou to jediné části, ze kterých si odnesete něco vlastního.',
+        'Cvičení ve dvojicích a stavění první automatizace. Když z programu něco vypadne, vypadne všechno ostatní — tyhle dva a nastavení na začátku zůstanou. Jsou to jediné části, ze kterých si odnesete něco vlastního.',
     },
     { kind: 'h', text: 'Samostudium po školení' },
     {
@@ -218,7 +216,7 @@ const VIDEOS_CLAUDE_CODE: VideoRef[] = [
 
 const LESSON_PROJEKT: Lesson = {
   slug: 'projekt-v-claude-code',
-  module: 'start',
+  module: 'napojeni',
   title: 'Projekt v Claude Code: co si založit',
   summary:
     'Projekt, CLAUDE.md, skill, artefakt, konektor — co který pojem znamená, na hotových příkladech z logistiky, dopravy, BI, marketingu a vedení.',
@@ -797,7 +795,7 @@ const LESSON_SHAREPOINT: Lesson = {
     'Nasyncovat týmovou knihovnu do počítače a připojit ji Claudovi, aby si v ní mohl číst a psát. Pro Mac i Windows.',
   minutes: 15,
   kind: 'lekce',
-  track: 'předem',
+  track: 'v sále',
   outcomes: [
     'nasyncovat knihovnu ze SharePointu do počítače přes OneDrive',
     'najít, kde ta složka na disku fyzicky leží — na Macu i ve Windows',
@@ -883,7 +881,7 @@ const LESSON_CO_VIDI: Lesson = {
     'Hranice připojené složky: co si přečte, co změní, kdy potřebuje povolení a kdy je offline.',
   minutes: 5,
   kind: 'lekce',
-  track: 'předem',
+  track: 'v sále',
   outcomes: [
     'vysvětlit, kam až sahá přístup k připojené složce',
     'poznat, kdy je práce s daty bezpečná a kdy potřebuje povolení navíc',
@@ -2663,19 +2661,20 @@ export const COURSES: Course[] = [
     summary:
       'Napojit Claudovi složku, ve které pracuješ, a naučit se v ní zadávat práci. Končí zadáním nad reálným procesem.',
     intro:
-      'Kurz pro lidi, kteří každý týden přeskládávají tytéž tabulky a chtějí, aby se to dělalo samo. Nejdřív si založíš projekt a napíšeš pravidla, která se nemusí opakovat. Nejdřív napojíš Claudovi složku, ve které ta práce žije, pak si ohraničíš, co v ní smí a nesmí — a nakonec si na reálném procesu akčního regálu vyzkoušíš najít místa, kde se dá práce automatizovat.',
+      'Kurz pro lidi, kteří každý týden přeskládávají tytéž tabulky a chtějí, aby se to dělalo samo. Nejdřív napojíš Claudovi složku, ve které ta práce žije, ohraničíš si, co v ní smí a nesmí, a založíš nad ní projekt s pravidly, která se nemusí opakovat každé ráno. Pak si na reálném procesu akčního regálu vyzkoušíš najít místa, kde se dá práce automatizovat — a totéž uděláš na vlastní agendě.',
     level: 'Začátečník',
     section: 'Začni tady',
     modules: [
       {
         key: 'start',
         title: 'Než začneš',
-        summary: 'Program dne a nastavení projektu, o které se opře všechno ostatní.',
+        summary: 'Jak večer poběží a co si stačí přinést.',
       },
       {
         key: 'napojeni',
-        title: 'Napojení dat',
-        summary: 'Jednorázové nastavení a hranice, ve kterých se pak pracuje.',
+        title: 'Nastavení: složka a projekt',
+        summary:
+          'Jediná část večera, kde se něco nastavuje. Děláme ji hned na začátku, aby se případný zádrhel našel teď a ne ve chvíli, kdy máš stavět.',
       },
       {
         key: 'zadani',
@@ -2684,7 +2683,7 @@ export const COURSES: Course[] = [
           'Nejdřív hotový proces z logistiky jako vzor, pak totéž ve dvojicích na vlastní agendě.',
       },
     ],
-    lessons: [LESSON_PROGRAM, LESSON_PROJEKT, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_REGAL, LESSON_CVICENI],
+    lessons: [LESSON_PROGRAM, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL, LESSON_CVICENI],
     learn: [
       'založit projekt tak, aby se pravidla nemusela opakovat každé ráno',
       'poznat, co patří do CLAUDE.md, co do skillu a co do artefaktu',

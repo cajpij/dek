@@ -10,9 +10,10 @@ import type { RunConfig } from './types'
  *
  * Proč zrovna takhle:
  *
- *  - Obsah akademie je na čtyři hodiny a v sále je jen to, co se nedá udělat
- *    samostatně. Nastavení složky ze SharePointu jde domů předem, skilly,
- *    hooky a běh bez dozoru do samostudia potom.
+ *  - Nastavení složky a projektu je hned na začátku, ne doma. Kdyby se
+ *    nechalo na účastnících, půlka to neudělá a zjistí se to ve chvíli,
+ *    kdy má člověk stavět. Takhle se problém najde v 16:20 a je celý večer
+ *    na to ho obejít. Skilly, hooky a běh bez dozoru zůstávají v samostudiu.
  *  - Celý den stojí na jednom vzoru: proces akčního regálu z logistiky.
  *    Nejdřív se projde společně, pak si každý zmapuje vlastní agendu a nakonec
  *    z ní postaví první automatizaci.
@@ -66,8 +67,8 @@ export const DEFAULT_CONFIG: RunConfig = {
         { title: 'Co je předem hotové a co se dnes nestihne', min: 2 },
       ],
       notes: [
-        'Ověřit, že mají všichni nainstalovaný Claude Code a nasyncovanou složku — mělo být předem',
-        'Kdo to nemá, ať si sedne vedle někoho, kdo ano; nastavování v sále sežere hodinu',
+        'Ověřit, že mají všichni nainstalovaný Claude Code — instalace je jediná věc, která měla být předem',
+        'Složku nastavujeme hned v dalším bloku, tady jen zjistit, kolik lidí ji nemá',
         'Ukázat schéma pěti schodů z akademie — vrátíme se k němu na konci',
         'Říct rovnou, kam den směřuje: naplánovaný běh, který doběhne, když u toho nikdo nesedí',
         'Odkaz na akademii nechat na plátně',
@@ -100,6 +101,37 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Nesbírat řešení, jen sbírat. Kdo začne radit, zarazit ho — přijde to za dvě hodiny.',
         'Držet minutu na člověka, jinak se z toho stane porada',
         'To, co v kolečku zazní, si zapsat — jsou to kandidáti na cvičení 2',
+      ],
+    },
+    {
+      title: 'Nastavení: sdílená složka a projekt',
+      min: 30,
+      kind: 'work',
+      who: 'Lektor + asistence',
+      brief:
+        'Než začneme cokoli mapovat, musí mít každý na disku složku se svými daty a v ní projekt. ' +
+        'Je to jediná část večera, kde se něco nastavuje — a děláme ji na začátku schválně, ' +
+        'aby se případný problém našel teď a ne ve chvíli, kdy má člověk stavět.',
+      steps: [
+        { title: 'Nasyncovat knihovnu ze SharePointu', min: 10, detail: 'Přidat zástupce do OneDrivu, počkat, až se stáhne' },
+        { title: 'Vždy ponechat v tomto zařízení a připojit složku v Claudovi', min: 5, detail: 'Bez toho jsou na disku jen zástupci a Claude nic nepřečte' },
+        { title: 'Založit projekt: složka agendy, data/ a vystupy/', min: 5 },
+        { title: 'Napsat CLAUDE.md', min: 10, detail: 'Pět řádků slovníku, kde jsou data, dvě pravidla co se nesmí' },
+      ],
+      examples: [
+        { title: 'Mám knihovnu nasyncovanou', detail: 'Rovnou zakládej projekt a piš CLAUDE.md. Zbyde ti čas, pomoz sousedovi.' },
+        { title: 'Sync mi nejede', detail: 'Nezdržuj se tím. Vezmi kopii jednoho reálného souboru na disk a jeď na ní — dosyncuje se doma.' },
+        { title: 'Nemám přístup do knihovny', detail: 'Totéž: lokální kopie stačí. Přístup vyřeš s IT po workshopu.' },
+        { title: 'Nevím, jakou agendu si vybrat', detail: 'Tu, kterou jsi zmínil v rozehřívačce. Stačí výsek.' },
+      ],
+      notes: [
+        'Tohle je jediný blok, kde se nastavuje — proto je na začátku, ne doma',
+        'Na Macu je složka v ~/Library/CloudStorage, ve Windows pod profilem uživatele s ikonou budovy',
+        'Hlídat ty, komu to nejede. Nikoho nenechat čekat na sync — lokální kopie je plnohodnotná náhrada.',
+        'Kdo je hotový dřív, ať pomůže sousedovi. Rychle se pozná, kdo to má a kdo ne.',
+        'Ukázat hotový CLAUDE.md akčního regálu jako vzor, ať neopisují ze vzduchu',
+        'Kdo má projekt v nasyncované knihovně, upozornit, že obsah uvidí celý tým',
+        'Když někomu nepůjde ani lokální kopie, ať pracuje ve dvojici — večer nesmí propadnout na nastavování',
       ],
     },
     {
@@ -164,13 +196,13 @@ export const DEFAULT_CONFIG: RunConfig = {
     },
     {
       title: 'Cvičení 1b — kresba flow a označení míst',
-      min: 20,
+      min: 15,
       kind: 'work',
       who: 'Lektor + asistence',
       steps: [
-        { title: 'Nakreslit flow do tří pruhů', min: 12, detail: 'Kdo dodává vstup / ty / kdo dostává výstup' },
-        { title: 'Popsat šipky — čím se co přenáší', min: 3, detail: 'E-mail, sdílená tabulka, print screen, telefon' },
-        { title: 'Označit každý krok jednou ze tří značek', min: 5 },
+        { title: 'Nakreslit flow do tří pruhů', min: 9, detail: 'Kdo dodává vstup / ty / kdo dostává výstup' },
+        { title: 'Popsat šipky — čím se co přenáší', min: 2, detail: 'E-mail, sdílená tabulka, print screen, telefon' },
+        { title: 'Označit každý krok jednou ze tří značek', min: 4 },
       ],
       examples: [
         { title: 'Ruční přenos', detail: 'Data mění formu nebo místo a dělá to člověk. Nejsilnější kandidát.' },
@@ -206,24 +238,6 @@ export const DEFAULT_CONFIG: RunConfig = {
       ],
     },
     {
-      title: 'Projekt: co si založit',
-      min: 20,
-      kind: 'work',
-      who: 'Lektor',
-      steps: [
-        { title: 'Založit složku podle agendy', min: 4, detail: 'Jedna agenda = jedna složka, ne jedna velká „AI“' },
-        { title: 'Napsat CLAUDE.md', min: 10, detail: 'Pět řádků slovníku, kde jsou data, dvě pravidla co se nesmí' },
-        { title: 'Podsložky data/ a vystupy/, dát dovnitř reálný soubor', min: 4 },
-        { title: 'Spustit Clauda ve složce a nechat ho popsat, čemu agenda slouží', min: 2 },
-      ],
-      notes: [
-        'Poprvé u vlastního počítače — počítat s tím, že to bude drhnout',
-        'Ukázat hotový CLAUDE.md akčního regálu jako vzor, ať neopisují ze vzduchu',
-        'Kdo má složku v nasyncované knihovně, upozornit, že to uvidí celý tým',
-        'Nezdržovat se u toho, kdo si vybral moc složitou agendu — ať si vezme výsek',
-      ],
-    },
-    {
       title: 'Zadání nad tabulkou a kontrola výsledku',
       min: 25,
       kind: 'talk',
@@ -247,7 +261,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     },
     {
       title: 'Cvičení 2 — postav si první automatizaci',
-      min: 50,
+      min: 45,
       kind: 'work',
       who: 'Lektor + asistence',
       brief:
@@ -257,8 +271,8 @@ export const DEFAULT_CONFIG: RunConfig = {
         { title: 'Vybrat krok a připravit si vstup i výsledek z minula', min: 8 },
         { title: 'Udělat to jednou zadáním a zapisovat si doříkání', min: 15 },
         { title: 'Doříkání, která platí pořád, přepsat do CLAUDE.md', min: 5 },
-        { title: 'Nechat si napsat skill a opravit mu description', min: 12 },
-        { title: 'Spustit na datech z jiného měsíce', min: 10 },
+        { title: 'Nechat si napsat skill a opravit mu description', min: 10 },
+        { title: 'Spustit na datech z jiného měsíce', min: 7 },
       ],
       examples: [
         {
