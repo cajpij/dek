@@ -252,6 +252,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Říct nahlas: „neptej se, jestli je to správně“. Odpověď ano je tvrzení o tvrzení.',
         'Ukázat vyplněný kontrolní protokol z akčního regálu, včetně toho řádku o nesedících datech',
         'Pasti ukázat na listu Logistika, ne obecně',
+        'Kdo se ptá na skilly: v akademii je rozbor toho skutečného (Jak napsat skill) — původní verze, čtyři slabiny, vylepšená',
       ],
     },
     {
@@ -307,6 +308,8 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Připomínat: doříkání jsou to nejcennější, ať si je zapisují',
         'Kdo skončí dřív, ať přidá ke skillu kontrolu na konec',
         'Hotovo je, když to projde dvakrát po sobě bez opravy — ne když to vyjde jednou',
+        'Laťka pro skill: má sekci „zastav se, když“ a nechá po sobě kontrolní protokol v souboru, ne v chatu',
+        'Kdo chce vidět celou cestu až po rozeslané maily, má v akademii lekci Celý příklad',
       ],
     },
     {
@@ -337,12 +340,20 @@ export const DEFAULT_CONFIG: RunConfig = {
       who: 'Martin',
       steps: [
         { title: 'Úkol na týden: pustit to naostro', min: 3 },
-        { title: 'Kam se vracet v akademii', min: 2 },
+        {
+          title: 'Kam se vracet v akademii',
+          min: 2,
+          detail:
+            'Celý příklad (od magazínu po mail) · Jak napsat skill (rozbor skutečného) · Jak se nastaví automatizace (hooky) · Nech to běžet bez sebe · MCP nad katalogem',
+        },
       ],
       notes: [
         'Úkol je jediný: pustit svoji úlohu na skutečné práci a přinést zpátky, co se stalo',
         'Říct nahlas, že „nepustila jsem to a tady je proč“ je platná odpověď — nejcennější z celého úkolu',
         'Lekce označené štítkem potom jsou referenční, ať je nečtou dopředu',
+        'Neposílat je na všechny — říct jednu podle toho, co kdo dneska stavěl',
+        'Celý příklad je ta hlavní: hotspot 2 od složky až po naplánovaný běh, s vyplněným formulářem úlohy',
+        'MCP nad katalogem je bonus pro zvědavé — server je v repu, rozjede se třemi příkazy',
         'Nahrávky a přepisy z dnešních rozhovorů ať zůstanou v projektech',
       ],
     },

@@ -181,15 +181,17 @@ const LESSON_PROGRAM: Lesson = {
     {
       kind: 'p',
       text:
-        'Do čtyř hodin se toho vejde jen tolik, kolik se dá udělat společně. Všechno ostatní z akademie nezmizelo — je označené štítkem potom a čeká, až na něj dojde řada. Nečtěte to dopředu a nesnažte se to stihnout: vracejte se k tomu ve chvíli, kdy narazíte na to, co ta lekce řeší. Kostra je pořád stejná — pět schodů od zadání po běh bez tebe — jen první dva jste prošli v sále a zbylé tři si projdete sami.',
+        'Do čtyř hodin se toho vejde jen tolik, kolik se dá udělat společně. Všechno ostatní z akademie nezmizelo — je označené štítkem potom a čeká, až na něj dojde řada. Nečtěte to dopředu a nesnažte se to stihnout: vracejte se k tomu ve chvíli, kdy narazíte na to, co ta lekce řeší. Kostra je pořád stejná — pět schodů od zadání po běh bez tebe — jen první dva jste prošli v sále a zbylé tři si projdete sami. Když si máte vybrat jednu, vezměte Celý příklad — je to tentýž akční regál, ale dotažený od prázdné složky až po naplánovaný běh, který rozešle maily.',
     },
     {
       kind: 'table',
       head: ['Až budete potřebovat', 'Vraťte se do'],
       rows: [
-        ['zabalit postup, který opakujete', 'Jak napsat skill'],
-        ['vědět, kam až se dá zajít', 'Jak se v projektu nastaví automatizace'],
+        ['vidět celou cestu na jednom příkladu', 'Celý příklad: od magazínu po mail produkťákům'],
+        ['zabalit postup, který opakujete', 'Jak napsat skill — s rozborem toho skutečného z logistiky'],
+        ['zamknout data a dostat notifikaci', 'Jak se v projektu nastaví automatizace'],
         ['pustit to bez sebe a nespálit se', 'Nech to běžet bez sebe'],
+        ['ptát se na katalog vlastními slovy', 'MCP nad katalogem dek.cz'],
         ['předat to kolegovi', 'Zadání: pusť to naostro'],
       ],
     },
