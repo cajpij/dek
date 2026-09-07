@@ -24,6 +24,9 @@ import AutomationLadder from './AutomationLadder'
 import ProjectTree from './ProjectTree'
 import RegalFlow from './RegalFlow'
 import RoutineForm from './RoutineForm'
+import TokenDrains from './TokenDrains'
+import ContextGrowth from './ContextGrowth'
+import SubagentContext from './SubagentContext'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
@@ -498,6 +501,12 @@ export default function BlockView({ block }: { block: Block }) {
               <AutomationLadder />
             ) : block.name === 'routine-form' ? (
               <RoutineForm />
+            ) : block.name === 'token-drains' ? (
+              <TokenDrains />
+            ) : block.name === 'context-growth' ? (
+              <ContextGrowth />
+            ) : block.name === 'subagent-context' ? (
+              <SubagentContext />
             ) : (
               <RegalFlow />
             )}

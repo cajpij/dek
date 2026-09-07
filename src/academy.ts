@@ -33,7 +33,15 @@ export type Block =
   | { kind: 'table'; head: string[]; rows: string[][] }
   | {
       kind: 'figure'
-      name: 'regal-flow' | 'sync-map' | 'project-tree' | 'automation-ladder' | 'routine-form'
+      name:
+        | 'regal-flow'
+        | 'sync-map'
+        | 'project-tree'
+        | 'automation-ladder'
+        | 'routine-form'
+        | 'token-drains'
+        | 'context-growth'
+        | 'subagent-context'
       caption: string
     }
   | { kind: 'checklist'; title: string; items: string[] }
@@ -332,7 +340,13 @@ const LESSON_TOKENY: Lesson = {
     {
       kind: 'p',
       text:
-        'Limit není trest za to, že Clauda používáš moc. Skoro vždycky za ním stojí pár návyků, které se dají změnit za deset minut — a rozdíl mezi opatrným a neopatrným sezením je násobek, ne pár procent. Tahle lekce je o tom, kde se to utrácí a co s tím.',
+        'Limit není trest za to, že Clauda používáš moc. Skoro vždycky za ním stojí pár návyků, které se dají změnit za deset minut — a rozdíl mezi opatrným a neopatrným sezením je násobek, ne pár procent. Tatáž oprava může stát pár tisíc tokenů, nebo desetinásobek, podle toho, v jakém sezení ji zadáš.',
+    },
+    {
+      kind: 'figure',
+      name: 'token-drains',
+      caption:
+        'Skoro všechno drahé má jednu ze čtyř příčin. Lekce jde postupně po všech čtyřech.',
     },
     { kind: 'h', text: 'Co je token' },
     {
@@ -351,6 +365,16 @@ const LESSON_TOKENY: Lesson = {
       kind: 'p',
       text:
         'Aby to nebylo tak drahé, existuje cache: to, co se posílá znovu a nezměnilo se, se nepočítá plnou sazbou, ale zhruba desetinou. Není to zadarmo, ale je to velký rozdíl — a proto je většina rad níž o tom, jak cache nerozbít.',
+    },
+    {
+      kind: 'table',
+      head: ['Co to je', 'Kolik to stojí', 'Co si z toho odnést'],
+      rows: [
+        ['Vstup — všechno, co Claude čte', 'základní sazba', 'sem patří i soubory, které otevřel, a výpisy příkazů'],
+        ['Výstup — co Claude napíše', 'zhruba pětinásobek vstupu', 'proto se vyplatí nechtít vypsat celou tabulku, když stačí shrnutí'],
+        ['Vstup z cache — co se posílá znovu', 'zhruba desetina', 'tohle je ta úleva, o kterou se nechceš připravit'],
+        ['Zápis do cache', 'až dvojnásobek', 'platí se jednou, když se cache staví; proto ji nerozbíjej zbytečně'],
+      ],
     },
     {
       kind: 'note',
@@ -397,7 +421,13 @@ const LESSON_TOKENY: Lesson = {
     {
       kind: 'p',
       text:
-        'Nejčastější důvod, proč limit mizí rychleji, než dává rozum, je jediné sezení otevřené celý den, ve kterém se vystřídalo pět nesouvisejících úloh. Každá další otázka v něm táhne s sebou všechny předchozí.',
+        'Nejčastější důvod, proč limit mizí rychleji, než dává rozum, je jediné sezení otevřené celý den, ve kterém se vystřídalo pět nesouvisejících úloh. Každá další otázka v něm táhne s sebou všechny předchozí — čtyřicátá zpráva znovu čte i těch třicet devět před sebou.',
+    },
+    {
+      kind: 'figure',
+      name: 'context-growth',
+      caption:
+        'Táž práce, tytéž otázky. Vlevo jedno sezení celý den, vpravo tři sezení s /clear mezi úlohami. Rozdíl není v tom, co se udělalo, ale kolikrát se to poslalo znovu.',
     },
     {
       kind: 'table',
@@ -462,9 +492,28 @@ const LESSON_TOKENY: Lesson = {
         'CLAUDE.md drž do dvou set řádků. Načítá se do každého sezení celý, i když děláš něco úplně jiného. Delší postupy patří do skillu, který se načte, jen když je potřeba.',
         'Do složky projektu nedávej celou databázi, ale reálný vzorek. Claude čte to, co tam je.',
         'Vypni konektory, které zrovna nepoužíváš — v Claude Code příkazem /mcp. Každý připojený server něco zabírá.',
-        'Upovídané věci (procházení dlouhých logů, hromadné hledání) se dají zadat tak, aby je udělal podagent a zpátky přišel jen výsledek, ne celý výpis.',
+        'Odkazuj na soubory zavináčem — napiš @nazev-souboru místo opisování cesty. Claude si soubor rovnou vezme a ušetří se hledání, které by jinak muselo proběhnout první.',
+        'U příkazů, které chrlí stovky řádků, přidávej přepínače na tišší výstup. Ty, které používáš pořád, si i s přepínači zapiš do CLAUDE.md, ať je nemusíš vymýšlet znovu.',
         'U velkých úloh si nech nejdřív napsat plán (Shift+Tab, plan mode). Levnější než dvakrát dělat špatnou věc.',
       ],
+    },
+    {
+      kind: 'p',
+      text:
+        'Ta poslední rada stojí za obrázek, protože se pravidelně chápe špatně. Podagent není „druhý Claude, který ví totéž". Dostane vlastní čistý kontext — svoje instrukce, nástroje a tvůj CLAUDE.md, ale ne tvoji konverzaci. Proto se u něj upovídaná práce dá udělat, aniž by ti ten hluk zůstal v sezení: zpátky přijde jen odpověď.',
+    },
+    {
+      kind: 'figure',
+      name: 'subagent-context',
+      caption:
+        'Tisíc řádků výpisu zůstane u podagenta a zmizí s ním. Kdyby totéž běželo u tebe, posílá se to znovu při každé další zprávě až do konce sezení.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Dlouhý výpis se sám odkládá',
+      text:
+        'Když příkaz vypíše víc než zhruba třicet tisíc znaků, Claude Code výpis uloží do souboru a do konverzace dá jen náhled. Chrání tě to před nejhorším, ale spoléhat se na to nedá — tišší příkaz je pořád lepší než uříznutý výpis.',
     },
     {
       kind: 'note',
@@ -509,15 +558,14 @@ const LESSON_TOKENY: Lesson = {
     },
     {
       kind: 'checklist',
-      title: 'Návyky, které stačí',
+      title: 'Šest návyků, které stačí',
       items: [
-        '/clear při přechodu na jinou úlohu',
-        'Sonnet 5 a effort High jako výchozí, změna jen z konkrétního důvodu',
-        'model a effort nastavené na začátku, ne uprostřed práce',
-        'CLAUDE.md do dvou set řádků, delší postupy ve skillech',
-        've složce projektu vzorek dat, ne celá databáze',
-        'konektory jen ty, které používáš',
-        'jednou za čas /usage a /context',
+        '/clear při přechodu na jinou úlohu — největší efekt ze všeho',
+        'model a effort nastavit na začátku sezení a pak na ně nesahat',
+        'na soubory odkazovat zavináčem místo opisování cesty',
+        'upovídané příkazy ztišit přepínačem, nebo je nechat na podagentovi',
+        '/context v čerstvém sezení a vyhodit, co se nepoužívá',
+        '/compact před delší přestávkou, dokud je konverzace ještě v cache',
       ],
     },
     {
@@ -540,9 +588,14 @@ const LESSON_TOKENY: Lesson = {
       title: 'Kam se podívat dál',
       items: [
         {
+          label: 'Maximizing the value of your Claude Code sessions',
+          href: 'https://claude.com/blog/maximizing-the-value-of-your-claude-code-sessions',
+          note: 'článek, ze kterého tahle lekce vychází — anglicky, pět minut čtení',
+        },
+        {
           label: 'Maximizing value from Claude Code',
           href: 'https://www.anthropic.com/webinars/claude-code-maximizing-value',
-          note: 'webinář Anthropicu, ze kterého tahle lekce vychází — anglicky, hodina',
+          note: 'tentýž obsah jako webinář — anglicky, hodina',
         },
         {
           label: 'Manage costs effectively',
