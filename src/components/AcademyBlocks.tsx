@@ -27,6 +27,7 @@ import RoutineForm from './RoutineForm'
 import TokenDrains from './TokenDrains'
 import ContextGrowth from './ContextGrowth'
 import SubagentContext from './SubagentContext'
+import ContextWindow from './ContextWindow'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
@@ -507,6 +508,8 @@ export default function BlockView({ block }: { block: Block }) {
               <ContextGrowth />
             ) : block.name === 'subagent-context' ? (
               <SubagentContext />
+            ) : block.name === 'context-window' ? (
+              <ContextWindow />
             ) : (
               <RegalFlow />
             )}

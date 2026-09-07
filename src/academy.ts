@@ -42,6 +42,7 @@ export type Block =
         | 'token-drains'
         | 'context-growth'
         | 'subagent-context'
+        | 'context-window'
       caption: string
     }
   | { kind: 'checklist'; title: string; items: string[] }
@@ -523,6 +524,17 @@ const LESSON_TOKENY: Lesson = {
         'Naplánovaná úloha se spustí i ve chvíli, kdy u počítače nikdo není, a posílá s sebou celý svůj kontext. Jedna úloha jednou týdně je zanedbatelná, úloha každou hodinu nad velkou složkou už ne. Když si nějakou nastavíš, po týdnu se v /usage podívej, kolik z tvého přídělu si vzala.',
     },
     { kind: 'h', text: 'Deset minut úklidu, které se vrátí' },
+    {
+      kind: 'p',
+      text:
+        'Začíná se tím, že se podíváš, co vlastně platíš. Příkaz /context vypíše okno kontextu rozpadlé na položky — kolik zabírá konverzace, kolik připojené konektory, kolik tvůj CLAUDE.md. Názvy zůstávají anglicky, tak jak je aplikace vypíše.',
+    },
+    {
+      kind: 'figure',
+      name: 'context-window',
+      caption:
+        'Výpis z jednoho skutečného sezení. Všimni si poměru: Messages jsou skoro dvě třetiny, kdežto konektory, skilly a CLAUDE.md dohromady ani tři procenta. Proto je zavřít dlouhé sezení účinnější než jakýkoli úklid startu — ten se dělá jednou a pomáhá pořád, ale ten velký díl je konverzace.',
+    },
     {
       kind: 'steps',
       items: [
