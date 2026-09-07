@@ -307,21 +307,21 @@ const LESSON_PROJEKT: Lesson = {
   module: 'napojeni',
   title: 'Projekt v Claude Code: co si založit',
   summary:
-    'Projekt, CLAUDE.md, skill, artefakt, konektor — co který pojem znamená, na hotových příkladech z logistiky, dopravy, BI, marketingu a vedení.',
+    'Projekt ti založí Claude sám — jedním zadáním. Co při tom vzniklo a proč: CLAUDE.md, skill, artefakt, konektor, na hotových příkladech z logistiky, dopravy, BI, marketingu a vedení.',
   minutes: 20,
   kind: 'lekce',
   track: 'v sále',
   outcomes: [
     'vysvětlit, co je v Claude Code projekt, sezení, skill, artefakt a konektor',
     'rozhodnout, co patří do CLAUDE.md a co do skillu',
-    'založit si složku projektu se správnou strukturou',
+    'nechat Clauda projekt založit a rozhodnout jediné, co za tebe nerozhodne: kam složku dát',
     'napsat CLAUDE.md, který nemusíš každé ráno opakovat v chatu',
   ],
   body: [
     {
       kind: 'p',
       text:
-        'Claude Code se nespouští „v aplikaci“. Spouští se ve složce — a všechno, co si v něm nastavíš, jsou obyčejné soubory v té složce. To je dobrá zpráva: nastavení se dá číst, poslat kolegovi a verzovat. Tahle lekce projde pojmy, o které se opřeš, a končí seznamem toho, co musíš mít vytvořené, než začneš automatizovat vlastní agendu.',
+        'Claude Code se nespouští „v aplikaci“. Spouští se ve složce — a všechno, co si v něm nastavíš, jsou obyčejné soubory v té složce. To je dobrá zpráva: nastavení se dá číst, poslat kolegovi a verzovat. Ještě lepší zpráva: nic z toho nebudeš vyrábět ručně. Projekt ti založí Claude sám. Tvoje práce je rozumět tomu, co vzniklo — a rozhodnout jedinou věc, kterou za tebe rozhodnout nemůže: kde ta složka bude.',
     },
     {
       kind: 'note',
@@ -329,6 +329,27 @@ const LESSON_PROJEKT: Lesson = {
       title: 'Pro koho to je',
       text:
         'Pro lidi z logistiky, dopravy, BI, marketingu a vedení, kteří nechtějí programovat, ale chtějí, aby se opakovaná práce dělala sama. Nic z toho, co je níž, není kód — jsou to textové soubory a složky.',
+    },
+    { kind: 'h', text: 'Založení nech na Claudovi' },
+    {
+      kind: 'p',
+      text:
+        'První věta v novém projektu není příkaz ani klikání v Průzkumníku. Je to zadání. Otevři Claude Code ve složce, kde má projekt vzniknout — kde přesně, probereme hned pod tím — a vlep tohle:',
+    },
+    {
+      kind: 'code',
+      text: `Založ mi tady projekt akcni-regal: složky data a vystupy a soubor
+CLAUDE.md. Do CLAUDE.md napiš slovník téhle agendy — na pojmy se mě
+zeptej — kde jsou data, a pravidlo, že originály v data/ se nikdy
+nepřepisují: všechno nové se ukládá do vystupy/.`,
+      caption: 'Dvacet vteřin a struktura stojí. Zbytek lekce vysvětluje, co právě vzniklo a proč — až se něco pokazí, budeš to potřebovat vědět.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Jedno rozhodnutí zůstává na tobě: kde',
+      text:
+        'Claude založí projekt tam, kde ho spustíš — a vybrat to místo je lidská práce. Když má agendu vidět tým a má nad ní jednou běžet naplánovaná úloha, musí složka ležet v nasyncované knihovně ze SharePointu: naplánovaná úloha má pole Folder a píše se do něj přesně tahle cesta. Projekt „někde na ploše“ funguje taky, ale kolegům se nenasyncuje a za půl roku ho nenajdeš ani ty.',
     },
     { kind: 'h', text: 'Projekt je složka' },
     {
@@ -339,7 +360,7 @@ const LESSON_PROJEKT: Lesson = {
     {
       kind: 'figure',
       name: 'project-tree',
-      caption: 'Struktura, která se osvědčila. Nic z toho není povinné — a přesto se všechno vyplatí.',
+      caption: 'Tohle právě vzniklo. Nic z toho není povinné — a přesto se všechno vyplatí.',
     },
     { kind: 'h', text: 'A když ta složka je sdílená knihovna?' },
     {
@@ -712,10 +733,10 @@ Zadání na začátek:
       intro:
         'Vyber si jednu činnost, kterou děláš každý týden a která tě štve. Nezačínej tou nejsložitější.',
       items: [
-        'Založ složku pojmenovanou po té agendě a v ní data/ a vystupy/.',
+        'Rozhodni, kde projekt bude: v nasyncované knihovně (týmová agenda), nebo u sebe na disku (tvoje pokusy).',
+        'Otevři tam Claude Code a nech ho projekt založit — zadáním jako výš, jen s názvem tvojí agendy. Na otázky ke slovníku odpovídej konkrétně, píše se to rovnou do CLAUDE.md.',
         'Do data/ dej jeden reálný soubor, se kterým běžně pracuješ.',
-        'Napiš CLAUDE.md: pět řádků slovníku, kde jsou data, dvě pravidla, co se nesmí.',
-        'Spusť Clauda v té složce a nech ho popsat vlastními slovy, čemu ta agenda slouží. Co nesedí, dopiš do CLAUDE.md.',
+        'Nech Clauda popsat vlastními slovy, čemu ta agenda slouží. Co nesedí, dopiš do CLAUDE.md.',
         'Zadej mu první úlohu a všímej si, kolikrát mu musíš něco vysvětlit. Každé takové vysvětlení je kandidát na řádek v CLAUDE.md.',
       ],
       hint:
