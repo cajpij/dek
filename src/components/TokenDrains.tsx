@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
+import { useFigureColors } from '../lib/figureColors'
 
 /**
  * Čtyři místa, kudy odtéká příděl.
@@ -25,12 +25,12 @@ const CARD_H = 280
 const PAD = 22
 
 export default function TokenDrains() {
-  const theme = useTheme()
-  const c1 = theme.palette.primary.main
-  const c2 = theme.palette.info.main
-  const c3 = theme.palette.success.main
-  const c4 = theme.palette.warning.main
-  const dim = theme.palette.text.disabled
+  const c = useFigureColors()
+  const c1 = c.primary
+  const c2 = c.info
+  const c3 = c.success
+  const c4 = c.warning
+  const dim = c.textDisabled
 
   const cards: Card[] = [
     {

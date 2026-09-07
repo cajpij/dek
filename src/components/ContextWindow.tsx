@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
+import { useFigureColors } from '../lib/figureColors'
 
 /**
  * Jak se čte výpis /context.
@@ -56,16 +56,16 @@ const BAR = [
 ] as const
 
 export default function ContextWindow() {
-  const theme = useTheme()
+  const c = useFigureColors()
   const color: Record<Row['key'], string> = {
-    messages: theme.palette.primary.main,
-    system: theme.palette.warning.main,
-    mcp: theme.palette.success.main,
-    skills: theme.palette.warning.light,
-    prompt: theme.palette.error.light,
-    memory: theme.palette.success.dark,
-    free: theme.palette.text.disabled,
-    deferred: theme.palette.text.disabled,
+    messages: c.primary,
+    system: c.warning,
+    mcp: c.success,
+    skills: c.warningLight,
+    prompt: c.errorLight,
+    memory: c.successDark,
+    free: c.textDisabled,
+    deferred: c.textDisabled,
   }
 
   const barX = 24

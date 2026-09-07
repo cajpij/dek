@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
+import { useFigureColors } from '../lib/figureColors'
 
 /**
  * Dvě různá povolení složky — a proč na tom rozdílu záleží.
@@ -12,10 +12,10 @@ import { useTheme } from '@mui/material/styles'
  * jediné místo, kde se to člověk dozví, a v logistice na tom záleží.
  */
 export default function FolderPermission() {
-  const theme = useTheme()
-  const accent = theme.palette.primary.main
-  const warn = theme.palette.warning.main
-  const ok = theme.palette.success.main
+  const c = useFigureColors()
+  const accent = c.primary
+  const warn = c.warning
+  const ok = c.success
   const mono = 'ui-monospace, Menlo, monospace'
 
   const leftX = 20

@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
+import { useFigureColors } from '../lib/figureColors'
 
 /**
  * Proč se upovídaná práce vyplatí poslat podagentovi.
@@ -10,10 +10,10 @@ import { useTheme } from '@mui/material/styles'
  * sezení, ten výpis se pak posílá znovu při každé další zprávě.
  */
 export default function SubagentContext() {
-  const theme = useTheme()
-  const accent = theme.palette.primary.main
-  const ok = theme.palette.success.main
-  const warn = theme.palette.warning.main
+  const c = useFigureColors()
+  const accent = c.primary
+  const ok = c.success
+  const warn = c.warning
 
   const box = (
     x: number,

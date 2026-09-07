@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
+import { useFigureColors } from '../lib/figureColors'
 
 /**
  * Proč dlouhé sezení stojí víc než několik krátkých.
@@ -29,9 +29,9 @@ function bars(reset: boolean): number[] {
 }
 
 export default function ContextGrowth() {
-  const theme = useTheme()
-  const accent = theme.palette.primary.main
-  const ok = theme.palette.success.main
+  const c = useFigureColors()
+  const accent = c.primary
+  const ok = c.success
   const long = bars(false)
   const short = bars(true)
   const max = Math.max(...long)

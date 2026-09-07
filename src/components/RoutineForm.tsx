@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
+import { useFigureColors } from '../lib/figureColors'
 
 type Field = {
   label: string
@@ -74,9 +74,9 @@ const FIELDS: Field[] = [
  * kdežto tohle zestárne až ve chvíli, kdy se změní samotná pole.
  */
 export default function RoutineForm() {
-  const theme = useTheme()
-  const accent = theme.palette.primary.main
-  const warn = theme.palette.warning.main
+  const c = useFigureColors()
+  const accent = c.primary
+  const warn = c.warning
   const formW = 520
   const x0 = 16
 

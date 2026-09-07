@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
+import { useFigureColors } from '../lib/figureColors'
 
 /**
  * Diagram procesu akčního regálu ve třech pruzích.
@@ -9,10 +9,10 @@ import { useTheme } from '@mui/material/styles'
  * barvu mají jen ta místa, o kterých je celé zadání.
  */
 export default function RegalFlow() {
-  const theme = useTheme()
-  const hot = theme.palette.warning.main
-  const keep = theme.palette.success.main
-  const badgeText = theme.palette.background.paper
+  const c = useFigureColors()
+  const hot = c.warning
+  const keep = c.success
+  const badgeText = c.paper
 
   const lane = (x: number, label: string) => (
     <>

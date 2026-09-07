@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
+import { useFigureColors } from '../lib/figureColors'
 
 /**
  * Kudy se knihovna ze SharePointu dostane až ke Claudovi.
@@ -8,8 +8,8 @@ import { useTheme } from '@mui/material/styles'
  * na disku a že jediný rozdíl mezi Macem a Windows je cesta k ní.
  */
 export default function SyncMap() {
-  const theme = useTheme()
-  const accent = theme.palette.primary.main
+  const c = useFigureColors()
+  const accent = c.primary
 
   return (
     <Box tabIndex={0} sx={{ overflowX: 'auto', color: 'text.secondary', '&:focus-visible': { outline: '2px solid', outlineColor: 'primary.main', outlineOffset: 2 } }}>
@@ -93,7 +93,7 @@ export default function SyncMap() {
         <g color={accent}>
           <path d="M840,150 L854,150" fill="none" stroke="currentColor" strokeWidth={2} markerEnd="url(#sync-arrow)" />
           <circle cx={868} cy={150} r={11} fill="currentColor" />
-          <text x={868} y={155} textAnchor="middle" fontSize={12} fontWeight={700} fill={theme.palette.background.paper}>
+          <text x={868} y={155} textAnchor="middle" fontSize={12} fontWeight={700} fill={c.paper}>
             C
           </text>
           <text x={868} y={186} textAnchor="middle" fontSize={12.5} fontWeight={600} fill="currentColor">

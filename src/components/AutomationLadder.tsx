@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
+import { useFigureColors } from '../lib/figureColors'
 
 const STEPS = [
   { label: 'Zadání', note: 'uděláš to ručně' },
@@ -16,8 +16,8 @@ const STEPS = [
  * začne hookem, nastaví ho na postup, který si nikdy neověřil.
  */
 export default function AutomationLadder() {
-  const theme = useTheme()
-  const accent = theme.palette.primary.main
+  const c = useFigureColors()
+  const accent = c.primary
   const stepW = 168
   const stepH = 46
   const baseY = 300

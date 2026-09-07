@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
+import { useFigureColors } from '../lib/figureColors'
 
 /**
  * Celá smyčka od pošty po proplacení — a kde na ní jsou hranice.
@@ -32,12 +32,15 @@ const POPIS: Record<Krok['stav'], string> = {
 }
 
 export default function FakturySmycka() {
-  const theme = useTheme()
+  const c = useFigureColors()
   const barva: Record<Krok['stav'], string> = {
-    hned: theme.palette.success.main,
-    spravce: theme.palette.warning.main,
-    clovek: theme.palette.error.main,
-    it: theme.palette.text.disabled,
+    hned: c.success,
+    spravce: c.warning,
+    clovek: c.error,
+    // Pozor: ne text.disabled. Tyhle dva kroky jsou sice „ne o Claudovi“,
+    // ale pořád se musí dát přečíst — ztlumená barva je na ztlumený text,
+    // ne na štítek, který něco znamená.
+    it: c.textSecondary,
   }
 
   // Tři na řádku ve dvou řadách: šest vedle sebe se na užší obrazovce ořízne.
@@ -76,8 +79,18 @@ export default function FakturySmycka() {
           const c = barva[k.stav]
           return (
             <g key={k.n}>
-              <rect x={x} y={y} width={w} height={h} rx={9} fill={c} opacity={0.09} />
-              <rect x={x} y={y} width={w} height={h} rx={9} fill="none" stroke={c} strokeWidth={1.2} opacity={0.7} />
+              <rect x={x} y={y} width={w} height={h} rx={9} fill={c} opacity={k.stav === 'it' ? 0.06 : 0.09} />
+              <rect
+                x={x}
+                y={y}
+                width={w}
+                height={h}
+                rx={9}
+                fill="none"
+                stroke={c}
+                strokeWidth={1.2}
+                opacity={k.stav === 'it' ? 0.55 : 0.7}
+              />
               <text x={x + 16} y={y + 28} fontSize={15} fontWeight={700} fill={c}>
                 {k.n}
               </text>

@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
+import { useFigureColors } from '../lib/figureColors'
 
 /**
  * Jak se konektor připojí a jak se pozná, že je připojený.
@@ -19,10 +19,10 @@ const STATES = [
 ] as const
 
 export default function ConnectorSetup() {
-  const theme = useTheme()
-  const accent = theme.palette.primary.main
-  const ok = theme.palette.success.main
-  const warn = theme.palette.warning.main
+  const c = useFigureColors()
+  const accent = c.primary
+  const ok = c.success
+  const warn = c.warning
   const mono = 'ui-monospace, Menlo, monospace'
 
   const leftX = 20

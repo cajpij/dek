@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
+import { useFigureColors } from '../lib/figureColors'
 
 const ROWS: { text: string; note?: string; indent: number; accent?: boolean; muted?: boolean }[] = [
   {
@@ -24,8 +24,8 @@ const ROWS: { text: string; note?: string; indent: number; accent?: boolean; mut
  * otázku „a kam to mám vlastně dát“ rychleji než tři odstavce textu.
  */
 export default function ProjectTree() {
-  const theme = useTheme()
-  const accent = theme.palette.primary.main
+  const c = useFigureColors()
+  const accent = c.primary
   const top = 34
   const step = 34
 
