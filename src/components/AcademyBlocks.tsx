@@ -31,6 +31,7 @@ import ContextWindow from './ContextWindow'
 import UsageReport from './UsageReport'
 import ConnectorSetup from './ConnectorSetup'
 import FolderPermission from './FolderPermission'
+import FakturySmycka from './FakturySmycka'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
@@ -549,6 +550,8 @@ export default function BlockView({ block }: { block: Block }) {
               <ConnectorSetup />
             ) : block.name === 'folder-permission' ? (
               <FolderPermission />
+            ) : block.name === 'faktury-smycka' ? (
+              <FakturySmycka />
             ) : (
               <RegalFlow />
             )}

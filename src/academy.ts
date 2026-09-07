@@ -46,6 +46,7 @@ export type Block =
         | 'usage-report'
         | 'connector-setup'
         | 'folder-permission'
+        | 'faktury-smycka'
       caption: string
     }
   | { kind: 'checklist'; title: string; items: string[] }
@@ -5183,6 +5184,7 @@ const L2_CVICNY: Lesson = {
     'nastavit naplánovanou úlohu na sedmou ráno včetně chování při vypnutém počítači',
     'poznat rozdíl mezi povolením složky v Coworku a v Claude Code',
     'překlopit projekt na skutečné faktury, aniž bys musel cokoli přepisovat',
+    'vědět, co ze smyčky s poštou a bankou jde hned, co povoluje správce a co má zůstat člověku',
   ],
   body: [
     {
@@ -5374,7 +5376,121 @@ Když je nesouladů víc než tři, mail neotvírej a napiš mi to do protokolu.
       caption:
         'Věta o cloudu vlevo je to jediné místo, kde se člověk dozví, že soubory z té složky odejdou z jeho počítače. U cvičného projektu je to jedno. U faktur nebo cen to jedno není.',
     },
-    { kind: 'h', text: '7. Přepni to na svoje faktury' },
+    { kind: 'h', text: '8. Až budeš chtít celou smyčku i s poštou' },
+    {
+      kind: 'p',
+      text:
+        'Cvičný projekt končí u tabulky a protokolu. Přirozená otázka je: proč si ty faktury nevytáhnout rovnou z pošty, nesrovnalosti neposlat dodavateli, neověřit v bance, co je zaplacené, a zbytek neposlat účtárně? Dá se to — ale ne celé a ne hned. Tady je, co je za čím.',
+    },
+    {
+      kind: 'figure',
+      name: 'faktury-smycka',
+      caption:
+        'Šest kroků. Dva běží samy hned, dva se musí domluvit, jeden potřebuje povolení a jeden má zůstat na člověku — a ne proto, že by to technicky nešlo.',
+    },
+    {
+      kind: 'table',
+      head: ['Krok', 'Čím se to dělá', 'Co k tomu potřebuješ'],
+      rows: [
+        [
+          '1. Najít v poště nové faktury',
+          'konektor Microsoft 365, hledání v Outlooku',
+          'nic navíc — čtecí nástroje má konektor rovnou po připojení',
+        ],
+        [
+          '2. Dostat přílohy do složky',
+          'pravidlo v Outlooku nebo Power Automate, které přílohy ukládá do knihovny na SharePointu',
+          'tohle za tebe Claude neudělá: čtecí nástroje konektoru přílohy nestahují. Nastaví se to jednou v Outlooku a pak už jen padají do složky.',
+        ],
+        [
+          '3. Zkontrolovat je',
+          'tenhle projekt, beze změny',
+          'nic. Je hotový a běží nad složkou.',
+        ],
+        [
+          '4. Napsat dodavateli, co ve faktuře chybí',
+          'write tools konektoru — nebo rozepsaný mail k odkliknutí',
+          'write tools povoluje správce. I když je budeš mít, tenhle krok neposílej automaticky (viz níž).',
+        ],
+        [
+          '5. Ověřit, jestli je faktura uhrazená',
+          'bankovní API, nebo export výpisu do data/',
+          'API k bance je projekt pro IT — přístupy, certifikáty, souhlasy. Export výpisu funguje zítra.',
+        ],
+        [
+          '6. Poslat účtárně, co zbývá proplatit',
+          'write tools konektoru, adresa uvnitř firmy',
+          'write tools od správce. Míň rizikové než krok 4 — jde to jen dovnitř.',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Krok 4 nikdy nepouštěj samospádem',
+      text:
+        'Mail dodavateli je jediný krok, který odchází z firmy — a odejde pod hlavičkou DEKu. Když Claude přečte variabilní symbol špatně, napíšeš dodavateli, že mu něco chybí, i když to tam je. Jednou je to trapné, potřetí ti přestanou věřit i tam, kde máš pravdu. Nech ho připravit rozepsané maily do složky, projdi je očima a odešli sám. Deset vteřin práce navíc, o řád menší riziko.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Než začneš řešit banku',
+      text:
+        'Otázka „je to zaplacené“ se skoro nikdy nemusí ptát banky. Většinou to ví účetní systém a dá se z něj vyexportovat seznam uhrazených faktur. Dej ten export do data/ a kontrola proti němu je stejná práce jako proti objednávkám — jen o jeden sloupec navíc. API k bance řeš, až tohle nebude stačit.',
+    },
+    { kind: 'h', text: 'Jak by vypadala ta denní úloha' },
+    {
+      kind: 'code',
+      text: `Postupuj podle skillu kontrola-faktur nad tím, co přibylo ve vstup/.
+
+Pak projdi vystup/kontrola-*.xlsx z dnešního běhu a připrav dvě věci:
+
+1. Pro každou fakturu, které chybí povinný údaj, napiš do vystup/maily/
+   rozepsaný mail dodavateli. V předmětu číslo faktury, v těle jednou
+   větou, co chybí. Neodesílej je — jenom je ulož, projdu je sám.
+
+2. Pro faktury, které jsou v pořádku a nejsou v data/uhrazene.xlsx,
+   udělej jeden souhrnný mail účtárně se seznamem k proplacení.
+   Ten taky jen ulož jako rozepsaný.
+
+Když je faktur k odeslání víc než deset nebo je nesouladů víc než tři,
+nedělej nic a napiš mi to do protokolu — to obvykle znamená, že se
+změnil vstup, ne že přišlo deset špatných faktur.`,
+      caption:
+        'Všimni si, že ani s konektorem tu nikde není „odešli“. Úloha připraví, člověk odesílá — a limit deseti mailů je pojistka proti dni, kdy se něco pokazí.',
+    },
+    { kind: 'h', text: 'Co napsat správci' },
+    {
+      kind: 'p',
+      text:
+        'Write tools u konektoru Microsoft 365 nezapneš sám. Tohle je text, který můžeš správci poslat — je v něm to, na co se ptá jako první:',
+    },
+    {
+      kind: 'code',
+      text: `Ahoj, potřeboval bych u konektoru Microsoft 365 pro Claude povolit
+odesílací nástroje (write tools) pro můj účet.
+
+K čemu to bude: denní kontrola došlých faktur. Úloha běží nad
+nasyncovanou knihovnou, porovná faktury s objednávkami a připraví
+rozepsané maily — dodavateli, když ve faktuře něco chybí, a účtárně
+souhrn k proplacení. Odesílat je budu ručně já, automatické odesílání
+zapnuté nemám a nechci.
+
+Čtecí přístup už mám a funguje. Práva se dědí z účtu, takže Claude
+uvidí přesně to, co já, nic navíc.
+
+Kdyby to nešlo, řekni mi to prosím — mám variantu, která místo odeslání
+jen otevře rozepsaný mail v Outlooku, a s tou vystačím.`,
+      caption: 'Ta poslední věta je důležitá: dává správci možnost říct ne, aniž by tím projekt padl.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Pořadí, ve kterém to stavět',
+      text:
+        'Nejdřív kroky 1 a 3, protože fungují dneska: nech si posílat faktury do složky ručně a jen je kontroluj. Až ti kontrola týden vychází, řeš krok 2, aby přílohy padaly do složky samy. Teprve pak maily. Kdo začne od konce, stráví tři týdny domlouváním přístupů a nebude mít ani tu tabulku.',
+    },
+    { kind: 'h', text: '9. Přepni to na svoje faktury' },
     {
       kind: 'steps',
       items: [
