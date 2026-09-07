@@ -44,6 +44,7 @@ export type Block =
         | 'subagent-context'
         | 'context-window'
         | 'usage-report'
+        | 'connector-setup'
       caption: string
     }
   | { kind: 'checklist'; title: string; items: string[] }
@@ -3568,6 +3569,34 @@ exit 0`,
           'ne. Konektor na tabulky neexistuje a nepotřebuješ ho.',
         ],
       ],
+    },
+    { kind: 'h', text: 'Jak se konektor připojí' },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Najdi ho v adresáři konektorů',
+          body:
+            'V Claude otevři přehled konektorů, vyber Microsoft 365 a klikni na Connect to Claude. Přihlásíš se firemním účtem — osobní outlook.com nebo hotmail.com konektor odmítne. Tohle se dělá jednou.',
+        },
+        {
+          title: 'Ověř to v Claude Code příkazem /mcp',
+          body:
+            'Vypíše všechny připojené servery, u každého stav a počet nástrojů. Když je u něčeho „Needs authentication“, není to chyba — klikni na ten řádek a přihlaš se v prohlížeči. Tady se dají servery taky vypnout, aniž bys je mazal.',
+          code: '/mcp',
+        },
+        {
+          title: 'Na odesílání si vyžádej write tools',
+          body:
+            'Čtení máš hned po připojení. Odesílání je zvlášť a povoluje ho správce — bez toho úloha mail nepošle, jen ti ho otevře rozepsaný. Napiš správci dřív, než na tom postavíš automatizaci.',
+        },
+      ],
+    },
+    {
+      kind: 'figure',
+      name: 'connector-setup',
+      caption:
+        'Vlevo to, co uděláš jednou. Vpravo to, do čeho se podíváš pokaždé, když úloha hlásí, že na něco nemá přístup.',
     },
     {
       kind: 'note',

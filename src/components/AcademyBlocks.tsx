@@ -29,6 +29,7 @@ import ContextGrowth from './ContextGrowth'
 import SubagentContext from './SubagentContext'
 import ContextWindow from './ContextWindow'
 import UsageReport from './UsageReport'
+import ConnectorSetup from './ConnectorSetup'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
@@ -543,6 +544,8 @@ export default function BlockView({ block }: { block: Block }) {
               <ContextWindow />
             ) : block.name === 'usage-report' ? (
               <UsageReport />
+            ) : block.name === 'connector-setup' ? (
+              <ConnectorSetup />
             ) : (
               <RegalFlow />
             )}
