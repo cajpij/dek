@@ -5193,6 +5193,13 @@ const L2_CVICNY: Lesson = {
     {
       kind: 'note',
       tone: 'ok',
+      title: 'Konektor tady nepotřebuješ',
+      text:
+        'Nic nepřipojuješ a na nikoho nečekáš. Faktury jsou PDF ve složce, objednávky jsou tabulka ve složce, výsledky se ukládají do složky — Claude si to bere přímo z disku. Ani ten e-mail konektor nepotřebuje: mailto jen otevře rozepsanou zprávu v tvém poštovním klientovi. Konektor by přišel na řadu, až bys chtěl mail odeslat bez potvrzení nebo brát faktury rovnou ze schránky; do té doby je to jen závislost navíc.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
       title: 'Proč zrovna faktury',
       text:
         'Je to jiná agenda než akční regál, ale úplně stejná kostra: složka s pravidly, skill, zábrana, kontrolní protokol, naplánovaný běh. Kdo dělá faktury, použije to rovnou. Kdo ne, uvidí ten tvar na něčem, co nemá v hlavě už zažité, a tím spíš mu dojde, že je pořád stejný.',
@@ -5335,7 +5342,8 @@ běžel.
 Když ve vstup/ nepřibyla žádná nová faktura, nic nedělej a nic neposílej.
 
 Když jsi hotový a v protokolu je aspoň jeden nález, otevři mi rozepsaný
-e-mail. Do těla dej shrnutí z protokolu, ne celou tabulku. Nic neodesílej.
+e-mail odkazem mailto: na Macu příkazem open, ve Windows příkazem start.
+Do těla dej shrnutí z protokolu, ne celou tabulku. Nic neodesílej.
 
 Když je nesouladů víc než tři, mail neotvírej a napiš mi to do protokolu.`,
       caption: 'Celé zadání úlohy. Poslední dvě věty jsou pojistky — bez nich je to hezký nápad, ne provoz.',

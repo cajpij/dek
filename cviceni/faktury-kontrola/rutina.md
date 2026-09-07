@@ -25,13 +25,20 @@ i tak ho normálně dokonči, jen do protokolu napiš, kdy doopravdy běžel.
 Když ve vstup/ nepřibyla žádná nová faktura, nic nedělej a nic neposílej.
 
 Když jsi hotový a v protokolu je aspoň jeden nález, otevři mi rozepsaný
-e-mail příkazem níže. Do těla dej shrnutí z protokolu, ne celou tabulku.
+e-mail. Do těla dej shrnutí z protokolu, ne celou tabulku.
 Nic neodesílej — jenom otevři okno, odeslání zůstává na mně.
 
-open "mailto:ucetni@dek.cz?subject=Kontrola%20faktur%20<DATUM>&body=<SHRNUTI>"
+Na Macu:      open "mailto:ucetni@dek.cz?subject=Kontrola%20faktur&body=<SHRNUTI>"
+Ve Windows:   start "" "mailto:ucetni@dek.cz?subject=Kontrola%20faktur&body=<SHRNUTI>"
 
 Když je nesouladů víc než tři, mail neotvírej a napiš mi to do protokolu.
 ```
+
+## Konektor na tohle není potřeba
+
+Faktury i objednávky jsou soubory ve složce a mailto jen otevře rozepsanou
+zprávu. Nic se nepřipojuje a na nic se nečeká. Konektor by byl potřeba, až
+bys chtěl mail odesílat bez potvrzení — a to musí povolit správce.
 
 ## Než to necháš běžet samo
 
