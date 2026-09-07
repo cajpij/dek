@@ -354,7 +354,8 @@ export const DEFAULT_CONFIG: RunConfig = {
         {
           title: 'Kam se vracet v akademii',
           min: 2,
-          detail: 'Referenční lekce — poslat každému tu jednu, která sedí na to, co dneska stavěl.',
+          detail:
+            'Referenční lekce. Neposílat celý seznam — každému tu jednu, která sedí na to, co dneska stavěl. Rozcestník podle situací je v lekci Jak workshop poběží.',
           lessons: [
             'claude-a-firemni-data/slovnicek',
             'claude-a-firemni-data/kolik-to-stoji',
@@ -381,7 +382,9 @@ export const DEFAULT_CONFIG: RunConfig = {
         'MCP nad katalogem je bonus pro zvědavé — server je v repu, rozjede se třemi příkazy',
         'Lekci Kolik to stojí poslat všem, ne jen jednomu: limit je společný pro chat, Cowork i Claude Code a ptali se na to',
         'Z Coworku do Claude Code je pro většinu sálu — pracují zatím jen v Coworku',
-        'Formulář místo e-mailů dát tomu, kdo čeká na odpovědi od poboček; Kontrola dokumentů tomu, kdo řeší faktury',
+        'Formulář místo e-mailů dát tomu, kdo čeká na odpovědi od poboček; Kontrola dokumentů tomu, kdo řeší faktury nebo dodací listy',
+        'Design system je pro ty, kdo si staví vlastní aplikace a chtějí, aby vypadaly jako DEK',
+        'Kdo dneska nenašel svoji rutinu, není to selhání — dostane Z Coworku do Claude Code a Kolik to stojí, ty platí pro každého',
         'Nahrávky a přepisy z dnešních rozhovorů ať zůstanou v projektech',
       ],
     },

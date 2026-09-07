@@ -130,7 +130,7 @@ const LESSON_PROGRAM: Lesson = {
     {
       kind: 'p',
       text:
-        'Workshop v sále má čtyři hodiny a víc ne schválně. K tomu je v akademii asi hodina a půl referenčních lekcí na potom — nečtou se dopředu. Předem po vás nechceme skoro nic — nastavení složky i projektu děláme společně hned na začátku večera, takže si nikdo nemusí lámat hlavu doma. Zbytek akademie je referenční materiál, ke kterému se vracíte, až budete stavět.',
+        'Workshop v sále má čtyři hodiny a víc ne schválně. K tomu je v akademii několikahodinová sada referenčních lekcí na potom — nečtou se dopředu. Předem po vás nechceme skoro nic — nastavení složky i projektu děláme společně hned na začátku večera, takže si nikdo nemusí lámat hlavu doma. Zbytek akademie je referenční materiál, ke kterému se vracíte, až budete stavět.',
     },
     {
       kind: 'table',
@@ -208,6 +208,8 @@ const LESSON_PROGRAM: Lesson = {
       head: ['Až budete potřebovat', 'Vraťte se do'],
       rows: [
         ['nevíte, co které slovo znamená', 'Slovníček'],
+        ['pracujete zatím jen v Coworku', 'Z Coworku do Claude Code'],
+        ['narážíte na limit nebo chcete vědět, za co se platí', 'Kolik to stojí a jak platit míň'],
         ['vidět celou cestu na jednom příkladu', 'Celý příklad: od magazínu po mail produkťákům'],
         ['zabalit postup, který opakujete', 'Jak napsat skill'],
         ['zjistit, co skillu chybí, aby běžel sám', 'Rozbor skutečného skillu'],
@@ -215,7 +217,10 @@ const LESSON_PROGRAM: Lesson = {
         ['založit úlohu, která se spustí sama', 'Naplánovaná úloha v Claude Code'],
         ['pustit to bez sebe a nespálit se', 'Nech to běžet bez sebe'],
         ['poslat z automatu e-mail', 'E-mail z automatu'],
+        ['čekáte na odpovědi od kolegů nebo poboček', 'Formulář místo pinkání e-mailů'],
+        ['procházet dokumenty, které chodí odjinud', 'Kontrola dokumentů: faktury a přílohy'],
         ['ptát se na katalog vlastními slovy', 'MCP nad katalogem dek.cz'],
+        ['sjednotit vzhled vlastních aplikací', 'Design system DEK ve Storybooku'],
         ['předat to kolegovi', 'Pusť to naostro'],
       ],
     },
