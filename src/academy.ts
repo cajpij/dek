@@ -229,7 +229,7 @@ const LESSON_SLOVNICEK: Lesson = {
   module: 'start',
   title: 'Slovníček',
   summary:
-    'Dvacet slov, která se v lekcích opakují. Každé jednou větou, bez techniky. Vracejte se sem, kdykoli něčemu nerozumíte.',
+    'Slova, která se v lekcích opakují. Každé jednou větou, bez techniky. Vracejte se sem, kdykoli něčemu nerozumíte.',
   minutes: 5,
   kind: 'lekce',
   track: 'potom',
@@ -261,6 +261,7 @@ const LESSON_SLOVNICEK: Lesson = {
         ['Pravidlo', 'věta v CLAUDE.md, která platí pořád — třeba „čísla položek jsou text, ne čísla".'],
         ['Skill', 'zabalený postup: složka se souborem SKILL.md, ve kterém je krok za krokem, jak se něco dělá. Claude ho použije sám, když pozná, že se hodí.'],
         ['description', 'jeden řádek na začátku skillu, který říká, co skill dělá a kdy se má použít. Podle něj Claude pozná, že ho má sáhnout.'],
+        ['Plugin', 'balíček skillů (případně i hooků a konektorů), který se instaluje jedním příkazem. Takhle se osvědčený postup rozdá celému týmu, místo aby se kopírovaly složky.'],
         ['Hook', 'příkaz, který se spustí sám při určité události — třeba před každým zápisem souboru. Nemá úsudek, proto se hodí na zámky a upozornění, ne na rozhodování.'],
         ['Naplánovaná úloha (routine)', 'zadání, které se spustí samo v daný čas — v pondělí v šest, každou hodinu. Local běží na vašem počítači, Cloud na serveru.'],
         ['Kontrolní protokol', 'krátký soubor, který úloha zapíše na konec běhu: kolik čeho bylo na vstupu, kolik na výstupu, co nesedělo. Z něj poznáte, jestli to dopadlo, aniž byste otevírali výstupy.'],
@@ -1644,6 +1645,7 @@ const LESSON_SKILL: Lesson = {
     'rozdělit obsah mezi SKILL.md a přílohy',
     'dát Claudovi podklady, ze kterých ti skill napíše sám',
     'ověřit, že skill funguje i na jiných datech než na těch, ze kterých vznikl',
+    'vědět, kdy skill povýšit na plugin, aby ho měl celý tým',
   ],
   body: [
     {
@@ -1674,6 +1676,21 @@ const LESSON_SKILL: Lesson = {
       text: `.claude/skills/<jmeno-skillu>/SKILL.md     ← platí jen v tomhle projektu
 ~/.claude/skills/<jmeno-skillu>/SKILL.md   ← platí ve všech tvých projektech`,
       caption: 'Začni v projektu. Když se skill osvědčí a používáš ho i jinde, přesuň složku do domovské.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Třetí patro: plugin',
+      text:
+        'Skill v projektu platí v projektu, skill v domovské složce jen u tebe. Jakmile má stejný postup používat víc týmů, zabalí se skilly do pluginu — balíčku, který se instaluje jedním příkazem a spravuje na jednom místě: když autor postup opraví, oprava dojde všem, kdo mají plugin nainstalovaný, místo aby po firmě žilo pět různě starých kopií. Plugin unese i víc než skilly — hooky i konektory — takže se dá rozdat celá automatizace najednou.',
+    },
+    {
+      kind: 'code',
+      text: `/plugin marketplace add dek/claude-pluginy   ← firemní katalog (repozitář na GitHubu)
+/plugin install akcni-regal@dek              ← instalace balíčku z katalogu
+/akcni-regal:logisticke-dostupnosti          ← skill z pluginu se volá se jménem balíčku`,
+      caption:
+        'Takhle by to vypadalo s firemním katalogem pluginů. Nezakládej ho kvůli prvnímu skillu — plugin má smysl, až když se postup měsíc osvědčil a chce ho další tým. Katalog pak spravuje jeden člověk, typicky IT; příkaz /plugin bez ničeho otevře přehled, kde se dá katalog procházet i klikáním.',
     },
     { kind: 'h', text: 'Anatomie souboru' },
     {
