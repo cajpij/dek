@@ -30,6 +30,7 @@ import SubagentContext from './SubagentContext'
 import ContextWindow from './ContextWindow'
 import UsageReport from './UsageReport'
 import ConnectorSetup from './ConnectorSetup'
+import FolderPermission from './FolderPermission'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
@@ -546,6 +547,8 @@ export default function BlockView({ block }: { block: Block }) {
               <UsageReport />
             ) : block.name === 'connector-setup' ? (
               <ConnectorSetup />
+            ) : block.name === 'folder-permission' ? (
+              <FolderPermission />
             ) : (
               <RegalFlow />
             )}

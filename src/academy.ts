@@ -45,6 +45,7 @@ export type Block =
         | 'context-window'
         | 'usage-report'
         | 'connector-setup'
+        | 'folder-permission'
       caption: string
     }
   | { kind: 'checklist'; title: string; items: string[] }
@@ -5167,6 +5168,259 @@ a kolik má nesoulad. Nic z faktur nepřepisuj ani nepřesouvej.`,
   ],
 }
 
+const L2_CVICNY: Lesson = {
+  slug: 'cvicny-projekt-faktury',
+  module: 'potom',
+  title: 'Cvičný projekt: kontrola faktur ke stažení',
+  summary:
+    'Hotový projekt i s fakturami, skillem, zábranou a naplánovanou úlohou. Stáhneš, pustíš, porovnáš s referenčním výstupem — a pak přepneš na svoje faktury.',
+  minutes: 20,
+  kind: 'zadání',
+  track: 'potom',
+  outcomes: [
+    'rozjet hotový projekt a ověřit si, že u tebe dává stejný výsledek',
+    'přečíst kontrolní protokol a poznat z něj, co je k vyřízení',
+    'nastavit naplánovanou úlohu na sedmou ráno včetně chování při vypnutém počítači',
+    'poznat rozdíl mezi povolením složky v Coworku a v Claude Code',
+    'překlopit projekt na skutečné faktury, aniž bys musel cokoli přepisovat',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Všechno, co jste v akademii četli, je tady dohromady na jedné agendě — a je to ke stažení, takže si nemusíte nic vyrábět. Projekt kontroluje faktury: přečte PDF, vytáhne z nich povinné údaje, porovná je se seznamem schválených objednávek a připraví podklad ke schválení. Neschvaluje a neplatí. Ve složce jsou i vzorové faktury, takže si to můžete pustit hned.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Proč zrovna faktury',
+      text:
+        'Je to jiná agenda než akční regál, ale úplně stejná kostra: složka s pravidly, skill, zábrana, kontrolní protokol, naplánovaný běh. Kdo dělá faktury, použije to rovnou. Kdo ne, uvidí ten tvar na něčem, co nemá v hlavě už zažité, a tím spíš mu dojde, že je pořád stejný.',
+    },
+    { kind: 'h', text: '1. Stáhni si to' },
+    {
+      kind: 'links',
+      title: 'Cvičný projekt',
+      items: [
+        {
+          label: 'faktury-kontrola.zip (230 kB)',
+          href: 'faktury-kontrola.zip',
+          note: 'stáhni, rozbal do vlastní složky — třeba do Dokumentů',
+        },
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Nebo to nech na Claudovi',
+      text:
+        'Kdo už má Claude Code a nechce nic rozbalovat ručně, může mu říct: „Stáhni mi repozitář github.com/cajpij/dek do Dokumentů. Je v něm složka cviceni/faktury-kontrola — tu si zkopíruj samostatně a zbytek smaž.“ Výsledek je stejný, jenom se u toho nekliká.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Rozbaluješ i skrytou složku .claude',
+      text:
+        'V archivu je složka .claude — jsou v ní skill a zábrana, tedy skript, který se bude sám spouštět při každém zápisu souboru. Než to rozbalíš, koukni se do něj: je to osm řádků a odmítne zápis do vstup/. Nic víc nedělá. Tohle je dobrý zvyk u čehokoli, co si stáhneš a co se pak spouští samo.',
+    },
+    { kind: 'h', text: '2. Co v tom je' },
+    {
+      kind: 'code',
+      text: `faktury-kontrola/
+├── CLAUDE.md                  ← pravidla a slovník, čtou se pokaždé
+├── vstup/                     ← 5 vzorových faktur v PDF, sem se jen čte
+├── data/objednavky.xlsx       ← schválené objednávky, proti nim se kontroluje
+├── vystup/                    ← referenční výstup: tabulka + protokol
+├── .claude/skills/kontrola-faktur/SKILL.md
+├── .claude/hooks/chran-vstup.sh
+├── rutina.md                  ← co vyplnit v naplánované úloze
+└── runbook.md                 ← co dělat, když to spadne`,
+      caption: 'Pět částí, o kterých byla řeč v předchozích lekcích, pohromadě na jedné agendě.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Ve vzorových fakturách jsou schválně tři chyby — jinak by nebylo poznat, jestli kontrola vůbec něco dělá. Až si projekt pustíte, musí najít přesně tyhle tři:',
+    },
+    {
+      kind: 'table',
+      head: ['Faktura', 'Co s ní je'],
+      rows: [
+        ['Stavebniny Morava', 'v pořádku'],
+        ['Nářadí Profi', 'v pořádku'],
+        ['Elektro Dvořák', 'chybí číslo objednávky'],
+        ['VTS Technik', 'částka 33 100 Kč proti schváleným 31 900 Kč'],
+        ['Barvy Piekarová', 'objednávka OBJ-9999-0001 není v seznamu schválených'],
+      ],
+    },
+    { kind: 'h', text: '3. Otevři složku a pusť to' },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Otevři projekt v aplikaci',
+          body:
+            'Záložka Code, prostředí nech na Local, Select folder, vyber rozbalenou složku faktury-kontrola. Zeptá se, jestli složce věříš — potvrď.',
+        },
+        {
+          title: 'Napiš jednu větu',
+          body:
+            'Nic víc není potřeba. Skill se jmenuje logicky, takže si ho Claude vybere sám i podle věty „zkontroluj mi ty nové faktury“.',
+          code: 'Postupuj podle skillu kontrola-faktur.',
+        },
+        {
+          title: 'Porovnej to s referenčním výstupem',
+          body:
+            'Ve vystup/ už jeden pár souborů je — to je výsledek, který má vyjít. Tvoje tabulka může mít jiné datum v názvu, ale musí najít tytéž tři nálezy. Když ano, projekt funguje a můžeš mu začít věřit.',
+        },
+        {
+          title: 'Vyzkoušej si zábranu',
+          body:
+            'Řekni Claudovi, ať do vstup/ něco zapíše. Musí to odmítnout — o to se stará ten hook. Takhle poznáte, že opravdu běží, aniž byste museli čekat, až se něco pokazí.',
+          code: 'Vytvoř soubor vstup/test.txt s textem ahoj.',
+        },
+      ],
+    },
+    { kind: 'h', text: '4. Co říká protokol' },
+    {
+      kind: 'code',
+      text: `# Kontrolní protokol — 2026-09-08
+
+Zpracováno faktur: 5
+Chybí povinný údaj: 1
+Částka nesedí na objednávku: 1
+Objednávka není v seznamu schválených: 2
+
+## K vyřešení
+- 2026-09-03_elektro-dvorak.pdf: chybí číslo objednávky
+- 2026-09-04_vts-technik.pdf: částka 33 100,00 Kč proti objednávce
+  31 900,00 Kč, rozdíl +1 200,00 Kč
+- 2026-09-05_barvy-piekarova.pdf: objednávka OBJ-9999-0001 není
+  v seznamu schválených`,
+      caption: 'Čtyři čísla a tři věty. Z toho poznáš výsledek, aniž bys otevřel jedinou fakturu — a přesně to je smysl protokolu.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Čemu protokol schválně neodpovídá',
+      text:
+        'Jestli se ta faktura má zaplatit. Kontrola připraví podklad, rozhoduje člověk. Nikdy nedávejte úloze právo fakturu schválit, poslat do účetnictví nebo zadat k platbě — ani ve chvíli, kdy je všechno v pořádku. Chyba v takovém kroku se pozná pozdě a je drahá.',
+    },
+    { kind: 'h', text: '5. Naplánuj to na sedmou ráno' },
+    {
+      kind: 'p',
+      text:
+        'Až vám to dvakrát vyjde ručně, teprve pak z toho udělejte úlohu. V aplikaci: Code → Routines → New routine → Local. Cloudová varianta by nefungovala, protože nevidí složku na disku.',
+    },
+    {
+      kind: 'table',
+      head: ['Pole', 'Co vyplnit'],
+      rows: [
+        ['Name', 'kontrola-faktur'],
+        ['Description', 'Ranní kontrola nových faktur a mail s výsledkem'],
+        ['Model', 'Sonnet — na tuhle práci stačí a je nejúspornější'],
+        ['Permission mode', 'Accept edits, jinak se běh zastaví na dotazu, na který v sedm ráno nikdo neodpoví'],
+        ['Folder', 'složka faktury-kontrola'],
+        ['Schedule', 'Daily, 7:00'],
+      ],
+    },
+    {
+      kind: 'code',
+      text: `Postupuj podle skillu kontrola-faktur.
+
+Kdyby bylo po poledni, znamená to, že běh je dohnaný ze zameškaného
+rána — i tak ho normálně dokonči, jen do protokolu napiš, kdy doopravdy
+běžel.
+
+Když ve vstup/ nepřibyla žádná nová faktura, nic nedělej a nic neposílej.
+
+Když jsi hotový a v protokolu je aspoň jeden nález, otevři mi rozepsaný
+e-mail. Do těla dej shrnutí z protokolu, ne celou tabulku. Nic neodesílej.
+
+Když je nesouladů víc než tři, mail neotvírej a napiš mi to do protokolu.`,
+      caption: 'Celé zadání úlohy. Poslední dvě věty jsou pojistky — bez nich je to hezký nápad, ne provoz.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Jak se to chová, když ráno počítač spí',
+      text:
+        'Místní úloha běží, jen když je počítač vzhůru a aplikace spuštěná. Když v sedm spí, běh se přeskočí — a po probuzení nebo po startu aplikace se dožene jeden, ten poslední zameškaný. Když byl počítač vypnutý týden, nespustí se sedm běhů, ale jeden. Proto je v zadání ta věta o poledni: úloha má vědět, že možná neběží ráno, a napsat to do protokolu.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Hned po uložení dej Run now',
+      text:
+        'První běh se bude na pár věcí ptát. U každého dotazu vyberte „always allow“ — další běhy pak proběhnou bez ptaní. Kdybyste to neudělali, úloha se v sedm ráno zastaví na dotazu a bude čekat, až přijdete.',
+    },
+    { kind: 'h', text: '6. Povolení složky: dvakrát jinak' },
+    {
+      kind: 'p',
+      text:
+        'Při připojování složky vyskočí dialog a stojí za to ho číst. Vypadá jinak v Coworku a jinak v Claude Code — a ten rozdíl není kosmetický.',
+    },
+    {
+      kind: 'figure',
+      name: 'folder-permission',
+      caption:
+        'Věta o cloudu vlevo je to jediné místo, kde se člověk dozví, že soubory z té složky odejdou z jeho počítače. U cvičného projektu je to jedno. U faktur nebo cen to jedno není.',
+    },
+    { kind: 'h', text: '7. Přepni to na svoje faktury' },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Přesuň celou složku do nasyncované knihovny',
+          body:
+            'Projekt je obyčejná složka, takže se nic uvnitř měnit nemusí. V naplánované úloze pak jen přepiš pole Folder na nové umístění.',
+        },
+        {
+          title: 'Vyměň obsah data/ a vstup/',
+          body:
+            'Do objednavky.xlsx dej skutečný export objednávek, vstup/ vyprázdni a nech do ní chodit opravdové faktury. Sloupce v exportu se budou jmenovat jinak než ve vzoru — dopiš je do CLAUDE.md, ne do skillu.',
+        },
+        {
+          title: 'Prvních deset faktur si projdi řádek po řádku',
+          body:
+            'Než tomu začnete věřit. Co Claude přečetl špatně, dopište do pravidel a pusťte to na dalších deseti. Když je druhá dávka bez nálezu, můžete to nechat běžet.',
+        },
+        {
+          title: 'Napište si vlastní runbook',
+          body:
+            'Ten v projektu je vzor. Přepište v něm, komu se má psát a co jsou u vás časté příčiny — to je věc, kterou za vás nikdo neuhodne.',
+        },
+      ],
+    },
+    {
+      kind: 'checklist',
+      title: 'Hotovo, když',
+      items: [
+        'projekt u tebe našel tytéž tři nálezy jako referenční výstup',
+        'zápis do vstup/ ti Claude odmítl',
+        'úloha je založená, proběhla přes Run now a všechna oprávnění jsou odsouhlasená',
+        'víš, co se stane, když ráno počítač spí',
+        'víš, proč tvoje faktury nebudou v Coworku, ale v Claude Code',
+      ],
+    },
+    {
+      kind: 'task',
+      title: 'Zadání: přepiš to na svoji agendu',
+      intro:
+        'Nemusí to být faktury. Cokoli, kde vám do složky chodí cizí dokumenty a někdo z nich vytahuje pár údajů.',
+      items: [
+        'Vezmi projekt a přejmenuj v něm agendu — dodací listy, potvrzení objednávek, protokoly z reklamací.',
+        'Přepiš CLAUDE.md: jaké údaje se z těch dokumentů berou a proti čemu se kontrolují.',
+        'Uprav skill, aby vypisoval sloupce, které potřebuješ ty.',
+        'Pusť to na deseti skutečných dokumentech a projdi výsledek řádek po řádku.',
+        'Teprve pak naplánuj běh.',
+      ],
+      hint:
+        'Zábranu a protokol nechte tak, jak jsou. To jsou dvě věci, které se u každé agendy vyplatí stejně — a zároveň to jsou první dvě věci, které lidi vynechají.',
+    },
+  ],
+}
+
 const L2_NAOSTRO: Lesson = {
   slug: 'pust-to-naostro',
   module: 'potom',
@@ -5321,7 +5575,7 @@ export const COURSES: Course[] = [
         summary: 'Referenční část. Vracej se sem, až narazíš na to, co lekce řeší.',
       },
     ],
-    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, L2_UKAZKA, LESSON_SKILL, L2_ROZBOR, LESSON_AUTOMATIZACE, L2_PLAN, L2_BEH, L2_EMAIL, L2_CELY_PRIKLAD, L2_FORMULAR, L2_DOKUMENTY, L2_MCP, L2_DESIGN, L2_NAOSTRO],
+    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, L2_UKAZKA, LESSON_SKILL, L2_ROZBOR, LESSON_AUTOMATIZACE, L2_PLAN, L2_BEH, L2_EMAIL, L2_CELY_PRIKLAD, L2_FORMULAR, L2_DOKUMENTY, L2_CVICNY, L2_MCP, L2_DESIGN, L2_NAOSTRO],
     learn: [
       'napsat zadání nad tabulkou, které projde napoprvé',
       'zkontrolovat výstup třemi čísly místo čtení řádek po řádku',
@@ -5333,6 +5587,7 @@ export const COURSES: Course[] = [
       'připojit MCP server nad katalogem dek.cz a ověřit si, že opravdu odpovídá z katalogu',
       'nahradit pinkání e-mailů formulářem a nechat si hlídat termíny',
       'zkontrolovat dávku faktur tak, aby výsledku šlo věřit',
+      'rozjet hotový cvičný projekt a překlopit ho na vlastní dokumenty',
       'projít si design system DEKu ve Storybooku a přidat do něj kompozici z hotových komponent',
     ],
     prerequisites: [
