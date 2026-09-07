@@ -349,6 +349,24 @@ const LESSON_TOKENY: Lesson = {
       caption:
         'Skoro všechno drahé má jednu ze čtyř příčin. Lekce jde postupně po všech čtyřech.',
     },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Tip na přečtení — a je to jenom pět minut',
+      text:
+        'Tahle lekce vychází z článku Maximizing the value of your Claude Code sessions od Lydie Hallie z Anthropicu. Je anglicky, ale krátký a čte se dobře — a je v něm to samé, co se dozvíš tady, jen bez našich příkladů. Odkaz je hned pod tímhle odstavcem a znovu na konci lekce. Když si z celého školení máš přečíst jednu věc navíc, ať je to tahle.',
+    },
+    {
+      kind: 'links',
+      title: 'Přečti si to v originále',
+      items: [
+        {
+          label: 'Maximizing the value of your Claude Code sessions',
+          href: 'https://claude.com/blog/maximizing-the-value-of-your-claude-code-sessions',
+          note: 'Lydia Hallie, Anthropic — pět minut čtení, anglicky',
+        },
+      ],
+    },
     { kind: 'h', text: 'Co je token' },
     {
       kind: 'p',
@@ -600,14 +618,9 @@ const LESSON_TOKENY: Lesson = {
       title: 'Kam se podívat dál',
       items: [
         {
-          label: 'Maximizing the value of your Claude Code sessions',
-          href: 'https://claude.com/blog/maximizing-the-value-of-your-claude-code-sessions',
-          note: 'článek, ze kterého tahle lekce vychází — anglicky, pět minut čtení',
-        },
-        {
           label: 'Maximizing value from Claude Code',
           href: 'https://www.anthropic.com/webinars/claude-code-maximizing-value',
-          note: 'tentýž obsah jako webinář — anglicky, hodina',
+          note: 'týž obsah jako ten článek nahoře, ale jako webinář — anglicky, hodina',
         },
         {
           label: 'Manage costs effectively',
