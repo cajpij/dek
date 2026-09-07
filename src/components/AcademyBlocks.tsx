@@ -126,7 +126,16 @@ function Checklist({ title, items }: { title: string; items: string[] }) {
   )
 }
 
-function Steps({ items }: { items: { title: string; body: string; code?: string }[] }) {
+function Steps({
+  items,
+}: {
+  items: {
+    title: string
+    body: string
+    code?: string
+    links?: { label: string; href: string; note?: string }[]
+  }[]
+}) {
   return (
     <Box component="ol" sx={{ listStyle: 'none', m: 0, p: 0, my: 2 }}>
       {items.map((step, i) => (
@@ -165,6 +174,36 @@ function Steps({ items }: { items: { title: string; body: string; code?: string 
               {step.body}
             </Typography>
             {step.code ? <Code>{step.code}</Code> : null}
+            {step.links?.length ? (
+              <Box sx={{ mt: 1.25 }}>
+                {step.links.map((link) => (
+                  <Box key={link.href} sx={{ mt: 0.5 }}>
+                    <Link
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener"
+                      underline="hover"
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 0.5,
+                        fontSize: 15,
+                        fontWeight: 550,
+                        py: 0.25,
+                      }}
+                    >
+                      {link.label}
+                      <Box component="span" aria-hidden sx={{ fontSize: 13 }}>
+                        ↗
+                      </Box>
+                    </Link>
+                    {link.note ? (
+                      <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>{link.note}</Typography>
+                    ) : null}
+                  </Box>
+                ))}
+              </Box>
+            ) : null}
           </Box>
         </Box>
       ))}

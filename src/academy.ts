@@ -18,7 +18,16 @@ export type Block =
   | { kind: 'p'; text: string }
   | { kind: 'h'; text: string }
   | { kind: 'list'; items: string[] }
-  | { kind: 'steps'; items: { title: string; body: string; code?: string }[] }
+  | {
+      kind: 'steps'
+      items: {
+        title: string
+        body: string
+        code?: string
+        /** Odkazy „jak to vypadá" — obrazovky v cizí nápovědě, ke konkrétnímu kroku. */
+        links?: { label: string; href: string; note?: string }[]
+      }[]
+    }
   | { kind: 'code'; text: string; caption?: string }
   | { kind: 'note'; tone: 'info' | 'warn' | 'ok'; title: string; text: string }
   | { kind: 'table'; head: string[]; rows: string[][] }
@@ -821,7 +830,7 @@ const STEPS_MAC: Block[] = [
       {
         title: 'Otevři složku v Claude Code',
         body:
-          'V desktopové aplikaci Claude Code (záložka Code) klikni na Open folder / Otevřít složku a vyber tu nasyncovanou. Když se zeptá, jestli složce věříš, potvrď. Od téhle chvíle v ní Claude umí číst, hledat a zakládat soubory. Kdo pracuje v terminálu, udělá totéž příkazem níž.',
+          'V desktopové aplikaci Claude (záložka Code) nech prostředí přepnuté na Local, klikni na Select folder / Vybrat složku a vyber tu nasyncovanou. Když se zeptá, jestli složce věříš, potvrď. Od téhle chvíle v ní Claude umí číst, hledat a zakládat soubory. Kdo pracuje v terminálu, udělá totéž příkazem níž.',
         code: 'cd ~/Library/CloudStorage/OneDrive-<firma>/<knihovna>\nclaude',
       },
       {
@@ -863,33 +872,80 @@ const STEPS_WIN: Block[] = [
         title: 'Otevři knihovnu v prohlížeči',
         body:
           'V SharePointu jdi do týmového webu a otevři knihovnu dokumentů, se kterou chceš pracovat — třeba Dokumenty nebo konkrétní podsložku s podklady. Pracuj radši s podsložkou než s celou knihovnou: syncovat stovky gigabajtů podkladů, ze kterých potřebuješ tři, nemá smysl.',
+        links: [
+          {
+            label: 'Jak týmový web vypadá',
+            href: 'https://support.microsoft.com/cs-CZ/SharePoint/sites-in-sharepoint/what-is-a-sharepoint-team-site',
+            note: 'nápověda Microsoftu — snímek levé nabídky webu, kde je knihovna Dokumenty',
+          },
+        ],
       },
       {
         title: 'Klikni na Přidat zástupce do OneDrivu',
         body:
           'V horní liště knihovny je Synchronizovat a vedle Přidat zástupce do OneDrivu (Add shortcut to OneDrive). Vezmi zástupce — chová se stejně, ale funguje i na jiných počítačích, kde je člověk přihlášený, a dá se snáz odebrat.',
+        links: [
+          {
+            label: 'Jak ta horní lišta vypadá',
+            href: 'https://support.microsoft.com/cs-cz/sharepoint/sync/sync-sharepoint-and-teams-files-with-your-computer',
+            note: 'snímek tlačítka Synchronizovat v knihovně — Přidat zástupce je hned vedle',
+          },
+          {
+            label: 'Co přesně dělá Přidat zástupce',
+            href: 'https://support.microsoft.com/cs-cz/onedrive/add-shortcuts-to-shared-folders-in-onedrive',
+            note: 'obrázky výběru složky a rozdíl proti Synchronizovat',
+          },
+        ],
       },
       {
         title: 'Počkej, až OneDrive dosyncuje',
         body:
           'Modrý mráček v oznamovací oblasti u hodin ukazuje průběh. Než je hotovo, ve složce jsou jen názvy souborů bez obsahu.',
+        links: [
+          {
+            label: 'Který mráček znamená co',
+            href: 'https://support.microsoft.com/cs-cz/onedrive/what-do-the-onedrive-icons-mean',
+            note: 'tabulka všech stavů ikony u hodin i v Průzkumníku — kolečko se šipkami znamená, že se ještě syncuje',
+          },
+        ],
       },
       {
         title: 'Najdi složku v Průzkumníku',
         body:
           'V levém panelu Průzkumníka přibude položka s názvem firmy a ikonou budovy, a v ní ta knihovna. Na disku je pod tvým profilem — cestu níž můžeš vložit rovnou do adresního řádku.',
         code: '%UserProfile%\\<název firmy>\\',
+        links: [
+          {
+            label: 'Jak to v Průzkumníku vypadá',
+            href: 'https://support.microsoft.com/cs-cz/sharepoint/sync/sync-sharepoint-and-teams-files-with-your-computer',
+            note: 'na téže stránce níž: snímek „složky synchronizace OneDrivu a webů" — složka firmy a pod ní knihovny',
+          },
+        ],
       },
       {
         title: 'Řekni Windows, ať soubory drží u sebe',
         body:
           'Pravý klik na složku → Vždy ponechat na tomto zařízení (v některých verzích Windows „Vždy zachovat v tomto zařízení", anglicky Always keep on this device). Bez tohohle kroku má většina souborů na disku jen zástupce a Claude v nich nic nepřečte — vidí název, ale ne obsah.',
+        links: [
+          {
+            label: 'Jak ta nabídka vypadá',
+            href: 'https://support.microsoft.com/cs-cz/onedrive/save-disk-space-with-onedrive-files-on-demand-for-windows',
+            note: 'snímek nabídky po pravém kliknutí a tabulka ikon: modrý mráček = jen online, zelená fajfka = staženo',
+          },
+        ],
       },
       {
         title: 'Otevři složku v Claude Code',
         body:
-          'V desktopové aplikaci Claude Code (záložka Code) klikni na Open folder / Otevřít složku a vyber tu nasyncovanou. Když se zeptá, jestli složce věříš, potvrď. Od téhle chvíle v ní Claude umí číst, hledat a zakládat soubory. Kdo pracuje v terminálu, udělá totéž příkazem níž.',
+          'V desktopové aplikaci Claude (záložka Code) nech prostředí přepnuté na Local, klikni na Select folder / Vybrat složku a vyber tu nasyncovanou. Když se zeptá, jestli složce věříš, potvrď. Od téhle chvíle v ní Claude umí číst, hledat a zakládat soubory. Kdo pracuje v terminálu, udělá totéž příkazem níž.',
         code: 'cd %UserProfile%\\<firma>\\<knihovna>\nclaude',
+        links: [
+          {
+            label: 'První sezení krok za krokem',
+            href: 'https://code.claude.com/docs/en/desktop-quickstart',
+            note: 'dokumentace Claude Code: záložka Code, volba Local a Select folder. Ve Windows musí být nainstalovaný Git, jinak se místní sezení nespustí.',
+          },
+        ],
       },
       {
         title: 'Ověř to jednou větou',
@@ -921,30 +977,11 @@ const STEPS_WIN: Block[] = [
     ],
   },
   {
-    kind: 'p',
+    kind: 'note',
+    tone: 'info',
+    title: 'Odkazy u kroků vedou na obrazovky',
     text:
-      'Jak ty obrazovky vypadají teď, je nejlíp vidět přímo v české nápovědě Microsoftu — jsou tam snímky z aktuální verze. Schválně je sem nekopírujeme: jsou Microsoftu a jeho rozhraní se mění několikrát do roka, takže obrázek v lekci by za půl roku lhal, kdežto odkaz ukazuje pořád to, co uvidíš na svém počítači.',
-  },
-  {
-    kind: 'links',
-    title: 'Aktuální obrazovky v nápovědě Microsoftu (Windows)',
-    items: [
-      {
-        label: 'Synchronizace souborů SharePointu a Teams s počítačem',
-        href: 'https://support.microsoft.com/cs-cz/sharepoint/sync/sync-sharepoint-and-teams-files-with-your-computer',
-        note: 'snímek tlačítka Synchronizovat v knihovně — první krok postupu výš',
-      },
-      {
-        label: 'Přidání zástupců do sdílených složek na OneDrivu',
-        href: 'https://support.microsoft.com/cs-cz/onedrive/add-shortcuts-to-shared-folders-in-onedrive',
-        note: 'ta varianta, kterou doporučujeme: Přidat zástupce do OneDrivu, i s obrázky výběru složky',
-      },
-      {
-        label: 'Soubory na vyžádání pro Windows: ušetření místa na disku',
-        href: 'https://support.microsoft.com/cs-cz/onedrive/save-disk-space-with-onedrive-files-on-demand-for-windows',
-        note: 'tabulka ikon v Průzkumníku (modrý mráček vs. zelená fajfka) a nabídka po pravém kliknutí',
-      },
-    ],
+      'U většiny kroků je odkaz do české nápovědy Microsoftu, kde je snímek přesně té obrazovky. Schválně je sem nekopírujeme: jsou Microsoftu a jeho rozhraní se mění několikrát do roka, takže obrázek v lekci by za půl roku lhal — odkaz ukazuje pořád to, co uvidíš na svém počítači.',
   },
 ]
 
