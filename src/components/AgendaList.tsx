@@ -3,11 +3,45 @@ import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
 import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
+import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import type { RunSheet } from '../lib/useRunSheet'
 import { clockFromMinutes, minutesLabel, mmss } from '../lib/format'
 import { KIND_LABEL, durSec, eventStartMinutes, plannedOffsetSec } from '../lib/run'
+import { blockLessons, stepLessons, type LessonLink } from '../lib/runLessons'
+
+/**
+ * Odkazy do akademie u bloku a u kroku. Nový panel schválně: program běží dál
+ * a lektor se k němu nemusí proklikávat zpátky.
+ */
+function LessonLinks({ items, label }: { items: LessonLink[]; label?: string }) {
+  if (items.length === 0) return null
+  return (
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: 1.75, rowGap: 0, mt: 0.25 }}>
+      {label && (
+        <Typography component="span" sx={{ fontSize: 12, color: 'text.disabled' }}>
+          {label}
+        </Typography>
+      )}
+      {items.map((lesson) => (
+        <Link
+          key={lesson.href}
+          href={lesson.href}
+          target="_blank"
+          rel="noopener"
+          underline="hover"
+          onClick={(e) => e.stopPropagation()}
+          sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.3, fontSize: 12.5, py: 0.5 }}
+        >
+          {lesson.title}
+          <OpenInNewIcon sx={{ fontSize: 13, opacity: 0.7 }} aria-label="otevře se v novém panelu" />
+        </Link>
+      ))}
+    </Box>
+  )
+}
 
 export default function AgendaList({ run }: { run: RunSheet }) {
   const { state } = run
@@ -49,6 +83,9 @@ export default function AgendaList({ run }: { run: RunSheet }) {
         const spent = state.actualSec[i]
         const diff = isDone && spent ? spent - durSec(state, i) : 0
         const accent = block.kind === 'break' ? 'success.main' : 'primary.main'
+        // Lekce k bloku se vypíšou jednou nahoře; u kroků pak jen to, co přidávají navíc.
+        const blockLesson = blockLessons(block)
+        const blockHrefs = new Set(blockLesson.map((l) => l.href))
 
         return (
           <Box
@@ -65,14 +102,6 @@ export default function AgendaList({ run }: { run: RunSheet }) {
           >
             <Box
               onClick={() => run.goTo(i)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault()
-                  run.goTo(i)
-                }
-              }}
               sx={{
                 display: 'grid',
                 gridTemplateColumns: '62px 1fr auto',
@@ -91,16 +120,27 @@ export default function AgendaList({ run }: { run: RunSheet }) {
               </Typography>
 
               <Box sx={{ minWidth: 0 }}>
-                <Typography
-                  component="span"
+                <Box
+                  component="button"
+                  type="button"
+                  onClick={() => run.goTo(i)}
+                  aria-current={isNow ? 'true' : undefined}
                   sx={{
+                    all: 'unset',
+                    cursor: 'pointer',
                     fontWeight: 600,
                     letterSpacing: '-.01em',
                     textDecoration: isDone ? 'line-through' : 'none',
+                    '&:focus-visible': {
+                      outline: '2px solid',
+                      outlineColor: 'primary.main',
+                      outlineOffset: 2,
+                      borderRadius: 1,
+                    },
                   }}
                 >
                   {block.title}
-                </Typography>
+                </Box>
                 {(block.kind === 'break' || block.kind === 'qna') && (
                   <Chip
                     size="small"
@@ -155,6 +195,7 @@ export default function AgendaList({ run }: { run: RunSheet }) {
             {steps.length > 0 && (
               <Collapse in={stepsOpen} unmountOnExit>
                 <Box sx={{ pb: 1.25, pl: 8.5, pr: 2.25 }}>
+                  <LessonLinks items={blockLesson} label="Lekce:" />
                   {steps.map((step, k) => (
                     <Box
                       key={k}
@@ -166,7 +207,12 @@ export default function AgendaList({ run }: { run: RunSheet }) {
                         color: state.stepDone[i]?.[k] ? 'text.disabled' : 'text.secondary',
                       }}
                     >
-                      <Typography sx={{ fontSize: 14, flex: 1, minWidth: 0 }}>{step.title}</Typography>
+                      <Box sx={{ flex: 1, minWidth: 0 }}>
+                        <Typography sx={{ fontSize: 14 }}>{step.title}</Typography>
+                        <LessonLinks
+                          items={stepLessons(block, step).filter((l) => !blockHrefs.has(l.href))}
+                        />
+                      </Box>
                       {step.min != null && (
                         <Typography
                           sx={{ fontSize: 13, color: 'text.disabled', fontVariantNumeric: 'tabular-nums' }}

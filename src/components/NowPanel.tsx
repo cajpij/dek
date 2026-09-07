@@ -3,9 +3,11 @@ import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
 import Divider from '@mui/material/Divider'
 import LinearProgress from '@mui/material/LinearProgress'
+import Link from '@mui/material/Link'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import AddIcon from '@mui/icons-material/Add'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import PauseIcon from '@mui/icons-material/Pause'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import RemoveIcon from '@mui/icons-material/Remove'
@@ -15,6 +17,37 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
 import type { RunSheet } from '../lib/useRunSheet'
 import { minutesLabel, mmss } from '../lib/format'
 import { KIND_LABEL, durSec, paletteFor, remainSec, toneOf } from '../lib/run'
+import { blockLessons, stepLessons, type LessonLink } from '../lib/runLessons'
+
+/**
+ * Odkazy do akademie. Otevírají se v novém panelu schválně — odpočet bloku
+ * má lektorovi zůstat na očích i ve chvíli, kdy si otevře lekci.
+ */
+function Lessons({ items, label }: { items: LessonLink[]; label?: string }) {
+  if (items.length === 0) return null
+  return (
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: 1.75, rowGap: 0 }}>
+      {label && (
+        <Typography component="span" sx={{ fontSize: 13, color: 'text.disabled' }}>
+          {label}
+        </Typography>
+      )}
+      {items.map((lesson) => (
+        <Link
+          key={lesson.href}
+          href={lesson.href}
+          target="_blank"
+          rel="noopener"
+          underline="hover"
+          sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.4, fontSize: 13.5, py: 0.5 }}
+        >
+          {lesson.title}
+          <OpenInNewIcon sx={{ fontSize: 14, opacity: 0.7 }} aria-label="otevře se v novém panelu" />
+        </Link>
+      ))}
+    </Box>
+  )
+}
 
 export default function NowPanel({ run }: { run: RunSheet }) {
   const { state, now } = run
@@ -56,6 +89,9 @@ export default function NowPanel({ run }: { run: RunSheet }) {
         {block.brief && (
           <Typography sx={{ mt: 1.5, color: 'text.secondary', maxWidth: '68ch' }}>{block.brief}</Typography>
         )}
+        <Box sx={{ mt: 1.25 }}>
+          <Lessons items={blockLessons(block)} label="Lekce k bloku:" />
+        </Box>
       </Box>
 
       <Box>
@@ -77,7 +113,13 @@ export default function NowPanel({ run }: { run: RunSheet }) {
             {remain < 0 ? `přes plán · blok má ${minutesLabel(duration)}` : `z ${minutesLabel(duration)}`}
           </Typography>
         </Box>
-        <LinearProgress variant="determinate" value={progress} color={color} sx={{ mt: 1.75 }} />
+        <LinearProgress
+          variant="determinate"
+          value={progress}
+          color={color}
+          aria-label={`Průběh bloku ${block.title}`}
+          sx={{ mt: 1.75 }}
+        />
       </Box>
 
       <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
@@ -162,6 +204,10 @@ export default function NowPanel({ run }: { run: RunSheet }) {
                       lekce „{step.source}“
                     </Typography>
                   )}
+                  {/* Krok je <label> s fajfkou; klik do odkazu ji nesmí přepnout. */}
+                  <Box sx={{ mt: 0.4 }} onClick={(e) => e.stopPropagation()}>
+                    <Lessons items={stepLessons(block, step)} />
+                  </Box>
                 </Box>
                 {step.min != null && (
                   <Typography

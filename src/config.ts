@@ -61,9 +61,10 @@ export const DEFAULT_CONFIG: RunConfig = {
       min: 10,
       kind: 'talk',
       who: 'Martin',
+      lessons: ['claude-a-firemni-data/program-dne'],
       steps: [
         { title: 'Co dnes vznikne', min: 3, detail: 'Mapa vlastního procesu a jedna hotová automatizace' },
-        { title: 'Pět schodů automatizace', min: 5, detail: 'Zadání → pravidlo → skill → hook → běh bez tebe' },
+        { title: 'Pět schodů automatizace', min: 5, detail: 'Zadání → pravidlo → skill → hook → běh bez tebe', lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace'] },
         { title: 'Co je předem hotové a co se dnes nestihne', min: 2 },
       ],
       notes: [
@@ -106,6 +107,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Nastavení: sdílená složka a projekt',
       min: 30,
+      lessons: ['claude-a-firemni-data/sdilena-slozka-sharepoint', 'claude-a-firemni-data/co-claude-ve-slozce-vidi', 'claude-a-firemni-data/projekt-v-claude-code'],
       kind: 'work',
       who: 'Lektor + asistence',
       brief:
@@ -113,10 +115,10 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Je to jediná část večera, kde se něco nastavuje — a děláme ji na začátku schválně, ' +
         'aby se případný problém našel teď a ne ve chvíli, kdy má člověk stavět.',
       steps: [
-        { title: 'Nasyncovat knihovnu ze SharePointu', min: 10, detail: 'Přidat zástupce do OneDrivu, počkat, až se stáhne' },
-        { title: 'Vždy ponechat v tomto zařízení a připojit složku v Claudovi', min: 5, detail: 'Bez toho jsou na disku jen zástupci a Claude nic nepřečte' },
-        { title: 'Založit projekt: složka agendy, data/ a vystupy/', min: 5 },
-        { title: 'Napsat CLAUDE.md', min: 10, detail: 'Pět řádků slovníku, kde jsou data, dvě pravidla co se nesmí' },
+        { title: 'Nasyncovat knihovnu ze SharePointu', min: 10, detail: 'Přidat zástupce do OneDrivu, počkat, až se stáhne', lessons: ['claude-a-firemni-data/sdilena-slozka-sharepoint'] },
+        { title: 'Vždy ponechat v tomto zařízení a připojit složku v Claudovi', min: 5, detail: 'Bez toho jsou na disku jen zástupci a Claude nic nepřečte', lessons: ['claude-a-firemni-data/sdilena-slozka-sharepoint', 'claude-a-firemni-data/co-claude-ve-slozce-vidi'] },
+        { title: 'Založit projekt: složka agendy, data/ a vystupy/', min: 5, lessons: ['claude-a-firemni-data/projekt-v-claude-code'] },
+        { title: 'Napsat CLAUDE.md', min: 10, detail: 'Pět řádků slovníku, kde jsou data, dvě pravidla co se nesmí', lessons: ['claude-a-firemni-data/projekt-v-claude-code'] },
       ],
       examples: [
         { title: 'Mám knihovnu nasyncovanou', detail: 'Rovnou zakládej projekt a piš CLAUDE.md. Zbyde ti čas, pomoz sousedovi.' },
@@ -137,11 +139,12 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Vzor: Od magazínu do regálu',
       min: 20,
+      lessons: ['claude-a-firemni-data/od-magazinu-do-regalu'],
       kind: 'talk',
       who: 'Lektor',
       brief: REGAL_BRIEF,
       steps: [
-        { title: 'Projít proces po krocích', min: 10, detail: 'Deset kroků od sdílené tabulky po tři finální podklady' },
+        { title: 'Projít proces po krocích', min: 10, detail: 'Deset kroků od sdílené tabulky po tři finální podklady', lessons: ['claude-a-firemni-data/od-magazinu-do-regalu'] },
         { title: 'Kde data mění formu ručně', min: 7, detail: 'Nechat sál hádat, než ukážeš tři označená místa' },
         { title: 'Co má zůstat člověku', min: 3, detail: 'Vzorování v regálu — data o měrných jednotkách lžou' },
       ],
@@ -156,6 +159,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Cvičení 1 — rozhovory ve dvojicích',
       min: 40,
+      lessons: ['claude-a-firemni-data/zmapuj-kolegovi-workflow'],
       kind: 'work',
       who: 'Lektor + asistence',
       brief:
@@ -197,6 +201,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Cvičení 1b — kresba flow a označení míst',
       min: 15,
+      lessons: ['claude-a-firemni-data/zmapuj-kolegovi-workflow'],
       kind: 'work',
       who: 'Lektor + asistence',
       steps: [
@@ -225,6 +230,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Sdílení map',
       min: 10,
+      lessons: ['claude-a-firemni-data/zmapuj-kolegovi-workflow'],
       kind: 'qna',
       who: 'Martin',
       steps: [
@@ -240,12 +246,13 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Zadání nad tabulkou a kontrola výsledku',
       min: 25,
+      lessons: ['od-mapy-k-automatu/zadani-nad-tabulkou', 'od-mapy-k-automatu/jak-poznas-ze-je-to-spatne'],
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'Struktura zadání, které projde napoprvé', min: 8, detail: 'Co vzít, co udělat, kam uložit, co s výjimkou' },
-        { title: 'Pasti, které tabulka nastraží', min: 7, detail: 'Kódy jako čísla, prázdno vs. nula, hlavička na třetím řádku' },
-        { title: 'Tři otázky na každý výstup', min: 10, detail: 'Sedí počty, sedí součty, sedí vzorek' },
+        { title: 'Struktura zadání, které projde napoprvé', min: 8, detail: 'Co vzít, co udělat, kam uložit, co s výjimkou', lessons: ['od-mapy-k-automatu/zadani-nad-tabulkou'] },
+        { title: 'Pasti, které tabulka nastraží', min: 7, detail: 'Kódy jako čísla, prázdno vs. nula, hlavička na třetím řádku', lessons: ['od-mapy-k-automatu/zadani-nad-tabulkou'] },
+        { title: 'Tři otázky na každý výstup', min: 10, detail: 'Sedí počty, sedí součty, sedí vzorek', lessons: ['od-mapy-k-automatu/jak-poznas-ze-je-to-spatne'] },
       ],
       notes: [
         'Kontrola je nejdůležitější věc celého dne — bez ní nikdo nikdy nepustí nic bez dozoru',
@@ -263,6 +270,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Cvičení 2 — postav si první automatizaci',
       min: 45,
+      lessons: ['od-mapy-k-automatu/postav-si-prvni-automatizaci', 'od-mapy-k-automatu/jak-napsat-skill'],
       kind: 'work',
       who: 'Lektor + asistence',
       brief:
@@ -271,8 +279,8 @@ export const DEFAULT_CONFIG: RunConfig = {
       steps: [
         { title: 'Vybrat krok a připravit si vstup i výsledek z minula', min: 8 },
         { title: 'Udělat to jednou zadáním a zapisovat si doříkání', min: 15 },
-        { title: 'Doříkání, která platí pořád, přepsat do CLAUDE.md', min: 5 },
-        { title: 'Nechat si napsat skill a opravit mu description', min: 10 },
+        { title: 'Doříkání, která platí pořád, přepsat do CLAUDE.md', min: 5, lessons: ['claude-a-firemni-data/projekt-v-claude-code'] },
+        { title: 'Nechat si napsat skill a opravit mu description', min: 10, lessons: ['od-mapy-k-automatu/jak-napsat-skill', 'od-mapy-k-automatu/rozbor-skillu'] },
         { title: 'Spustit na datech z jiného měsíce', min: 7 },
       ],
       examples: [
@@ -315,12 +323,13 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Živá ukázka: naplánovaný běh',
       min: 10,
+      lessons: ['od-mapy-k-automatu/ziva-ukazka'],
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'Naplánovat běh na čas za pět minut', min: 3, detail: 'Větou v chatu, ne formulářem — „založ mi úlohu, která se spustí za pět minut" a zadání. Formulář má sedm polí a sál u toho usne.' },
-        { title: 'Zavřít to a mluvit o něčem jiném', min: 5, detail: 'Zbylé dva schody: hook a běh bez dozoru' },
-        { title: 'Podívat se, co přibylo', min: 2, detail: 'Notifikace, soubor s dnešním datem, a kolegovi ve schránce zpráva — ať to potvrdí nahlas' },
+        { title: 'Naplánovat běh na čas za pět minut', min: 3, detail: 'Větou v chatu, ne formulářem — „založ mi úlohu, která se spustí za pět minut" a zadání. Formulář má sedm polí a sál u toho usne.', lessons: ['od-mapy-k-automatu/ziva-ukazka', 'od-mapy-k-automatu/naplanovana-uloha'] },
+        { title: 'Zavřít to a mluvit o něčem jiném', min: 5, detail: 'Zbylé dva schody: hook a běh bez dozoru', lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace', 'od-mapy-k-automatu/nech-to-bezet-bez-sebe'] },
+        { title: 'Podívat se, co přibylo', min: 2, detail: 'Notifikace, soubor s dnešním datem, a kolegovi ve schránce zpráva — ať to potvrdí nahlas', lessons: ['od-mapy-k-automatu/email-z-automatu'] },
       ],
       notes: [
         'Blok má vlastní lekci v akademii: Živá ukázka: za pět minut to doběhne samo — zadání úlohy je tam ve dvou variantách',
@@ -337,15 +346,26 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Domluva, co do příště',
       min: 5,
+      lessons: ['od-mapy-k-automatu/pust-to-naostro'],
       kind: 'qna',
       who: 'Martin',
       steps: [
-        { title: 'Úkol na týden: pustit to naostro', min: 3 },
+        { title: 'Úkol na týden: pustit to naostro', min: 3, lessons: ['od-mapy-k-automatu/pust-to-naostro'] },
         {
           title: 'Kam se vracet v akademii',
           min: 2,
-          detail:
-            'Slovníček · Celý příklad (od magazínu po mail) · Rozbor skutečného skillu · Jak se nastaví automatizace (hooky) · Naplánovaná úloha · Nech to běžet bez sebe · E-mail z automatu · MCP nad katalogem · Design system DEK ve Storybooku',
+          detail: 'Referenční lekce — poslat každému tu jednu, která sedí na to, co dneska stavěl.',
+          lessons: [
+            'claude-a-firemni-data/slovnicek',
+            'od-mapy-k-automatu/cely-priklad-magazin',
+            'od-mapy-k-automatu/rozbor-skillu',
+            'od-mapy-k-automatu/jak-se-nastavuje-automatizace',
+            'od-mapy-k-automatu/naplanovana-uloha',
+            'od-mapy-k-automatu/nech-to-bezet-bez-sebe',
+            'od-mapy-k-automatu/email-z-automatu',
+            'od-mapy-k-automatu/mcp-nad-katalogem',
+            'od-mapy-k-automatu/dek-design-system',
+          ],
         },
       ],
       notes: [

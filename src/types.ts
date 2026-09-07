@@ -10,6 +10,11 @@ export interface Step {
   detail?: string
   /** Původní název lekce v kurzu, aby se dala dohledat v Claude Academy. */
   source?: string
+  /**
+   * Lekce v akademii, které se krok týká — slug `<kurz>/<lekce>`.
+   * Název lekce se dotahuje z academy.ts, tady je jen odkaz.
+   */
+  lessons?: string[]
 }
 
 /** Cvičný příklad k výběru — konkrétní zadání, které si účastník může vzít. */
@@ -33,6 +38,8 @@ export interface Block {
   notes?: string[]
   /** Vnitřní program bloku — jednotlivá cvičení a kapitoly, dají se odškrtávat. */
   steps?: Step[]
+  /** Lekce, které blok pokrývá — slug `<kurz>/<lekce>`, viz lib/runLessons.ts. */
+  lessons?: string[]
   /**
    * Nabídka konkrétních zadání pro cvičení. U bloků typu `work` se ukazuje
    * i na plátně, aby si sál mohl vybrat, aniž by si úkol musel vymýšlet.
