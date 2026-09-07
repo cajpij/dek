@@ -667,6 +667,116 @@ const LESSON_TOKENY: Lesson = {
   ],
 }
 
+const LESSON_COWORK: Lesson = {
+  slug: 'z-coworku-do-claude-code',
+  module: 'start',
+  title: 'Z Coworku do Claude Code',
+  summary:
+    'Většina z vás zatím zná jen Cowork. Čím se Code liší, kdy se který hodí, a co si mezi nimi přenesete.',
+  minutes: 12,
+  kind: 'lekce',
+  track: 'potom',
+  outcomes: [
+    'vysvětlit rozdíl mezi chatem, Coworkem a Claude Code',
+    'vybrat si pro konkrétní úkol tu správnou ze tří záložek',
+    'vědět, co se mezi nimi přenáší a co ne',
+    'poznat úlohy, u kterých se Cowork hodí víc než Claude Code',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'V aplikaci Claude jsou tři záložky a pletou se. Nejsou to tři různé produkty ani tři úrovně pokročilosti — je to trojí způsob, jak k Claudovi pustit vaši práci. Rozdíl je v tom, kde ta práce leží a jestli u ní sedíte.',
+    },
+    {
+      kind: 'table',
+      head: ['Záložka', 'K čemu je', 'Kde má vaše soubory'],
+      rows: [
+        [
+          'Chat',
+          'zeptat se, nechat si něco vysvětlit nebo napsat, projít text',
+          'nikde — dostane jen to, co do rozhovoru vložíte',
+        ],
+        [
+          'Cowork',
+          'zadat delší práci a jít dělat něco jiného; agent pracuje sám na pozadí',
+          've vlastním odděleném prostředí; soubory se do něj předávají',
+        ],
+        [
+          'Code',
+          'pracovat nad složkou na svém počítači a vidět každou změnu',
+          'přímo ve složce, kterou otevřete — čte i zapisuje do ní',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Nejde o to, co je „lepší“',
+      text:
+        'Cowork je silný v tom, že běží bez vás a vy se mezitím věnujete něčemu jinému. Claude Code je silný v tom, že pracuje rovnou ve složce s vašimi daty a nic se nikam nepřepisuje. Většina agend v logistice je druhý případ — data jsou v nasyncované knihovně a mají tam i zůstat.',
+    },
+    { kind: 'h', text: 'Co se změní, když přejdete do Code' },
+    {
+      kind: 'list',
+      items: [
+        'Práce má domov. Otevřete složku a všechno v ní Claude vidí — data, výstupy, pravidla. Nemusíte nic nahrávat a příště vybíráte tutéž složku ze seznamu.',
+        'Pravidla se nemusí opakovat. CLAUDE.md ve složce se načte na začátku každého sezení: slovník agendy, kde jsou data, co se nesmí.',
+        'Postupy se dají zabalit. Co děláte potřetí, se stane skillem a spustí se jednou větou nebo lomítkem.',
+        'Výsledky se dají zkontrolovat. U každé změny souboru vidíte, co přesně se změnilo, a můžete to odmítnout.',
+        'Dá se to naplánovat. Úloha se spustí sama v čase, který určíte, a po ní zůstane protokol.',
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Příděl je společný',
+      text:
+        'Chat, Cowork i Claude Code čerpají z jednoho přídělu, ne z tří. Když dopoledne proženete dlouhé sezení v Coworku, odpoledne to poznáte v Code. Jak s tím zacházet, je v lekci Kolik to stojí a jak platit míň.',
+    },
+    { kind: 'h', text: 'Kdy zůstat v Coworku' },
+    {
+      kind: 'list',
+      items: [
+        'Práce, která nemá co dělat s vašimi soubory: rešerše, sepsání podkladu, projití něčeho, co jste dostali odjinud.',
+        'Dlouhá úloha, u které nechcete sedět a nevadí, že poběží ve vlastním prostředí.',
+        'Něco, co chcete rozjet z telefonu nebo z jiného počítače, než na kterém máte složku.',
+      ],
+    },
+    { kind: 'h', text: 'Kdy přejít do Code' },
+    {
+      kind: 'list',
+      items: [
+        'Data jsou ve složce na disku nebo v nasyncované knihovně a mají tam zůstat.',
+        'Výsledkem má být soubor uložený na konkrétní místo, ne text v rozhovoru.',
+        'Tentýž postup se opakuje každý týden a chcete z něj mít skill.',
+        'Má to jednou běžet bez vás a po každém běhu zůstat kontrola.',
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Co si přenesete',
+      text:
+        'Nezačínáte od nuly. Zvyk psát konkrétní zadání — co vzít, co udělat, kam uložit, co s výjimkou — platí ve všech třech záložkách stejně. To, co se v Code přidá, je složka, pravidla a možnost nechat postup běžet znovu.',
+    },
+    {
+      kind: 'task',
+      title: 'Cvičení: převeďte jednu coworkovou úlohu do Code',
+      intro:
+        'Vezměte si něco, co jste za poslední měsíc řešili v Coworku a co se týkalo vašich souborů.',
+      items: [
+        'Založte složku podle lekce Projekt v Claude Code a dejte do ní jeden reálný soubor.',
+        'Zadejte tutéž úlohu znovu, ale nad tou složkou.',
+        'Všimněte si, co jste tentokrát nemuseli vysvětlovat, protože to Claude viděl sám.',
+        'Co jste vysvětlovat museli, dopište do CLAUDE.md.',
+      ],
+      hint:
+        'Když ta úloha vašich souborů netýkala, byla v Coworku správně. Vyberte si jinou — cvičení má ukázat rozdíl, ne přesvědčit vás, že Cowork je špatný.',
+    },
+  ],
+}
+
 const LESSON_PROJEKT: Lesson = {
   slug: 'projekt-v-claude-code',
   module: 'napojeni',
@@ -4804,6 +4914,254 @@ export const AkcniNabidka: StoryObj = {
   ],
 }
 
+const L2_FORMULAR: Lesson = {
+  slug: 'formular-misto-emailu',
+  module: 'potom',
+  title: 'Formulář místo pinkání e-mailů',
+  summary:
+    'Když vám data mají poslat kolegové: jak zrušit e-mail jako přenosový formát, kdo co schvaluje a jak hlídat termíny.',
+  minutes: 12,
+  kind: 'lekce',
+  track: 'potom',
+  outcomes: [
+    'poznat, kdy je e-mail ten problém, a ne to, co se v něm posílá',
+    'rozdělit takový proces na sběr, schválení, zápis a hlídání',
+    'vědět, co v tom udělá Claude a co musí udělat systém, ve kterém data žijí',
+    'napsat si k tomu kontrolní přehled, ze kterého je vidět, kdo neodpověděl',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Tenhle tvar má v DEKu víc agend, než by člověk čekal. Pošlete kolegům soubor. Oni odpoví mailem — někdo tabulkou, někdo obrázkem obrazovky. Vy odpovědi ručně přepíšete zpátky, zkontrolujete, že se nic neposunulo, a kdo neodpověděl, toho obvoláte. Akční regál to má v kroku, kde produkťáci vybírají položky. Sklad logistiky to má u poboček, které hlásí termín vývozu.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Automatizovat přepisování je ta horší cesta',
+      text:
+        'První nápad bývá „ať mi Claude ty maily přečte a přepíše je do tabulky“. Jde to a je to lepší než nic. Ale pořád stavíte na tom, že data cestují mailem — takže dál řešíte přílohy, obrázky obrazovky, překlepy a to, že nevíte, kdo ještě neodpověděl. Levnější je e-mail z té cesty vyndat.',
+    },
+    { kind: 'h', text: 'Rozdělte si to na čtyři části' },
+    {
+      kind: 'table',
+      head: ['Část', 'Kdo to dělá', 'Proč zrovna tak'],
+      rows: [
+        [
+          'Sběr',
+          'formulář nebo sdílený seznam, kam kolega zapíše přímo',
+          'data od začátku vznikají ve strojově čitelném tvaru a je vidět, kdo ještě nic nevyplnil',
+        ],
+        [
+          'Schválení',
+          'člověk — vy',
+          'zůstává rozhodnutí, ne přepisování. Schvalujete tvrzení, ne formátování.',
+        ],
+        [
+          'Zápis do kontrolní tabulky',
+          'Claude',
+          'ze schválených řádků udělá zápis včetně poznámek a data, a rovnou napíše, co nesedělo',
+        ],
+        [
+          'Hlídání termínů',
+          'Claude, naplánovaně',
+          'jednou týdně projde, komu termín utekl, a buď pošle upomínku, nebo to dá do přehledu',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Na sběr nepotřebujete nic nového kupovat',
+      text:
+        'Máte Microsoft 365. Formulář nebo seznam na SharePointu je přesně na tohle: vyplní ho kdokoli z poboček, výsledek je tabulka a vidíte, kdo chybí. Claude tu tabulku umí přečíst stejně jako každý jiný soubor v nasyncované knihovně. Nestavte kvůli tomu vlastní aplikaci — udržoval by ji jeden člověk a spadla by s ním.',
+    },
+    { kind: 'h', text: 'Co z toho zvládne Claude a co ne' },
+    {
+      kind: 'table',
+      head: ['Zvládne', 'Nezvládne'],
+      rows: [
+        ['přečíst odpovědi a srovnat je s tím, co jste rozeslali', 'donutit pobočku, aby vyplnila formulář'],
+        ['zapsat schválené řádky do kontrolní tabulky', 'rozhodnout za vás, co schválit'],
+        ['vypsat, komu termín utekl, a připravit upomínku', 'spárovat položky, které nemají společný klíč'],
+        ['spočítat, kolik řádků přišlo, kolik prošlo a kolik nesedělo', 'nahradit systém, ve kterém data doopravdy žijí'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Ruční párování přiznejte hned',
+      text:
+        'Když se položky z objednávek nedají spojit s agendou automaticky, zůstane to ruční — a je to v pořádku. Automatizace kolem toho pořád ušetří většinu času. Horší je předstírat, že se spáruje samo, a pak řešit tiché chyby v datech.',
+    },
+    { kind: 'h', text: 'Zadání, kterým to začíná' },
+    {
+      kind: 'code',
+      text: `Vezmi v data/ nejnovější export odpovědí z formuláře a porovnej ho
+se seznamem, který jsem rozeslal. Připrav mi do vystupy/ dva soubory:
+schvaleni-<RRRR-MM-DD>.xlsx s řádky, které mám odsouhlasit,
+a chybi-<RRRR-MM-DD>.xlsx s tím, kdo ještě neodpověděl.
+Na konec napiš, kolik řádků přišlo, kolik jich sedí na rozeslaný seznam
+a u kolika je rozpor. Když nesedí počet sloupců, zastav se a napiš to.`,
+      caption: 'Všimni si, že Claude tady nic neschvaluje ani neodesílá. Připravuje podklad k rozhodnutí.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Až tohle projde dvakrát bez doříkávání, zabalte to do skillu a teprve pak k němu přidejte naplánovaný běh a upomínky. Pořadí je důležité: nejdřív ať to funguje, pak ať to běží samo.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Upomínky posílejte až úplně nakonec',
+      text:
+        'Odeslaná pošta se nevrací a upomínka poslaná na základě špatně přečtené tabulky stojí víc důvěry, než kolik ušetří času. Napište do zadání podmínku, kdy se nemá odeslat nic — třeba když v kontrole sedí míň než všechno.',
+    },
+    {
+      kind: 'task',
+      title: 'Cvičení: převeďte jeden svůj e-mailový kolotoč',
+      intro:
+        'Vyberte si proces, ve kterém čekáte na odpovědi od kolegů nebo poboček.',
+      items: [
+        'Napište si, co přesně od nich potřebujete — které sloupce, v jakém tvaru.',
+        'Založte na to formulář nebo seznam v Microsoft 365 a pošlete ho místo souboru.',
+        'Nad exportem odpovědí si nechte připravit oba podklady zadáním výš.',
+        'Teprve když to podruhé projde, přidejte hlídání termínů.',
+        'Změřte, kolik minut vám to sebralo dřív a kolik teď.',
+      ],
+      hint:
+        'Když někdo odpovídat formulářem nechce, není to důvod celé to vzdát. Jeho odpovědi přepíšete ručně a zbytek poběží — a po měsíci uvidí, že jeho řádky jsou jediné, které pořád zlobí.',
+    },
+  ],
+}
+
+const L2_DOKUMENTY: Lesson = {
+  slug: 'kontrola-dokumentu',
+  module: 'potom',
+  title: 'Kontrola dokumentů: faktury a přílohy',
+  summary:
+    'Když ve složce přistávají cizí dokumenty a někdo je musí projít. Co po Claudovi chtít, co si nechat pro sebe a jak z pokusu udělat provoz.',
+  minutes: 12,
+  kind: 'lekce',
+  track: 'potom',
+  outcomes: [
+    'zadat kontrolu dokumentů tak, aby šla ověřit',
+    'rozlišit, co se dá zkontrolovat proti pravidlu a co potřebuje člověka',
+    'napsat kontrolní protokol, ze kterého poznáte výsledek bez otevírání dokumentů',
+    'posunout rozdělaný skill do stavu, kdy poběží každý den',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Faktury, dodací listy, potvrzení objednávek — dokumenty, které chodí odjinud, mají v každé firmě stejný osud: někdo je musí otevřít, najít v nich pár údajů, porovnat je s tím, co má v systému, a doplnit, co chybí. Claude umí PDF i obrázky přečíst, takže tahle práce se dá z velké části předat. Ne celá.',
+    },
+    { kind: 'h', text: 'Rozdělte si kontrolu na tři hromádky' },
+    {
+      kind: 'table',
+      head: ['Typ kontroly', 'Příklad', 'Kdo to má dělat'],
+      rows: [
+        [
+          'Je tam všechno?',
+          'číslo faktury, datum, IČO, číslo objednávky, splatnost',
+          'Claude. Buď to v dokumentu je, nebo ne — a když ne, napíše to.',
+        ],
+        [
+          'Sedí to na to, co víme?',
+          'částka proti objednávce, dodavatel proti seznamu, položky proti dodacímu listu',
+          'Claude připraví srovnání a vypíše rozdíly. Nedopočítává.',
+        ],
+        [
+          'Má se to schválit?',
+          'je ta cena v pořádku, chceme to zaplatit, je to náš náklad',
+          'člověk. Vždycky.',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Schvalování a placení nechte na lidech',
+      text:
+        'Automatizace se tady zastaví u připraveného podkladu. Nikdy nedávejte úloze právo fakturu schválit, odeslat do účetnictví nebo zaplatit — ani „když je všechno v pořádku“. Chyba v takovém kroku je drahá a přijde se na ni pozdě.',
+    },
+    { kind: 'h', text: 'Zadání, které jde ověřit' },
+    {
+      kind: 'code',
+      text: `Projdi PDF ve složce faktury/ a ke každé zapiš do vystupy/kontrola.xlsx:
+soubor, číslo faktury, dodavatele, IČO, číslo objednávky, částku bez DPH
+a splatnost. Když některý údaj v dokumentu není, nech pole prázdné
+a do sloupce CHYBÍ napiš, co to bylo — nedomýšlej si.
+Pak porovnej číslo objednávky se seznamem v data/objednavky.xlsx
+a doplň sloupec SEDÍ s hodnotou ano/ne/nenalezeno.
+Na konec napiš, kolik dokumentů jsi zpracoval, u kolika něco chybí
+a kolik má nesoulad. Nic z faktur nepřepisuj ani nepřesouvej.`,
+      caption:
+        'Klíčová jsou tři místa: „nech prázdné“, „nedomýšlej si“ a „nic nepřepisuj“. Bez nich vznikne hezká tabulka, které se nedá věřit.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Prázdno není totéž co nula',
+      text:
+        'U dokumentů to platí dvojnásob. Když Claude nenajde částku, musí zůstat prázdno a poznámka — ne nula, ne odhad z jiného pole. Prázdné místo najdete. Nulu si spletete s realitou.',
+    },
+    { kind: 'h', text: 'Z pokusu do provozu' },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Nechte to projít dvakrát bez doříkávání',
+          body:
+            'Na dvou různých dávkách dokumentů. Co jste museli vysvětlit, patří do zadání nebo do CLAUDE.md, ne do hlavy.',
+        },
+        {
+          title: 'Zabalte to do skillu a dolaďte description',
+          body:
+            'Ten jeden řádek rozhoduje, kdy si skill Claude sám vybere. Napište do něj i slova, kterými o té práci mluvíte vy — faktura, kontrola, dodavatel.',
+        },
+        {
+          title: 'Přidejte kontrolní protokol',
+          body:
+            'Krátký soubor na konci běhu: kolik dokumentů, kolik s chybějícím údajem, kolik s nesouladem, kdy to běželo. Z něj poznáte výsledek, aniž byste otevírali jedinou fakturu.',
+        },
+        {
+          title: 'Ochraňte vstupy hookem',
+          body:
+            'Zábrana, která nepustí zápis do složky s originály. Je to jedna podmínka, a ušetří vám den, kdy se něco přepíše.',
+        },
+        {
+          title: 'Naplánujte běh a řekněte, kdy se má zastavit',
+          body:
+            'Ráno projít, co přes noc přibylo. A do zadání podmínku: když je nesouladů víc než pár, neposílej nic a napiš mi.',
+        },
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Rozdělaný projekt není potřeba zahazovat',
+      text:
+        'Když už máte něco rozjetého, začněte protokolem a zábranou. To jsou dvě věci, které z pokusu udělají něco, co se dá pustit i ve dnech, kdy u toho nesedíte — a přidávají se k hotovému, nic se kvůli nim nepřepisuje.',
+    },
+    {
+      kind: 'task',
+      title: 'Cvičení: kontrola na deseti dokumentech',
+      intro:
+        'Vezměte deset skutečných dokumentů, u kterých znáte správný výsledek.',
+      items: [
+        'Pusťte na ně zadání výš a výsledek si projděte řádek po řádku.',
+        'Zapište si každý údaj, který Claude přečetl špatně nebo si domyslel.',
+        'Doplňte podle toho zadání a pusťte to na jiných deseti.',
+        'Když je druhá dávka bez nálezu, zabalte to do skillu.',
+        'Napište k tomu runbook: co to dělá, kdy běží, co zkontrolovat, komu napsat.',
+      ],
+      hint:
+        'Deset je schválně málo. Na deseti dokumentech chybu najdete, na stovce ji přehlédnete — a právě proto se testuje na malém vzorku, u kterého znáte pravdu.',
+    },
+  ],
+}
+
 const L2_NAOSTRO: Lesson = {
   slug: 'pust-to-naostro',
   module: 'potom',
@@ -4910,10 +5268,11 @@ export const COURSES: Course[] = [
           'Nejdřív hotový proces z logistiky jako vzor, pak totéž ve dvojicích na vlastní agendě.',
       },
     ],
-    lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL, LESSON_CVICENI],
+    lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL, LESSON_CVICENI],
     learn: [
       'vysvětlit, za co se u Clauda platí, a vybrat model i effort podle úlohy',
       'zkrátit dlouhá sezení a zjistit, kam odtéká příděl',
+      'vybrat si mezi chatem, Coworkem a Claude Code podle toho, kde leží data',
       'založit projekt tak, aby se pravidla nemusela opakovat každé ráno',
       'poznat, co patří do CLAUDE.md, co do skillu a co do artefaktu',
       'nasyncovat knihovnu ze SharePointu do počítače a otevřít ji v Claude Code',
@@ -4957,7 +5316,7 @@ export const COURSES: Course[] = [
         summary: 'Referenční část. Vracej se sem, až narazíš na to, co lekce řeší.',
       },
     ],
-    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, L2_UKAZKA, LESSON_SKILL, L2_ROZBOR, LESSON_AUTOMATIZACE, L2_PLAN, L2_BEH, L2_EMAIL, L2_CELY_PRIKLAD, L2_MCP, L2_DESIGN, L2_NAOSTRO],
+    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, L2_UKAZKA, LESSON_SKILL, L2_ROZBOR, LESSON_AUTOMATIZACE, L2_PLAN, L2_BEH, L2_EMAIL, L2_CELY_PRIKLAD, L2_FORMULAR, L2_DOKUMENTY, L2_MCP, L2_DESIGN, L2_NAOSTRO],
     learn: [
       'napsat zadání nad tabulkou, které projde napoprvé',
       'zkontrolovat výstup třemi čísly místo čtení řádek po řádku',
@@ -4967,6 +5326,8 @@ export const COURSES: Course[] = [
       'napsat runbook a předat automatizaci tak, aby ji zvládl i někdo jiný',
       'projít si celý příklad od složky po rozeslané maily a ověřit si, že ti nic nechybí',
       'připojit MCP server nad katalogem dek.cz a ověřit si, že opravdu odpovídá z katalogu',
+      'nahradit pinkání e-mailů formulářem a nechat si hlídat termíny',
+      'zkontrolovat dávku faktur tak, aby výsledku šlo věřit',
       'projít si design system DEKu ve Storybooku a přidat do něj kompozici z hotových komponent',
     ],
     prerequisites: [
