@@ -28,6 +28,7 @@ import TokenDrains from './TokenDrains'
 import ContextGrowth from './ContextGrowth'
 import SubagentContext from './SubagentContext'
 import ContextWindow from './ContextWindow'
+import UsageReport from './UsageReport'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
@@ -510,6 +511,8 @@ export default function BlockView({ block }: { block: Block }) {
               <SubagentContext />
             ) : block.name === 'context-window' ? (
               <ContextWindow />
+            ) : block.name === 'usage-report' ? (
+              <UsageReport />
             ) : (
               <RegalFlow />
             )}

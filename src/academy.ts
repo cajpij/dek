@@ -43,6 +43,7 @@ export type Block =
         | 'context-growth'
         | 'subagent-context'
         | 'context-window'
+        | 'usage-report'
       caption: string
     }
   | { kind: 'checklist'; title: string; items: string[] }
@@ -565,7 +566,29 @@ const LESSON_TOKENY: Lesson = {
         {
           title: 'Projdi CLAUDE.md',
           body:
-            'Co v něm je a nepoužije se pokaždé, přesuň do skillu. Cílem je slovník, cesty k datům a pravidla — ne návod na všechno.',
+            'Co v něm je a nepoužije se pokaždé, přesuň do skillu. Cílem je slovník, cesty k datům a pravidla — ne návod na všechno. Takhle vypadá CLAUDE.md, který má správnou velikost:',
+          code: `# Akční regál
+
+## Slovník
+- CS = centrální sklad
+- SD = skladová dostupnost
+- produkťák = produktový manažer divize
+- divize = Nářadí, Elektro, VTS, Piekarová
+
+## Kde jsou data
+- data/ — exporty s datem v názvu, ber vždy nejnovější
+- vystupy/ — sem jdou výsledky
+
+## Pravidla
+- Do data/ nezapisuj. Výsledek ulož jako nový soubor do vystupy/.
+- Čísla položek jsou text. Nepřevádět, nedoplňovat nuly.
+- Když chybí sloupec, napiš to a zastav se. Nedopočítávej.
+
+# ⬇ TOHLE UŽ NE — patří do skillu, ne sem
+# ## Jak rozdělit magazín na divize
+# 1. Najdi v data/ nejnovější export…
+# 2. Ověř sloupce Číslo položky, Katalogové číslo…
+# 3. Pro každou divizi ulož soubor…`,
         },
         {
           title: 'Vyhoď konektory, které nepoužíváš',
@@ -575,7 +598,7 @@ const LESSON_TOKENY: Lesson = {
         {
           title: 'Podívej se, kam to odtéká',
           body:
-            'Příkaz /usage ukáže, kolik z přídělu je vyčerpáno, a rozpad podle toho, co ho spotřebovalo — skilly, podagenti, jednotlivé konektory, naplánované úlohy. Když něco spolklo přes deset procent, označí to samo. Výpis umí dvě období: posledních 24 hodin a posledních sedm dní. V terminálu se mezi nimi přepíná tak, že když je výpis na obrazovce, stiskneš písmeno d nebo w — nepíše se to jako příkaz a needěláš enter. V grafickém rozhraní je místo toho přepínač dne a týdne, na který se klikne.',
+            'Příkaz /usage ukáže, kolik z přídělu je vyčerpáno, rozpad tokenů a žebříček toho, co příděl bere — podagenti, skilly, konektory, naplánované úlohy. Období a rozsah se v aplikaci přepínají dvěma rozbalovátky u „What&rsquo;s using your limits?"; klávesy d a w, o kterých se píše v dokumentaci, fungují jen v terminálu. Jak ten panel vypadá, je hned pod krokem.',
           code: '/usage',
         },
         {
@@ -585,6 +608,12 @@ const LESSON_TOKENY: Lesson = {
           code: '/insights',
         },
       ],
+    },
+    {
+      kind: 'figure',
+      name: 'usage-report',
+      caption:
+        'Panel, který vyjede po /usage. Příděl má tři pruhy, ne jeden. Cache hit 99 % a rozpad tokenů dole jsou tatáž věc, o které je celá lekce — z 291,4 M přečtených z cache proti 1,4 k nového vstupu je vidět, že skoro všechno bylo opakované čtení historie.',
     },
     {
       kind: 'checklist',
@@ -684,7 +713,14 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
       tone: 'warn',
       title: 'Jedno rozhodnutí zůstává na tobě: kde',
       text:
-        'Claude založí projekt tam, kde ho spustíš — a vybrat to místo je lidská práce. Když má agendu vidět tým a má nad ní jednou běžet naplánovaná úloha, musí složka ležet v nasyncované knihovně ze SharePointu: naplánovaná úloha má pole Folder a píše se do něj přesně tahle cesta. Projekt „někde na ploše“ funguje taky, ale kolegům se nenasyncuje a za půl roku ho nenajdeš ani ty.',
+        'Claude založí projekt tam, kde ho spustíš — a vybrat to místo je lidská práce. Když má agendu vidět tým a má nad ní jednou běžet naplánovaná úloha, založ ji jako podsložku nasyncované knihovny ze SharePointu: naplánovaná úloha má pole Folder a píše se do něj přesně tahle cesta. Projekt „někde na ploše“ funguje taky, ale kolegům se nenasyncuje a za půl roku ho nenajdeš ani ty.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Projekt a nasyncovaná složka nestojí vedle sebe',
+      text:
+        'Je to jedna a tatáž věc. Projekt v Claude Code není nic, co by vzniklo někde v aplikaci — je to prostě složka, kterou otevřeš. Takže „projekt v nasyncované knihovně“ znamená obyčejnou podsložku v ní, nic víc. Claude přitom vidí jen to, co je v otevřené složce a pod ní: když otevřeš akcni-regal, zbytek knihovny pro něj neexistuje.',
     },
     { kind: 'h', text: 'Projekt je složka' },
     {
