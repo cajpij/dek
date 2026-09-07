@@ -575,7 +575,7 @@ const LESSON_TOKENY: Lesson = {
         {
           title: 'Podívej se, kam to odtéká',
           body:
-            'Příkaz /usage ukáže, kolik z přídělu je vyčerpáno, a rozpad podle toho, co ho spotřebovalo — skilly, podagenti, jednotlivé konektory, naplánované úlohy. Klávesou d a w přepneš mezi posledními 24 hodinami a týdnem. Když něco spolklo přes deset procent, aplikace to sama označí.',
+            'Příkaz /usage ukáže, kolik z přídělu je vyčerpáno, a rozpad podle toho, co ho spotřebovalo — skilly, podagenti, jednotlivé konektory, naplánované úlohy. Když něco spolklo přes deset procent, označí to samo. Výpis umí dvě období: posledních 24 hodin a posledních sedm dní. V terminálu se mezi nimi přepíná tak, že když je výpis na obrazovce, stiskneš písmeno d nebo w — nepíše se to jako příkaz a needěláš enter. V grafickém rozhraní je místo toho přepínač dne a týdne, na který se klikne.',
           code: '/usage',
         },
         {
@@ -604,7 +604,7 @@ const LESSON_TOKENY: Lesson = {
       intro:
         'Deset minut, jednou. Většinou se ukáže jedna věc, která žere víc než všechno ostatní dohromady.',
       items: [
-        'Napiš /usage a přepni klávesou w na posledních sedm dní. Zapiš si, co je nahoře.',
+        'Napiš /usage a přepni se na posledních sedm dní — v terminálu stiskem písmene w, v aplikaci kliknutím na přepínač týdne. Zapiš si, co je nahoře.',
         'Napiš /context a podívej se, kolik zabírá CLAUDE.md a připojené konektory.',
         'Odpoj jeden konektor, který nepoužíváš, a jeden delší postup z CLAUDE.md přesuň do skillu.',
         'Zkus jeden pracovní den zavírat sezení příkazem /clear při každé změně tématu.',
