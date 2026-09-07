@@ -883,7 +883,7 @@ const STEPS_WIN: Block[] = [
       {
         title: 'Řekni Windows, ať soubory drží u sebe',
         body:
-          'Pravý klik na složku → Vždy zachovat v tomto zařízení (Always keep on this device). Bez tohohle kroku má většina souborů na disku jen zástupce a Claude v nich nic nepřečte — vidí název, ale ne obsah.',
+          'Pravý klik na složku → Vždy ponechat na tomto zařízení (v některých verzích Windows „Vždy zachovat v tomto zařízení", anglicky Always keep on this device). Bez tohohle kroku má většina souborů na disku jen zástupce a Claude v nich nic nepřečte — vidí název, ale ne obsah.',
       },
       {
         title: 'Otevři složku v Claude Code',
@@ -906,7 +906,7 @@ const STEPS_WIN: Block[] = [
       [
         'Soubory mají u sebe modrý mráček',
         'Files On-Demand — na disku je jen zástupce',
-        'Pravý klik na složku → Vždy zachovat v tomto zařízení',
+        'Pravý klik na složku → Vždy ponechat na tomto zařízení',
       ],
       [
         'Cesta je moc dlouhá, něco se nenasyncuje',
@@ -918,6 +918,32 @@ const STEPS_WIN: Block[] = [
         'Zástupce se přidal do jiného účtu OneDrivu',
         'Klikni na ikonu mráčku → ozubené kolo → Nastavení → Účet a zkontroluj, kterým účtem je OneDrive přihlášený',
       ],
+    ],
+  },
+  {
+    kind: 'p',
+    text:
+      'Jak ty obrazovky vypadají teď, je nejlíp vidět přímo v české nápovědě Microsoftu — jsou tam snímky z aktuální verze. Schválně je sem nekopírujeme: jsou Microsoftu a jeho rozhraní se mění několikrát do roka, takže obrázek v lekci by za půl roku lhal, kdežto odkaz ukazuje pořád to, co uvidíš na svém počítači.',
+  },
+  {
+    kind: 'links',
+    title: 'Aktuální obrazovky v nápovědě Microsoftu (Windows)',
+    items: [
+      {
+        label: 'Synchronizace souborů SharePointu a Teams s počítačem',
+        href: 'https://support.microsoft.com/cs-cz/sharepoint/sync/sync-sharepoint-and-teams-files-with-your-computer',
+        note: 'snímek tlačítka Synchronizovat v knihovně — první krok postupu výš',
+      },
+      {
+        label: 'Přidání zástupců do sdílených složek na OneDrivu',
+        href: 'https://support.microsoft.com/cs-cz/onedrive/add-shortcuts-to-shared-folders-in-onedrive',
+        note: 'ta varianta, kterou doporučujeme: Přidat zástupce do OneDrivu, i s obrázky výběru složky',
+      },
+      {
+        label: 'Soubory na vyžádání pro Windows: ušetření místa na disku',
+        href: 'https://support.microsoft.com/cs-cz/onedrive/save-disk-space-with-onedrive-files-on-demand-for-windows',
+        note: 'tabulka ikon v Průzkumníku (modrý mráček vs. zelená fajfka) a nabídka po pravém kliknutí',
+      },
     ],
   },
 ]
