@@ -357,6 +357,7 @@ export const DEFAULT_CONFIG: RunConfig = {
           detail: 'Referenční lekce — poslat každému tu jednu, která sedí na to, co dneska stavěl.',
           lessons: [
             'claude-a-firemni-data/slovnicek',
+            'claude-a-firemni-data/kolik-to-stoji',
             'od-mapy-k-automatu/cely-priklad-magazin',
             'od-mapy-k-automatu/rozbor-skillu',
             'od-mapy-k-automatu/jak-se-nastavuje-automatizace',
@@ -375,6 +376,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Neposílat je na všechny — říct jednu podle toho, co kdo dneska stavěl',
         'Celý příklad je ta hlavní: hotspot 2 od složky až po naplánovaný běh, s vyplněným formulářem úlohy',
         'MCP nad katalogem je bonus pro zvědavé — server je v repu, rozjede se třemi příkazy',
+        'Lekci Kolik to stojí poslat všem, ne jen jednomu: limit je společný pro chat, Cowork i Claude Code a ptali se na to',
         'Nahrávky a přepisy z dnešních rozhovorů ať zůstanou v projektech',
       ],
     },

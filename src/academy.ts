@@ -312,6 +312,253 @@ const LESSON_SLOVNICEK: Lesson = {
   ],
 }
 
+const LESSON_TOKENY: Lesson = {
+  slug: 'kolik-to-stoji',
+  module: 'start',
+  title: 'Kolik to stojí a jak platit míň',
+  summary:
+    'Co je token, proč dlouhé sezení stojí víc než pět krátkých, jaký model a effort si vybrat a jak se podívat, kam limit odtekl.',
+  minutes: 15,
+  kind: 'lekce',
+  track: 'potom',
+  outcomes: [
+    'vysvětlit vlastními slovy, za co se vlastně platí',
+    'vybrat model a effort podle toho, co má úloha zač',
+    'zkrátit dlouhé sezení pomocí /clear, /compact a /rewind',
+    'poznat, co rozbíjí cache, a nedělat to uprostřed práce',
+    'zjistit přes /usage a /context, kam limit odtekl',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Limit není trest za to, že Clauda používáš moc. Skoro vždycky za ním stojí pár návyků, které se dají změnit za deset minut — a rozdíl mezi opatrným a neopatrným sezením je násobek, ne pár procent. Tahle lekce je o tom, kde se to utrácí a co s tím.',
+    },
+    { kind: 'h', text: 'Co je token' },
+    {
+      kind: 'p',
+      text:
+        'Token je kousek textu — zhruba slovo nebo jeho část. Čeština vyjde asi na jeden a půl tokenu na slovo, takže normostrana textu je kolem tisícovky tokenů. Účtuje se všechno, co jde tam i zpátky: tvoje zadání, obsah souborů, které Claude otevřel, výpisy příkazů, jeho odpověď i přemýšlení, které k ní vedlo.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Nejdůležitější věta celé lekce',
+      text:
+        'Model si mezi zprávami nic nepamatuje. Při každé tvojí zprávě se posílá celá dosavadní konverzace znovu — od začátku. Neplatíš tedy za zprávu, kterou jsi právě napsala, ale za celé sezení, ve kterém ji píšeš. Proto jedna otázka v sezení, které je otevřené od rána, stojí mnohonásobně víc než tatáž otázka v čerstvém sezení.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Aby to nebylo tak drahé, existuje cache: to, co se posílá znovu a nezměnilo se, se nepočítá plnou sazbou, ale zhruba desetinou. Není to zadarmo, ale je to velký rozdíl — a proto je většina rad níž o tom, jak cache nerozbít.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Limit je jeden pro chat, Cowork i Claude Code',
+      text:
+        'Na firemním plánu má každý svůj příděl, který se obnovuje v pětihodinovém okně a ještě jednou týdně. Ten příděl je společný pro Claude v chatu, Cowork i Claude Code — nejsou to tři samostatné kapsy. Když ráno proženeš dlouhé sezení v Coworku, odpoledne to poznáš v Claude Code.',
+    },
+    { kind: 'h', text: 'Dvě páčky: model a effort' },
+    {
+      kind: 'p',
+      text:
+        'V aplikaci jsou vedle sebe dvě nastavení, která se pletou. Model je to, jak chytrý pomocník ti odpovídá. Effort je to, jak dlouho nad odpovědí přemýšlí, než ji napíše. Jednoduchá pomůcka, podle čeho sáhnout ke které: když výsledek selhal proto, že Claude něco nevěděl nebo nepochopil, ber větší model. Když selhal proto, že se na to vykašlal — udělal to zbrkle, přehlédl polovinu — zvedni effort.',
+    },
+    {
+      kind: 'table',
+      head: ['Model', 'Jak ho popisuje aplikace', 'Kdy ho vzít'],
+      rows: [
+        ['Haiku 4.5', 'nejrychlejší na rychlé odpovědi', 'krátká faktická otázka, přejmenování souborů, jednoduchý výpis'],
+        ['Sonnet 5', 'nejúspornější na běžnou práci', 'výchozí volba pro většinu toho, co budeš dělat — rozpad tabulky, kontrola výstupu, běžné zadání'],
+        ['Opus 5', 'na složité úlohy', 'když se něco nedaří napodruhé, návrh postupu, nepřehledná data'],
+        ['Fable 5.1', 'na to nejtěžší', 'výjimečně, když ani Opus nestačí'],
+      ],
+    },
+    {
+      kind: 'table',
+      head: ['Effort', 'Co to udělá'],
+      rows: [
+        ['Low', 'krátké a rychlé, na nenáročné věci'],
+        ['Medium', 'úspornější, když si můžeš dovolit trochu horší výsledek'],
+        ['High', 'výchozí a pro drtivou většinu práce správně'],
+        ['Extra', 'hlubší přemýšlení za víc tokenů'],
+        ['Max', 'aplikace u něj sama píše 1,5× nebo víc spotřeby. Umí pomoct, ale taky se ukecat.'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Praktické pravidlo',
+      text:
+        'Nech Sonnet 5 a effort High a nesahej na to. Když úloha nevyjde, nejdřív si přečti proč: chybějící znalost je důvod pro Opus, odbytá práce je důvod pro Extra. Zvedat obojí najednou je nejdražší způsob, jak se nic nedozvědět.',
+    },
+    { kind: 'h', text: 'Dlouhá sezení: kdy co použít' },
+    {
+      kind: 'p',
+      text:
+        'Nejčastější důvod, proč limit mizí rychleji, než dává rozum, je jediné sezení otevřené celý den, ve kterém se vystřídalo pět nesouvisejících úloh. Každá další otázka v něm táhne s sebou všechny předchozí.',
+    },
+    {
+      kind: 'table',
+      head: ['Příkaz', 'Co udělá', 'Kdy ho použít'],
+      rows: [
+        [
+          '/clear',
+          'zahodí konverzaci a začne načisto',
+          'jakmile jdeš na jinou úlohu. Nic to nestojí a je to nejúčinnější věc z celé lekce.',
+        ],
+        [
+          '/compact',
+          'shrne dosavadní konverzaci do souhrnu a pokračuje s ním',
+          'když potřebuješ pokračovat v téže úloze, ale historie je moc dlouhá. Pozor: samotné shrnutí musí celou konverzaci přečíst, takže není zadarmo — dělej ho v přestávce mezi kroky, ne uprostřed.',
+        ],
+        [
+          '/rewind',
+          'vrátí konverzaci o pár kroků zpátky',
+          'když se to vydalo špatným směrem. Levnější než /compact, protože se vrací do historie, kterou už má cache přečtenou.',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Než dáš /clear',
+      text:
+        'Sezení se dá pojmenovat příkazem /rename a později se k němu vrátit přes /resume. Takže „zahodit" neznamená „ztratit" — jen to přestaneš platit v každé další zprávě.',
+    },
+    { kind: 'h', text: 'Co rozbíjí cache' },
+    {
+      kind: 'p',
+      text:
+        'Když se změní něco na začátku toho, co se posílá, musí se celá konverzace zpracovat znovu a jedna odpověď vyjde mnohem dráž. Většina těch věcí se dá udělat na začátku sezení místo uprostřed.',
+    },
+    {
+      kind: 'table',
+      head: ['Rozbije cache', 'Nerozbije'],
+      rows: [
+        ['přepnutí modelu', 'úprava souborů v projektu'],
+        ['změna effortu', 'spuštění skillu nebo příkazu s lomítkem'],
+        ['zapnutí fast mode', 'přepnutí režimu oprávnění'],
+        ['připojení nebo odpojení MCP serveru (konektoru)', '/rewind zpět'],
+        ['zapnutí nebo vypnutí pluginu s konektorem', '/recap — jen shrne, nemění historii'],
+        ['/compact', 'úprava CLAUDE.md (ta se ale projeví až po /clear nebo restartu)'],
+        ['nasbírání většího množství obrázků', ''],
+        ['aktualizace Claude Code', ''],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Z toho plyne jediné pravidlo',
+      text:
+        'Model a effort si vyber na začátku sezení a pak už na ně nesahej. Cache navíc na firemním předplatném vydrží hodinu nečinnosti — takže když si odskočíš na oběd, sezení je po návratu pořád levné. Jakmile ale příděl vyčerpáš a jedeš na doplňkové kredity, vydrží jen pět minut.',
+    },
+    { kind: 'h', text: 'Držet kontext lehký' },
+    {
+      kind: 'list',
+      items: [
+        'Zadávej konkrétně. „Vylepši mi ten projekt" znamená, že Claude začne číst všechno. „Doplň k položkám v nejnovějším exportu min/max a ulož do vystupy/" znamená, že přečte dva soubory.',
+        'CLAUDE.md drž do dvou set řádků. Načítá se do každého sezení celý, i když děláš něco úplně jiného. Delší postupy patří do skillu, který se načte, jen když je potřeba.',
+        'Do složky projektu nedávej celou databázi, ale reálný vzorek. Claude čte to, co tam je.',
+        'Vypni konektory, které zrovna nepoužíváš — v Claude Code příkazem /mcp. Každý připojený server něco zabírá.',
+        'Upovídané věci (procházení dlouhých logů, hromadné hledání) se dají zadat tak, aby je udělal podagent a zpátky přišel jen výsledek, ne celý výpis.',
+        'U velkých úloh si nech nejdřív napsat plán (Shift+Tab, plan mode). Levnější než dvakrát dělat špatnou věc.',
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Naplánované úlohy nespí',
+      text:
+        'Naplánovaná úloha se spustí i ve chvíli, kdy u počítače nikdo není, a posílá s sebou celý svůj kontext. Jedna úloha jednou týdně je zanedbatelná, úloha každou hodinu nad velkou složkou už ne. Když si nějakou nastavíš, po týdnu se v /usage podívej, kolik z tvého přídělu si vzala.',
+    },
+    { kind: 'h', text: 'Deset minut úklidu, které se vrátí' },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Napiš /context',
+          body:
+            'Ukáže, co všechno se do sezení načítá ještě předtím, než napíšeš první zadání: systémová část, tvůj CLAUDE.md, připojené konektory, skilly. Tohle platíš v každé jedné zprávě.',
+          code: '/context',
+        },
+        {
+          title: 'Projdi CLAUDE.md',
+          body:
+            'Co v něm je a nepoužije se pokaždé, přesuň do skillu. Cílem je slovník, cesty k datům a pravidla — ne návod na všechno.',
+        },
+        {
+          title: 'Vyhoď konektory, které nepoužíváš',
+          body: 'Napiš /mcp a odpoj, co tam zbylo z pokusů. Připojit se dají zpátky kdykoli.',
+          code: '/mcp',
+        },
+        {
+          title: 'Podívej se, kam to odtéká',
+          body:
+            'Příkaz /usage ukáže, kolik z přídělu je vyčerpáno, a rozpad podle toho, co ho spotřebovalo — skilly, podagenti, jednotlivé konektory, naplánované úlohy. Klávesou d a w přepneš mezi posledními 24 hodinami a týdnem. Když něco spolklo přes deset procent, aplikace to sama označí.',
+          code: '/usage',
+        },
+        {
+          title: 'Nech si udělat rozbor svých návyků',
+          body:
+            'Příkaz /insights projde tvoje poslední sezení na tomhle počítači a napíše přehled, na čem pracuješ, kde to nejčastěji drhne a co dělat jinak. Vyplatí se jednou za měsíc.',
+          code: '/insights',
+        },
+      ],
+    },
+    {
+      kind: 'checklist',
+      title: 'Návyky, které stačí',
+      items: [
+        '/clear při přechodu na jinou úlohu',
+        'Sonnet 5 a effort High jako výchozí, změna jen z konkrétního důvodu',
+        'model a effort nastavené na začátku, ne uprostřed práce',
+        'CLAUDE.md do dvou set řádků, delší postupy ve skillech',
+        've složce projektu vzorek dat, ne celá databáze',
+        'konektory jen ty, které používáš',
+        'jednou za čas /usage a /context',
+      ],
+    },
+    {
+      kind: 'task',
+      title: 'Cvičení: zjisti, kam ti odtéká příděl',
+      intro:
+        'Deset minut, jednou. Většinou se ukáže jedna věc, která žere víc než všechno ostatní dohromady.',
+      items: [
+        'Napiš /usage a přepni klávesou w na posledních sedm dní. Zapiš si, co je nahoře.',
+        'Napiš /context a podívej se, kolik zabírá CLAUDE.md a připojené konektory.',
+        'Odpoj jeden konektor, který nepoužíváš, a jeden delší postup z CLAUDE.md přesuň do skillu.',
+        'Zkus jeden pracovní den zavírat sezení příkazem /clear při každé změně tématu.',
+        'Za týden se podívej znovu a porovnej.',
+      ],
+      hint:
+        'Když v /usage vyskočí „long context" nebo „cache misses", není to porucha — je to přesně ten návyk, o kterém je tahle lekce. Long context znamená příliš dlouhá sezení, cache misses znamená příliš mnoho přepínání modelu nebo dlouhé pauzy.',
+    },
+    {
+      kind: 'links',
+      title: 'Kam se podívat dál',
+      items: [
+        {
+          label: 'Maximizing value from Claude Code',
+          href: 'https://www.anthropic.com/webinars/claude-code-maximizing-value',
+          note: 'webinář Anthropicu, ze kterého tahle lekce vychází — anglicky, hodina',
+        },
+        {
+          label: 'Manage costs effectively',
+          href: 'https://code.claude.com/docs/en/costs',
+          note: 'dokumentace: /usage, /insights, snižování spotřeby',
+        },
+        {
+          label: 'How Claude Code uses prompt caching',
+          href: 'https://code.claude.com/docs/en/prompt-caching',
+          note: 'úplný seznam toho, co cache rozbíjí a co ne',
+        },
+      ],
+    },
+  ],
+}
+
 const LESSON_PROJEKT: Lesson = {
   slug: 'projekt-v-claude-code',
   module: 'napojeni',
@@ -4496,8 +4743,10 @@ export const COURSES: Course[] = [
           'Nejdřív hotový proces z logistiky jako vzor, pak totéž ve dvojicích na vlastní agendě.',
       },
     ],
-    lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL, LESSON_CVICENI],
+    lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL, LESSON_CVICENI],
     learn: [
+      'vysvětlit, za co se u Clauda platí, a vybrat model i effort podle úlohy',
+      'zkrátit dlouhá sezení a zjistit, kam odtéká příděl',
       'založit projekt tak, aby se pravidla nemusela opakovat každé ráno',
       'poznat, co patří do CLAUDE.md, co do skillu a co do artefaktu',
       'nasyncovat knihovnu ze SharePointu do počítače a otevřít ji v Claude Code',
