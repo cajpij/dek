@@ -345,7 +345,7 @@ export const DEFAULT_CONFIG: RunConfig = {
           title: 'Kam se vracet v akademii',
           min: 2,
           detail:
-            'Slovníček · Celý příklad (od magazínu po mail) · Rozbor skutečného skillu · Jak se nastaví automatizace (hooky) · Naplánovaná úloha · Nech to běžet bez sebe · E-mail z automatu · MCP nad katalogem',
+            'Slovníček · Celý příklad (od magazínu po mail) · Rozbor skutečného skillu · Jak se nastaví automatizace (hooky) · Naplánovaná úloha · Nech to běžet bez sebe · E-mail z automatu · MCP nad katalogem · Design system DEK ve Storybooku',
         },
       ],
       notes: [

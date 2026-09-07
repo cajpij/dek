@@ -4274,6 +4274,229 @@ claude mcp remove dek`,
   ],
 }
 
+const L2_DESIGN: Lesson = {
+  slug: 'dek-design-system',
+  module: 'potom',
+  title: 'Design system DEK ve Storybooku',
+  summary:
+    'Stavebnice barev, písem a komponent, ze které jde složit cokoli, co má vypadat jako dek.cz. Kde bydlí, jak vznikla, jak do ní přidat vlastní kompozici a jak ji předat Claude Designu.',
+  minutes: 15,
+  kind: 'lekce',
+  track: 'potom',
+  outcomes: [
+    'vysvětlit, co je design system a co je Storybook',
+    'otevřít Storybook DEKu a najít v něm komponentu i celou stránku',
+    'spustit si ho na svém počítači a přidat kompozici z hotových komponent',
+    'napojit design system do Claude Design, aby návrhy vznikaly rovnou ve stylu DEKu',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Když má vzniknout nový banner, leták nebo návrh stránky, obvykle se najde stará verze, zkopíruje se a přebarvuje, dokud to nevypadá „nějak jako DEK“. Pokaždé trochu jinak. Design system je opak: jednou se sepíše, jaké barvy, písma a dílky značka používá, a všechno další se skládá z nich. Tahle lekce ukazuje design system DEKu, který vznikl stejně jako všechno ostatní v kurzu — člověk řekl co, Claude Code to postavil.',
+    },
+    {
+      kind: 'table',
+      head: ['Vrstva', 'Co to je', 'Příklad z DEKu'],
+      rows: [
+        ['Tokeny', 'holé hodnoty: barvy, písma, odsazení, zaoblení', 'červená #e2001a · písmo Roboto · zaoblení 4 px'],
+        ['Téma', 'pravidla, jak se tokeny používají', 'tlačítko má červené pozadí a při najetí ztmavne'],
+        ['Komponenty', 'hotové dílky k opakovanému použití', 'tlačítko, karta produktu, cenovka, hlavička, patička'],
+        ['Stránky', 'kompozice — dílky poskládané do celku', 'úvodní stránka, výpis kategorie, detail produktu'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'K čemu to je, když web už existuje',
+      text:
+        'Web existuje, ale jeho vzhled žije jen v něm. Kdo chce udělat interní nástroj, prezentaci nebo návrh nové stránky ve stylu DEKu, začíná od nuly. Design system ten vzhled vytahuje ven jako stavebnici — a změna na jednom místě (jiná červená, jiné písmo) se propíše do všech dílků najednou.',
+    },
+    { kind: 'h', text: 'Kde bydlí a jak se na něj podívat' },
+    {
+      kind: 'p',
+      text:
+        'Design system je repozitář na GitHubu a prohlíží se přes Storybook — katalog komponent, který běží v prohlížeči. Nemusíš nic instalovat: nasazená verze je na webu. V levém sloupci jsou jednotlivé komponenty, každá s pojmenovanými ukázkami (říká se jim stories) a záložkou Docs. Sekce Pages DEK jsou celé stránky poskládané z těch komponent — úvodní stránka, výpis kategorie a detail produktu, se skutečnými produkty, cenami a fotkami z webu.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Nic z toho není odhad',
+      text:
+        'Každá barva a každý rozměr má v kódu poznámku, ze které třídy skutečného CSS webu pochází. A v sekci Reference je vedle sebe originální kousek webu (jeho vlastní HTML a CSS) a tatáž věc postavená z design systemu — takže je hned vidět, kdyby se stavebnice od webu rozjela.',
+    },
+    { kind: 'h', text: 'Jak vznikl' },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Stáhnout produkční CSS z www.dek.cz',
+          body: 'Jeden velký soubor, ve kterém je celý vzhled webu. Leží v repozitáři ve složce vendor, aby se dalo kdykoli ověřit, z čeho se vycházelo.',
+        },
+        {
+          title: 'Vytáhnout z něj tokeny',
+          body: 'Web má barvy pojmenované jako proměnné (--brand-primary, --gray-lightest…). Ty se přepsaly do souboru tokenů se stejnými jmény, aby se dalo hledat oběma směry.',
+        },
+        {
+          title: 'Postavit z tokenů téma',
+          body: 'Téma říká hotovým komponentám z knihovny MUI, jak mají vypadat: červené tlačítko, které při najetí ztmavne přesně jako na webu, stejná písma, stejné zaoblení.',
+        },
+        {
+          title: 'Poskládat komponenty a srovnat s originálem',
+          body: 'Karta produktu, cenovka s cenou za balení, štítek dostupnosti, hlavička s vyhledáváním… Ke každé vzniklo referenční srovnání s originálem z webu.',
+        },
+        {
+          title: 'Složit z komponent celé stránky',
+          body: 'Sekce Pages DEK — stránky se stejným pořadím bloků jako skutečný web a s reálným obsahem: fotky a loga se berou přímo z fotobanky webu, takže zůstávají aktuální.',
+        },
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Celé to psal Claude Code',
+      text:
+        'Lidská práce byla: říct, kde je CSS, kontrolovat referenční srovnání a vracet, co nesedí. Stejným postupem se dá vytáhnout design system z libovolného webu — třeba z toho vašeho divizního.',
+    },
+    { kind: 'h', text: 'Spusť si ho u sebe' },
+    {
+      kind: 'p',
+      text:
+        'Nasazená verze stačí na prohlížení. Jakmile chceš něco přidávat, potřebuješ ho mít u sebe. Platí totéž co u MCP serveru: potřebuješ Node (node --version musí něco vypsat) a složku mimo nasyncovanou knihovnu — instalace vyrobí tisíce drobných souborů, které do OneDrivu nepatří.',
+    },
+    {
+      kind: 'tabs',
+      items: [
+        {
+          label: 'Nech to na Claudovi',
+          blocks: [
+            {
+              kind: 'code',
+              text: `Stáhni mi repozitář https://github.com/cajpij/dek-design-system
+do Dokumentů, nainstaluj závislosti a spusť Storybook.`,
+              caption: 'Claude Code to udělá sám a na konci ti řekne adresu, na které Storybook běží.',
+            },
+          ],
+        },
+        {
+          label: 'Radši sám v terminálu',
+          blocks: [
+            {
+              kind: 'code',
+              text: `git clone https://github.com/cajpij/dek-design-system.git
+cd dek-design-system
+npm install
+npm run storybook`,
+              caption: 'Poslední příkaz otevře Storybook v prohlížeči na adrese localhost:6006.',
+            },
+          ],
+        },
+      ],
+    },
+    { kind: 'h', text: 'Přidej si vlastní kompozici' },
+    {
+      kind: 'p',
+      text:
+        'Kompozice je nová story, která skládá hotové komponenty do vlastního celku — třeba akční nabídka: banner a pod ním mřížka produktových karet. Je to jeden malý soubor; Storybook si nové story všímá sám a hned ji ukáže v levém sloupci.',
+    },
+    {
+      kind: 'code',
+      text: `// src/pages/AkcniNabidka.stories.tsx
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { HeroBanner } from '../components/HeroBanner/HeroBanner'
+import { ProductCard } from '../components/ProductCard/ProductCard'
+import { FEATURED, MAIN_BANNER } from './data'
+
+const meta = { title: 'Pages DEK/Akční nabídka', parameters: { layout: 'fullscreen' } } satisfies Meta
+export default meta
+
+export const AkcniNabidka: StoryObj = {
+  render: () => (
+    <>
+      <HeroBanner title={MAIN_BANNER.alt} imageUrl={MAIN_BANNER.img} imageOnly />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16, padding: 16 }}>
+        {FEATURED.map((p) => (
+          <ProductCard key={p.name} {...p} />
+        ))}
+      </div>
+    </>
+  ),
+}`,
+      caption: 'Celá kompozice. Banner i produkty se berou z připravených dat, vzhled řeší komponenty.',
+    },
+    {
+      kind: 'p',
+      text:
+        'A samozřejmě to nemusíš psát sám. Otevři složku dek-design-system v Claude Code a řekni: „Přidej do Pages DEK story Akční nabídka — banner Mega akce a pod ním mřížka pěti produktů z FEATURED.“ Kód komponent už zná, tak se trefí do stejného stylu.',
+    },
+    { kind: 'h', text: 'A teď Claude Design' },
+    {
+      kind: 'p',
+      text:
+        'Storybook je pravda o tom, co existuje. Claude Design je skicák: plátno na claude.com, kde návrhy vznikají povídáním — řekneš, co potřebuješ, Claude nakreslí návrh a ty ho upravuješ přímo na plátně: komentářem u konkrétního prvku, přepsáním textu, posuvníkem nebo tažením. Je součástí předplatného Pro, Max, Team i Enterprise (tam ho musí zapnout správce).',
+    },
+    {
+      kind: 'p',
+      text:
+        'To podstatné pro nás: Claude Design si umí načíst design system — z GitHub repozitáře, z kódu nebo z design souborů. Když mu při zakládání ukážeš repozitář dek-design-system, každý další návrh staví z barev, písem a komponent DEKu a sám si ho proti nim kontroluje. Banner, leták, návrh nové stránky — nic z toho už nezačíná od bílého plátna a „nějaké červené“.',
+    },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Ukaž mu stavebnici',
+          body: 'Při zakládání dej Claude Designu adresu github.com/cajpij/dek-design-system. Načte si tokeny, téma i komponenty.',
+        },
+        {
+          title: 'Zadávej návrhy větou',
+          body: '„Leták na akční regál pro divizi Nářadí.“ „Banner pro kategorii hydroizolace.“ „Návrh stránky výprodeje.“ Vznikají rovnou ve stylu DEKu.',
+        },
+        {
+          title: 'Uprav přímo na plátně',
+          body: 'Komentář k prvku, přepsání textu, posunutí, posuvníky na barvu a odsazení. Bez grafického editoru.',
+        },
+        {
+          title: 'Výsledek exportuj, nebo vrať do stavebnice',
+          body: 'Export do PDF, PowerPointu nebo HTML. A když z návrhu má být trvalý dílek, předej ho Claude Code — udělá z něj novou story ve Storybooku a stavebnice se rozroste.',
+        },
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Claude Design se rychle mění',
+      text:
+        'Je to čerstvá věc v režimu náhledu — obrazovky a tlačítka můžou příští měsíc vypadat jinak než dnes. Princip ale platí: design system je zdroj pravdy, skicuje se nad ním, a co se osvědčí, vrací se do Storybooku.',
+    },
+    {
+      kind: 'links',
+      title: 'Kam se vracet',
+      items: [
+        {
+          label: 'Storybook DEK — nasazená verze',
+          href: 'https://cajpij.github.io/dek-design-system/',
+          note: 'komponenty, reference i celé stránky, bez instalace',
+        },
+        {
+          label: 'Repozitář dek-design-system',
+          href: 'https://github.com/cajpij/dek-design-system',
+          note: 'tokeny, téma, komponenty a původní CSS webu',
+        },
+        {
+          label: 'Claude Design',
+          href: 'https://claude.com/product/design',
+          note: 'skicák — tady se zakládá tým a napojuje design system',
+        },
+        {
+          label: 'Storybook — dokumentace',
+          href: 'https://storybook.js.org/docs',
+          note: 'až budeš chtít se stories víc než jen kompozice',
+        },
+      ],
+    },
+  ],
+}
+
 const L2_NAOSTRO: Lesson = {
   slug: 'pust-to-naostro',
   module: 'potom',
@@ -4425,7 +4648,7 @@ export const COURSES: Course[] = [
         summary: 'Referenční část. Vracej se sem, až narazíš na to, co lekce řeší.',
       },
     ],
-    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, L2_UKAZKA, LESSON_SKILL, L2_ROZBOR, LESSON_AUTOMATIZACE, L2_PLAN, L2_BEH, L2_EMAIL, L2_CELY_PRIKLAD, L2_MCP, L2_NAOSTRO],
+    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, L2_UKAZKA, LESSON_SKILL, L2_ROZBOR, LESSON_AUTOMATIZACE, L2_PLAN, L2_BEH, L2_EMAIL, L2_CELY_PRIKLAD, L2_MCP, L2_DESIGN, L2_NAOSTRO],
     learn: [
       'napsat zadání nad tabulkou, které projde napoprvé',
       'zkontrolovat výstup třemi čísly místo čtení řádek po řádku',
@@ -4435,6 +4658,7 @@ export const COURSES: Course[] = [
       'napsat runbook a předat automatizaci tak, aby ji zvládl i někdo jiný',
       'projít si celý příklad od složky po rozeslané maily a ověřit si, že ti nic nechybí',
       'připojit MCP server nad katalogem dek.cz a ověřit si, že opravdu odpovídá z katalogu',
+      'projít si design system DEKu ve Storybooku a přidat do něj kompozici z hotových komponent',
     ],
     prerequisites: [
       'Dokončený kurz Claude a firemní data',
