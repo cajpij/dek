@@ -698,7 +698,31 @@ const LESSON_PROJEKT: Lesson = {
     {
       kind: 'p',
       text:
-        'První věta v novém projektu není příkaz ani klikání v Průzkumníku. Je to zadání. Otevři Claude Code ve složce, kde má projekt vzniknout — kde přesně, probereme hned pod tím — a vlep tohle:',
+        'První věta v novém projektu není příkaz ani klikání v Průzkumníku. Je to zadání. Nejdřív ale musíš Clauda otevřít v té správné složce — to je celé takhle:',
+    },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Založ prázdnou složku agendy',
+          body:
+            'V Průzkumníku nebo Finderu, uvnitř nasyncované knihovny — třeba akcni-regal. Musí existovat dřív, než ji půjdeš vybrat; Claude si ji sám nikde nevytvoří, protože neví kam. Data ani nic dalšího do ní zatím dávat nemusíš.',
+        },
+        {
+          title: 'Otevři ji v aplikaci Claude',
+          body:
+            'Záložka Code, prostředí nech na Local (to znamená „na mém počítači, s mými soubory"), klikni na Select folder a vyber tu složku. Když se zeptá, jestli složce věříš, potvrď. Ve Windows musí být nainstalovaný Git, jinak se místní sezení nespustí.',
+        },
+        {
+          title: 'Kdo radši píše v terminálu',
+          body: 'Přepni se do té složky a spusť claude. Výsledek je stejný.',
+          code: 'cd cesta/k/akcni-regal\nclaude',
+        },
+      ],
+    },
+    {
+      kind: 'p',
+      text: 'Teď jsi uvnitř. Vlep tohle:',
     },
     {
       kind: 'code',

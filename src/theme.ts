@@ -58,6 +58,12 @@ export const theme = createTheme({
     MuiButtonBase: {
       styleOverrides: {
         root: {
+          // Vlna po kliknutí je absolutně pozicovaná. Bez tohohle se v některých
+          // sestaveních počítá vůči stránce a roztáhne ji do šířky, takže lekce
+          // jde posouvat do strany. Patří to k výchozím stylům MUI, jen si to
+          // tady pojišťujeme.
+          position: 'relative',
+          overflow: 'hidden',
           '&.Mui-focusVisible': {
             outline: '2px solid var(--mui-palette-primary-main)',
             outlineOffset: 2,

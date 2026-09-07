@@ -32,8 +32,34 @@ import UsageReport from './UsageReport'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
+/**
+ * Text jen pro čtečku obrazovky. Rozměry musí být řetězce v pixelech: sx bere
+ * číslo 1 jako 100 %, takže `width: 1` udělá z neviditelného prvku pruh přes
+ * celou šířku stránky a ta pak jde posouvat do strany.
+ */
+const SR_ONLY = {
+  position: 'absolute',
+  width: '1px',
+  height: '1px',
+  p: 0,
+  m: '-1px',
+  border: 0,
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  clipPath: 'inset(50%)',
+} as const
+
+/**
+ * Obsah, který drží tvar sloupci: stromy složek a řádky se šipkou vpravo.
+ * Takový blok se nesmí zalamovat — zalomení mu rozhodí zarovnání a je
+ * nečitelný. Prózu (vlepovaná zadání) naopak zalamovat chceme, aby se
+ * nemuselo posouvat do strany.
+ */
+const KEEPS_SHAPE = /[├└│]|\s←\s/
+
 function Code({ children, label }: { children: string; label?: string }) {
   const [state, setState] = useState<'idle' | 'ok' | 'fail'>('idle')
+  const nowrap = KEEPS_SHAPE.test(children)
   const preRef = useRef<HTMLPreElement>(null)
   const copy = async () => {
     try {
@@ -64,6 +90,9 @@ function Code({ children, label }: { children: string; label?: string }) {
         tabIndex={0}
         sx={{
           flex: '1 1 320px',
+          // Bez tohohle by se pre roztáhlo podle nejdelšího řádku a posouvala
+          // by se celá stránka místo samotného bloku.
+          minWidth: 0,
           m: 0,
           p: 1.75,
           border: 1,
@@ -73,8 +102,9 @@ function Code({ children, label }: { children: string; label?: string }) {
           fontFamily: 'ui-monospace, Menlo, monospace',
           fontSize: 13,
           lineHeight: 1.65,
-          whiteSpace: 'pre-wrap',
+          whiteSpace: nowrap ? 'pre' : 'pre-wrap',
           overflowX: 'auto',
+          '&:focus-visible': { outline: '2px solid', outlineColor: 'primary.main', outlineOffset: 2 },
         }}
       >
         {children}
@@ -89,7 +119,7 @@ function Code({ children, label }: { children: string; label?: string }) {
       >
         {text}
       </Button>
-      <Box component="span" role="status" aria-live="polite" sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
+      <Box component="span" role="status" aria-live="polite" sx={SR_ONLY}>
         {state === 'ok' ? 'Zkopírováno do schránky' : state === 'fail' ? 'Text je označený, zkopíruj ho klávesovou zkratkou' : ''}
       </Box>
     </Box>
@@ -311,7 +341,7 @@ function Videos({ title, items }: { title: string; items: VideoRef[] }) {
                 sx={{ fontSize: 13.5, mt: 1, display: 'inline-block' }}
               >
                 Otevřít na YouTube <span aria-hidden>↗</span>
-                <Box component="span" sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}> (otevře se v novém okně)</Box>
+                <Box component="span" sx={SR_ONLY}> (otevře se v novém okně)</Box>
               </Link>
             </Box>
           </Paper>
@@ -342,7 +372,7 @@ function Links({ title, items }: { title: string; items: { label: string; href: 
           <Box key={l.href}>
             <Link href={l.href} target="_blank" rel="noopener" underline="hover" sx={{ fontSize: 15.5, fontWeight: 550 }}>
               {l.label} <span aria-hidden>↗</span>
-              <Box component="span" sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}> (otevře se v novém okně)</Box>
+              <Box component="span" sx={SR_ONLY}> (otevře se v novém okně)</Box>
             </Link>
             {l.note ? (
               <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>{l.note}</Typography>
