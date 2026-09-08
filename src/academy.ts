@@ -48,6 +48,7 @@ export type Block =
         | 'folder-permission'
         | 'faktury-smycka'
     | 'tri-prikazy'
+    | 'faktury-sezeni'
       caption: string
     }
   | { kind: 'checklist'; title: string; items: string[] }
@@ -470,6 +471,36 @@ const LESSON_TOKENY: Lesson = {
       title: 'Než dáš /clear',
       text:
         'Sezení se dá pojmenovat příkazem /rename a později se k němu vrátit přes /resume. Takže „zahodit" neznamená „ztratit" — jen to přestaneš platit v každé další zprávě.',
+    },
+    { kind: 'h', text: 'Jak to vypadá na jedné konkrétní věci' },
+    {
+      kind: 'p',
+      text:
+        'Řekněme, že celé odpoledne stavíš kontrolu faktur — tu, o které je lekce Kontrola dokumentů. Nejdřív se Claude rozkoukává ve složce a přečte pět PDF. Pak píšeš skill. Uprostřed zjistíš, že se to vydalo špatným směrem. Pak si odskočíš naplánovat rutinu na sedmou ráno. A mezitím se kolega zeptá na něco úplně jiného, na akční regál. Pět různých věcí v jednom odpoledni — a právě mezi nimi se rozhoduje, jestli tě to odpoledne bude stát kus přídělu, nebo celý.',
+    },
+    {
+      kind: 'figure',
+      name: 'faktury-sezeni',
+      caption:
+        'Odpoledne nad kontrolou faktur po zprávách. /rewind ukrojí jen konec, když se to vydalo špatným směrem. /compact má vlastní špičku, protože shrnutí musí historii nejdřív přečíst — proto se dělá v přestávce. /clear sráží na nulu, nic nestojí, a proto se jím oddělují úlohy, které spolu nesouvisí.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Jediná otázka, kterou si u toho klaď',
+      text:
+        'Potřebuje ta další zpráva to, co je v historii? Když ano, jsi ve stejné úloze — nech to běžet, a když je historie moc dlouhá, dej /compact v přestávce. Když ne, dej /clear. Rozkoukávání ve složce s fakturami nemá s dotazem na akční regál nic společného, tak proč by ho měl Claude číst u každé odpovědi.',
+    },
+    {
+      kind: 'links',
+      title: 'Ta automatizace z příkladu',
+      items: [
+        {
+          label: 'Kontrola dokumentů: faktury a přílohy',
+          href: '#academy/od-mapy-k-automatu/kontrola-dokumentu',
+          note: 'Co po Claudovi u faktur chtít, co si nechat pro sebe a jak z pokusu udělat provoz.',
+        },
+      ],
     },
     { kind: 'h', text: 'Co rozbíjí cache' },
     {

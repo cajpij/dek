@@ -29,6 +29,7 @@ import ContextGrowth from './ContextGrowth'
 import SubagentContext from './SubagentContext'
 import ContextWindow from './ContextWindow'
 import TriPrikazy from './TriPrikazy'
+import FakturySezeni from './FakturySezeni'
 import UsageReport from './UsageReport'
 import ConnectorSetup from './ConnectorSetup'
 import FolderPermission from './FolderPermission'
@@ -215,12 +216,14 @@ function Steps({
             {step.code ? <Code>{step.code}</Code> : null}
             {step.links?.length ? (
               <Box sx={{ mt: 1.25 }}>
-                {step.links.map((link) => (
+                {step.links.map((link) => {
+                  const uvnitr = link.href.startsWith('#')
+                  return (
                   <Box key={link.href} sx={{ mt: 0.5 }}>
                     <Link
                       href={link.href}
-                      target="_blank"
-                      rel="noopener"
+                      target={uvnitr ? undefined : '_blank'}
+                      rel={uvnitr ? undefined : 'noopener'}
                       underline="hover"
                       sx={{
                         display: 'inline-flex',
@@ -232,15 +235,18 @@ function Steps({
                       }}
                     >
                       {link.label}
-                      <Box component="span" aria-hidden sx={{ fontSize: 13 }}>
-                        ↗
-                      </Box>
+                      {uvnitr ? null : (
+                        <Box component="span" aria-hidden sx={{ fontSize: 13 }}>
+                          ↗
+                        </Box>
+                      )}
                     </Link>
                     {link.note ? (
                       <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>{link.note}</Typography>
                     ) : null}
                   </Box>
-                ))}
+                  )
+                })}
               </Box>
             ) : null}
           </Box>
@@ -372,17 +378,32 @@ function Links({ title, items }: { title: string; items: { label: string; href: 
         {title}
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.25 }}>
-        {items.map((l) => (
+        {items.map((l) => {
+          const uvnitr = l.href.startsWith('#')
+          return (
           <Box key={l.href}>
-            <Link href={l.href} target="_blank" rel="noopener" underline="hover" sx={{ fontSize: 15.5, fontWeight: 550 }}>
-              {l.label} <span aria-hidden>↗</span>
-              <Box component="span" sx={SR_ONLY}> (otevře se v novém okně)</Box>
+            <Link
+              href={l.href}
+              target={uvnitr ? undefined : '_blank'}
+              rel={uvnitr ? undefined : 'noopener'}
+              underline="hover"
+              sx={{ fontSize: 15.5, fontWeight: 550 }}
+            >
+              {l.label}
+              {uvnitr ? null : (
+                <>
+                  {' '}
+                  <span aria-hidden>↗</span>
+                  <Box component="span" sx={SR_ONLY}> (otevře se v novém okně)</Box>
+                </>
+              )}
             </Link>
             {l.note ? (
               <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>{l.note}</Typography>
             ) : null}
           </Box>
-        ))}
+          )
+        })}
       </Box>
     </Paper>
   )
@@ -555,6 +576,8 @@ export default function BlockView({ block }: { block: Block }) {
               <FakturySmycka />
             ) : block.name === 'tri-prikazy' ? (
               <TriPrikazy />
+            ) : block.name === 'faktury-sezeni' ? (
+              <FakturySezeni />
             ) : (
               <RegalFlow />
             )}
