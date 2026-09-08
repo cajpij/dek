@@ -80,7 +80,7 @@ export interface Lesson {
   minutes: number
   kind: 'lekce' | 'zadání'
   /** Kde se to dělá: doma před workshopem, v sále, nebo po něm. */
-  track?: 'předem' | 'v sále' | 'potom'
+  track?: 'v sále' | 'potom'
   /** „Po téhle lekci budeš umět…“ */
   outcomes: string[]
   body: Block[]
@@ -124,7 +124,7 @@ const LESSON_PROGRAM: Lesson = {
     'Čtyři hodiny v sále, skoro nic předem a zbytek potom. Přehled, co kdy a proč zrovna takhle.',
   minutes: 5,
   kind: 'lekce',
-  track: 'předem',
+  track: 'v sále',
   outcomes: [
     'vědět, co si přinést s sebou',
     'vědět, co se bude dít v sále a co si z toho odnesete',
@@ -140,8 +140,7 @@ const LESSON_PROGRAM: Lesson = {
       kind: 'table',
       head: ['Štítek', 'Znamená'],
       rows: [
-        ['předem', 'dvě věci, které stačí mít s sebou — viz níž.'],
-        ['v sále', 'děláme společně. Jsou to hlavně cvičení, ne přednášky.'],
+        ['v sále', 'otevřete si to během workshopu a děláte podle toho. Hlavně cvičení, ne přednášky.'],
         ['potom', 'referenční materiál. Vracejte se k němu, až budete stavět.'],
       ],
     },
@@ -205,7 +204,7 @@ const LESSON_PROGRAM: Lesson = {
     {
       kind: 'p',
       text:
-        'Do čtyř hodin se toho vejde jen tolik, kolik se dá udělat společně. Všechno ostatní z akademie nezmizelo — je označené štítkem potom a čeká, až na něj dojde řada. Nečtěte to dopředu a nesnažte se to stihnout: vracejte se k tomu ve chvíli, kdy narazíte na to, co ta lekce řeší. Kostra je pořád stejná — pět schodů: zadání, pravidlo, skill, hook, běh bez tebe. První tři jste prošli v sále a poslední dva viděli v živé ukázce; do hloubky si je projdete sami. Když si máte vybrat jednu, vezměte Celý příklad — je to tentýž akční regál, ale dotažený od prázdné složky až po naplánovaný běh, který rozešle maily.',
+        'Do čtyř hodin se toho vejde jen tolik, kolik se dá udělat společně. Všechno ostatní z akademie nezmizelo — je označené štítkem potom a čeká, až na něj dojde řada. Nečtěte to dopředu a nesnažte se to stihnout: vracejte se k tomu ve chvíli, kdy narazíte na to, co ta lekce řeší. Rozcestník níž je podle situací, ne podle štítků — pár řádků vede zpátky do lekcí, které jste prošli v sále, protože právě k těm se člověk vrací nejčastěji. Kostra je pořád stejná — pět schodů: zadání, pravidlo, skill, hook, běh bez tebe. První tři jste prošli v sále a poslední dva viděli v živé ukázce; do hloubky si je projdete sami. Když si máte vybrat jednu, vezměte Celý příklad — je to tentýž akční regál, ale dotažený od prázdné složky až po naplánovaný běh, který rozešle maily.',
     },
     {
       kind: 'table',
@@ -215,13 +214,14 @@ const LESSON_PROGRAM: Lesson = {
         ['pracujete zatím jen v Coworku', 'Z Coworku do Claude Code'],
         ['narážíte na limit nebo chcete vědět, za co se platí', 'Kolik to stojí a jak platit míň'],
         ['vidět celou cestu na jednom příkladu', 'Celý příklad: od magazínu po mail produkťákům'],
-        ['zabalit postup, který opakujete', 'Jak napsat skill'],
+        ['zabalit postup, který opakujete', 'Jak napsat skill — byla v sále'],
         ['zjistit, co skillu chybí, aby běžel sám', 'Rozbor skutečného skillu'],
-        ['zamknout data a dostat notifikaci', 'Jak se v projektu nastaví automatizace'],
+        ['zamknout data a dostat notifikaci', 'Jak se v projektu nastaví automatizace — byla v sále'],
         ['založit úlohu, která se spustí sama', 'Naplánovaná úloha v Claude Code'],
         ['pustit to bez sebe a nespálit se', 'Nech to běžet bez sebe'],
         ['poslat z automatu e-mail', 'E-mail z automatu'],
         ['čekáte na odpovědi od kolegů nebo poboček', 'Formulář místo pinkání e-mailů'],
+        ['nevíte, kde po workshopu začít', 'Cvičný projekt: kontrola faktur ke stažení'],
         ['ptát se na katalog vlastními slovy', 'MCP nad katalogem dek.cz'],
         ['sjednotit vzhled vlastních aplikací', 'Design system DEK ve Storybooku'],
         ['předat to kolegovi', 'Pusť to naostro'],
@@ -1886,13 +1886,13 @@ const LESSON_REGAL: Lesson = {
 
 const LESSON_AUTOMATIZACE: Lesson = {
   slug: 'jak-se-nastavuje-automatizace',
-  module: 'potom',
+  module: 'remeslo',
   title: 'Jak se v projektu nastaví automatizace',
   summary:
     'Pět stupňů od ručního zadání po běh bez tebe — na reálném rozpadu divizních Excelů, krok po kroku.',
   minutes: 10,
   kind: 'lekce',
-  track: 'potom',
+  track: 'v sále',
   outcomes: [
     'popsat pět stupňů, po kterých se z ruční práce stane automatizace',
     'napsat skill, který spustí celý postup jednou větou',
@@ -2214,13 +2214,13 @@ exit 0`,
 
 const LESSON_SKILL: Lesson = {
   slug: 'jak-napsat-skill',
-  module: 'potom',
+  module: 'postav',
   title: 'Jak napsat skill (a nechat si ho napsat)',
   summary:
     'Z čeho se skill skládá, proč o všem rozhoduje jediný řádek, a co dát Claudovi, aby ti skill napsal sám a dobře.',
   minutes: 10,
   kind: 'lekce',
-  track: 'potom',
+  track: 'v sále',
   outcomes: [
     'poznat, kdy je čas udělat ze zadání skill',
     'napsat description tak, aby se skill spouštěl ve správnou chvíli',
@@ -2733,25 +2733,30 @@ Do data/ se nezapisuje. Všechno nové jde do vystupy/.
 const LESSON_CVICENI: Lesson = {
   slug: 'zmapuj-kolegovi-workflow',
   module: 'zadani',
-  title: 'Cvičení ve dvojicích: zmapuj kolegovi workflow',
+  title: 'Cvičení 1: rozhovor o kolegově práci',
   summary:
-    'Ve dvojici si navzájem vyzpovídáte kus vlastní práce, nakreslíte z toho flow a označíte místa k automatizaci. Rozhovor nahrajete na telefon a přepis i reálné soubory skončí v projektu.',
-  minutes: 65,
+    'Ve dvojici si navzájem vyzpovídáte kus vlastní práce. Rozhovor nahrajete na telefon a přepis i reálné soubory skončí v projektu. Kreslit se bude až v další lekci.',
+  minutes: 40,
   kind: 'zadání',
   track: 'v sále',
   outcomes: [
     'vést rozhovor o práci tak, aby vyšlo najevo i to, co je pro majitele agendy neviditelné',
     'zapsat cizí proces jako tok dat mezi lidmi a soubory',
-    'nakreslit flow do tří pruhů podle toho, kdo co drží',
-    'označit místa, kde se data přenášejí ručně',
+    'poznat ve větě kolegy místo, kde se data přenášejí ručně',
     'dostat nahrávku, přepis i reálné soubory do projektu, aby se s nimi dalo dál pracovat',
-    'odlišit, co má převzít automatizace a co má zůstat člověku',
   ],
   body: [
     {
       kind: 'p',
       text:
         'Předchozí lekce byla vzor — hotový proces akčního regálu, na kterém jste si vyzkoušeli hledat automatizace. Teď to samé uděláte na vlastní agendě. Ve dvojicích, protože sám sobě proces nikdo nepopíše dobře: to, co děláte každý týden, se vám dávno slilo do jednoho kroku, a ten se rozpadne na pět, teprve když se někdo zeptá.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Cvičení má tři části',
+      text:
+        'Tahle lekce je první z nich: rozhovor a uložení podkladů do projektu. Pak přijde kresba flow a označení míst a nakonec sdílení map se sálem. Každá má svoji lekci, takže se nemusíte prokousávat celým textem, když hledáte jednu věc.',
     },
     {
       kind: 'note',
@@ -2768,17 +2773,8 @@ const LESSON_CVICENI: Lesson = {
         ['5 min', 'Každý si vybere svůj výsek a napíše ho jednou větou', 'oba'],
         ['15 min', 'Rozhovor: A se ptá, B popisuje svoji práci. A si zapisuje.', 'B'],
         ['15 min', 'Prohodíte se. B se ptá, A popisuje.', 'A'],
-        ['10 min', 'Každý nakreslí flow toho druhého', 'oba, mlčky'],
-        ['10 min', 'Ukážete si kresby a společně označíte místa k automatizaci', 'oba'],
-        ['5 min', 'Každá dvojice řekne ostatním jeden krok, který je nejhorší', 'oba'],
+        ['5 min', 'Nahrávku a reálné soubory uložit do projektu do podklady/', 'oba'],
       ],
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Kreslí ten, kdo se ptal',
-      text:
-        'Ne majitel agendy. Je to schválně: co tazatel nedokáže nakreslit, to se v rozhovoru nedozvěděl — a to je přesně ta informace, která v procesu chybí i všem ostatním.',
     },
     { kind: 'h', text: 'Technika: kontextové dotazování' },
     {
@@ -2796,6 +2792,13 @@ const LESSON_CVICENI: Lesson = {
         'Během rozhovoru nenavrhuj řešení. Jakmile začneš radit, druhý přestane popisovat a začne se obhajovat.',
         'Nahraj si to na telefon — ale zeptej se, jestli může. Zapíšeš vždycky míň, než zazní.',
       ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Ptej se pořádně — kreslit budeš ty',
+      text:
+        'V další části kreslí flow ten, kdo se ptal, ne majitel agendy. Je to schválně: co tazatel nedokáže nakreslit, to se v rozhovoru nedozvěděl — a to je přesně ta informace, která v procesu chybí i všem ostatním. Takže se ptej tak, abys to za chvíli uměl nakreslit.',
     },
     { kind: 'h', text: 'Otázky, které se dají použít rovnou' },
     {
@@ -2830,52 +2833,6 @@ Kdyby ses zítra nemohla dostat k počítači, co by kolega nevěděl?`,
         ['„a pak čekám, až mi odpoví“', 'proces stojí na e-mailu jako na frontě'],
         ['„občas se stane, že…“', 'výjimka, na kterou se v návrhu zapomene'],
       ],
-    },
-    { kind: 'h', text: 'Kresba: tři pruhy' },
-    {
-      kind: 'p',
-      text:
-        'Vezmi papír na šířku a rozděl ho třemi vodorovnými pruhy: nahoře kdo dodává vstup, uprostřed člověk, o kterém je řeč, dole kdo dostává výstup. Kroky piš zleva doprava. Nad každou šipku napiš, čím se to přenáší — e-mail, sdílená tabulka, print screen, telefon. Ten popis šipky je důležitější než samotné boxy: automatizuje se přenos, ne práce.',
-    },
-    {
-      kind: 'figure',
-      name: 'regal-flow',
-      caption:
-        'Vzor z předchozí lekce, jak to má vypadat. Vaše kresba nemusí být hezká — musí být čitelná pro někoho, kdo tu agendu nedělá.',
-    },
-    { kind: 'h', text: 'Označení míst' },
-    {
-      kind: 'p',
-      text:
-        'Až je flow nakreslené, projděte ho spolu a označte každý krok jednou ze tří značek. Použijte tři barvy fixů nebo tři značky, na kterých se domluvíte.',
-    },
-    {
-      kind: 'table',
-      head: ['Značka', 'Znamená', 'Co s tím'],
-      rows: [
-        [
-          'Ruční přenos',
-          'data mění formu nebo místo a dělá to člověk',
-          'nejsilnější kandidát na automatizaci — ptejte se, proč data vůbec opouštějí původní soubor',
-        ],
-        [
-          'Rozhoduje člověk',
-          'krok závisí na něčem, co v datech není',
-          'nechte být, ale zapište, podle čeho se rozhoduje — třeba to jde do dat doplnit',
-        ],
-        [
-          'Počítá se z pravidel',
-          'výsledek jde odvodit ze vstupů',
-          'automatizovatelné do posledního sloupce, i když se to dnes dělá ručně',
-        ],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Nejzajímavější je hranice mezi druhou a třetí',
-      text:
-        'Spousta kroků vypadá jako rozhodování, ale ve skutečnosti se počítá — jen to pravidlo nikdo nikdy nenapsal. Když u kroku umíte říct „dělám to tak, že když je tohle větší než tamto, tak…“, není to rozhodnutí. Je to vzorec.',
     },
     { kind: 'h', text: 'Nahrajte si to a dejte do projektu' },
     {
@@ -2918,7 +2875,7 @@ Kdyby ses zítra nemohla dostat k počítači, co by kolega nevěděl?`,
         {
           title: 'Nechte si udělat flow z přepisu',
           body:
-            'Až máte přepis i soubory pohromadě, zadání zní takhle. Výsledek porovnejte s tím, co jste nakreslili na papír — rozdíly jsou zajímavější než shody.',
+            'Až máte přepis i soubory pohromadě, zadání zní takhle. Výsledek si schovejte — v další lekci ho porovnáte s tím, co jste nakreslili na papír. Rozdíly jsou zajímavější než shody.',
           code: `Přečti přepis v podklady/ a soubory vedle něj.
 
 Rozepiš proces na kroky: kdo co dělá, čím se data přenášejí
@@ -2951,9 +2908,7 @@ Na konec vypiš tři místa, kde se nejvíc přepisuje.`,
       text:
         'Když projekt leží uvnitř nasyncované knihovny, všechno, co do něj dáte, uvidí celý tým. Kopie exportu je v pořádku. Cokoli, co do sdílené složky nepatří — osobní údaje, ceny, které nemají být venku — tam nedávejte a v přepisu to smažte.',
     },
-    {
-      kind: 'h', text: 'Skill na přepis',
-    },
+    { kind: 'h', text: 'Skill na přepis' },
     {
       kind: 'p',
       text:
@@ -2993,20 +2948,16 @@ description: Uklidí strojový přepis rozhovoru o něčí práci, doplní časy
     },
     {
       kind: 'task',
-      title: 'Výstup dvojice',
-      intro:
-        'Na konci má každá dvojice dvě kresby — jednu za každého. Vyfoťte je a nahrajte tam, kde se sbírají podklady z workshopu.',
+      title: 'Než půjdete kreslit',
+      intro: 'Tohle má být hotové, než začne další část. Kreslí se z toho, co teď máte.',
       items: [
-        'Flow ve třech pruzích, od „přijde mi to“ po „pošlu to dál“.',
-        'Popsané šipky — čím se co přenáší.',
-        'Každý krok označený jednou ze tří značek.',
-        'Vypsaná tři místa, kde se nejvíc přepisuje, seřazená podle toho, jak moc to štve.',
-        'U toho nejhoršího jedna věta o tom, co by se muselo změnit, aby přepis úplně zmizel.',
-        'Jeden krok, který má zůstat člověku, a proč — co tam ten člověk ví a data ne.',
-        'Nahrávka a její přepis ve složce projektu, vedle kopií reálných souborů, o kterých byla řeč.',
+        'Zápisky z rozhovoru — každý ze svého kolegy, ne ze sebe.',
+        'Nahrávka a její přepis ve složce projektu, v podklady/.',
+        'Kopie reálných souborů, o kterých byla řeč: jeden vstup, jeden e-mail, jeden hotový výstup z minula.',
+        'Výpis, který vám Claude udělal z přepisu — schovaný na porovnání s kresbou.',
       ],
       hint:
-        'U posledního bodu nebuďte skromní. Krok, který vypadá jako administrativa, ale ve skutečnosti opravuje data, která lžou, je ten nejcennější kus práce v celém procesu.',
+        'Když nahrávat nešlo, nevadí. Musíte mít ale zapsané názvy souborů a to, čím se data mezi kroky přenášejí — bez toho se flow nakreslit nedá.',
     },
     { kind: 'h', text: 'Když se to zasekne' },
     {
@@ -3019,7 +2970,7 @@ description: Uklidí strojový přepis rozhovoru o něčí práci, doplní časy
         ],
         [
           'Dvojice se zasekne na jednom kroku',
-          'Držte časy. Nedopovězený detail je lepší než nedokreslené flow.',
+          'Držte časy. Nedopovězený detail je lepší než nedodělaný rozhovor.',
         ],
         [
           'Majitel agendy se začne obhajovat',
@@ -3027,12 +2978,280 @@ description: Uklidí strojový přepis rozhovoru o něčí práci, doplní časy
         ],
         [
           'Proces se větví do tří variant',
-          'Nakresli tu nejčastější a větve si poznač stranou. Výjimky řešte až u návrhu.',
+          'Ptej se na tu nejčastější a větve si poznač stranou. Výjimky řešte až u návrhu.',
         ],
+      ],
+    },
+    {
+      kind: 'links',
+      title: 'Pokračuje to tady',
+      items: [
+        {
+          label: 'Cvičení 1b: kresba flow a označení míst',
+          href: '#academy/claude-a-firemni-data/nakresli-flow',
+          note: 'Druhá část cvičení — z rozhovoru vznikne obrázek a v něm se označí místa k automatizaci.',
+        },
+      ],
+    },
+  ],
+}
+
+const LESSON_FLOW: Lesson = {
+  slug: 'nakresli-flow',
+  module: 'zadani',
+  title: 'Cvičení 1b: kresba flow a označení míst',
+  summary:
+    'Z rozhovoru nakreslíte flow do tří pruhů, popíšete šipky a každý krok označíte jednou ze tří značek. Kreslí ten, kdo se ptal.',
+  minutes: 15,
+  kind: 'zadání',
+  track: 'v sále',
+  outcomes: [
+    'nakreslit cizí proces do tří pruhů podle toho, kdo co drží',
+    'popsat šipky tím, čím se data opravdu přenášejí',
+    'označit místa, kde se data přenášejí ručně',
+    'odlišit, co má převzít automatizace a co má zůstat člověku',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Rozhovor máte za sebou, podklady v projektu. Teď z toho vznikne obrázek — a hlavně se v něm označí místa, kvůli kterým jste dneska přišli. Na celou tuhle část je čtvrt hodiny, takže se nesnažte o krásu.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Kreslí ten, kdo se ptal',
+      text:
+        'Ne majitel agendy. Je to schválně: co tazatel nedokáže nakreslit, to se v rozhovoru nedozvěděl — a to je přesně ta informace, která v procesu chybí i všem ostatním. Když se zaseknete, není to chyba kreslíře, je to nález.',
+    },
+    { kind: 'h', text: 'Jak to poběží' },
+    {
+      kind: 'table',
+      head: ['Čas', 'Co se děje', 'Kdo'],
+      rows: [
+        ['9 min', 'Nakreslit flow do tří pruhů', 'každý sám, mlčky'],
+        ['2 min', 'Popsat šipky — čím se co přenáší', 'každý sám'],
+        ['4 min', 'Ukázat si kresby a společně označit každý krok', 'oba'],
+      ],
+    },
+    { kind: 'h', text: 'Kresba: tři pruhy' },
+    {
+      kind: 'p',
+      text:
+        'Vezmi papír na šířku a rozděl ho třemi vodorovnými pruhy: nahoře kdo dodává vstup, uprostřed člověk, o kterém je řeč, dole kdo dostává výstup. Kroky piš zleva doprava. Nad každou šipku napiš, čím se to přenáší — e-mail, sdílená tabulka, print screen, telefon. Ten popis šipky je důležitější než samotné boxy: automatizuje se přenos, ne práce.',
+    },
+    {
+      kind: 'figure',
+      name: 'regal-flow',
+      caption:
+        'Vzor z lekce Od magazínu do regálu, jak to má vypadat. Vaše kresba nemusí být hezká — musí být čitelná pro někoho, kdo tu agendu nedělá.',
+    },
+    { kind: 'h', text: 'Označení míst' },
+    {
+      kind: 'p',
+      text:
+        'Až je flow nakreslené, projděte ho spolu a označte každý krok jednou ze tří značek. Použijte tři barvy fixů nebo tři značky, na kterých se domluvíte.',
+    },
+    {
+      kind: 'table',
+      head: ['Značka', 'Znamená', 'Co s tím'],
+      rows: [
+        [
+          'Ruční přenos',
+          'data mění formu nebo místo a dělá to člověk',
+          'nejsilnější kandidát na automatizaci — ptejte se, proč data vůbec opouštějí původní soubor',
+        ],
+        [
+          'Rozhoduje člověk',
+          'krok závisí na něčem, co v datech není',
+          'nechte být, ale zapište, podle čeho se rozhoduje — třeba to jde do dat doplnit',
+        ],
+        [
+          'Počítá se z pravidel',
+          'výsledek jde odvodit ze vstupů',
+          'automatizovatelné do posledního sloupce, i když se to dnes dělá ručně',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Nejzajímavější je hranice mezi druhou a třetí',
+      text:
+        'Spousta kroků vypadá jako rozhodování, ale ve skutečnosti se počítá — jen to pravidlo nikdo nikdy nenapsal. Když u kroku umíte říct „dělám to tak, že když je tohle větší než tamto, tak…“, není to rozhodnutí. Je to vzorec.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Porovnejte to s tím, co vypsal Claude',
+      text:
+        'V předchozí části vám Claude z přepisu vypsal kroky a označil je stejnými třemi značkami. Teď máte druhou verzi, kreslenou rukou. Rozdíly jsou zajímavější než shody: co je jen v kresbě, v rozhovoru zaznělo mimochodem; co je jen u Clauda, jste při kreslení zapomněli.',
+    },
+    {
+      kind: 'task',
+      title: 'Výstup dvojice',
+      intro:
+        'Na konci má každá dvojice dvě kresby — jednu za každého. Vyfoťte je a nahrajte tam, kde se sbírají podklady z workshopu.',
+      items: [
+        'Flow ve třech pruzích, od „přijde mi to“ po „pošlu to dál“.',
+        'Popsané šipky — čím se co přenáší.',
+        'Každý krok označený jednou ze tří značek.',
+        'Vypsaná tři místa, kde se nejvíc přepisuje, seřazená podle toho, jak moc to štve.',
+        'U toho nejhoršího jedna věta o tom, co by se muselo změnit, aby přepis úplně zmizel.',
+        'Jeden krok, který má zůstat člověku, a proč — co tam ten člověk ví a data ne.',
+      ],
+      hint:
+        'U posledního bodu nebuďte skromní. Krok, který vypadá jako administrativa, ale ve skutečnosti opravuje data, která lžou, je ten nejcennější kus práce v celém procesu.',
+    },
+    { kind: 'h', text: 'Když se to zasekne' },
+    {
+      kind: 'table',
+      head: ['Zádrhel', 'Co s tím'],
+      rows: [
         [
           'Kresba nejde dokončit',
           'To je taky výsledek. Označ místo, kde to drhlo — tam informace chybí i v reálu.',
         ],
+        [
+          'Krok nejde zařadit pod žádnou ze tří značek',
+          'Napiš k němu otazník a jdi dál. Nejasné kroky jsou to, co se probírá při sdílení map.',
+        ],
+        [
+          'Celé to vyjde jako jeden dlouhý pruh',
+          'Zeptej se, komu ten výstup jde a odkud přišel vstup. Prostřední pruh nikdy není celý proces.',
+        ],
+        [
+          'Nestíháte',
+          'Devět minut je schválně málo. Rozkreslené flow s poctivě popsanými šipkami je lepší než hotové bez nich.',
+        ],
+      ],
+    },
+    {
+      kind: 'links',
+      title: 'Pokračuje to tady',
+      items: [
+        {
+          label: 'Sdílení map: co si z toho odnese sál',
+          href: '#academy/claude-a-firemni-data/sdileni-map',
+          note: 'Třetí část — dvě minuty na dvojici a hledání toho, co se opakuje napříč odděleními.',
+        },
+      ],
+    },
+  ],
+}
+
+const LESSON_SDILENI: Lesson = {
+  slug: 'sdileni-map',
+  module: 'zadani',
+  title: 'Sdílení map: co si z toho odnese sál',
+  summary:
+    'Dvě minuty na dvojici. Jak svoji mapu představit, aby to ostatním k něčemu bylo, a co poslouchat u ostatních — protože stejné místo se skoro vždycky opakuje ve třech odděleních najednou.',
+  minutes: 10,
+  kind: 'zadání',
+  track: 'v sále',
+  outcomes: [
+    'představit cizí proces za dvě minuty tak, aby tomu rozuměl někdo z jiného oddělení',
+    'poznat u cizí mapy místo, které máte i vy',
+    'odejít se seznamem míst, která se opakují napříč odděleními',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Poslední část cvičení. Každá dvojice dostane dvě minuty a pak se sál podívá, co mají mapy společného. Tenhle krok se snadno odbyde jako „kolečko na závěr“, ale je to jediné místo celého dne, kde se ukáže, že tři oddělení řeší tutéž věc třemi různými způsoby — a že se to dá vyřešit jednou.',
+    },
+    { kind: 'h', text: 'Dvě minuty na dvojici' },
+    {
+      kind: 'p',
+      text:
+        'Mluví ten, kdo kreslil, ne majitel agendy. Popisuje cizí proces, takže mluví o tom, co pochopil — a to je přesně ta úroveň detailu, které bude rozumět i zbytek sálu. Držte se čtyř vět.',
+    },
+    {
+      kind: 'code',
+      text: `Katka dělá <agenda>. Začíná to tím, že <čím přijde vstup>.
+Nejhorší místo je <krok>, protože tam <co se přenáší ručně>.
+Dělá se to <jak často> a zabere to <kolik času>.
+Jeden krok tam musí zůstat člověku: <který> — protože <co ten člověk ví>.`,
+      caption:
+        'Poslední věta je ta, kvůli které se to říká nahlas. Sál se z ní naučí, kde je hranice, za kterou se automatizovat nemá.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Neomlouvejte se za kresbu',
+      text:
+        'Nikdo ji nehodnotí a nikdo ji za chvíli neuvidí. Dvě minuty jsou krátké — když třicet vteřin z nich padne na „to je hrozně nakreslené, ale…“, nestihnete to podstatné.',
+    },
+    { kind: 'h', text: 'Co poslouchat u ostatních' },
+    {
+      kind: 'p',
+      text:
+        'Zatímco mluví ostatní, máte jednu úlohu: hledat, co z toho znáte. Vypadá to jinak — jiné oddělení, jiný soubor, jiné jméno — ale je to tentýž problém. Tyhle čtyři se opakují skoro vždycky.',
+    },
+    {
+      kind: 'table',
+      head: ['Když u někoho slyšíte', 'Zapište si to jako'],
+      rows: [
+        [
+          'export z jednoho systému, který se vkládá do druhého',
+          'ruční přenos mezi dvěma soubory — stejný tvar úlohy má logistika i marketing',
+        ],
+        [
+          'čekání na odpovědi od poboček nebo kolegů',
+          'proces stojí na e-mailu jako na frontě — má to řešení, které je pro všechny stejné',
+        ],
+        [
+          'kontrola, kterou někdo dělá „pro jistotu“',
+          'nikdo nevěří vstupu; místo kontroly patří pravidlo na vstupu',
+        ],
+        [
+          'sestava, kterou někdo skládá každé pondělí ráno',
+          'kandidát na naplánovanou úlohu — přesně to, co se staví po pauze',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Tohle je zadání pro zbytek dne',
+      text:
+        'Po tomhle bloku si každý vybírá jeden krok, který bude po pauze skutečně stavět. Vyberte ten, který se v sále objevil víckrát než jednou — hotovou věc pak nepoužijete jen vy.',
+    },
+    {
+      kind: 'task',
+      title: 'Než se jde na pauzu',
+      intro: 'Dva řádky, které si každý napíše sám pro sebe. Za chvíli je budete potřebovat.',
+      items: [
+        'Jeden krok z vlastní mapy, který chci po pauze postavit — jednou větou, s názvem souboru.',
+        'Jedno místo z cizí mapy, které mám taky, a čí to byla mapa.',
+      ],
+      hint:
+        'Ten druhý řádek je důvod, proč tenhle blok existuje. Za měsíc je to jediná poznámka z celého dne, díky které někomu napíšete.',
+    },
+    { kind: 'h', text: 'Pro lektora' },
+    {
+      kind: 'list',
+      items: [
+        'Držet dvě minuty tvrdě — třináct dvojic je půl hodiny, když se nechá plynout.',
+        'Psát na tabuli, co se opakuje, ne co je zajímavé. Seznam opakování je výstup tohohle bloku.',
+        'Když se něčí mapa hodí jako vzor pro další část dne, říct to hned nahlas — vybírá se z ní zadání pro Cvičení 2.',
+        'Nekomentovat řešení. Sál je v tuhle chvíli sběrač problémů, ne návrhář.',
+      ],
+    },
+    {
+      kind: 'links',
+      title: 'Odkud to sem vede',
+      items: [
+        {
+          label: 'Cvičení 1: rozhovor o kolegově práci',
+          href: '#academy/claude-a-firemni-data/zmapuj-kolegovi-workflow',
+          note: 'První část cvičení.',
+        },
+        {
+          label: 'Cvičení 1b: kresba flow a označení míst',
+          href: '#academy/claude-a-firemni-data/nakresli-flow',
+          note: 'Druhá část — mapa, kterou tady představujete.',
+        },
       ],
     },
   ],
@@ -5263,7 +5482,14 @@ Když je nesouladů víc než tři, mail neotvírej a napiš mi to do protokolu.
       kind: 'figure',
       name: 'folder-permission',
       caption:
-        'Věta o cloudu vlevo je to jediné místo, kde se člověk dozví, že soubory z té složky odejdou z jeho počítače. U cvičného projektu je to jedno. U faktur nebo cen to jedno není.',
+        'Věta o cloudu vlevo je to jediné místo, kde se člověk dozví, že soubory z té složky odejdou z jeho počítače. Vpravo je dialog Claude Code a v něm řádek „Execution allowed by: .claude/settings.json“ — v té složce leží nastavení, které samo spouští příkaz. U tohohle projektu je to ta zábrana nad vstup/ a je to schválně. U složky, kterou dostaneš odjinud, je to důvod se do toho souboru podívat dřív, než klikneš na Trust workspace.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Co v tom settings.json je',
+      text:
+        'Přesně jeden hook: před každým zápisem se spustí skript .claude/hooks/chran-vstup.sh, který zakáže měnit cokoli ve vstup/. Kvůli němu ten dialog ten soubor jmenuje — složka si totiž nese kód, který se spustí sám. Tady je to zábrana, kterou v lekci rozebíráme. Jinde to být nemusí: složka stažená odjinud může spouštět cokoli, a tohle je jediná chvíle, kdy vás na to aplikace upozorní. Trust workspace znamená „přečetl jsem si, co v tom je“.',
     },
     { kind: 'h', text: '8. Až budeš chtít celou smyčku i s poštou' },
     {
@@ -5524,8 +5750,9 @@ export const COURSES: Course[] = [
     modules: [
       {
         key: 'start',
-        title: 'Než začneš',
-        summary: 'Jak večer poběží a co si stačí přinést.',
+        title: 'Orientace',
+        summary:
+          'Jak večer poběží — to si otevřeme společně. Zbytek jsou tři referenční lekce: co která slova znamenají, kolik to stojí a jak spolu souvisí Cowork a Claude Code.',
       },
       {
         key: 'napojeni',
@@ -5540,7 +5767,7 @@ export const COURSES: Course[] = [
           'Nejdřív hotový proces z logistiky jako vzor, pak totéž ve dvojicích na vlastní agendě.',
       },
     ],
-    lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL, LESSON_CVICENI],
+    lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL, LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI],
     learn: [
       'vysvětlit, za co se u Clauda platí, a vybrat model i effort podle úlohy',
       'zkrátit dlouhá sezení a zjistit, kam odtéká příděl',

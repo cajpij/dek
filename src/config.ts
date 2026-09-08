@@ -201,7 +201,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Cvičení 1b — kresba flow a označení míst',
       min: 15,
-      lessons: ['claude-a-firemni-data/zmapuj-kolegovi-workflow'],
+      lessons: ['claude-a-firemni-data/nakresli-flow'],
       kind: 'work',
       who: 'Lektor + asistence',
       steps: [
@@ -230,7 +230,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Sdílení map',
       min: 10,
-      lessons: ['claude-a-firemni-data/zmapuj-kolegovi-workflow'],
+      lessons: ['claude-a-firemni-data/sdileni-map'],
       kind: 'qna',
       who: 'Martin',
       steps: [

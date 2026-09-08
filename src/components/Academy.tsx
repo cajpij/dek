@@ -136,7 +136,7 @@ function Shell({ children }: { children: React.ReactNode }) {
 function Meta({ course, done }: { course: Course; done?: number }) {
   const total = course.lessons.length
   const inRoom = courseMinutes(course, 'v sále')
-  const after = courseMinutes(course, 'potom') + courseMinutes(course, 'předem')
+  const after = courseMinutes(course, 'potom')
   const parts = [
     plural(total, 'lekce', 'lekce', 'lekcí'),
     `v sále ${formatDuration(inRoom)}`,
@@ -272,7 +272,6 @@ function CourseList() {
       </Typography>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, alignItems: 'center', mt: 2 }}>
         <Typography sx={{ fontSize: 13.5, color: 'text.disabled' }}>Lekce jsou označené podle toho, kdy na ně dojde:</Typography>
-        <Chip size="small" variant="outlined" label="předem" sx={{ height: 20, fontSize: 11.5 }} />
         <Chip size="small" color="primary" label="v sále" sx={{ height: 20, fontSize: 11.5 }} />
         <Chip size="small" variant="outlined" label="potom" sx={{ height: 20, fontSize: 11.5 }} />
       </Box>
@@ -298,9 +297,9 @@ function CourseList() {
 
 /* --------------------------------------------------------- detail kurzu */
 
-const TRACK_COLOR = { 'předem': 'default', 'v sále': 'primary', 'potom': 'default' } as const
+const TRACK_COLOR = { 'v sále': 'primary', 'potom': 'default' } as const
 
-function TrackChip({ track }: { track?: 'předem' | 'v sále' | 'potom' }) {
+function TrackChip({ track }: { track?: 'v sále' | 'potom' }) {
   if (!track) return null
   return (
     <Chip
