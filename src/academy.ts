@@ -855,20 +855,6 @@ const LESSON_COWORK: Lesson = {
       text:
         'Nezačínáte od nuly. Zvyk psát konkrétní zadání — co vzít, co udělat, kam uložit, co s výjimkou — platí ve všech třech záložkách stejně. To, co se v Code přidá, je složka, pravidla a možnost nechat postup běžet znovu.',
     },
-    {
-      kind: 'task',
-      title: 'Cvičení: převeďte jednu coworkovou úlohu do Code',
-      intro:
-        'Vezměte si něco, co jste za poslední měsíc řešili v Coworku a co se týkalo vašich souborů.',
-      items: [
-        'Založte složku podle lekce Projekt v Claude Code a dejte do ní jeden reálný soubor.',
-        'Zadejte tutéž úlohu znovu, ale nad tou složkou.',
-        'Všimněte si, co jste tentokrát nemuseli vysvětlovat, protože to Claude viděl sám.',
-        'Co jste vysvětlovat museli, dopište do CLAUDE.md.',
-      ],
-      hint:
-        'Když ta úloha vašich souborů netýkala, byla v Coworku správně. Vyberte si jinou — cvičení má ukázat rozdíl, ne přesvědčit vás, že Cowork je špatný.',
-    },
   ],
 }
 
