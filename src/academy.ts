@@ -134,7 +134,7 @@ const LESSON_PROGRAM: Lesson = {
     {
       kind: 'p',
       text:
-        'Workshop v sále má čtyři hodiny a víc ne schválně. K tomu je v akademii několikahodinová sada referenčních lekcí na potom — nečtou se dopředu. Předem po vás nechceme skoro nic — nastavení složky i projektu děláme společně hned na začátku večera, takže si nikdo nemusí lámat hlavu doma. Zbytek akademie je referenční materiál, ke kterému se vracíte, až budete stavět.',
+        'Workshop v sále má čtyři hodiny a víc ne schválně. K tomu je v akademii několikahodinová sada referenčních lekcí na potom — nečtou se dopředu. Předem po vás nechceme skoro nic: nastavení složky i projektu děláme společně hned na začátku večera, takže si nikdo nemusí lámat hlavu doma. Zbytek akademie je referenční materiál, ke kterému se vracíte, až budete stavět.',
     },
     {
       kind: 'table',
@@ -142,6 +142,78 @@ const LESSON_PROGRAM: Lesson = {
       rows: [
         ['v sále', 'otevřete si to během workshopu a děláte podle toho. Hlavně cvičení, ne přednášky.'],
         ['potom', 'referenční materiál. Vracejte se k němu, až budete stavět.'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Nebyl jsi v sále? Dá se to projít i sám',
+      text:
+        'Celá akademie je postavená tak, aby se dala projít bez workshopu. Cvičení, která se v sále dělají ve dvojicích, mají uvnitř část „Sólo verze“ — tazatele tam nahradí Claude. Pořadí pro samostudium je hned pod tabulkou štítků a končí kontrolou, na které si ověříš, že ti nic nechybí.',
+    },
+    { kind: 'h', text: 'Když to procházíš sám: pořadí a co má na konci být' },
+    {
+      kind: 'p',
+      text:
+        'Cíl je jediný: na konci máš vlastní automatizaci, která běží bez tebe, a víš, jak poznáš, že doběhla dobře. Všechno ostatní je cesta k tomu. Počítej se třemi až čtyřmi hodinami rozloženými do několika dní — a hlavně s tím, že u každého kroku pracuješ na vlastních datech, ne na cvičných.',
+    },
+    {
+      kind: 'table',
+      head: ['Fáze', 'Čím projít', 'Na konci máš'],
+      rows: [
+        [
+          '1. Zorientovat se',
+          'Slovníček, Z Coworku do Claude Code',
+          'víš, co která slova znamenají a ve které aplikaci pracovat',
+        ],
+        [
+          '2. Připojit data',
+          'Sdílená složka ze SharePointu, Co Claude ve složce vidí, Projekt v Claude Code',
+          'složku, ve které Claude čte i píše, a projekt s CLAUDE.md',
+        ],
+        [
+          '3. Najít, co automatizovat',
+          'Od magazínu do regálu, pak Cvičení 1, 1b a Sdílení map — všechna v sólo verzi',
+          'mapu vlastního procesu s označenými místy ručního přenosu',
+        ],
+        [
+          '4. Naučit se řemeslo',
+          'Zadání práce nad tabulkou, Jak poznáš, že je výsledek špatně',
+          'umíš napsat zadání, které projde napoprvé, a zkontrolovat výsledek',
+        ],
+        [
+          '5. Postavit to',
+          'Jak se v projektu nastaví automatizace, Postav si první automatizaci, Jak napsat skill',
+          'skill nad vlastní agendou, který má vlastní kontrolu',
+        ],
+        [
+          '6. Dotáhnout do provozu',
+          'Rozbor skutečného skillu, Naplánovaná úloha, E-mail z automatu, Cvičný projekt, Pusť to naostro',
+          'úlohu, která proběhla sama a poslala výsledek dál',
+        ],
+        [
+          '7. Zkontrolovat se',
+          'Máš to minimum?',
+          'jistotu, že ti nic nechybí — a když chybí, víš kam se vrátit',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Lekce Kolik to stojí si nech na druhý den',
+      text:
+        'Není v tom pořadí schválně. Dává smysl až ve chvíli, kdy jsi Clauda chvíli používal a máš co porovnávat — pak z ní ušetříš násobky. Přečtená hned první den je to jen teorie o tokenech.',
+    },
+    {
+      kind: 'links',
+      title: 'Kontrola na konci celé cesty',
+      items: [
+        {
+          label: 'Máš to minimum? Kontrola na konci',
+          href: '#academy/od-mapy-k-automatu/mas-to-minimum',
+          note: 'Osm bodů, u každého věta, kterou si ho ověříš, a odkaz do lekce, kam se vrátit.',
+        },
       ],
     },
     { kind: 'h', text: 'Předem: dvě věci, deset minut' },
@@ -224,6 +296,7 @@ const LESSON_PROGRAM: Lesson = {
         ['ptát se na katalog vlastními slovy', 'MCP nad katalogem dek.cz'],
         ['sjednotit vzhled vlastních aplikací', 'Design system DEK ve Storybooku'],
         ['předat to kolegovi', 'Pusť to naostro'],
+        ['ověřit si, že vám nic nechybí', 'Máš to minimum? Kontrola na konci'],
       ],
     },
     {
@@ -2955,7 +3028,7 @@ se spustí, když stejnou úlohu zadám jinými slovy.`,
 
 const L2_ROZBOR: Lesson = {
   slug: 'rozbor-skillu',
-  module: 'potom',
+  module: 'provoz',
   title: 'Rozbor skutečného skillu',
   summary:
     'Skill logisticke-dostupnosti tak, jak ho napsala logistika: co je na něm dobře, čtyři místa, kde selže potichu, a vylepšená verze, která se dá pustit bez dozoru.',
@@ -3200,6 +3273,13 @@ const LESSON_CVICENI: Lesson = {
     },
     {
       kind: 'note',
+      tone: 'ok',
+      title: 'Když na to jsi sám',
+      text:
+        'Tuhle lekci čte i někdo, kdo v sále nebyl a kolegu po ruce nemá. Jde to — jen se místo kolegy vyzpovídáš sám, a aby to k něčemu bylo, potřebuješ tazatele. Toho udělá Claude: dej mu otázky níž a nech ho, ať ti je klade jednu po druhé a nepustí tě dál, dokud neodpovíš konkrétně. Zadání je na konci lekce v části „Sólo verze". Zbytek — nahrávka, přepis, soubory do projektu — platí stejně.',
+    },
+    {
+      kind: 'note',
       tone: 'info',
       title: 'Cvičení má tři části',
       text:
@@ -3429,6 +3509,46 @@ description: Uklidí strojový přepis rozhovoru o něčí práci, doplní časy
         ],
       ],
     },
+    { kind: 'h', text: 'Sólo verze: nech se vyzpovídat Claudem' },
+    {
+      kind: 'p',
+      text:
+        'Sám sobě proces nikdo nepopíše dobře — proto je cvičení ve dvojicích. Náhrada není dokonalá, ale funguje ze stejného důvodu: někdo se ptá „a co se stane pak?" tak dlouho, dokud nedojdete na konec. Otevři Clauda ve složce projektu a dej mu tohle zadání. Odpovídej nahlas a piš krátce; celé to má trvat dvacet minut.',
+    },
+    {
+      kind: 'code',
+      text: `Budeš mi klást otázky o jednom kusu mojí práce. Nenavrhuj řešení,
+neraď a nekomentuj — jenom se ptej a zapisuj, co odpovím.
+
+Postupuj takhle:
+1. Zeptej se, který kus práce chci popsat, a nech mě ho říct jednou větou.
+2. Pak se ptej po jedné otázce a čekej na odpověď. Ptej se na poslední
+   konkrétní případ, ne na to, jak se to dělá obecně.
+3. Po každé mojí odpovědi se zeptej „a co se stane pak?", dokud
+   nedojdeme na konec.
+4. Když odpovím obecně nebo přeskočím dva kroky najednou, zeptej se
+   znovu konkrétněji. Nespokoj se s "pak už to jenom pošlu".
+5. Vždycky se zeptej na název souboru, systému nebo zkratky, které
+   zmíním, i když si myslíš, že je znáš.
+
+Na konci vypiš:
+- kroky procesu v pořadí, jak šly
+- u každého, čím se data přenesly a jestli je to ruční přenos,
+  rozhodnutí člověka, nebo výpočet z pravidel
+- tři místa, kde se nejvíc přepisuje
+- seznam pojmů, které jsem použil a nejsou nikde vysvětlené
+
+Ulož to do podklady/rozhovor-<datum>.md.`,
+      caption:
+        'Pátý bod je ten, kvůli kterému to má cenu: pojmy, které říkáš mimochodem, jsou přesně to, co za měsíc nikdo nedohledá — a je to základ slovníku do CLAUDE.md.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Nepusť ho k radám',
+      text:
+        'Claude bude chtít pomáhat a navrhovat řešení. Když začne, řekni „jenom se ptej". Jakmile se začne radit, přestaneš popisovat, co děláš, a začneš se obhajovat — a to je přesně ta chyba, kvůli které se u lidí dělá cvičení ve dvojicích.',
+    },
     {
       kind: 'links',
       title: 'Pokračuje to tady',
@@ -3463,6 +3583,13 @@ const LESSON_FLOW: Lesson = {
       kind: 'p',
       text:
         'Rozhovor máte za sebou, podklady v projektu. Teď z toho vznikne obrázek — a hlavně se v něm označí místa, kvůli kterým jste dneska přišli. Na celou tuhle část je čtvrt hodiny, takže se nesnažte o krásu.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Když na to jsi sám',
+      text:
+        'Kreslíš podle vlastního přepisu z předchozí lekce, ne z hlavy. Je to tentýž trik jako ve dvojici: kreslí se z toho, co bylo řečeno, ne z toho, co si člověk pamatuje — a co v přepisu není, to se nakreslit nedá. Zbytek lekce platí beze změny, jen si na konci porovnáš kresbu s výpisem, který ti Claude z přepisu udělal.',
     },
     {
       kind: 'note',
@@ -3605,7 +3732,7 @@ const LESSON_SDILENI: Lesson = {
     {
       kind: 'p',
       text:
-        'Poslední část cvičení. Každá dvojice dostane dvě minuty a pak se sál podívá, co mají mapy společného. Tenhle krok se snadno odbyde jako „kolečko na závěr“, ale je to jediné místo celého dne, kde se ukáže, že tři oddělení řeší tutéž věc třemi různými způsoby — a že se to dá vyřešit jednou.',
+        'Poslední část cvičení. Každá dvojice dostane dvě minuty a pak se sál podívá, co mají mapy společného. Tenhle krok se snadno odbyde jako „kolečko na závěr“, ale je to jediné místo celého dne, kde se ukáže, že tři oddělení řeší tutéž věc třemi různými způsoby — a že se to dá vyřešit jednou. Kdo studuje sám a sál nemá, najde náhradu na konci lekce v části „Sólo verze“.',
     },
     { kind: 'h', text: 'Dvě minuty na dvojici' },
     {
@@ -3675,6 +3802,48 @@ Jeden krok tam musí zůstat člověku: <který> — protože <co ten člověk v
       hint:
         'Ten druhý řádek je důvod, proč tenhle blok existuje. Za měsíc je to jediná poznámka z celého dne, díky které někomu napíšete.',
     },
+    { kind: 'h', text: 'Sólo verze: s kým to porovnat, když nikdo jiný není' },
+    {
+      kind: 'p',
+      text:
+        'Sál dává dvě věci: cizího čtenáře, který zkusí tvojí mapě porozumět, a přehled o tom, co se opakuje napříč odděleními. Sám dostaneš obojí taky, jen jinak — a to druhé jen napůl.',
+    },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Nech si mapu přečíst někým, kdo tvoji agendu nezná',
+          body:
+            'Cizího čtenáře udělá Claude. Vyfoť kresbu nebo mu dej svůj výpis kroků a nech ho ptát se na to, čemu bez znalosti tvojí práce nerozumí. Každá jeho otázka je místo, kde v mapě chybí informace — přesně to, co by v sále vyplavalo při dvou minutách před ostatními.',
+          code: `Přečti tuhle mapu procesu. Neznáš moji agendu ani naši firmu.
+
+Napiš:
+- co jsi z ní pochopil, vlastními slovy, v pěti větách
+- kde ti chybí informace, aby ses v tom vyznal
+- které zkratky a názvy jsi nepochopil
+- kde podle tebe data mění formu, i když to v mapě není napsané
+
+Nenavrhuj řešení.`,
+        },
+        {
+          title: 'Porovnej tvar s hotovou mapou',
+          body:
+            'Otevři si mapu akčního regálu z lekce Od magazínu do regálu a polož ji vedle svojí. Nejde o obsah, ale o tvar: má tvoje mapa taky tři pruhy? Jsou popsané šipky, nebo jen boxy? Je vidět, kde končí jedna odpovědnost a začíná druhá? Rozdíly v tvaru bývají místa, kde jsi něco přeskočil.',
+        },
+        {
+          title: 'Projdi čtyři vzorce výš a odškrtej, které máš',
+          body:
+            'Tabulka „Když u někoho slyšíte" platí i sama na sebe. Přečti ji nad vlastní mapou: kolik z těch čtyř se v ní objevuje? Když aspoň jeden, máš kandidáta na první automatizaci, a navíc víš, že to nebude jen tvoje — tyhle čtyři se opakují skoro všude.',
+        },
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Co ti sólo doopravdy unikne',
+      text:
+        'To, že tentýž problém řeší ještě dvě oddělení vedle. Tohle Claude nenahradí. Vyřeší se to jednou zprávou: pošli dvěma kolegům z jiných oddělení jednu větu — „u nás se každý týden přepisuje X do Y, děláte to taky?". Odpověď rozhodne, jestli stavíš věc pro sebe, nebo pro celou firmu.',
+    },
     { kind: 'h', text: 'Pro lektora' },
     {
       kind: 'list',
@@ -3708,7 +3877,7 @@ Jeden krok tam musí zůstat člověku: <který> — protože <co ten člověk v
 
 const L2_TABULKY: Lesson = {
   slug: 'zadani-nad-tabulkou',
-  module: 'postav',
+  module: 'remeslo',
   title: 'Zadání práce nad tabulkou',
   summary:
     'Devadesát procent téhle práce jsou tabulky. Čím se v nich dá splést a jak napsat zadání, které projde napoprvé.',
@@ -3868,7 +4037,7 @@ se to týkalo a vypiš jejich čísla.`,
 
 const L2_KONTROLA: Lesson = {
   slug: 'jak-poznas-ze-je-to-spatne',
-  module: 'postav',
+  module: 'remeslo',
   title: 'Jak poznáš, že je výsledek špatně',
   summary:
     'Dovednost, na které stojí všechno ostatní. Bez ní nikdo nikdy nepustí nic bez dozoru — a pak se nic neušetří.',
@@ -4138,7 +4307,7 @@ přidej sekci "Na co si dát pozor". Pak mi ho ukaž, než ho uložíš.`,
 
 const L2_PLAN: Lesson = {
   slug: 'naplanovana-uloha',
-  module: 'potom',
+  module: 'provoz',
   title: 'Naplánovaná úloha v Claude Code',
   summary:
     'Kde se úloha zakládá, proč pro nás platí Local a ne Cloud, co vyplnit, a co se stane, když počítač spal.',
@@ -4388,7 +4557,7 @@ dvě čísla. Neodesílej ho, jenom ho otevři.`,
 
 const L2_EMAIL: Lesson = {
   slug: 'email-z-automatu',
-  module: 'potom',
+  module: 'provoz',
   title: 'E-mail z automatu',
   summary:
     'Čím se z naplánovaného běhu odešle e-mail, co k tomu musí povolit správce, proč neodejde příloha, a jak napsat zadání, které pošle mail kolegovi.',
@@ -4511,7 +4680,7 @@ Když protokol hlásí nesrovnalost, e-mail neposílej a jenom mi to napiš.`,
 
 const L2_MCP: Lesson = {
   slug: 'mcp-nad-katalogem',
-  module: 'potom',
+  module: 'vic',
   title: 'MCP nad katalogem dek.cz',
   summary:
     'Zeptat se na sortiment vlastními slovy, bez klikání ve webu. Jak server rozjet na svém počítači za dvě minuty, jak ověřit, že jede, a na co se ho ptát.',
@@ -4833,7 +5002,7 @@ claude mcp remove dek`,
 
 const L2_DESIGN: Lesson = {
   slug: 'dek-design-system',
-  module: 'potom',
+  module: 'vic',
   title: 'Design system DEK ve Storybooku',
   summary:
     'Stavebnice barev, písem a komponent, ze které jde složit cokoli, co má vypadat jako dek.cz. Kde bydlí, jak vznikla, jak do ní přidat vlastní kompozici a jak ji předat Claude Designu.',
@@ -5054,9 +5223,176 @@ export const AkcniNabidka: StoryObj = {
   ],
 }
 
+const L2_MINIMUM: Lesson = {
+  slug: 'mas-to-minimum',
+  module: 'provoz',
+  title: 'Máš to minimum? Kontrola na konci',
+  summary:
+    'Osm bodů, které mají po projití kurzů platit. U každého je věta, kterou si to ověříš na svém počítači, a odkaz do lekce, kam se vrátit, když nesedí.',
+  minutes: 10,
+  kind: 'zadání',
+  track: 'potom',
+  outcomes: [
+    'ověřit na vlastním projektu, že máš hotové všechno, co k běžící automatizaci patří',
+    'poznat u každého chybějícího bodu, do které lekce se vrátit',
+    'odlišit „mám to nastavené" od „viděl jsem to fungovat"',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Poslední lekce minima. Nic nového se v ní neučí — je to kontrola. Projdi osm bodů níž na svém vlastním projektu, ne na cvičném. U každého je věta, kterou si ověříš, že to opravdu platí, a odkaz do lekce, kam se vrátit, když ne. Trvá to čtvrt hodiny a je to jediný způsob, jak zjistit, že ti něco nechybí — protože chybějící kus se sám neozve, jen tiše nefunguje.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Odškrtávej jen to, co jsi viděl fungovat',
+      text:
+        'Rozdíl mezi „mám to nastavené" a „viděl jsem to fungovat" je celá tahle lekce. Zábrana, kterou nikdo neviděl odmítnout zápis, je soubor na disku. Úloha, která ještě nikdy neproběhla, je řádek ve formuláři. Odškrtávej podle toho, co se ti opravdu stalo na obrazovce.',
+    },
+    { kind: 'h', text: 'Osm bodů' },
+    {
+      kind: 'checklist',
+      title: 'Minimum, se kterým se dá pracovat dál',
+      items: [
+        'Mám složku s daty, ve které Claude umí číst i psát.',
+        'Mám projekt a v něm CLAUDE.md se slovníkem svojí agendy.',
+        'Mám mapu jednoho svého procesu a v ní označená místa ručního přenosu.',
+        'Mám skill, který jeden z těch kroků udělá celý.',
+        'Skill má sekci „zastav se, když" a po každém běhu nechá kontrolní protokol.',
+        'Mám zábranu, která nepustí zápis tam, kam nemá.',
+        'Mám naplánovanou úlohu, která proběhla aspoň třikrát na různých datech.',
+        'Aspoň jednou to proběhlo na skutečné práci a vím, co se ušetřilo.',
+      ],
+    },
+    { kind: 'h', text: 'Jak si každý bod ověřit' },
+    {
+      kind: 'table',
+      head: ['Bod', 'Ověříš tím, že', 'Když nesedí, vrať se do'],
+      rows: [
+        [
+          'Složka',
+          'napíšeš Claudovi „vypiš, co je ve složce s daty" a dostaneš skutečné názvy souborů, ne prázdný seznam ani placeholdery.',
+          'Sdílená složka ze SharePointu',
+        ],
+        [
+          'Projekt a CLAUDE.md',
+          'otevřeš CLAUDE.md a najdeš v něm aspoň tři pojmy ze své agendy, kterým by cizí člověk nerozuměl. Když jsou tam jen obecné věty, slovník chybí.',
+          'Projekt v Claude Code',
+        ],
+        [
+          'Mapa procesu',
+          'ukážeš kresbu někomu z jiného oddělení a on ti dokáže říct, kde se v ní přepisuje ručně. Když to nepozná, mapa popisuje kroky, ne tok dat.',
+          'Cvičení 1b: kresba flow',
+        ],
+        [
+          'Skill',
+          'spustíš ho jednou větou nad daty z jiného měsíce než z těch, ze kterých vznikl, a vyjde totéž co poprvé.',
+          'Jak napsat skill',
+        ],
+        [
+          'Kontrola',
+          'otevřeš poslední protokol a rozhodneš z něj, jestli je výsledek v pořádku — bez otevírání samotného výstupu.',
+          'Jak poznáš, že je výsledek špatně',
+        ],
+        [
+          'Zábrana',
+          'řekneš Claudovi „přidej řádek do souboru ve složce s originály" a uvidíš, že to odmítne. Patnáct vteřin.',
+          'Jak se v projektu nastaví automatizace',
+        ],
+        [
+          'Naplánovaná úloha',
+          'najdeš v Routines tři záznamy o proběhlých bězích na různých datech, ne jeden zkušební.',
+          'Naplánovaná úloha v Claude Code',
+        ],
+        [
+          'Reálný běh',
+          'umíš říct jedno číslo: kolik minut to dřív trvalo a kolik teď. A jednu věc, která se přitom pokazila.',
+          'Pusť to naostro',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Když ti chybí víc než dva body',
+      text:
+        'Nedohánějte to najednou. Vezmi ten nejvýš v tabulce, který nesedí — jsou seřazené tak, jak na sobě stojí. Skill bez CLAUDE.md se dá napsat, ale bude se každý týden chovat trochu jinak. Naplánovaná úloha bez kontroly je jen rychlejší způsob, jak si nadělat škodu.',
+    },
+    { kind: 'h', text: 'Co když jeden krok prostě nejde' },
+    {
+      kind: 'table',
+      head: ['Zádrhel', 'Co s tím'],
+      rows: [
+        [
+          'Nemám co automatizovat — moje práce je pokaždé jiná',
+          'Skoro nikdy to není pravda celé. Hledej ne celou agendu, ale jeden opakovaný přenos: export, který někam vkládáš, nebo sestavu, kterou skládáš každé pondělí.',
+        ],
+        [
+          'Skill funguje, ale kontrolu psát neumím',
+          'Začni jedním číslem. Kolik řádků přišlo na vstupu a kolik jich je na výstupu. Když to nesedí, něco se ztratilo — a to je kontrola, která odhalí většinu chyb.',
+        ],
+        [
+          'Zábranu mi nejde nastavit',
+          'Zeptej se Clauda: „napiš mi hook, který odmítne zápis do složky s originály, a zaregistruj ho". Napíše ho i zaregistruje. Pak si ho otestuj.',
+        ],
+        [
+          'Naplánovaná úloha se nespustila',
+          'Místní úloha běží jen se zapnutým počítačem a spuštěnou aplikací. Nejdřív ověř tohle, teprve pak hledej chybu v zadání.',
+        ],
+        [
+          'Bojím se to pustit na ostrá data',
+          'Nepouštěj. Nech ji zatím jen ukládat soubory a maily odklikávej ručně. Měsíc takového provozu je lepší podklad než jakákoli úvaha předem.',
+        ],
+      ],
+    },
+    {
+      kind: 'task',
+      title: 'Zadání: napiš si to na jednu stránku',
+      intro:
+        'Až je osm bodů odškrtaných, zbývá poslední věc — aby to uměl převzít někdo jiný. Bez toho je automatizace tvoje osobní zkratka, ne firemní nástroj.',
+      items: [
+        'Napiš runbook: co to dělá, kdy to běží, kde jsou vstupy a výstupy, jak se pozná, že je výsledek dobře, co dělat, když spadne, a koho se zeptat.',
+        'Dej ho přečíst kolegovi, který tvoji agendu nedělá, a nech ho podle něj úlohu jednou pustit.',
+        'Co se ho musel zeptat, doplň do runbooku.',
+      ],
+      hint:
+        'Otázka, kterou ti položí, je přesně ta věc, kterou máš v hlavě a nikde jinde. Právě kvůli ní se runbook píše.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'A odsud dál',
+      text:
+        'Když osm bodů sedí, minimum máš. Modul „Až budeš chtít víc" jsou tři směry, kterými se dá pokračovat — a žádný z nich nepotřebuješ k tomu, aby ti běželo to, co už máš. Ber je jako inspiraci, ne jako zbytek úkolu.',
+    },
+    {
+      kind: 'links',
+      title: 'Kudy dál',
+      items: [
+        {
+          label: 'Formulář místo pinkání e-mailů',
+          href: '#academy/od-mapy-k-automatu/formular-misto-emailu',
+          note: 'Když ti data mají posílat kolegové a e-mail je ten problém, ne to, co se v něm posílá.',
+        },
+        {
+          label: 'MCP nad katalogem dek.cz',
+          href: '#academy/od-mapy-k-automatu/mcp-nad-katalogem',
+          note: 'Ptát se na sortiment vlastními slovy a kombinovat katalog s vlastní složkou v jednom zadání.',
+        },
+        {
+          label: 'Design system DEK ve Storybooku',
+          href: '#academy/od-mapy-k-automatu/dek-design-system',
+          note: 'Když si stavíš vlastní aplikace a chceš, aby vypadaly jako dek.cz.',
+        },
+      ],
+    },
+  ],
+}
+
 const L2_FORMULAR: Lesson = {
   slug: 'formular-misto-emailu',
-  module: 'potom',
+  module: 'vic',
   title: 'Formulář místo pinkání e-mailů',
   summary:
     'Když vám data mají poslat kolegové: jak zrušit e-mail jako přenosový formát, kdo co schvaluje a jak hlídat termíny.',
@@ -5177,7 +5513,7 @@ a u kolika je rozpor. Když nesedí počet sloupců, zastav se a napiš to.`,
 
 const L2_CVICNY: Lesson = {
   slug: 'cvicny-projekt-faktury',
-  module: 'potom',
+  module: 'provoz',
   title: 'Cvičný projekt: kontrola faktur ke stažení',
   summary:
     'Hotový projekt i s fakturami, skillem, zábranou a naplánovanou úlohou. Stáhneš, pustíš, porovnáš s referenčním výstupem — a pak přepneš na svoje faktury.',
@@ -5560,7 +5896,7 @@ jen otevře rozepsaný mail v Outlooku, a s tou vystačím.`,
 
 const L2_NAOSTRO: Lesson = {
   slug: 'pust-to-naostro',
-  module: 'potom',
+  module: 'provoz',
   title: 'Pusť to naostro',
   summary:
     'Úkol na týden mezi setkáními. Nechat to běžet na skutečné práci a přinést zpátky, co se stalo.',
@@ -5698,18 +6034,36 @@ export const COURSES: Course[] = [
     section: 'Pokračuj',
     modules: [
       {
+        key: 'remeslo',
+        title: 'Řemeslo',
+        summary:
+          'Dvě dovednosti, bez kterých se nedá pustit nic bez dozoru: napsat zadání nad tabulkou a poznat, že je výsledek špatně.',
+      },
+      {
         key: 'postav',
         title: 'Postav to',
         summary:
-          'Celá práce v sále: nejdřív dvě dovednosti, bez kterých se nedá pustit nic bez dozoru, pak jedno místo z mapy dotažené do skillu, který se spustí sám.',
+          'Jedno místo z vlastní mapy dotažené do skillu, který má vlastní kontrolu a spustí se sám.',
       },
       {
-        key: 'potom',
-        title: 'Potom, až budeš stavět',
-        summary: 'Referenční část. Vracej se sem, až narazíš na to, co lekce řeší.',
+        key: 'provoz',
+        title: 'Dotáhni to do provozu',
+        summary:
+          'Zbytek minima: naplánovat, dát vědět mailem, projít si to na hotovém projektu a pustit to naostro. Na konci si na checklistu ověříš, že máš všechno.',
+      },
+      {
+        key: 'vic',
+        title: 'Až budeš chtít víc',
+        summary:
+          'Tři směry, kterými se dá pokračovat, až minimum funguje. Nic z toho není potřeba k tomu, aby ti běžela vlastní automatizace.',
       },
     ],
-    lessons: [LESSON_AUTOMATIZACE, L2_TABULKY, L2_KONTROLA, L2_POSTAV, LESSON_SKILL, L2_UKAZKA, L2_ROZBOR, L2_PLAN, L2_EMAIL, L2_FORMULAR, L2_CVICNY, L2_MCP, L2_DESIGN, L2_NAOSTRO],
+    lessons: [
+      L2_TABULKY, L2_KONTROLA,
+      LESSON_AUTOMATIZACE, L2_POSTAV, LESSON_SKILL, L2_UKAZKA,
+      L2_ROZBOR, L2_PLAN, L2_EMAIL, L2_CVICNY, L2_NAOSTRO, L2_MINIMUM,
+      L2_FORMULAR, L2_MCP, L2_DESIGN,
+    ],
     learn: [
       'napsat zadání nad tabulkou, které projde napoprvé',
       'zkontrolovat výstup třemi čísly místo čtení řádek po řádku',
