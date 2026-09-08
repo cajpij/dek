@@ -28,6 +28,7 @@ import TokenDrains from './TokenDrains'
 import ContextGrowth from './ContextGrowth'
 import SubagentContext from './SubagentContext'
 import ContextWindow from './ContextWindow'
+import TriPrikazy from './TriPrikazy'
 import UsageReport from './UsageReport'
 import ConnectorSetup from './ConnectorSetup'
 import FolderPermission from './FolderPermission'
@@ -552,6 +553,8 @@ export default function BlockView({ block }: { block: Block }) {
               <FolderPermission />
             ) : block.name === 'faktury-smycka' ? (
               <FakturySmycka />
+            ) : block.name === 'tri-prikazy' ? (
+              <TriPrikazy />
             ) : (
               <RegalFlow />
             )}

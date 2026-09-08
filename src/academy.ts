@@ -47,6 +47,7 @@ export type Block =
         | 'connector-setup'
         | 'folder-permission'
         | 'faktury-smycka'
+    | 'tri-prikazy'
       caption: string
     }
   | { kind: 'checklist'; title: string; items: string[] }
@@ -458,25 +459,10 @@ const LESSON_TOKENY: Lesson = {
         'Táž práce, tytéž otázky. Vlevo jedno sezení celý den, vpravo tři sezení s /clear mezi úlohami. Rozdíl není v tom, co se udělalo, ale kolikrát se to poslalo znovu.',
     },
     {
-      kind: 'table',
-      head: ['Příkaz', 'Co udělá', 'Kdy ho použít'],
-      rows: [
-        [
-          '/clear',
-          'zahodí konverzaci a začne načisto',
-          'jakmile jdeš na jinou úlohu. Nic to nestojí a je to nejúčinnější věc z celé lekce.',
-        ],
-        [
-          '/compact',
-          'shrne dosavadní konverzaci do souhrnu a pokračuje s ním',
-          'když potřebuješ pokračovat v téže úloze, ale historie je moc dlouhá. Pozor: samotné shrnutí musí celou konverzaci přečíst, takže není zadarmo — dělej ho v přestávce mezi kroky, ne uprostřed.',
-        ],
-        [
-          '/rewind',
-          'vrátí konverzaci o pár kroků zpátky',
-          'když se to vydalo špatným směrem. Levnější než /compact, protože se vrací do historie, kterou už má cache přečtenou.',
-        ],
-      ],
+      kind: 'figure',
+      name: 'tri-prikazy',
+      caption:
+        'Tři způsoby, jak zkrátit dlouhé sezení. /clear historii zahodí, /compact ji slisuje do souhrnu, /rewind z ní ukrojí jen konec. Liší se hlavně tím, co to stojí — a to podle toho, jak každý zachází s tím, co má cache už přečtené.',
     },
     {
       kind: 'note',
