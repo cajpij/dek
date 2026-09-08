@@ -138,7 +138,7 @@ const LESSON_PROGRAM: Lesson = {
     {
       kind: 'p',
       text:
-        'Workshop v sále má čtyři hodiny a víc ne schválně. K tomu je v akademii několikahodinová sada referenčních lekcí na potom — nečtou se dopředu. Předem po vás nechceme skoro nic: nastavení složky i projektu děláme společně hned na začátku večera, takže si nikdo nemusí lámat hlavu doma. Zbytek akademie je referenční materiál, ke kterému se vracíte, až budete stavět.',
+        'Workshop v sále má čtyři hodiny a víc ne schválně — nastavení složky i projektu děláme společně hned na začátku večera, takže si předem nemusíte lámat hlavu. Zbytek akademie je referenční materiál na potom, ke kterému se vracíte, až budete stavět.',
     },
     {
       kind: 'table',
@@ -153,13 +153,13 @@ const LESSON_PROGRAM: Lesson = {
       tone: 'ok',
       title: 'Nebyl jsi v sále? Dá se to projít i sám',
       text:
-        'Celá akademie je postavená tak, aby se dala projít bez workshopu. Cvičení, která se v sále dělají ve dvojicích, mají uvnitř část „Sólo verze“ — tazatele tam nahradí Claude. Pořadí pro samostudium je hned pod tabulkou štítků a končí kontrolou, na které si ověříš, že ti nic nechybí.',
+        'Cvičení, která se v sále dělají ve dvojicích, mají uvnitř „Sólo verzi“ — tazatele nahradí Claude. Pořadí pro samostudium je hned pod tabulkou fází a končí kontrolou, na které si ověříš, že ti nic nechybí.',
     },
-    { kind: 'h', text: 'Když to procházíš sám: pořadí a co má na konci být' },
+    { kind: 'h', text: 'Pořadí pro samostudium' },
     {
       kind: 'p',
       text:
-        'Cíl je jediný: na konci máš vlastní automatizaci, která běží bez tebe, a víš, jak poznáš, že doběhla dobře. Všechno ostatní je cesta k tomu. Počítej se třemi až čtyřmi hodinami rozloženými do několika dní — a hlavně s tím, že u každého kroku pracuješ na vlastních datech, ne na cvičných.',
+        'Cíl: na konci máš vlastní automatizaci, která běží bez tebe, a víš, jak poznáš, že doběhla dobře. Počítej se třemi až čtyřmi hodinami rozloženými do několika dní a pracuj u každého kroku na vlastních datech, ne na cvičných.',
     },
     {
       kind: 'table',
@@ -207,7 +207,7 @@ const LESSON_PROGRAM: Lesson = {
       tone: 'info',
       title: 'Lekce Kolik to stojí si nech na druhý den',
       text:
-        'Není v tom pořadí schválně. Dává smysl až ve chvíli, kdy jsi Clauda chvíli používal a máš co porovnávat — pak z ní ušetříš násobky. Přečtená hned první den je to jen teorie o tokenech.',
+        'Dává smysl až ve chvíli, kdy jsi Clauda chvíli používal a máš co porovnávat — přečtená hned první den je jen teorie o tokenech.',
     },
     {
       kind: 'links',
@@ -225,22 +225,9 @@ const LESSON_PROGRAM: Lesson = {
       kind: 'list',
       items: [
         'Nainstalovaný Claude Code a přihlášený firemní účet. Nic víc se instalovat nebude.',
-        'Vědět, kterou svoji agendu chcete večer řešit, a mít k ní jeden reálný soubor — tabulku nebo dokument, se kterým každý týden pracujete. Klidně jen v hlavě, soubor najdeme společně.',
+        'Vědět, kterou svoji agendu chcete večer řešit, a mít k ní jeden reálný soubor — klidně jen v hlavě, soubor najdeme společně.',
+        'SharePoint, projekt ani CLAUDE.md předem nedělejte — je to první blok v sále (16:20), ať vidíme na místě, když někomu nepojede sync.',
       ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Nasyncovanou složku ani nic přečteného předem nechceme',
-      text:
-        'SharePoint, projekt, CLAUDE.md i videa k tomu jsou první blok v sále — přesunuli jsme je tam schválně. Když někomu nepojede sync, chceme to vidět v 16:20 a vyřešit to na místě, ne aby na to seděl sám doma. Kdo si to udělá dopředu, má první půlhodinu volnou a může pomoct sousedovi.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Minuty u lekcí a časy v programu nejsou totéž',
-      text:
-        'Číslo u lekce říká, jak dlouho trvá projít si ji samostatně. Program níž má vlastní časy — v sále se nečte, v sále se dělá. Proto je cvičení v programu kratší než lekce, ve které je popsané.',
     },
     { kind: 'h', text: 'V sále: 16:00–20:00' },
     {
@@ -264,44 +251,16 @@ const LESSON_PROGRAM: Lesson = {
     },
     {
       kind: 'note',
-      tone: 'info',
-      title: 'Začíná se po pracovním dni',
-      text:
-        'Proto je hned po úvodu rozehřívačka: postavíte se, najdete si dvojici z jiného oddělení a každý řekne jednu věc, kterou dneska dělal nebo dělala ručně a štvalo ho to. Ta dvojice s vámi zůstane celé odpoledne — cizí člověk se ptá líp než kolega, který vaši agendu zná a domýšlí si.',
-    },
-    {
-      kind: 'note',
       tone: 'ok',
       title: 'Nejdůležitější jsou dva bloky',
       text:
-        'Cvičení ve dvojicích a stavění první automatizace. Když z programu něco vypadne, vypadne všechno ostatní — tyhle dva a nastavení na začátku zůstanou. Jsou to jediné části, ze kterých si odnesete něco vlastního.',
+        'Cvičení ve dvojicích a stavění první automatizace. Když z programu něco vypadne, tyhle dva a nastavení na začátku zůstanou — jsou to jediné části, ze kterých si odnesete něco vlastního.',
     },
-    { kind: 'h', text: 'Samostudium po školení' },
+    { kind: 'h', text: 'Po workshopu' },
     {
       kind: 'p',
       text:
-        'Do čtyř hodin se toho vejde jen tolik, kolik se dá udělat společně. Všechno ostatní z akademie nezmizelo — je označené štítkem potom a čeká, až na něj dojde řada. Nečtěte to dopředu a nesnažte se to stihnout: vracejte se k tomu ve chvíli, kdy narazíte na to, co ta lekce řeší. Rozcestník níž je podle situací, ne podle štítků — pár řádků vede zpátky do lekcí, které jste prošli v sále, protože právě k těm se člověk vrací nejčastěji. Kostra je pořád stejná — pět schodů: zadání, pravidlo, skill, hook, běh bez tebe. První tři jste prošli v sále a poslední dva viděli v živé ukázce; do hloubky si je projdete sami. Když si máte vybrat jednu, vezměte Jak se v projektu nastaví automatizace — u pátého schodu je odkaz na Cvičný projekt: kontrola faktur, stažitelnou verzi celé cesty od prázdné složky po naplánovaný běh.',
-    },
-    {
-      kind: 'table',
-      head: ['Až budete potřebovat', 'Vraťte se do'],
-      rows: [
-        ['nevíte, co které slovo znamená', 'Slovníček'],
-        ['pracujete zatím jen v Coworku', 'Z Coworku do Claude Code'],
-        ['narážíte na limit nebo chcete vědět, za co se platí', 'Kolik to stojí a jak platit míň'],
-        ['vidět celou cestu na jednom příkladu', 'Jak se v projektu nastaví automatizace'],
-        ['zabalit postup, který opakujete', 'Jak napsat skill — byla v sále'],
-        ['zjistit, co skillu chybí, aby běžel sám', 'Rozbor skutečného skillu'],
-        ['zamknout data, dostat notifikaci a pustit to bez sebe', 'Jak se v projektu nastaví automatizace — byla v sále'],
-        ['založit úlohu, která se spustí sama', 'Naplánovaná úloha v Claude Code'],
-        ['poslat z automatu e-mail', 'E-mail z automatu'],
-        ['čekáte na odpovědi od kolegů nebo poboček', 'Formulář místo pinkání e-mailů'],
-        ['nevíte, kde po workshopu začít', 'Cvičný projekt: kontrola faktur ke stažení'],
-        ['ptát se na katalog vlastními slovy', 'MCP nad katalogem dek.cz'],
-        ['sjednotit vzhled vlastních aplikací', 'Design system DEK ve Storybooku'],
-        ['předat to kolegovi', 'Pusť to naostro'],
-        ['ověřit si, že vám nic nechybí', 'Máš to minimum? Kontrola na konci'],
-      ],
+        'Zbytek akademie nese štítek potom a čeká, až na něj dojde řada — nečtěte to dopředu, vracejte se podle fází v tabulce výš. Máte-li si vybrat jedno, vezměte Jak se v projektu nastaví automatizace — u pátého kroku je odkaz na Cvičný projekt: kontrola faktur, stažitelnou verzi celé cesty od prázdné složky po naplánovaný běh.',
     },
     {
       kind: 'note',
@@ -342,7 +301,7 @@ const LESSON_SLOVNICEK: Lesson = {
     {
       kind: 'p',
       text:
-        'Lekce se snaží mluvit česky a bez žargonu, ale pár slov se nedá obejít — jsou to názvy věcí, které v Claude Code skutečně existují a takhle se jmenují i v aplikaci. Tady jsou pohromadě. Nemusíte si je pamatovat, stačí vědět, kde je najít.',
+        'Pár slov se nedá obejít žargonem — jsou to názvy věcí, které v Claude Code skutečně takhle existují. Tady jsou pohromadě; nemusíte si je pamatovat, stačí vědět, kde je najít.',
     },
     { kind: 'h', text: 'Základ' },
     {
@@ -402,7 +361,7 @@ const LESSON_SLOVNICEK: Lesson = {
       tone: 'ok',
       title: 'Když tu slovo není',
       text:
-        'Zeptejte se Clauda: „co znamená X, řekni mi to jednou větou bez techniky". Odpoví lépe než jakýkoli slovník, protože ví, v jakém kontextu jste na to slovo narazili. A řekněte to lektorovi — doplní se sem.',
+        'Zeptejte se Clauda: „co znamená X, řekni mi to jednou větou bez techniky" — a řekněte to lektorovi, doplní se sem.',
     },
   ],
 }
@@ -413,7 +372,7 @@ const LESSON_TOKENY: Lesson = {
   title: 'Kolik to stojí a jak platit míň',
   summary:
     'Co je token, proč dlouhé sezení stojí víc než pět krátkých, jaký model a effort si vybrat a jak se podívat, kam limit odtekl.',
-  minutes: 15,
+  minutes: 10,
   kind: 'lekce',
   track: 'potom',
   outcomes: [
@@ -427,232 +386,18 @@ const LESSON_TOKENY: Lesson = {
     {
       kind: 'p',
       text:
-        'Limit není trest za to, že Clauda používáš moc. Skoro vždycky za ním stojí pár návyků, které se dají změnit za deset minut — a rozdíl mezi opatrným a neopatrným sezením je násobek, ne pár procent. Tatáž oprava může stát pár tisíc tokenů, nebo desetinásobek, podle toho, v jakém sezení ji zadáš.',
+        'Limit není trest — skoro vždycky za ním stojí pár návyků, které se dají opravit za deset minut. Rozdíl mezi opatrným a neopatrným sezením je násobek, ne pár procent.',
     },
     {
       kind: 'figure',
       name: 'token-drains',
       caption:
-        'Skoro všechno drahé má jednu ze čtyř příčin. Lekce jde postupně po všech čtyřech.',
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Tip na přečtení — a je to jenom pět minut',
-      text:
-        'Tahle lekce vychází z článku Maximizing the value of your Claude Code sessions od Lydie Hallie z Anthropicu. Je anglicky, ale krátký a čte se dobře — a je v něm to samé, co se dozvíš tady, jen bez našich příkladů. Odkaz je hned pod tímhle odstavcem a znovu na konci lekce. Když si z celého školení máš přečíst jednu věc navíc, ať je to tahle.',
-    },
-    {
-      kind: 'links',
-      title: 'Přečti si to v originále',
-      items: [
-        {
-          label: 'Maximizing the value of your Claude Code sessions',
-          href: 'https://claude.com/blog/maximizing-the-value-of-your-claude-code-sessions',
-          note: 'Lydia Hallie, Anthropic — pět minut čtení, anglicky',
-        },
-      ],
-    },
-    { kind: 'h', text: 'Co je token' },
-    {
-      kind: 'p',
-      text:
-        'Token je kousek textu — zhruba slovo nebo jeho část. Čeština vyjde asi na jeden a půl tokenu na slovo, takže normostrana textu je kolem tisícovky tokenů. Účtuje se všechno, co jde tam i zpátky: tvoje zadání, obsah souborů, které Claude otevřel, výpisy příkazů, jeho odpověď i přemýšlení, které k ní vedlo.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Nejdůležitější věta celé lekce',
-      text:
-        'Model si mezi zprávami nic nepamatuje. Při každé tvojí zprávě se posílá celá dosavadní konverzace znovu — od začátku. Neplatíš tedy za zprávu, kterou jsi právě napsala, ale za celé sezení, ve kterém ji píšeš. Proto jedna otázka v sezení, které je otevřené od rána, stojí mnohonásobně víc než tatáž otázka v čerstvém sezení.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Aby to nebylo tak drahé, existuje cache: to, co se posílá znovu a nezměnilo se, se nepočítá plnou sazbou, ale zhruba desetinou. Není to zadarmo, ale je to velký rozdíl — a proto je většina rad níž o tom, jak cache nerozbít.',
-    },
-    {
-      kind: 'table',
-      head: ['Co to je', 'Kolik to stojí', 'Co si z toho odnést'],
-      rows: [
-        ['Vstup — všechno, co Claude čte', 'základní sazba', 'sem patří i soubory, které otevřel, a výpisy příkazů'],
-        ['Výstup — co Claude napíše', 'zhruba pětinásobek vstupu', 'proto se vyplatí nechtít vypsat celou tabulku, když stačí shrnutí'],
-        ['Vstup z cache — co se posílá znovu', 'zhruba desetina', 'tohle je ta úleva, o kterou se nechceš připravit'],
-        ['Zápis do cache', 'až dvojnásobek', 'platí se jednou, když se cache staví; proto ji nerozbíjej zbytečně'],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Limit je jeden pro chat, Cowork i Claude Code',
-      text:
-        'Na firemním plánu má každý svůj příděl, který se obnovuje v pětihodinovém okně a ještě jednou týdně. Ten příděl je společný pro Claude v chatu, Cowork i Claude Code — nejsou to tři samostatné kapsy. Když ráno proženeš dlouhé sezení v Coworku, odpoledne to poznáš v Claude Code.',
-    },
-    { kind: 'h', text: 'Dvě páčky: model a effort' },
-    {
-      kind: 'p',
-      text:
-        'V aplikaci jsou vedle sebe dvě nastavení, která se pletou. Model je to, jak chytrý pomocník ti odpovídá. Effort je to, jak dlouho nad odpovědí přemýšlí, než ji napíše. Jednoduchá pomůcka, podle čeho sáhnout ke které: když výsledek selhal proto, že Claude něco nevěděl nebo nepochopil, ber větší model. Když selhal proto, že se na to vykašlal — udělal to zbrkle, přehlédl polovinu — zvedni effort.',
-    },
-    {
-      kind: 'table',
-      head: ['Model', 'Jak ho popisuje aplikace', 'Kdy ho vzít'],
-      rows: [
-        ['Haiku 4.5', 'nejrychlejší na rychlé odpovědi', 'krátká faktická otázka, přejmenování souborů, jednoduchý výpis'],
-        ['Sonnet 5', 'nejúspornější na běžnou práci', 'výchozí volba pro většinu toho, co budeš dělat — rozpad tabulky, kontrola výstupu, běžné zadání'],
-        ['Opus 5', 'na složité úlohy', 'když se něco nedaří napodruhé, návrh postupu, nepřehledná data'],
-        ['Fable 5.1', 'na to nejtěžší', 'výjimečně, když ani Opus nestačí'],
-      ],
-    },
-    {
-      kind: 'table',
-      head: ['Effort', 'Co to udělá'],
-      rows: [
-        ['Low', 'krátké a rychlé, na nenáročné věci'],
-        ['Medium', 'úspornější, když si můžeš dovolit trochu horší výsledek'],
-        ['High', 'výchozí a pro drtivou většinu práce správně'],
-        ['Extra', 'hlubší přemýšlení za víc tokenů'],
-        ['Max', 'aplikace u něj sama píše 1,5× nebo víc spotřeby. Umí pomoct, ale taky se ukecat.'],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Praktické pravidlo',
-      text:
-        'Nech Sonnet 5 a effort High a nesahej na to. Když úloha nevyjde, nejdřív si přečti proč: chybějící znalost je důvod pro Opus, odbytá práce je důvod pro Extra. Zvedat obojí najednou je nejdražší způsob, jak se nic nedozvědět.',
-    },
-    { kind: 'h', text: 'Dlouhá sezení: kdy co použít' },
-    {
-      kind: 'p',
-      text:
-        'Nejčastější důvod, proč limit mizí rychleji, než dává rozum, je jediné sezení otevřené celý den, ve kterém se vystřídalo pět nesouvisejících úloh. Každá další otázka v něm táhne s sebou všechny předchozí — čtyřicátá zpráva znovu čte i těch třicet devět před sebou.',
-    },
-    {
-      kind: 'figure',
-      name: 'context-growth',
-      caption:
-        'Táž práce, tytéž otázky. Vlevo jedno sezení celý den, vpravo tři sezení s /clear mezi úlohami. Rozdíl není v tom, co se udělalo, ale kolikrát se to poslalo znovu.',
-    },
-    {
-      kind: 'figure',
-      name: 'tri-prikazy',
-      caption:
-        'Tři způsoby, jak zkrátit dlouhé sezení. /clear historii zahodí, /compact ji slisuje do souhrnu, /rewind z ní ukrojí jen konec. Liší se hlavně tím, co to stojí — a to podle toho, jak každý zachází s tím, co má cache už přečtené.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Než dáš /clear',
-      text:
-        'Sezení se dá pojmenovat příkazem /rename a později se k němu vrátit přes /resume. Takže „zahodit" neznamená „ztratit" — jen to přestaneš platit v každé další zprávě.',
-    },
-    { kind: 'h', text: 'Jak to vypadá na jedné konkrétní věci' },
-    {
-      kind: 'p',
-      text:
-        'Řekněme, že celé odpoledne stavíš kontrolu faktur — tu z cvičného projektu. Nejdřív se Claude rozkoukává ve složce a přečte pět PDF. Pak píšeš skill. Uprostřed zjistíš, že se to vydalo špatným směrem. Pak si odskočíš naplánovat rutinu na sedmou ráno. A mezitím se kolega zeptá na něco úplně jiného, na rozpis dovolených. Pět různých věcí v jednom odpoledni — a právě mezi nimi se rozhoduje, jestli tě to odpoledne bude stát kus přídělu, nebo celý.',
-    },
-    {
-      kind: 'figure',
-      name: 'faktury-sezeni',
-      caption:
-        'Odpoledne nad kontrolou faktur po zprávách. /rewind ukrojí jen konec, když se to vydalo špatným směrem. /compact má vlastní špičku, protože shrnutí musí historii nejdřív přečíst — proto se dělá v přestávce. /clear sráží na nulu, nic nestojí, a proto se jím oddělují úlohy, které spolu nesouvisí.',
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Jediná otázka, kterou si u toho klaď',
-      text:
-        'Potřebuje ta další zpráva to, co je v historii? Když ano, jsi ve stejné úloze — nech to běžet, a když je historie moc dlouhá, dej /compact v přestávce. Když ne, dej /clear. Rozkoukávání ve složce s fakturami nemá s dotazem na dovolené nic společného, tak proč by ho měl Claude číst u každé odpovědi.',
-    },
-    {
-      kind: 'links',
-      title: 'Ta automatizace z příkladu',
-      items: [
-        {
-          label: 'Cvičný projekt: kontrola faktur ke stažení',
-          href: '#academy/od-mapy-k-automatu/cvicny-projekt-faktury',
-          note: 'Hotový projekt i s fakturami, skillem a naplánovanou úlohou — stáhneš a pustíš.',
-        },
-      ],
-    },
-    { kind: 'h', text: 'Co rozbíjí cache' },
-    {
-      kind: 'p',
-      text:
-        'Když se změní něco na začátku toho, co se posílá, musí se celá konverzace zpracovat znovu a jedna odpověď vyjde mnohem dráž. Většina těch věcí se dá udělat na začátku sezení místo uprostřed.',
-    },
-    {
-      kind: 'table',
-      head: ['Rozbije cache', 'Nerozbije'],
-      rows: [
-        ['přepnutí modelu', 'úprava souborů v projektu'],
-        ['změna effortu', 'spuštění skillu nebo příkazu s lomítkem'],
-        ['zapnutí fast mode', 'přepnutí režimu oprávnění'],
-        ['připojení nebo odpojení MCP serveru (konektoru)', '/rewind zpět'],
-        ['zapnutí nebo vypnutí pluginu s konektorem', '/recap — jen shrne, nemění historii'],
-        ['/compact', 'úprava CLAUDE.md (ta se ale projeví až po /clear nebo restartu)'],
-        ['nasbírání většího množství obrázků', ''],
-        ['aktualizace Claude Code', ''],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Z toho plyne jediné pravidlo',
-      text:
-        'Model a effort si vyber na začátku sezení a pak už na ně nesahej. Cache navíc na firemním předplatném vydrží hodinu nečinnosti — takže když si odskočíš na oběd, sezení je po návratu pořád levné. Jakmile ale příděl vyčerpáš a jedeš na doplňkové kredity, vydrží jen pět minut.',
-    },
-    { kind: 'h', text: 'Držet kontext lehký' },
-    {
-      kind: 'list',
-      items: [
-        'Zadávej konkrétně. „Vylepši mi ten projekt" znamená, že Claude začne číst všechno. „Doplň k fakturám v nejnovějším exportu základ daně a ulož do vystupy/" znamená, že přečte dva soubory.',
-        'CLAUDE.md drž do dvou set řádků. Načítá se do každého sezení celý, i když děláš něco úplně jiného. Delší postupy patří do skillu, který se načte, jen když je potřeba.',
-        'Do složky projektu nedávej celou databázi, ale reálný vzorek. Claude čte to, co tam je.',
-        'Vypni konektory, které zrovna nepoužíváš — v Claude Code příkazem /mcp. Každý připojený server něco zabírá.',
-        'Odkazuj na soubory zavináčem — napiš @nazev-souboru místo opisování cesty. Claude si soubor rovnou vezme a ušetří se hledání, které by jinak muselo proběhnout první.',
-        'U příkazů, které chrlí stovky řádků, přidávej přepínače na tišší výstup. Ty, které používáš pořád, si i s přepínači zapiš do CLAUDE.md, ať je nemusíš vymýšlet znovu.',
-        'U velkých úloh si nech nejdřív napsat plán (Shift+Tab, plan mode). Levnější než dvakrát dělat špatnou věc.',
-      ],
-    },
-    {
-      kind: 'p',
-      text:
-        'Ta poslední rada stojí za obrázek, protože se pravidelně chápe špatně. Podagent není „druhý Claude, který ví totéž". Dostane vlastní čistý kontext — svoje instrukce, nástroje a tvůj CLAUDE.md, ale ne tvoji konverzaci. Proto se u něj upovídaná práce dá udělat, aniž by ti ten hluk zůstal v sezení: zpátky přijde jen odpověď.',
-    },
-    {
-      kind: 'figure',
-      name: 'subagent-context',
-      caption:
-        'Tisíc řádků výpisu zůstane u podagenta a zmizí s ním. Kdyby totéž běželo u tebe, posílá se to znovu při každé další zprávě až do konce sezení.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Dlouhý výpis se sám odkládá',
-      text:
-        'Když příkaz vypíše víc než zhruba třicet tisíc znaků, Claude Code výpis uloží do souboru a do konverzace dá jen náhled. Chrání tě to před nejhorším, ale spoléhat se na to nedá — tišší příkaz je pořád lepší než uříznutý výpis.',
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Naplánované úlohy nespí',
-      text:
-        'Naplánovaná úloha se spustí i ve chvíli, kdy u počítače nikdo není, a posílá s sebou celý svůj kontext. Jedna úloha jednou týdně je zanedbatelná, úloha každou hodinu nad velkou složkou už ne. Když si nějakou nastavíš, po týdnu se v /usage podívej, kolik z tvého přídělu si vzala.',
+        'Skoro všechno drahé má jednu ze čtyř příčin — lekce jde postupně po všech.',
     },
     { kind: 'h', text: 'Deset minut úklidu, které se vrátí' },
     {
       kind: 'p',
-      text:
-        'Začíná se tím, že se podíváš, co vlastně platíš. Příkaz /context vypíše okno kontextu rozpadlé na položky — kolik zabírá konverzace, kolik připojené konektory, kolik tvůj CLAUDE.md. Názvy zůstávají anglicky, tak jak je aplikace vypíše.',
-    },
-    {
-      kind: 'figure',
-      name: 'context-window',
-      caption:
-        'Výpis z jednoho skutečného sezení. Všimni si poměru: Messages jsou skoro dvě třetiny, kdežto konektory, skilly a CLAUDE.md dohromady ani tři procenta. Proto je zavřít dlouhé sezení účinnější než jakýkoli úklid startu — ten se dělá jednou a pomáhá pořád, ale ten velký díl je konverzace.',
+      text: 'Nejrychlejší způsob, jak zjistit, kam příděl mizí: projdi těchhle pět kroků v libovolném sezení.',
     },
     {
       kind: 'steps',
@@ -660,13 +405,13 @@ const LESSON_TOKENY: Lesson = {
         {
           title: 'Napiš /context',
           body:
-            'Ukáže, co všechno se do sezení načítá ještě předtím, než napíšeš první zadání: systémová část, tvůj CLAUDE.md, připojené konektory, skilly. Tohle platíš v každé jedné zprávě.',
+            'Ukáže, co všechno se posílá s každou zprávou: systémovou část, tvůj CLAUDE.md, připojené konektory, skilly.',
           code: '/context',
         },
         {
-          title: 'Projdi CLAUDE.md',
+          title: 'Zkrať CLAUDE.md',
           body:
-            'Co v něm je a nepoužije se pokaždé, přesuň do skillu. Cílem je slovník, cesty k datům a pravidla — ne návod na všechno. Takhle vypadá CLAUDE.md, který má správnou velikost:',
+            'Co se nepoužije pokaždé, patří do skillu. CLAUDE.md je slovník, cesty k datům a pravidla — ne návod na všechno. Ukázka správné velikosti:',
           code: `# Kontrola faktur
 
 ## Slovník
@@ -691,20 +436,19 @@ const LESSON_TOKENY: Lesson = {
 # 3. Pro každou fakturu ulož řádek…`,
         },
         {
-          title: 'Vyhoď konektory, které nepoužíváš',
-          body: 'Napiš /mcp a odpoj, co tam zbylo z pokusů. Připojit se dají zpátky kdykoli.',
+          title: 'Odpoj nepoužívané konektory',
+          body: 'Napiš /mcp a odpoj, co tam zbylo z pokusů. Připojíš zpátky kdykoli.',
           code: '/mcp',
         },
         {
           title: 'Podívej se, kam to odtéká',
           body:
-            'Příkaz /usage ukáže, kolik z přídělu je vyčerpáno, rozpad tokenů a žebříček toho, co příděl bere — podagenti, skilly, konektory, naplánované úlohy. Období a rozsah se v aplikaci přepínají dvěma rozbalovátky u „What&rsquo;s using your limits?"; klávesy d a w, o kterých se píše v dokumentaci, fungují jen v terminálu. Jak ten panel vypadá, je hned pod krokem.',
+            'Příkaz /usage ukáže vyčerpání přídělu a žebříček toho, co ho bere — podagenti, skilly, konektory, naplánované úlohy.',
           code: '/usage',
         },
         {
-          title: 'Nech si udělat rozbor svých návyků',
-          body:
-            'Příkaz /insights projde tvoje poslední sezení na tomhle počítači a napíše přehled, na čem pracuješ, kde to nejčastěji drhne a co dělat jinak. Vyplatí se jednou za měsíc.',
+          title: 'Nech si udělat rozbor návyků',
+          body: 'Příkaz /insights jednou za měsíc projde poslední sezení a napíše, co dělat jinak.',
           code: '/insights',
         },
       ],
@@ -713,7 +457,7 @@ const LESSON_TOKENY: Lesson = {
       kind: 'figure',
       name: 'usage-report',
       caption:
-        'Panel, který vyjede po /usage. Příděl má tři pruhy, ne jeden. Cache hit 99 % a rozpad tokenů dole jsou tatáž věc, o které je celá lekce — z 291,4 M přečtených z cache proti 1,4 k nového vstupu je vidět, že skoro všechno bylo opakované čtení historie.',
+        'Panel po /usage. Příděl má tři pruhy. Cache hit 99 % dole ukazuje, že skoro všechno bylo opakované čtení historie, ne nový vstup.',
     },
     {
       kind: 'checklist',
@@ -727,29 +471,181 @@ const LESSON_TOKENY: Lesson = {
         '/compact před delší přestávkou, dokud je konverzace ještě v cache',
       ],
     },
+    { kind: 'h', text: 'Co je token a proč se to sčítá' },
+    {
+      kind: 'p',
+      text:
+        'Token je kousek textu, zhruba slovo nebo jeho část — normostrana vyjde na tisícovku. Počítá se všechno tam i zpátky: zadání, obsah souborů, výpisy, odpověď. Model si mezi zprávami nic nepamatuje, takže se s každou zprávou posílá celá dosavadní konverzace znovu — neplatíš za zprávu, ale za celé sezení, ve kterém ji píšeš. Cache to zlevňuje asi na desetinu, proto je většina rad v téhle lekci o tom, jak ji nerozbít.',
+    },
+    {
+      kind: 'table',
+      head: ['Co to je', 'Kolik to stojí'],
+      rows: [
+        ['Vstup — co Claude čte', 'základní sazba'],
+        ['Výstup — co napíše', 'zhruba pětinásobek vstupu'],
+        ['Vstup z cache', 'zhruba desetina'],
+        ['Zápis do cache', 'až dvojnásobek, platí se jednou'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Limit je společný pro chat, Cowork i Claude Code',
+      text:
+        'Jeden příděl, obnovuje se v pětihodinovém okně a ještě jednou týdně. Dlouhé sezení ráno v Coworku pocítíš odpoledne v Claude Code.',
+    },
+    { kind: 'h', text: 'Model a effort' },
+    {
+      kind: 'p',
+      text:
+        'Model je, jak chytrý pomocník odpovídá. Effort je, jak dlouho nad odpovědí přemýšlí. Selhal, protože něco nevěděl nebo nepochopil? Ber větší model. Selhal, protože to odbyl — zbrkle, přehlédl polovinu? Zvedni effort.',
+    },
+    {
+      kind: 'table',
+      head: ['Model', 'Kdy ho vzít'],
+      rows: [
+        ['Haiku 4.5', 'krátká faktická otázka, přejmenování souborů, jednoduchý výpis'],
+        ['Sonnet 5', 'výchozí volba pro většinu toho, co budeš dělat'],
+        ['Opus 5', 'když se něco nedaří napodruhé, návrh postupu, nepřehledná data'],
+        ['Fable 5.1', 'výjimečně, když ani Opus nestačí'],
+      ],
+    },
+    {
+      kind: 'table',
+      head: ['Effort', 'Kdy ho vzít'],
+      rows: [
+        ['Low', 'krátké a rychlé, na nenáročné věci'],
+        ['High', 'výchozí a pro drtivou většinu práce správně'],
+        ['Extra', 'hlubší přemýšlení za víc tokenů, když High odbylo práci'],
+        ['Max', 'umí pomoct, ale taky se ukecat — 1,5× spotřeby a víc'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Praktické pravidlo',
+      text:
+        'Nech Sonnet 5 a effort High a nesahej na to. Nevyšlo to? Chybějící znalost → Opus, odbytá práce → Extra. Zvedat obojí najednou je nejdražší způsob, jak se nic nedozvědět.',
+    },
+    { kind: 'h', text: 'Dlouhá sezení: /clear, /compact, /rewind' },
+    {
+      kind: 'p',
+      text:
+        'Nejčastější důvod, proč limit mizí rychle: jedno sezení otevřené celý den, ve kterém se vystřídalo pět nesouvisejících úloh. Každá další zpráva táhne s sebou všechny předchozí.',
+    },
+    {
+      kind: 'figure',
+      name: 'context-growth',
+      caption:
+        'Táž práce, tytéž otázky — vlevo jedno sezení celý den, vpravo tři sezení s /clear mezi úlohami.',
+    },
+    {
+      kind: 'figure',
+      name: 'tri-prikazy',
+      caption:
+        '/clear historii zahodí, /compact ji slisuje do souhrnu, /rewind ukrojí jen konec. Liší se hlavně tím, co to stojí.',
+    },
+    {
+      kind: 'figure',
+      name: 'faktury-sezeni',
+      caption:
+        'Odpoledne nad kontrolou faktur po zprávách — pět různých věcí, a právě mezi nimi se rozhoduje, jestli tě to bude stát kus přídělu, nebo celý.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Než dáš /clear',
+      text:
+        'Sezení se dá pojmenovat příkazem /rename a vrátit se k němu přes /resume — „zahodit" neznamená „ztratit", jen přestaneš platit v každé další zprávě.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Jediná otázka, kterou si u toho klaď',
+      text:
+        'Potřebuje další zpráva to, co je v historii? Ano → jsi ve stejné úloze, jeď dál (a /compact v přestávce, když je historie dlouhá). Ne → /clear.',
+    },
+    {
+      kind: 'links',
+      title: 'Ta automatizace z příkladu',
+      items: [
+        {
+          label: 'Cvičný projekt: kontrola faktur ke stažení',
+          href: '#academy/od-mapy-k-automatu/cvicny-projekt-faktury',
+          note: 'Hotový projekt i s fakturami, skillem a naplánovanou úlohou — stáhneš a pustíš.',
+        },
+      ],
+    },
+    { kind: 'h', text: 'Co rozbíjí cache' },
+    {
+      kind: 'table',
+      head: ['Rozbije cache', 'Nerozbije'],
+      rows: [
+        ['přepnutí modelu', 'úprava souborů v projektu'],
+        ['změna effortu', 'spuštění skillu nebo příkazu s lomítkem'],
+        ['připojení nebo odpojení konektoru', '/rewind zpět'],
+        ['/compact', '/recap — jen shrne, nemění historii'],
+        ['nasbírání většího množství obrázků', 'úprava CLAUDE.md (projeví se až po /clear)'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Z toho plyne pravidlo',
+      text:
+        'Model a effort vyber na začátku sezení a pak už na ně nesahej. Cache na firemním předplatném vydrží hodinu nečinnosti — po vyčerpání přídělu jen pět minut.',
+    },
+    { kind: 'h', text: 'Pár dalších věcí, co drží kontext lehký' },
+    {
+      kind: 'list',
+      items: [
+        'Zadávej konkrétně. „Vylepši mi ten projekt" znamená, že Claude začne číst všechno.',
+        'CLAUDE.md drž do dvou set řádků — delší postupy patří do skillu, který se načte, jen když je potřeba.',
+        'Do projektu nedávej celou databázi, ale reálný vzorek.',
+        'Odkazuj na soubory zavináčem (@nazev-souboru) místo opisování cesty.',
+        'U velkých úloh si nech nejdřív napsat plán (Shift+Tab, plan mode) — levnější než dvakrát dělat špatnou věc.',
+      ],
+    },
+    {
+      kind: 'p',
+      text:
+        'Podagent není „druhý Claude, který ví totéž" — dostane vlastní čistý kontext, tvůj CLAUDE.md, ale ne tvoji konverzaci. Upovídaná práce zůstane u něj a zmizí s ním, zpátky přijde jen odpověď.',
+    },
+    {
+      kind: 'figure',
+      name: 'subagent-context',
+      caption:
+        'Tisíc řádků výpisu zůstane u podagenta. U tebe by se to posílalo znovu s každou další zprávou.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Naplánované úlohy nespí',
+      text:
+        'Spustí se i bez tebe u počítače a posílají s sebou celý svůj kontext. Po týdnu zkontroluj v /usage, kolik si vzaly.',
+    },
     {
       kind: 'task',
       title: 'Cvičení: zjisti, kam ti odtéká příděl',
-      intro:
-        'Deset minut, jednou. Většinou se ukáže jedna věc, která žere víc než všechno ostatní dohromady.',
+      intro: 'Deset minut, jednou. Většinou se ukáže jedna věc, která žere víc než všechno ostatní dohromady.',
       items: [
-        'Napiš /usage a přepni se na posledních sedm dní — v terminálu stiskem písmene w, v aplikaci kliknutím na přepínač týdne. Zapiš si, co je nahoře.',
-        'Napiš /context a podívej se, kolik zabírá CLAUDE.md a připojené konektory.',
-        'Odpoj jeden konektor, který nepoužíváš, a jeden delší postup z CLAUDE.md přesuň do skillu.',
+        'Napiš /usage a přepni se na posledních sedm dní. Zapiš si, co je nahoře.',
+        'Napiš /context a podívej se, kolik zabírá CLAUDE.md a konektory.',
+        'Odpoj jeden nepoužívaný konektor a jeden delší postup z CLAUDE.md přesuň do skillu.',
         'Zkus jeden pracovní den zavírat sezení příkazem /clear při každé změně tématu.',
         'Za týden se podívej znovu a porovnej.',
       ],
       hint:
-        'Když v /usage vyskočí „long context" nebo „cache misses", není to porucha — je to přesně ten návyk, o kterém je tahle lekce. Long context znamená příliš dlouhá sezení, cache misses znamená příliš mnoho přepínání modelu nebo dlouhé pauzy.',
+        'Když v /usage vyskočí „long context" nebo „cache misses", je to přesně ten návyk, o kterém je tahle lekce — dlouhá sezení, nebo příliš časté přepínání modelu.',
     },
     {
       kind: 'links',
       title: 'Kam se podívat dál',
       items: [
         {
-          label: 'Maximizing value from Claude Code',
-          href: 'https://www.anthropic.com/webinars/claude-code-maximizing-value',
-          note: 'týž obsah jako ten článek nahoře, ale jako webinář — anglicky, hodina',
+          label: 'Maximizing the value of your Claude Code sessions',
+          href: 'https://claude.com/blog/maximizing-the-value-of-your-claude-code-sessions',
+          note: 'Lydia Hallie, Anthropic — pět minut čtení, anglicky. Odsud lekce vychází.',
         },
         {
           label: 'Manage costs effectively',
@@ -772,7 +668,7 @@ const LESSON_COWORK: Lesson = {
   title: 'Z Coworku do Claude Code',
   summary:
     'Většina z vás zatím zná jen Cowork. Čím se Code liší, kdy se který hodí, a co si mezi nimi přenesete.',
-  minutes: 12,
+  minutes: 8,
   kind: 'lekce',
   track: 'potom',
   outcomes: [
@@ -785,7 +681,7 @@ const LESSON_COWORK: Lesson = {
     {
       kind: 'p',
       text:
-        'V aplikaci Claude jsou tři záložky a pletou se. Nejsou to tři různé produkty ani tři úrovně pokročilosti — je to trojí způsob, jak k Claudovi pustit vaši práci. Rozdíl je v tom, kde ta práce leží a jestli u ní sedíte.',
+        'V aplikaci Claude jsou tři záložky a pletou se. Nejsou to úrovně pokročilosti, ale trojí způsob, jak k Claudovi pustit práci — rozdíl je v tom, kde leží vaše soubory a jestli u nich sedíte.',
     },
     {
       kind: 'table',
@@ -808,31 +704,6 @@ const LESSON_COWORK: Lesson = {
         ],
       ],
     },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Nejde o to, co je „lepší“',
-      text:
-        'Cowork je silný v tom, že běží bez vás a vy se mezitím věnujete něčemu jinému. Claude Code je silný v tom, že pracuje rovnou ve složce s vašimi daty a nic se nikam nepřepisuje. Většina agend v logistice je druhý případ — data jsou v nasyncované knihovně a mají tam i zůstat.',
-    },
-    { kind: 'h', text: 'Co se změní, když přejdete do Code' },
-    {
-      kind: 'list',
-      items: [
-        'Práce má domov. Otevřete složku a všechno v ní Claude vidí — data, výstupy, pravidla. Nemusíte nic nahrávat a příště vybíráte tutéž složku ze seznamu.',
-        'Pravidla se nemusí opakovat. CLAUDE.md ve složce se načte na začátku každého sezení: slovník agendy, kde jsou data, co se nesmí.',
-        'Postupy se dají zabalit. Co děláte potřetí, se stane skillem a spustí se jednou větou nebo lomítkem.',
-        'Výsledky se dají zkontrolovat. U každé změny souboru vidíte, co přesně se změnilo, a můžete to odmítnout.',
-        'Dá se to naplánovat. Úloha se spustí sama v čase, který určíte, a po ní zůstane protokol.',
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Příděl je společný',
-      text:
-        'Chat, Cowork i Claude Code čerpají z jednoho přídělu, ne z tří. Když dopoledne proženete dlouhé sezení v Coworku, odpoledne to poznáte v Code. Jak s tím zacházet, je v lekci Kolik to stojí a jak platit míň.',
-    },
     { kind: 'h', text: 'Kdy zůstat v Coworku' },
     {
       kind: 'list',
@@ -854,10 +725,34 @@ const LESSON_COWORK: Lesson = {
     },
     {
       kind: 'note',
+      tone: 'info',
+      title: 'Nejde o to, co je „lepší“',
+      text:
+        'Cowork je silný v tom, že běží bez vás. Code je silný v tom, že pracuje rovnou ve složce s vašimi daty a nic se nikam nepřepisuje. Většina agend v logistice je druhý případ.',
+    },
+    { kind: 'h', text: 'Co se změní, když přejdete do Code' },
+    {
+      kind: 'list',
+      items: [
+        'Práce má domov — otevřete složku a Claude vidí data, výstupy, pravidla; příště vyberete tutéž složku ze seznamu.',
+        'Pravidla se nemusí opakovat — CLAUDE.md se načte na začátku každého sezení.',
+        'Postupy se dají zabalit do skillu, který se spustí jednou větou.',
+        'Dá se to naplánovat, aby to jednou běželo samo a po sobě nechalo protokol.',
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Příděl je společný',
+      text:
+        'Chat, Cowork i Code čerpají z jednoho přídělu. Dlouhé sezení dopoledne v Coworku poznáte odpoledne v Code — víc v lekci Kolik to stojí a jak platit míň.',
+    },
+    {
+      kind: 'note',
       tone: 'ok',
       title: 'Co si přenesete',
       text:
-        'Nezačínáte od nuly. Zvyk psát konkrétní zadání — co vzít, co udělat, kam uložit, co s výjimkou — platí ve všech třech záložkách stejně. To, co se v Code přidá, je složka, pravidla a možnost nechat postup běžet znovu.',
+        'Zvyk psát konkrétní zadání — co vzít, co udělat, kam uložit, co s výjimkou — platí ve všech třech záložkách stejně. Code navíc přidává složku, pravidla a možnost nechat postup běžet znovu.',
     },
   ],
 }
@@ -867,8 +762,8 @@ const LESSON_PROJEKT: Lesson = {
   module: 'napojeni',
   title: 'Projekt v Claude Code: co si založit',
   summary:
-    'Projekt ti založí Claude sám — jedním zadáním. Co při tom vzniklo a proč: CLAUDE.md, skill, artefakt, konektor, na hotových příkladech z logistiky, dopravy, BI, marketingu a vedení.',
-  minutes: 20,
+    'Projekt založí Claude jedním zadáním. Co při tom vznikne a proč — CLAUDE.md, skill, artefakt, konektor — na příkladech z logistiky, dopravy, BI, marketingu a vedení.',
+  minutes: 15,
   kind: 'lekce',
   track: 'v sále',
   outcomes: [
@@ -881,20 +776,19 @@ const LESSON_PROJEKT: Lesson = {
     {
       kind: 'p',
       text:
-        'Claude Code se nespouští „v aplikaci“. Spouští se ve složce — a všechno, co si v něm nastavíš, jsou obyčejné soubory v té složce. To je dobrá zpráva: nastavení se dá číst, poslat kolegovi a verzovat. Ještě lepší zpráva: nic z toho nebudeš vyrábět ručně. Projekt ti založí Claude sám. Tvoje práce je rozumět tomu, co vzniklo — a rozhodnout jedinou věc, kterou za tebe rozhodnout nemůže: kde ta složka bude.',
+        'Claude Code se spouští ve složce a všechno, co v něm nastavíš, jsou obyčejné soubory v ní — dají se číst, poslat kolegovi, verzovat. Nic z toho ale nevyrábíš ručně: projekt založí Claude sám, ty jen rozhodneš jedinou věc, kterou za tebe rozhodnout nemůže — kde ta složka bude.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Pro koho to je',
       text:
-        'Pro lidi z logistiky, dopravy, BI, marketingu a vedení, kteří nechtějí programovat, ale chtějí, aby se opakovaná práce dělala sama. Nic z toho, co je níž, není kód — jsou to textové soubory a složky.',
+        'Pro logistiku, dopravu, BI, marketing a vedení — bez programování. Všechno níž jsou textové soubory a složky, ne kód.',
     },
     { kind: 'h', text: 'Založení nech na Claudovi' },
     {
       kind: 'p',
-      text:
-        'První věta v novém projektu není příkaz ani klikání v Průzkumníku. Je to zadání. Nejdřív ale musíš Clauda otevřít v té správné složce — to je celé takhle:',
+      text: 'První věta v novém projektu je zadání, ne klikání v Průzkumníku. Nejdřív ale otevři Clauda ve správné složce:',
     },
     {
       kind: 'steps',
@@ -902,17 +796,17 @@ const LESSON_PROJEKT: Lesson = {
         {
           title: 'Založ prázdnou složku agendy',
           body:
-            'V Průzkumníku nebo Finderu, uvnitř nasyncované knihovny — třeba faktury-kontrola. Musí existovat dřív, než ji půjdeš vybrat; Claude si ji sám nikde nevytvoří, protože neví kam. Data ani nic dalšího do ní zatím dávat nemusíš.',
+            'V Průzkumníku nebo Finderu, uvnitř nasyncované knihovny — třeba faktury-kontrola. Musí existovat dřív, než ji vybereš; Claude si ji sám nevytvoří, protože neví kam.',
         },
         {
           title: 'Otevři ji v aplikaci Claude',
           body:
-            'Záložka Code, prostředí nech na Local (to znamená „na mém počítači, s mými soubory"), klikni na Select folder a vyber tu složku. Když se zeptá, jestli složce věříš, potvrď. Ve Windows musí být nainstalovaný Git, jinak se místní sezení nespustí — na Macu to řešit nemusíš.',
+            'Záložka Code, prostředí nech na Local (to znamená „na mém počítači, s mými soubory"), klikni na Select folder a vyber tu složku. Když se zeptá, jestli jí věříš, potvrď. Ve Windows musí být nainstalovaný Git, jinak se místní sezení nespustí — na Macu to řešit nemusíš.',
           image: {
             src: 'git-pro-windows.webp',
             alt: 'Stránka git-scm.com se záložkami Windows, macOS, Linux a Build from Source. Na záložce Windows je nahoře odkaz Click here to download, kterým se stáhne poslední udržovaná verze Gitu pro Windows pro procesory x64. Pod ním jsou další možnosti: samostatný instalátor pro x64 i ARM64, přenosná verze na flash disk a příkaz winget install --id Git.Git -e --source winget pro ty, kdo instalují z příkazové řádky.',
             caption:
-              'Jen pro Windows. Na git-scm.com klikni na Click here to download, spusť instalátor a všechno nech tak, jak to nabídne — Claude Code od Gitu nic dalšího nepotřebuje. Pak restartuj aplikaci Claude.',
+              'Jen pro Windows. Klikni na Click here to download, spusť instalátor a nic neměň. Pak restartuj aplikaci Claude.',
           },
           links: [
             {
@@ -934,31 +828,31 @@ const LESSON_PROJEKT: Lesson = {
 CLAUDE.md. Do CLAUDE.md napiš slovník téhle agendy — na pojmy se mě
 zeptej — kde jsou data, a pravidlo, že originály v data/ se nikdy
 nepřepisují: všechno nové se ukládá do vystupy/.`,
-      caption: 'Dvacet vteřin a struktura stojí. Zbytek lekce vysvětluje, co právě vzniklo a proč — až se něco pokazí, budeš to potřebovat vědět.',
+      caption: 'Dvacet vteřin a struktura stojí. Zbytek lekce vysvětluje, co vzniklo a proč — až se něco pokazí, budeš to potřebovat vědět.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Projekt a nasyncovaná složka nestojí vedle sebe',
       text:
-        'Je to jedna a tatáž věc. Projekt v Claude Code není nic, co by vzniklo někde v aplikaci — je to prostě složka, kterou otevřeš. Takže „projekt v nasyncované knihovně“ znamená obyčejnou podsložku v ní, nic víc. Claude přitom vidí jen to, co je v otevřené složce a pod ní: když otevřeš faktury-kontrola, zbytek knihovny pro něj neexistuje.',
+        'Projekt v Claude Code není nic zvláštního — je to prostě složka, kterou otevřeš. „Projekt v nasyncované knihovně“ tak znamená obyčejnou podsložku v ní. Claude přitom vidí jen otevřenou složku a to, co je pod ní.',
     },
     { kind: 'h', text: 'Projekt je složka' },
     {
       kind: 'p',
       text:
-        'Claude vidí obsah složky, ve které ho spustíš, a nic nad ní. Proto platí jednoduché pravidlo: jedna agenda = jedna složka. Ne jedna velká složka „AI“, do které se sype všechno. Když si založíš zvlášť kontrolu faktur, zvlášť reporty a zvlášť ceníky, každý projekt si drží svoje pravidla a nepletou se dohromady.',
+        'Claude vidí obsah složky, ve které ho spustíš, a nic nad ní. Proto: jedna agenda = jedna složka, ne jedna velká „AI“ složka se vším dohromady. Zvlášť kontrola faktur, zvlášť reporty, zvlášť ceníky — každý projekt si drží svoje pravidla.',
     },
     {
       kind: 'figure',
       name: 'project-tree',
-      caption: 'Tohle právě vzniklo. Nic z toho není povinné — a přesto se všechno vyplatí.',
+      caption: 'Tohle právě vzniklo. Nic z toho není povinné — a přesto se to vyplatí.',
     },
     { kind: 'h', text: 'A když ta složka je sdílená knihovna?' },
     {
       kind: 'p',
       text:
-        'Většina agend nemá data na ploše, ale ve sdílené knihovně na SharePointu. Dobrá zpráva: nic zvláštního se nekoná. Nasyncovaná knihovna je pro počítač obyčejná složka, takže projekt může ležet přímo v ní — struktura je úplně stejná, mění se jenom cesta.',
+        'Většina agend má data ve sdílené knihovně na SharePointu, ne na ploše. Nic zvláštního se nekoná — nasyncovaná knihovna je pro počítač obyčejná složka, takže projekt může ležet přímo v ní. Struktura je stejná, mění se jen cesta.',
     },
     {
       kind: 'platform',
@@ -971,7 +865,7 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
     ├── data/
     ├── vystupy/
     └── .claude/skills/`,
-          caption: 'Na Macu je složka Library skrytá — do Finderu se dostaneš přes ⇧⌘G. Složka .claude začíná tečkou, takže ji Finder taky nezobrazuje; ⇧⌘. skryté soubory přepne.',
+          caption: 'Library je na Macu skrytá — do Finderu se dostaneš přes ⇧⌘G. .claude začíná tečkou, takže ji skryje taky; ⇧⌘. skryté soubory přepne.',
         },
       ],
       win: [
@@ -993,19 +887,19 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
       rows: [
         [
           'CLAUDE.md a skilly se nasyncují celému týmu',
-          'To je většinou výhoda: pravidla přestanou být tvoje a stanou se týmová. Zároveň to znamená, že do nich nepiš nic osobního.',
+          'Většinou výhoda — pravidla jsou týmová. Zároveň do nich nepiš nic osobního.',
         ],
         [
           'Všechno ve vystupy/ uvidí ostatní',
-          'Rozpracované věci pojmenovávej tak, aby bylo poznat, že rozpracované jsou. Nikdo nemá poznat verzi podle data změny.',
+          'Rozpracované věci pojmenovávej tak, aby to bylo poznat.',
         ],
         [
           'Soubory musí být stažené v zařízení',
-          'Files On-Demand jinak nechá na disku jen zástupce a Claude v nich nic nepřečte. Pravý klik na složku → Vždy ponechat v tomto zařízení.',
+          'Files On-Demand jinak nechá jen zástupce a Claude v nich nic nepřečte. Pravý klik na složku → Vždy ponechat v tomto zařízení.',
         ],
         [
           'Dva lidi ve stejné složce naráz',
-          'OneDrive udělá konfliktní kopii. Nespouštěj Clauda nad stejnou složkou ze dvou počítačů současně.',
+          'OneDrive udělá konfliktní kopii — nespouštěj Clauda nad stejnou složkou ze dvou počítačů zároveň.',
         ],
         [
           'Práva se dědí ze SharePointu',
@@ -1013,18 +907,11 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
         ],
       ],
     },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Druhá varianta: projekt lokálně, knihovna jako zdroj',
-      text:
-        'Když nechceš svoje pokusy syncovat celému oddělení, nech projekt u sebe na disku a knihovnu připoj jako druhou složku. Claude pak čte data z knihovny a zapisuje k tobě. Nevýhoda: pravidla ani skilly nikdo jiný neuvidí. Rozhodni se podle toho, jestli je agenda tvoje, nebo týmová.',
-    },
     { kind: 'h', text: 'CLAUDE.md je paměť projektu' },
     {
       kind: 'p',
       text:
-        'Textový soubor v kořeni složky, který se načte na začátku každého sezení. Sem patří to, co bys jinak vysvětlovala pokaždé znovu: firemní slovník (co je základ daně, objednávka, schválení, středisko), kde leží která data, jak se mají jmenovat výstupy a co se nikdy nesmí. Pravidlo, kdy něco dopsat: když stejnou opravu píšeš podruhé.',
+        'Textový soubor v kořeni složky, načte se na začátku každého sezení. Patří sem to, co bys jinak vysvětlovala pokaždé znovu: firemní slovník, kde leží která data, jak se mají jmenovat výstupy a co se nikdy nesmí. Dopisuj, když stejnou opravu píšeš podruhé.',
     },
     {
       kind: 'code',
@@ -1043,26 +930,26 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
 - Nikdy nepřepisuj soubory v data/. Výsledek ulož jako nový soubor do vystupy/.
 - Názvy výstupů: kontrola-<RRRR-MM-DD>.xlsx
 - Když chybí údaj, nech pole prázdné a napiš to — nedomýšlej si ho.`,
-      caption: 'Takhle vypadá CLAUDE.md, který dává smysl. Drž ho pod dvěma sty řádky a piš konkrétně.',
+      caption: 'Takhle vypadá CLAUDE.md, který dává smysl. Drž ho pod dvěma sty řádky, piš konkrétně.',
     },
     {
       kind: 'note',
       tone: 'ok',
       title: 'Nemusíš ho psát na prázdno',
       text:
-        'Příkaz /init si projde složku a vygeneruje první verzi. Příkaz /memory ukáže, které soubory s pravidly se do sezení načetly, a otevře je k úpravě. Claude si navíc sám zapisuje opravy, které mu dáš — i ty najdeš přes /memory.',
+        '/init projde složku a vygeneruje první verzi, /memory ukáže, které soubory s pravidly se do sezení načetly, a otevře je k úpravě. Claude si navíc opravy, které mu dáš, zapisuje sám — i ty najdeš přes /memory.',
     },
     { kind: 'h', text: 'Sezení začíná načisto' },
     {
       kind: 'p',
       text:
-        'Každý nový rozhovor začíná bez paměti na ten předchozí — kromě CLAUDE.md a poznámek, které si Claude zapsal sám. Zní to jako nevýhoda, ale je to ochrana: dlouhé sezení, ve kterém se míchá pět různých úloh, dává horší výsledky než pět krátkých. Jedna úloha = jedno sezení, mezi nimi /clear.',
+        'Nový rozhovor nezná ten předchozí — kromě CLAUDE.md a poznámek, které si Claude zapsal sám. Je to ochrana: dlouhé sezení s pěti různými úlohami dává horší výsledky než pět krátkých. Jedna úloha = jedno sezení, mezi nimi /clear.',
     },
     { kind: 'h', text: 'Skill je zabalený postup' },
     {
       kind: 'p',
       text:
-        'Když stejný postup popisuješ potřetí, přestaň ho popisovat a udělej z něj skill. Je to složka se souborem SKILL.md: nahoře pár řádků o tom, co skill dělá a kdy se má použít, pod tím samotný postup. Claude si ho pak vybere sám, když na takovou úlohu narazí — nebo ho spustíš lomítkem podle jména.',
+        'Když stejný postup popisuješ potřetí, udělej z něj skill: složku se souborem SKILL.md, nahoře pár řádků co skill dělá a kdy se má použít, pod tím samotný postup. Claude si ho pak vybere sám, nebo ho spustíš lomítkem podle jména.',
     },
     {
       kind: 'code',
@@ -1079,13 +966,13 @@ description: Projde faktury ve složce, vytáhne z nich povinné údaje
 2. Z každé vytáhni číslo faktury, dodavatele, číslo objednávky a částku.
 3. Porovnej se seznamem objednávek a ulož výsledek do vystupy/.
 ...`,
-      caption: 'Řádek description rozhoduje o tom, kdy se skill sám nabídne. Piš do něj i slova, která se běžně říkají v zadání. Celý skill je rozebraný v lekci Rozbor skutečného skillu.',
+      caption: 'Řádek description rozhoduje, kdy se skill sám nabídne — piš do něj slova, která se běžně říkají v zadání. Celý skill je rozebraný v lekci Rozbor skutečného skillu.',
     },
     { kind: 'h', text: 'Artefakt je publikovaná stránka' },
     {
       kind: 'p',
       text:
-        'Přehled, dashboard, kalkulačka, checklist pro tým. Na rozdíl od souboru má vlastní adresu, dá se poslat kolegovi odkazem a příště se aktualizuje na stejném místě, takže nikomu nezůstane v ruce stará verze. Tahle akademie je taky jen publikovaná stránka.',
+        'Přehled, dashboard, kalkulačka, checklist pro tým. Na rozdíl od souboru má vlastní adresu, dá se poslat odkazem a příště se aktualizuje na stejném místě — nikomu nezůstane v ruce stará verze. Tahle akademie je taky jen publikovaná stránka.',
     },
     {
       kind: 'table',
@@ -1102,20 +989,20 @@ description: Projde faktury ve složce, vytáhne z nich povinné údaje
     {
       kind: 'p',
       text:
-        'Konektor (technicky MCP server) dá Claudovi nástroje k jednomu konkrétnímu systému — katalogu, úložišti, ticketovacímu nástroji. Zapojuj jen to, co pro danou agendu opravdu potřebuješ: každý konektor navíc je další místo, kde se dá něco splést, a další účet, který někdo spravuje.',
+        'Konektor (technicky MCP server) dá Claudovi nástroje k jednomu konkrétnímu systému — katalogu, úložišti, ticketovacímu nástroji. Zapojuj jen to, co pro danou agendu opravdu potřebuješ: každý navíc je další místo, kde se dá něco splést, a další účet, který někdo spravuje.',
     },
     { kind: 'h', text: 'Než se něco změní, ptá se' },
     {
       kind: 'p',
       text:
-        'U věcí, které mění soubory, se vyplatí nechat si nejdřív napsat plán, přečíst ho a teprve pak odsouhlasit. Claude se navíc ptá, než něco zapíše nebo spustí; mazání souborů je vypnuté, dokud ho výslovně nepovolíš. Neber ta potvrzení jako obtěžování — je to jediné místo, kde chybu chytíš dřív, než se stane.',
+        'U věcí, které mění soubory, se vyplatí nechat si nejdřív napsat plán a teprve pak ho odsouhlasit. Claude se navíc ptá, než něco zapíše nebo spustí; mazání souborů je vypnuté, dokud ho výslovně nepovolíš. Je to jediné místo, kde chybu chytíš dřív, než se stane.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Do složky projektu nepatří všechno',
       text:
-        'Claude vidí celý obsah složky. Nedávej do ní věci, které s agendou nesouvisejí — osobní dokumenty, hesla, exporty s údaji, které tam nemají co dělat. Platí to samé, co u sdílené složky pro kolegu.',
+        'Claude vidí celý obsah složky. Nedávej do ní věci, které s agendou nesouvisejí — osobní dokumenty, hesla, exporty, které tam nemají co dělat.',
     },
     {
       kind: 'video',
@@ -1126,7 +1013,7 @@ description: Projde faktury ve složce, vytáhne z nich povinné údaje
     {
       kind: 'p',
       text:
-        'Takhle to vypadá u agendy, kterou v akademii rozebíráme do hloubky — kontrola faktur. Projekt přečte PDF faktury, porovná je se seznamem schválených objednávek a připraví podklad ke schválení. Neschvaluje a neplatí, to zůstává na člověku. Je to přesně ten projekt, který si později stáhneš hotový v lekci Cvičný projekt: kontrola faktur — tady je jen vidět, z čeho se skládá.',
+        'Takhle to vypadá u agendy, kterou v akademii rozebíráme do hloubky — kontrola faktur. Projekt přečte PDF faktury, porovná je se schválenými objednávkami a připraví podklad ke schválení; neschvaluje a neplatí, to zůstává na člověku. Stáhneš si ho hotový v lekci Cvičný projekt: kontrola faktur — tady je jen vidět, z čeho se skládá.',
     },
     {
       kind: 'code',
@@ -1197,12 +1084,12 @@ a připraví podklad ke schválení. Neschvaluje a neplatí — to dělá člov�
         [
           '„Zkontroluj mi ty faktury.“',
           '„Projdi PDF ve vstup/, porovnej je se schválenými objednávkami v data/objednavky.xlsx a ulož výsledek do vystup/.“',
-          'Pojmenuj vstup, operaci i místo výsledku. Jinak hádá všechno tři.',
+          'Pojmenuj vstup, operaci i místo výsledku — jinak hádá všechno tři.',
         ],
         [
           '„Uprav to, ať je to přehlednější.“',
           '„Sloupce Faktura, Dodavatel, Základ daně, SEDÍ, CHYBÍ v tomhle pořadí, řádky s nálezem podbarvi červeně.“',
-          'Ověřitelné zadání se dá zkontrolovat. „Přehlednější“ ne.',
+          'Ověřitelné zadání se dá zkontrolovat, „přehlednější“ ne.',
         ],
         [
           '„Doplň, co ve faktuře chybí.“',
@@ -1212,15 +1099,14 @@ a připraví podklad ke schválení. Neschvaluje a neplatí — to dělá člov�
         [
           '„Udělej to jako minule.“',
           '„Postupuj podle skillu kontrola-faktur.“',
-          'Minule si nepamatuje. Skill ano.',
+          'Minule si nepamatuje, skill ano.',
         ],
       ],
     },
     { kind: 'h', text: 'A co u jiných agend' },
     {
       kind: 'p',
-      text:
-        'Struktura je pokaždé stejná, mění se jen slovník a pravidla. Přepni si agendu, která je nejblíž té tvojí.',
+      text: 'Struktura je pokaždé stejná, mění se jen slovník a pravidla. Přepni si agendu, která je nejblíž té tvojí.',
     },
     {
       kind: 'tabs',
@@ -1237,8 +1123,7 @@ a připraví podklad ke schválení. Neschvaluje a neplatí — to dělá člov�
 
 Zadání na začátek:
 - „Spočítej z jízd za minulý týden podíl prázdných kilometrů po vozidlech.“
-- „Vypiš tři vozidla s nejhorším poměrem a u každého tři nejdelší prázdné úseky.“
-- „Ulož to jako přehled do vystupy/ a shrň do pěti vět, co je potřeba řešit.“`,
+- „Vypiš tři vozidla s nejhorším poměrem a u každého tři nejdelší prázdné úseky.“`,
             },
           ],
         },
@@ -1252,16 +1137,10 @@ Zadání na začátek:
 ├── data/          # export požadavků z nástěnky, exporty k modelům
 └── vystupy/       # zadání pro realizaci, datové slovníky
 
-U BI se nepřelévají data mezi soubory, ale zadání mezi lidmi:
-nástěnka jde Nové požadavky → Specifikace → Analýza BI → Tvorba zadání
-→ Připraveno k realizaci → Realizace.
-
 Zadání na začátek:
 - „Vezmi tenhle požadavek a napiš ho ve tvaru, který projde ze Specifikace
    do Analýzy napoprvé. Co chybí, vypiš jako otázky na zadavatele.“
-- „Porovnej sloupce dvou exportů a vypiš, kde se schéma rozešlo.“
-- „Projdi požadavky za poslední půlrok a řekni, které se opakují natolik,
-   že mají být modelem, ne jednorázovkou.“`,
+- „Porovnej sloupce dvou exportů a vypiš, kde se schéma rozešlo.“`,
             },
           ],
         },
@@ -1277,8 +1156,7 @@ Zadání na začátek:
 
 Zadání na začátek:
 - „Z tabulky položek napiš popisky pro web, každý do 200 znaků, podle tónu z CLAUDE.md.“
-- „Zkontroluj, jestli někde nepoužíváme zakázaná slova ze seznamu.“
-- „Udělej přehled, které položky mají hotový text a které ne.“`,
+- „Zkontroluj, jestli někde nepoužíváme zakázaná slova ze seznamu.“`,
             },
           ],
         },
@@ -1294,7 +1172,6 @@ Zadání na začátek:
 
 Zadání na začátek:
 - „Z přepisu porady vytáhni rozhodnutí, úkoly a kdo je vlastní. Co není jasné, označ.“
-- „Porovnej úkoly z posledních tří porad a řekni, co se veze bez pohybu.“
 - „Shrň mi to na jednu stránku pro vedení — bez omáčky, jen stav a rizika.“`,
             },
           ],
@@ -1568,7 +1445,7 @@ const LESSON_SHAREPOINT: Lesson = {
   title: 'Sdílená složka ze SharePointu',
   summary:
     'Nasyncovat týmovou knihovnu do počítače a připojit ji Claudovi, aby si v ní mohl číst a psát. Pro Mac i Windows.',
-  minutes: 15,
+  minutes: 12,
   kind: 'lekce',
   track: 'v sále',
   outcomes: [
@@ -1581,40 +1458,33 @@ const LESSON_SHAREPOINT: Lesson = {
     {
       kind: 'p',
       text:
-        'Claude se do SharePointu sám nepřihlásí. Umí ale pracovat se složkou, která je fyzicky na tvém počítači — a přesně tím se nasyncovaná knihovna stává. Cíl téhle lekce je jednorázové nastavení: jednou to proklikáš a pak už jen v každém úkolu vybereš složku ze seznamu.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Co k tomu potřebuješ',
-      text:
-        'Počítač s nainstalovanou aplikací OneDrive přihlášenou firemním účtem, přístup do knihovny na SharePointu a Claude Code. Nic dalšího se neinstaluje.',
-    },
-    {
-      kind: 'figure',
-      name: 'sync-map',
-      caption:
-        'Knihovna se přes OneDrive stane běžnou složkou na disku. Liší se jen cesta — a tu si Claude pamatuje sám, jakmile složku jednou vybereš.',
+        'Claude se do SharePointu sám nepřihlásí, ale umí pracovat se složkou nasyncovanou na tvůj počítač přes OneDrive. Potřebuješ k tomu OneDrive přihlášený firemním účtem, přístup do knihovny na SharePointu a Claude Code — nic dalšího se neinstaluje.',
     },
     { kind: 'h', text: 'Postup' },
     {
       kind: 'p',
-      text: 'Kroky jsou stejné, cesty a názvy voleb ne. Přepni si systém, na kterém sedíš.',
+      text: 'Kroky jsou stejné, cesty a názvy voleb ne — přepni si systém, na kterém sedíš.',
     },
     { kind: 'platform', mac: STEPS_MAC, win: STEPS_WIN },
+    {
+      kind: 'figure',
+      name: 'sync-map',
+      caption:
+        'Knihovna se přes OneDrive stane běžnou složkou na disku. Cestu si Claude pamatuje sám, jakmile ji jednou vybereš.',
+    },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Práva se dědí ze SharePointu',
       text:
-        'Připojením složky nikomu nic nepůjčuješ navíc — Claude vidí přesně to, co vidíš ty. Co se ale změní: soubory, které Claude zapíše, se nasyncují zpátky do knihovny a uvidí je celý tým. Pracovní verze si proto zakládej do vlastní podsložky.',
+        'Claude vidí přesně to, co vidíš ty. Co ale zapíše, se nasyncuje zpátky do knihovny a uvidí to celý tým — pracovní verze si proto zakládej do vlastní podsložky.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Claude musí být spuštěný',
       text:
-        'K souborům se sezení dostane jen dokud běží desktopová aplikace Claude. Když ji zavřeš nebo počítač usne, Claude hlásí, že složku nevidí — nic se nerozbilo, jen se přerušilo spojení.',
+        'K souborům se dostane jen dokud běží desktopová aplikace. Zavřeš ji nebo počítač usne — Claude hlásí, že složku nevidí. Nic se nerozbilo, jen se přerušilo spojení.',
     },
     {
       kind: 'video',
@@ -1633,7 +1503,7 @@ const LESSON_SHAREPOINT: Lesson = {
         'Nech Clauda založit do podsložky krátké shrnutí toho, co našel.',
       ],
       hint:
-        'Když je knihovna velká, připoj radši jednu konkrétní podsložku. Menší rozsah znamená rychlejší a přesnější odpovědi.',
+        'Když je knihovna velká, připoj radši jednu konkrétní podsložku — menší rozsah znamená rychlejší a přesnější odpovědi.',
     },
     {
       kind: 'checklist',
@@ -1666,7 +1536,7 @@ const LESSON_CO_VIDI: Lesson = {
     {
       kind: 'p',
       text:
-        'Připojená složka není přístup do počítače. Je to přesně vymezený kus disku — ten, který si vybereš — a všechno ostatní zůstává mimo dosah. Vyplatí se vědět, kde ta hranice vede, protože podle toho se píše zadání.',
+        'Připojená složka není přístup do počítače — je to přesně vymezený kus disku, ten, který si vybereš. Vyplatí se vědět, kde vede hranice, protože podle toho se píše zadání.',
     },
     { kind: 'h', text: 'Uvnitř složky' },
     {
@@ -1684,7 +1554,7 @@ const LESSON_CO_VIDI: Lesson = {
       items: [
         'Cokoli mimo připojené složky — jiné disky, plocha, pošta.',
         'Mazání souborů bez dotazu. Na smazání se Claude Code zeptá a ty ho musíš odkliknout — pokud si to výslovně nepovolíš jinak.',
-        'Práce se soubory, když je Claude Code zavřený — nic neběží na pozadí, dokud si to nenaplánuješ (to je až poslední lekce).',
+        'Práce se soubory, když je Claude Code zavřený — nic neběží na pozadí, dokud si to nenaplánuješ.',
       ],
     },
     {
@@ -1692,7 +1562,7 @@ const LESSON_CO_VIDI: Lesson = {
       tone: 'ok',
       title: 'Pravidlo pro zadání',
       text:
-        'Když chceš vyčistit, převést nebo přeskládat data, řekni „ulož to jako nový soubor vedle původního“. Do existujícího souboru sahej jen tam, kde je to opravdu záměr — třeba oprava adresy v patičce dokumentu.',
+        'Chceš vyčistit, převést nebo přeskládat data? Řekni „ulož to jako nový soubor vedle původního“. Do existujícího souboru sahej, jen když je to opravdu záměr — třeba oprava adresy v patičce.',
     },
     {
       kind: 'task',
@@ -1726,7 +1596,7 @@ const LESSON_REGAL: Lesson = {
     {
       kind: 'p',
       text:
-        'Tohle není přepis jednoho konkrétního rozhovoru — je to obvyklý tvar toho, jak vypadá kontrola faktur bez automatizace: od chvíle, kdy dorazí e-mail od dodavatele, až po fakturu zadanou k platbě. Přečti si ho celý a teprve pak se pusť do zadání pod diagramem.',
+        'Obvyklý tvar kontroly faktur bez automatizace: od e-mailu s PDF fakturou po fakturu zadanou k platbě. Přečti si ho celý, zadání je pod diagramem.',
     },
     {
       kind: 'table',
@@ -1737,14 +1607,14 @@ const LESSON_REGAL: Lesson = {
         ['Povinné údaje', '6 — číslo faktury, dodavatel, IČO, číslo objednávky, základ daně, splatnost'],
         ['Zdroj k porovnání', 'export schválených objednávek, tabulka'],
         ['Kdo schvaluje k platbě', 'vedoucí střediska'],
-        ['Objem', 'řádově desítky faktur týdně'],
+        ['Objem', 'desítky faktur týdně'],
       ],
     },
     {
       kind: 'figure',
       name: 'regal-flow',
       caption:
-        'Tři účastníci, dvě kolečka přes e-mail. Oranžově jsou místa, kde se údaje přepisují ručně.',
+        'Tři účastníci, dvě kolečka přes e-mail. Oranžově místa, kde se údaje přepisují ručně.',
     },
     { kind: 'h', text: 'Proces krok za krokem' },
     {
@@ -1753,51 +1623,43 @@ const LESSON_REGAL: Lesson = {
         {
           title: 'Faktura přijde e-mailem od dodavatele',
           body:
-            'PDF příloha do sdílené schránky, mezi desítkami dalších zpráv. Nic ji netřídí — kdo se do schránky nepodívá, fakturu nenajde.',
+            'PDF příloha do sdílené schránky, mezi desítkami dalších zpráv. Nic ji netřídí — kdo se nepodívá, fakturu nenajde.',
         },
         {
           title: 'Účetní fakturu otevře a ručně přepíše údaje',
           body:
-            'Číslo faktury, dodavatele, IČO, číslo objednávky, základ daně a splatnost — jedno po druhém, z PDF do kontrolní tabulky.',
+            'Číslo faktury, dodavatele, IČO, číslo objednávky, základ daně a splatnost — z PDF do kontrolní tabulky.',
         },
         {
           title: 'Paralelně dohledá odpovídající objednávku',
           body:
-            'Otevře export schválených objednávek a hledá řádek se stejným číslem — často v jiném pořadí a jiném formátu čísla, než má faktura.',
+            'Otevře export schválených objednávek a hledá řádek se stejným číslem — často v jiném formátu, než má faktura.',
         },
         {
           title: 'Porovná základ daně se schválenou částkou',
-          body:
-            'Ručně, řádek po řádku. Sedí-li, jde faktura dál k dalšímu kroku; nesedí-li, začíná další kolo.',
+          body: 'Ručně, řádek po řádku. Sedí-li, jde faktura dál; nesedí-li, začíná další kolo.',
         },
         {
           title: 'Když něco nesedí, píše se středisku nebo dodavateli',
           body:
-            'Chybějící číslo objednávky, jiná částka, objednávka, která v seznamu není — na každé se ptá zvlášť a čeká na odpověď.',
+            'Chybějící číslo objednávky, jiná částka, objednávka, která v seznamu není — na každé se ptá zvlášť a čeká.',
         },
         {
           title: 'Faktury, u kterých vše sedí, jdou ke schválení',
-          body:
-            'Přeposlané e-mailem vedoucímu střediska, s poznámkou, na co se má podívat.',
+          body: 'Přeposlané e-mailem vedoucímu střediska, s poznámkou, na co se má podívat.',
         },
         {
           title: 'Schválení se vrátí a zapíše se ručně zpátky',
-          body:
-            'Účetní odpověď vykopíruje do tabulky a zkontroluje, že se v ní nic neposunulo.',
+          body: 'Účetní odpověď vykopíruje do tabulky a zkontroluje, že se v ní nic neposunulo.',
         },
         {
           title: 'Schválená faktura se zadá do účetního systému k platbě',
           body:
-            'Ručně, jedna po druhé. Tohle je krok, který rozhoduje — a proto zůstává na člověku, i když se všechno předchozí dá zautomatizovat.',
+            'Ručně, jedna po druhé. Tohle je krok, který rozhoduje — proto zůstává na člověku, i když se všechno předchozí zautomatizuje.',
         },
       ],
     },
     { kind: 'h', text: 'Soubory, o kterých je řeč' },
-    {
-      kind: 'p',
-      text:
-        'Než začneš hledat automatizace, podívej se, mezi čím se data přelévají.',
-    },
     {
       kind: 'table',
       head: ['Soubor', 'Co v něm je', 'Kdo ho vlastní'],
@@ -1826,11 +1688,6 @@ const LESSON_REGAL: Lesson = {
     },
     { kind: 'h', text: 'Co se u faktury vlastně porovnává' },
     {
-      kind: 'p',
-      text:
-        'Kontrola je jedno porovnání, ale skládá se z několika kroků — a jen část z nich je čistá aritmetika.',
-    },
-    {
       kind: 'table',
       head: ['Sloupec', 'Odkud se bere'],
       rows: [
@@ -1844,8 +1701,7 @@ const LESSON_REGAL: Lesson = {
     { kind: 'h', text: 'Co vyplňuje účetní' },
     {
       kind: 'p',
-      text:
-        'Do kontrolní tabulky si účetní k faktuře dopisuje čtyři věci. Tohle je přesně ta odpověď, která dnes vzniká ručně.',
+      text: 'Čtyři věci, které dnes vznikají ručně.',
     },
     {
       kind: 'table',
@@ -1862,7 +1718,7 @@ const LESSON_REGAL: Lesson = {
       tone: 'ok',
       title: 'Není to nedotčený proces',
       text:
-        'Účtárna dnes obvykle používá aspoň tabulku se vzorci, která hlídá součty. To je přesně ten kousek, který se dá automatizovat jako první — a přesně to budeš v příkladu níž dělat na vlastní agendě.',
+        'Účtárna dnes obvykle používá aspoň tabulku se vzorci, která hlídá součty — to je ten kousek, co se dá automatizovat jako první.',
     },
     {
       kind: 'task',
@@ -1884,8 +1740,7 @@ const LESSON_REGAL: Lesson = {
     { kind: 'h', text: 'Kam se to obvykle sejde' },
     {
       kind: 'p',
-      text:
-        'Když si tenhle proces projde víc skupin, vyjdou skoro vždycky tři stejná místa. Nedívej se na ně, dokud nemáš vlastní odpovědi.',
+      text: 'Tři místa, kam skupiny skoro vždy dojdou. Nedívej se, dokud nemáš vlastní odpovědi.',
     },
     {
       kind: 'table',
@@ -1913,7 +1768,7 @@ const LESSON_REGAL: Lesson = {
       tone: 'ok',
       title: 'Co nechat člověku',
       text:
-        'Rozhodnutí, že se faktura zaplatí. I když všechna čísla sedí, může se čekat na dodací list, na telefonát s dodavatelem, na výjimku, kterou nikdo nezapsal. Žádná kontrola v datech tohle rozhodnutí nenahradí — automatizace mu má připravit podklad, ne ho udělat za člověka.',
+        'Rozhodnutí, že se faktura zaplatí, zůstává na člověku — i když všechna čísla sedí, může se čekat na dodací list nebo výjimku, kterou nikdo nezapsal. Automatizace má připravit podklad, ne rozhodnutí udělat za něj.',
     },
   ],
 }
@@ -1924,7 +1779,7 @@ const LESSON_AUTOMATIZACE: Lesson = {
   title: 'Jak se v projektu nastaví automatizace',
   summary:
     'Pět stupňů od ručního zadání po běh bez tebe, včetně toho, co musí platit, než něco pustíš na plán. Na konci je odkaz na stažitelný cvičný projekt, kde je tenhle postup vidět celý na jednom hotovém případu.',
-  minutes: 30,
+  minutes: 25,
   kind: 'lekce',
   track: 'v sále',
   outcomes: [
@@ -1940,7 +1795,7 @@ const LESSON_AUTOMATIZACE: Lesson = {
     {
       kind: 'p',
       text:
-        'Automatizace nevznikne tím, že si řekneš „automatizuj to“. Vzniká po schodech: nejdřív úlohu uděláš ručně a popíšeš výsledek, pak z toho, co bylo potřeba vysvětlit, uděláš pravidlo, pak z celého postupu skill — a teprve když skill několikrát doběhl správně, má smysl ho spouštět bez sebe. Schody se nedají přeskočit. Kdo začne posledním, nastaví automat na postup, který si nikdy neověřil.',
+        'Automatizace nevzniká tím, že řekneš „automatizuj to“ — vzniká po schodech: ručně → pravidlo → skill → běh bez tebe, každý stupeň staví na tom předchozím. Schody se nedají přeskočit; kdo začne posledním, nastaví automat na postup, který si nikdy neověřil.',
     },
     {
       kind: 'figure',
@@ -1951,7 +1806,7 @@ const LESSON_AUTOMATIZACE: Lesson = {
     {
       kind: 'p',
       text:
-        'Otevři Clauda ve složce projektu a popiš, co má vzniknout. Ne jak to má udělat — co má být na konci. A pak si všímej, kolikrát mu musíš něco doříct. Každé takové doříkání je informace, která zatím chybí v projektu.',
+        'Otevři Clauda ve složce projektu a popiš, co má vzniknout — ne jak na to. Všímej si, kolikrát mu musíš něco doříct: každé doříkání je informace, která v projektu zatím chybí.',
     },
     {
       kind: 'code',
@@ -1964,7 +1819,7 @@ Kde chybí povinný údaj, nech pole prázdné a napiš to do sloupce CHYBÍ.`,
     {
       kind: 'p',
       text:
-        'Bylo potřeba říct, že kódy položek se nesmí měnit na čísla? Že se bere nejnovější soubor podle data v názvu? To nejsou postupy, to jsou fakta o agendě — patří do CLAUDE.md a od té chvíle platí v každém sezení. Tenhle stupeň je nejlevnější a nejvíc se vyplatí: většina „Claude to udělal blbě“ je ve skutečnosti pravidlo, které nikdo nenapsal.',
+        'Musela jsi říct, že kódy položek se nesmí měnit na čísla, nebo že se bere nejnovější soubor podle data v názvu? To nejsou postupy, ale fakta o agendě — patří do CLAUDE.md a platí od té chvíle v každém sezení. Tenhle stupeň je nejlevnější: většina „Claude to udělal blbě“ je ve skutečnosti nenapsané pravidlo.',
     },
     { kind: 'h', text: '3. Skill — zabal celý postup' },
     {
@@ -2003,7 +1858,7 @@ description: Projde faktury v PDF ve složce vstup/ a porovná je se
     {
       kind: 'p',
       text:
-        'Skill se pořád musí vyvolat. Hook ne — je to příkaz, který Claude Code spustí vždycky, když nastane určitá událost, bez ohledu na to, co si zrovna myslí. Hodí se na kontroly a zábrany, ne na složité úvahy: zálohuj před zápisem, odmítni sáhnout do data/, dej vědět, když je něco hotové.',
+        'Skill se pořád musí vyvolat. Hook ne — spustí se vždycky, když nastane daná událost, bez ohledu na to, co si Claude zrovna myslí. Hodí se na kontroly a zábrany, ne na složité úvahy: zálohuj před zápisem, odmítni sáhnout do data/, dej vědět, že je hotovo.',
     },
     {
       kind: 'code',
@@ -2032,7 +1887,7 @@ description: Projde faktury v PDF ve složce vstup/ a porovná je se
       tone: 'info',
       title: 'Nemusíš to psát ručně',
       text:
-        'V Claude Code napiš `/hooks` — otevře se prohlížeč hooků, kde vidíš všechny události, kolik jich máš nastavených a co přesně který spouští. Je to nejrychlejší způsob, jak zjistit, jestli se hook vůbec zaregistroval. A samotný soubor settings.json ti klidně napíše Claude: řekni mu, co se má stát a při jaké události.',
+        'V Claude Code napiš `/hooks` — otevře se prohlížeč hooků: vidíš všechny události a co přesně který spouští, a nejrychleji tak zjistíš, jestli se hook zaregistroval. Samotný settings.json ti klidně napíše Claude, řekni mu jen, co se má stát a při jaké události.',
     },
     {
       kind: 'table',
@@ -2068,7 +1923,7 @@ description: Projde faktury v PDF ve složce vstup/ a porovná je se
     {
       kind: 'p',
       text:
-        'Zbytek si nastavíš, až na něj narazíš. Tyhle dva se ale vyplatí mít od začátku: jeden ti dá vědět, že je hotovo, druhý ohlídá, že se nesáhne do dat. Dohromady jsou to přesně ty dvě věci, bez kterých se nedá pustit naplánovaný běh.',
+        'Zbytek si nastavíš, až na něj narazíš. Tyhle dva se ale vyplatí mít od začátku — notifikace, že je hotovo, a zábrana proti zápisu do dat. Bez nich se nedá pustit naplánovaný běh.',
     },
     {
       kind: 'platform',
@@ -2175,7 +2030,7 @@ exit 0`,
       tone: 'ok',
       title: 'Tohle je ta dvojice, o kterou jde',
       text:
-        'Zábrana plus notifikace. Zábrana je důvod, proč se dá běh pustit bez dozoru — nemůže se stát to nejhorší. Notifikace je důvod, proč se pozná, že doběhl. Naplánovaná úloha bez těch dvou je jenom rychlejší způsob, jak si nadělat škodu.',
+        'Zábrana plus notifikace: zábrana je důvod, proč se dá běh pustit bez dozoru — nemůže se stát to nejhorší; notifikace je důvod, proč se pozná, že doběhl. Bez nich je naplánovaná úloha jen rychlejší způsob, jak si nadělat škodu.',
     },
     {
       kind: 'links',
@@ -2192,12 +2047,13 @@ exit 0`,
     {
       kind: 'p',
       text:
-        'Poslední stupeň má smysl teprve tehdy, když všechno předchozí běželo několikrát správně a ty víš, jak poznáš, že výsledek je špatně. Claude Code umí běžet i bez rozhovoru — dostane zadání, odpracuje ho a skončí. Takový běh se dá naplánovat na čas a jeho výsledek si ráno jen zkontroluješ.',
+        'Poslední stupeň dává smysl, až když všechno předchozí běželo opakovaně správně a víš, jak poznáš špatný výsledek — jinak to nepouštěj. Claude Code pak umí dostat zadání, odpracovat ho a skončit bez rozhovoru, a takový běh se dá naplánovat na čas.',
     },
     {
       kind: 'code',
-      text: `claude -p "Postupuj podle skillu kontrola-faktur a výsledek ulož do vystup/."`,
-      caption: 'Jeden běh bez rozhovoru. Tohle je věta, kterou vložíš do naplánované úlohy — v Claude Code záložka Code → Routines → New routine → Local. Co musí platit, než to pustíš, je hned pod tímhle odstavcem.',
+      text: `cd <složka projektu — ta nasyncovaná z lekce Sdílená složka>
+claude -p "Postupuj podle skillu kontrola-faktur a výsledek ulož do vystup/."`,
+      caption: 'Spusť si to nejdřív ručně přesně takhle. Tahle věta pak jde do naplánované úlohy — v Claude Code záložka Code → Routines → New routine → Local. Když to takhle nedoběhne, na plánu to nedoběhne taky.',
     },
     {
       kind: 'note',
@@ -2207,9 +2063,11 @@ exit 0`,
         'Naplánovaný běh nikdo nesleduje. Ať proto vždycky vzniká krátký zápis toho, co se udělalo a co nesedělo — soubor ve vystupy/ nebo zpráva do chatu. Automat, po kterém nezůstane nic, se pozná až ve chvíli, kdy měsíc mlčky nedělá nic.',
     },
     {
-      kind: 'p',
+      kind: 'note',
+      tone: 'info',
+      title: 'Jak se úloha zakládá, je v samostatné lekci',
       text:
-        'Naplánovaný běh není odměna za odvahu — je to důsledek toho, že postup několikrát doběhl správně a že máš čím poznat, kdy nedoběhl. Když jedna z těch dvou věcí chybí, nepouštěj to.',
+        'Klikání ve formuláři, rozdíl mezi Local a Cloud a to, co se stane, když počítač spal, je v lekci Naplánovaná úloha v Claude Code. Tady zůstává jen to, co platí bez ohledu na formulář: kdy to pustit a co po sobě má běh nechat.',
     },
     {
       kind: 'checklist',
@@ -2222,26 +2080,6 @@ exit 0`,
         'Umíš jednou větou popsat, jak poznáš, že výsledek je špatně',
         'Víš, co se stane, když vstupní data ten den nepřijdou',
       ],
-    },
-    { kind: 'h', text: 'Spuštění bez rozhovoru' },
-    {
-      kind: 'p',
-      text:
-        'Claude Code umí dostat zadání, odpracovat ho a skončit — bez toho, aby u toho někdo seděl. Ta jedna věta je pak to, co se dá naplánovat.',
-    },
-    {
-      kind: 'code',
-      text: `cd <složka projektu — ta nasyncovaná z lekce Sdílená složka>
-claude -p "Postupuj podle skillu kontrola-faktur. Na konec ulož
-kontrolní protokol do vystup/."`,
-      caption: 'Spusť si to nejdřív ručně přesně takhle. Když to takhle nedoběhne, na plánu to nedoběhne taky.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Jak se úloha zakládá, je v samostatné lekci',
-      text:
-        'Klikání ve formuláři, rozdíl mezi Local a Cloud a to, co se stane, když počítač spal — to všechno je v lekci Naplánovaná úloha v Claude Code. Tady zůstává to, co platí bez ohledu na formulář: kdy to pustit a co po sobě má běh nechat.',
     },
     { kind: 'h', text: 'Co ještě může na konci udělat' },
     {
@@ -2336,7 +2174,7 @@ Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
       tone: 'warn',
       title: 'Automat, po kterém nezůstane stopa, se pozná pozdě',
       text:
-        'Nejhorší varianta není běh, který spadne. Je to běh, který měsíc tiše nedělá nic a nikomu to nedojde, protože nikdo nečeká, že by měl něco přijít. Proto ať po každém běhu zůstane soubor s datem — i když se nic nezměnilo.',
+        'Nejhorší varianta není běh, který spadne, ale ten, co měsíc tiše nedělá nic a nikdo to nečeká. Proto ať po každém běhu zůstane soubor s datem — i když se nic nezměnilo.',
     },
     { kind: 'h', text: 'Kdy na další stupeň' },
     {
@@ -2355,7 +2193,7 @@ Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
       tone: 'warn',
       title: 'Co automatizovat nechceš',
       text:
-        'Kroky, kde se rozhoduje podle věcí, které nejsou v datech. Schválení faktury k platbě je učebnicový příklad: i když všechna čísla sedí, může se čekat na dodací list nebo na výjimku dohodnutou telefonicky, a to žádná kontrola v datech neuvidí. Automatizace má takovým krokům připravit podklad, ne je nahradit.',
+        'Kroky, kde se rozhoduje podle věcí, které nejsou v datech. Schválení faktury k platbě je učebnicový příklad: i když všechna čísla sedí, může se čekat na dodací list nebo na telefonicky dohodnutou výjimku — to žádná kontrola v datech neuvidí. Automatizace takovým krokům připraví podklad, nenahradí je.',
     },
     { kind: 'h', text: 'Celý příklad: kde ho najdeš hotový' },
     {
@@ -2386,13 +2224,13 @@ Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
       tone: 'warn',
       title: 'Když tvoje agenda potřebuje odeslat mail bez potvrzení',
       text:
-        'Kontrola faktur si vystačí s mailto — otevře rozepsanou zprávu a odeslání zůstává na tobě. Ne každá agenda ale s tímhle vystačí: když má úloha poslat mail bez toho, aby ses na to díval, potřebuješ konektor a druhý souhlas správce. Celý ten postup — čtení a odesílání jsou dvě různá povolení, proč přílohy neodejdou, jak si o to říct správci — je v lekci E-mail z automatu.',
+        'Kontrola faktur si vystačí s mailto — otevře rozepsanou zprávu a odeslání zůstává na tobě. Když má úloha poslat mail bez toho, aby ses na to dívala, potřebuješ konektor a druhý souhlas správce — čtení a odesílání jsou dvě různá povolení. Celý postup, včetně toho, kdy se nemá poslat vůbec, je v lekci E-mail z automatu.',
     },
     {
       kind: 'task',
       title: 'Cvičení: posuň jeden krok o stupeň výš',
       intro:
-        'Vezmi svoji agendu a v ní jeden krok, který děláš každý týden. Nezačínej tím nejsložitějším. Příklad výš použij jako kontrolní seznam, ne jako předlohu ke kopírování.',
+        'Vezmi svoji agendu a v ní jeden krok, který děláš každý týden — nezačínej tím nejsložitějším. Příklad výš použij jako kontrolní seznam, ne jako předlohu ke kopírování.',
       items: [
         'Napiš, na kterém z pěti schodů ten krok dneska je.',
         'Udělej ho jednou se zadáním a zapiš si každé doříkání, které bylo potřeba dodat.',
@@ -2402,7 +2240,7 @@ Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
         'Napiš jednu větu o tom, jak poznáš, že výsledek je špatně.',
         'Nastav zábranu a notifikaci a zábranu si otestuj — chtěj vidět, že zápis odmítne.',
         'Projdi checklist „Než to pustíš na plán" a čestně si odškrtej, co platí. Pak spusť skill jedním příkazem bez rozhovoru.',
-        'Napiš runbook podle šablony — všech šest nadpisů.',
+        'Napiš runbook podle šablony.',
         'Založ úlohu na Manual a pusť ji přes Run now aspoň třikrát na různých datech. Teprve pak jí dej rozvrh, nejdřív na den, kdy jsi u počítače — a jako první ať jen ukládá soubory, bez odesílání.',
       ],
       hint:
@@ -2432,7 +2270,7 @@ const LESSON_SKILL: Lesson = {
     {
       kind: 'p',
       text:
-        'Skill je zabalený postup: složka se souborem SKILL.md, ve kterém je nahoře pár řádků o tom, co skill dělá a kdy se má použít, a pod tím samotný postup. Nic víc. Celá dovednost je v tom napsat ty dvě části tak, aby si je Claude vybral ve správnou chvíli a odpracoval je pokaždé stejně.',
+        'Skill je zabalený postup: složka se souborem SKILL.md, nahoře pár řádků o tom, co dělá a kdy se má použít, pod tím samotný postup. Nic víc. Celá dovednost je napsat ty dvě části tak, aby si je Claude vybral ve správnou chvíli a odpracoval je pokaždé stejně.',
     },
     { kind: 'h', text: 'Kdy z toho udělat skill' },
     {
@@ -2449,7 +2287,7 @@ const LESSON_SKILL: Lesson = {
       tone: 'warn',
       title: 'Co skill není',
       text:
-        'Není to místo na fakta o agendě — ta patří do CLAUDE.md a platí pořád. Skill je postup, který se spustí, když je potřeba. Když si nejsi jistá, zeptej se: platí to i ve chvíli, kdy tenhle úkol nedělám? Když ano, je to pravidlo, ne skill.',
+        'Není to místo na fakta o agendě — ta patří do CLAUDE.md a platí pořád. Skill je postup, který se spustí, jen když je potřeba. Test: platí to i ve chvíli, kdy tenhle úkol nedělám? Když ano, je to pravidlo, ne skill.',
     },
     { kind: 'h', text: 'Kam skill patří' },
     {
@@ -2463,7 +2301,7 @@ const LESSON_SKILL: Lesson = {
       tone: 'info',
       title: 'Třetí patro: plugin',
       text:
-        'Skill v projektu platí v projektu, skill v domovské složce jen u tebe. Jakmile má stejný postup používat víc týmů, zabalí se skilly do pluginu — balíčku, který se instaluje jedním příkazem a spravuje na jednom místě: když autor postup opraví, oprava dojde všem, kdo mají plugin nainstalovaný, místo aby po firmě žilo pět různě starých kopií. Plugin unese i víc než skilly — hooky i konektory — takže se dá rozdat celá automatizace najednou.',
+        'Skill v projektu platí v projektu, skill v domovské složce jen u tebe. Jakmile má stejný postup používat víc týmů, zabalí se skilly do pluginu — balíčku, který se instaluje jedním příkazem a spravuje na jednom místě: autor opraví postup jednou a oprava dojde všem, místo aby po firmě žilo pět různě starých kopií. Plugin unese i hooky a konektory, takže se dá rozdat celá automatizace najednou.',
     },
     {
       kind: 'code',
@@ -2497,7 +2335,7 @@ description: Projde faktury v PDF ve složce vstup/ a porovná je se
     {
       kind: 'p',
       text:
-        'Tělo skillu se načte, až když si ho Claude vybere. A vybírá si ho podle jednoho jediného řádku — podle description. Když je vágní, skill se nespustí nikdy, nebo se naopak plete do věcí, kam nepatří. Piš do něj dvě věci: co skill dělá a kdy se má použít. A používej slova, která do zadání běžně píšeš.',
+        'Tělo skillu se načte, až když si ho Claude vybere — a vybírá si ho podle jednoho jediného řádku, description. Vágní description znamená, že se skill nespustí nikdy, nebo se naopak plete do věcí, kam nepatří. Piš do něj dvě věci: co skill dělá a kdy se má použít, slovy, která do zadání běžně píšeš.',
     },
     {
       kind: 'table',
@@ -2524,9 +2362,9 @@ description: Projde faktury v PDF ve složce vstup/ a porovná je se
     {
       kind: 'list',
       items: [
-        'Kroky, ne esej. Číslovaný seznam, jedna akce na krok.',
-        'Ověřitelně. „Sloupce v pořadí Kód, Název, Divize“ místo „správně naformátovat“.',
-        'Se zastavovacími pravidly. Napiš, kdy se má zastavit a zeptat, místo aby hádal.',
+        'Kroky, ne esej — číslovaný seznam, jedna akce na krok.',
+        'Ověřitelně: „Sloupce v pořadí Kód, Název, Divize“ místo „správně naformátovat“.',
+        'Se zastavovacími pravidly — kdy se má zastavit a zeptat, místo aby hádal.',
         'S pastmi. Sekce „na co si dát pozor“ ušetří víc než tři kroky navíc.',
         'Krátce. Když SKILL.md přeroste pár set řádků, přesuň detaily do souboru vedle a odkaž na něj.',
       ],
@@ -2545,7 +2383,7 @@ description: Projde faktury v PDF ve složce vstup/ a porovná je se
     {
       kind: 'p',
       text:
-        'Nejrychlejší cesta k prvnímu skillu není psát ho na prázdno. Je udělat tu úlohu jednou ručně se zadáním a pak říct Claudovi, ať z toho, co se právě stalo, udělá skill. On zná průběh — včetně toho, co jsi mu musela doříct.',
+        'Nejrychlejší cesta k prvnímu skillu není psát ho na prázdno, ale udělat tu úlohu jednou ručně se zadáním a pak říct Claudovi, ať z toho, co se právě stalo, udělá skill. On zná celý průběh — včetně toho, co jsi mu musela doříct.',
     },
     {
       kind: 'code',
@@ -2566,7 +2404,7 @@ splést. Pak mi ho ukaž, ať ho projdu, než ho uložíš.`,
     {
       kind: 'p',
       text:
-        'Nemusíš na to být sám či sama. V Claude Code je skill-creator — napiš lomítko a jeho jméno a provede tě založením nového skillu, úpravou existujícího i tím, jestli se spouští ve správných situacích. Výsledek se ukládá přes kartu, kterou si nejdřív projdeš, ne tak, že by ti někdo psal do souborů za zády.',
+        'Nemusíš na to být sám či sama. V Claude Code je skill-creator — napiš lomítko a jeho jméno a provede tě založením skillu, úpravou existujícího i ověřením, jestli se spouští ve správných situacích. Výsledek si vždycky nejdřív projdeš na kartě, ne že by ti někdo psal do souborů za zády.',
     },
     {
       kind: 'code',
@@ -2602,7 +2440,7 @@ se spustí, když stejnou úlohu zadám jinými slovy.`,
       tone: 'ok',
       title: 'Tři věci, které rozhodují o kvalitě',
       text:
-        'Jméno složky = jméno skillu. Description musí říct co to dělá i kdy to použít, slovy, která uživatel opravdu napíše. A tělo drž krátké, protože každý řádek navíc soutěží o pozornost s tím podstatným.',
+        'Jméno složky = jméno skillu. Description říká co to dělá i kdy to použít, slovy, která uživatel opravdu napíše. A tělo drž krátké — každý řádek navíc soutěží o pozornost s tím podstatným.',
     },
     {
       kind: 'links',
@@ -2660,17 +2498,17 @@ se spustí, když stejnou úlohu zadám jinými slovy.`,
         {
           title: 'Zkus ho vyvolat nepřímo',
           body:
-            'Napiš úlohu vlastními slovy a nezmiňuj jméno skillu. Když se nespustí, problém je v description, ne v postupu.',
+            'Napiš úlohu vlastními slovy, jméno skillu nezmiňuj. Když se nespustí, problém je v description, ne v postupu.',
         },
         {
           title: 'Nech ho spustit někoho jiného',
           body:
-            'To, co je pro tebe samozřejmé, v postupu chybí. Pozná se to jedině tak, že to zkusí člověk, který agendu nedělá.',
+            'Co je pro tebe samozřejmé, v postupu chybí — pozná se to jen tak, že to zkusí člověk, který agendu nedělá.',
         },
         {
           title: 'Když vyjde jinak než minule, doplň pravidlo',
           body:
-            'Rozdíl mezi dvěma běhy je skoro vždycky chybějící informace, ne chyba postupu. Přidej ji a zkus to znovu.',
+            'Rozdíl mezi dvěma běhy je skoro vždycky chybějící informace, ne chyba postupu.',
         },
       ],
     },
@@ -2678,9 +2516,7 @@ se spustí, když stejnou úlohu zadám jinými slovy.`,
       kind: 'table',
       head: ['Častá chyba', 'Jak se projeví', 'Oprava'],
       rows: [
-        ['Vágní description', 'skill se nikdy sám nespustí', 'dopiš, kdy se má použít, a slovy ze zadání'],
         ['Postup jako souvislý text', 'kroky se přeskakují', 'rozepiš na číslovaný seznam'],
-        ['Fakta o agendě uvnitř skillu', 'jinde ta pravidla neplatí', 'přesuň je do CLAUDE.md'],
         ['Skill napsaný na jeden soubor', 'příští měsíc nefunguje', 'popiš vzor názvu, ne konkrétní jméno'],
         ['Žádné zastavovací pravidlo', 'dopočítá si, co nemá', 'napiš, kdy se má zastavit a zeptat'],
         ['Příliš dlouhý SKILL.md', 'kroky se ztrácejí', 'detaily do souboru vedle, odkaz v postupu'],
@@ -2690,7 +2526,7 @@ se spustí, když stejnou úlohu zadám jinými slovy.`,
       kind: 'task',
       title: 'Cvičení: napiš první skill z toho, co právě proběhlo',
       intro:
-        'Vezmi úlohu, kterou máš z cvičení Postav si první automatizaci. Nezakládej nový soubor ručně.',
+        'Vezmi úlohu z cvičení Postav si první automatizaci. Nezakládej nový soubor ručně.',
       items: [
         'Nech Clauda napsat skill promptem výš a přečti si, co vygeneroval.',
         'Zkontroluj description: trefil by se do zadání, jaké napíšeš příště? Když ne, přepiš ho.',
@@ -2722,7 +2558,7 @@ const L2_ROZBOR: Lesson = {
     {
       kind: 'p',
       text:
-        'Tenhle skill dneska běží v účtárně a kontroluje faktury proti objednávkám. Napsal ho člověk, který ho používá, a je to dobrý skill — proto se na něm dá ukázat něco cennějšího než na vymyšleném příkladu: kde je hranice mezi „funguje mi to" a „můžu to pustit bez sebe".',
+        'Tenhle skill dneska běží v účtárně a kontroluje faktury proti objednávkám. Napsal ho člověk, který ho používá, a je dobrý — proto se na něm dá ukázat něco cennějšího než na vymyšleném příkladu: kde je hranice mezi „funguje mi to" a „můžu to pustit bez sebe".',
     },
     {
       kind: 'code',
@@ -2752,7 +2588,7 @@ description: Zkontroluje faktury ve vstup/ proti objednávkám v
       items: [
         'Description říká, kdy se má použít, a obsahuje slova, která u toho člověk skutečně použije — „nové faktury". Přesně tak se má psát.',
         'Krok 2 pojmenovává přesně to porovnání, o které jde — ne „zkontroluj to", ale „stejné číslo objednávky, porovnej částku".',
-        '„Porovnávej základ daně, ne částku s DPH." Jedna věta, která brání tomu, na co by se jinak přišlo až omylem.',
+        '„Porovnávej základ daně, ne částku s DPH" — jedna věta, která brání chybě, na kterou by se jinak přišlo až omylem.',
       ],
     },
     {
@@ -2760,7 +2596,7 @@ description: Zkontroluje faktury ve vstup/ proti objednávkám v
       tone: 'ok',
       title: 'Osmdesát procent práce je hotových',
       text:
-        'Tohle není ukázka špatného skillu. Je to ukázka skillu, se kterým se dá pracovat po boku — a který ještě nesnese, aby běžel v šest ráno, když u toho nikdo není. Rozdíl mezi tím dvojím jsou čtyři věci.',
+        'Tohle není ukázka špatného skillu, ale skillu, se kterým se dá pracovat po boku — a který ještě nesnese, aby běžel v šest ráno bez dozoru. Rozdíl jsou čtyři věci.',
     },
     { kind: 'h', text: 'Čtyři místa, která ho drží u země' },
     {
@@ -2770,22 +2606,22 @@ description: Zkontroluje faktury ve vstup/ proti objednávkám v
         [
           'Výstup jde do chatu, ne do souboru',
           'krok 3 napíše výsledek do rozhovoru, kde se za hodinu ztratí',
-          'nijak. Ráno po naplánovaném běhu není co otevřít.',
+          'nijak — ráno po naplánovaném běhu není co otevřít',
         ],
         [
           'Nikdo neporovná počet faktur na vstupu s počtem zpracovaných',
-          'když se jedna faktura přeskočí (nečitelný text, chyba), zbytek doběhne, jako by nechyběla',
+          'přeskočená faktura (nečitelný text, chyba) — zbytek doběhne, jako by nechyběla',
           'až za pár dní, když si dodavatel řekne o zaplacení',
         ],
         [
           'Faktury bez rozpoznaného čísla objednávky se tiše přeskočí',
           'krok 2 hledá „stejné číslo" — co nenajde, prostě nezmíní',
-          'nijak. Chybějící nález po sobě nenechá stopu.',
+          'nijak — chybějící nález po sobě nenechá stopu',
         ],
         [
           '„Nové faktury" není definované',
-          'jednou se berou všechny soubory ve vstup/, podruhé jen ty za dnešek — podle toho, jak zrovna zní zadání',
-          'když se faktura zkontroluje dvakrát, nebo naopak žádná',
+          'jednou všechny soubory ve vstup/, podruhé jen ty za dnešek — podle znění zadání',
+          'faktura se zkontroluje dvakrát, nebo naopak žádná',
         ],
       ],
     },
@@ -2794,7 +2630,7 @@ description: Zkontroluje faktury ve vstup/ proti objednávkám v
       tone: 'warn',
       title: 'Všechny čtyři mají stejný podpis',
       text:
-        'Selžou potichu. Skill doběhne, soubory vzniknou, nikde není červená hláška — a přesto je výsledek špatně. Tohle je jediný druh chyby, který stojí za to řešit dopředu; toho, že něco spadne s chybou, se bát nemusíš, to poznáš hned.',
+        'Selžou potichu — skill doběhne, soubory vzniknou, nikde není červená hláška, a přesto je výsledek špatně. To je jediný druh chyby, který stojí za to řešit dopředu; toho, co spadne s chybou, se bát nemusíš, to poznáš hned.',
     },
     { kind: 'h', text: 'Vylepšená verze' },
     {
@@ -2840,7 +2676,7 @@ tabulce ve vystup/. Když nic nového nepřibylo, nic nedělej a napiš to.
 
 ## Co do skillu nepatří
 Rozhodnutí, jestli fakturu zaplatit. Skill připraví podklad, schvaluje člověk.`,
-      caption: 'Delší o dvě sekce, a jedna z nich je nová: co dělat, když už bylo zkontrolováno. Obojí je o tom, jak poznat, že výsledek je špatně — ne o tom, jak ho vyrobit. Je to ten samý soubor, který je v cvičném projektu ke stažení.',
+      caption: 'Delší o dvě sekce — obě jsou o tom, jak poznat, že výsledek je špatně, ne o tom, jak ho vyrobit. Je to ten samý soubor, který je v cvičném projektu ke stažení.',
     },
     { kind: 'h', text: 'Co to způsobí' },
     {
@@ -2860,7 +2696,7 @@ Rozhodnutí, jestli fakturu zaplatit. Skill připraví podklad, schvaluje člov�
         [
           'Faktura bez rozpoznané objednávky',
           'zmizí beze stopy',
-          'protokol ji uvede jako nenalezeno — zůstává vidět',
+          'protokol ji uvede jako nenalezeno',
         ],
         [
           'Dva běhy nad stejnými daty',
@@ -2870,7 +2706,7 @@ Rozhodnutí, jestli fakturu zaplatit. Skill připraví podklad, schvaluje člov�
         [
           'Naplánovaný běh',
           'nedá se — po běhu nezůstane nic ke kontrole',
-          'dá se. Protokol je ta stopa, kterou naplánovaný běh potřebuje.',
+          'dá se — protokol je ta stopa, kterou potřebuje',
         ],
       ],
     },
@@ -2879,14 +2715,14 @@ Rozhodnutí, jestli fakturu zaplatit. Skill připraví podklad, schvaluje člov�
       tone: 'ok',
       title: 'Vzorec, který platí na každý skill',
       text:
-        'Přidali jsme jen dvě věci: ať po sobě nechá zapsanou kontrolu, a ať se zastaví, když něco nesedí. Nic z toho nemění, co skill dělá. Mění to, jestli mu můžeš věřit i ve chvíli, kdy se nedíváš — a to je ten jediný rozdíl mezi pomocníkem a automatem.',
+        'Přidali jsme jen dvě věci: ať po sobě nechá zapsanou kontrolu a ať se zastaví, když něco nesedí. Nic z toho nemění, co skill dělá — mění to, jestli mu můžeš věřit i ve chvíli, kdy se nedíváš. To je ten jediný rozdíl mezi pomocníkem a automatem.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Co jsme naopak nepřidali',
       text:
-        'Žádná pravidla navíc o formátování, žádné „buď důkladný", žádné vysvětlování, co je objednávka. Skill má být krátký; každá věta, která nezmění výsledek, jenom zvyšuje šanci, že se přehlédne ta, která ho změní. Když je ti skill dlouhý, škrtej v postupu, ne v kontrolách.',
+        'Žádná pravidla navíc o formátování, žádné „buď důkladný", žádné vysvětlování, co je objednávka. Skill má být krátký — každá věta navíc jen zvyšuje šanci, že se přehlédne ta, která výsledek doopravdy mění. Když je ti skill dlouhý, škrtej v postupu, ne v kontrolách.',
     },
     {
       kind: 'task',
@@ -2898,7 +2734,7 @@ Rozhodnutí, jestli fakturu zaplatit. Skill připraví podklad, schvaluje člov�
         'Co se stane s tím, co do žádné z mých škatulek nepatří? Zahodí se to potichu?',
         'Kdybych to pustila dvakrát nad stejnými daty, dostanu dvakrát totéž?',
       ],
-      hint: 'Když u některé odpovíš „nevím", je to ta, kterou máš opravit jako první.',
+      hint: 'Odpověď „nevím" u kterékoli otázky říká, co opravit jako první.',
     },
   ],
 }
@@ -2922,28 +2758,7 @@ const LESSON_CVICENI: Lesson = {
     {
       kind: 'p',
       text:
-        'Předchozí lekce byla vzor — hotový proces kontroly faktur, na kterém jste si vyzkoušeli hledat automatizace. Teď to samé uděláte na vlastní agendě. Ve dvojicích, protože sám sobě proces nikdo nepopíše dobře: to, co děláte každý týden, se vám dávno slilo do jednoho kroku, a ten se rozpadne na pět, teprve když se někdo zeptá.',
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Když na to jsi sám',
-      text:
-        'Tuhle lekci čte i někdo, kdo v sále nebyl a kolegu po ruce nemá. Jde to — jen se místo kolegy vyzpovídáš sám, a aby to k něčemu bylo, potřebuješ tazatele. Toho udělá Claude: dej mu otázky níž a nech ho, ať ti je klade jednu po druhé a nepustí tě dál, dokud neodpovíš konkrétně. Zadání je na konci lekce v části „Sólo verze". Zbytek — nahrávka, přepis, soubory do projektu — platí stejně.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Cvičení má tři části',
-      text:
-        'Tahle lekce je první z nich: rozhovor a uložení podkladů do projektu. Pak přijde kresba flow a označení míst a nakonec sdílení map se sálem. Každá má svoji lekci, takže se nemusíte prokousávat celým textem, když hledáte jednu věc.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Co si vybrat',
-      text:
-        'Kus práce, který děláte pravidelně a ve kterém někde vstupuje e-mail nebo tabulka a někam něco posíláte dál. Nemusí to být celá agenda — stačí výsek od „přijde mi to“ po „pošlu to dál“. Nezačínejte tím nejsložitějším, co máte.',
+        'Stejné cvičení jako v lekci Od e-mailu k platbě, tentokrát na vaší agendě. Ve dvojicích — sami sobě proces nikdo nepopíše dobře, protože se vám dávno slil do jednoho kroku. Vyberte kus práce, který děláte pravidelně a kde vám vstupuje e-mail nebo tabulka a někam posíláte výstup — stačí výsek, ne celá agenda, a ne ten nejsložitější.',
     },
     { kind: 'h', text: 'Jak to poběží' },
     {
@@ -2956,21 +2771,21 @@ const LESSON_CVICENI: Lesson = {
         ['5 min', 'Nahrávku a reálné soubory uložit do projektu do podklady/', 'oba'],
       ],
     },
-    { kind: 'h', text: 'Technika: kontextové dotazování' },
+    { kind: 'h', text: 'Jak se ptát' },
     {
       kind: 'p',
       text:
-        'V UX se tomuhle typu rozhovoru říká kontextové dotazování a stojí na jednom rozdílu: lidé popisují svoji práci jinak, než ji dělají. Když se zeptáte „jak to děláš“, dostanete uklizenou verzi bez výjimek. Když se zeptáte „ukaž mi, jak to bylo naposledy“, dostanete tu skutečnou — i s tím, že jeden člověk posílá print screeny a jedna položka se musí přeťukat ručně.',
+        'Lidé popisují práci jinak, než ji dělají: „jak to děláš“ dá uklizenou verzi, „ukaž mi, jak to bylo naposledy“ tu skutečnou, s print screeny a ručním přeťukáváním.',
     },
     {
       kind: 'list',
       items: [
-        'Ptej se na poslední konkrétní případ, ne na to, jak se to dělá obecně.',
-        'Nech ho otevřít ten soubor. Papír zapomíná, obrazovka ne.',
-        'Po každém kroku se zeptej: „a co se stane pak?“ Dokud nedojdete na konec.',
-        'Když někdo přeskočí dva kroky najednou, vrať se: „a to se stane kde?“',
-        'Během rozhovoru nenavrhuj řešení. Jakmile začneš radit, druhý přestane popisovat a začne se obhajovat.',
-        'Nahraj si to na telefon — ale zeptej se, jestli může. Zapíšeš vždycky míň, než zazní.',
+        'Ptej se na poslední konkrétní případ, ne jak se to dělá obecně.',
+        'Nech ho otevřít ten soubor — papír zapomíná, obrazovka ne.',
+        'Po každém kroku: „a co se stane pak?“ Dokud nedojdete na konec.',
+        'Když přeskočí dva kroky najednou, vrať se: „a to se stane kde?“',
+        'Nenavrhuj řešení. Jakmile začneš radit, druhý přestane popisovat a začne se obhajovat.',
+        'Nahraj si to na telefon — ale zeptej se, jestli může.',
       ],
     },
     {
@@ -2978,7 +2793,7 @@ const LESSON_CVICENI: Lesson = {
       tone: 'warn',
       title: 'Ptej se pořádně — kreslit budeš ty',
       text:
-        'V další části kreslí flow ten, kdo se ptal, ne majitel agendy. Je to schválně: co tazatel nedokáže nakreslit, to se v rozhovoru nedozvěděl — a to je přesně ta informace, která v procesu chybí i všem ostatním. Takže se ptej tak, abys to za chvíli uměl nakreslit.',
+        'V další části kreslí flow ten, kdo se ptal, ne majitel agendy — co tazatel nedokáže nakreslit, to se v rozhovoru nedozvěděl. Ptej se tak, abys to za chvíli uměl nakreslit.',
     },
     { kind: 'h', text: 'Otázky, které se dají použít rovnou' },
     {
@@ -2993,13 +2808,13 @@ Co děláš, když někdo neodpoví?
 Kde se to nejčastěji pokazí? Co jsi naposledy musela opravovat?
 Co z toho víš z hlavy a není to nikde napsané?
 Kdyby ses zítra nemohla dostat k počítači, co by kolega nevěděl?`,
-      caption: 'Poslední dvě otázky bývají nejcennější. Odhalí to, co v žádném manuálu není.',
+      caption: 'Poslední dvě otázky bývají nejcennější — odhalí to, co v žádném manuálu není.',
     },
     { kind: 'h', text: 'Slova, na která nastražit uši' },
     {
       kind: 'p',
       text:
-        'Lidé zmiňují ruční práci mimochodem, jako by to byla samozřejmost. Když některé z těchhle slov padne, zapiš si celý krok — skoro vždycky je to místo k automatizaci.',
+        'Padají mimochodem, ale skoro vždycky ukazují na místo k automatizaci. Když zazní, zapiš si celý krok.',
     },
     {
       kind: 'table',
@@ -3009,23 +2824,21 @@ Kdyby ses zítra nemohla dostat k počítači, co by kolega nevěděl?`,
         ['„to si vždycky musím zkontrolovat“', 'nikdo nevěří vstupu — chybí pravidlo nebo validace'],
         ['„to mi pošle print screenem“', 'odpověď přichází ve formátu, ze kterého se musí přeťukávat'],
         ['„to mám v hlavě“', 'pravidlo, které není nikde zapsané a odejde s člověkem'],
-        ['„to už dělám tak dlouho, že…“', 'krok, který si nikdo nepamatuje proč'],
         ['„a pak čekám, až mi odpoví“', 'proces stojí na e-mailu jako na frontě'],
-        ['„občas se stane, že…“', 'výjimka, na kterou se v návrhu zapomene'],
       ],
     },
     { kind: 'h', text: 'Nahrajte si to a dejte do projektu' },
     {
       kind: 'p',
       text:
-        'Rozhovor si nahrajte na telefon — stačí diktafon, který v něm máte. Zápisky z rozhovoru jsou dobré na kreslení, ale nahrávka drží to, co jste nestihli zapsat: přesné názvy souborů, poznámky mimochodem, věty typu „to mi vždycky pošle print screenem“. Z nahrávky pak vznikne přepis a z přepisu podklad, ke kterému se dá vrátit za měsíc.',
+        'Nahrávka drží to, co nestihnete zapsat: přesné názvy souborů, věty jako „to mi vždycky pošle print screenem“. Z ní vznikne přepis a z přepisu podklad, ke kterému se dá vrátit za měsíc.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Zeptejte se, než zmáčknete nahrávání',
       text:
-        'Nahráváte kolegu při práci. Řekněte, k čemu to bude a kde to skončí, a nechte ho říct ne. Když nahrávat nechce, cvičení funguje i bez toho — jen si víc zapisujte.',
+        'Nahráváte kolegu při práci — řekněte, k čemu to bude, a nechte ho říct ne. Bez nahrávání to jde taky, jen si víc zapisujte.',
     },
     {
       kind: 'steps',
@@ -3033,29 +2846,28 @@ Kdyby ses zítra nemohla dostat k počítači, co by kolega nevěděl?`,
         {
           title: 'Na začátku nahrávky řekněte, o co jde',
           body:
-            'Jedna věta do mikrofonu: kdo mluví, jaká agenda, jaké datum. Za tři týdny, až budete mít nahrávek pět, to bude jediné, podle čeho je rozeznáte.',
+            'Jedna věta do mikrofonu: kdo mluví, jaká agenda, jaké datum — jinak nahrávky za pár týdnů nerozeznáte.',
           code: 'Šestého října, účtárna, kontrola faktur. Ptá se Martin, popisuje Katka.',
         },
         {
           title: 'Přesuňte nahrávku do projektu',
-          body:
-            'Pošlete si ji z telefonu do počítače a uložte do složky projektu, do podsložky podklady/. Ne na plochu — projekt je to, co Claude vidí.',
+          body: 'Uložte ji do složky projektu, do podsložky podklady/. Ne na plochu — projekt je to, co Claude vidí.',
         },
         {
           title: 'Nechte ji přepsat — ale ne Claudem',
           body:
-            'Claude Code zvuk neslyší. Přepis udělá jiná věc a Claude pak pracuje s textem. Nejjednodušší je nechat si nahrávku přepsat rovnou v telefonu: Hlasové záznamy na iPhonu (od iOS 18) i Rekordér na Androidu mají přepis vestavěný — text zkopírujte do souboru vedle nahrávky, stejný název, přípona .txt. Kdo to v telefonu nemá, použije skript na přepis, který dostanete od lektora; položí .txt vedle nahrávky sám. Teprve pak přijde na řadu skill níž — ten přepis uklidí, doplní časy a vytáhne z něj pojmy.',
+            'Claude Code zvuk neslyší. Nejjednodušší je přepis vestavěný v telefonu (Hlasové záznamy na iPhonu, Rekordér na Androidu) — text zkopírujte vedle nahrávky, stejný název, přípona .txt. Kdo to v telefonu nemá, použije skript od lektora. Skill níž pak přepis uklidí, doplní časy a vytáhne pojmy.',
           code: 'V podklady/ je nahrávka a vedle ní přepis. Postupuj podle skillu prepis-rozhovoru.',
         },
         {
           title: 'Doplňte reálné soubory, ne screenshoty',
           body:
-            'Screenshot ukáže, jak to vypadá. Soubor ukáže, co v tom je — a s tím se dá pracovat. Vezměte kopii exportu, se kterým kolega pracuje, jeden e-mail, kterým mu přijde zadání, a jeden hotový výstup z minula. Když je zdrojem sdílená tabulka ze SharePointu, stáhněte si její kopii do podklady/ a nechte originál na pokoji.',
+            'Soubor ukáže, co v tom je, a dá se s ním pracovat. Vezměte kopii exportu, jeden e-mail se zadáním a jeden hotový výstup z minula. Sdílenou tabulku ze SharePointu kopírujte do podklady/, originál nechte na pokoji.',
         },
         {
           title: 'Nechte si udělat flow z přepisu',
           body:
-            'Až máte přepis i soubory pohromadě, zadání zní takhle. Výsledek si schovejte — v další lekci ho porovnáte s tím, co jste nakreslili na papír. Rozdíly jsou zajímavější než shody.',
+            'Zadání níž. Výsledek si schovejte — v další lekci ho porovnáte s tím, co jste nakreslili na papír.',
           code: `Přečti přepis v podklady/ a soubory vedle něj.
 
 Rozepiš proces na kroky: kdo co dělá, čím se data přenášejí
@@ -3079,20 +2891,20 @@ Na konec vypiš tři místa, kde se nejvíc přepisuje.`,
 ├── vystupy/
 └── .claude/skills/prepis-rozhovoru/SKILL.md`,
       caption:
-        'Podklady zůstávají pohromadě u nahrávky, ze které vznikly. Sdílený soubor ze SharePointu se sem kopíruje — originál zůstává tam, kde je, a nikdo ho omylem nepřepíše.',
+        'Podklady zůstávají u nahrávky, ze které vznikly. Sdílený soubor ze SharePointu se sem kopíruje — originál zůstává na místě.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Kopie, ne originál',
       text:
-        'Když projekt leží uvnitř nasyncované knihovny, všechno, co do něj dáte, uvidí celý tým. Kopie exportu je v pořádku. Cokoli, co do sdílené složky nepatří — osobní údaje, ceny, které nemají být venku — tam nedávejte a v přepisu to smažte.',
+        'Co je v nasyncovaném projektu, vidí celý tým. Kopie exportu je v pořádku — osobní údaje a ceny, co tam nepatří, nedávejte a v přepisu smažte.',
     },
     { kind: 'h', text: 'Skill na přepis' },
     {
       kind: 'p',
       text:
-        'Tenhle skill napíšete jednou a použijete ho na každý další rozhovor. Je to přesně ten případ z lekce Projekt v Claude Code: postup, který se opakuje, a stačí ho popsat jednou. Jak se skill zakládá, nemusíte teď vědět — stačí vytvořit v projektu složku .claude/skills/prepis-rozhovoru/ a do ní uložit soubor SKILL.md s textem níž. Nebo to celé řekněte Claudovi: „založ mi skill prepis-rozhovoru s tímhle obsahem".',
+        'Tenhle skill napíšete jednou a použijete na každý další rozhovor. Založte v projektu .claude/skills/prepis-rozhovoru/SKILL.md s textem níž, nebo řekněte Claudovi „založ mi skill prepis-rozhovoru s tímhle obsahem".',
     },
     {
       kind: 'code',
@@ -3124,12 +2936,12 @@ description: Uklidí strojový přepis rozhovoru o něčí práci, doplní časy
   seznam pojmů na konci, aby šly opravit na jednom místě.
 - Nic nedomýšlej. Když je něco nesrozumitelné, napiš to.`,
       caption:
-        'Poslední bod výpisu je ten důležitý — věty o ručním přenosu dat jsou seznam kandidátů na automatizaci ještě předtím, než někdo něco nakreslí.',
+        'Věty o ručním přenosu dat jsou seznam kandidátů na automatizaci ještě předtím, než někdo něco nakreslí.',
     },
     {
       kind: 'task',
       title: 'Než půjdete kreslit',
-      intro: 'Tohle má být hotové, než začne další část. Kreslí se z toho, co teď máte.',
+      intro: 'Tohle má být hotové, než začne další část.',
       items: [
         'Zápisky z rozhovoru — každý ze svého kolegy, ne ze sebe.',
         'Nahrávka a její přepis ve složce projektu, v podklady/.',
@@ -3166,7 +2978,7 @@ description: Uklidí strojový přepis rozhovoru o něčí práci, doplní časy
     {
       kind: 'p',
       text:
-        'Sám sobě proces nikdo nepopíše dobře — proto je cvičení ve dvojicích. Náhrada není dokonalá, ale funguje ze stejného důvodu: někdo se ptá „a co se stane pak?" tak dlouho, dokud nedojdete na konec. Otevři Clauda ve složce projektu a dej mu tohle zadání. Odpovídej nahlas a piš krátce; celé to má trvat dvacet minut.',
+        'Studuješ sám a kolegu po ruce nemáš? Tazatele udělá Claude — otevři ho ve složce projektu, dej mu zadání níž a nech ho ptát se, dokud nedojdete na konec. Odpovídej nahlas, piš krátce, počítej dvacet minut. Nahrávka, přepis i soubory do projektu platí stejně jako výš.',
     },
     {
       kind: 'code',
@@ -3193,14 +3005,14 @@ Na konci vypiš:
 
 Ulož to do podklady/rozhovor-<datum>.md.`,
       caption:
-        'Pátý bod je ten, kvůli kterému to má cenu: pojmy, které říkáš mimochodem, jsou přesně to, co za měsíc nikdo nedohledá — a je to základ slovníku do CLAUDE.md.',
+        'Pátý bod je ten, kvůli kterému to má cenu: pojmy, které říkáš mimochodem, jsou základ slovníku do CLAUDE.md.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Nepusť ho k radám',
       text:
-        'Claude bude chtít pomáhat a navrhovat řešení. Když začne, řekni „jenom se ptej". Jakmile se začne radit, přestaneš popisovat, co děláš, a začneš se obhajovat — a to je přesně ta chyba, kvůli které se u lidí dělá cvičení ve dvojicích.',
+        'Claude bude chtít radit. Řekni „jenom se ptej" — jakmile začne radit, přestaneš popisovat a začneš se obhajovat, stejná past jako u lidí.',
     },
     {
       kind: 'links',
@@ -3235,21 +3047,14 @@ const LESSON_FLOW: Lesson = {
     {
       kind: 'p',
       text:
-        'Rozhovor máte za sebou, podklady v projektu. Teď z toho vznikne obrázek — a hlavně se v něm označí místa, kvůli kterým jste dneska přišli. Na celou tuhle část je čtvrt hodiny, takže se nesnažte o krásu.',
+        'Rozhovor máte za sebou. Teď z něj vznikne obrázek a v něm se označí místa k automatizaci. Kreslí ten, kdo se ptal, ne majitel agendy — co tazatel nedokáže nakreslit, to se v rozhovoru nedozvěděl. Čtvrt hodiny, nesnažte se o krásu.',
     },
     {
       kind: 'note',
       tone: 'ok',
       title: 'Když na to jsi sám',
       text:
-        'Kreslíš podle vlastního přepisu z předchozí lekce, ne z hlavy. Je to tentýž trik jako ve dvojici: kreslí se z toho, co bylo řečeno, ne z toho, co si člověk pamatuje — a co v přepisu není, to se nakreslit nedá. Zbytek lekce platí beze změny, jen si na konci porovnáš kresbu s výpisem, který ti Claude z přepisu udělal.',
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Kreslí ten, kdo se ptal',
-      text:
-        'Ne majitel agendy. Je to schválně: co tazatel nedokáže nakreslit, to se v rozhovoru nedozvěděl — a to je přesně ta informace, která v procesu chybí i všem ostatním. Když se zaseknete, není to chyba kreslíře, je to nález.',
+        'Kreslíš podle vlastního přepisu, ne z hlavy — co v něm není, to se nakreslit nedá. Zbytek lekce platí beze změny.',
     },
     { kind: 'h', text: 'Jak to poběží' },
     {
@@ -3265,19 +3070,17 @@ const LESSON_FLOW: Lesson = {
     {
       kind: 'p',
       text:
-        'Vezmi papír na šířku a rozděl ho třemi vodorovnými pruhy: nahoře kdo dodává vstup, uprostřed člověk, o kterém je řeč, dole kdo dostává výstup. Kroky piš zleva doprava. Nad každou šipku napiš, čím se to přenáší — e-mail, sdílená tabulka, print screen, telefon. Ten popis šipky je důležitější než samotné boxy: automatizuje se přenos, ne práce.',
+        'Papír na šířku, tři vodorovné pruhy: nahoře kdo dodává vstup, uprostřed člověk, o kterém je řeč, dole kdo dostává výstup. Kroky zleva doprava. Nad každou šipku napiš, čím se to přenáší — e-mail, tabulka, print screen, telefon. Popis šipky je důležitější než boxy: automatizuje se přenos, ne práce.',
     },
     {
       kind: 'figure',
       name: 'regal-flow',
-      caption:
-        'Vzor z lekce Od e-mailu k platbě, jak to má vypadat. Vaše kresba nemusí být hezká — musí být čitelná pro někoho, kdo tu agendu nedělá.',
+      caption: 'Vzor z lekce Od e-mailu k platbě. Vaše kresba nemusí být hezká, musí být čitelná.',
     },
     { kind: 'h', text: 'Označení míst' },
     {
       kind: 'p',
-      text:
-        'Až je flow nakreslené, projděte ho spolu a označte každý krok jednou ze tří značek. Použijte tři barvy fixů nebo tři značky, na kterých se domluvíte.',
+      text: 'Projděte flow spolu a označte každý krok jednou ze tří značek — tři barvy fixů, nebo jak se domluvíte.',
     },
     {
       kind: 'table',
@@ -3305,14 +3108,14 @@ const LESSON_FLOW: Lesson = {
       tone: 'ok',
       title: 'Nejzajímavější je hranice mezi druhou a třetí',
       text:
-        'Spousta kroků vypadá jako rozhodování, ale ve skutečnosti se počítá — jen to pravidlo nikdo nikdy nenapsal. Když u kroku umíte říct „dělám to tak, že když je tohle větší než tamto, tak…“, není to rozhodnutí. Je to vzorec.',
+        'Spousta kroků vypadá jako rozhodování, ale ve skutečnosti se počítá — jen to pravidlo nikdo nenapsal. Když u kroku umíte říct „když je tohle větší než tamto, tak…“, není to rozhodnutí. Je to vzorec.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Porovnejte to s tím, co vypsal Claude',
       text:
-        'V předchozí části vám Claude z přepisu vypsal kroky a označil je stejnými třemi značkami. Teď máte druhou verzi, kreslenou rukou. Rozdíly jsou zajímavější než shody: co je jen v kresbě, v rozhovoru zaznělo mimochodem; co je jen u Clauda, jste při kreslení zapomněli.',
+        'Claude vám z přepisu vypsal kroky se stejnými třemi značkami. Rozdíly proti kresbě jsou zajímavější než shody — co je jen v kresbě, zaznělo mimochodem; co je jen u Clauda, jste při kreslení zapomněli.',
     },
     {
       kind: 'task',
@@ -3335,22 +3138,13 @@ const LESSON_FLOW: Lesson = {
       kind: 'table',
       head: ['Zádrhel', 'Co s tím'],
       rows: [
-        [
-          'Kresba nejde dokončit',
-          'To je taky výsledek. Označ místo, kde to drhlo — tam informace chybí i v reálu.',
-        ],
+        ['Kresba nejde dokončit', 'To je taky výsledek. Označ místo, kde to drhlo — tam informace chybí i v reálu.'],
         [
           'Krok nejde zařadit pod žádnou ze tří značek',
-          'Napiš k němu otazník a jdi dál. Nejasné kroky jsou to, co se probírá při sdílení map.',
+          'Napiš k němu otazník a jdi dál — probere se při sdílení map.',
         ],
-        [
-          'Celé to vyjde jako jeden dlouhý pruh',
-          'Zeptej se, komu ten výstup jde a odkud přišel vstup. Prostřední pruh nikdy není celý proces.',
-        ],
-        [
-          'Nestíháte',
-          'Devět minut je schválně málo. Rozkreslené flow s poctivě popsanými šipkami je lepší než hotové bez nich.',
-        ],
+        ['Celé to vyjde jako jeden dlouhý pruh', 'Zeptej se, komu jde výstup a odkud přišel vstup.'],
+        ['Nestíháte', 'Devět minut je schválně málo. Rozkreslené flow s popsanými šipkami je lepší než hotové bez nich.'],
       ],
     },
     {
@@ -3385,13 +3179,13 @@ const LESSON_SDILENI: Lesson = {
     {
       kind: 'p',
       text:
-        'Poslední část cvičení. Každá dvojice dostane dvě minuty a pak se sál podívá, co mají mapy společného. Tenhle krok se snadno odbyde jako „kolečko na závěr“, ale je to jediné místo celého dne, kde se ukáže, že tři oddělení řeší tutéž věc třemi různými způsoby — a že se to dá vyřešit jednou. Kdo studuje sám a sál nemá, najde náhradu na konci lekce v části „Sólo verze“.',
+        'Poslední část cvičení: dvě minuty na dvojici, pak sál hledá, co mají mapy společné — obvykle vyjde, že tři oddělení řeší tutéž věc třemi způsoby. Kdo studuje sám, najde náhradu na konci v části „Sólo verze“.',
     },
     { kind: 'h', text: 'Dvě minuty na dvojici' },
     {
       kind: 'p',
       text:
-        'Mluví ten, kdo kreslil, ne majitel agendy. Popisuje cizí proces, takže mluví o tom, co pochopil — a to je přesně ta úroveň detailu, které bude rozumět i zbytek sálu. Držte se čtyř vět.',
+        'Mluví ten, kdo kreslil, ne majitel agendy — popisuje, co pochopil, a to je úroveň, které rozumí i zbytek sálu. Držte se čtyř vět.',
     },
     {
       kind: 'code',
@@ -3399,21 +3193,19 @@ const LESSON_SDILENI: Lesson = {
 Nejhorší místo je <krok>, protože tam <co se přenáší ručně>.
 Dělá se to <jak často> a zabere to <kolik času>.
 Jeden krok tam musí zůstat člověku: <který> — protože <co ten člověk ví>.`,
-      caption:
-        'Poslední věta je ta, kvůli které se to říká nahlas. Sál se z ní naučí, kde je hranice, za kterou se automatizovat nemá.',
+      caption: 'Poslední věta je ta hlavní — sál se z ní naučí, kde je hranice, za kterou se automatizovat nemá.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Neomlouvejte se za kresbu',
-      text:
-        'Nikdo ji nehodnotí a nikdo ji za chvíli neuvidí. Dvě minuty jsou krátké — když třicet vteřin z nich padne na „to je hrozně nakreslené, ale…“, nestihnete to podstatné.',
+      text: 'Nikdo ji nehodnotí. Dvě minuty jsou krátké — nepromrhejte je na „to je hrozně nakreslené, ale…“.',
     },
     { kind: 'h', text: 'Co poslouchat u ostatních' },
     {
       kind: 'p',
       text:
-        'Zatímco mluví ostatní, máte jednu úlohu: hledat, co z toho znáte. Vypadá to jinak — jiné oddělení, jiný soubor, jiné jméno — ale je to tentýž problém. Tyhle čtyři se opakují skoro vždycky.',
+        'Hledejte, co znáte — jiné oddělení, jiný soubor, ale tentýž problém. Čtyři vzorce se opakují skoro vždycky.',
     },
     {
       kind: 'table',
@@ -3442,24 +3234,23 @@ Jeden krok tam musí zůstat člověku: <který> — protože <co ten člověk v
       tone: 'ok',
       title: 'Tohle je zadání pro zbytek dne',
       text:
-        'Po tomhle bloku si každý vybírá jeden krok, který bude po pauze skutečně stavět. Vyberte ten, který se v sále objevil víckrát než jednou — hotovou věc pak nepoužijete jen vy.',
+        'Po tomhle bloku si každý vybírá krok, který po pauze skutečně staví — nejlépe ten, co se v sále objevil víckrát než jednou.',
     },
     {
       kind: 'task',
       title: 'Než se jde na pauzu',
-      intro: 'Dva řádky, které si každý napíše sám pro sebe. Za chvíli je budete potřebovat.',
+      intro: 'Dva řádky, které si každý napíše sám pro sebe.',
       items: [
         'Jeden krok z vlastní mapy, který chci po pauze postavit — jednou větou, s názvem souboru.',
         'Jedno místo z cizí mapy, které mám taky, a čí to byla mapa.',
       ],
-      hint:
-        'Ten druhý řádek je důvod, proč tenhle blok existuje. Za měsíc je to jediná poznámka z celého dne, díky které někomu napíšete.',
+      hint: 'Ten druhý řádek je hlavní důvod bloku — za měsíc je to jediná poznámka, díky které někomu napíšete.',
     },
     { kind: 'h', text: 'Sólo verze: s kým to porovnat, když nikdo jiný není' },
     {
       kind: 'p',
       text:
-        'Sál dává dvě věci: cizího čtenáře, který zkusí tvojí mapě porozumět, a přehled o tom, co se opakuje napříč odděleními. Sám dostaneš obojí taky, jen jinak — a to druhé jen napůl.',
+        'Sál dává cizího čtenáře a přehled, co se opakuje napříč odděleními. Sám dostaneš obojí, jen jinak — a to druhé jen napůl.',
     },
     {
       kind: 'steps',
@@ -3467,7 +3258,7 @@ Jeden krok tam musí zůstat člověku: <který> — protože <co ten člověk v
         {
           title: 'Nech si mapu přečíst někým, kdo tvoji agendu nezná',
           body:
-            'Cizího čtenáře udělá Claude. Vyfoť kresbu nebo mu dej svůj výpis kroků a nech ho ptát se na to, čemu bez znalosti tvojí práce nerozumí. Každá jeho otázka je místo, kde v mapě chybí informace — přesně to, co by v sále vyplavalo při dvou minutách před ostatními.',
+            'Cizího čtenáře udělá Claude. Vyfoť kresbu nebo dej svůj výpis kroků a nech ho ptát se na to, čemu bez znalosti tvojí práce nerozumí — každá otázka je místo, kde v mapě chybí informace.',
           code: `Přečti tuhle mapu procesu. Neznáš moji agendu ani naši firmu.
 
 Napiš:
@@ -3481,12 +3272,12 @@ Nenavrhuj řešení.`,
         {
           title: 'Porovnej tvar s hotovou mapou',
           body:
-            'Otevři si mapu kontroly faktur z lekce Od e-mailu k platbě a polož ji vedle svojí. Nejde o obsah, ale o tvar: má tvoje mapa taky tři pruhy? Jsou popsané šipky, nebo jen boxy? Je vidět, kde končí jedna odpovědnost a začíná druhá? Rozdíly v tvaru bývají místa, kde jsi něco přeskočil.',
+            'Otevři mapu kontroly faktur z lekce Od e-mailu k platbě a polož ji vedle svojí. Jde o tvar, ne obsah: tři pruhy, popsané šipky, vidět hranici odpovědností? Rozdíly v tvaru bývají místa, kde jsi něco přeskočil.',
         },
         {
           title: 'Projdi čtyři vzorce výš a odškrtej, které máš',
           body:
-            'Tabulka „Když u někoho slyšíte" platí i sama na sebe. Přečti ji nad vlastní mapou: kolik z těch čtyř se v ní objevuje? Když aspoň jeden, máš kandidáta na první automatizaci, a navíc víš, že to nebude jen tvoje — tyhle čtyři se opakují skoro všude.',
+            'Tabulka „Když u někoho slyšíte" platí i na tvoji mapu. Když aspoň jeden vzorec sedí, máš kandidáta na první automatizaci — a víš, že to nebude jen tvoje.',
         },
       ],
     },
@@ -3495,16 +3286,16 @@ Nenavrhuj řešení.`,
       tone: 'warn',
       title: 'Co ti sólo doopravdy unikne',
       text:
-        'To, že tentýž problém řeší ještě dvě oddělení vedle. Tohle Claude nenahradí. Vyřeší se to jednou zprávou: pošli dvěma kolegům z jiných oddělení jednu větu — „u nás se každý týden přepisuje X do Y, děláte to taky?". Odpověď rozhodne, jestli stavíš věc pro sebe, nebo pro celou firmu.',
+        'To, že tentýž problém řeší ještě jiná oddělení — tohle Claude nenahradí. Pošli dvěma kolegům jinam jednu větu: „u nás se každý týden přepisuje X do Y, děláte to taky?". Odpověď rozhodne, jestli stavíš věc pro sebe, nebo pro celou firmu.',
     },
     { kind: 'h', text: 'Pro lektora' },
     {
       kind: 'list',
       items: [
         'Držet dvě minuty tvrdě — třináct dvojic je půl hodiny, když se nechá plynout.',
-        'Psát na tabuli, co se opakuje, ne co je zajímavé. Seznam opakování je výstup tohohle bloku.',
-        'Když se něčí mapa hodí jako vzor pro další část dne, říct to hned nahlas — vybírá se z ní zadání pro Cvičení 2.',
-        'Nekomentovat řešení. Sál je v tuhle chvíli sběrač problémů, ne návrhář.',
+        'Psát na tabuli, co se opakuje, ne co je zajímavé — seznam opakování je výstup tohohle bloku.',
+        'Hodící se mapu jako vzor pro Cvičení 2 zmínit hned nahlas.',
+        'Nekomentovat řešení. Sál je teď sběrač problémů, ne návrhář.',
       ],
     },
     {
@@ -3534,7 +3325,7 @@ const L2_TABULKY: Lesson = {
   title: 'Zadání práce nad tabulkou',
   summary:
     'Devadesát procent téhle práce jsou tabulky. Čím se v nich dá splést a jak napsat zadání, které projde napoprvé.',
-  minutes: 15,
+  minutes: 12,
   kind: 'lekce',
   track: 'v sále',
   outcomes: [
@@ -3547,13 +3338,33 @@ const L2_TABULKY: Lesson = {
     {
       kind: 'p',
       text:
-        'Claude s tabulkami umí. Problém nejsou tabulky, ale to, že o nich obě strany předpokládají něco jiného. Ty víš, že hlavička je na třetím řádku a že prázdné pole znamená „nezjištěno“, ne nulu. On to neví, dokud mu to neřekneš — a když mu to neřekneš, tak si to domyslí. Tahle lekce je o tom, jak předejít domýšlení.',
+        'Claude s tabulkami umí — problém je, že obě strany o nich mlčky předpokládají něco jiného. Ty víš, že hlavička je na třetím řádku a prázdné pole znamená „nezjištěno“, ne nulu. On to neví, dokud mu to neřekneš, a bez toho si to domyslí.',
+    },
+    { kind: 'h', text: 'Struktura zadání, které projde napoprvé' },
+    {
+      kind: 'p',
+      text:
+        'Čtyři části: co vzít, co s tím udělat, kam to uložit, co dělat s výjimkou. Poslední se nejčastěji vynechává, a přitom rozhoduje o tom, jestli výsledku půjde věřit.',
+    },
+    {
+      kind: 'code',
+      text: `Vezmi nové faktury ze vstup/.
+
+Ke každé dohledej v data/objednavky.xlsx objednávku se stejným číslem
+a porovnej základ daně se schválenou částkou.
+
+Ulož jako vystup/kontrola-<RRRR-MM-DD>.xlsx, sloupce v pořadí
+Faktura, Dodavatel, Základ daně, SEDÍ, CHYBÍ.
+
+Kde údaj chybí, nech prázdno. Na konci mi napiš, kolika faktur
+se to týkalo a vypiš jejich čísla.`,
+      caption: 'Poslední odstavec dělá rozdíl. Bez něj dostaneš tabulku, ve které nepoznáš, co je změřené a co dopočítané.',
     },
     { kind: 'h', text: 'Nech si nejdřív popsat, co v tom je' },
     {
       kind: 'p',
       text:
-        'Než zadáš první výpočet, nech si popsat strukturu. Trvá to třicet vteřin a ušetří to celé kolo. Navíc hned uvidíš, jestli si soubor přečetl tak, jak čekáš.',
+        'Než zadáš první výpočet, nech si popsat strukturu: kolik listů, kde je hlavička, jaké typy má který sloupec, kde jsou prázdná pole. Trvá to třicet vteřin a hned uvidíš, jestli si soubor přečetl tak, jak čekáš.',
     },
     {
       kind: 'code',
@@ -3561,7 +3372,7 @@ const L2_TABULKY: Lesson = {
 kolik má listů a jak se jmenují, na kterém řádku začíná hlavička,
 kolik je řádků dat, jaké typy jsou v jednotlivých sloupcích
 a kde jsou prázdná pole.`,
-      caption: 'Když v odpovědi něco nesedí, nesedí to i ve všem, co by následovalo.',
+      caption: 'Když tu něco nesedí, nesedí to ani ve všem, co by následovalo.',
     },
     { kind: 'h', text: 'Čím se v tabulce dá splést' },
     {
@@ -3616,7 +3427,7 @@ a kde jsou prázdná pole.`,
     {
       kind: 'p',
       text:
-        'Vezmi si tabulku pastí a projdi s ní export objednávek, který znáš z cvičného projektu s fakturami. Vyjde jich pět — a všech pět je důvod, proč se ruční kontrola nikdy nedala vynechat.',
+        'Stejná tabulka pastí na exportu objednávek z cvičného projektu vyjde na čtyři věci — a všechny čtyři jsou důvod, proč se ruční kontrola nikdy nedala vynechat.',
     },
     {
       kind: 'table',
@@ -3624,7 +3435,6 @@ a kde jsou prázdná pole.`,
       rows: [
         ['Řádky za všechna období, ne jen aktuální měsíc', 'porovná se s objednávkou z úplně jiného měsíce, protože sedí jen číslo'],
         ['Čísla objednávek jako 2026-00043', 'převede se na datum nebo na číslo, ztratí se úvodní nuly a faktura se nespáruje'],
-        ['Částka zapsaná jako „33 100,00 Kč"', 'vezme se jako text, žádné porovnání ani součet nevyjde'],
         ['Prázdná buňka místo nuly, nebo pomlčka', 'pomlčka se počítá jako text, ne jako částka'],
         ['Stejné číslo objednávky na dvou řádcích (oprava, duplicitní export)', 'najde se první řádek, ne ten platný'],
       ],
@@ -3634,27 +3444,7 @@ a kde jsou prázdná pole.`,
       tone: 'ok',
       title: 'Nejdřív na vzoru, pak na svém',
       text:
-        'Celý tenhle kurz jede ve dvou krocích: každou věc si ukážeme na kontrole faktur, kterou už znáš, a pak ji uděláš na vlastní agendě. Vzor je tu proto, aby bylo s čím porovnávat, když vám vlastní proces vyjde jinak.',
-    },
-    { kind: 'h', text: 'Struktura zadání, které projde napoprvé' },
-    {
-      kind: 'p',
-      text:
-        'Čtyři části: co vzít, co s tím udělat, kam to uložit, co dělat s výjimkou. Ta poslední je ta, na kterou se zapomíná, a přitom rozhoduje o tom, jestli výsledku budeš moct věřit.',
-    },
-    {
-      kind: 'code',
-      text: `Vezmi nové faktury ze vstup/.
-
-Ke každé dohledej v data/objednavky.xlsx objednávku se stejným číslem
-a porovnej základ daně se schválenou částkou.
-
-Ulož jako vystup/kontrola-<RRRR-MM-DD>.xlsx, sloupce v pořadí
-Faktura, Dodavatel, Základ daně, SEDÍ, CHYBÍ.
-
-Kde údaj chybí, nech prázdno. Na konci mi napiš, kolika faktur
-se to týkalo a vypiš jejich čísla.`,
-      caption: 'Poslední odstavec je ten, který dělá rozdíl. Bez něj dostaneš tabulku, ve které nepoznáš, co je změřené a co dopočítané.',
+        'Celý kurz jede ve dvou krocích: každou věc si ukážeme na kontrole faktur, kterou už znáš, a pak ji uděláš na vlastní agendě.',
     },
     { kind: 'h', text: 'Hodnoty, nebo vzorce?' },
     {
@@ -3707,7 +3497,7 @@ const L2_KONTROLA: Lesson = {
     {
       kind: 'p',
       text:
-        'Tahle lekce je nudná a je nejdůležitější v celém kurzu. Důvod je jednoduchý: dokud neumíš rychle ověřit, že je výsledek v pořádku, budeš kontrolovat všechno ručně — a pak je jedno, jak dobře to Claude spočítal, protože se neušetřilo nic. Automatizace začíná fungovat ve chvíli, kdy kontrola trvá minutu místo hodiny.',
+        'Nudná lekce, nejdůležitější v kurzu. Dokud neumíš rychle ověřit výsledek, budeš kontrolovat všechno ručně — a pak je jedno, jak dobře to Claude spočítal, protože se neušetřilo nic. Automatizace začne fungovat ve chvíli, kdy kontrola trvá minutu místo hodiny.',
     },
     { kind: 'h', text: 'Tři otázky na každý výstup' },
     {
@@ -3716,19 +3506,19 @@ const L2_KONTROLA: Lesson = {
         {
           title: 'Sedí počty?',
           body:
-            'Kolik řádků šlo dovnitř a kolik vyšlo ven? Když se to liší, musí být důvod, který umíš pojmenovat — filtr, deduplikace, rozpad na víc souborů. Když ho neumíš pojmenovat, něco se ztratilo.',
+            'Kolik řádků šlo dovnitř a kolik vyšlo ven? Rozdíl musí mít důvod, který umíš pojmenovat — filtr, deduplikace, rozpad na víc souborů. Když ho neumíš pojmenovat, něco se ztratilo.',
           code: 'Kolik řádků měl vstup, kolik má výstup a čím se ten rozdíl vysvětluje?',
         },
         {
           title: 'Sedí součty?',
           body:
-            'Sečti jeden číselný sloupec před a po. U rozpadu na víc souborů sečti součty všech dílů. Tohle chytí většinu chyb v párování a duplicitách.',
+            'Sečti jeden číselný sloupec před a po (u rozpadu na víc souborů součty všech dílů). Tohle chytí většinu chyb v párování a duplicitách.',
           code: 'Sečti sloupec Kusů na CS ve vstupu a ve všech výstupních souborech. Sedí to?',
         },
         {
           title: 'Sedí vzorek?',
           body:
-            'Vyber pět řádků — dva náhodné, jeden nejmenší, jeden největší a jeden, u kterého něco chybělo — a projdi je ručně proti originálu. Pět řádků zabere dvě minuty a chytí to, co součty přehlédnou.',
+            'Vyber pět řádků — dva náhodné, nejmenší, největší a jeden, u kterého něco chybělo — a projdi je ručně proti originálu. Zabere to dvě minuty a chytí to, co součty přehlédnou.',
           code: 'Vyber pět položek podle klíče výš a ukaž mi u každé, odkud se každá hodnota vzala.',
         },
       ],
@@ -3738,13 +3528,13 @@ const L2_KONTROLA: Lesson = {
       tone: 'warn',
       title: 'Neptej se, jestli je to správně',
       text:
-        'Odpověď „ano, zkontroloval jsem to“ nemá žádnou hodnotu — je to tvrzení o tvrzení. Ptej se na čísla, která se dají porovnat s originálem: počty, součty, konkrétní hodnoty u konkrétních řádků. Kontrola je porovnání, ne ujištění.',
+        'Odpověď „ano, zkontroloval jsem to“ nemá žádnou hodnotu — je to tvrzení o tvrzení. Ptej se na čísla srovnatelná s originálem: počty, součty, konkrétní hodnoty u konkrétních řádků. Kontrola je porovnání, ne ujištění.',
     },
     { kind: 'h', text: 'Nech si vyrobit kontrolní protokol' },
     {
       kind: 'p',
       text:
-        'Místo opakování kontroly pokaždé znovu, udělej z ní součást úlohy. Ke každému výstupu ať vznikne krátký soubor, ve kterém je všechno, co potřebuješ k rozhodnutí „můžu to poslat“.',
+        'Místo opakování kontroly pokaždé znovu z ní udělej součást úlohy: ke každému výstupu ať vznikne krátký soubor se vším, co potřebuješ k rozhodnutí „můžu to poslat“.',
     },
     {
       kind: 'code',
@@ -3761,7 +3551,7 @@ const L2_KONTROLA: Lesson = {
     {
       kind: 'p',
       text:
-        'U kontroly faktur vypadají ty tři otázky takhle. Všimni si, že žádná z nich nevyžaduje otevřít jedinou fakturu.',
+        'U kontroly faktur vypadají ty tři otázky takhle — a žádná z nich nevyžaduje otevřít jedinou fakturu.',
     },
     {
       kind: 'code',
@@ -3783,7 +3573,7 @@ Vzorek:
 
 Divné:  U vts-technik je rozdíl přesně 1 200 Kč, což odpovídá ceně
         montáže navíc. Podle pravidla jsem se měl zastavit — ptám se: pokračovat?`,
-      caption: 'Poslední odstavec je ten, kvůli kterému to celé má smysl. Automat, který si všimne, že něco nesedí, a zeptá se, je použitelný. Ten, který to spočítá potichu, není.',
+      caption: 'Poslední odstavec je ten, kvůli kterému to celé má smysl. Automat, který si všimne, že něco nesedí, a zeptá se, je použitelný — ten, který to spočítá potichu, není.',
     },
     { kind: 'h', text: 'Chyby, které se samy neprojeví' },
     {
@@ -3827,7 +3617,7 @@ Divné:  U vts-technik je rozdíl přesně 1 200 Kč, což odpovídá ceně
       tone: 'ok',
       title: 'Porovnání s minulým měsícem je nejlevnější kontrola',
       text:
-        'Většina agend se měsíc od měsíce mění málo. Když ti počet faktur skočí o třetinu nebo zmizí celé středisko, je to vidět na první pohled — ale jen když se podíváš. Nech si porovnat nový výstup s tím minulým a vypsat, co se výrazně změnilo.',
+        'Většina agend se měsíc od měsíce mění málo. Skočí-li počet faktur o třetinu nebo zmizí celé středisko, je to vidět na první pohled — jen když se podíváš. Nech si porovnat nový výstup s minulým a vypsat, co se výrazně změnilo.',
     },
     {
       kind: 'task',
@@ -3865,13 +3655,13 @@ const L2_POSTAV: Lesson = {
     {
       kind: 'p',
       text:
-        'Máš mapu svého procesu a v ní označená místa, kde se přenáší data ručně. Teď z jednoho z nich uděláš skill. Celé to trvá tři čtvrtě hodiny a na konci máš něco, co příště spustíš jednou větou.',
+        'Máš mapu procesu s označenými místy, kde se data přenáší ručně. Z jednoho z nich teď uděláš skill — tři čtvrtě hodiny a na konci máš něco, co příště spustíš jednou větou.',
     },
     { kind: 'h', text: 'Vyber ten správný první krok' },
     {
       kind: 'p',
       text:
-        'Neber ten nejbolestivější. Ber ten, který se dá dokončit. První automatizace má hlavně dokázat, že to jde — bolestivé kroky přijdou, až budeš vědět, jak to celé funguje.',
+        'Neber ten nejbolestivější, ber ten, který se dá dokončit. První automatizace má hlavně dokázat, že to jde — bolestivé kroky přijdou, až budeš vědět, jak to celé funguje.',
     },
     {
       kind: 'table',
@@ -3891,32 +3681,32 @@ const L2_POSTAV: Lesson = {
         {
           title: 'Nejdřív si to projdi na vzoru',
           body:
-            'Pusť si celý postup jednou na datech z cvičného projektu s fakturami — tam víš, jak má výsledek vypadat, protože jste ho v lekci Od e-mailu k platbě rozebrali krok po kroku. Až tenhle průchod vyjde, jdi na svoje.',
+            'Pusť si celý postup jednou na datech z cvičného projektu s fakturami, kde víš, jak má výsledek vypadat. Až tenhle průchod vyjde, jdi na svoje.',
         },
         {
           title: 'Připrav si materiál',
           body:
-            'Do data/ dej reálný vstup a do vystupy/ dej výsledek z minula — ten, který je správně. Bez něj nepoznáš, jestli to vyšlo.',
+            'Do data/ dej reálný vstup a do vystupy/ výsledek z minula, ten správný — bez něj nepoznáš, jestli to vyšlo.',
         },
         {
           title: 'Udělej to jednou zadáním',
           body:
-            'Napiš zadání podle struktury z lekce Zadání nad tabulkou: co vzít, co udělat, kam uložit, co s výjimkou. A pak si všímej, kolikrát musíš něco doříct.',
+            'Napiš zadání podle struktury z lekce Zadání nad tabulkou: co vzít, co udělat, kam uložit, co s výjimkou. Všímej si, kolikrát musíš něco doříct.',
         },
         {
           title: 'Porovnej s tím, co je správně',
           body:
-            'Použij tři otázky z lekce Jak poznáš, že je to špatně — počty, součty, vzorek. Tady se skoro vždycky ukáže první chybějící pravidlo.',
+            'Použij tři otázky z lekce Jak poznáš, že je to špatně — počty, součty, vzorek. Skoro vždycky se tu ukáže první chybějící pravidlo.',
         },
         {
           title: 'Doříkání přepiš do CLAUDE.md',
           body:
-            'Všechno, co bylo potřeba vysvětlit a co platí i mimo tuhle úlohu, je pravidlo. Do skillu to nepatří.',
+            'Všechno, co jsi musela vysvětlit a co platí i mimo tuhle úlohu, je pravidlo — do skillu nepatří.',
         },
         {
           title: 'Nech si napsat skill',
           body:
-            'Hned po tom, co úloha doběhla správně, vlep do chatu zadání níž. Claude z právě proběhlého rozhovoru vyrobí soubor SKILL.md. Pak ho přečti a oprav řádek description tak, aby se trefil do slov, kterými bys tu úlohu zadával příště. Jak skill funguje uvnitř, je v lekci Jak napsat skill — teď to nepotřebuješ.',
+            'Hned po správném doběhnutí vlep do chatu zadání níž. Claude z proběhlého rozhovoru vyrobí SKILL.md — přečti ho a uprav description na slova, kterými bys úlohu zadával příště.',
           code: `Z toho, co jsme teď udělali, napiš skill do .claude/skills/.
 Dej mu jméno podle úlohy a do description napiš, co dělá a kdy se má
 použít — takovými slovy, jaká bych do zadání napsal já. V postupu drž
@@ -3927,12 +3717,12 @@ přidej sekci "Na co si dát pozor". Pak mi ho ukaž, než ho uložíš.`,
         {
           title: 'Přidej na konec kontrolu',
           body:
-            'Poslední krok skillu ať vyrobí kontrolní protokol. Tohle je ta věc, kvůli které se to jednou bude dát pustit bez tebe.',
+            'Poslední krok skillu ať vyrobí kontrolní protokol — díky tomu se to jednou bude dát pustit bez tebe.',
         },
         {
           title: 'Spusť to na jiných datech',
           body:
-            'Na jiném měsíci. Když vyjde něco jiného než minule, není to chyba skillu — je to chybějící pravidlo. Doplň ho a zkus to znovu.',
+            'Na jiném měsíci. Vyjde-li něco jiného než minule, není to chyba skillu, ale chybějící pravidlo. Doplň ho a zkus to znovu.',
         },
       ],
     },
@@ -3941,7 +3731,7 @@ přidej sekci "Na co si dát pozor". Pak mi ho ukaž, než ho uložíš.`,
       tone: 'ok',
       title: 'Hotovo je, když',
       text:
-        'Skill projde dvakrát po sobě na různých datech bez jediné opravy, a kontrolní protokol ti dá dost na to, abys výsledek poslala dál bez otevírání souboru. Nic víc od prvního skillu nechtěj.',
+        'Skill projde dvakrát po sobě na různých datech bez jediné opravy a kontrolní protokol ti dá dost na to, abys výsledek poslala dál bez otevírání souboru. Nic víc od prvního skillu nechtěj.',
     },
     {
       kind: 'task',
@@ -3975,63 +3765,36 @@ const L2_PLAN: Lesson = {
     {
       kind: 'p',
       text:
-        'Tohle je technická část posledního schodu: samotné založení úlohy, která se spustí sama. Kdy ji pustit a co k tomu musí platit, řeší lekce Jak se v projektu nastaví automatizace. Tady jen jak.',
+        'Technická část posledního schodu: samotné založení úlohy, která se spustí sama. V desktopové aplikaci Claude Code je to záložka Code → Routines.',
     },
-    { kind: 'h', text: 'Naplánovaná úloha v Claude Code' },
-    {
-      kind: 'p',
-      text:
-        'V desktopové aplikaci Claude Code je v záložce Code v levém panelu položka Routines. Tam se zakládají úlohy, které se spustí samy. Hned u zakládání se ale rozhoduje jedna věc, na které to buď stojí, nebo padá: jestli má úloha běžet na tvém počítači, nebo v cloudu.',
-    },
-    {
-      kind: 'table',
-      head: ['Vlastnost', 'Local — na tvém počítači', 'Cloud — na serveru'],
-      rows: [
-        [
-          'Vidí soubory na tvém disku',
-          'ano, pracuje přímo v tvojí složce',
-          'ne. Naklonuje si repozitář z GitHubu a pracuje v něm.',
-        ],
-        ['Potřebuje zapnutý počítač', 'ano, a puštěnou aplikaci', 'ne, běží i když máš zavřený notebook'],
-        ['Nejkratší interval', 'minuta', 'hodina'],
-        ['Povolování nástrojů', 'nastavíš si režim, může se doptat', 'běží samo, na nic se neptá'],
-        ['Kdy ji zvolit', 'skoro vždycky u nás — data máme ve složce', 'když je práce nad repozitářem a nesmí čekat na notebook'],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Pro naši práci je správně Local — a to je ta nepříjemná zpráva',
-      text:
-        'Cloudová varianta zní líp: běží, i když máš zavřený notebook. Jenže tvoje data leží v nasyncované knihovně na disku a cloudová úloha si místo toho klonuje repozitář z GitHubu — do tvojí složky se nedostane vůbec. Takže pro nás platí Local, a ten běží jen tehdy, když je počítač zapnutý a aplikace puštěná. Ve chvíli, kdy má běh vyjít i přes zavřený notebook, musí data přestat žít jen na disku: buď přes konektor, nebo tokem v Power Automate.',
-    },
+    { kind: 'h', text: 'Postup' },
     {
       kind: 'steps',
       items: [
         {
           title: 'Routines → New routine → Local',
           body:
-            'Volba Cloud udělá tu druhou věc z tabulky. Pro práci nad vlastní složkou chceš Local.',
+            'Cloud si na úlohu klonuje repozitář z GitHubu a do tvojí složky se nedostane — pro práci nad vlastní složkou proto chceš Local (víc v tabulce níž).',
         },
         {
           title: 'Vyplnit název, popis a instrukce',
           body:
-            'Instrukce píšeš úplně stejně, jako když píšeš Claudovi do chatu. Tady vybereš i model a režim povolování.',
+            'Instrukce píšeš stejně, jako když píšeš Claudovi do chatu. Tady vybereš i model a režim povolování.',
         },
         {
           title: 'Vybrat pracovní složku',
           body:
-            'Bez složky se úloha nedá uložit. Vyber tu svoji projektovou — tu, ve které máš CLAUDE.md, data/ a vystupy/. Když ji ještě nemáš označenou jako důvěryhodnou, aplikace se na to zeptá.',
+            'Bez složky se úloha nedá uložit. Vyber projektovou — tu s CLAUDE.md, data/ a vystupy/. Bez označení jako důvěryhodná se na to aplikace zeptá.',
         },
         {
           title: 'Nastavit rozvrh',
           body:
-            'Na výběr je Manual (spustí se jen na kliknutí), Hourly, Daily, Weekdays a Weekly. Cokoli jinačího — třeba každých patnáct minut nebo prvního v měsíci — řekni Claudovi v chatu vlastními slovy.',
+            'Na výběr Manual, Hourly, Daily, Weekdays, Weekly. Cokoli jinačího — každých patnáct minut, prvního v měsíci — řekni Claudovi v chatu vlastními slovy.',
         },
         {
           title: 'Hned kliknout na Run now',
           body:
-            'Tohle nepřeskakuj. První běh si odklikáš oprávnění a u každého dáš „always allow". Bez toho se úloha při ostrém běhu zastaví na dotazu, na který nikdo neodpoví, a ty si budeš myslet, že spadla.',
+            'Nepřeskakuj. První běh si odklikáš oprávnění a u každého dáš „always allow" — jinak se úloha při ostrém běhu zastaví na dotazu, na který nikdo neodpoví, a bude to vypadat, že spadla.',
         },
       ],
     },
@@ -4040,21 +3803,44 @@ const L2_PLAN: Lesson = {
       tone: 'ok',
       title: 'Nemusíš to klikat — stačí si o to říct',
       text:
-        'Úlohu založíš i tím, že ji v běžném sezení popíšeš. „Založ mi úlohu, která každé ráno v sedm zkontroluje nové faktury" udělá opakovanou úlohu. „Připomeň mi zítra ve tři, ať zkontroluju ten běh" udělá jednorázovou, která se po odpálení sama vypne. Stejně tak se dá říct „pozastav mi úlohu kontrola-faktur" nebo „ukaž mi moje naplánované úlohy".',
+        'Úlohu založíš i popsáním v běžném sezení. „Založ mi úlohu, která každé ráno v sedm zkontroluje nové faktury" udělá opakovanou; „připomeň mi zítra ve tři, ať zkontroluju ten běh" jednorázovou, která se po odpálení sama vypne. Stejně tak „pozastav mi úlohu kontrola-faktur" nebo „ukaž mi moje naplánované úlohy".',
+    },
+    { kind: 'h', text: 'Proč Local, ne Cloud' },
+    {
+      kind: 'table',
+      head: ['Vlastnost', 'Local — na tvém počítači', 'Cloud — na serveru'],
+      rows: [
+        [
+          'Vidí soubory na tvém disku',
+          'ano, pracuje přímo v tvojí složce',
+          'ne, klonuje si repozitář z GitHubu',
+        ],
+        ['Potřebuje zapnutý počítač', 'ano, a puštěnou aplikaci', 'ne, běží i se zavřeným notebookem'],
+        ['Nejkratší interval', 'minuta', 'hodina'],
+        ['Povolování nástrojů', 'nastavíš si režim, může se doptat', 'běží samo, na nic se neptá'],
+        ['Kdy ji zvolit', 'skoro vždycky u nás — data máme ve složce', 'práce nad repozitářem, co nesmí čekat na notebook'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Pro naši práci je správně Local — a to je ta nepříjemná zpráva',
+      text:
+        'Cloud zní líp, protože běží i se zavřeným notebookem — jenže data leží jen v nasyncované knihovně na disku, kam se cloudová úloha nedostane. Takže platí Local: zapnutý počítač, puštěná aplikace. Má-li běh vyjít i přes zavřený notebook, musí data přestat žít jen na disku — přes konektor, nebo tokem v Power Automate.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Zadání úlohy je obyčejný SKILL.md',
       text:
-        'Text úlohy leží na disku v ~/.claude/scheduled-tasks/<název>/SKILL.md — tedy přesně ten formát, který znáš z lekce o skillech: YAML hlavička s name a description a pod tím zadání. Dá se editovat ručně a projeví se to při dalším běhu. Rozvrh, složka a model v tom souboru nejsou, ty se mění ve formuláři.',
+        'Text úlohy leží na disku v ~/.claude/scheduled-tasks/<název>/SKILL.md — stejný formát jako u skillů, YAML hlavička s name a description a pod tím zadání. Dá se editovat ručně, projeví se to při dalším běhu. Rozvrh, složka a model se mění ve formuláři, ne v souboru.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Když počítač spal, běh se přeskočí',
       text:
-        'Úloha běží jen při puštěné aplikaci a probuzeném počítači. Zaspaný běh se zahodí a při probuzení se dohání jenom ten poslední zmeškaný — úloha, která nešla šest dní, doběhne jednou. To znamená, že se ranní úloha může spustit v jedenáct večer. Piš proto zadání tak, aby s tím počítalo: „Pracuj jenom s dnešním exportem. Když je po páté odpoledne, nic nepočítej a jenom mi napiš, že se to nestihlo." V Nastavení → Aplikace → Obecné se dá zapnout Keep computer awake, ale zavřené víko uspí počítač tak jako tak.',
+        'Úloha běží jen při puštěné aplikaci a probuzeném počítači. Zaspaný běh se zahodí, po probuzení se dohání jen ten poslední zmeškaný — úloha, která nešla šest dní, doběhne jednou. Ranní úloha se tak může spustit v jedenáct večer. Piš proto zadání s tím, že počítá: „Pracuj jenom s dnešním exportem. Po páté odpoledne nic nepočítej, jen napiš, že se to nestihlo." V Nastavení → Aplikace → Obecné jde zapnout Keep computer awake, ale zavřené víko uspí počítač tak jako tak.',
     },
     {
       kind: 'video',
@@ -4104,13 +3890,13 @@ const L2_UKAZKA: Lesson = {
     {
       kind: 'p',
       text:
-        'Nic z téhle lekce nedocvakne, dokud to člověk jednou neuvidí. Tak si to udělejte hned: naplánujte běh na čas za pět minut, nechte počítač otevřený a odejděte od něj. Když se vrátíte, bude ve vystupy/ soubor, který jste nevyrobili — a kolegovi ve schránce zpráva, kterou jste neposlali.',
+        'Nic z téhle lekce nedocvakne, dokud to člověk jednou neuvidí. Naplánuj běh na za pět minut, nech počítač otevřený a odejdi od něj. Až se vrátíš, bude ve vystupy/ soubor, který jsi nevyrobila — a kolegovi ve schránce zpráva, kterou jsi neposlala.',
     },
     { kind: 'h', text: 'Co si na to dát za úlohu' },
     {
       kind: 'p',
       text:
-        'Na první běh nebeř nic z ostré práce. Chceš úlohu, která je hotová do minuty, nemůže nic pokazit a jejíž výsledek je vidět i z poslední řady. Nejlíp funguje tahle: ať spočítá, co má ve složce, zapíše to do souboru a dá o tom vědět kolegovi vedle sebe. Adresát je člověk z dvojice, se kterou se mapovalo workflow — ten pak nahlas potvrdí, že mu něco přišlo, i když u toho nikdo neseděl.',
+        'Na první běh nic z ostré práce. Chceš úlohu hotovou do minuty, která nemůže nic pokazit a jejíž výsledek je vidět i z poslední řady: ať spočítá, co má ve složce data/, zapíše to do souboru a dá vědět kolegovi z dvojice, se kterou jste mapovali workflow — ten pak nahlas potvrdí, že mu něco přišlo, i když u toho nikdo neseděl.',
     },
     {
       kind: 'tabs',
@@ -4163,7 +3949,7 @@ dvě čísla. Neodesílej ho, jenom ho otevři.`,
       tone: 'info',
       title: 'Proč zrovna počítání souborů',
       text:
-        'Protože to nemůže dopadnout špatně, doběhne to za vteřinu a každý si výsledek ověří vlastníma očima. Až tenhle běh proběhne, vyměníš zadání za svoji skutečnou úlohu — všechno ostatní kolem zůstane stejné.',
+        'Protože to nemůže dopadnout špatně, doběhne to za vteřinu a každý si výsledek ověří vlastníma očima. Až tenhle běh proběhne, vyměníš zadání za svoji skutečnou úlohu — zbytek zůstane stejný.',
     },
     {
       kind: 'steps',
@@ -4171,38 +3957,31 @@ dvě čísla. Neodesílej ho, jenom ho otevři.`,
         {
           title: 'Naplánuj to na za pět minut — větou, ne formulářem',
           body:
-            'Formulář si otevřeš jindy. Teď prostě vlep do chatu zadání z předchozí kartičky. Claude si sám doplní čas, složku i rozvrh a úlohu ti založí. Odpoví ti, kdy poběží — a to je celé.',
+            'Vlep do chatu zadání z předchozí kartičky. Claude si sám doplní čas, složku i rozvrh, úlohu založí a odpoví, kdy poběží.',
         },
         {
           title: 'Nedívej se na to',
           body:
-            'Vážně. Zavři okno a dělej něco jiného. Půlka smyslu téhle ukázky je v tom, že u toho nesedíte.',
+            'Zavři okno a dělej něco jiného. Půlka smyslu téhle ukázky je v tom, že u toho nesedíš.',
         },
         {
           title: 'Za pět minut se podívej, co přibylo',
           body:
-            'Notifikace na ploše, ve vystupy/ soubor s dnešním datem — a kolega vedle tebe ať nahlas řekne, jestli mu něco přišlo. Nikdo u toho nebyl.',
+            'Notifikace na ploše, ve vystupy/ soubor s dnešním datem — a kolega vedle tebe ať nahlas řekne, jestli mu něco přišlo.',
         },
         {
           title: 'Otevři jen kontrola-<datum>.md',
           body:
-            'Ne výstupy, jen ten jeden soubor. Sedí počet souborů s tím, co vidíš ve složce? Pak to funguje. Tohle je celý ten trik, který se pak opakuje u každé skutečné úlohy: rozhoduješ se z jedné stránky místo z tisíce řádků.',
+            'Ne výstupy, jen ten jeden soubor. Sedí počet souborů s tím, co vidíš ve složce? Tohle je ten trik, který se opakuje u každé skutečné úlohy: rozhoduješ se z jedné stránky místo z tisíce řádků.',
         },
       ],
     },
     {
       kind: 'note',
       tone: 'ok',
-      title: 'Věta je lepší než formulář',
+      title: 'Věta je lepší než formulář — a tohle je ta chvíle',
       text:
-        'Formulář úlohy má sedm polí — název, popis, instrukce, model, režim povolování, složku a rozvrh. Napsaná věta je jeden řádek a dělá totéž. A ukazuje mimochodem to podstatné: s Claudem se mluví jako s člověkem, kterému něco zadáváš, ne jako s aplikací, kterou musíš umět ovládat. Formulář si otevři, až budeš chtít úlohu upravit.',
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Tohle je ta chvíle',
-      text:
-        'Když se lidem po pěti minutách objeví hotový soubor, na kterém nikdo nepracoval, dojde jim to rychleji než z jakéhokoli vysvětlování. Proto je tahle ukázka na konci workshopu — ne jako látka, ale jako důkaz, že těch pět schodů někam vede.',
+        'Formulář úlohy má sedm polí, napsaná věta je jeden řádek a dělá totéž — s Claudem se mluví jako s člověkem, ne jako s aplikací, kterou musíš umět ovládat. A když lidem po pěti minutách objeví hotový soubor, na kterém nikdo nepracoval, dojde jim to rychleji než z jakéhokoli vysvětlování. Proto je tahle ukázka na konci workshopu — jako důkaz, že těch pět schodů někam vede.',
     },
   ],
 }
@@ -4225,13 +4004,13 @@ const L2_EMAIL: Lesson = {
     {
       kind: 'p',
       text:
-        'Odeslat e-mail je věc, na kterou se ptá každý hned po první naplánované úloze. Jde to — ale ne samo od sebe a ne bez správce. Tahle lekce říká, co přesně k tomu musí platit, aby to v pondělí v šest ráno nezůstalo jen u souboru ve složce.',
+        'Odeslat e-mail se ptá každý hned po první naplánované úloze. Jde to — ale ne samo od sebe a ne bez správce. Tahle lekce říká, co přesně k tomu musí platit, aby to v pondělí v šest ráno nezůstalo jen u souboru ve složce.',
     },
     { kind: 'h', text: 'Čím se ten e-mail vlastně odešle' },
     {
       kind: 'p',
       text:
-        'Claude sám od sebe do pošty nevidí ani do ní nepíše. Musí mu to někdo umožnit — a tomu napojení se říká konektor: přípojka na službu, přes kterou Claude umí něco udělat mimo tvůj disk. Cesty jsou čtyři a liší se hlavně tím, kdo je musí povolit a jestli přenesou přílohu.',
+        'Claude sám od sebe do pošty nevidí ani do ní nepíše — musí mu to někdo umožnit, tomu napojení se říká konektor: přípojka na službu, přes kterou umí něco udělat mimo tvůj disk. Cesty jsou čtyři, liší se hlavně tím, kdo je musí povolit a jestli přenesou přílohu.',
     },
     {
       kind: 'table',
@@ -4263,7 +4042,7 @@ const L2_EMAIL: Lesson = {
     {
       kind: 'p',
       text:
-        'Konektor umí obojí — jenže každé se zapíná zvlášť a odesílání je vypnuté, dokud ho někdo nepovolí. Když se v seznamu nástrojů konektoru díváš na samá „search", vidíš první sloupec téhle tabulky. Odesílat se z něj tím pádem nedá, i když je konektor připojený.',
+        'Konektor umí obojí, ale každé se zapíná zvlášť a odesílání je vypnuté, dokud ho někdo nepovolí. Samé „search" v seznamu nástrojů konektoru znamená první sloupec téhle tabulky — odesílat se z něj nedá, i když je konektor připojený.',
     },
     {
       kind: 'table',
@@ -4287,20 +4066,20 @@ const L2_EMAIL: Lesson = {
       tone: 'warn',
       title: 'Přes konektor neodejde příloha',
       text:
-        'Tohle je u nás ta nejdůležitější věta z celé lekce. Odesílání přes konektor zatím neumí přílohy — Claude nepošle, nepřepošle ani nerozepíše e-mail s připojeným souborem. Pro naši práci to znamená, že „pošli kolegům výstupní soubory" takhle neuděláš. Uděláš to jinak: výstup se uloží do sdílené knihovny (nasyncuje se sám) a e-mail nese odkaz, ne přílohu. Což je stejně lepší — všichni pak čtou tu samou verzi.',
+        'Nejdůležitější věta z celé lekce. Odesílání přes konektor zatím neumí přílohy — Claude nepošle, nepřepošle ani nerozepíše e-mail s připojeným souborem. „Pošli kolegům výstupní soubory" takhle neuděláš. Uděláš to jinak: výstup ulož do sdílené knihovny (nasyncuje se sama) a e-mail ať nese odkaz, ne přílohu — stejně lepší, všichni pak čtou tu samou verzi.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Konektor si nezapneš sám — a jak si o to říct',
       text:
-        'Souhlas dává správce Microsoft 365 a přihlašuje se pracovním účtem; osobní outlook.com nebo hotmail.com nefungují. Pokud konektor ve svém Claudovi nevidíš, není to chyba nastavení — nikdo ho pro firmu nepovolil. Napiš správci rovnou konkrétně: „potřebujeme u konektoru Claude na Microsoft 365 zapnout write tools pro odesílání pošty, vyžaduje to druhý souhlas v Entra". Bez té věty se ptáš na něco, co zní jako obecná otázka, a odpověď přijde za měsíc.',
+        'Souhlas dává správce Microsoft 365, přihlašuje se pracovním účtem — osobní outlook.com nebo hotmail.com nefungují. Nevidíš-li konektor ve svém Claudovi, není to chyba nastavení, nikdo ho pro firmu nepovolil. Napiš správci konkrétně: „potřebujeme u konektoru Claude na Microsoft 365 zapnout write tools pro odesílání pošty, vyžaduje to druhý souhlas v Entra" — bez té věty se ptáš na něco, co zní jako obecná otázka, a odpověď přijde za měsíc.',
     },
     { kind: 'h', text: 'Takže ano — úloha, která ráno pošle kolegovi mail' },
     {
       kind: 'p',
       text:
-        'Když je odesílání zapnuté, jde založit naplánovanou úlohu, která se v šest ráno spustí sama, něco spočítá, uloží výstup do knihovny a pošle kolegovi e-mail z tvojí adresy tvým jménem. Zadání úlohy vypadá takhle:',
+        'Když je odesílání zapnuté, jde založit naplánovanou úlohu, která se v šest ráno spustí sama, něco spočítá, uloží výstup do knihovny a pošle e-mail z tvojí adresy tvým jménem. Zadání vypadá takhle:',
     },
     {
       kind: 'code',
@@ -4318,14 +4097,14 @@ Když protokol hlásí nesrovnalost, e-mail neposílej a jenom mi to napiš.`,
       tone: 'warn',
       title: 'Musí platit tři věci najednou',
       text:
-        'Zapnuté write tools v konektoru. Žádná příloha — v mailu je odkaz. A protože úloha sahá do složky na tvém disku, běží jako Local: zapnutý počítač a puštěná aplikace. Když jedna z těch tří chybí, mail neodejde — a ty se to dozvíš až od kolegy, že mu nic nepřišlo.',
+        'Zapnuté write tools v konektoru. Žádná příloha — v mailu jen odkaz. A protože úloha sahá do složky na disku, běží jako Local: zapnutý počítač, puštěná aplikace. Chybí-li jedna z těch tří, mail neodejde — a dozvíš se to až od kolegy, že mu nic nepřišlo.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'S e-mailem opatrně: první měsíc jen koncepty',
       text:
-        'Odeslaná pošta se nevrací. Než necháš cokoli odesílat samo, nech to nejdřív měsíc připravovat rozepsaný e-mail, který odklikneš ty. Teprve až budeš mít měsíc bez překvapení, přemýšlej o odesílání bez potvrzení — a i pak jenom tam, kde nejhorší možný následek je, že někdo dostane zprávu navíc.',
+        'Odeslaná pošta se nevrací. Než necháš cokoli odesílat samo, nech to měsíc jen připravovat rozepsaný e-mail, který odklikneš ty. Teprve po měsíci bez překvapení přemýšlej o odesílání bez potvrzení — a i pak jen tam, kde nejhorší možný následek je, že někdo dostane zprávu navíc.',
     },
   ],
 }
@@ -4350,14 +4129,7 @@ const L2_MCP: Lesson = {
     {
       kind: 'p',
       text:
-        'Konektor je přípojka na službu mimo tvůj disk — to už znáš. MCP je způsob, jak se taková přípojka píše: server nabídne pár nástrojů, Claude si mezi nimi sám vybere a použije je, když je potřeba. U nás jde o katalog dek.cz. Ty se zeptáš normální větou a Claude si sám dojde pro produkt, kategorii nebo návod.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Proč to není totéž jako otevřít web',
-      text:
-        'Ve webu hledáš jeden produkt a klikáš. Přes MCP se dá ptát na to, co se klikáním dělá špatně: porovnej mi tyhle tři, projdi tenhle seznam kódů a řekni, které už nevedeme, nebo vezmi kategorii a udělej z ní tabulku. Claude si tam sáhne kolikrát potřebuje a odpověď složí sám.',
+        '„Projdi tenhle seznam kódů a řekni, které už nevedeme.“ „Vezmi kategorii technických izolací a udělej z ní tabulku.“ Tohle jde napsat rovnou Claudovi, jakmile má připojený MCP server nad katalogem dek.cz — žádné klikání ve webu, žádné kopírování jednoho produktu po druhém. Konektor je přípojka na službu mimo tvůj disk, to už znáš. MCP je způsob, jak se taková přípojka píše: server nabídne pár nástrojů a Claude si mezi nimi sám vybere ten, který se hodí na tvůj dotaz.',
     },
     { kind: 'h', text: 'Dvě varianty, se kterými se potkáš' },
     {
@@ -4415,25 +4187,20 @@ const L2_MCP: Lesson = {
       tone: 'ok',
       title: 'Nemusíš vědět, který nástroj je který',
       text:
-        'Tabulky jsou tu proto, aby bylo poznat, co se děje, když Claude odpovídá — ne k učení nazpaměť. Nástroje si vybírá sám podle toho, na co se ptáš. Ptej se jako člověka, ne jako vyhledávače.',
+        'Nástroje si Claude vybírá sám podle toho, na co se ptáš — tabulky jsou tu jen aby bylo poznat, co se přitom děje. Ptej se jako člověka, ne jako vyhledávače.',
     },
     { kind: 'h', text: 'Jak ho rozjet lokálně' },
     {
       kind: 'p',
       text:
-        'Tohle je celé. Server je jeden soubor a nemá žádnou závislost kromě oficiálního SDK — proto se dá rozjet dřív, než se stihneš někoho zeptat, jestli smíš. Jediné, co musíš mít, je Node: napiš v terminálu node --version a musí něco vypsat. Když ne, stáhni si ho z nodejs.org.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Stahuješ si to k sobě na počítač, do vlastní složky — třeba do Dokumentů. Server pak běží u tebe a je jedno, na kterém projektu zrovna pracuješ: připojuje se jednou pro všechny.',
+        'Server je jeden soubor bez závislostí kromě oficiálního SDK, takže se rozjede dřív, než se stihneš někoho zeptat, jestli smíš. Potřebuješ jen Node (node --version musí něco vypsat, jinak stáhni z nodejs.org) a vlastní složku na disku, třeba Dokumenty — server pak běží u tebe pro všechny projekty najednou.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Jenom ne do nasyncované knihovny',
       text:
-        'Instalace vyrobí složku node_modules s tisícovkami drobných souborů. Kdyby ležela ve sdílené knihovně, OneDrive by je začal syncovat kolegům a zbytečně by se s tím trápil celé odpoledne. Dej mcp-dek někam na svůj disk mimo nasyncované složky. Do projektu nepatří a nic tím neztratíš — díky přepínači --scope user ho Claude vidí ve všech projektech včetně toho na SharePointu.',
+        'Instalace vyrobí složku node_modules s tisícovkami drobných souborů, které by OneDrive začal syncovat kolegům. Dej mcp-dek mimo nasyncované složky — nic tím neztratíš, díky --scope user ho Claude stejně vidí ve všech projektech včetně toho na SharePointu.',
     },
     {
       kind: 'tabs',
@@ -4502,7 +4269,7 @@ claude mcp add --scope user dek -- node ~/Documents/dek/mcp-dek/server.js`,
                 },
                 {
                   title: 'Spustit tři příkazy',
-                  body: 'V terminálu, s tou cestou místo té naší.',
+                  body: 'V terminálu, s tou zkopírovanou cestou místo té naší.',
                   code: `cd /zkopírovaná/cesta/mcp-dek
 npm install
 node server.js --build-index
@@ -4520,14 +4287,14 @@ claude mcp add --scope user dek -- node /zkopírovaná/cesta/mcp-dek/server.js`,
       tone: 'info',
       title: 'Dvě pomlčky před node tam patří',
       text:
-        'V příkazu claude mcp add oddělují nastavení Clauda od příkazu, který se má spustit. Bez nich to skončí hláškou, které nebudeš rozumět. A cestu k server.js piš vždycky celou, ne relativní — server se spouští odjinud než ze složky, ve které zrovna stojíš.',
+        'Oddělují v příkazu claude mcp add nastavení Clauda od příkazu, který se má spustit — bez nich skončí hláškou, které nebudeš rozumět. Cestu k server.js piš vždy celou, ne relativní.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Ověř /mcp, než se začneš ptát',
       text:
-        'Napiš v Claude Code /mcp. U serveru dek musí svítit Connected. Dokud tam nesvítí, Claude odpovídá z hlavy a tváří se přitom stejně jistě — což je ten nejhorší možný stav. Failed to connect u lokálního serveru znamená skoro vždycky špatnou cestu k server.js nebo neproběhlé npm install.',
+        'Napiš v Claude Code /mcp — u serveru dek musí svítit Connected. Dokud nesvítí, Claude odpovídá z hlavy a tváří se stejně jistě, což je nejhorší stav. Failed to connect skoro vždy znamená špatnou cestu k server.js nebo neproběhlé npm install.',
     },
     {
       kind: 'table',
@@ -4545,13 +4312,13 @@ claude mcp add --scope user dek -- node /zkopírovaná/cesta/mcp-dek/server.js`,
       tone: 'info',
       title: 'Rejstřík se obnovuje sám',
       text:
-        'Leží v ~/.cache/mcp-dek/index.json a platí týden, pak se postaví znovu. Když se katalog výrazně změní dřív, řekni Claudovi, ať rejstřík obnoví — nástroj stav_rejstriku to umí a nemusíš kvůli tomu do terminálu.',
+        'Leží v ~/.cache/mcp-dek/index.json a platí týden. Když se katalog dřív výrazně změní, řekni Claudovi, ať ho obnoví — nástroj stav_rejstriku to umí, bez terminálu.',
     },
     { kind: 'h', text: 'Sdílet ho s kolegy' },
     {
       kind: 'p',
       text:
-        'Když ho má používat celé oddělení, nepatří do osobního nastavení, ale do projektu. Soubor .mcp.json leží v kořeni projektové složky a nese se s ní — kdo si složku otevře, dostane při prvním spuštění dotaz, jestli serveru věří.',
+        'Pro celé oddělení patří server do projektu, ne do osobního nastavení. Soubor .mcp.json leží v kořeni projektové složky a nese se s ní — kdo si ji otevře, dostane při prvním spuštění dotaz, jestli serveru věří.',
     },
     {
       kind: 'code',
@@ -4582,7 +4349,7 @@ claude mcp remove dek`,
     {
       kind: 'p',
       text:
-        'Než na tom něco postavíš, projdi si tyhle čtyři dotazy. Nejsou to ukázky, je to přejímka: u každého víš dopředu, jak má odpověď vypadat, takže hned poznáš, jestli si server sáhl do katalogu, nebo si vymýšlí.',
+        'Než na tom něco postavíš, projdi tyhle čtyři dotazy — je to přejímka. U každého víš dopředu, jak má odpověď vypadat, takže hned poznáš, jestli si server sáhl do katalogu, nebo si vymýšlí.',
     },
     {
       kind: 'checklist',
@@ -4599,7 +4366,7 @@ claude mcp remove dek`,
       tone: 'warn',
       title: 'Nejdůležitější je ten druhý dotaz',
       text:
-        'Vyřazený kód je zkouška poctivosti. Server, který místo „nenašel jsem" vrátí něco podobného, se nedá použít na kontrolu seznamů — a přitom je to ta práce, kvůli které by člověk katalog v Claudovi nejvíc chtěl. Zkus to na třech kódech, ne na jednom.',
+        'Vyřazený kód je zkouška poctivosti. Server, který místo „nenašel jsem" vrátí něco podobného, se nedá použít na kontrolu seznamů — a to je ta práce, kvůli které by ho člověk chtěl nejvíc. Zkus to na třech kódech, ne na jednom.',
     },
     { kind: 'h', text: 'Na co se ho ptát' },
     {
@@ -4618,7 +4385,7 @@ claude mcp remove dek`,
       tone: 'ok',
       title: 'Sílu to dostane až ve spojení s tvojí složkou',
       text:
-        'Katalog sám o sobě je hezký, ale ty ho potřebuješ propojit se svými daty. Když máš připojenou složku i tenhle server, jde napsat zadání, které sáhne do obojího: „vezmi exportovaný soubor z vystupy/, ke každé položce dohledej v katalogu aktuální název a zařazení a rozdíly zapiš do nového sloupce". Tohle je ten okamžik, kdy MCP přestane být hračka.',
+        'Katalog sám o sobě je hezký, ale sílu dostane až propojený s tvými daty: „vezmi exportovaný soubor z vystupy/, ke každé položce dohledej v katalogu aktuální název a zařazení a rozdíly zapiš do nového sloupce". Tohle je ten okamžik, kdy MCP přestane být hračka.',
     },
     { kind: 'h', text: 'Co nezvládne' },
     {
@@ -4635,7 +4402,7 @@ claude mcp remove dek`,
       tone: 'warn',
       title: 'Cenu z katalogu nikdy nekopíruj do nabídky',
       text:
-        'Je to veřejná cena bez přihlášení a od té zákaznické se liší. Na porovnávání a orientaci je dobrá, do dokumentu, který někomu pošleš, nepatří. Napiš si to rovnou do CLAUDE.md, ať to nemusíš hlídat hlavou.',
+        'Je to veřejná cena bez přihlášení, jiná než ta zákaznická. Na orientaci je dobrá, do dokumentu, který někomu pošleš, nepatří. Napiš si to rovnou do CLAUDE.md, ať to nemusíš hlídat hlavou.',
     },
     {
       kind: 'task',
@@ -4671,7 +4438,7 @@ const L2_DESIGN: Lesson = {
     {
       kind: 'p',
       text:
-        'Když má vzniknout nový banner, leták nebo návrh stránky, obvykle se najde stará verze, zkopíruje se a přebarvuje, dokud to nevypadá „nějak jako DEK“. Pokaždé trochu jinak. Design system je opak: jednou se sepíše, jaké barvy, písma a dílky značka používá, a všechno další se skládá z nich. Tahle lekce ukazuje design system DEKu, který vznikl stejně jako všechno ostatní v kurzu — člověk řekl co, Claude Code to postavil.',
+        'Otevři Storybook DEKu a napiš Claude Designu: „Leták na jarní výprodej zahradní techniky." Vznikne rovnou ve stylu DEKu — protože design system, ze kterého Claude Design čerpá, existuje. Bez něj by se pokaždé kopírovala stará verze a přebarvovala, dokud to nevypadá „nějak jako DEK". Tahle lekce ukazuje design system DEKu, který vznikl stejně jako všechno ostatní v kurzu — člověk řekl co, Claude Code to postavil.',
     },
     {
       kind: 'table',
@@ -4688,20 +4455,20 @@ const L2_DESIGN: Lesson = {
       tone: 'info',
       title: 'K čemu to je, když web už existuje',
       text:
-        'Web existuje, ale jeho vzhled žije jen v něm. Kdo chce udělat interní nástroj, prezentaci nebo návrh nové stránky ve stylu DEKu, začíná od nuly. Design system ten vzhled vytahuje ven jako stavebnici — a změna na jednom místě (jiná červená, jiné písmo) se propíše do všech dílků najednou.',
+        'Web existuje, ale jeho vzhled žije jen v něm — kdo chce interní nástroj, prezentaci nebo novou stránku ve stylu DEKu, začíná od nuly. Design system ten vzhled vytahuje ven jako stavebnici, a změna na jednom místě (jiná červená, jiné písmo) se propíše do všech dílků najednou.',
     },
     { kind: 'h', text: 'Kde bydlí a jak se na něj podívat' },
     {
       kind: 'p',
       text:
-        'Design system je repozitář na GitHubu a prohlíží se přes Storybook — katalog komponent, který běží v prohlížeči. Nemusíš nic instalovat: nasazená verze je na webu. V levém sloupci jsou jednotlivé komponenty, každá s pojmenovanými ukázkami (říká se jim stories) a záložkou Docs. Sekce Pages DEK jsou celé stránky poskládané z těch komponent — úvodní stránka, výpis kategorie a detail produktu, se skutečnými produkty, cenami a fotkami z webu.',
+        'Design system je repozitář na GitHubu, prohlíží se přes Storybook a nasazená verze je na webu — nemusíš nic instalovat. V levém sloupci jsou komponenty, každá s pojmenovanými ukázkami (stories) a záložkou Docs. Sekce Pages DEK jsou celé stránky poskládané z těch komponent, se skutečnými produkty, cenami a fotkami z webu.',
     },
     {
       kind: 'note',
       tone: 'ok',
       title: 'Nic z toho není odhad',
       text:
-        'Každá barva a každý rozměr má v kódu poznámku, ze které třídy skutečného CSS webu pochází. A v sekci Reference je vedle sebe originální kousek webu (jeho vlastní HTML a CSS) a tatáž věc postavená z design systemu — takže je hned vidět, kdyby se stavebnice od webu rozjela.',
+        'Každá barva a rozměr má v kódu poznámku, ze které třídy skutečného CSS webu pochází. V sekci Reference je vedle sebe originální kousek webu a tatáž věc postavená z design systemu — hned je vidět, kdyby se stavebnice od webu rozjela.',
     },
     { kind: 'h', text: 'Jak vznikl' },
     {
@@ -4709,23 +4476,23 @@ const L2_DESIGN: Lesson = {
       items: [
         {
           title: 'Stáhnout produkční CSS z www.dek.cz',
-          body: 'Jeden velký soubor, ve kterém je celý vzhled webu. Leží v repozitáři ve složce vendor, aby se dalo kdykoli ověřit, z čeho se vycházelo.',
+          body: 'Jeden soubor s celým vzhledem webu. Leží v repozitáři ve složce vendor, aby šlo kdykoli ověřit, z čeho se vycházelo.',
         },
         {
           title: 'Vytáhnout z něj tokeny',
-          body: 'Web má barvy pojmenované jako proměnné (--brand-primary, --gray-lightest…). Ty se přepsaly do souboru tokenů se stejnými jmény, aby se dalo hledat oběma směry.',
+          body: 'Web má barvy pojmenované jako proměnné (--brand-primary, --gray-lightest…), přepsané do souboru tokenů se stejnými jmény.',
         },
         {
           title: 'Postavit z tokenů téma',
-          body: 'Téma říká hotovým komponentám z knihovny MUI, jak mají vypadat: červené tlačítko, které při najetí ztmavne přesně jako na webu, stejná písma, stejné zaoblení.',
+          body: 'Téma říká komponentám z knihovny MUI, jak mají vypadat: červené tlačítko, které při najetí ztmavne přesně jako na webu, stejná písma, stejné zaoblení.',
         },
         {
           title: 'Poskládat komponenty a srovnat s originálem',
-          body: 'Karta produktu, cenovka s cenou za balení, štítek dostupnosti, hlavička s vyhledáváním… Ke každé vzniklo referenční srovnání s originálem z webu.',
+          body: 'Karta produktu, cenovka, štítek dostupnosti, hlavička s vyhledáváním… ke každé vzniklo referenční srovnání s originálem z webu.',
         },
         {
           title: 'Složit z komponent celé stránky',
-          body: 'Sekce Pages DEK — stránky se stejným pořadím bloků jako skutečný web a s reálným obsahem: fotky a loga se berou přímo z fotobanky webu, takže zůstávají aktuální.',
+          body: 'Sekce Pages DEK — stejné pořadí bloků jako skutečný web, s reálným obsahem: fotky a loga jdou přímo z fotobanky webu, takže zůstávají aktuální.',
         },
       ],
     },
@@ -4734,13 +4501,13 @@ const L2_DESIGN: Lesson = {
       tone: 'info',
       title: 'Celé to psal Claude Code',
       text:
-        'Lidská práce byla: říct, kde je CSS, kontrolovat referenční srovnání a vracet, co nesedí. Stejným postupem se dá vytáhnout design system z libovolného webu — třeba z toho vašeho divizního.',
+        'Lidská práce byla říct, kde je CSS, kontrolovat referenční srovnání a vracet, co nesedí. Stejným postupem se dá vytáhnout design system z libovolného webu — třeba z toho vašeho divizního.',
     },
     { kind: 'h', text: 'Spusť si ho u sebe' },
     {
       kind: 'p',
       text:
-        'Nasazená verze stačí na prohlížení. Jakmile chceš něco přidávat, potřebuješ ho mít u sebe. Platí totéž co u MCP serveru: potřebuješ Node (node --version musí něco vypsat) a složku mimo nasyncovanou knihovnu — instalace vyrobí tisíce drobných souborů, které do OneDrivu nepatří.',
+        'Nasazená verze stačí na prohlížení, na přidávání ho potřebuješ u sebe. Platí totéž co u MCP serveru: Node (node --version musí něco vypsat) a složka mimo nasyncovanou knihovnu, protože instalace vyrobí tisíce drobných souborů, které do OneDrivu nepatří.',
     },
     {
       kind: 'tabs',
@@ -4775,7 +4542,7 @@ npm run storybook`,
     {
       kind: 'p',
       text:
-        'Kompozice je nová story, která skládá hotové komponenty do vlastního celku — třeba akční nabídka: banner a pod ním mřížka produktových karet. Je to jeden malý soubor; Storybook si nové story všímá sám a hned ji ukáže v levém sloupci.',
+        'Kompozice je nová story, která skládá hotové komponenty do vlastního celku — třeba banner a pod ním mřížka produktových karet. Je to jeden malý soubor; Storybook si ho všimne sám a hned ukáže v levém sloupci.',
     },
     {
       kind: 'code',
@@ -4805,18 +4572,18 @@ export const AkcniNabidka: StoryObj = {
     {
       kind: 'p',
       text:
-        'A samozřejmě to nemusíš psát sám. Otevři složku dek-design-system v Claude Code a řekni: „Přidej do Pages DEK story Akční nabídka — banner Mega akce a pod ním mřížka pěti produktů z FEATURED.“ Kód komponent už zná, tak se trefí do stejného stylu.',
+        'Nemusíš to ale psát sám — otevři složku dek-design-system v Claude Code a řekni: „Přidej do Pages DEK story Akční nabídka — banner Mega akce a pod ním mřížka pěti produktů z FEATURED.“ Kód komponent už zná, tak se trefí do stejného stylu.',
     },
     { kind: 'h', text: 'A teď Claude Design' },
     {
       kind: 'p',
       text:
-        'Storybook je pravda o tom, co existuje. Claude Design je skicák: plátno na claude.com, kde návrhy vznikají povídáním — řekneš, co potřebuješ, Claude nakreslí návrh a ty ho upravuješ přímo na plátně: komentářem u konkrétního prvku, přepsáním textu, posuvníkem nebo tažením. Je součástí předplatného Pro, Max, Team i Enterprise (tam ho musí zapnout správce).',
+        'Storybook je pravda o tom, co existuje. Claude Design je skicák na claude.com, kde návrhy vznikají povídáním — řekneš, co potřebuješ, Claude nakreslí návrh a ty ho upravíš přímo na plátně: komentářem u prvku, přepsáním textu, posuvníkem nebo tažením. Je součástí Pro, Max, Team i Enterprise (tam ho zapíná správce).',
     },
     {
       kind: 'p',
       text:
-        'To podstatné pro nás: Claude Design si umí načíst design system — z GitHub repozitáře, z kódu nebo z design souborů. Když mu při zakládání ukážeš repozitář dek-design-system, každý další návrh staví z barev, písem a komponent DEKu a sám si ho proti nim kontroluje. Banner, leták, návrh nové stránky — nic z toho už nezačíná od bílého plátna a „nějaké červené“.',
+        'Podstatné pro nás: umí si načíst design system, z GitHub repozitáře, kódu nebo design souborů. Když mu při zakládání ukážeš dek-design-system, každý návrh staví z barev, písem a komponent DEKu a sám si ho proti nim kontroluje — nic už nezačíná od bílého plátna a „nějaké červené“.',
     },
     {
       kind: 'steps',
@@ -4827,7 +4594,7 @@ export const AkcniNabidka: StoryObj = {
         },
         {
           title: 'Zadávej návrhy větou',
-          body: '„Leták na jarní výprodej zahradní techniky.“ „Banner pro kategorii hydroizolace.“ „Návrh stránky výprodeje.“ Vznikají rovnou ve stylu DEKu.',
+          body: '„Leták na jarní výprodej zahradní techniky.“ „Banner pro kategorii hydroizolace.“ Vznikají rovnou ve stylu DEKu.',
         },
         {
           title: 'Uprav přímo na plátně',
@@ -4835,7 +4602,7 @@ export const AkcniNabidka: StoryObj = {
         },
         {
           title: 'Výsledek exportuj, nebo vrať do stavebnice',
-          body: 'Export do PDF, PowerPointu nebo HTML. A když z návrhu má být trvalý dílek, předej ho Claude Code — udělá z něj novou story ve Storybooku a stavebnice se rozroste.',
+          body: 'Export do PDF, PowerPointu nebo HTML. Když z návrhu má být trvalý dílek, předej ho Claude Code — udělá z něj novou story a stavebnice se rozroste.',
         },
       ],
     },
@@ -4844,7 +4611,7 @@ export const AkcniNabidka: StoryObj = {
       tone: 'warn',
       title: 'Claude Design se rychle mění',
       text:
-        'Je to čerstvá věc v režimu náhledu — obrazovky a tlačítka můžou příští měsíc vypadat jinak než dnes. Princip ale platí: design system je zdroj pravdy, skicuje se nad ním, a co se osvědčí, vrací se do Storybooku.',
+        'Je to čerstvá věc v režimu náhledu, obrazovky a tlačítka se můžou příští měsíc lišit. Princip ale platí: design system je zdroj pravdy, skicuje se nad ním, a co se osvědčí, vrací se do Storybooku.',
     },
     {
       kind: 'links',
@@ -4893,14 +4660,14 @@ const L2_MINIMUM: Lesson = {
     {
       kind: 'p',
       text:
-        'Poslední lekce minima. Nic nového se v ní neučí — je to kontrola. Projdi osm bodů níž na svém vlastním projektu, ne na cvičném. U každého je věta, kterou si ověříš, že to opravdu platí, a odkaz do lekce, kam se vrátit, když ne. Trvá to čtvrt hodiny a je to jediný způsob, jak zjistit, že ti něco nechybí — protože chybějící kus se sám neozve, jen tiše nefunguje.',
+        'Poslední lekce minima — nic nového, jen kontrola. Projdi osm bodů níž na svém vlastním projektu, ne na cvičném: u každého je věta, kterou ověříš, že to opravdu platí, a odkaz do lekce, kam se vrátit, když ne. Chybějící kus se sám neozve, jen tiše nefunguje — proto se to jinak nepozná.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Odškrtávej jen to, co jsi viděl fungovat',
       text:
-        'Rozdíl mezi „mám to nastavené" a „viděl jsem to fungovat" je celá tahle lekce. Zábrana, kterou nikdo neviděl odmítnout zápis, je soubor na disku. Úloha, která ještě nikdy neproběhla, je řádek ve formuláři. Odškrtávej podle toho, co se ti opravdu stalo na obrazovce.',
+        'Zábrana, kterou nikdo neviděl odmítnout zápis, je soubor na disku. Úloha, která ještě nikdy neproběhla, je řádek ve formuláři. Odškrtávej podle toho, co se ti opravdu stalo na obrazovce, ne podle toho, co máš nastavené.',
     },
     { kind: 'h', text: 'Osm bodů' },
     {
@@ -4969,7 +4736,7 @@ const L2_MINIMUM: Lesson = {
       tone: 'info',
       title: 'Když ti chybí víc než dva body',
       text:
-        'Nedohánějte to najednou. Vezmi ten nejvýš v tabulce, který nesedí — jsou seřazené tak, jak na sobě stojí. Skill bez CLAUDE.md se dá napsat, ale bude se každý týden chovat trochu jinak. Naplánovaná úloha bez kontroly je jen rychlejší způsob, jak si nadělat škodu.',
+        'Nedoháněj to najednou — vezmi ten nejvýš v tabulce, který nesedí, jsou seřazené tak, jak na sobě stojí. Skill bez CLAUDE.md se bude každý týden chovat trochu jinak. Naplánovaná úloha bez kontroly je jen rychlejší způsob, jak si nadělat škodu.',
     },
     { kind: 'h', text: 'Co když jeden krok prostě nejde' },
     {
@@ -5002,7 +4769,7 @@ const L2_MINIMUM: Lesson = {
       kind: 'task',
       title: 'Zadání: napiš si to na jednu stránku',
       intro:
-        'Až je osm bodů odškrtaných, zbývá poslední věc — aby to uměl převzít někdo jiný. Bez toho je automatizace tvoje osobní zkratka, ne firemní nástroj.',
+        'Až je osm bodů odškrtaných, zbývá poslední věc: aby to uměl převzít někdo jiný. Bez toho je to tvoje osobní zkratka, ne firemní nástroj.',
       items: [
         'Napiš runbook: co to dělá, kdy to běží, kde jsou vstupy a výstupy, jak se pozná, že je výsledek dobře, co dělat, když spadne, a koho se zeptat.',
         'Dej ho přečíst kolegovi, který tvoji agendu nedělá, a nech ho podle něj úlohu jednou pustit.',
@@ -5016,7 +4783,7 @@ const L2_MINIMUM: Lesson = {
       tone: 'ok',
       title: 'A odsud dál',
       text:
-        'Když osm bodů sedí, minimum máš. Modul „Až budeš chtít víc" jsou tři směry, kterými se dá pokračovat — a žádný z nich nepotřebuješ k tomu, aby ti běželo to, co už máš. Ber je jako inspiraci, ne jako zbytek úkolu.',
+        'Když osm bodů sedí, minimum máš. Modul „Až budeš chtít víc" jsou tři směry k pokračování — žádný z nich nepotřebuješ k tomu, aby ti běželo to, co už máš. Ber je jako inspiraci, ne jako zbytek úkolu.',
     },
     {
       kind: 'links',
@@ -5061,14 +4828,14 @@ const L2_FORMULAR: Lesson = {
     {
       kind: 'p',
       text:
-        'Tenhle tvar má v DEKu víc agend, než by člověk čekal. Pošlete kolegům soubor. Oni odpoví mailem — někdo tabulkou, někdo obrázkem obrazovky. Vy odpovědi ručně přepíšete zpátky, zkontrolujete, že se nic neposunulo, a kdo neodpověděl, toho obvoláte. Kontrola faktur to má v kroku, kde středisko potvrzuje schválení k platbě. Sklad logistiky to má u poboček, které hlásí termín vývozu.',
+        'Pošlete kolegům soubor, oni odpoví mailem — někdo tabulkou, někdo obrázkem obrazovky. Vy odpovědi ručně přepíšete zpátky, zkontrolujete, že se nic neposunulo, a kdo neodpověděl, toho obvoláte. Tenhle tvar má v DEKu víc agend, než by člověk čekal: kontrola faktur ho má u schválení k platbě, sklad logistiky u poboček, které hlásí termín vývozu.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Automatizovat přepisování je ta horší cesta',
       text:
-        'První nápad bývá „ať mi Claude ty maily přečte a přepíše je do tabulky“. Jde to a je to lepší než nic. Ale pořád stavíte na tom, že data cestují mailem — takže dál řešíte přílohy, obrázky obrazovky, překlepy a to, že nevíte, kdo ještě neodpověděl. Levnější je e-mail z té cesty vyndat.',
+        'První nápad bývá „ať mi Claude ty maily přečte a přepíše je do tabulky" — jde to a je to lepší než nic, ale pořád stavíte na tom, že data cestují mailem. Takže dál řešíte přílohy, obrázky obrazovky, překlepy a to, kdo ještě neodpověděl. Levnější je e-mail z té cesty rovnou vyndat.',
     },
     { kind: 'h', text: 'Rozdělte si to na čtyři části' },
     {
@@ -5102,7 +4869,7 @@ const L2_FORMULAR: Lesson = {
       tone: 'info',
       title: 'Na sběr nepotřebujete nic nového kupovat',
       text:
-        'Máte Microsoft 365. Formulář nebo seznam na SharePointu je přesně na tohle: vyplní ho kdokoli z poboček, výsledek je tabulka a vidíte, kdo chybí. Claude tu tabulku umí přečíst stejně jako každý jiný soubor v nasyncované knihovně. Nestavte kvůli tomu vlastní aplikaci — udržoval by ji jeden člověk a spadla by s ním.',
+        'Máte Microsoft 365 — formulář nebo seznam na SharePointu je přesně na tohle: vyplní ho kdokoli, výsledek je tabulka a vidíte, kdo chybí. Claude ji přečte jako každý jiný soubor v nasyncované knihovně. Vlastní aplikaci kvůli tomu nestavte, udržoval by ji jeden člověk a spadla by s ním.',
     },
     { kind: 'h', text: 'Co z toho zvládne Claude a co ne' },
     {
@@ -5120,7 +4887,7 @@ const L2_FORMULAR: Lesson = {
       tone: 'warn',
       title: 'Ruční párování přiznejte hned',
       text:
-        'Když se položky z objednávek nedají spojit s agendou automaticky, zůstane to ruční — a je to v pořádku. Automatizace kolem toho pořád ušetří většinu času. Horší je předstírat, že se spáruje samo, a pak řešit tiché chyby v datech.',
+        'Když se položky nedají spojit s agendou automaticky, zůstane to ruční — a je to v pořádku, automatizace kolem toho pořád ušetří většinu času. Horší je předstírat, že se spáruje samo, a pak řešit tiché chyby v datech.',
     },
     { kind: 'h', text: 'Zadání, kterým to začíná' },
     {
@@ -5136,14 +4903,14 @@ a u kolika je rozpor. Když nesedí počet sloupců, zastav se a napiš to.`,
     {
       kind: 'p',
       text:
-        'Až tohle projde dvakrát bez doříkávání, zabalte to do skillu a teprve pak k němu přidejte naplánovaný běh a upomínky. Pořadí je důležité: nejdřív ať to funguje, pak ať to běží samo.',
+        'Až tohle projde dvakrát bez doříkávání, zabalte to do skillu a teprve pak přidejte naplánovaný běh a upomínky — nejdřív ať to funguje, pak ať to běží samo.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Upomínky posílejte až úplně nakonec',
       text:
-        'Odeslaná pošta se nevrací a upomínka poslaná na základě špatně přečtené tabulky stojí víc důvěry, než kolik ušetří času. Napište do zadání podmínku, kdy se nemá odeslat nic — třeba když v kontrole sedí míň než všechno.',
+        'Odeslaná pošta se nevrací a upomínka na základě špatně přečtené tabulky stojí víc důvěry, než kolik ušetří času. Napište do zadání podmínku, kdy se nemá odeslat nic — třeba když v kontrole sedí míň než všechno.',
     },
     {
       kind: 'task',
@@ -5158,7 +4925,7 @@ a u kolika je rozpor. Když nesedí počet sloupců, zastav se a napiš to.`,
         'Změřte, kolik minut vám to sebralo dřív a kolik teď.',
       ],
       hint:
-        'Když někdo odpovídat formulářem nechce, není to důvod celé to vzdát. Jeho odpovědi přepíšete ručně a zbytek poběží — a po měsíci uvidí, že jeho řádky jsou jediné, které pořád zlobí.',
+        'Když někdo formulářem odpovídat nechce, není to důvod to vzdát. Jeho odpovědi přepíšete ručně, zbytek poběží — a po měsíci uvidí, že jeho řádky jsou jediné, které pořád zlobí.',
     },
   ],
 }
@@ -5184,21 +4951,21 @@ const L2_CVICNY: Lesson = {
     {
       kind: 'p',
       text:
-        'Všechno, co jste v akademii četli, je tady dohromady na jedné agendě — a je to ke stažení, takže si nemusíte nic vyrábět. Projekt kontroluje faktury: přečte PDF, vytáhne z nich povinné údaje, porovná je se seznamem schválených objednávek a připraví podklad ke schválení. Neschvaluje a neplatí. Ve složce jsou i vzorové faktury, takže si to můžete pustit hned.',
+        'Všechno, co jste v akademii četli, je tady dohromady na jedné agendě, ke stažení, takže si nemusíte nic vyrábět. Projekt kontroluje faktury: přečte PDF, vytáhne z nich povinné údaje, porovná je se seznamem schválených objednávek a připraví podklad ke schválení — neschvaluje a neplatí. Ve složce jsou i vzorové faktury, takže si to můžete pustit hned.',
     },
     {
       kind: 'note',
       tone: 'ok',
       title: 'Konektor tady nepotřebuješ',
       text:
-        'Nic nepřipojuješ a na nikoho nečekáš. Faktury jsou PDF ve složce, objednávky jsou tabulka ve složce, výsledky se ukládají do složky — Claude si to bere přímo z disku. Ani ten e-mail konektor nepotřebuje: mailto jen otevře rozepsanou zprávu v tvém poštovním klientovi. Konektor by přišel na řadu, až bys chtěl mail odeslat bez potvrzení nebo brát faktury rovnou ze schránky; do té doby je to jen závislost navíc.',
+        'Nic nepřipojuješ a na nikoho nečekáš. Faktury jsou PDF ve složce, objednávky jsou tabulka ve složce, výsledky se ukládají do složky — Claude si to bere přímo z disku. Ani e-mail konektor nepotřebuje: mailto jen otevře rozepsanou zprávu v poštovním klientovi. Konektor by přišel na řadu, až bys chtěl mail odeslat bez potvrzení nebo brát faktury rovnou ze schránky; do té doby je to jen závislost navíc.',
     },
     {
       kind: 'note',
       tone: 'ok',
       title: 'Proč zrovna faktury',
       text:
-        'Faktury jsou dobrá agenda na cvičení, protože výsledek se dá jasně ověřit — buď to najde tři schválně vložené chyby, nebo ne. Kostru (složka s pravidly, skill, zábrana, kontrolní protokol, naplánovaný běh) jste přitom viděli v akademii pořád stejnou — tohle je verze, kterou si stáhneš a rovnou spustíš.',
+        'Faktury jsou dobrá agenda na cvičení, protože výsledek se dá jasně ověřit — buď to najde tři schválně vložené chyby, nebo ne. Kostru (složka s pravidly, skill, zábrana, kontrolní protokol, naplánovaný běh) jste v akademii viděli pořád stejnou — tohle je verze, kterou si stáhneš a rovnou spustíš.',
     },
     { kind: 'h', text: '1. Stáhni si to' },
     {
@@ -5217,14 +4984,14 @@ const L2_CVICNY: Lesson = {
       tone: 'info',
       title: 'Nebo to nech na Claudovi',
       text:
-        'Kdo už má Claude Code a nechce nic rozbalovat ručně, může mu říct: „Stáhni mi repozitář github.com/cajpij/dek do Dokumentů. Je v něm složka cviceni/faktury-kontrola — tu si zkopíruj samostatně a zbytek smaž.“ Výsledek je stejný, jenom se u toho nekliká.',
+        'Kdo už má Claude Code a nechce nic rozbalovat ručně, může mu říct: „Stáhni mi repozitář github.com/cajpij/dek do Dokumentů. Je v něm složka cviceni/faktury-kontrola — tu si zkopíruj samostatně a zbytek smaž.“ Výsledek je stejný, jen se u toho nekliká.',
     },
     {
       kind: 'note',
       tone: 'warn',
       title: 'Rozbaluješ i skrytou složku .claude',
       text:
-        'V archivu je složka .claude — jsou v ní skill a zábrana, tedy skript, který se bude sám spouštět při každém zápisu souboru. Než to rozbalíš, koukni se do něj: je to osm řádků a odmítne zápis do vstup/. Nic víc nedělá. Tohle je dobrý zvyk u čehokoli, co si stáhneš a co se pak spouští samo.',
+        'V archivu je složka .claude — jsou v ní skill a zábrana, tedy skript, který se sám spouští při každém zápisu souboru. Než to rozbalíš, koukni se do něj: je to osm řádků, které odmítnou zápis do vstup/, nic víc. Tohle je dobrý zvyk u čehokoli staženého, co se pak spouští samo.',
     },
     { kind: 'h', text: '2. Co v tom je' },
     {
@@ -5268,18 +5035,18 @@ const L2_CVICNY: Lesson = {
         {
           title: 'Napiš jednu větu',
           body:
-            'Nic víc není potřeba. Skill se jmenuje logicky, takže si ho Claude vybere sám i podle věty „zkontroluj mi ty nové faktury“.',
+            'Nic víc není potřeba — skill se jmenuje logicky, takže si ho Claude vybere sám i podle věty „zkontroluj mi ty nové faktury“.',
           code: 'Postupuj podle skillu kontrola-faktur.',
         },
         {
           title: 'Porovnej to s referenčním výstupem',
           body:
-            'Ve vystup/ už jeden pár souborů je — to je výsledek, který má vyjít. Tvoje tabulka může mít jiné datum v názvu, ale musí najít tytéž tři nálezy. Když ano, projekt funguje a můžeš mu začít věřit.',
+            'Ve vystup/ už jeden pár souborů je — výsledek, který má vyjít. Tvoje tabulka může mít jiné datum v názvu, ale musí najít tytéž tři nálezy. Když ano, projekt funguje a můžeš mu začít věřit.',
         },
         {
           title: 'Vyzkoušej si zábranu',
           body:
-            'Řekni Claudovi, ať do vstup/ něco zapíše. Musí to odmítnout — o to se stará ten hook. Takhle poznáte, že opravdu běží, aniž byste museli čekat, až se něco pokazí.',
+            'Řekni Claudovi, ať do vstup/ něco zapíše — musí to odmítnout, o to se stará hook. Takhle poznáš, že opravdu běží, aniž bys musel čekat, až se něco pokazí.',
           code: 'Vytvoř soubor vstup/test.txt s textem ahoj.',
         },
       ],
@@ -5307,13 +5074,13 @@ Objednávka není v seznamu schválených: 2
       tone: 'warn',
       title: 'Čemu protokol schválně neodpovídá',
       text:
-        'Jestli se ta faktura má zaplatit. Kontrola připraví podklad, rozhoduje člověk. Nikdy nedávejte úloze právo fakturu schválit, poslat do účetnictví nebo zadat k platbě — ani ve chvíli, kdy je všechno v pořádku. Chyba v takovém kroku se pozná pozdě a je drahá.',
+        'Jestli se ta faktura má zaplatit. Kontrola připraví podklad, rozhoduje člověk. Nikdy nedávejte úloze právo fakturu schválit, poslat do účetnictví nebo zadat k platbě — ani když je všechno v pořádku. Chyba v takovém kroku se pozná pozdě a je drahá.',
     },
     { kind: 'h', text: '5. Naplánuj to na sedmou ráno' },
     {
       kind: 'p',
       text:
-        'Až vám to dvakrát vyjde ručně, teprve pak z toho udělejte úlohu. V aplikaci: Code → Routines → New routine → Local. Cloudová varianta by nefungovala, protože nevidí složku na disku.',
+        'Až vám to dvakrát vyjde ručně, udělejte z toho úlohu: Code → Routines → New routine → Local. Cloudová varianta by nefungovala, nevidí složku na disku.',
     },
     {
       kind: 'table',
@@ -5349,20 +5116,20 @@ Když je nesouladů víc než tři, mail neotvírej a napiš mi to do protokolu.
       tone: 'info',
       title: 'Jak se to chová, když ráno počítač spí',
       text:
-        'Místní úloha běží, jen když je počítač vzhůru a aplikace spuštěná. Když v sedm spí, běh se přeskočí — a po probuzení nebo po startu aplikace se dožene jeden, ten poslední zameškaný. Když byl počítač vypnutý týden, nespustí se sedm běhů, ale jeden. Proto je v zadání ta věta o poledni: úloha má vědět, že možná neběží ráno, a napsat to do protokolu.',
+        'Místní úloha běží, jen když je počítač vzhůru a aplikace spuštěná. Když v sedm spí, běh se přeskočí a po probuzení se dožene jen ten poslední zameškaný — po týdnu vypnutého počítače se nespustí sedm běhů, ale jeden. Proto je v zadání ta věta o poledni: úloha má vědět, že možná neběží ráno, a napsat to do protokolu.',
     },
     {
       kind: 'note',
       tone: 'ok',
       title: 'Hned po uložení dej Run now',
       text:
-        'První běh se bude na pár věcí ptát. U každého dotazu vyberte „always allow“ — další běhy pak proběhnou bez ptaní. Kdybyste to neudělali, úloha se v sedm ráno zastaví na dotazu a bude čekat, až přijdete.',
+        'První běh se bude na pár věcí ptát — u každého dotazu vyberte „always allow“, další běhy pak proběhnou bez ptaní. Jinak se úloha v sedm ráno zastaví na dotazu a bude čekat, až přijdete.',
     },
     { kind: 'h', text: '6. Povolení složky: dvakrát jinak' },
     {
       kind: 'p',
       text:
-        'Při připojování složky vyskočí dialog a stojí za to ho číst. Vypadá jinak v Coworku a jinak v Claude Code — a ten rozdíl není kosmetický.',
+        'Při připojování složky vyskočí dialog a stojí za to ho číst — vypadá jinak v Coworku a jinak v Claude Code, a ten rozdíl není kosmetický.',
     },
     {
       kind: 'figure',
@@ -5375,13 +5142,13 @@ Když je nesouladů víc než tři, mail neotvírej a napiš mi to do protokolu.
       tone: 'info',
       title: 'Co v tom settings.json je',
       text:
-        'Přesně jeden hook: před každým zápisem se spustí skript .claude/hooks/chran-vstup.sh, který zakáže měnit cokoli ve vstup/. Kvůli němu ten dialog ten soubor jmenuje — složka si totiž nese kód, který se spustí sám. Tady je to zábrana, kterou v lekci rozebíráme. Jinde to být nemusí: složka stažená odjinud může spouštět cokoli, a tohle je jediná chvíle, kdy vás na to aplikace upozorní. Trust workspace znamená „přečetl jsem si, co v tom je“.',
+        'Přesně jeden hook: před každým zápisem se spustí skript .claude/hooks/chran-vstup.sh, který zakáže měnit cokoli ve vstup/. Kvůli němu ten dialog ten soubor jmenuje — složka si nese kód, který se spustí sám. Tady je to zábrana, kterou v lekci rozebíráme. Jinde to být nemusí: složka stažená odjinud může spouštět cokoli, a tohle je jediná chvíle, kdy na to aplikace upozorní. Trust workspace znamená „přečetl jsem si, co v tom je“.',
     },
     { kind: 'h', text: '8. Až budeš chtít celou smyčku i s poštou' },
     {
       kind: 'p',
       text:
-        'Cvičný projekt končí u tabulky a protokolu. Přirozená otázka je: proč si ty faktury nevytáhnout rovnou z pošty, nesrovnalosti neposlat dodavateli, neověřit v bance, co je zaplacené, a zbytek neposlat účtárně? Dá se to — ale ne celé a ne hned. Tady je, co je za čím.',
+        'Cvičný projekt končí u tabulky a protokolu. Přirozená otázka je: proč si ty faktury nevytáhnout rovnou z pošty, nesrovnalosti neposlat dodavateli, neověřit v bance, co je zaplacené, a zbytek neposlat účtárně? Dá se to, ale ne celé a ne hned — tady je, co je za čím.',
     },
     {
       kind: 'figure',
@@ -5430,14 +5197,14 @@ Když je nesouladů víc než tři, mail neotvírej a napiš mi to do protokolu.
       tone: 'warn',
       title: 'Krok 4 nikdy nepouštěj samospádem',
       text:
-        'Mail dodavateli je jediný krok, který odchází z firmy — a odejde pod hlavičkou DEKu. Když Claude přečte variabilní symbol špatně, napíšeš dodavateli, že mu něco chybí, i když to tam je. Jednou je to trapné, potřetí ti přestanou věřit i tam, kde máš pravdu. Nech ho připravit rozepsané maily do složky, projdi je očima a odešli sám. Deset vteřin práce navíc, o řád menší riziko.',
+        'Mail dodavateli je jediný krok, který odchází z firmy pod hlavičkou DEKu. Když Claude přečte variabilní symbol špatně, napíšeš dodavateli, že mu něco chybí, i když to tam je — jednou je to trapné, potřetí ti přestanou věřit i tam, kde máš pravdu. Nech ho připravit rozepsané maily do složky, projdi je očima a odešli sám. Deset vteřin práce navíc, o řád menší riziko.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Než začneš řešit banku',
       text:
-        'Otázka „je to zaplacené“ se skoro nikdy nemusí ptát banky. Většinou to ví účetní systém a dá se z něj vyexportovat seznam uhrazených faktur. Dej ten export do data/ a kontrola proti němu je stejná práce jako proti objednávkám — jen o jeden sloupec navíc. API k bance řeš, až tohle nebude stačit.',
+        'Otázka „je to zaplacené“ se skoro nikdy nemusí ptát banky — většinou to ví účetní systém a dá se z něj vyexportovat seznam uhrazených faktur. Dej ten export do data/, kontrola proti němu je stejná práce jako proti objednávkám, jen o jeden sloupec navíc. API k bance řeš, až tohle nebude stačit.',
     },
     { kind: 'h', text: 'Jak by vypadala ta denní úloha' },
     {
@@ -5464,7 +5231,7 @@ změnil vstup, ne že přišlo deset špatných faktur.`,
     {
       kind: 'p',
       text:
-        'Write tools u konektoru Microsoft 365 nezapneš sám. Tohle je text, který můžeš správci poslat — je v něm to, na co se ptá jako první:',
+        'Write tools u konektoru Microsoft 365 nezapneš sám — tohle je text, který můžeš správci poslat, je v něm to, na co se ptá jako první:',
     },
     {
       kind: 'code',
@@ -5489,7 +5256,7 @@ jen otevře rozepsaný mail v Outlooku, a s tou vystačím.`,
       tone: 'ok',
       title: 'Pořadí, ve kterém to stavět',
       text:
-        'Nejdřív kroky 1 a 3, protože fungují dneska: nech si posílat faktury do složky ručně a jen je kontroluj. Až ti kontrola týden vychází, řeš krok 2, aby přílohy padaly do složky samy. Teprve pak maily. Kdo začne od konce, stráví tři týdny domlouváním přístupů a nebude mít ani tu tabulku.',
+        'Nejdřív kroky 1 a 3, protože fungují dneska: nech si posílat faktury do složky ručně a jen je kontroluj. Až ti kontrola týden vychází, řeš krok 2, aby přílohy padaly samy, a teprve pak maily. Kdo začne od konce, stráví tři týdny domlouváním přístupů a nebude mít ani tu tabulku.',
     },
     { kind: 'h', text: '9. Přepni to na svoje faktury' },
     {
@@ -5498,7 +5265,7 @@ jen otevře rozepsaný mail v Outlooku, a s tou vystačím.`,
         {
           title: 'Přesuň celou složku do nasyncované knihovny',
           body:
-            'Projekt je obyčejná složka, takže se nic uvnitř měnit nemusí. V naplánované úloze pak jen přepiš pole Folder na nové umístění.',
+            'Projekt je obyčejná složka, uvnitř se nic měnit nemusí. V naplánované úloze jen přepiš pole Folder na nové umístění.',
         },
         {
           title: 'Vyměň obsah data/ a vstup/',
@@ -5508,12 +5275,12 @@ jen otevře rozepsaný mail v Outlooku, a s tou vystačím.`,
         {
           title: 'Prvních deset faktur si projdi řádek po řádku',
           body:
-            'Než tomu začnete věřit. Co Claude přečetl špatně, dopište do pravidel a pusťte to na dalších deseti. Když je druhá dávka bez nálezu, můžete to nechat běžet.',
+            'Než tomu začnete věřit. Co Claude přečetl špatně, dopište do pravidel a pusťte to na dalších deseti — když je druhá dávka bez nálezu, můžete to nechat běžet.',
         },
         {
           title: 'Napište si vlastní runbook',
           body:
-            'Ten v projektu je vzor. Přepište v něm, komu se má psát a co jsou u vás časté příčiny — to je věc, kterou za vás nikdo neuhodne.',
+            'Ten v projektu je vzor. Přepište v něm, komu se má psát a co jsou u vás časté příčiny — to za vás nikdo neuhodne.',
         },
       ],
     },
@@ -5541,7 +5308,7 @@ jen otevře rozepsaný mail v Outlooku, a s tou vystačím.`,
         'Teprve pak naplánuj běh.',
       ],
       hint:
-        'Zábranu a protokol nechte tak, jak jsou. To jsou dvě věci, které se u každé agendy vyplatí stejně — a zároveň to jsou první dvě věci, které lidi vynechají.',
+        'Zábranu a protokol nechte tak, jak jsou — vyplatí se u každé agendy stejně, a zároveň jsou to první dvě věci, které lidi vynechají.',
     },
   ],
 }
@@ -5564,7 +5331,7 @@ const L2_NAOSTRO: Lesson = {
     {
       kind: 'p',
       text:
-        'Všechno předchozí byla příprava. Teď to pustíš na práci, kterou bys stejně musela udělat — a příští setkání začneme tím, co se stalo. Nejde o to, aby to vyšlo. Jde o to, aby bylo z čeho se poučit.',
+        'Všechno předchozí byla příprava. Teď to pustíš na práci, kterou bys stejně musela udělat — a příští setkání začneme tím, co se stalo. Nejde o to, aby to vyšlo, ale aby bylo z čeho se poučit.',
     },
     {
       kind: 'task',
@@ -5583,15 +5350,15 @@ const L2_NAOSTRO: Lesson = {
     {
       kind: 'p',
       text:
-        'Automatizace, kterou umí spustit jediný člověk, je riziko, ne úspora. Test je jednoduchý a trvá deset minut: posaď kolegu k počítači, dej mu projekt a nic neříkej. Každá otázka, kterou položí, je řádek, který v projektu chybí — a chybí tam i tobě, jenom ty to nepoznáš, protože si to pamatuješ.',
+        'Automatizace, kterou umí spustit jediný člověk, je riziko, ne úspora. Deset minut na test: posaď kolegu k počítači, dej mu projekt a nic neříkej. Každá otázka, kterou položí, je řádek, který v projektu chybí — a chybí i tobě, jen si to pamatuješ, takže to nepoznáš.',
     },
     {
       kind: 'list',
       items: [
         'Nech ho úlohu spustit bez nápovědy. Když neví, kde začít, chybí runbook.',
         'Nech ho výsledek zkontrolovat. Když neví, co znamená „nesedí počty“, chybí věta o tom, jak vypadá výsledek v pořádku.',
-        'Zeptej se ho, co by musel dohledávat, kdybys tam nebyla. Ne „bylo to jasné?“.',
-        'Doplň to a nech ho to zkusit znovu. Podruhé už by měl projít bez otázky.',
+        'Zeptej se ho, co by musel dohledávat, kdybys tam nebyla — ne „bylo to jasné?“.',
+        'Doplň to a nech ho zkusit znovu. Podruhé už by měl projít bez otázky.',
       ],
     },
     { kind: 'h', text: 'Co přinést zpátky' },
@@ -5611,14 +5378,14 @@ const L2_NAOSTRO: Lesson = {
       tone: 'ok',
       title: 'Neúspěch je taky výsledek',
       text:
-        'Když to nepustíš — nebyl čas, přišel jiný formát dat, nebo se do toho nechtělo — přijď to říct. Tyhle důvody jsou přesně to, co potřebujeme vědět, a bývají užitečnější než tři úspěšné běhy.',
+        'Když to nepustíš — nebyl čas, přišel jiný formát dat, nechtělo se do toho — přijď to říct. Tyhle důvody jsou přesně to, co potřebujeme vědět, a bývají užitečnější než tři úspěšné běhy.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Kam to zapsat',
       text:
-        'Krátce, do souboru v projektu — třeba vystupy/poznamky-<datum>.md. Nemusí to být hezké. Musí to existovat, až se na to za týden budeme ptát.',
+        'Krátce, do souboru v projektu — třeba vystupy/poznamky-<datum>.md. Nemusí to být hezké, musí to existovat, až se na to za týden budeme ptát.',
     },
   ],
 }
