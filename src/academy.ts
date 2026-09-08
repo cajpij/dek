@@ -1886,7 +1886,7 @@ const LESSON_REGAL: Lesson = {
 
 const LESSON_AUTOMATIZACE: Lesson = {
   slug: 'jak-se-nastavuje-automatizace',
-  module: 'remeslo',
+  module: 'postav',
   title: 'Jak se v projektu nastaví automatizace',
   summary:
     'Pět stupňů od ručního zadání po běh bez tebe — na reálném rozpadu divizních Excelů, krok po kroku.',
@@ -3261,7 +3261,7 @@ Jeden krok tam musí zůstat člověku: <který> — protože <co ten člověk v
 
 const L2_TABULKY: Lesson = {
   slug: 'zadani-nad-tabulkou',
-  module: 'remeslo',
+  module: 'postav',
   title: 'Zadání práce nad tabulkou',
   summary:
     'Devadesát procent téhle práce jsou tabulky. Čím se v nich dá splést a jak napsat zadání, které projde napoprvé.',
@@ -3421,7 +3421,7 @@ se to týkalo a vypiš jejich čísla.`,
 
 const L2_KONTROLA: Lesson = {
   slug: 'jak-poznas-ze-je-to-spatne',
-  module: 'remeslo',
+  module: 'postav',
   title: 'Jak poznáš, že je výsledek špatně',
   summary:
     'Dovednost, na které stojí všechno ostatní. Bez ní nikdo nikdy nepustí nic bez dozoru — a pak se nic neušetří.',
@@ -5800,14 +5800,10 @@ export const COURSES: Course[] = [
     section: 'Pokračuj',
     modules: [
       {
-        key: 'remeslo',
-        title: 'Řemeslo',
-        summary: 'Dvě dovednosti, bez kterých se nedá pustit nic bez dozoru.',
-      },
-      {
         key: 'postav',
         title: 'Postav to',
-        summary: 'Vezmi jedno místo z mapy a dotáhni ho do skillu.',
+        summary:
+          'Celá práce v sále: nejdřív dvě dovednosti, bez kterých se nedá pustit nic bez dozoru, pak jedno místo z mapy dotažené do skillu, který se spustí sám.',
       },
       {
         key: 'potom',
@@ -5815,7 +5811,7 @@ export const COURSES: Course[] = [
         summary: 'Referenční část. Vracej se sem, až narazíš na to, co lekce řeší.',
       },
     ],
-    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, L2_UKAZKA, LESSON_SKILL, L2_ROZBOR, LESSON_AUTOMATIZACE, L2_PLAN, L2_BEH, L2_EMAIL, L2_CELY_PRIKLAD, L2_FORMULAR, L2_CVICNY, L2_MCP, L2_DESIGN, L2_NAOSTRO],
+    lessons: [LESSON_AUTOMATIZACE, L2_TABULKY, L2_KONTROLA, L2_POSTAV, LESSON_SKILL, L2_UKAZKA, L2_ROZBOR, L2_PLAN, L2_BEH, L2_EMAIL, L2_CELY_PRIKLAD, L2_FORMULAR, L2_CVICNY, L2_MCP, L2_DESIGN, L2_NAOSTRO],
     learn: [
       'napsat zadání nad tabulkou, které projde napoprvé',
       'zkontrolovat výstup třemi čísly místo čtení řádek po řádku',
