@@ -222,7 +222,6 @@ const LESSON_PROGRAM: Lesson = {
         ['pustit to bez sebe a nespálit se', 'Nech to běžet bez sebe'],
         ['poslat z automatu e-mail', 'E-mail z automatu'],
         ['čekáte na odpovědi od kolegů nebo poboček', 'Formulář místo pinkání e-mailů'],
-        ['procházet dokumenty, které chodí odjinud', 'Kontrola dokumentů: faktury a přílohy'],
         ['ptát se na katalog vlastními slovy', 'MCP nad katalogem dek.cz'],
         ['sjednotit vzhled vlastních aplikací', 'Design system DEK ve Storybooku'],
         ['předat to kolegovi', 'Pusť to naostro'],
@@ -476,7 +475,7 @@ const LESSON_TOKENY: Lesson = {
     {
       kind: 'p',
       text:
-        'Řekněme, že celé odpoledne stavíš kontrolu faktur — tu, o které je lekce Kontrola dokumentů. Nejdřív se Claude rozkoukává ve složce a přečte pět PDF. Pak píšeš skill. Uprostřed zjistíš, že se to vydalo špatným směrem. Pak si odskočíš naplánovat rutinu na sedmou ráno. A mezitím se kolega zeptá na něco úplně jiného, na akční regál. Pět různých věcí v jednom odpoledni — a právě mezi nimi se rozhoduje, jestli tě to odpoledne bude stát kus přídělu, nebo celý.',
+        'Řekněme, že celé odpoledne stavíš kontrolu faktur — tu z cvičného projektu. Nejdřív se Claude rozkoukává ve složce a přečte pět PDF. Pak píšeš skill. Uprostřed zjistíš, že se to vydalo špatným směrem. Pak si odskočíš naplánovat rutinu na sedmou ráno. A mezitím se kolega zeptá na něco úplně jiného, na akční regál. Pět různých věcí v jednom odpoledni — a právě mezi nimi se rozhoduje, jestli tě to odpoledne bude stát kus přídělu, nebo celý.',
     },
     {
       kind: 'figure',
@@ -496,9 +495,9 @@ const LESSON_TOKENY: Lesson = {
       title: 'Ta automatizace z příkladu',
       items: [
         {
-          label: 'Kontrola dokumentů: faktury a přílohy',
-          href: '#academy/od-mapy-k-automatu/kontrola-dokumentu',
-          note: 'Co po Claudovi u faktur chtít, co si nechat pro sebe a jak z pokusu udělat provoz.',
+          label: 'Cvičný projekt: kontrola faktur ke stažení',
+          href: '#academy/od-mapy-k-automatu/cvicny-projekt-faktury',
+          note: 'Hotový projekt i s fakturami, skillem a naplánovanou úlohou — stáhneš a pustíš.',
         },
       ],
     },
@@ -5059,133 +5058,6 @@ a u kolika je rozpor. Když nesedí počet sloupců, zastav se a napiš to.`,
   ],
 }
 
-const L2_DOKUMENTY: Lesson = {
-  slug: 'kontrola-dokumentu',
-  module: 'potom',
-  title: 'Kontrola dokumentů: faktury a přílohy',
-  summary:
-    'Když ve složce přistávají cizí dokumenty a někdo je musí projít. Co po Claudovi chtít, co si nechat pro sebe a jak z pokusu udělat provoz.',
-  minutes: 12,
-  kind: 'lekce',
-  track: 'potom',
-  outcomes: [
-    'zadat kontrolu dokumentů tak, aby šla ověřit',
-    'rozlišit, co se dá zkontrolovat proti pravidlu a co potřebuje člověka',
-    'napsat kontrolní protokol, ze kterého poznáte výsledek bez otevírání dokumentů',
-    'posunout rozdělaný skill do stavu, kdy poběží každý den',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Faktury, dodací listy, potvrzení objednávek — dokumenty, které chodí odjinud, mají v každé firmě stejný osud: někdo je musí otevřít, najít v nich pár údajů, porovnat je s tím, co má v systému, a doplnit, co chybí. Claude umí PDF i obrázky přečíst, takže tahle práce se dá z velké části předat. Ne celá.',
-    },
-    { kind: 'h', text: 'Rozdělte si kontrolu na tři hromádky' },
-    {
-      kind: 'table',
-      head: ['Typ kontroly', 'Příklad', 'Kdo to má dělat'],
-      rows: [
-        [
-          'Je tam všechno?',
-          'číslo faktury, datum, IČO, číslo objednávky, splatnost',
-          'Claude. Buď to v dokumentu je, nebo ne — a když ne, napíše to.',
-        ],
-        [
-          'Sedí to na to, co víme?',
-          'částka proti objednávce, dodavatel proti seznamu, položky proti dodacímu listu',
-          'Claude připraví srovnání a vypíše rozdíly. Nedopočítává.',
-        ],
-        [
-          'Má se to schválit?',
-          'je ta cena v pořádku, chceme to zaplatit, je to náš náklad',
-          'člověk. Vždycky.',
-        ],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Schvalování a placení nechte na lidech',
-      text:
-        'Automatizace se tady zastaví u připraveného podkladu. Nikdy nedávejte úloze právo fakturu schválit, odeslat do účetnictví nebo zaplatit — ani „když je všechno v pořádku“. Chyba v takovém kroku je drahá a přijde se na ni pozdě.',
-    },
-    { kind: 'h', text: 'Zadání, které jde ověřit' },
-    {
-      kind: 'code',
-      text: `Projdi PDF ve složce faktury/ a ke každé zapiš do vystupy/kontrola.xlsx:
-soubor, číslo faktury, dodavatele, IČO, číslo objednávky, částku bez DPH
-a splatnost. Když některý údaj v dokumentu není, nech pole prázdné
-a do sloupce CHYBÍ napiš, co to bylo — nedomýšlej si.
-Pak porovnej číslo objednávky se seznamem v data/objednavky.xlsx
-a doplň sloupec SEDÍ s hodnotou ano/ne/nenalezeno.
-Na konec napiš, kolik dokumentů jsi zpracoval, u kolika něco chybí
-a kolik má nesoulad. Nic z faktur nepřepisuj ani nepřesouvej.`,
-      caption:
-        'Klíčová jsou tři místa: „nech prázdné“, „nedomýšlej si“ a „nic nepřepisuj“. Bez nich vznikne hezká tabulka, které se nedá věřit.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Prázdno není totéž co nula',
-      text:
-        'U dokumentů to platí dvojnásob. Když Claude nenajde částku, musí zůstat prázdno a poznámka — ne nula, ne odhad z jiného pole. Prázdné místo najdete. Nulu si spletete s realitou.',
-    },
-    { kind: 'h', text: 'Z pokusu do provozu' },
-    {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Nechte to projít dvakrát bez doříkávání',
-          body:
-            'Na dvou různých dávkách dokumentů. Co jste museli vysvětlit, patří do zadání nebo do CLAUDE.md, ne do hlavy.',
-        },
-        {
-          title: 'Zabalte to do skillu a dolaďte description',
-          body:
-            'Ten jeden řádek rozhoduje, kdy si skill Claude sám vybere. Napište do něj i slova, kterými o té práci mluvíte vy — faktura, kontrola, dodavatel.',
-        },
-        {
-          title: 'Přidejte kontrolní protokol',
-          body:
-            'Krátký soubor na konci běhu: kolik dokumentů, kolik s chybějícím údajem, kolik s nesouladem, kdy to běželo. Z něj poznáte výsledek, aniž byste otevírali jedinou fakturu.',
-        },
-        {
-          title: 'Ochraňte vstupy hookem',
-          body:
-            'Zábrana, která nepustí zápis do složky s originály. Je to jedna podmínka, a ušetří vám den, kdy se něco přepíše.',
-        },
-        {
-          title: 'Naplánujte běh a řekněte, kdy se má zastavit',
-          body:
-            'Ráno projít, co přes noc přibylo. A do zadání podmínku: když je nesouladů víc než pár, neposílej nic a napiš mi.',
-        },
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Rozdělaný projekt není potřeba zahazovat',
-      text:
-        'Když už máte něco rozjetého, začněte protokolem a zábranou. To jsou dvě věci, které z pokusu udělají něco, co se dá pustit i ve dnech, kdy u toho nesedíte — a přidávají se k hotovému, nic se kvůli nim nepřepisuje.',
-    },
-    {
-      kind: 'task',
-      title: 'Cvičení: kontrola na deseti dokumentech',
-      intro:
-        'Vezměte deset skutečných dokumentů, u kterých znáte správný výsledek.',
-      items: [
-        'Pusťte na ně zadání výš a výsledek si projděte řádek po řádku.',
-        'Zapište si každý údaj, který Claude přečetl špatně nebo si domyslel.',
-        'Doplňte podle toho zadání a pusťte to na jiných deseti.',
-        'Když je druhá dávka bez nálezu, zabalte to do skillu.',
-        'Napište k tomu runbook: co to dělá, kdy běží, co zkontrolovat, komu napsat.',
-      ],
-      hint:
-        'Deset je schválně málo. Na deseti dokumentech chybu najdete, na stovce ji přehlédnete — a právě proto se testuje na malém vzorku, u kterého znáte pravdu.',
-    },
-  ],
-}
-
 const L2_CVICNY: Lesson = {
   slug: 'cvicny-projekt-faktury',
   module: 'potom',
@@ -5716,7 +5588,7 @@ export const COURSES: Course[] = [
         summary: 'Referenční část. Vracej se sem, až narazíš na to, co lekce řeší.',
       },
     ],
-    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, L2_UKAZKA, LESSON_SKILL, L2_ROZBOR, LESSON_AUTOMATIZACE, L2_PLAN, L2_BEH, L2_EMAIL, L2_CELY_PRIKLAD, L2_FORMULAR, L2_DOKUMENTY, L2_CVICNY, L2_MCP, L2_DESIGN, L2_NAOSTRO],
+    lessons: [L2_TABULKY, L2_KONTROLA, L2_POSTAV, L2_UKAZKA, LESSON_SKILL, L2_ROZBOR, LESSON_AUTOMATIZACE, L2_PLAN, L2_BEH, L2_EMAIL, L2_CELY_PRIKLAD, L2_FORMULAR, L2_CVICNY, L2_MCP, L2_DESIGN, L2_NAOSTRO],
     learn: [
       'napsat zadání nad tabulkou, které projde napoprvé',
       'zkontrolovat výstup třemi čísly místo čtení řádek po řádku',
