@@ -14,7 +14,7 @@ import type { RunConfig } from './types'
  *    nechalo na účastnících, půlka to neudělá a zjistí se to ve chvíli,
  *    kdy má člověk stavět. Takhle se problém najde v 16:20 a je celý večer
  *    na to ho obejít. Skilly, hooky a běh bez dozoru zůstávají v samostudiu.
- *  - Celý den stojí na jednom vzoru: proces akčního regálu z logistiky.
+ *  - Celý den stojí na jednom vzoru: proces kontroly faktur z účtárny.
  *    Nejdřív se projde společně, pak si každý zmapuje vlastní agendu a nakonec
  *    z ní postaví první automatizaci.
  *  - Dva bloky jsou nedotknutelné — mapování ve dvojicích a stavění. Když se
@@ -39,13 +39,12 @@ import type { RunConfig } from './types'
  */
 
 /** Vzor, na kterém se ukazuje všechno ostatní. Opakuje se v několika blocích. */
-const REGAL_BRIEF =
-  'Produkťáci nasypou obsah magazínu do sdílené Google Tabulky. Logistika si vezme svých sedm ' +
-  'sloupců, dotáhne k položkám skladová data, rozpadne to na čtyři divizní soubory a rozešle je ' +
-  'e-mailem. Produkťáci vyberou, co půjde do regálu, a pošlou to e-mailem zpátky — někdo tabulkou, ' +
-  'někdo print screenem. Pak se jde fyzicky zkoušet, jestli se tři kufry vejdou vedle sebe, ' +
-  'protože měrné jednotky neodpovídají skutečnosti. Na konci vznikají tři různé podklady pro ' +
-  'marketing, centrální sklad a backoffice.'
+const FAKTURY_BRIEF =
+  'Faktura přijde e-mailem do sdílené schránky jako PDF. Účetní z ní ručně přepíše šest údajů do ' +
+  'kontrolní tabulky, dohledá odpovídající objednávku v exportu a porovná základ daně. Když nesedí, ' +
+  'jde e-mail tam a zpět s dodavatelem nebo se střediskem. Když sedí, faktura jde e-mailem ke schválení ' +
+  'vedoucímu střediska, schválení se ručně zapíše zpátky do tabulky a nakonec se zadá do účetního ' +
+  'systému k platbě — ten poslední krok zůstává vždycky na člověku.'
 
 export const DEFAULT_CONFIG: RunConfig = {
   event: {
@@ -131,29 +130,29 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Na Macu je složka v ~/Library/CloudStorage, ve Windows pod profilem uživatele s ikonou budovy',
         'Hlídat ty, komu to nejede. Nikoho nenechat čekat na sync — lokální kopie je plnohodnotná náhrada.',
         'Kdo je hotový dřív, ať pomůže sousedovi. Rychle se pozná, kdo to má a kdo ne.',
-        'Ukázat hotový CLAUDE.md akčního regálu jako vzor, ať neopisují ze vzduchu',
+        'Ukázat hotový CLAUDE.md kontroly faktur jako vzor, ať neopisují ze vzduchu',
         'Kdo má projekt v nasyncované knihovně, upozornit, že obsah uvidí celý tým',
         'Když někomu nepůjde ani lokální kopie, ať pracuje ve dvojici — večer nesmí propadnout na nastavování',
       ],
     },
     {
-      title: 'Vzor: Od magazínu do regálu',
+      title: 'Vzor: Od e-mailu k platbě',
       min: 20,
-      lessons: ['claude-a-firemni-data/od-magazinu-do-regalu'],
+      lessons: ['claude-a-firemni-data/od-emailu-k-platbe'],
       kind: 'talk',
       who: 'Lektor',
-      brief: REGAL_BRIEF,
+      brief: FAKTURY_BRIEF,
       steps: [
-        { title: 'Projít proces po krocích', min: 10, detail: 'Deset kroků od sdílené tabulky po tři finální podklady', lessons: ['claude-a-firemni-data/od-magazinu-do-regalu'] },
+        { title: 'Projít proces po krocích', min: 10, detail: 'Osm kroků od e-mailu s fakturou po zadání k platbě', lessons: ['claude-a-firemni-data/od-emailu-k-platbe'] },
         { title: 'Kde data mění formu ručně', min: 7, detail: 'Nechat sál hádat, než ukážeš tři označená místa' },
-        { title: 'Co má zůstat člověku', min: 3, detail: 'Vzorování v regálu — data o měrných jednotkách lžou' },
+        { title: 'Co má zůstat člověku', min: 3, detail: 'Schválení faktury k platbě — i sedící čísla nemusí znamenat zaplať' },
       ],
       notes: [
         'Tohle je jediný blok, kde se hodně mluví. Držet ho.',
         'Nechat sál hádat, kde se přepisuje — nejde o to říct jim to, jde o to, aby si toho všimli',
-        'Zmínit, že jeden krok už dnes běží s Claudem (Logistické dostupnosti), takže to není od nuly',
-        'Ukázat i sloupce, které vyplňuje produkťák — AKČNÍ REGÁL, POZNÁMKA, PRIORITA',
-        'Nezabíhat do výpočtu MINMAX, ten přijde odpoledne u kontroly',
+        'Zmínit, že jeden krok už dnes běží s Claudem (Kontrola faktur), takže to není od nuly',
+        'Ukázat i sloupce, které vyplňuje účetní — ČÍSLO OBJEDNÁVKY, ZÁKLAD DANĚ, SCHVÁLENO',
+        'Nezabíhat do porovnání základu daně, to přijde odpoledne u kontroly',
       ],
     },
     {
@@ -257,8 +256,8 @@ export const DEFAULT_CONFIG: RunConfig = {
       notes: [
         'Kontrola je nejdůležitější věc celého dne — bez ní nikdo nikdy nepustí nic bez dozoru',
         'Říct nahlas: „neptej se, jestli je to správně“. Odpověď ano je tvrzení o tvrzení.',
-        'Ukázat vyplněný kontrolní protokol z akčního regálu, včetně toho řádku o nesedících datech',
-        'Pasti ukázat na listu Logistika, ne obecně',
+        'Ukázat vyplněný kontrolní protokol z kontroly faktur, včetně toho řádku o nesedící částce',
+        'Pasti ukázat na exportu objednávek, ne obecně',
         'Kdo se ptá na skilly: v akademii je rozbor toho skutečného (Jak napsat skill) — původní verze, čtyři slabiny, vylepšená',
       ],
     },
@@ -285,9 +284,9 @@ export const DEFAULT_CONFIG: RunConfig = {
       ],
       examples: [
         {
-          title: 'Rozpad exportu na divizní soubory',
+          title: 'Kontrola faktur proti objednávkám',
           detail:
-            'Vzor: skill logisticke-dostupnosti. Ze sdílené tabulky čtyři soubory pro produkťáky — Nářadí, Elektro, VTS, Piekarová — uvnitř list na každého PM a sloupce k vyplnění prázdné.',
+            'Vzor: skill kontrola-faktur. Z PDF faktur ve vstup/ a exportu objednávek jedna kontrolní tabulka — kde částka sedí a kde ne.',
         },
         {
           title: 'Spojení tří zdrojů k položkám',

@@ -3,18 +3,18 @@ import { useFigureColors } from '../lib/figureColors'
 
 const ROWS: { text: string; note?: string; indent: number; accent?: boolean; muted?: boolean }[] = [
   {
-    text: 'OneDrive – DEK/Magazín/',
+    text: 'OneDrive – DEK/Účetnictví/',
     note: 'nasyncovaná knihovna ze SharePointu',
     indent: 0,
     muted: true,
   },
-  { text: '└── akcni-regal/', note: 'tady otevřeš Claude Code — tohle je projekt', indent: 0, accent: true },
+  { text: '└── faktury-kontrola/', note: 'tady otevřeš Claude Code — tohle je projekt', indent: 0, accent: true },
   { text: '├── CLAUDE.md', note: 'pravidla a slovník, čtou se pokaždé', indent: 1, accent: true },
   { text: '├── data/', note: 'vstupy — reálný vzorek, ne celá databáze', indent: 1 },
   { text: '├── vystupy/', note: 'sem jdou výsledky, originály zůstanou celé', indent: 1 },
   { text: '└── .claude/', indent: 1 },
   { text: '└── skills/', note: 'zabalené postupy, které se opakují', indent: 2, accent: true },
-  { text: '└── logisticke-dostupnosti/SKILL.md', indent: 3 },
+  { text: '└── kontrola-faktur/SKILL.md', indent: 3 },
 ]
 
 /**
@@ -35,7 +35,7 @@ export default function ProjectTree() {
         component="svg"
         viewBox="0 0 900 324"
         role="img"
-        aria-label="Strom složek. Nahoře nasyncovaná knihovna ze SharePointu a v ní složka akcni-regal — tu otevřeš v Claude Code a ta je tím projektem. Uvnitř je CLAUDE.md s pravidly a slovníkem, složka data se vstupy, složka vystupy s výsledky a složka .claude/skills se zabalenými postupy. Projekt tedy není nic vedle knihovny, je to podsložka v ní."
+        aria-label="Strom složek. Nahoře nasyncovaná knihovna ze SharePointu a v ní složka faktury-kontrola — tu otevřeš v Claude Code a ta je tím projektem. Uvnitř je CLAUDE.md s pravidly a slovníkem, složka data se vstupy, složka vystupy s výsledky a složka .claude/skills se zabalenými postupy. Projekt tedy není nic vedle knihovny, je to podsložka v ní."
         sx={{ display: 'block', width: '100%', minWidth: 700, height: 'auto' }}
       >
         {ROWS.map((row, i) => {

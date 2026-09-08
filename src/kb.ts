@@ -152,7 +152,7 @@ export const CATEGORIES: Category[] = [
       {
         title: 'Forecast proti skutečnosti',
         summary:
-          'Najít položky s největší odchylkou a dopsat, čím to nejspíš bylo — sezóna, akce v magazínu, jednorázová velká objednávka.',
+          'Najít položky s největší odchylkou a dopsat, čím to nejspíš bylo — sezóna, promo akce, jednorázová velká objednávka.',
         needs: ['Forecast', 'Skutečný odběr'],
         gives: ['Seznam odchylek s vysvětlením, ne jen čísla'],
         minutes: 25,

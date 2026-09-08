@@ -177,7 +177,7 @@ const LESSON_PROGRAM: Lesson = {
         ],
         [
           '3. Najít, co automatizovat',
-          'Od magazínu do regálu, pak Cvičení 1, 1b a Sdílení map — všechna v sólo verzi',
+          'Od e-mailu k platbě, pak Cvičení 1, 1b a Sdílení map — všechna v sólo verzi',
           'mapu vlastního procesu s označenými místy ručního přenosu',
         ],
         [
@@ -250,7 +250,7 @@ const LESSON_PROGRAM: Lesson = {
         ['16:00', 'Úvod — proč to děláme a co si odnesete'],
         ['16:10', 'Rozehřívačka — postavíme se a řekneme, co jsme dneska dělali ručně'],
         ['16:20', 'Nastavení: sdílená složka a projekt. U vlastního počítače, s asistencí.'],
-        ['16:50', 'Vzor: Od magazínu do regálu. Projdeme spolu jeden reálný proces.'],
+        ['16:50', 'Vzor: Od e-mailu k platbě. Projdeme spolu jeden reálný proces.'],
         ['17:10', 'Cvičení ve dvojicích — rozhovory o vlastní práci'],
         ['17:50', 'Kresba flow a označení míst k automatizaci'],
         ['18:05', 'Pauza'],
@@ -280,7 +280,7 @@ const LESSON_PROGRAM: Lesson = {
     {
       kind: 'p',
       text:
-        'Do čtyř hodin se toho vejde jen tolik, kolik se dá udělat společně. Všechno ostatní z akademie nezmizelo — je označené štítkem potom a čeká, až na něj dojde řada. Nečtěte to dopředu a nesnažte se to stihnout: vracejte se k tomu ve chvíli, kdy narazíte na to, co ta lekce řeší. Rozcestník níž je podle situací, ne podle štítků — pár řádků vede zpátky do lekcí, které jste prošli v sále, protože právě k těm se člověk vrací nejčastěji. Kostra je pořád stejná — pět schodů: zadání, pravidlo, skill, hook, běh bez tebe. První tři jste prošli v sále a poslední dva viděli v živé ukázce; do hloubky si je projdete sami. Když si máte vybrat jednu, vezměte Jak se v projektu nastaví automatizace — v druhé polovině je tentýž akční regál dotažený od prázdné složky až po naplánovaný běh, který rozešle maily.',
+        'Do čtyř hodin se toho vejde jen tolik, kolik se dá udělat společně. Všechno ostatní z akademie nezmizelo — je označené štítkem potom a čeká, až na něj dojde řada. Nečtěte to dopředu a nesnažte se to stihnout: vracejte se k tomu ve chvíli, kdy narazíte na to, co ta lekce řeší. Rozcestník níž je podle situací, ne podle štítků — pár řádků vede zpátky do lekcí, které jste prošli v sále, protože právě k těm se člověk vrací nejčastěji. Kostra je pořád stejná — pět schodů: zadání, pravidlo, skill, hook, běh bez tebe. První tři jste prošli v sále a poslední dva viděli v živé ukázce; do hloubky si je projdete sami. Když si máte vybrat jednu, vezměte Jak se v projektu nastaví automatizace — u pátého schodu je odkaz na Cvičný projekt: kontrola faktur, stažitelnou verzi celé cesty od prázdné složky po naplánovaný běh.',
     },
     {
       kind: 'table',
@@ -551,7 +551,7 @@ const LESSON_TOKENY: Lesson = {
     {
       kind: 'p',
       text:
-        'Řekněme, že celé odpoledne stavíš kontrolu faktur — tu z cvičného projektu. Nejdřív se Claude rozkoukává ve složce a přečte pět PDF. Pak píšeš skill. Uprostřed zjistíš, že se to vydalo špatným směrem. Pak si odskočíš naplánovat rutinu na sedmou ráno. A mezitím se kolega zeptá na něco úplně jiného, na akční regál. Pět různých věcí v jednom odpoledni — a právě mezi nimi se rozhoduje, jestli tě to odpoledne bude stát kus přídělu, nebo celý.',
+        'Řekněme, že celé odpoledne stavíš kontrolu faktur — tu z cvičného projektu. Nejdřív se Claude rozkoukává ve složce a přečte pět PDF. Pak píšeš skill. Uprostřed zjistíš, že se to vydalo špatným směrem. Pak si odskočíš naplánovat rutinu na sedmou ráno. A mezitím se kolega zeptá na něco úplně jiného, na rozpis dovolených. Pět různých věcí v jednom odpoledni — a právě mezi nimi se rozhoduje, jestli tě to odpoledne bude stát kus přídělu, nebo celý.',
     },
     {
       kind: 'figure',
@@ -564,7 +564,7 @@ const LESSON_TOKENY: Lesson = {
       tone: 'ok',
       title: 'Jediná otázka, kterou si u toho klaď',
       text:
-        'Potřebuje ta další zpráva to, co je v historii? Když ano, jsi ve stejné úloze — nech to běžet, a když je historie moc dlouhá, dej /compact v přestávce. Když ne, dej /clear. Rozkoukávání ve složce s fakturami nemá s dotazem na akční regál nic společného, tak proč by ho měl Claude číst u každé odpovědi.',
+        'Potřebuje ta další zpráva to, co je v historii? Když ano, jsi ve stejné úloze — nech to běžet, a když je historie moc dlouhá, dej /compact v přestávce. Když ne, dej /clear. Rozkoukávání ve složce s fakturami nemá s dotazem na dovolené nic společného, tak proč by ho měl Claude číst u každé odpovědi.',
     },
     {
       kind: 'links',
@@ -608,7 +608,7 @@ const LESSON_TOKENY: Lesson = {
     {
       kind: 'list',
       items: [
-        'Zadávej konkrétně. „Vylepši mi ten projekt" znamená, že Claude začne číst všechno. „Doplň k položkám v nejnovějším exportu min/max a ulož do vystupy/" znamená, že přečte dva soubory.',
+        'Zadávej konkrétně. „Vylepši mi ten projekt" znamená, že Claude začne číst všechno. „Doplň k fakturám v nejnovějším exportu základ daně a ulož do vystupy/" znamená, že přečte dva soubory.',
         'CLAUDE.md drž do dvou set řádků. Načítá se do každého sezení celý, i když děláš něco úplně jiného. Delší postupy patří do skillu, který se načte, jen když je potřeba.',
         'Do složky projektu nedávej celou databázi, ale reálný vzorek. Claude čte to, co tam je.',
         'Vypni konektory, které zrovna nepoužíváš — v Claude Code příkazem /mcp. Každý připojený server něco zabírá.',
@@ -667,13 +667,13 @@ const LESSON_TOKENY: Lesson = {
           title: 'Projdi CLAUDE.md',
           body:
             'Co v něm je a nepoužije se pokaždé, přesuň do skillu. Cílem je slovník, cesty k datům a pravidla — ne návod na všechno. Takhle vypadá CLAUDE.md, který má správnou velikost:',
-          code: `# Akční regál
+          code: `# Kontrola faktur
 
 ## Slovník
-- CS = centrální sklad
-- SD = skladová dostupnost
-- produkťák = produktový manažer divize
-- divize = Nářadí, Elektro, VTS, Piekarová
+- faktura = doklad od dodavatele, přijde e-mailem jako PDF
+- objednávka = náš doklad, se kterým se faktura porovnává
+- základ daně = částka bez DPH, tu se porovnává
+- schválení = potvrzení vedoucího střediska, že se smí platit
 
 ## Kde jsou data
 - data/ — exporty s datem v názvu, ber vždy nejnovější
@@ -681,14 +681,14 @@ const LESSON_TOKENY: Lesson = {
 
 ## Pravidla
 - Do data/ nezapisuj. Výsledek ulož jako nový soubor do vystupy/.
-- Čísla položek jsou text. Nepřevádět, nedoplňovat nuly.
+- Čísla objednávek jsou text. Nepřevádět, nedoplňovat nuly.
 - Když chybí sloupec, napiš to a zastav se. Nedopočítávej.
 
 # ⬇ TOHLE UŽ NE — patří do skillu, ne sem
-# ## Jak rozdělit magazín na divize
+# ## Jak porovnat fakturu s objednávkou
 # 1. Najdi v data/ nejnovější export…
-# 2. Ověř sloupce Číslo položky, Katalogové číslo…
-# 3. Pro každou divizi ulož soubor…`,
+# 2. Ověř sloupce Číslo objednávky, Základ daně…
+# 3. Pro každou fakturu ulož řádek…`,
         },
         {
           title: 'Vyhoď konektory, které nepoužíváš',
@@ -902,7 +902,7 @@ const LESSON_PROJEKT: Lesson = {
         {
           title: 'Založ prázdnou složku agendy',
           body:
-            'V Průzkumníku nebo Finderu, uvnitř nasyncované knihovny — třeba akcni-regal. Musí existovat dřív, než ji půjdeš vybrat; Claude si ji sám nikde nevytvoří, protože neví kam. Data ani nic dalšího do ní zatím dávat nemusíš.',
+            'V Průzkumníku nebo Finderu, uvnitř nasyncované knihovny — třeba faktury-kontrola. Musí existovat dřív, než ji půjdeš vybrat; Claude si ji sám nikde nevytvoří, protože neví kam. Data ani nic dalšího do ní zatím dávat nemusíš.',
         },
         {
           title: 'Otevři ji v aplikaci Claude',
@@ -930,7 +930,7 @@ const LESSON_PROJEKT: Lesson = {
     },
     {
       kind: 'code',
-      text: `Založ mi tady projekt akcni-regal: složky data a vystupy a soubor
+      text: `Založ mi tady projekt faktury-kontrola: složky data a vystupy a soubor
 CLAUDE.md. Do CLAUDE.md napiš slovník téhle agendy — na pojmy se mě
 zeptej — kde jsou data, a pravidlo, že originály v data/ se nikdy
 nepřepisují: všechno nové se ukládá do vystupy/.`,
@@ -941,13 +941,13 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
       tone: 'info',
       title: 'Projekt a nasyncovaná složka nestojí vedle sebe',
       text:
-        'Je to jedna a tatáž věc. Projekt v Claude Code není nic, co by vzniklo někde v aplikaci — je to prostě složka, kterou otevřeš. Takže „projekt v nasyncované knihovně“ znamená obyčejnou podsložku v ní, nic víc. Claude přitom vidí jen to, co je v otevřené složce a pod ní: když otevřeš akcni-regal, zbytek knihovny pro něj neexistuje.',
+        'Je to jedna a tatáž věc. Projekt v Claude Code není nic, co by vzniklo někde v aplikaci — je to prostě složka, kterou otevřeš. Takže „projekt v nasyncované knihovně“ znamená obyčejnou podsložku v ní, nic víc. Claude přitom vidí jen to, co je v otevřené složce a pod ní: když otevřeš faktury-kontrola, zbytek knihovny pro něj neexistuje.',
     },
     { kind: 'h', text: 'Projekt je složka' },
     {
       kind: 'p',
       text:
-        'Claude vidí obsah složky, ve které ho spustíš, a nic nad ní. Proto platí jednoduché pravidlo: jedna agenda = jedna složka. Ne jedna velká složka „AI“, do které se sype všechno. Když si založíš zvlášť akční regál, zvlášť reporty a zvlášť ceníky, každý projekt si drží svoje pravidla a nepletou se dohromady.',
+        'Claude vidí obsah složky, ve které ho spustíš, a nic nad ní. Proto platí jednoduché pravidlo: jedna agenda = jedna složka. Ne jedna velká složka „AI“, do které se sype všechno. Když si založíš zvlášť kontrolu faktur, zvlášť reporty a zvlášť ceníky, každý projekt si drží svoje pravidla a nepletou se dohromady.',
     },
     {
       kind: 'figure',
@@ -965,8 +965,8 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
       mac: [
         {
           kind: 'code',
-          text: `~/Library/CloudStorage/OneDrive-SharedLibraries-DEK/Magazín/
-└── akcni-regal/
+          text: `~/Library/CloudStorage/OneDrive-SharedLibraries-DEK/Ucetnictvi/
+└── faktury-kontrola/
     ├── CLAUDE.md
     ├── data/
     ├── vystupy/
@@ -977,8 +977,8 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
       win: [
         {
           kind: 'code',
-          text: `C:\\Users\\<jmeno>\\DEK\\Magazín\\
-└── akcni-regal\\
+          text: `C:\\Users\\<jmeno>\\DEK\\Ucetnictvi\\
+└── faktury-kontrola\\
     ├── CLAUDE.md
     ├── data\\
     ├── vystupy\\
@@ -1024,25 +1024,25 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
     {
       kind: 'p',
       text:
-        'Textový soubor v kořeni složky, který se načte na začátku každého sezení. Sem patří to, co bys jinak vysvětlovala pokaždé znovu: firemní slovník (co je min/max, CS-ko, produkťák, divize), kde leží která data, jak se mají jmenovat výstupy a co se nikdy nesmí. Pravidlo, kdy něco dopsat: když stejnou opravu píšeš podruhé.',
+        'Textový soubor v kořeni složky, který se načte na začátku každého sezení. Sem patří to, co bys jinak vysvětlovala pokaždé znovu: firemní slovník (co je základ daně, objednávka, schválení, středisko), kde leží která data, jak se mají jmenovat výstupy a co se nikdy nesmí. Pravidlo, kdy něco dopsat: když stejnou opravu píšeš podruhé.',
     },
     {
       kind: 'code',
-      text: `# Akční regál
+      text: `# Kontrola faktur
 
 ## Slovník
-- CS = centrální sklad
-- produkťák = produktový manažer divize, vybírá položky do regálu
-- min/max = doporučené množství na pobočku
+- faktura = PDF od dodavatele
+- objednávka = řádek ve schváleném seznamu, na který se faktura odkazuje
+- základ daně = částka bez DPH; kontroluje se právě ta, ne částka s DPH
 
 ## Kde jsou data
-- data/ — export z Google Tabulky, vždy nejnovější soubor podle data v názvu
+- data/ — faktury a seznam objednávek, vždy nejnovější podle data v názvu
 - vystupy/ — sem ukládej všechno, co vytvoříš
 
 ## Pravidla
 - Nikdy nepřepisuj soubory v data/. Výsledek ulož jako nový soubor do vystupy/.
-- Názvy výstupů: <agenda>-<divize>-<RRRR-MM-DD>.xlsx
-- Když si nejsi jistý, kterou verzi vzít, zeptej se místo hádání.`,
+- Názvy výstupů: kontrola-<RRRR-MM-DD>.xlsx
+- Když chybí údaj, nech pole prázdné a napiš to — nedomýšlej si ho.`,
       caption: 'Takhle vypadá CLAUDE.md, který dává smysl. Drž ho pod dvěma sty řádky a piš konkrétně.',
     },
     {
@@ -1066,18 +1066,18 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
     },
     {
       kind: 'code',
-      text: `.claude/skills/logisticke-dostupnosti/SKILL.md
+      text: `.claude/skills/kontrola-faktur/SKILL.md
 
 ---
-name: logisticke-dostupnosti
-description: Z exportu listu Logistika připraví soubory pro produkťáky
-  po divizích (Nářadí, Elektro, VTS, Piekarová). Použij, když je v data/
-  nový export magazínu a mají se rozeslat podklady produkťákům.
+name: kontrola-faktur
+description: Projde faktury ve složce, vytáhne z nich povinné údaje
+  a porovná je se seznamem schválených objednávek. Použij, když přibyly
+  nové faktury nebo když se ptám, co je k vyřízení.
 ---
 
-1. Najdi v data/ nejnovější export podle data v názvu.
-2. Ověř, že má sloupce Číslo položky, Katalogové číslo, Název, MJ, PM.
-3. Pro každou divizi ulož soubor Magazín <MĚSÍC> - <divize>.xlsx do vystupy/.
+1. Najdi v data/ faktury, které ještě nemají řádek v poslední kontrole.
+2. Z každé vytáhni číslo faktury, dodavatele, číslo objednávky a částku.
+3. Porovnej se seznamem objednávek a ulož výsledek do vystupy/.
 ...`,
       caption: 'Řádek description rozhoduje o tom, kdy se skill sám nabídne. Piš do něj i slova, která se běžně říkají v zadání. Celý skill je rozebraný v lekci Rozbor skutečného skillu.',
     },
@@ -1122,65 +1122,60 @@ description: Z exportu listu Logistika připraví soubory pro produkťáky
       title: 'Videa k Claude Code',
       items: VIDEOS_CLAUDE_CODE,
     },
-    { kind: 'h', text: 'Konkrétní příklad: projekt akčního regálu' },
+    { kind: 'h', text: 'Konkrétní příklad: projekt kontroly faktur' },
     {
       kind: 'p',
       text:
-        'Takhle to vypadá u agendy, kterou v tomhle kurzu rozebíráme celou. Logistika dostává od produkťáků obsah magazínu ve sdílené tabulce, doplňuje k položkám skladová data, rozpadá to na čtyři divizní soubory a rozesílá produkťákům. Projekt na tuhle agendu vypadá takhle — a všechno v něm je obyčejný text.',
+        'Takhle to vypadá u agendy, kterou v akademii rozebíráme do hloubky — kontrola faktur. Projekt přečte PDF faktury, porovná je se seznamem schválených objednávek a připraví podklad ke schválení. Neschvaluje a neplatí, to zůstává na člověku. Je to přesně ten projekt, který si později stáhneš hotový v lekci Cvičný projekt: kontrola faktur — tady je jen vidět, z čeho se skládá.',
     },
     {
       kind: 'code',
-      text: `akcni-regal/
+      text: `faktury-kontrola/
 ├── CLAUDE.md
+├── vstup/
+│   ├── 2026-09-01_stavebniny-morava.pdf
+│   ├── 2026-09-02_naradi-profi.pdf
+│   ├── 2026-09-03_elektro-dvorak.pdf
+│   ├── 2026-09-04_vts-technik.pdf
+│   └── 2026-09-05_barvy-piekarova.pdf
 ├── data/
-│   ├── 20260902_Data_CS_skladem.xlsx
-│   ├── 20260902_SD_CS.xlsx
-│   ├── 20260901_minmax.xlsx
-│   └── Magazin2026_Logistika_export.csv
-├── vystupy/
-│   ├── Magazín ŘÍJEN - Nářadí.xlsx
-│   ├── Magazín ŘÍJEN - Elektro.xlsx
-│   ├── Magazín ŘÍJEN - VTS.xlsx
-│   └── Magazín ŘÍJEN - Piekarová.xlsx
+│   └── objednavky.xlsx
+├── vystup/
+│   ├── kontrola-2026-09-08.xlsx
+│   └── protokol-2026-09-08.md
 └── .claude/
     └── skills/
-        └── logisticke-dostupnosti/SKILL.md`,
-      caption: 'Reálné názvy z té agendy. Data zůstávají v data/ nedotčená, všechno nové vzniká ve vystupy/.',
+        └── kontrola-faktur/SKILL.md`,
+      caption: 'Reálné názvy z té agendy. Faktury zůstávají ve vstup/ nedotčené, všechno nové vzniká ve vystup/.',
     },
     {
       kind: 'code',
-      text: `# Akční regál
+      text: `# Kontrola faktur
 
-Připravuju obsah akčního regálu na pobočkách podle tištěného magazínu.
-Zdroj je Google Tabulka Magazín 2026, list Logistika. Cyklus začíná
-zhruba šest týdnů před vydáním magazínu.
+Cvičný projekt z workshopu DEK Academy. Každé ráno projde faktury, které
+přes noc přibyly ve vstup/, srovná je se seznamem schválených objednávek
+a připraví podklad ke schválení. Neschvaluje a neplatí — to dělá člověk.
 
 ## Slovník
-- CS = centrální sklad
-- SD = skladová dostupnost (SD celkem, SD sklad, SD prodejna, SD na CS)
-- PM / produkťák = produktový manažer, vybírá co půjde do regálu
-- divize = Nářadí, Elektro, VTS, Piekarová
-- barva = zelená / oranžová / šedá podle klíče v řádku 1 a 2 listu Logistika
-- vzorování = fyzická zkouška v regálu, varianty 1,33 m a 1,00 m,
-  vždy pro jeden i dva regály
+- faktura = PDF od dodavatele ve složce vstup/
+- objednávka = řádek v data/objednavky.xlsx, na který se faktura odkazuje
+- základ daně = částka bez DPH; kontroluje se právě ta, ne částka s DPH
+- protokol = krátký soubor na konci běhu; z něj poznám výsledek bez otevírání faktur
 
 ## Kde jsou data
-- data/<RRRRMMDD>_Data_CS_skladem — zásoby na centrálním skladu
-- data/<RRRRMMDD>_SD_CS — skladová dostupnost CS
-- data/<RRRRMMDD>_minmax — doporučená množství
-- Ber vždy nejnovější podle data v názvu. Když u všech tří není stejné,
-  napiš to a zastav se.
+- vstup/ — faktury v PDF. Sem se jen čte.
+- data/objednavky.xlsx — schválené objednávky: číslo, dodavatel, částka, středisko
+- vystup/ — kontrolní tabulka a protokol, jeden pár souborů na každý běh
 
 ## Pravidla
-- Do data/ nezapisuj. Výstupy patří do vystupy/.
-- Názvy výstupů: Magazín <MĚSÍC> - <divize>
-- Čísla položek a katalogová čísla jsou text. Nepřevádět na čísla,
-  nedoplňovat nuly.
-- Sloupce, které vyplňuje produkťák, nechávej prázdné:
-  AKČNÍ REGÁL (ANO/NE), POZNÁMKA, PRIORITA.
-- Prodeje počítám za posledních 12 měsíců, ne za kalendářní rok.
-- Když v exportu chybí sloupec, napiš to a zastav se. Nedopočítávej.`,
-      caption: 'Celý CLAUDE.md téhle agendy. Většina řádků vznikla tak, že se něco pokazilo a příště se to nemělo opakovat.',
+- Do vstup/ nikdy nezapisuj, nic v ní nepřejmenovávej ani nemaž. Originály jsou důkaz.
+- Když údaj ve faktuře není, nech pole prázdné a napiš ho do sloupce CHYBÍ. Nedomýšlej si.
+- Prázdno není nula. Chybějící částku nikdy nenahrazuj nulou ani odhadem z jiného pole.
+- Porovnávej vždy základ daně proti schválené částce, ne celkovou částku s DPH.
+- Názvy výstupů: kontrola-<RRRR-MM-DD>.xlsx a protokol-<RRRR-MM-DD>.md
+- Faktury neschvaluj, neposílej do účetnictví a nezadávej k platbě. Ani když je všechno v pořádku.
+- Když je nesouladů víc než tři, nic nerozesílej a napiš mi to.`,
+      caption: 'Celý CLAUDE.md téhle agendy, doslova — je to ten samý soubor, který je v cvičném projektu ke stažení. Většina řádků vznikla tak, že se něco pokazilo a příště se to nemělo opakovat.',
     },
     {
       kind: 'h',
@@ -1189,9 +1184,9 @@ zhruba šest týdnů před vydáním magazínu.
     {
       kind: 'list',
       items: [
-        '„Podívej se do data/ a řekni mi, který soubor je u každého ze tří zdrojů nejnovější a jestli mají stejné datum.“ — ověření, že rozumí pojmenování.',
-        '„Ke každé položce z exportu listu Logistika dotáhni min/max, SD CS a zásobu na CS. Kde data chybí, nech prázdno a na konci vypiš, u kolika položek to bylo.“ — spojení tří zdrojů.',
-        '„Rozděl to podle divize na soubory Magazín ŘÍJEN - Nářadí, - Elektro, - VTS a - Piekarová do vystupy/. Sloupce AKČNÍ REGÁL, POZNÁMKA a PRIORITA nech prázdné.“ — to, co se dělalo ručně.',
+        '„Podívej se do vstup/ a řekni mi, kolik je tam faktur a jestli má každá čitelný text.“ — ověření, že se dá vůbec začít.',
+        '„Ke každé faktuře najdi v data/objednavky.xlsx odpovídající objednávku podle čísla a porovnej základ daně se schválenou částkou.“ — spojení dvou zdrojů.',
+        '„Ulož výsledek jako kontrola-<datum>.xlsx do vystup/ a napiš k tomu krátký protokol.“ — to, co se dělalo ručně.',
       ],
     },
     { kind: 'h', text: 'Dobré a špatné zadání' },
@@ -1200,23 +1195,23 @@ zhruba šest týdnů před vydáním magazínu.
       head: ['Místo tohohle', 'Napiš tohle', 'Proč'],
       rows: [
         [
-          '„Zpracuj mi ten Excel.“',
-          '„Vezmi nejnovější magazin-*.xlsx z data/, dotáhni k položkám min/max a ulož výsledek do vystupy/.“',
+          '„Zkontroluj mi ty faktury.“',
+          '„Projdi PDF ve vstup/, porovnej je se schválenými objednávkami v data/objednavky.xlsx a ulož výsledek do vystup/.“',
           'Pojmenuj vstup, operaci i místo výsledku. Jinak hádá všechno tři.',
         ],
         [
-          '„Uprav to, ať je to hezčí.“',
-          '„Sloupce Kód, Název, Divize, Min, Max v tomhle pořadí, zamrazený první řádek, čísla bez desetinných míst.“',
-          'Ověřitelné zadání se dá zkontrolovat. „Hezčí“ ne.',
+          '„Uprav to, ať je to přehlednější.“',
+          '„Sloupce Faktura, Dodavatel, Základ daně, SEDÍ, CHYBÍ v tomhle pořadí, řádky s nálezem podbarvi červeně.“',
+          'Ověřitelné zadání se dá zkontrolovat. „Přehlednější“ ne.',
         ],
         [
-          '„Doplň chybějící hodnoty.“',
-          '„Kde min/max chybí, nech prázdno a vypiš mi seznam těch položek.“',
+          '„Doplň, co ve faktuře chybí.“',
+          '„Kde údaj chybí, nech pole prázdné a napiš ho do sloupce CHYBÍ.“',
           'Nechceš odhad tam, kde má být otazník.',
         ],
         [
           '„Udělej to jako minule.“',
-          '„Postupuj podle skillu logisticke-dostupnosti.“',
+          '„Postupuj podle skillu kontrola-faktur.“',
           'Minule si nepamatuje. Skill ano.',
         ],
       ],
@@ -1630,7 +1625,7 @@ const LESSON_SHAREPOINT: Lesson = {
       kind: 'task',
       title: 'Cvičení: první dotaz nad týmovou složkou',
       intro:
-        'Vezmi složku, ve které máš podklady k akčnímu regálu, nebo jakoukoli jinou sdílenou složku, se kterou pracuješ každý týden.',
+        'Vezmi složku, ve které máš podklady ke kontrole faktur, nebo jakoukoli jinou sdílenou složku, se kterou pracuješ každý týden.',
       items: [
         'Připoj ji podle postupu výš.',
         'Nech Clauda vypsat, co v ní je, a rozdělit to podle typu souboru.',
@@ -1713,11 +1708,11 @@ const LESSON_CO_VIDI: Lesson = {
 }
 
 const LESSON_REGAL: Lesson = {
-  slug: 'od-magazinu-do-regalu',
+  slug: 'od-emailu-k-platbe',
   module: 'zadani',
-  title: 'Od magazínu do regálu',
+  title: 'Od e-mailu k platbě',
   summary:
-    'Reálný proces akčního regálu rozepsaný na kroky. Úkolem je najít místa, kde se dá práce automatizovat.',
+    'Typický ruční proces kontroly faktur rozepsaný na kroky. Úkolem je najít místa, kde se dá práce automatizovat.',
   minutes: 25,
   kind: 'zadání',
   track: 'v sále',
@@ -1731,79 +1726,69 @@ const LESSON_REGAL: Lesson = {
     {
       kind: 'p',
       text:
-        'Tohle je skutečný proces z logistiky, zapsaný podle rozhovoru. Vzniká z něj akční regál na pobočkách — od chvíle, kdy produkťáci nasypou obsah magazínu do sdílené tabulky, až po podklady pro marketing, centrální sklad a backoffice. Přečti si ho celý a teprve pak se pusť do zadání pod diagramem.',
+        'Tohle není přepis jednoho konkrétního rozhovoru — je to obvyklý tvar toho, jak vypadá kontrola faktur bez automatizace: od chvíle, kdy dorazí e-mail od dodavatele, až po fakturu zadanou k platbě. Přečti si ho celý a teprve pak se pusť do zadání pod diagramem.',
     },
     {
       kind: 'table',
       head: ['Parametr', 'Hodnota'],
       rows: [
-        ['Předstih', '~6 týdnů, bez pevného termínu'],
-        ['Divize', '4 — Nářadí, Elektro, VTS, Piekarová (podle souborů, které se rozesílají)'],
-        ['Produkťáci', '11, každý má svoje značky a sekce'],
-        ['Plocha regálu', '130 × 900 cm'],
-        ['Položky', 'z ~150 v magazínu se do regálu vejde ~80'],
-        ['Datové zdroje', '3 — min/max, zásoby poboček, centrální sklad'],
+        ['Kanál příjmu', 'e-mail, PDF příloha do sdílené schránky'],
+        ['Kdo kontroluje', '1–2 lidé v účtárně'],
+        ['Povinné údaje', '6 — číslo faktury, dodavatel, IČO, číslo objednávky, základ daně, splatnost'],
+        ['Zdroj k porovnání', 'export schválených objednávek, tabulka'],
+        ['Kdo schvaluje k platbě', 'vedoucí střediska'],
+        ['Objem', 'řádově desítky faktur týdně'],
       ],
     },
     {
       kind: 'figure',
       name: 'regal-flow',
       caption:
-        'Tři účastníci, dvě kolečka přes e-mail. Oranžově jsou místa, kde data mění formu ručně.',
+        'Tři účastníci, dvě kolečka přes e-mail. Oranžově jsou místa, kde se údaje přepisují ručně.',
     },
     { kind: 'h', text: 'Proces krok za krokem' },
     {
       kind: 'steps',
       items: [
         {
-          title: 'Produkťáci nasypou obsah magazínu do Google Tabulky',
+          title: 'Faktura přijde e-mailem od dodavatele',
           body:
-            'Zapisují průběžně, zhruba šest týdnů dopředu, bez pevného termínu. Je tam kompletní obsah tištěného letáku. Kritéria zařazení: sezónnost, dohoda s dodavatelem, potřeba odprodat zásoby před sezonou.',
+            'PDF příloha do sdílené schránky, mezi desítkami dalších zpráv. Nic ji netřídí — kdo se do schránky nepodívá, fakturu nenajde.',
         },
         {
-          title: 'Logistika si vezme svých sedm sloupců',
+          title: 'Účetní fakturu otevře a ručně přepíše údaje',
           body:
-            'Přístup má jen do logistického listu, zbytek tabulky patří marketingu — aby se navzájem nepřepisovali. Ostatní divize k té tabulce přístup nemají, zapisují si jinam.',
+            'Číslo faktury, dodavatele, IČO, číslo objednávky, základ daně a splatnost — jedno po druhém, z PDF do kontrolní tabulky.',
         },
         {
-          title: 'Vznikne velký Excel se třemi datovými zdroji',
+          title: 'Paralelně dohledá odpovídající objednávku',
           body:
-            'Položky na jeden list, na další listy min/max, zásoby na pobočkách a na centrálním skladu. K položkám se doplní status — jestli chodí napřímo od dodavatele, nebo přes centrální sklad.',
+            'Otevře export schválených objednávek a hledá řádek se stejným číslem — často v jiném pořadí a jiném formátu čísla, než má faktura.',
         },
         {
-          title: 'Rozpad na čtyři divizní Excely',
+          title: 'Porovná základ daně se schválenou částkou',
           body:
-            'Z jednoho velkého souboru vzniknou čtyři menší. Původní Excel je tak velký, že se do AI nedá vložit celý — kopíruje se jen ten jeden složený list přes vložit jinak → hodnoty.',
+            'Ručně, řádek po řádku. Sedí-li, jde faktura dál k dalšímu kroku; nesedí-li, začíná další kolo.',
         },
         {
-          title: 'Rozeslání jedenácti produkťákům e-mailem',
+          title: 'Když něco nesedí, píše se středisku nebo dodavateli',
           body:
-            'Každý dostane svůj list s padesáti položkami ze své sekce. Ručně, jeden e-mail po druhém.',
+            'Chybějící číslo objednávky, jiná částka, objednávka, která v seznamu není — na každé se ptá zvlášť a čeká na odpověď.',
         },
         {
-          title: 'Produkťák vybere, co chce do regálu',
+          title: 'Faktury, u kterých vše sedí, jdou ke schválení',
           body:
-            'Z padesáti položek vybere pět až deset — podle sezónnosti a dohod s dodavateli. Přidá prioritu a poznámku: tohle je na titulce, musí být všude; tohohle dostaneme jen pár kusů, dej to jen na padesát poboček.',
+            'Přeposlané e-mailem vedoucímu střediska, s poznámkou, na co se má podívat.',
         },
         {
-          title: 'Odpovědi se ručně přepíšou zpět do tabulky',
+          title: 'Schválení se vrátí a zapíše se ručně zpátky',
           body:
-            'Každou odpověď je potřeba vykopírovat zpátky a zkontrolovat, jestli se v souboru něco neposunulo. Někdo místo tabulky pošle print screen — ten se přeťukává ručně.',
+            'Účetní odpověď vykopíruje do tabulky a zkontroluje, že se v ní nic neposunulo.',
         },
         {
-          title: 'Fyzické vzorování v regálu',
+          title: 'Schválená faktura se zadá do účetního systému k platbě',
           body:
-            'Měrné jednotky neodpovídají skutečnosti — jednotka je vrtačka, ne kufr. Takže se jde na sklad a zkusí se, jestli se tři kufry vejdou vedle sebe. Vzniknou fotky jako důkazní materiál.',
-        },
-        {
-          title: 'Návrh min/max a schválení',
-          body:
-            'Podle prodejů za posledních dvanáct měsíců a skladových zásob se navrhne, kolik čeho poslat na jaké velikosti poboček. Jde to zpátky produkťákům i s fotkou regálu, ti to podle dohod s dodavateli ještě upraví.',
-        },
-        {
-          title: 'Tři různé finální podklady',
-          body:
-            'Word a Excel pro marketing (odtud jde info na web), Excel pro centrální sklad (aby věděli, kolik toho přijde a že to nemají dávat dozadu do skladu), Excel pro backoffice (aby to nastavil na pobočky).',
+            'Ručně, jedna po druhé. Tohle je krok, který rozhoduje — a proto zůstává na člověku, i když se všechno předchozí dá zautomatizovat.',
         },
       ],
     },
@@ -1811,87 +1796,73 @@ const LESSON_REGAL: Lesson = {
     {
       kind: 'p',
       text:
-        'Než začneš hledat automatizace, podívej se, mezi čím se data přelévají. Tohle jsou skutečné soubory téhle agendy — ne zjednodušený model.',
+        'Než začneš hledat automatizace, podívej se, mezi čím se data přelévají.',
     },
     {
       kind: 'table',
       head: ['Soubor', 'Co v něm je', 'Kdo ho vlastní'],
       rows: [
         [
-          'Google Tabulka „Magazín 2026“, list Logistika',
-          'Kompletní obsah magazínu, tisíce řádků seskupených po měsících. Sloupce Číslo položky, Název, MJ, PM, Typ skladování, SD celkem / sklad / prodejna, Skladem na CS, Barva, Poznámka Logistika, Výsledek v magazínu.',
-          'Marketing. Logistika smí zapisovat jen do svých sloupců.',
+          'Sdílená schránka fakturace@dek.cz',
+          'PDF faktury tak, jak přijdou od dodavatelů — netříděné, mezi ostatní poštou.',
+          'Účtárna',
         ],
         [
-          '<RRRRMMDD>_Data_CS_skladem, _SD_CS, _minmax',
-          'Tři exporty z agend, každý s datem v názvu. Doplňují k položkám zásoby a doporučená množství.',
-          'Agendy',
+          'Kontrolní tabulka',
+          'Jeden řádek na fakturu: číslo, dodavatel, částka, SEDÍ, CHYBÍ, poznámka. Vede se ručně.',
+          'Účetní',
         ],
         [
-          'Magazín <MĚSÍC> - <divize>',
-          'To, co dostane produkťák. Uvnitř list na každého PM, položky s barvou dostupnosti a prázdné sloupce k vyplnění.',
-          'Logistika',
+          'Export schválených objednávek',
+          'Periodicky stažený z objednávkového systému. Číslo objednávky, dodavatel, částka, středisko.',
+          'Nákup',
         ],
         [
-          'Magazín <MĚSÍC> - Kontrola umístění + MINMAX',
-          'Výsledek vzorování. U každé položky ANO/NE pro regál 1,33 m a 1,00 m, ve variantě jeden i dva regály, plus POS značení. Listy Umístěné položky, Kontrola MIN_MAX, Volná plocha, Prodeje, Skladem.',
-          'Logistika',
-        ],
-        [
-          'Freelo',
-          'Krok za krokem manuál, aby se na nic nezapomnělo. Veřejný, kdyby náhodou. Do samotného magazínu nevstupuje.',
-          'Logistika',
+          'E-mailová vlákna se schválením',
+          'Jediný záznam o tom, kdo co odsouhlasil. Rozeseté mezi desítkami jiných zpráv.',
+          'Střediska',
         ],
       ],
     },
-    { kind: 'h', text: 'Kde se počítá min/max' },
+    { kind: 'h', text: 'Co se u faktury vlastně porovnává' },
     {
       kind: 'p',
       text:
-        'V souboru Kontrola umístění + MINMAX je vedle výsledku vzorování i celý výpočet. Pro každou položku a každou variantu regálu je dvojice Min a Max, a za nimi sloupce, které se dopočítávají ze zásob a prodejů. Tohle je nejzajímavější místo celého procesu — část těch sloupců je čistá aritmetika, část ne.',
+        'Kontrola je jedno porovnání, ale skládá se z několika kroků — a jen část z nich je čistá aritmetika.',
     },
     {
       kind: 'table',
       head: ['Sloupec', 'Odkud se bere'],
       rows: [
-        ['Min / Max pro variantu regálu', 'z průměrného 14denního prodeje za poslední půlrok a počtu poboček dané varianty'],
-        ['Stav SD prodejna, Stav CS, Objednáno CS', 'ze skladových exportů'],
-        ['Potřebný počet', 'výpočet z min/max a počtu poboček'],
-        ['ROZDÍL', 'Stav CS + objednáno − potřebný počet; záporná čísla červeně'],
-        ['Dostatečný počet na CS', 'ANO / NE podle znaménka rozdílu'],
-        ['Poznámka', 'ručně: „na pob. 7“, „na pob. 15, obj. 320“'],
-        ['ANO / NE u 1,33 m a 1,00 m', 'fyzické vzorování — spočítat se nedá'],
+        ['Základ daně na faktuře', 'z PDF, ručně přečtený'],
+        ['Schválená částka', 'z exportu objednávek podle čísla objednávky'],
+        ['SEDÍ', 'porovnání dvou čísel — ano / ne / nenalezeno'],
+        ['CHYBÍ', 'ručně: název údaje, který na faktuře chybí'],
+        ['Rozhodnutí o schválení k platbě', 'posouzení člověka — dodací list, telefonát, výjimka'],
       ],
     },
-    { kind: 'h', text: 'Co vyplňuje produkťák' },
+    { kind: 'h', text: 'Co vyplňuje účetní' },
     {
       kind: 'p',
       text:
-        'V souboru, který mu přijde, jsou položky jeho sekce a k nim čtyři sloupce, které jsou na něm. Tohle je přesně ta odpověď, která se pak ručně přepisuje zpátky.',
+        'Do kontrolní tabulky si účetní k faktuře dopisuje čtyři věci. Tohle je přesně ta odpověď, která dnes vzniká ručně.',
     },
     {
       kind: 'table',
       head: ['Sloupec', 'Co do něj patří'],
       rows: [
-        ['AKČNÍ REGÁL (ANO/NE)', 'jestli položka půjde do regálu'],
-        ['POZNÁMKA', 'všechny sestavy / největší / velké — co s položkou udělat'],
-        ['PRIORITA', '1 = nejvyšší, 2 = nízká, 3 = nejnižší'],
-        ['Opakuje se', 'položka byla v regálu i minule'],
+        ['SEDÍ', 'ano / ne / nenalezeno'],
+        ['CHYBÍ', 'název chybějícího údaje'],
+        ['Schváleno', 'kdo a kdy fakturu odklikl'],
+        ['Poznámka', 'ručně: „čeká na dodací list“, „výjimka schválená telefonicky“'],
       ],
     },
     {
       kind: 'note',
-      tone: 'info',
-      title: 'Barva už něco říká',
-      text:
-        'Zelená, oranžová a šedá u položky nejsou dekorace — přiřazují se podle klíče z prvních dvou řádků listu Logistika a nesou dostupnost. Produkťák tedy nerozhoduje ve vzduchoprázdnu: část odpovědi mu data napovídají dřív, než na soubor sáhne.',
-    },
-    {
-      kind: 'note',
       tone: 'ok',
-      title: 'Jeden krok už dnes běží s AI',
+      title: 'Není to nedotčený proces',
       text:
-        'Ve složce s podklady leží vedle sebe „Logistické dostupnosti (vzorce)“ a „Logistické dostupnosti Claude“. Ten druhý soubor vzniká s pomocí Clauda. Tenhle proces tedy není nedotčený — jen se zatím automatizoval jeden krok z deseti.',
+        'Účtárna dnes obvykle používá aspoň tabulku se vzorci, která hlídá součty. To je přesně ten kousek, který se dá automatizovat jako první — a přesně to budeš v příkladu níž dělat na vlastní agendě.',
     },
     {
       kind: 'task',
@@ -1903,8 +1874,8 @@ const LESSON_REGAL: Lesson = {
         'Vyber tři kroky, ve kterých se nejvíc přepisuje. U každého napiš, mezi jakými dvěma formáty se data překlápějí.',
         'U toho nejhoršího navrhni, co by se muselo změnit, aby přepis úplně zmizel — ne jak to zrychlit, ale jak to zrušit.',
         'Najdi jeden krok, který má zůstat člověku, a napiš proč. Pojmenuj, co konkrétně tam člověk ví a data ne.',
-        'Podívej se na čtyři sloupce, které vyplňuje produkťák. Který z nich by šel předvyplnit z dat, a proč zbylé ne?',
-        'V tabulce MINMAX rozděl sloupce na dvě hromádky: co je čistý výpočet a co ne. U té první napiš, co by se muselo zajistit, aby se počítala sama.',
+        'Podívej se na čtyři sloupce, které vyplňuje účetní. Který z nich by šel předvyplnit z dat, a proč zbylé ne?',
+        'V tabulce porovnání rozděl sloupce na dvě hromádky: co je čistý výpočet a co ne. U té první napiš, co by se muselo zajistit, aby se počítala sama.',
         'Napiš jednu změnu, kterou by šlo zkusit do týdne bez souhlasu IT.',
       ],
       hint:
@@ -1921,19 +1892,19 @@ const LESSON_REGAL: Lesson = {
       head: ['Místo', 'Jak to je teď', 'Kam to posunout'],
       rows: [
         [
-          'Sběr odpovědí od produkťáků',
-          'E-mail tam, e-mail zpět, vykopírovat, zkontrolovat posuny, přeťukat print screen',
-          'Zrušit e-mail jako přenosový formát — sdílený list nebo formulář, kde produkťák zapíše výběr přímo. Data nikdy neopustí tabulku a je vidět, kdo neodpověděl',
+          'Přepis údajů z PDF do tabulky',
+          'Účetní čte fakturu a šest údajů přepisuje ručně',
+          'Vytáhnout údaje přímo z PDF a jen je ověřit — ne přepisovat od nuly',
         ],
         [
-          'Rozpad a rozeslání divizních Excelů',
-          'Ruční příprava listu, rozpad na čtyři soubory, jedenáct e-mailů',
-          'Složený list na sdílené místo, odtud automaticky vygenerovat soubory podle divize a rozeslat notifikaci',
+          'Dohledání objednávky a porovnání částky',
+          'Ruční hledání v exportu, ruční porovnání dvou čísel',
+          'Párování podle čísla objednávky automaticky, člověk vidí jen výjimky',
         ],
         [
-          'Generování finálních podkladů',
-          'Ze schválené tabulky se ručně staví Word a tři Excely',
-          'Jeden schválený zdroj dat a tři šablony. Návrh min/max podle prodejů se dá předpočítat, člověk potvrzuje',
+          'Zápis schválení zpět do tabulky',
+          'Schválení chodí e-mailem a ručně se přepisuje zpátky',
+          'Schválení rovnou v tabulce, ne přes e-mail jako mezikrok navíc',
         ],
       ],
     },
@@ -1942,7 +1913,7 @@ const LESSON_REGAL: Lesson = {
       tone: 'ok',
       title: 'Co nechat člověku',
       text:
-        'Vzorování v regálu. Měrné jednotky v systému neodpovídají realitě, takže žádná agenda neřekne, jestli se tři kufry vejdou vedle sebe. Fotka z regálu není administrativa, je to důkaz proti datům, která lžou. Automatizace tomu má uvolnit místo, ne to nahradit.',
+        'Rozhodnutí, že se faktura zaplatí. I když všechna čísla sedí, může se čekat na dodací list, na telefonát s dodavatelem, na výjimku, kterou nikdo nezapsal. Žádná kontrola v datech tohle rozhodnutí nenahradí — automatizace mu má připravit podklad, ne ho udělat za člověka.',
     },
   ],
 }
@@ -1952,7 +1923,7 @@ const LESSON_AUTOMATIZACE: Lesson = {
   module: 'postav',
   title: 'Jak se v projektu nastaví automatizace',
   summary:
-    'Pět stupňů od ručního zadání po běh bez tebe, včetně toho, co musí platit, než něco pustíš na plán. Druhá polovina je tentýž postup celý na jednom případu — od prázdné složky po mail, který v pondělí v šest ráno odejde produkťákům.',
+    'Pět stupňů od ručního zadání po běh bez tebe, včetně toho, co musí platit, než něco pustíš na plán. Na konci je odkaz na stažitelný cvičný projekt, kde je tenhle postup vidět celý na jednom hotovém případu.',
   minutes: 30,
   kind: 'lekce',
   track: 'v sále',
@@ -1984,9 +1955,9 @@ const LESSON_AUTOMATIZACE: Lesson = {
     },
     {
       kind: 'code',
-      text: `Vezmi nejnovější magazin-*.xlsx z data/, ke každé položce dotáhni min/max
-a zásobu na pobočkách a ulož výsledek do vystupy/ podle pojmenování z CLAUDE.md.
-Kde data chybí, nech prázdno a na konci mi napiš, u kolika položek to bylo.`,
+      text: `Projdi nové faktury ve vstup/, porovnej je s objednávkami v data/objednavky.xlsx
+a ulož kontrolní tabulku do vystup/ podle pojmenování z CLAUDE.md.
+Kde chybí povinný údaj, nech pole prázdné a napiš to do sloupce CHYBÍ.`,
       caption: 'Zadání, ze kterého se dá poznat, jestli výsledek sedí. To je celý rozdíl proti „zpracuj mi to“.',
     },
     { kind: 'h', text: '2. Pravidlo — ať to nemusíš vysvětlovat podruhé' },
@@ -2003,28 +1974,22 @@ Kde data chybí, nech prázdno a na konci mi napiš, u kolika položek to bylo.`
     },
     {
       kind: 'code',
-      text: `.claude/skills/logisticke-dostupnosti/SKILL.md
+      text: `.claude/skills/kontrola-faktur/SKILL.md
 
 ---
-name: logisticke-dostupnosti
-description: Z exportu listu Logistika dotáhne skladová data a připraví
-  soubory pro produkťáky po divizích (Nářadí, Elektro, VTS, Piekarová).
-  Použij, když je v data/ nový export magazínu.
+name: kontrola-faktur
+description: Projde faktury v PDF ve složce vstup/ a porovná je se
+  seznamem schválených objednávek. Použij, když přibyly nové faktury.
 ---
 
-1. Najdi v data/ nejnovější export listu Logistika a nejnovější trojici
-   <RRRRMMDD>_Data_CS_skladem, _SD_CS a _minmax. Když nemají stejné datum,
-   napiš to a zastav se.
-2. Ověř, že export má sloupce Číslo položky, Katalogové číslo, Název, MJ,
-   PM a Určení barvy. Když některý chybí, zastav se.
-3. Ke každé položce dotáhni počet kusů na CS, SD na pobočce a min/max.
-   Kde údaj chybí, nech prázdno.
-4. Rozděl položky podle divize a pro každou založ soubor
-   vystupy/Magazín <MĚSÍC> - <divize>.xlsx, uvnitř list na každého PM.
-5. Přidej prázdné sloupce AKČNÍ REGÁL (ANO/NE), POZNÁMKA a PRIORITA
-   (1=nejvyšší, 2=nízká, 3=nejnižší).
-6. Na konci vypiš počet položek po divizích a seznam položek,
-   u kterých chyběla data.`,
+1. Najdi ve vstup/ faktury, které ještě nemají řádek v poslední kontrole.
+2. Z každé vytáhni číslo faktury, dodavatele, číslo objednávky a základ daně.
+   Co ve faktuře není, nech prázdné.
+3. Ke každé najdi v data/objednavky.xlsx řádek se stejným číslem objednávky
+   a porovnej základ daně se schválenou částkou.
+4. Ulož výsledek do vystup/kontrola-<RRRR-MM-DD>.xlsx.
+5. Na konci vypiš počet zpracovaných faktur a seznam těch,
+   u kterých něco nesedělo nebo chybělo.`,
       caption: 'Řádek description rozhoduje o tom, kdy si skill Claude vybere sám. Piš do něj i slova, která do zadání píšeš ty.',
     },
     {
@@ -2231,7 +2196,7 @@ exit 0`,
     },
     {
       kind: 'code',
-      text: `claude -p "Postupuj podle skillu logisticke-dostupnosti a výsledek ulož do vystupy/."`,
+      text: `claude -p "Postupuj podle skillu kontrola-faktur a výsledek ulož do vystup/."`,
       caption: 'Jeden běh bez rozhovoru. Tohle je věta, kterou vložíš do naplánované úlohy — v Claude Code záložka Code → Routines → New routine → Local. Co musí platit, než to pustíš, je hned pod tímhle odstavcem.',
     },
     {
@@ -2267,8 +2232,8 @@ exit 0`,
     {
       kind: 'code',
       text: `cd <složka projektu — ta nasyncovaná z lekce Sdílená složka>
-claude -p "Postupuj podle skillu logisticke-dostupnosti. Na konec ulož
-kontrolní protokol do vystupy/."`,
+claude -p "Postupuj podle skillu kontrola-faktur. Na konec ulož
+kontrolní protokol do vystup/."`,
       caption: 'Spusť si to nejdřív ručně přesně takhle. Když to takhle nedoběhne, na plánu to nedoběhne taky.',
     },
     {
@@ -2313,27 +2278,27 @@ kontrolní protokol do vystupy/."`,
     },
     {
       kind: 'code',
-      text: `# Runbook: logistické dostupnosti
+      text: `# Runbook: kontrola faktur
 
 ## Co to dělá
-Z exportu listu Logistika připraví divizní soubory pro produkťáky.
+Projde faktury ve vstup/, porovná je s objednávkami a připraví podklad ke schválení.
 
 ## Kdy to běží
-Každé pondělí v 6:00. Trvá to zhruba čtyři minuty.
+Každé ráno v 7:00. Trvá to pár minut.
 
 ## Kde je výsledek
-vystupy/Magazín <MĚSÍC> - <divize>.xlsx
-a vedle toho kontrola-<datum>.md
+vystup/kontrola-<datum>.xlsx
+a vedle toho protokol-<datum>.md
 
 ## Jak poznám, že je něco špatně
-- v kontrole nesedí počet řádků vstupu a výstupu
-- chybí některý ze čtyř divizních souborů
-- v kontrole je víc než 20 položek bez dat
+- protokol hlásí víc nesouladů než obvykle
+- chybí protokol za dnešek, i když ve vstup/ faktury jsou
+- ve vstup/ je faktura, kterou skill přeskočil
 
 ## Co dělat, když to spadne
-1. Podívej se, jestli jsou v data/ soubory z aktuálního týdne.
+1. Podívej se, jestli jsou ve vstup/ soubory z posledních dnů.
 2. Pusť to ručně: v terminálu ve složce projektu claude -p "..."
-3. Když to spadne i ručně, běh vypni a napiš Petře (logistika, l. 123).
+3. Když to spadne i ručně, běh vypni a napiš tomu, kdo úlohu nastavil.
 
 ## Jak to vypnout
 Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
@@ -2390,315 +2355,38 @@ Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
       tone: 'warn',
       title: 'Co automatizovat nechceš',
       text:
-        'Kroky, kde se rozhoduje podle věcí, které nejsou v datech. Vzorování v regálu je učebnicový příklad: měrné jednotky lžou, takže žádný automat neřekne, jestli se tři kufry vejdou vedle sebe. Automatizace má takovým krokům uvolnit čas, ne je nahradit.',
+        'Kroky, kde se rozhoduje podle věcí, které nejsou v datech. Schválení faktury k platbě je učebnicový příklad: i když všechna čísla sedí, může se čekat na dodací list nebo na výjimku dohodnutou telefonicky, a to žádná kontrola v datech neuvidí. Automatizace má takovým krokům připravit podklad, ne je nahradit.',
     },
-    { kind: 'h', text: 'Celý příklad: od magazínu po mail produkťákům' },
+    { kind: 'h', text: 'Celý příklad: kde ho najdeš hotový' },
     {
       kind: 'note',
       tone: 'info',
-      title: 'Odsud dál je to reference',
+      title: 'Tohle už jsi viděl v akademii',
       text:
-        'Pět schodů výš je to, co se probírá v sále. Zbytek lekce je tentýž postup ukázaný celý na jednom případu — od prázdné složky po pondělní ráno v šest, včetně konektorů a vyplněného formuláře úlohy. Nečti to dopředu; otevři si to, až budeš stavět svoje, a projdi to jako kontrolní seznam.',
+        'Celá cesta od prázdné složky po naplánovaný běh je vidět krok po kroku v Cvičném projektu: kontrola faktur — je to ten samý postup, jen na hotovém, stažitelném příkladu, který si můžeš pustit a porovnat s referenčním výstupem. Nestav to tady znovu, jdi rovnou tam.',
     },
     {
-      kind: 'p',
-      text:
-        'Až sem to bylo schéma. Teď totéž celé na jednom případu: bereme druhé ze tří míst k automatizaci z akčního regálu — rozpad složeného listu na divizní soubory a jejich rozeslání produkťákům — a projdeme ho od prázdné složky až k úloze, která běží v pondělí v šest ráno. Vrať se sem ve chvíli, kdy budeš stavět svoje, a ber to jako vzor, na kterém si ověříš, že ti nic nechybí.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Proč zrovna tenhle krok',
-      text:
-        'Z mapy procesu vyšly tři místa. Sběr odpovědí od produkťáků je největší bolest, ale řeší se změnou formuláře, ne Claudem. Finální podklady jsou na konec. Rozpad a rozeslání je uprostřed: opakuje se každý cyklus, je celý o přeskládávání dat a paní z logistiky ho sama označila slovy „tady už by se to mohlo dělat automaticky".',
-    },
-    { kind: 'h', text: 'Výchozí stav: co se dnes dělá rukama' },
-    {
-      kind: 'table',
-      head: ['Krok', 'Dnes', 'Trvá'],
-      rows: [
-        ['Vzít složený list z velkého Excelu', 'vložit jinak → hodnoty, celý soubor je moc velký', 'pár minut'],
-        ['Rozdělit položky na čtyři divize', 'filtrovat, kopírovat, ukládat pod čtyřmi názvy', 'desítky minut'],
-        ['Napsat jedenáct e-mailů', 'ke každému přiložit ten správný soubor', 'desítky minut'],
-        ['Ohlídat, že nikdo nedostal cizí divizi', 'kontrola očima', 'nedá se odhadnout'],
-      ],
-    },
-    {
-      kind: 'p',
-      text:
-        'Cíl je, aby z toho zbyly dvě věci: přečíst kontrolní protokol a odkliknout. Zbytek udělá úloha.',
-    },
-    { kind: 'h', text: 'Složka a projekt' },
-    {
-      kind: 'figure',
-      name: 'project-tree',
-      caption: 'Takhle vypadá projekt, nad kterým to celé poběží. Leží v nasyncované knihovně, takže výstupy vidí tým bez posílání.',
-    },
-    {
-      kind: 'checklist',
-      title: 'Než se dá pokračovat',
-      items: [
-        'Knihovna ze SharePointu je nasyncovaná a soubory jsou opravdu na disku, ne jen zástupci',
-        'Ve složce je CLAUDE.md se slovníkem: co je divize, co je složený list, co je vzorování',
-        'V data/ leží skutečný export z minulého cyklu, ne vymyšlený vzorek',
-        'Ve vystupy/ je prázdno — sem půjdou výsledky',
-      ],
-    },
-    {
-      kind: 'code',
-      text: `CLAUDE.md — výňatek
-
-## Slovník
-Složený list = jeden list, do kterého se slily položky magazínu ze
-všech divizí. Vstup pro rozpad.
-Divize = Nářadí, Elektro, VTS, Piekarová. Podle nich se dělí soubory.
-Produkťák (PM) = vlastník značky. Každý má svoje položky, nikdy ne cizí.
-
-## Pravidla
-Do data/ se nikdy nezapisuje. Výstupy jdou do vystupy/.
-Divizní soubor obsahuje jen položky té jedné divize. Nikdy nesmí
-obsahovat sloupce, které patří marketingu.
-Když v exportu chybí sloupec, zastav se a zeptej se. Nedomýšlej.`,
-      caption: 'Slovník je důležitější než pravidla. Bez něj Claude nepozná, že „složený list" je název kroku, ne popis souboru.',
-    },
-    { kind: 'h', text: 'Skill, který ten rozpad umí' },
-    {
-      kind: 'p',
-      text:
-        'Postup se opakuje každý cyklus, takže patří do skillu, ne do chatu. Používáme skill logisticke-dostupnosti — ten skutečný z logistiky, ve vylepšené verzi z lekce Rozbor skutečného skillu. Tady je jen hlavička a dvě sekce, na kterých stojí to, že se dá pustit bez dozoru.',
-    },
-    {
-      kind: 'code',
-      text: `.claude/skills/logisticke-dostupnosti/SKILL.md — výňatek
-
----
-name: logisticke-dostupnosti
-description: Z exportu listu Logistika dotáhne skladová data, připraví
-  soubory pro produkťáky po divizích (Nářadí, Elektro, VTS, Piekarová)
-  a vyrobí kontrolní protokol. Použij, když je v data/ nový export
-  magazínu a mají se rozeslat podklady produkťákům.
----
-
-## Kontrolní protokol → vystupy/protokol-<RRRRMMDD>.md
-- které soubory se použily, i s datem v názvu
-- počet řádků na vstupu a v součtu všech výstupů — rozdíl musí být nula
-- počty položek po divizích a po PM
-- seznam nezařazených položek
-
-## Zastav se, když
-- vstupní a výstupní počet řádků nesedí
-- vyjde divize, která není v seznamu čtyř
-- víc než 5 % položek nemá dotažená skladová data`,
-      caption:
-        'Polovina skillu je o kontrole. Není to opatrnictví — bez protokolu a zastavovacích pravidel se skill nedá pustit v šest ráno bez dozoru. Celé znění včetně postupu je v lekci Rozbor skutečného skillu.',
-    },
-    { kind: 'h', text: 'Ty dva hooky konkrétně' },
-    {
-      kind: 'p',
-      text:
-        'Jsou to přesně ty dva hooky ze čtvrtého schodu — zábrana nad data/ a zpráva na konci běhu. Skript i zápis do settings.json jsou výš v téhle lekci, sem patří jen to, co je na tomhle případu jiné.',
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Originál exportu je jediná kopie, kterou máš',
-      text:
-        'Kdyby skill omylem přepsal soubor v data/, přijdeš o vstup celého cyklu — a nikdo si toho nevšimne, dokud nesedí čísla. Proto je zábrana hook, ne věta v CLAUDE.md: hook nemá úsudek a nedá se přemluvit ani přeřečnit.',
-    },
-    {
-      kind: 'table',
-      head: ['Co má platit', 'Kam to patří', 'Proč zrovna tam'],
-      rows: [
-        [
-          'Do data/ se nikdy nezapisuje',
-          'hook PreToolUse',
-          'je to zámek. Nesmí záviset na tom, jestli si na to Claude vzpomene.',
-        ],
-        [
-          'Divizní soubor se jmenuje Magazín <MĚSÍC> - <divize>.xlsx',
-          'CLAUDE.md',
-          'je to konvence, ne bezpečnost. Když ji jednou poruší, nic se nestane.',
-        ],
-        [
-          'Když chybí sloupec, zastav se',
-          'skill',
-          'vyžaduje to posouzení — hook neumí poznat, který sloupec je který.',
-        ],
-        [
-          'Dej vědět, až je hotovo',
-          'hook Stop',
-          'nemá to co dělat s obsahem práce, má se to stát pokaždé.',
-        ],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Otestuj zábranu dřív, než ji budeš potřebovat',
-      text:
-        'Řekni Claudovi „přidej řádek do souboru v data/" a chtěj vidět, že to odmítne. Zábrana, kterou nikdo neviděl zafungovat, je jenom soubor na disku. Trvá to patnáct vteřin a je to jediný způsob, jak si být jistá, že se hook vůbec zaregistroval — druhý je napsat v Claude Code /hooks a podívat se do seznamu.',
-    },
-    { kind: 'h', text: 'Konektory: co připojit a proč' },
-    {
-      kind: 'p',
-      text:
-        'Konektor je napojení na službu mimo tvůj disk. U tohohle příkladu potřebuješ přesně jeden, a ten se neobejde bez správce.',
-    },
-    {
-      kind: 'table',
-      head: ['Konektor', 'K čemu tady je', 'Nutný?'],
-      rows: [
-        [
-          'Microsoft 365 — čtení',
-          'dohledat adresy produkťáků a ověřit, že soubor v knihovně opravdu je',
-          'ne, ale hodí se',
-        ],
-        [
-          'Microsoft 365 — odesílání (write tools)',
-          'tohle je ten konektor, kvůli kterému mail vůbec odejde',
-          'ano, jinak se dá jen otevřít rozepsaný mail',
-        ],
-        [
-          'Žádný konektor na Excel',
-          'soubory bere přímo z disku — složka je nasyncovaná',
-          'ne. Konektor na tabulky neexistuje a nepotřebuješ ho.',
-        ],
-      ],
-    },
-    { kind: 'h', text: 'Jak se konektor připojí' },
-    {
-      kind: 'steps',
+      kind: 'links',
+      title: 'Cvičný projekt',
       items: [
         {
-          title: 'Najdi ho v adresáři konektorů',
-          body:
-            'V Claude otevři přehled konektorů, vyber Microsoft 365 a klikni na Connect to Claude. Přihlásíš se firemním účtem — osobní outlook.com nebo hotmail.com konektor odmítne. Tohle se dělá jednou.',
-        },
-        {
-          title: 'Ověř to v Claude Code příkazem /mcp',
-          body:
-            'Vypíše všechny připojené servery, u každého stav a počet nástrojů. Když je u něčeho „Needs authentication“, není to chyba — klikni na ten řádek a přihlaš se v prohlížeči. Tady se dají servery taky vypnout, aniž bys je mazal.',
-          code: '/mcp',
-        },
-        {
-          title: 'Na odesílání si vyžádej write tools',
-          body:
-            'Čtení máš hned po připojení. Odesílání je zvlášť a povoluje ho správce — bez toho úloha mail nepošle, jen ti ho otevře rozepsaný. Napiš správci dřív, než na tom postavíš automatizaci.',
+          label: 'Cvičný projekt: kontrola faktur ke stažení',
+          href: '#academy/od-mapy-k-automatu/cvicny-projekt-faktury',
+          note: 'Folder, CLAUDE.md, skill, hook, vyplněná naplánovaná úloha — všechno pohromadě.',
         },
       ],
-    },
-    {
-      kind: 'figure',
-      name: 'connector-setup',
-      caption:
-        'Vlevo to, co uděláš jednou. Vpravo to, do čeho se podíváš pokaždé, když úloha hlásí, že na něco nemá přístup.',
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Na .xlsx konektor není',
-      text:
-        'Tohle se ptá skoro každý. Konektor je přípojka na službu na internetu — na poštu, na Teams, na SharePoint jako web. Soubor, který máš nasyncovaný na disku, žádnou přípojku nepotřebuje: Claude Code ho otevře stejně jako kterýkoli jiný soubor ve složce. Konektor by přišel na řadu jedině tehdy, kdyby ten export v knihovně zůstal jen online a ty sis ho nikdy nestáhla — a i pak je jednodušší zapnout sync než řešit oprávnění.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Excel ale není text — Claude si na něj napíše skript',
-      text:
-        'Nečeká tě u toho nic navíc, jen ať tě to nepřekvapí: .xlsx je zabalený balík, ne text, takže Claude na jeho čtení a zápis napíše a spustí kratičký skript v Pythonu (openpyxl nebo pandas). Poprvé si může chtít knihovnu doinstalovat. Proto se ve skillu vyplatí napsat, na kterém listu vstup je a jak se jmenují sloupce — ušetří to jedno kolo hádání a skript pak vypadá pokaždé stejně.',
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Odkaz, ne příloha',
-      text:
-        'Odesílání přes konektor neumí přílohy. Pro nás to znamená, že produkťák nedostane .xlsx do schránky — dostane odkaz do knihovny na svůj soubor. Vyjde to nakonec líp: když se soubor druhý den opraví, všichni čtou opravenou verzi, ne tu, kterou mají ve své poště od pondělí.',
-    },
-    { kind: 'h', text: 'Vyplněná úloha' },
-    {
-      kind: 'p',
-      text:
-        'Teď teprve Code → Routines → New routine → Local. Takhle vyplněné to vypadá — hodnoty jsou z tohohle příkladu, ne ilustrační.',
     },
     {
       kind: 'figure',
       name: 'routine-form',
-      caption: 'Dvě pole rozhodují o všem: instrukce (a v nich podmínka, kdy neodesílat) a režim povolování.',
-    },
-    {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Instructions — celé zadání',
-          body:
-            'Píše se to jako zpráva do chatu, ne jako příkaz. Odkazuje se na skill, aby se postup neopakoval v zadání.',
-          code: `Postupuj podle skillu logisticke-dostupnosti.
-Vstup je nejnovější export v data/.
-Když protokol hlásí nesrovnalost, nic neodesílej a jenom mi napiš.
-Jinak pošli každému produkťákovi mail s předmětem
-„Magazín <datum> — tvoje položky", v těle tři čísla z protokolu
-a odkaz do knihovny na jeho divizní soubor. Přílohu nepřikládej.`,
-        },
-        {
-          title: 'Folder — nasyncovaná složka',
-          body:
-            'Bez složky se úloha neuloží. Vyber projektovou složku akčního regálu, ne knihovnu jako celek. Když ji Claude Code ještě nezná, zeptá se, jestli jí věříš.',
-        },
-        {
-          title: 'Permission mode — Accept edits',
-          body:
-            'V přísnějším režimu se běh zastaví na dotazu, na který v šest ráno nikdo neodpoví. Úloha pak vypadá, že spadla, přitom jenom čeká.',
-        },
-        {
-          title: 'Schedule — Weekly, pondělí 6:00',
-          body:
-            'Export chodí v neděli večer, ať je hotovo dřív, než někdo přijde do práce. Kdyby to mělo být jinak — třeba prvního v měsíci — řekni si o to Claudovi v chatu vlastními slovy.',
-        },
-        {
-          title: 'Create, a hned Run now',
-          body:
-            'Tohle nepřeskakuj. Při prvním běhu si odklikáš oprávnění a u každého dáš „always allow", ať se ostrý běh nezasekne. Zároveň uvidíš, jestli skill projde na skutečných datech.',
-        },
-      ],
-    },
-    { kind: 'h', text: 'Co po sobě nechá' },
-    {
-      kind: 'table',
-      head: ['Kde', 'Co tam přibude'],
-      rows: [
-        ['vystupy/', 'čtyři divizní soubory s dnešním datem'],
-        ['vystupy/protokol-<RRRRMMDD>.md', 'počty řádků, nezařazené položky, položky bez skladových dat'],
-        ['knihovna na SharePointu', 'totéž, samo, protože složka je nasyncovaná'],
-        ['plocha', 'notifikace, že běh skončil'],
-        ['schránky produkťáků', 'jedenáct mailů s odkazem na jejich soubor — nebo nic, když protokol nesedí'],
-        ['Routines → detail úlohy', 'záznam běhu; přeskočené běhy i s důvodem'],
-      ],
+      caption: 'Takhle vypadá vyplněný formulář naplánované úlohy v tom cvičném projektu. Hodnoty jsou reálné, ne ilustrační.',
     },
     {
       kind: 'note',
-      tone: 'ok',
-      title: 'Ranní rutina se scvrkne na jednu stránku',
+      tone: 'warn',
+      title: 'Když tvoje agenda potřebuje odeslat mail bez potvrzení',
       text:
-        'V pondělí ráno otevřeš protokol, ne čtyři soubory. Sedí počty, je seznam položek bez produkťáka krátký? Hotovo. Tohle je celý ten posun: rozhoduješ se z jedné stránky místo z tisíce řádků.',
-    },
-    { kind: 'h', text: 'Když to nevyjde' },
-    {
-      kind: 'table',
-      head: ['Příznak', 'Co se nejspíš stalo'],
-      rows: [
-        ['Nic se nestalo, žádný soubor ani mail', 'počítač spal nebo byla zavřená aplikace — Local běží jen při puštěné appce'],
-        ['Soubory jsou, maily ne', 'nejsou zapnuté write tools u konektoru, nebo protokol našel nesrovnalost'],
-        ['Běh visí a nic nedělá', 'čeká na povolení nástroje. Otevři sezení v postranním panelu a odklikni.'],
-        ['Vyšla pátá divize', 'v exportu je hodnota, kterou slovník nezná. Skill se správně zastavil.'],
-        ['Běh doběhl v jedenáct večer', 'dohnaný zmeškaný běh. Proto do zadání patří pojistka na čas.'],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Runbook',
-      text:
-        'Až tohle pojede měsíc, napiš k tomu jednu stránku podle šablony v lekci Jak se v projektu nastaví automatizace. Ne pro sebe — pro toho, kdo to bude řešit ve chvíli, kdy jsi na dovolené a produkťákům nic nepřišlo.',
+        'Kontrola faktur si vystačí s mailto — otevře rozepsanou zprávu a odeslání zůstává na tobě. Ne každá agenda ale s tímhle vystačí: když má úloha poslat mail bez toho, aby ses na to díval, potřebuješ konektor a druhý souhlas správce. Celý ten postup — čtení a odesílání jsou dvě různá povolení, proč přílohy neodejdou, jak si o to říct správci — je v lekci E-mail z automatu.',
     },
     {
       kind: 'task',
@@ -2780,8 +2468,8 @@ const LESSON_SKILL: Lesson = {
     {
       kind: 'code',
       text: `/plugin marketplace add dek/claude-pluginy   ← firemní katalog (repozitář na GitHubu)
-/plugin install akcni-regal@dek              ← instalace balíčku z katalogu
-/akcni-regal:logisticke-dostupnosti          ← skill z pluginu se volá se jménem balíčku`,
+/plugin install kontrola-faktur@dek          ← instalace balíčku z katalogu
+/kontrola-faktur:kontrola-faktur             ← skill z pluginu se volá se jménem balíčku`,
       caption:
         'Takhle by to vypadalo s firemním katalogem pluginů. Nezakládej ho kvůli prvnímu skillu — plugin má smysl, až když se postup měsíc osvědčil a chce ho další tým. Katalog pak spravuje jeden člověk, typicky IT; příkaz /plugin bez ničeho otevře přehled, kde se dá katalog procházet i klikáním.',
     },
@@ -2789,21 +2477,20 @@ const LESSON_SKILL: Lesson = {
     {
       kind: 'code',
       text: `---
-name: logisticke-dostupnosti
-description: Z exportu listu Logistika dotáhne skladová data a připraví
-  soubory pro produkťáky po divizích. Použij, když je v data/ nový export
-  magazínu a mají se rozeslat podklady produkťákům.
+name: kontrola-faktur
+description: Projde faktury v PDF ve složce vstup/ a porovná je se
+  seznamem schválených objednávek. Použij, když přibyly nové faktury.
 ---
 
-# Logistické dostupnosti
+# Kontrola faktur
 
-1. Najdi v data/ nejnovější export a trojici skladových souborů.
-   Když nemají stejné datum, napiš to a zastav se.
-2. Ověř sloupce Číslo položky, Katalogové číslo, Název, MJ, PM, Určení barvy.
+1. Najdi ve vstup/ faktury, které ještě nemají řádek v poslední kontrole.
+   Když nejdou přečíst, napiš to a pokračuj u ostatních.
+2. Z každé vytáhni číslo faktury, dodavatele, číslo objednávky a základ daně.
 3. …
 
 ## Na co si dát pozor
-- Čísla položek jsou text. Excel je rád převádí na čísla a ukusuje nuly.`,
+- Porovnávej základ daně, ne částku s DPH.`,
       caption: 'Otevírací --- musí být úplně první řádek souboru, jinak se hlavička nenačte.',
     },
     { kind: 'h', text: 'Description rozhoduje o všem' },
@@ -2817,19 +2504,19 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
       head: ['Špatně', 'Dobře', 'V čem je rozdíl'],
       rows: [
         [
-          'description: Zpracuje data',
-          'description: Rozdělí export magazínu na divizní soubory pro produkťáky. Použij, když je v data/ nový export.',
+          'description: Zpracuje faktury',
+          'description: Zkontroluje faktury ve vstup/ proti objednávkám v data/objednavky.xlsx. Použij, když přibyly nové faktury.',
           'Vágní popis se netrefí do žádného zadání. Konkrétní se trefí do toho svého.',
         ],
         [
-          'description: Skill na Excel',
-          'description: Dotáhne k položkám min/max a zásoby z CS. Použij před rozesláním podkladů produkťákům.',
+          'description: Skill na PDF',
+          'description: Vytáhne z faktury povinné údaje a porovná je se schválenou objednávkou. Použij před přeposláním ke schválení.',
           'Nástroj není spouštěč. Spouštěč je situace.',
         ],
         [
-          'description: Pro Katku',
-          'description: Připraví podklady pro backoffice a centrální sklad ze schválené tabulky.',
-          'Claude nezná Katku. Zná úlohu.',
+          'description: Pro účtárnu',
+          'description: Připraví podklad ke schválení ze seznamu nových faktur.',
+          'Claude nezná účtárnu jako oddělení lidí. Zná úlohu.',
         ],
       ],
     },
@@ -2846,10 +2533,10 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
     },
     {
       kind: 'code',
-      text: `.claude/skills/logisticke-dostupnosti/
+      text: `.claude/skills/kontrola-faktur/
 ├── SKILL.md          ← postup, krátký
 ├── references/
-│   └── sloupce.md    ← úplný popis sloupců, načte se až když je potřeba
+│   └── sloupce.md    ← úplný popis povinných údajů, načte se až když je potřeba
 └── scripts/
     └── kontrola.py   ← pokud postup potřebuje něco spustit`,
       caption: 'Přílohy jsou volitelné. Většina užitečných skillů je jen SKILL.md.',
@@ -2898,12 +2585,12 @@ splést. Pak mi ho ukaž, ať ho projdu, než ho uložíš.`,
     {
       kind: 'code',
       text: `/skill-creator
-Chci skill, který mi z nového exportu magazínu udělá čtyři divizní
-soubory pro produkťáky.
+Chci skill, který mi z nových faktur ve vstup/ udělá kontrolní
+tabulku proti objednávkám.
 
 /skill-creator
-Mám skill logisticke-dostupnosti, ale nespustí se, když napíšu
-„připrav podklady pro produkťáky". Sprav mi to.
+Mám skill kontrola-faktur, ale nespustí se, když napíšu
+„zkontroluj mi ty nové faktury". Sprav mi to.
 
 /skill-creator
 Z toho, co jsme právě udělali, udělej skill. Pak mi řekni, jestli
@@ -3022,7 +2709,7 @@ const L2_ROZBOR: Lesson = {
   module: 'provoz',
   title: 'Rozbor skutečného skillu',
   summary:
-    'Skill logisticke-dostupnosti tak, jak ho napsala logistika: co je na něm dobře, čtyři místa, kde selže potichu, a vylepšená verze, která se dá pustit bez dozoru.',
+    'Skill kontrola-faktur tak, jak vzniká první verze: co je na něm dobře, čtyři místa, kde selže potichu, a vylepšená verze, která se dá pustit bez dozoru.',
   minutes: 8,
   kind: 'lekce',
   track: 'potom',
@@ -3035,50 +2722,37 @@ const L2_ROZBOR: Lesson = {
     {
       kind: 'p',
       text:
-        'Tenhle skill dneska běží u logistiky a rozděluje export magazínu na divizní soubory. Napsala ho paní, která ho používá, a je to dobrý skill — proto se na něm dá ukázat něco cennějšího než na vymyšleném příkladu: kde je hranice mezi „funguje mi to" a „můžu to pustit bez sebe".',
+        'Tenhle skill dneska běží v účtárně a kontroluje faktury proti objednávkám. Napsal ho člověk, který ho používá, a je to dobrý skill — proto se na něm dá ukázat něco cennějšího než na vymyšleném příkladu: kde je hranice mezi „funguje mi to" a „můžu to pustit bez sebe".',
     },
     {
       kind: 'code',
-      text: `.claude/skills/logisticke-dostupnosti/SKILL.md — původní verze
+      text: `.claude/skills/kontrola-faktur/SKILL.md — původní verze
 
 ---
-name: logisticke-dostupnosti
-description: Z exportu listu Logistika dotáhne skladová data a připraví
-  soubory pro produkťáky po divizích (Nářadí, Elektro, VTS, Piekarová).
-  Použij, když je v data/ nový export magazínu a mají se rozeslat
-  podklady produkťákům.
+name: kontrola-faktur
+description: Zkontroluje faktury ve vstup/ proti objednávkám v
+  data/objednavky.xlsx. Použij, když přibyly nové faktury.
 ---
 
-# Logistické dostupnosti
+# Kontrola faktur
 
-1. Najdi v data/ nejnovější export listu Logistika a nejnovější trojici
-   <RRRRMMDD>_Data_CS_skladem, _SD_CS a _minmax. Když nemají stejné
-   datum, napiš to a zastav se.
-2. Ověř, že export má sloupce Číslo položky, Katalogové číslo, Název, MJ,
-   PM a Určení barvy. Když některý chybí, zastav se a řekni který.
-3. Ke každé položce dotáhni počet kusů na CS, SD na pobočce a min/max.
-   Kde údaj chybí, nech prázdno — nedopočítávej.
-4. Rozděl položky podle divize a pro každou založ soubor
-   vystupy/Magazín <MĚSÍC> - <divize>.xlsx, uvnitř list na každého PM.
-5. Přidej prázdné sloupce AKČNÍ REGÁL (ANO/NE), POZNÁMKA
-   (všechny sestavy/největší/velké), PRIORITA (1=nejvyšší, 2=nízká,
-   3=nejnižší) a Opakuje se.
-6. Na konci vypiš počet položek po divizích a seznam položek, u kterých
-   chyběla data.
+1. Otevři PDF faktury ve vstup/ a vytáhni z každé číslo faktury,
+   dodavatele, číslo objednávky a částku.
+2. Najdi v data/objednavky.xlsx řádek se stejným číslem objednávky
+   a porovnej částku.
+3. Napiš mi, které faktury sedí a které ne.
 
 ## Na co si dát pozor
-- Čísla položek jsou text. Excel je rád převádí na čísla a ukusuje nuly.
-- Barva se nepřepočítává, přebírá se z exportu.`,
+- Porovnávej základ daně, ne částku s DPH.`,
       caption: 'Původní verze, tak jak vznikla. Nic na ní neopravuj, dokud si nepřečteš, co je na ní dobře.',
     },
     { kind: 'h', text: 'Co je na něm dobře' },
     {
       kind: 'list',
       items: [
-        'Description říká co i kdy, a obsahuje slova, která u toho člověk skutečně použije — „nový export", „rozeslat podklady produkťákům". Přesně tak se má psát.',
-        'Kroky 1 a 2 mají zastavovací pravidla. Většina skillů první verze žádné nemá.',
-        '„Kde údaj chybí, nech prázdno — nedopočítávej." Jedna věta, která brání tomu nejhoršímu: vymyšleným číslům, která vypadají jako opravdová.',
-        'Sekce „Na co si dát pozor" pojmenovává past, o které se nikde nedočteš — že Excel ukusuje úvodní nuly z čísel položek.',
+        'Description říká, kdy se má použít, a obsahuje slova, která u toho člověk skutečně použije — „nové faktury". Přesně tak se má psát.',
+        'Krok 2 pojmenovává přesně to porovnání, o které jde — ne „zkontroluj to", ale „stejné číslo objednávky, porovnej částku".',
+        '„Porovnávej základ daně, ne částku s DPH." Jedna věta, která brání tomu, na co by se jinak přišlo až omylem.',
       ],
     },
     {
@@ -3094,24 +2768,24 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
       head: ['Co chybí', 'Co se stane', 'Jak se to pozná'],
       rows: [
         [
-          'Výstup kontroly jde do chatu, ne do souboru',
-          'krok 6 vypíše počty do rozhovoru, kde se za hodinu ztratí',
+          'Výstup jde do chatu, ne do souboru',
+          'krok 3 napíše výsledek do rozhovoru, kde se za hodinu ztratí',
           'nijak. Ráno po naplánovaném běhu není co otevřít.',
         ],
         [
-          'Nikdo neporovná počet řádků na vstupu a na výstupu',
-          'když se při rozdělení část položek ztratí, soubory přesto vzniknou',
-          'až za tři týdny, když produkťák řekne, že mu něco chybí',
+          'Nikdo neporovná počet faktur na vstupu s počtem zpracovaných',
+          'když se jedna faktura přeskočí (nečitelný text, chyba), zbytek doběhne, jako by nechyběla',
+          'až za pár dní, když si dodavatel řekne o zaplacení',
         ],
         [
-          'Neřeší se položky bez divize',
-          'krok 4 rozdělí „podle divize" — co je prázdné nebo cizí, tiše vypadne',
-          'nijak. Zmizelá položka po sobě nenechá stopu.',
+          'Faktury bez rozpoznaného čísla objednávky se tiše přeskočí',
+          'krok 2 hledá „stejné číslo" — co nenajde, prostě nezmíní',
+          'nijak. Chybějící nález po sobě nenechá stopu.',
         ],
         [
-          '„Nejnovější" není definované',
-          'jednou se vezme podle data v názvu, podruhé podle data změny souboru',
-          'když někdo soubor jen otevře a uloží, posune se pořadí',
+          '„Nové faktury" není definované',
+          'jednou se berou všechny soubory ve vstup/, podruhé jen ty za dnešek — podle toho, jak zrovna zní zadání',
+          'když se faktura zkontroluje dvakrát, nebo naopak žádná',
         ],
       ],
     },
@@ -3126,59 +2800,47 @@ description: Z exportu listu Logistika dotáhne skladová data a připraví
     {
       kind: 'code',
       text: `---
-name: logisticke-dostupnosti
-description: Z exportu listu Logistika dotáhne skladová data, připraví
-  soubory pro produkťáky po divizích (Nářadí, Elektro, VTS, Piekarová)
-  a vyrobí kontrolní protokol. Použij, když je v data/ nový export
-  magazínu a mají se rozeslat podklady produkťákům.
+name: kontrola-faktur
+description: Projde faktury v PDF ve složce vstup/, vytáhne z nich povinné údaje
+  a porovná je se seznamem schválených objednávek. Výsledkem je kontrolní tabulka
+  a protokol ve vystup/. Použij, když přibyly nové faktury, když se má udělat ranní
+  kontrola faktur, nebo když se ptám, co je s fakturami k vyřízení.
 ---
 
-# Logistické dostupnosti
+# Kontrola faktur
 
-## Vstup
-Nejnovější trojice v data/ podle data v NÁZVU souboru (RRRRMMDD_), ne
-podle data poslední změny: _Data_CS_skladem, _SD_CS, _minmax, a k nim
-nejnovější export listu Logistika. Když nemají stejné datum, zastav se
-a napiš která.
-
-Číslo položky a Katalogové číslo načítej jako text, nikdy jako číslo —
-useknou se úvodní nuly.
-
-Do data/ se nezapisuje. Všechno nové jde do vystupy/.
+## Kdy to spustit
+Když ve vstup/ jsou faktury, pro které ještě není řádek v poslední kontrolní
+tabulce ve vystup/. Když nic nového nepřibylo, nic nedělej a napiš to.
 
 ## Postup
-1. Ověř sloupce: Číslo položky, Katalogové číslo, Název, MJ, PM,
-   Určení barvy. Když některý chybí, zastav se a řekni který.
-2. Ke každé položce dotáhni počet kusů na CS, SD na pobočce a min/max.
-   Kde údaj chybí, nech prázdno — nedopočítávej.
-3. Rozděl položky podle divize. Položky s prázdnou nebo neznámou divizí
-   NEZAHAZUJ: ulož je do vystupy/Magazín <MĚSÍC> - nezarazene.xlsx.
-4. Pro každou divizi ulož vystupy/Magazín <MĚSÍC> - <divize>.xlsx,
-   uvnitř list na každého PM. <MĚSÍC> ber z data exportu.
-5. Přidej prázdné sloupce AKČNÍ REGÁL (ANO/NE), POZNÁMKA
-   (všechny sestavy/největší/velké), PRIORITA (1=nejvyšší, 2=nízká,
-   3=nejnižší) a Opakuje se — na konec, za stávající sloupce.
-6. Ulož vystupy/protokol-<RRRRMMDD>.md podle šablony níž.
 
-## Kontrolní protokol
-- které čtyři soubory se použily, i s datem v názvu
-- počet řádků na vstupu
-- počet řádků v součtu všech výstupů včetně nezařazených
-- rozdíl mezi těmi dvěma čísly — musí být nula
-- počty položek po divizích a po PM
-- kolik položek nemá kusy na CS, kolik nemá SD, kolik nemá min/max
-- seznam nezařazených položek i s tím, co měly ve sloupci divize
+1. Najdi ve vystup/ nejnovější kontrola-*.xlsx a zapamatuj si, které soubory
+   už v ní mají řádek.
+2. Projdi PDF ve vstup/, která tam ještě nejsou, a z každé vytáhni:
+   soubor, číslo faktury, dodavatele, IČO, číslo objednávky, základ daně
+   (částku bez DPH) a datum splatnosti.
+3. Co ve faktuře není, nech prázdné a název toho údaje připiš do sloupce CHYBÍ.
+   Nic nedomýšlej a nic nedopočítávej.
+4. Ke každé faktuře najdi v data/objednavky.xlsx řádek se stejným číslem
+   objednávky a doplň sloupec SEDÍ:
+   - ano — základ daně se shoduje se schválenou částkou
+   - ne — číslo objednávky sedí, ale částka ne
+   - nenalezeno — faktura číslo objednávky nemá, nebo takové číslo v seznamu není
+5. Ulož vystup/kontrola-<RRRR-MM-DD>.xlsx. Řádky, kde něco chybí, podbarvi
+   žlutě; řádky s ne nebo nenalezeno červeně. První řádek zmraz.
+6. Napiš vystup/protokol-<RRRR-MM-DD>.md: kolik faktur zpracováno, kolik má
+   chybějící údaj, u kolika částka nesedí a u kolika objednávka nebyla nalezena.
+   Pod to seznam konkrétních nálezů, jeden řádek na fakturu.
 
-## Zastav se, když
-- vstupní a výstupní počet řádků nesedí
-- vyjde divize, která není v seznamu čtyř
-- víc než 5 % položek nemá dotažená skladová data
-- nezařazených položek je víc než deset
+## Kdy se zastavit a nic neposílat
+- ve vstup/ je faktura, ze které se nedá přečíst text (sken bez OCR) — napiš to a pokračuj u ostatních
+- data/objednavky.xlsx nejde otevřít nebo nemá čekané sloupce
+- nesouladů je víc než tři — to obvykle neznamená pět špatných faktur, ale změnu na vstupu
 
-## Na co si dát pozor
-- Barva se nepřepočítává, přebírá se z exportu.
-- Prázdný sloupec neznamená nulu. Nulu nikdy nedoplňuj.`,
-      caption: 'Delší o dvě sekce. Obě jsou o tom, jak poznat, že výsledek je špatně — ne o tom, jak ho vyrobit.',
+## Co do skillu nepatří
+Rozhodnutí, jestli fakturu zaplatit. Skill připraví podklad, schvaluje člověk.`,
+      caption: 'Delší o dvě sekce, a jedna z nich je nová: co dělat, když už bylo zkontrolováno. Obojí je o tom, jak poznat, že výsledek je špatně — ne o tom, jak ho vyrobit. Je to ten samý soubor, který je v cvičném projektu ke stažení.',
     },
     { kind: 'h', text: 'Co to způsobí' },
     {
@@ -3187,23 +2849,23 @@ Do data/ se nezapisuje. Všechno nové jde do vystupy/.
       rows: [
         [
           'Ranní kontrola',
-          'projít čtyři soubory očima',
-          'otevřít protokol a podívat se na jedno číslo: rozdíl musí být nula',
+          'projít celý chat a hledat, co bylo řečeno',
+          'otevřít protokol a podívat se na čtyři čísla',
         ],
         [
-          'Ztracená položka',
-          'zjistí se od produkťáka za tři týdny',
-          'skill se sám zastaví, protože počty nesedí',
+          'Ztracená faktura',
+          'zjistí se, až se dodavatel zeptá, kdy zaplatíme',
+          'protokol napíše přesně, kolik faktur bylo zpracováno — chybějící je vidět hned',
         ],
         [
-          'Nová divize v exportu',
-          'vznikne pátý soubor, kterého si nikdo nevšimne',
-          'skill se zastaví a napíše, jakou hodnotu našel',
+          'Faktura bez rozpoznané objednávky',
+          'zmizí beze stopy',
+          'protokol ji uvede jako nenalezeno — zůstává vidět',
         ],
         [
           'Dva běhy nad stejnými daty',
-          'můžou dopadnout jinak podle toho, co kdo otevřel',
-          'dopadnou stejně — vstup je určený datem v názvu',
+          'můžou dopadnout jinak podle toho, co se zrovna myslelo „nové"',
+          'dopadnou stejně — skill sám pozná, co už má řádek v poslední kontrole',
         ],
         [
           'Naplánovaný běh',
@@ -3224,7 +2886,7 @@ Do data/ se nezapisuje. Všechno nové jde do vystupy/.
       tone: 'warn',
       title: 'Co jsme naopak nepřidali',
       text:
-        'Žádná pravidla navíc o formátování, žádné „buď důkladný", žádné vysvětlování, co je divize. Skill má být krátký; každá věta, která nezmění výsledek, jenom zvyšuje šanci, že se přehlédne ta, která ho změní. Když je ti skill dlouhý, škrtej v postupu, ne v kontrolách.',
+        'Žádná pravidla navíc o formátování, žádné „buď důkladný", žádné vysvětlování, co je objednávka. Skill má být krátký; každá věta, která nezmění výsledek, jenom zvyšuje šanci, že se přehlédne ta, která ho změní. Když je ti skill dlouhý, škrtej v postupu, ne v kontrolách.',
     },
     {
       kind: 'task',
@@ -3260,7 +2922,7 @@ const LESSON_CVICENI: Lesson = {
     {
       kind: 'p',
       text:
-        'Předchozí lekce byla vzor — hotový proces akčního regálu, na kterém jste si vyzkoušeli hledat automatizace. Teď to samé uděláte na vlastní agendě. Ve dvojicích, protože sám sobě proces nikdo nepopíše dobře: to, co děláte každý týden, se vám dávno slilo do jednoho kroku, a ten se rozpadne na pět, teprve když se někdo zeptá.',
+        'Předchozí lekce byla vzor — hotový proces kontroly faktur, na kterém jste si vyzkoušeli hledat automatizace. Teď to samé uděláte na vlastní agendě. Ve dvojicích, protože sám sobě proces nikdo nepopíše dobře: to, co děláte každý týden, se vám dávno slilo do jednoho kroku, a ten se rozpadne na pět, teprve když se někdo zeptá.',
     },
     {
       kind: 'note',
@@ -3372,7 +3034,7 @@ Kdyby ses zítra nemohla dostat k počítači, co by kolega nevěděl?`,
           title: 'Na začátku nahrávky řekněte, o co jde',
           body:
             'Jedna věta do mikrofonu: kdo mluví, jaká agenda, jaké datum. Za tři týdny, až budete mít nahrávek pět, to bude jediné, podle čeho je rozeznáte.',
-          code: 'Šestého října, logistika, akční regál. Ptá se Martin, popisuje Katka.',
+          code: 'Šestého října, účtárna, kontrola faktur. Ptá se Martin, popisuje Katka.',
         },
         {
           title: 'Přesuňte nahrávku do projektu',
@@ -3609,7 +3271,7 @@ const LESSON_FLOW: Lesson = {
       kind: 'figure',
       name: 'regal-flow',
       caption:
-        'Vzor z lekce Od magazínu do regálu, jak to má vypadat. Vaše kresba nemusí být hezká — musí být čitelná pro někoho, kdo tu agendu nedělá.',
+        'Vzor z lekce Od e-mailu k platbě, jak to má vypadat. Vaše kresba nemusí být hezká — musí být čitelná pro někoho, kdo tu agendu nedělá.',
     },
     { kind: 'h', text: 'Označení míst' },
     {
@@ -3819,7 +3481,7 @@ Nenavrhuj řešení.`,
         {
           title: 'Porovnej tvar s hotovou mapou',
           body:
-            'Otevři si mapu akčního regálu z lekce Od magazínu do regálu a polož ji vedle svojí. Nejde o obsah, ale o tvar: má tvoje mapa taky tři pruhy? Jsou popsané šipky, nebo jen boxy? Je vidět, kde končí jedna odpovědnost a začíná druhá? Rozdíly v tvaru bývají místa, kde jsi něco přeskočil.',
+            'Otevři si mapu kontroly faktur z lekce Od e-mailu k platbě a polož ji vedle svojí. Nejde o obsah, ale o tvar: má tvoje mapa taky tři pruhy? Jsou popsané šipky, nebo jen boxy? Je vidět, kde končí jedna odpovědnost a začíná druhá? Rozdíly v tvaru bývají místa, kde jsi něco přeskočil.',
         },
         {
           title: 'Projdi čtyři vzorce výš a odškrtej, které máš',
@@ -3924,12 +3586,12 @@ a kde jsou prázdná pole.`,
         [
           'Sloučené buňky',
           'hodnota patří jen prvnímu řádku skupiny, zbytek je prázdný',
-          '„Ve sloupci Divize jsou sloučené buňky. Hodnota platí až do dalšího vyplněného řádku.“',
+          '„Ve sloupci Středisko jsou sloučené buňky. Hodnota platí až do dalšího vyplněného řádku.“',
         ],
         [
           'Víc listů se stejnými sloupci',
           'spočítá se jen ten první, nebo se sečtou dohromady',
-          '„Každý list je jeden produkťák. Zpracuj je zvlášť a výsledky nesčítej.“',
+          '„Každý list je jedno středisko. Zpracuj je zvlášť a výsledky nesčítej.“',
         ],
         [
           'Filtr nebo skryté řádky',
@@ -3950,21 +3612,21 @@ a kde jsou prázdná pole.`,
       text:
         'Tohle jsou fakta o agendě, ne o jedné úloze. Jakmile na past narazíš podruhé, přesuň ji do CLAUDE.md a přestaň ji psát do zadání. Za měsíc bude tvoje CLAUDE.md z poloviny složené právě z těchhle vět — a to je dobře.',
     },
-    { kind: 'h', text: 'Na vzoru: co nastraží list Logistika' },
+    { kind: 'h', text: 'Na vzoru: co nastraží export objednávek' },
     {
       kind: 'p',
       text:
-        'Vezmi si tabulku pastí a projdi s ní ten soubor, který znáte ze zadání o akčním regálu. Vyjde jich pět — a všech pět je důvod, proč se ruční kontrola nikdy nedala vynechat.',
+        'Vezmi si tabulku pastí a projdi s ní export objednávek, který znáš z cvičného projektu s fakturami. Vyjde jich pět — a všech pět je důvod, proč se ruční kontrola nikdy nedala vynechat.',
     },
     {
       kind: 'table',
-      head: ['V listu Logistika', 'Co se stane bez pravidla'],
+      head: ['V exportu objednávek', 'Co se stane bez pravidla'],
       rows: [
-        ['Přes 5 500 řádků seskupených po měsících', 'zpracuje se i to, co patří do jiného vydání'],
-        ['Čísla položek jako 4400828065', 'převede se na číslo, položka se nespáruje s min/max'],
-        ['Barva se počítá podle klíče v prvních dvou řádcích', 'první dva řádky se vezmou jako data'],
-        ['Pomlčka místo prázdna ve sloupcích SD', 'pomlčka se počítá jako text a součet spadne'],
-        ['Data se do listu tahají přes QUERY', 'to, co je vidět, se může lišit od toho, co je uložené'],
+        ['Řádky za všechna období, ne jen aktuální měsíc', 'porovná se s objednávkou z úplně jiného měsíce, protože sedí jen číslo'],
+        ['Čísla objednávek jako 2026-00043', 'převede se na datum nebo na číslo, ztratí se úvodní nuly a faktura se nespáruje'],
+        ['Částka zapsaná jako „33 100,00 Kč"', 'vezme se jako text, žádné porovnání ani součet nevyjde'],
+        ['Prázdná buňka místo nuly, nebo pomlčka', 'pomlčka se počítá jako text, ne jako částka'],
+        ['Stejné číslo objednávky na dvou řádcích (oprava, duplicitní export)', 'najde se první řádek, ne ten platný'],
       ],
     },
     {
@@ -3972,7 +3634,7 @@ a kde jsou prázdná pole.`,
       tone: 'ok',
       title: 'Nejdřív na vzoru, pak na svém',
       text:
-        'Celý tenhle kurz jede ve dvou krocích: každou věc si ukážeme na akčním regálu, který už znáte, a pak ji uděláte na vlastní agendě. Vzor je tu proto, aby bylo s čím porovnávat, když vám vlastní proces vyjde jinak.',
+        'Celý tenhle kurz jede ve dvou krocích: každou věc si ukážeme na kontrole faktur, kterou už znáš, a pak ji uděláš na vlastní agendě. Vzor je tu proto, aby bylo s čím porovnávat, když vám vlastní proces vyjde jinak.',
     },
     { kind: 'h', text: 'Struktura zadání, které projde napoprvé' },
     {
@@ -3982,15 +3644,15 @@ a kde jsou prázdná pole.`,
     },
     {
       kind: 'code',
-      text: `Vezmi nejnovější Magazin2026_Logistika_export.csv z data/.
+      text: `Vezmi nové faktury ze vstup/.
 
-Ke každé položce dotáhni min/max z <RRRRMMDD>_minmax a počet kusů
-na CS z <RRRRMMDD>_Data_CS_skladem, spáruj přes číslo položky.
+Ke každé dohledej v data/objednavky.xlsx objednávku se stejným číslem
+a porovnej základ daně se schválenou částkou.
 
-Ulož jako vystupy/regal-podklad-<RRRR-MM-DD>.xlsx, sloupce v pořadí
-Číslo položky, Název, Divize, Min, Max, Kusů na CS.
+Ulož jako vystup/kontrola-<RRRR-MM-DD>.xlsx, sloupce v pořadí
+Faktura, Dodavatel, Základ daně, SEDÍ, CHYBÍ.
 
-Kde údaj chybí, nech prázdno. Na konci mi napiš, kolika položek
+Kde údaj chybí, nech prázdno. Na konci mi napiš, kolika faktur
 se to týkalo a vypiš jejich čísla.`,
       caption: 'Poslední odstavec je ten, který dělá rozdíl. Bez něj dostaneš tabulku, ve které nepoznáš, co je změřené a co dopočítané.',
     },
@@ -4095,33 +3757,32 @@ const L2_KONTROLA: Lesson = {
 - cokoli, co ti přišlo divné a rozhodl ses to nechat být`,
       caption: 'Poslední bod bývá nejužitečnější. Věci, které „vypadaly divně“, jsou obvykle první stopa k chybě v datech, ne ve výpočtu.',
     },
-    { kind: 'h', text: 'Na vzoru: tři čísla u akčního regálu' },
+    { kind: 'h', text: 'Na vzoru: tři čísla u kontroly faktur' },
     {
       kind: 'p',
       text:
-        'U divizních souborů z magazínu vypadají ty tři otázky takhle. Všimni si, že žádná z nich nevyžaduje otevřít soubor a číst ho.',
+        'U kontroly faktur vypadají ty tři otázky takhle. Všimni si, že žádná z nich nevyžaduje otevřít jedinou fakturu.',
     },
     {
       kind: 'code',
-      text: `kontrola-2026-10-06.md
+      text: `protokol-2026-09-08.md
 
-Vstup:  Magazin2026_Logistika_export.csv — 1 284 řádků (jen ŘÍJEN)
-Výstup: 4 soubory, dohromady 1 284 řádků
-        Nářadí 612 · Elektro 341 · VTS 208 · Piekarová 123
+Vstup:  5 PDF ve vstup/
+Výstup: 5 řádků v kontrolní tabulce
 Rozdíl: 0
 
-Součet Kusů na CS: vstup 84 512 / výstup 84 512
+Součet základů daně: vstup 187 430 Kč / výstup 187 430 Kč
 
-Bez dat: 37 položek (chybí min/max)
-         4400828065, 4400828059, 4400828061 … (celý seznam níž)
+Nálezy: 3 faktury (chybí údaj, nebo částka/objednávka nesedí)
+        elektro-dvorak, vts-technik, barvy-piekarova … (celý seznam níž)
 
 Vzorek:
-  4400821760  min/max z 20260901_minmax ř. 412, CS z 20260902 ř. 88
-  3260001964  min/max chybí, ponecháno prázdné
+  vts-technik       základ daně 33 100 Kč, schváleno 31 900 Kč
+  barvy-piekarova   objednávka OBJ-9999-0001 není v seznamu schválených
   …
 
-Divné:  Použité soubory nemají stejné datum (0901 vs 0902).
-        Podle pravidla jsem se měl zastavit — ptám se: pokračovat?`,
+Divné:  U vts-technik je rozdíl přesně 1 200 Kč, což odpovídá ceně
+        montáže navíc. Podle pravidla jsem se měl zastavit — ptám se: pokračovat?`,
       caption: 'Poslední odstavec je ten, kvůli kterému to celé má smysl. Automat, který si všimne, že něco nesedí, a zeptá se, je použitelný. Ten, který to spočítá potichu, není.',
     },
     { kind: 'h', text: 'Chyby, které se samy neprojeví' },
@@ -4166,7 +3827,7 @@ Divné:  Použité soubory nemají stejné datum (0901 vs 0902).
       tone: 'ok',
       title: 'Porovnání s minulým měsícem je nejlevnější kontrola',
       text:
-        'Většina agend se měsíc od měsíce mění málo. Když ti počet položek skočí o třetinu nebo zmizí celá divize, je to vidět na první pohled — ale jen když se podíváš. Nech si porovnat nový výstup s tím minulým a vypsat, co se výrazně změnilo.',
+        'Většina agend se měsíc od měsíce mění málo. Když ti počet faktur skočí o třetinu nebo zmizí celé středisko, je to vidět na první pohled — ale jen když se podíváš. Nech si porovnat nový výstup s tím minulým a vypsat, co se výrazně změnilo.',
     },
     {
       kind: 'task',
@@ -4230,7 +3891,7 @@ const L2_POSTAV: Lesson = {
         {
           title: 'Nejdřív si to projdi na vzoru',
           body:
-            'Pusť si celý postup jednou na datech akčního regálu — tam víš, jak má výsledek vypadat, protože ho máte v předchozím kurzu rozebraný krok po kroku. Až tenhle průchod vyjde, jdi na svoje.',
+            'Pusť si celý postup jednou na datech z cvičného projektu s fakturami — tam víš, jak má výsledek vypadat, protože jste ho v lekci Od e-mailu k platbě rozebrali krok po kroku. Až tenhle průchod vyjde, jdi na svoje.',
         },
         {
           title: 'Připrav si materiál',
@@ -4379,7 +4040,7 @@ const L2_PLAN: Lesson = {
       tone: 'ok',
       title: 'Nemusíš to klikat — stačí si o to říct',
       text:
-        'Úlohu založíš i tím, že ji v běžném sezení popíšeš. „Založ mi úlohu, která každé pondělí v šest ráno projede export a připraví divizní soubory" udělá opakovanou úlohu. „Připomeň mi zítra ve tři, ať zkontroluju ten běh" udělá jednorázovou, která se po odpálení sama vypne. Stejně tak se dá říct „pozastav mi úlohu logisticke-dostupnosti" nebo „ukaž mi moje naplánované úlohy".',
+        'Úlohu založíš i tím, že ji v běžném sezení popíšeš. „Založ mi úlohu, která každé ráno v sedm zkontroluje nové faktury" udělá opakovanou úlohu. „Připomeň mi zítra ve tři, ať zkontroluju ten běh" udělá jednorázovou, která se po odpálení sama vypne. Stejně tak se dá říct „pozastav mi úlohu kontrola-faktur" nebo „ukaž mi moje naplánované úlohy".',
     },
     {
       kind: 'note',
@@ -4626,7 +4287,7 @@ const L2_EMAIL: Lesson = {
       tone: 'warn',
       title: 'Přes konektor neodejde příloha',
       text:
-        'Tohle je u nás ta nejdůležitější věta z celé lekce. Odesílání přes konektor zatím neumí přílohy — Claude nepošle, nepřepošle ani nerozepíše e-mail s připojeným souborem. Pro naši práci to znamená, že „pošli produkťákům divizní soubory" takhle neuděláš. Uděláš to jinak: výstup se uloží do sdílené knihovny (nasyncuje se sám) a e-mail nese odkaz, ne přílohu. Což je stejně lepší — všichni pak čtou tu samou verzi.',
+        'Tohle je u nás ta nejdůležitější věta z celé lekce. Odesílání přes konektor zatím neumí přílohy — Claude nepošle, nepřepošle ani nerozepíše e-mail s připojeným souborem. Pro naši práci to znamená, že „pošli kolegům výstupní soubory" takhle neuděláš. Uděláš to jinak: výstup se uloží do sdílené knihovny (nasyncuje se sám) a e-mail nese odkaz, ne přílohu. Což je stejně lepší — všichni pak čtou tu samou verzi.',
     },
     {
       kind: 'note',
@@ -4643,10 +4304,10 @@ const L2_EMAIL: Lesson = {
     },
     {
       kind: 'code',
-      text: `Postupuj podle skillu logisticke-dostupnosti.
+      text: `Postupuj podle skillu tydenni-prehled.
 Výstupy ulož do vystupy/ a kontrolní protokol vedle nich.
 Pak pošli e-mail na jan.novak@dek.cz s předmětem
-„Divizní dostupnosti — <dnešní datum>". Do těla dej tři čísla
+„Týdenní přehled — <dnešní datum>". Do těla dej tři čísla
 z protokolu a odkaz do knihovny na SharePointu. Přílohu nepřikládej.
 Když protokol hlásí nesrovnalost, e-mail neposílej a jenom mi to napiš.`,
       caption:
@@ -4945,7 +4606,7 @@ claude mcp remove dek`,
       kind: 'table',
       head: ['Kdo', 'Dotaz, který se klikáním dělá špatně'],
       rows: [
-        ['Logistika', 'Projdi tenhle seznam kódů z loňského magazínu a řekni, které už v katalogu nejsou.'],
+        ['Logistika', 'Projdi tenhle seznam kódů ze skladové inventury a řekni, které už v katalogu nejsou.'],
         ['Obchod', 'Zákazník chce hydroizolaci na plochou střechu. Co mu můžu nabídnout a čím se to liší?'],
         ['Marketing', 'Vezmi kategorii technických izolací a udělej z ní tabulku: název, značka, cena.'],
         ['BI', 'K těmhle kódům z exportu doplň názvy a zařazení do kategorií.'],
@@ -4957,7 +4618,7 @@ claude mcp remove dek`,
       tone: 'ok',
       title: 'Sílu to dostane až ve spojení s tvojí složkou',
       text:
-        'Katalog sám o sobě je hezký, ale ty ho potřebuješ propojit se svými daty. Když máš připojenou složku i tenhle server, jde napsat zadání, které sáhne do obojího: „vezmi divizní soubor z vystupy/, ke každé položce dohledej v katalogu aktuální název a zařazení a rozdíly zapiš do nového sloupce". Tohle je ten okamžik, kdy MCP přestane být hračka.',
+        'Katalog sám o sobě je hezký, ale ty ho potřebuješ propojit se svými daty. Když máš připojenou složku i tenhle server, jde napsat zadání, které sáhne do obojího: „vezmi exportovaný soubor z vystupy/, ke každé položce dohledej v katalogu aktuální název a zařazení a rozdíly zapiš do nového sloupce". Tohle je ten okamžik, kdy MCP přestane být hračka.',
     },
     { kind: 'h', text: 'Co nezvládne' },
     {
@@ -5166,7 +4827,7 @@ export const AkcniNabidka: StoryObj = {
         },
         {
           title: 'Zadávej návrhy větou',
-          body: '„Leták na akční regál pro divizi Nářadí.“ „Banner pro kategorii hydroizolace.“ „Návrh stránky výprodeje.“ Vznikají rovnou ve stylu DEKu.',
+          body: '„Leták na jarní výprodej zahradní techniky.“ „Banner pro kategorii hydroizolace.“ „Návrh stránky výprodeje.“ Vznikají rovnou ve stylu DEKu.',
         },
         {
           title: 'Uprav přímo na plátně',
@@ -5400,7 +5061,7 @@ const L2_FORMULAR: Lesson = {
     {
       kind: 'p',
       text:
-        'Tenhle tvar má v DEKu víc agend, než by člověk čekal. Pošlete kolegům soubor. Oni odpoví mailem — někdo tabulkou, někdo obrázkem obrazovky. Vy odpovědi ručně přepíšete zpátky, zkontrolujete, že se nic neposunulo, a kdo neodpověděl, toho obvoláte. Akční regál to má v kroku, kde produkťáci vybírají položky. Sklad logistiky to má u poboček, které hlásí termín vývozu.',
+        'Tenhle tvar má v DEKu víc agend, než by člověk čekal. Pošlete kolegům soubor. Oni odpoví mailem — někdo tabulkou, někdo obrázkem obrazovky. Vy odpovědi ručně přepíšete zpátky, zkontrolujete, že se nic neposunulo, a kdo neodpověděl, toho obvoláte. Kontrola faktur to má v kroku, kde středisko potvrzuje schválení k platbě. Sklad logistiky to má u poboček, které hlásí termín vývozu.',
     },
     {
       kind: 'note',
@@ -5537,7 +5198,7 @@ const L2_CVICNY: Lesson = {
       tone: 'ok',
       title: 'Proč zrovna faktury',
       text:
-        'Je to jiná agenda než akční regál, ale úplně stejná kostra: složka s pravidly, skill, zábrana, kontrolní protokol, naplánovaný běh. Kdo dělá faktury, použije to rovnou. Kdo ne, uvidí ten tvar na něčem, co nemá v hlavě už zažité, a tím spíš mu dojde, že je pořád stejný.',
+        'Faktury jsou dobrá agenda na cvičení, protože výsledek se dá jasně ověřit — buď to najde tři schválně vložené chyby, nebo ne. Kostru (složka s pravidly, skill, zábrana, kontrolní protokol, naplánovaný běh) jste přitom viděli v akademii pořád stejnou — tohle je verze, kterou si stáhneš a rovnou spustíš.',
     },
     { kind: 'h', text: '1. Stáhni si to' },
     {
@@ -5969,7 +5630,7 @@ export const COURSES: Course[] = [
     summary:
       'Napojit Claudovi složku, ve které pracuješ, a naučit se v ní zadávat práci. Končí zadáním nad reálným procesem.',
     intro:
-      'Kurz pro lidi, kteří každý týden přeskládávají tytéž tabulky a chtějí, aby se to dělalo samo. Nejdřív napojíš Claudovi složku, ve které ta práce žije, ohraničíš si, co v ní smí a nesmí, a založíš nad ní projekt s pravidly, která se nemusí opakovat každé ráno. Pak si na reálném procesu akčního regálu vyzkoušíš najít místa, kde se dá práce automatizovat — a totéž uděláš na vlastní agendě.',
+      'Kurz pro lidi, kteří každý týden přeskládávají tytéž tabulky a chtějí, aby se to dělalo samo. Nejdřív napojíš Claudovi složku, ve které ta práce žije, ohraničíš si, co v ní smí a nesmí, a založíš nad ní projekt s pravidly, která se nemusí opakovat každé ráno. Pak si na reálném procesu kontroly faktur vyzkoušíš najít místa, kde se dá práce automatizovat — a totéž uděláš na vlastní agendě.',
     level: 'Začátečník',
     section: 'Začni tady',
     modules: [
@@ -5989,7 +5650,7 @@ export const COURSES: Course[] = [
         key: 'zadani',
         title: 'Zadání a cvičení',
         summary:
-          'Nejdřív hotový proces z logistiky jako vzor, pak totéž ve dvojicích na vlastní agendě.',
+          'Nejdřív hotový proces z účtárny jako vzor, pak totéž ve dvojicích na vlastní agendě.',
       },
     ],
     lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL, LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI],
@@ -6020,7 +5681,7 @@ export const COURSES: Course[] = [
     summary:
       'Navazuje tam, kde první kurz skončil mapou procesu. Cílem je úloha, která doběhne bez tebe a ty poznáš, jestli dopadla dobře.',
     intro:
-      'Mapu procesu už máš a víš, kde se přepisuje ručně. Tenhle kurz vede od ní až na poslední schod: k úloze, která se spustí sama a po které zůstane kontrola, ze které poznáš, jestli je výsledek v pořádku. Každou věc si nejdřív ukážeme na akčním regálu, který znáš ze vzoru, a pak ji uděláš na vlastní agendě.',
+      'Mapu procesu už máš a víš, kde se přepisuje ručně. Tenhle kurz vede od ní až na poslední schod: k úloze, která se spustí sama a po které zůstane kontrola, ze které poznáš, jestli je výsledek v pořádku. Každou věc si nejdřív ukážeme na kontrole faktur, kterou znáš ze vzoru, a pak ji uděláš na vlastní agendě.',
     level: 'Navazující',
     section: 'Pokračuj',
     modules: [

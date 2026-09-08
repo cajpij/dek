@@ -10,6 +10,9 @@ import { useFigureColors } from '../lib/figureColors'
  * ji dlouho: rozkoukání ve složce, psaní skillu, doladění, naplánování rutiny
  * a mezitím dotaz od kolegy na něco úplně jiného.
  *
+ * Poslední fáze (dotaz na rozpis dovolených) je schválně z jiné agendy —
+ * ukazuje, že /clear se použije při každé změně úlohy, ne jen na konci dne.
+ *
  * Sloupec = jedna zpráva, výška = kolik se u ní posílá znovu. Tvar je pointa,
  * čísla jsou dílky, ne tokeny. Tři věci, které z obrázku mají zůstat:
  *  - /rewind ukrojí jen konec, křivka spadne o kousek,
@@ -50,7 +53,7 @@ const BARS: Bar[] = [
   { v: 11 },
   { v: 14 },
   // /clear
-  // 16:10 — dotaz kolegy na akční regál
+  // 16:10 — dotaz kolegy na rozpis dovolených
   { v: 5 },
   { v: 9 },
   { v: 12 },
@@ -61,7 +64,7 @@ const PHASES = [
   { from: 5, to: 11, label: '14:20 · Píšeš skill' },
   { from: 12, to: 17, label: '15:05 · Doladění' },
   { from: 17, to: 21, label: '15:40 · Rutina 7:00' },
-  { from: 21, to: 24, label: '16:10 · Regál' },
+  { from: 21, to: 24, label: '16:10 · Dovolené' },
 ]
 
 const X0 = 40
@@ -128,7 +131,7 @@ export default function FakturySezeni() {
         component="svg"
         viewBox="0 0 900 372"
         role="img"
-        aria-label="Jedno odpoledne nad automatizací kontroly faktur jako sloupcový graf: každý sloupec je jedna zpráva a jeho výška to, kolik se u ní posílá znovu. Od dvou hodin se rozkoukáváš ve složce a Claude čte pět PDF, takže sloupce rychle rostou. Práce se vydá špatným směrem, takže lomítko rewind ukrojí poslední dva kroky a křivka spadne o kousek. Ve dvacet po druhé píšeš skill a sloupce zase rostou až na maximum. V přestávce dáš lomítko compact: má vlastní špičku, protože shrnutí musí celou historii nejdřív přečíst, ale hned po ní se pokračuje z mnohem nižší hladiny. V pět po třetí doladíš, co skill hlásí. Pak přecházíš na jinou úlohu, naplánovat rutinu na sedmou ráno, a lomítko clear srazí historii na nulu zadarmo. V deset po čtvrté se kolega ptá na akční regál, tedy zase jiná úloha, a znovu lomítko clear. Bez těch čtyř zásahů by poslední zpráva odpoledne táhla s sebou všech třiadvacet předchozích."
+        aria-label="Jedno odpoledne nad automatizací kontroly faktur jako sloupcový graf: každý sloupec je jedna zpráva a jeho výška to, kolik se u ní posílá znovu. Od dvou hodin se rozkoukáváš ve složce a Claude čte pět PDF, takže sloupce rychle rostou. Práce se vydá špatným směrem, takže lomítko rewind ukrojí poslední dva kroky a křivka spadne o kousek. Ve dvacet po druhé píšeš skill a sloupce zase rostou až na maximum. V přestávce dáš lomítko compact: má vlastní špičku, protože shrnutí musí celou historii nejdřív přečíst, ale hned po ní se pokračuje z mnohem nižší hladiny. V pět po třetí doladíš, co skill hlásí. Pak přecházíš na jinou úlohu, naplánovat rutinu na sedmou ráno, a lomítko clear srazí historii na nulu zadarmo. V deset po čtvrté se kolega ptá na rozpis dovolených, tedy zase jiná úloha, a znovu lomítko clear. Bez těch čtyř zásahů by poslední zpráva odpoledne táhla s sebou všech třiadvacet předchozích."
         sx={{ display: 'block', width: '100%', minWidth: 820, height: 'auto' }}
       >
         <text x={X0} y={18} fontSize={12.5} fill="currentColor" opacity={0.8}>
@@ -197,7 +200,7 @@ export default function FakturySezeni() {
 
         {/* co by bylo bez zásahů */}
         <text x={X0} y={362} fontSize={12.5} fill="currentColor" opacity={0.85}>
-          Bez těch čtyř zásahů by poslední zpráva odpoledne táhla s sebou všech 23 předchozích — včetně pěti faktur a dotazu na akční regál.
+          Bez těch čtyř zásahů by poslední zpráva odpoledne táhla s sebou všech 23 předchozích — včetně pěti faktur a dotazu na dovolené.
         </text>
       </Box>
     </Box>

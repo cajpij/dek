@@ -11,11 +11,11 @@ type Field = {
   warn?: boolean
 }
 
-/** Vyplněný formulář nové úlohy pro akční regál. Hodnoty jsou reálné, ne ilustrační. */
+/** Vyplněný formulář nové úlohy pro kontrolu faktur. Hodnoty jsou reálné, ne ilustrační — je to ten samý cvičný projekt, který je ke stažení. */
 const FIELDS: Field[] = [
   {
     label: 'Name',
-    value: ['logisticke-dostupnosti'],
+    value: ['kontrola-faktur'],
     y: 78,
     h: 32,
     mono: true,
@@ -23,18 +23,18 @@ const FIELDS: Field[] = [
   },
   {
     label: 'Description',
-    value: ['Rozpad magazínu na divizní soubory a mail produkťákům'],
+    value: ['Ranní kontrola nových faktur a mail s výsledkem'],
     y: 138,
     h: 32,
   },
   {
     label: 'Instructions',
     value: [
-      'Postupuj podle skillu logisticke-dostupnosti.',
-      'Vstup je nejnovější export v data/.',
-      'Rozpad na 4 divizní soubory do vystupy/ a kontrolní protokol.',
-      'Pak pošli každému produkťákovi mail s odkazem na jeho soubor.',
-      'Když protokol hlásí nesrovnalost, maily neposílej a napiš mi.',
+      'Postupuj podle skillu kontrola-faktur.',
+      'Vstup jsou nové faktury ve vstup/.',
+      'Když nepřibyla žádná nová, nic nedělej a nic neposílej.',
+      'Po dokončení otevři rozepsaný e-mail se shrnutím z protokolu.',
+      'Neodesílej — jen otevři okno, odeslání zůstává na mně.',
     ],
     y: 198,
     h: 104,
@@ -44,15 +44,15 @@ const FIELDS: Field[] = [
   },
   {
     label: 'Model · Permission mode',
-    value: ['Opus  ·  Accept edits'],
+    value: ['Sonnet  ·  Accept edits'],
     y: 330,
     h: 32,
-    note: 'Accept edits, jinak se běh zastaví na dotazu, na který nikdo neodpoví.',
+    note: 'Accept edits, jinak se běh zastaví na dotazu, na který v sedm ráno nikdo neodpoví.',
     warn: true,
   },
   {
     label: 'Folder',
-    value: ['~/…/OneDrive – DEK/Akcni-regal'],
+    value: ['~/…/OneDrive – DEK/Účetnictví/faktury-kontrola'],
     y: 390,
     h: 32,
     mono: true,
@@ -60,15 +60,15 @@ const FIELDS: Field[] = [
   },
   {
     label: 'Schedule',
-    value: ['Weekly  ·  pondělí  ·  6:00'],
+    value: ['Daily  ·  7:00'],
     y: 450,
     h: 32,
-    note: 'Export chodí v neděli večer, tak ať je hotovo, než přijdou do práce.',
+    note: 'Faktury chodí přes noc, tak ať je kontrola hotová, než přijdou do práce.',
   },
 ]
 
 /**
- * Mockup formuláře „New routine → Local“ vyplněného na příkladu akčního regálu.
+ * Mockup formuláře „New routine → Local“ vyplněného na příkladu kontroly faktur.
  *
  * Kreslený schválně, ne odchycený screenshot: obrazovka se každou verzí mění,
  * kdežto tohle zestárne až ve chvíli, kdy se změní samotná pole.
@@ -86,7 +86,7 @@ export default function RoutineForm() {
         component="svg"
         viewBox="0 0 900 560"
         role="img"
-        aria-label="Vyplněný formulář nové naplánované úlohy: název logisticke-dostupnosti, popis rozpad magazínu na divizní soubory, instrukce odkazující na skill logisticke-dostupnosti s podmínkou neodesílat při nesrovnalosti, režim Accept edits, složka Akcni-regal na OneDrive a rozvrh každé pondělí v šest ráno."
+        aria-label="Vyplněný formulář nové naplánované úlohy: název kontrola-faktur, popis ranní kontrola nových faktur a mail s výsledkem, instrukce odkazující na skill kontrola-faktur s podmínkou nic neodesílat a jen otevřít rozepsaný e-mail, model Sonnet a režim Accept edits, složka faktury-kontrola na OneDrive a rozvrh denně v sedm ráno."
         sx={{ display: 'block', width: '100%', minWidth: 720, height: 'auto' }}
       >
         {/* rám okna */}
