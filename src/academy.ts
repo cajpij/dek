@@ -24,6 +24,8 @@ export type Block =
         title: string
         body: string
         code?: string
+        /** Snímek obrazovky ke konkrétnímu kroku — soubor leží v public/. */
+        image?: { src: string; alt: string; caption?: string }
         /** Odkazy „jak to vypadá" — obrazovky v cizí nápovědě, ke konkrétnímu kroku. */
         links?: { label: string; href: string; note?: string }[]
       }[]
@@ -51,6 +53,8 @@ export type Block =
     | 'faktury-sezeni'
       caption: string
     }
+  /** Snímek cizí obrazovky. Kreslené schéma patří do 'figure', tohle je fotka. */
+  | { kind: 'image'; src: string; alt: string; caption?: string }
   | { kind: 'checklist'; title: string; items: string[] }
   | { kind: 'task'; title: string; intro: string; items: string[]; hint?: string }
   | { kind: 'video'; title: string; items: VideoRef[] }
@@ -903,12 +907,20 @@ const LESSON_PROJEKT: Lesson = {
         {
           title: 'Otevři ji v aplikaci Claude',
           body:
-            'Záložka Code, prostředí nech na Local (to znamená „na mém počítači, s mými soubory"), klikni na Select folder a vyber tu složku. Když se zeptá, jestli složce věříš, potvrď. Ve Windows musí být nainstalovaný Git, jinak se místní sezení nespustí.',
-        },
-        {
-          title: 'Kdo radši píše v terminálu',
-          body: 'Přepni se do té složky a spusť claude. Výsledek je stejný.',
-          code: 'cd cesta/k/akcni-regal\nclaude',
+            'Záložka Code, prostředí nech na Local (to znamená „na mém počítači, s mými soubory"), klikni na Select folder a vyber tu složku. Když se zeptá, jestli složce věříš, potvrď. Ve Windows musí být nainstalovaný Git, jinak se místní sezení nespustí — na Macu to řešit nemusíš.',
+          image: {
+            src: 'git-pro-windows.webp',
+            alt: 'Stránka git-scm.com se záložkami Windows, macOS, Linux a Build from Source. Na záložce Windows je nahoře odkaz Click here to download, kterým se stáhne poslední udržovaná verze Gitu pro Windows pro procesory x64. Pod ním jsou další možnosti: samostatný instalátor pro x64 i ARM64, přenosná verze na flash disk a příkaz winget install --id Git.Git -e --source winget pro ty, kdo instalují z příkazové řádky.',
+            caption:
+              'Jen pro Windows. Na git-scm.com klikni na Click here to download, spusť instalátor a všechno nech tak, jak to nabídne — Claude Code od Gitu nic dalšího nepotřebuje. Pak restartuj aplikaci Claude.',
+          },
+          links: [
+            {
+              label: 'git-scm.com/downloads/win — stažení Gitu pro Windows',
+              href: 'https://git-scm.com/downloads/win',
+              note: 'Stránka pozná, jestli máš x64 nebo ARM64, a nabídne správnou verzi sama.',
+            },
+          ],
         },
       ],
     },
@@ -923,13 +935,6 @@ CLAUDE.md. Do CLAUDE.md napiš slovník téhle agendy — na pojmy se mě
 zeptej — kde jsou data, a pravidlo, že originály v data/ se nikdy
 nepřepisují: všechno nové se ukládá do vystupy/.`,
       caption: 'Dvacet vteřin a struktura stojí. Zbytek lekce vysvětluje, co právě vzniklo a proč — až se něco pokazí, budeš to potřebovat vědět.',
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Jedno rozhodnutí zůstává na tobě: kde',
-      text:
-        'Claude založí projekt tam, kde ho spustíš — a vybrat to místo je lidská práce. Když má agendu vidět tým a má nad ní jednou běžet naplánovaná úloha, založ ji jako podsložku nasyncované knihovny ze SharePointu: naplánovaná úloha má pole Folder a píše se do něj přesně tahle cesta. Projekt „někde na ploše“ funguje taky, ale kolegům se nenasyncuje a za půl roku ho nenajdeš ani ty.',
     },
     {
       kind: 'note',

@@ -173,6 +173,7 @@ function Steps({
     title: string
     body: string
     code?: string
+    image?: { src: string; alt: string; caption?: string }
     links?: { label: string; href: string; note?: string }[]
   }[]
 }) {
@@ -213,6 +214,9 @@ function Steps({
             <Typography sx={{ color: 'text.secondary', fontSize: 15.5, maxWidth: '68ch' }}>
               {step.body}
             </Typography>
+            {step.image ? (
+              <Screenshot src={step.image.src} alt={step.image.alt} caption={step.image.caption} />
+            ) : null}
             {step.code ? <Code>{step.code}</Code> : null}
             {step.links?.length ? (
               <Box sx={{ mt: 1.25 }}>
@@ -409,6 +413,47 @@ function Links({ title, items }: { title: string; items: { label: string; href: 
   )
 }
 
+/**
+ * Snímek cizí obrazovky.
+ *
+ * Na rozdíl od kreslených schémat (`figure`) je to fotka, takže má vlastní
+ * světlé pozadí i v tmavém tématu. Proto rámeček a bílá podložka — bez ní
+ * screenshot v tmavém režimu „svítí“ jako díra ve stránce. Šířka je omezená,
+ * ať se u širokého okna nenafoukne přes celý sloupec textu.
+ */
+function Screenshot({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+  return (
+    <Box component="figure" sx={{ my: 3, mx: 0 }}>
+      <Box
+        sx={{
+          borderRadius: 2,
+          border: 1,
+          borderColor: 'divider',
+          overflow: 'hidden',
+          bgcolor: '#fff',
+          maxWidth: 720,
+        }}
+      >
+        <Box
+          component="img"
+          src={`${import.meta.env.BASE_URL}${src}`}
+          alt={alt}
+          loading="lazy"
+          sx={{ display: 'block', width: '100%', height: 'auto' }}
+        />
+      </Box>
+      {caption ? (
+        <Typography
+          component="figcaption"
+          sx={{ mt: 1, fontSize: 13.5, color: 'text.secondary', maxWidth: '68ch' }}
+        >
+          {caption}
+        </Typography>
+      ) : null}
+    </Box>
+  )
+}
+
 /** Táž látka na příkladech z různých agend. */
 function AgendaTabs({ items }: { items: { label: string; blocks: Block[] }[] }) {
   const [tab, setTab] = useState(0)
@@ -590,6 +635,9 @@ export default function BlockView({ block }: { block: Block }) {
           </Typography>
         </Paper>
       )
+
+    case 'image':
+      return <Screenshot src={block.src} alt={block.alt} caption={block.caption} />
 
     case 'checklist':
       return <Checklist title={block.title} items={block.items} />
