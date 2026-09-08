@@ -204,7 +204,7 @@ const LESSON_PROGRAM: Lesson = {
     {
       kind: 'p',
       text:
-        'Do čtyř hodin se toho vejde jen tolik, kolik se dá udělat společně. Všechno ostatní z akademie nezmizelo — je označené štítkem potom a čeká, až na něj dojde řada. Nečtěte to dopředu a nesnažte se to stihnout: vracejte se k tomu ve chvíli, kdy narazíte na to, co ta lekce řeší. Rozcestník níž je podle situací, ne podle štítků — pár řádků vede zpátky do lekcí, které jste prošli v sále, protože právě k těm se člověk vrací nejčastěji. Kostra je pořád stejná — pět schodů: zadání, pravidlo, skill, hook, běh bez tebe. První tři jste prošli v sále a poslední dva viděli v živé ukázce; do hloubky si je projdete sami. Když si máte vybrat jednu, vezměte Celý příklad — je to tentýž akční regál, ale dotažený od prázdné složky až po naplánovaný běh, který rozešle maily.',
+        'Do čtyř hodin se toho vejde jen tolik, kolik se dá udělat společně. Všechno ostatní z akademie nezmizelo — je označené štítkem potom a čeká, až na něj dojde řada. Nečtěte to dopředu a nesnažte se to stihnout: vracejte se k tomu ve chvíli, kdy narazíte na to, co ta lekce řeší. Rozcestník níž je podle situací, ne podle štítků — pár řádků vede zpátky do lekcí, které jste prošli v sále, protože právě k těm se člověk vrací nejčastěji. Kostra je pořád stejná — pět schodů: zadání, pravidlo, skill, hook, běh bez tebe. První tři jste prošli v sále a poslední dva viděli v živé ukázce; do hloubky si je projdete sami. Když si máte vybrat jednu, vezměte Jak se v projektu nastaví automatizace — v druhé polovině je tentýž akční regál dotažený od prázdné složky až po naplánovaný běh, který rozešle maily.',
     },
     {
       kind: 'table',
@@ -213,12 +213,11 @@ const LESSON_PROGRAM: Lesson = {
         ['nevíte, co které slovo znamená', 'Slovníček'],
         ['pracujete zatím jen v Coworku', 'Z Coworku do Claude Code'],
         ['narážíte na limit nebo chcete vědět, za co se platí', 'Kolik to stojí a jak platit míň'],
-        ['vidět celou cestu na jednom příkladu', 'Celý příklad: od magazínu po mail produkťákům'],
+        ['vidět celou cestu na jednom příkladu', 'Jak se v projektu nastaví automatizace'],
         ['zabalit postup, který opakujete', 'Jak napsat skill — byla v sále'],
         ['zjistit, co skillu chybí, aby běžel sám', 'Rozbor skutečného skillu'],
-        ['zamknout data a dostat notifikaci', 'Jak se v projektu nastaví automatizace — byla v sále'],
+        ['zamknout data, dostat notifikaci a pustit to bez sebe', 'Jak se v projektu nastaví automatizace — byla v sále'],
         ['založit úlohu, která se spustí sama', 'Naplánovaná úloha v Claude Code'],
-        ['pustit to bez sebe a nespálit se', 'Nech to běžet bez sebe'],
         ['poslat z automatu e-mail', 'E-mail z automatu'],
         ['čekáte na odpovědi od kolegů nebo poboček', 'Formulář místo pinkání e-mailů'],
         ['nevíte, kde po workshopu začít', 'Cvičný projekt: kontrola faktur ke stažení'],
@@ -1889,15 +1888,18 @@ const LESSON_AUTOMATIZACE: Lesson = {
   module: 'postav',
   title: 'Jak se v projektu nastaví automatizace',
   summary:
-    'Pět stupňů od ručního zadání po běh bez tebe — na reálném rozpadu divizních Excelů, krok po kroku.',
-  minutes: 10,
+    'Pět stupňů od ručního zadání po běh bez tebe, včetně toho, co musí platit, než něco pustíš na plán. Druhá polovina je tentýž postup celý na jednom případu — od prázdné složky po mail, který v pondělí v šest ráno odejde produkťákům.',
+  minutes: 30,
   kind: 'lekce',
   track: 'v sále',
   outcomes: [
     'popsat pět stupňů, po kterých se z ruční práce stane automatizace',
     'napsat skill, který spustí celý postup jednou větou',
     'nastavit hook, který se spustí sám při konkrétní události',
+    'ověřit na checklistu, že je úloha připravená běžet bez dozoru, a napsat k ní runbook',
     'poznat, kdy je na další stupeň brzo — a co nikdy neautomatizovat',
+    'projít si celou cestu na jednom hotovém příkladu a ověřit si, že nic nechybí',
+    'vědět, co vyplnit do formuláře naplánované úlohy a které konektory připojit',
   ],
   body: [
     {
@@ -2166,7 +2168,7 @@ exit 0`,
     {
       kind: 'code',
       text: `claude -p "Postupuj podle skillu logisticke-dostupnosti a výsledek ulož do vystupy/."`,
-      caption: 'Jeden běh bez rozhovoru. Tohle je věta, kterou vložíš do naplánované úlohy — v Claude Code záložka Code → Routines → New routine → Local. Podrobně je to v lekci Nech to běžet bez sebe.',
+      caption: 'Jeden běh bez rozhovoru. Tohle je věta, kterou vložíš do naplánované úlohy — v Claude Code záložka Code → Routines → New routine → Local. Co musí platit, než to pustíš, je hned pod tímhle odstavcem.',
     },
     {
       kind: 'note',
@@ -2174,6 +2176,138 @@ exit 0`,
       title: 'Vždycky nech po sobě stopu',
       text:
         'Naplánovaný běh nikdo nesleduje. Ať proto vždycky vzniká krátký zápis toho, co se udělalo a co nesedělo — soubor ve vystupy/ nebo zpráva do chatu. Automat, po kterém nezůstane nic, se pozná až ve chvíli, kdy měsíc mlčky nedělá nic.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Naplánovaný běh není odměna za odvahu — je to důsledek toho, že postup několikrát doběhl správně a že máš čím poznat, kdy nedoběhl. Když jedna z těch dvou věcí chybí, nepouštěj to.',
+    },
+    {
+      kind: 'checklist',
+      title: 'Než to pustíš na plán',
+      items: [
+        'Skill proběhl třikrát po sobě na různých datech bez opravy',
+        'Poslední krok skillu vyrábí kontrolní protokol',
+        'Ve skillu jsou zastavovací pravidla — ví, kdy se má zastavit místo hádání',
+        'Výstupy jdou do vystupy/, do dat se nezapisuje (a hlídá to hook)',
+        'Umíš jednou větou popsat, jak poznáš, že výsledek je špatně',
+        'Víš, co se stane, když vstupní data ten den nepřijdou',
+      ],
+    },
+    { kind: 'h', text: 'Spuštění bez rozhovoru' },
+    {
+      kind: 'p',
+      text:
+        'Claude Code umí dostat zadání, odpracovat ho a skončit — bez toho, aby u toho někdo seděl. Ta jedna věta je pak to, co se dá naplánovat.',
+    },
+    {
+      kind: 'code',
+      text: `cd <složka projektu — ta nasyncovaná z lekce Sdílená složka>
+claude -p "Postupuj podle skillu logisticke-dostupnosti. Na konec ulož
+kontrolní protokol do vystupy/."`,
+      caption: 'Spusť si to nejdřív ručně přesně takhle. Když to takhle nedoběhne, na plánu to nedoběhne taky.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Jak se úloha zakládá, je v samostatné lekci',
+      text:
+        'Klikání ve formuláři, rozdíl mezi Local a Cloud a to, co se stane, když počítač spal — to všechno je v lekci Naplánovaná úloha v Claude Code. Tady zůstává to, co platí bez ohledu na formulář: kdy to pustit a co po sobě má běh nechat.',
+    },
+    { kind: 'h', text: 'Co ještě může na konci udělat' },
+    {
+      kind: 'table',
+      head: ['Na konci běhu', 'K čemu to je', 'Jak'],
+      rows: [
+        [
+          'Notifikace na plochu',
+          'víš, že doběhlo, i když jsi u něčeho jiného',
+          'hook na události Stop',
+        ],
+        [
+          'Soubor do sdílené složky',
+          'výstup uvidí celý tým, aniž bys ho posílala',
+          'projekt leží v nasyncované knihovně, výstup se nasyncuje sám',
+        ],
+        [
+          'Krátká zpráva o tom, co se stalo',
+          'zůstane stopa i za dny, kdy se nic nezměnilo',
+          'poslední krok skillu zapíše shrnutí do vystupy/',
+        ],
+        [
+          'E-mail příjemcům',
+          'podklad dorazí bez tvého zásahu',
+          'konektor Microsoft 365 — má vlastní lekci E-mail z automatu',
+        ],
+      ],
+    },
+    { kind: 'h', text: 'Runbook' },
+    {
+      kind: 'p',
+      text:
+        'Naplánovaný běh nikdo nesleduje — dokud se něco nepokazí, a to bývá ve chvíli, kdy jsi na dovolené. Runbook je jedna stránka v projektu, která odpoví na to, na co se v tu chvíli někdo bude ptát.',
+    },
+    {
+      kind: 'code',
+      text: `# Runbook: logistické dostupnosti
+
+## Co to dělá
+Z exportu listu Logistika připraví divizní soubory pro produkťáky.
+
+## Kdy to běží
+Každé pondělí v 6:00. Trvá to zhruba čtyři minuty.
+
+## Kde je výsledek
+vystupy/Magazín <MĚSÍC> - <divize>.xlsx
+a vedle toho kontrola-<datum>.md
+
+## Jak poznám, že je něco špatně
+- v kontrole nesedí počet řádků vstupu a výstupu
+- chybí některý ze čtyř divizních souborů
+- v kontrole je víc než 20 položek bez dat
+
+## Co dělat, když to spadne
+1. Podívej se, jestli jsou v data/ soubory z aktuálního týdne.
+2. Pusť to ručně: v terminálu ve složce projektu claude -p "..."
+3. Když to spadne i ručně, běh vypni a napiš Petře (logistika, l. 123).
+
+## Jak to vypnout
+Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
+      caption: 'Šest nadpisů. Kratší runbook nikdo nenapíše, delší nikdo nepřečte.',
+    },
+    { kind: 'h', text: 'Co se stane, když' },
+    {
+      kind: 'table',
+      head: ['Situace', 'Co se má stát', 'Jak to zařídit'],
+      rows: [
+        [
+          'Data ten den nepřijdou',
+          'běh se zastaví a napíše to, nic nevyrobí',
+          'zastavovací pravidlo ve skillu: „když v data/ není soubor z tohohle týdne, zastav se“',
+        ],
+        [
+          'Změní se formát vstupu',
+          'běh se zastaví u kontroly sloupců',
+          'krok „ověř sloupce“ hned na začátku skillu',
+        ],
+        [
+          'Běh spadne uprostřed',
+          'nezůstane po něm polovičatý soubor',
+          'skill zapisuje až na konci, ne průběžně',
+        ],
+        [
+          'Nikdo si týden nevšimne, že to neběželo',
+          'to je ten skutečný problém',
+          'notifikace na Stop hooku, nebo se prostě podívej do vystupy/ na datum',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Automat, po kterém nezůstane stopa, se pozná pozdě',
+      text:
+        'Nejhorší varianta není běh, který spadne. Je to běh, který měsíc tiše nedělá nic a nikomu to nedojde, protože nikdo nečeká, že by měl něco přijít. Proto ať po každém běhu zůstane soubor s datem — i když se nic nezměnilo.',
     },
     { kind: 'h', text: 'Kdy na další stupeň' },
     {
@@ -2194,20 +2328,333 @@ exit 0`,
       text:
         'Kroky, kde se rozhoduje podle věcí, které nejsou v datech. Vzorování v regálu je učebnicový příklad: měrné jednotky lžou, takže žádný automat neřekne, jestli se tři kufry vejdou vedle sebe. Automatizace má takovým krokům uvolnit čas, ne je nahradit.',
     },
+    { kind: 'h', text: 'Celý příklad: od magazínu po mail produkťákům' },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Odsud dál je to reference',
+      text:
+        'Pět schodů výš je to, co se probírá v sále. Zbytek lekce je tentýž postup ukázaný celý na jednom případu — od prázdné složky po pondělní ráno v šest, včetně konektorů a vyplněného formuláře úlohy. Nečti to dopředu; otevři si to, až budeš stavět svoje, a projdi to jako kontrolní seznam.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Až sem to bylo schéma. Teď totéž celé na jednom případu: bereme druhé ze tří míst k automatizaci z akčního regálu — rozpad složeného listu na divizní soubory a jejich rozeslání produkťákům — a projdeme ho od prázdné složky až k úloze, která běží v pondělí v šest ráno. Vrať se sem ve chvíli, kdy budeš stavět svoje, a ber to jako vzor, na kterém si ověříš, že ti nic nechybí.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Proč zrovna tenhle krok',
+      text:
+        'Z mapy procesu vyšly tři místa. Sběr odpovědí od produkťáků je největší bolest, ale řeší se změnou formuláře, ne Claudem. Finální podklady jsou na konec. Rozpad a rozeslání je uprostřed: opakuje se každý cyklus, je celý o přeskládávání dat a paní z logistiky ho sama označila slovy „tady už by se to mohlo dělat automaticky".',
+    },
+    { kind: 'h', text: 'Výchozí stav: co se dnes dělá rukama' },
+    {
+      kind: 'table',
+      head: ['Krok', 'Dnes', 'Trvá'],
+      rows: [
+        ['Vzít složený list z velkého Excelu', 'vložit jinak → hodnoty, celý soubor je moc velký', 'pár minut'],
+        ['Rozdělit položky na čtyři divize', 'filtrovat, kopírovat, ukládat pod čtyřmi názvy', 'desítky minut'],
+        ['Napsat jedenáct e-mailů', 'ke každému přiložit ten správný soubor', 'desítky minut'],
+        ['Ohlídat, že nikdo nedostal cizí divizi', 'kontrola očima', 'nedá se odhadnout'],
+      ],
+    },
+    {
+      kind: 'p',
+      text:
+        'Cíl je, aby z toho zbyly dvě věci: přečíst kontrolní protokol a odkliknout. Zbytek udělá úloha.',
+    },
+    { kind: 'h', text: 'Složka a projekt' },
+    {
+      kind: 'figure',
+      name: 'project-tree',
+      caption: 'Takhle vypadá projekt, nad kterým to celé poběží. Leží v nasyncované knihovně, takže výstupy vidí tým bez posílání.',
+    },
+    {
+      kind: 'checklist',
+      title: 'Než se dá pokračovat',
+      items: [
+        'Knihovna ze SharePointu je nasyncovaná a soubory jsou opravdu na disku, ne jen zástupci',
+        'Ve složce je CLAUDE.md se slovníkem: co je divize, co je složený list, co je vzorování',
+        'V data/ leží skutečný export z minulého cyklu, ne vymyšlený vzorek',
+        'Ve vystupy/ je prázdno — sem půjdou výsledky',
+      ],
+    },
+    {
+      kind: 'code',
+      text: `CLAUDE.md — výňatek
+
+## Slovník
+Složený list = jeden list, do kterého se slily položky magazínu ze
+všech divizí. Vstup pro rozpad.
+Divize = Nářadí, Elektro, VTS, Piekarová. Podle nich se dělí soubory.
+Produkťák (PM) = vlastník značky. Každý má svoje položky, nikdy ne cizí.
+
+## Pravidla
+Do data/ se nikdy nezapisuje. Výstupy jdou do vystupy/.
+Divizní soubor obsahuje jen položky té jedné divize. Nikdy nesmí
+obsahovat sloupce, které patří marketingu.
+Když v exportu chybí sloupec, zastav se a zeptej se. Nedomýšlej.`,
+      caption: 'Slovník je důležitější než pravidla. Bez něj Claude nepozná, že „složený list" je název kroku, ne popis souboru.',
+    },
+    { kind: 'h', text: 'Skill, který ten rozpad umí' },
+    {
+      kind: 'p',
+      text:
+        'Postup se opakuje každý cyklus, takže patří do skillu, ne do chatu. Používáme skill logisticke-dostupnosti — ten skutečný z logistiky, ve vylepšené verzi z lekce Rozbor skutečného skillu. Tady je jen hlavička a dvě sekce, na kterých stojí to, že se dá pustit bez dozoru.',
+    },
+    {
+      kind: 'code',
+      text: `.claude/skills/logisticke-dostupnosti/SKILL.md — výňatek
+
+---
+name: logisticke-dostupnosti
+description: Z exportu listu Logistika dotáhne skladová data, připraví
+  soubory pro produkťáky po divizích (Nářadí, Elektro, VTS, Piekarová)
+  a vyrobí kontrolní protokol. Použij, když je v data/ nový export
+  magazínu a mají se rozeslat podklady produkťákům.
+---
+
+## Kontrolní protokol → vystupy/protokol-<RRRRMMDD>.md
+- které soubory se použily, i s datem v názvu
+- počet řádků na vstupu a v součtu všech výstupů — rozdíl musí být nula
+- počty položek po divizích a po PM
+- seznam nezařazených položek
+
+## Zastav se, když
+- vstupní a výstupní počet řádků nesedí
+- vyjde divize, která není v seznamu čtyř
+- víc než 5 % položek nemá dotažená skladová data`,
+      caption:
+        'Polovina skillu je o kontrole. Není to opatrnictví — bez protokolu a zastavovacích pravidel se skill nedá pustit v šest ráno bez dozoru. Celé znění včetně postupu je v lekci Rozbor skutečného skillu.',
+    },
+    { kind: 'h', text: 'Ty dva hooky konkrétně' },
+    {
+      kind: 'p',
+      text:
+        'Jsou to přesně ty dva hooky ze čtvrtého schodu — zábrana nad data/ a zpráva na konci běhu. Skript i zápis do settings.json jsou výš v téhle lekci, sem patří jen to, co je na tomhle případu jiné.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Originál exportu je jediná kopie, kterou máš',
+      text:
+        'Kdyby skill omylem přepsal soubor v data/, přijdeš o vstup celého cyklu — a nikdo si toho nevšimne, dokud nesedí čísla. Proto je zábrana hook, ne věta v CLAUDE.md: hook nemá úsudek a nedá se přemluvit ani přeřečnit.',
+    },
+    {
+      kind: 'table',
+      head: ['Co má platit', 'Kam to patří', 'Proč zrovna tam'],
+      rows: [
+        [
+          'Do data/ se nikdy nezapisuje',
+          'hook PreToolUse',
+          'je to zámek. Nesmí záviset na tom, jestli si na to Claude vzpomene.',
+        ],
+        [
+          'Divizní soubor se jmenuje Magazín <MĚSÍC> - <divize>.xlsx',
+          'CLAUDE.md',
+          'je to konvence, ne bezpečnost. Když ji jednou poruší, nic se nestane.',
+        ],
+        [
+          'Když chybí sloupec, zastav se',
+          'skill',
+          'vyžaduje to posouzení — hook neumí poznat, který sloupec je který.',
+        ],
+        [
+          'Dej vědět, až je hotovo',
+          'hook Stop',
+          'nemá to co dělat s obsahem práce, má se to stát pokaždé.',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Otestuj zábranu dřív, než ji budeš potřebovat',
+      text:
+        'Řekni Claudovi „přidej řádek do souboru v data/" a chtěj vidět, že to odmítne. Zábrana, kterou nikdo neviděl zafungovat, je jenom soubor na disku. Trvá to patnáct vteřin a je to jediný způsob, jak si být jistá, že se hook vůbec zaregistroval — druhý je napsat v Claude Code /hooks a podívat se do seznamu.',
+    },
+    { kind: 'h', text: 'Konektory: co připojit a proč' },
+    {
+      kind: 'p',
+      text:
+        'Konektor je napojení na službu mimo tvůj disk. U tohohle příkladu potřebuješ přesně jeden, a ten se neobejde bez správce.',
+    },
+    {
+      kind: 'table',
+      head: ['Konektor', 'K čemu tady je', 'Nutný?'],
+      rows: [
+        [
+          'Microsoft 365 — čtení',
+          'dohledat adresy produkťáků a ověřit, že soubor v knihovně opravdu je',
+          'ne, ale hodí se',
+        ],
+        [
+          'Microsoft 365 — odesílání (write tools)',
+          'tohle je ten konektor, kvůli kterému mail vůbec odejde',
+          'ano, jinak se dá jen otevřít rozepsaný mail',
+        ],
+        [
+          'Žádný konektor na Excel',
+          'soubory bere přímo z disku — složka je nasyncovaná',
+          'ne. Konektor na tabulky neexistuje a nepotřebuješ ho.',
+        ],
+      ],
+    },
+    { kind: 'h', text: 'Jak se konektor připojí' },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Najdi ho v adresáři konektorů',
+          body:
+            'V Claude otevři přehled konektorů, vyber Microsoft 365 a klikni na Connect to Claude. Přihlásíš se firemním účtem — osobní outlook.com nebo hotmail.com konektor odmítne. Tohle se dělá jednou.',
+        },
+        {
+          title: 'Ověř to v Claude Code příkazem /mcp',
+          body:
+            'Vypíše všechny připojené servery, u každého stav a počet nástrojů. Když je u něčeho „Needs authentication“, není to chyba — klikni na ten řádek a přihlaš se v prohlížeči. Tady se dají servery taky vypnout, aniž bys je mazal.',
+          code: '/mcp',
+        },
+        {
+          title: 'Na odesílání si vyžádej write tools',
+          body:
+            'Čtení máš hned po připojení. Odesílání je zvlášť a povoluje ho správce — bez toho úloha mail nepošle, jen ti ho otevře rozepsaný. Napiš správci dřív, než na tom postavíš automatizaci.',
+        },
+      ],
+    },
+    {
+      kind: 'figure',
+      name: 'connector-setup',
+      caption:
+        'Vlevo to, co uděláš jednou. Vpravo to, do čeho se podíváš pokaždé, když úloha hlásí, že na něco nemá přístup.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Na .xlsx konektor není',
+      text:
+        'Tohle se ptá skoro každý. Konektor je přípojka na službu na internetu — na poštu, na Teams, na SharePoint jako web. Soubor, který máš nasyncovaný na disku, žádnou přípojku nepotřebuje: Claude Code ho otevře stejně jako kterýkoli jiný soubor ve složce. Konektor by přišel na řadu jedině tehdy, kdyby ten export v knihovně zůstal jen online a ty sis ho nikdy nestáhla — a i pak je jednodušší zapnout sync než řešit oprávnění.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Excel ale není text — Claude si na něj napíše skript',
+      text:
+        'Nečeká tě u toho nic navíc, jen ať tě to nepřekvapí: .xlsx je zabalený balík, ne text, takže Claude na jeho čtení a zápis napíše a spustí kratičký skript v Pythonu (openpyxl nebo pandas). Poprvé si může chtít knihovnu doinstalovat. Proto se ve skillu vyplatí napsat, na kterém listu vstup je a jak se jmenují sloupce — ušetří to jedno kolo hádání a skript pak vypadá pokaždé stejně.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Odkaz, ne příloha',
+      text:
+        'Odesílání přes konektor neumí přílohy. Pro nás to znamená, že produkťák nedostane .xlsx do schránky — dostane odkaz do knihovny na svůj soubor. Vyjde to nakonec líp: když se soubor druhý den opraví, všichni čtou opravenou verzi, ne tu, kterou mají ve své poště od pondělí.',
+    },
+    { kind: 'h', text: 'Vyplněná úloha' },
+    {
+      kind: 'p',
+      text:
+        'Teď teprve Code → Routines → New routine → Local. Takhle vyplněné to vypadá — hodnoty jsou z tohohle příkladu, ne ilustrační.',
+    },
+    {
+      kind: 'figure',
+      name: 'routine-form',
+      caption: 'Dvě pole rozhodují o všem: instrukce (a v nich podmínka, kdy neodesílat) a režim povolování.',
+    },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Instructions — celé zadání',
+          body:
+            'Píše se to jako zpráva do chatu, ne jako příkaz. Odkazuje se na skill, aby se postup neopakoval v zadání.',
+          code: `Postupuj podle skillu logisticke-dostupnosti.
+Vstup je nejnovější export v data/.
+Když protokol hlásí nesrovnalost, nic neodesílej a jenom mi napiš.
+Jinak pošli každému produkťákovi mail s předmětem
+„Magazín <datum> — tvoje položky", v těle tři čísla z protokolu
+a odkaz do knihovny na jeho divizní soubor. Přílohu nepřikládej.`,
+        },
+        {
+          title: 'Folder — nasyncovaná složka',
+          body:
+            'Bez složky se úloha neuloží. Vyber projektovou složku akčního regálu, ne knihovnu jako celek. Když ji Claude Code ještě nezná, zeptá se, jestli jí věříš.',
+        },
+        {
+          title: 'Permission mode — Accept edits',
+          body:
+            'V přísnějším režimu se běh zastaví na dotazu, na který v šest ráno nikdo neodpoví. Úloha pak vypadá, že spadla, přitom jenom čeká.',
+        },
+        {
+          title: 'Schedule — Weekly, pondělí 6:00',
+          body:
+            'Export chodí v neděli večer, ať je hotovo dřív, než někdo přijde do práce. Kdyby to mělo být jinak — třeba prvního v měsíci — řekni si o to Claudovi v chatu vlastními slovy.',
+        },
+        {
+          title: 'Create, a hned Run now',
+          body:
+            'Tohle nepřeskakuj. Při prvním běhu si odklikáš oprávnění a u každého dáš „always allow", ať se ostrý běh nezasekne. Zároveň uvidíš, jestli skill projde na skutečných datech.',
+        },
+      ],
+    },
+    { kind: 'h', text: 'Co po sobě nechá' },
+    {
+      kind: 'table',
+      head: ['Kde', 'Co tam přibude'],
+      rows: [
+        ['vystupy/', 'čtyři divizní soubory s dnešním datem'],
+        ['vystupy/protokol-<RRRRMMDD>.md', 'počty řádků, nezařazené položky, položky bez skladových dat'],
+        ['knihovna na SharePointu', 'totéž, samo, protože složka je nasyncovaná'],
+        ['plocha', 'notifikace, že běh skončil'],
+        ['schránky produkťáků', 'jedenáct mailů s odkazem na jejich soubor — nebo nic, když protokol nesedí'],
+        ['Routines → detail úlohy', 'záznam běhu; přeskočené běhy i s důvodem'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Ranní rutina se scvrkne na jednu stránku',
+      text:
+        'V pondělí ráno otevřeš protokol, ne čtyři soubory. Sedí počty, je seznam položek bez produkťáka krátký? Hotovo. Tohle je celý ten posun: rozhoduješ se z jedné stránky místo z tisíce řádků.',
+    },
+    { kind: 'h', text: 'Když to nevyjde' },
+    {
+      kind: 'table',
+      head: ['Příznak', 'Co se nejspíš stalo'],
+      rows: [
+        ['Nic se nestalo, žádný soubor ani mail', 'počítač spal nebo byla zavřená aplikace — Local běží jen při puštěné appce'],
+        ['Soubory jsou, maily ne', 'nejsou zapnuté write tools u konektoru, nebo protokol našel nesrovnalost'],
+        ['Běh visí a nic nedělá', 'čeká na povolení nástroje. Otevři sezení v postranním panelu a odklikni.'],
+        ['Vyšla pátá divize', 'v exportu je hodnota, kterou slovník nezná. Skill se správně zastavil.'],
+        ['Běh doběhl v jedenáct večer', 'dohnaný zmeškaný běh. Proto do zadání patří pojistka na čas.'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Runbook',
+      text:
+        'Až tohle pojede měsíc, napiš k tomu jednu stránku podle šablony v lekci Jak se v projektu nastaví automatizace. Ne pro sebe — pro toho, kdo to bude řešit ve chvíli, kdy jsi na dovolené a produkťákům nic nepřišlo.',
+    },
     {
       kind: 'task',
       title: 'Cvičení: posuň jeden krok o stupeň výš',
       intro:
-        'Vezmi svoji agendu a v ní jeden krok, který děláš každý týden. Nezačínej tím nejsložitějším.',
+        'Vezmi svoji agendu a v ní jeden krok, který děláš každý týden. Nezačínej tím nejsložitějším. Příklad výš použij jako kontrolní seznam, ne jako předlohu ke kopírování.',
       items: [
-        'Napiš, na kterém stupni ten krok dneska je.',
+        'Napiš, na kterém z pěti schodů ten krok dneska je.',
         'Udělej ho jednou se zadáním a zapiš si každé doříkání, které bylo potřeba dodat.',
-        'Doříkání, která platí pořád, přepiš do CLAUDE.md.',
+        'Doříkání, která platí pořád, přepiš do CLAUDE.md — a přidej slovník: tři pojmy, kterým by cizí člověk nerozuměl.',
         'Zbytek — samotný postup — přepiš do SKILL.md a spusť ho znovu na jiných datech.',
-        'Napiš jednu větu o tom, jak poznáš, že výsledek je špatně. Bez ní na další stupeň nechoď.',
+        'Do skillu napiš sekci „zastav se, když". Bez ní dál nechoď.',
+        'Napiš jednu větu o tom, jak poznáš, že výsledek je špatně.',
+        'Nastav zábranu a notifikaci a zábranu si otestuj — chtěj vidět, že zápis odmítne.',
+        'Projdi checklist „Než to pustíš na plán" a čestně si odškrtej, co platí. Pak spusť skill jedním příkazem bez rozhovoru.',
+        'Napiš runbook podle šablony — všech šest nadpisů.',
+        'Založ úlohu na Manual a pusť ji přes Run now aspoň třikrát na různých datech. Teprve pak jí dej rozvrh, nejdřív na den, kdy jsi u počítače — a jako první ať jen ukládá soubory, bez odesílání.',
       ],
       hint:
-        'Když ti u druhého běhu skill vyjde jinak než u prvního, není to chyba skillu — je to chybějící pravidlo. Doplň ho a zkus to znovu.',
+        'Když ti u druhého běhu skill vyjde jinak než u prvního, není to chyba skillu — je to chybějící pravidlo. Odesílání zapínej úplně nakonec, ideálně po měsíci, kdy se maily odklikávaly ručně a nic nepřekvapilo.',
     },
   ],
 }
@@ -3689,391 +4136,6 @@ přidej sekci "Na co si dát pozor". Pak mi ho ukaž, než ho uložíš.`,
 }
 
 
-const L2_CELY_PRIKLAD: Lesson = {
-  slug: 'cely-priklad-magazin',
-  module: 'potom',
-  title: 'Celý příklad: od magazínu po mail produkťákům',
-  summary:
-    'Jeden reálný proces dotažený od složky až po úlohu, která v pondělí v šest ráno rozešle divizní soubory. Vyplněný formulář, konektory, hooky, kontrola.',
-  minutes: 15,
-  kind: 'lekce',
-  track: 'potom',
-  outcomes: [
-    'vidět celou cestu od ručního rozpadu po naplánovaný běh na jednom příkladu',
-    'vědět, co přesně vyplnit do formuláře naplánované úlohy',
-    'vědět, které konektory připojit a co bez nich nepůjde',
-    'poznat, co musí být hotové dřív, než se úloha vůbec založí',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Všechny ostatní lekce ukazují jeden kus. Tahle skládá celý příklad dohromady: bereme druhé ze tří míst k automatizaci z akčního regálu — rozpad složeného listu na divizní soubory a jejich rozeslání produkťákům — a dotáhneme ho od prázdné složky až k úloze, která běží v pondělí v šest ráno. Je to reference, ne cvičení. Otevři si ji ve chvíli, kdy budeš stavět svoje, a ber to jako vzor, na kterém si ověříš, že ti nic nechybí.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Proč zrovna tenhle krok',
-      text:
-        'Z mapy procesu vyšly tři místa. Sběr odpovědí od produkťáků je největší bolest, ale řeší se změnou formuláře, ne Claudem. Finální podklady jsou na konec. Rozpad a rozeslání je uprostřed: opakuje se každý cyklus, je celý o přeskládávání dat a paní z logistiky ho sama označila slovy „tady už by se to mohlo dělat automaticky".',
-    },
-    { kind: 'h', text: 'Výchozí stav: co se dnes dělá rukama' },
-    {
-      kind: 'table',
-      head: ['Krok', 'Dnes', 'Trvá'],
-      rows: [
-        ['Vzít složený list z velkého Excelu', 'vložit jinak → hodnoty, celý soubor je moc velký', 'pár minut'],
-        ['Rozdělit položky na čtyři divize', 'filtrovat, kopírovat, ukládat pod čtyřmi názvy', 'desítky minut'],
-        ['Napsat jedenáct e-mailů', 'ke každému přiložit ten správný soubor', 'desítky minut'],
-        ['Ohlídat, že nikdo nedostal cizí divizi', 'kontrola očima', 'nedá se odhadnout'],
-      ],
-    },
-    {
-      kind: 'p',
-      text:
-        'Cíl je, aby z toho zbyly dvě věci: přečíst kontrolní protokol a odkliknout. Zbytek udělá úloha.',
-    },
-    { kind: 'h', text: '1. Složka a projekt' },
-    {
-      kind: 'figure',
-      name: 'project-tree',
-      caption: 'Takhle vypadá projekt, nad kterým to celé poběží. Leží v nasyncované knihovně, takže výstupy vidí tým bez posílání.',
-    },
-    {
-      kind: 'checklist',
-      title: 'Než se dá pokračovat',
-      items: [
-        'Knihovna ze SharePointu je nasyncovaná a soubory jsou opravdu na disku, ne jen zástupci',
-        'Ve složce je CLAUDE.md se slovníkem: co je divize, co je složený list, co je vzorování',
-        'V data/ leží skutečný export z minulého cyklu, ne vymyšlený vzorek',
-        'Ve vystupy/ je prázdno — sem půjdou výsledky',
-      ],
-    },
-    {
-      kind: 'code',
-      text: `CLAUDE.md — výňatek
-
-## Slovník
-Složený list = jeden list, do kterého se slily položky magazínu ze
-všech divizí. Vstup pro rozpad.
-Divize = Nářadí, Elektro, VTS, Piekarová. Podle nich se dělí soubory.
-Produkťák (PM) = vlastník značky. Každý má svoje položky, nikdy ne cizí.
-
-## Pravidla
-Do data/ se nikdy nezapisuje. Výstupy jdou do vystupy/.
-Divizní soubor obsahuje jen položky té jedné divize. Nikdy nesmí
-obsahovat sloupce, které patří marketingu.
-Když v exportu chybí sloupec, zastav se a zeptej se. Nedomýšlej.`,
-      caption: 'Slovník je důležitější než pravidla. Bez něj Claude nepozná, že „složený list" je název kroku, ne popis souboru.',
-    },
-    { kind: 'h', text: '2. Skill, který ten rozpad umí' },
-    {
-      kind: 'p',
-      text:
-        'Postup se opakuje každý cyklus, takže patří do skillu, ne do chatu. Používáme skill logisticke-dostupnosti — ten skutečný z logistiky, ve vylepšené verzi z lekce Rozbor skutečného skillu. Tady je jen hlavička a dvě sekce, na kterých stojí to, že se dá pustit bez dozoru.',
-    },
-    {
-      kind: 'code',
-      text: `.claude/skills/logisticke-dostupnosti/SKILL.md — výňatek
-
----
-name: logisticke-dostupnosti
-description: Z exportu listu Logistika dotáhne skladová data, připraví
-  soubory pro produkťáky po divizích (Nářadí, Elektro, VTS, Piekarová)
-  a vyrobí kontrolní protokol. Použij, když je v data/ nový export
-  magazínu a mají se rozeslat podklady produkťákům.
----
-
-## Kontrolní protokol → vystupy/protokol-<RRRRMMDD>.md
-- které soubory se použily, i s datem v názvu
-- počet řádků na vstupu a v součtu všech výstupů — rozdíl musí být nula
-- počty položek po divizích a po PM
-- seznam nezařazených položek
-
-## Zastav se, když
-- vstupní a výstupní počet řádků nesedí
-- vyjde divize, která není v seznamu čtyř
-- víc než 5 % položek nemá dotažená skladová data`,
-      caption:
-        'Polovina skillu je o kontrole. Není to opatrnictví — bez protokolu a zastavovacích pravidel se skill nedá pustit v šest ráno bez dozoru. Celé znění včetně postupu je v lekci Rozbor skutečného skillu.',
-    },
-    { kind: 'h', text: '3. Dva hooky: zábrana a notifikace' },
-    {
-      kind: 'p',
-      text:
-        'Než se cokoli plánuje, musí platit dvě věci: že se nemůže stát to nejhorší, a že se pozná, že to doběhlo. Obojí zařídí hook — příkaz, který Claude Code spustí sám při určité události, ať si zrovna myslí cokoli. Konkrétně tady jde o zápis do data/ a o zprávu na konci běhu.',
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Originál exportu je jediná kopie, kterou máš',
-      text:
-        'Kdyby skill omylem přepsal soubor v data/, přijdeš o vstup celého cyklu — a nikdo si toho nevšimne, dokud nesedí čísla. Proto je zábrana hook, ne věta v CLAUDE.md: hook nemá úsudek a nedá se přemluvit ani přeřečnit.',
-    },
-    {
-      kind: 'code',
-      text: `.claude/hooks/chran-data.sh
-
-#!/bin/bash
-INPUT=$(cat)
-FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
-FILE_PATH="\${FILE_PATH//\\//}"
-
-if [[ "$FILE_PATH" == *"/data/"* ]]; then
-  echo "Blokováno: do data/ se nezapisuje. Export magazínu je jediná kopie, divizní soubory patří do vystupy/." >&2
-  exit 2
-fi
-exit 0`,
-      caption:
-        'Zpráva v chybovém výstupu se vrací Claudovi jako vysvětlení, proč to nešlo — takže se místo hádání rovnou opraví a uloží jinam. Návratový kód 2 je to, co zápis zastaví.',
-    },
-    {
-      kind: 'code',
-      text: `chmod +x .claude/hooks/chran-data.sh
-
-.claude/settings.json
-
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\\"$CLAUDE_PROJECT_DIR\\"/.claude/hooks/chran-data.sh"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "osascript -e 'display notification \\"Rozpad divizí doběhl\\" with title \\"Akční regál\\"'"
-          }
-        ]
-      }
-    ]
-  }
-}`,
-      caption:
-        'Oba hooky v jednom souboru. PreToolUse hlídá každý zápis, Stop se ozve na konci běhu. Na Windows se místo osascript použije powershell.exe — celé znění je v lekci Jak se v projektu nastaví automatizace.',
-    },
-    {
-      kind: 'table',
-      head: ['Co má platit', 'Kam to patří', 'Proč zrovna tam'],
-      rows: [
-        [
-          'Do data/ se nikdy nezapisuje',
-          'hook PreToolUse',
-          'je to zámek. Nesmí záviset na tom, jestli si na to Claude vzpomene.',
-        ],
-        [
-          'Divizní soubor se jmenuje Magazín <MĚSÍC> - <divize>.xlsx',
-          'CLAUDE.md',
-          'je to konvence, ne bezpečnost. Když ji jednou poruší, nic se nestane.',
-        ],
-        [
-          'Když chybí sloupec, zastav se',
-          'skill',
-          'vyžaduje to posouzení — hook neumí poznat, který sloupec je který.',
-        ],
-        [
-          'Dej vědět, až je hotovo',
-          'hook Stop',
-          'nemá to co dělat s obsahem práce, má se to stát pokaždé.',
-        ],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Otestuj zábranu dřív, než ji budeš potřebovat',
-      text:
-        'Řekni Claudovi „přidej řádek do souboru v data/" a chtěj vidět, že to odmítne. Zábrana, kterou nikdo neviděl zafungovat, je jenom soubor na disku. Trvá to patnáct vteřin a je to jediný způsob, jak si být jistá, že se hook vůbec zaregistroval — druhý je napsat v Claude Code /hooks a podívat se do seznamu.',
-    },
-    { kind: 'h', text: '4. Konektory: co připojit a proč' },
-    {
-      kind: 'p',
-      text:
-        'Konektor je napojení na službu mimo tvůj disk. U tohohle příkladu potřebuješ přesně jeden, a ten se neobejde bez správce.',
-    },
-    {
-      kind: 'table',
-      head: ['Konektor', 'K čemu tady je', 'Nutný?'],
-      rows: [
-        [
-          'Microsoft 365 — čtení',
-          'dohledat adresy produkťáků a ověřit, že soubor v knihovně opravdu je',
-          'ne, ale hodí se',
-        ],
-        [
-          'Microsoft 365 — odesílání (write tools)',
-          'tohle je ten konektor, kvůli kterému mail vůbec odejde',
-          'ano, jinak se dá jen otevřít rozepsaný mail',
-        ],
-        [
-          'Žádný konektor na Excel',
-          'soubory bere přímo z disku — složka je nasyncovaná',
-          'ne. Konektor na tabulky neexistuje a nepotřebuješ ho.',
-        ],
-      ],
-    },
-    { kind: 'h', text: 'Jak se konektor připojí' },
-    {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Najdi ho v adresáři konektorů',
-          body:
-            'V Claude otevři přehled konektorů, vyber Microsoft 365 a klikni na Connect to Claude. Přihlásíš se firemním účtem — osobní outlook.com nebo hotmail.com konektor odmítne. Tohle se dělá jednou.',
-        },
-        {
-          title: 'Ověř to v Claude Code příkazem /mcp',
-          body:
-            'Vypíše všechny připojené servery, u každého stav a počet nástrojů. Když je u něčeho „Needs authentication“, není to chyba — klikni na ten řádek a přihlaš se v prohlížeči. Tady se dají servery taky vypnout, aniž bys je mazal.',
-          code: '/mcp',
-        },
-        {
-          title: 'Na odesílání si vyžádej write tools',
-          body:
-            'Čtení máš hned po připojení. Odesílání je zvlášť a povoluje ho správce — bez toho úloha mail nepošle, jen ti ho otevře rozepsaný. Napiš správci dřív, než na tom postavíš automatizaci.',
-        },
-      ],
-    },
-    {
-      kind: 'figure',
-      name: 'connector-setup',
-      caption:
-        'Vlevo to, co uděláš jednou. Vpravo to, do čeho se podíváš pokaždé, když úloha hlásí, že na něco nemá přístup.',
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Na .xlsx konektor není',
-      text:
-        'Tohle se ptá skoro každý. Konektor je přípojka na službu na internetu — na poštu, na Teams, na SharePoint jako web. Soubor, který máš nasyncovaný na disku, žádnou přípojku nepotřebuje: Claude Code ho otevře stejně jako kterýkoli jiný soubor ve složce. Konektor by přišel na řadu jedině tehdy, kdyby ten export v knihovně zůstal jen online a ty sis ho nikdy nestáhla — a i pak je jednodušší zapnout sync než řešit oprávnění.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Excel ale není text — Claude si na něj napíše skript',
-      text:
-        'Nečeká tě u toho nic navíc, jen ať tě to nepřekvapí: .xlsx je zabalený balík, ne text, takže Claude na jeho čtení a zápis napíše a spustí kratičký skript v Pythonu (openpyxl nebo pandas). Poprvé si může chtít knihovnu doinstalovat. Proto se ve skillu vyplatí napsat, na kterém listu vstup je a jak se jmenují sloupce — ušetří to jedno kolo hádání a skript pak vypadá pokaždé stejně.',
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Odkaz, ne příloha',
-      text:
-        'Odesílání přes konektor neumí přílohy. Pro nás to znamená, že produkťák nedostane .xlsx do schránky — dostane odkaz do knihovny na svůj soubor. Vyjde to nakonec líp: když se soubor druhý den opraví, všichni čtou opravenou verzi, ne tu, kterou mají ve své poště od pondělí.',
-    },
-    { kind: 'h', text: '5. Vyplněná úloha' },
-    {
-      kind: 'p',
-      text:
-        'Teď teprve Code → Routines → New routine → Local. Takhle vyplněné to vypadá — hodnoty jsou z tohohle příkladu, ne ilustrační.',
-    },
-    {
-      kind: 'figure',
-      name: 'routine-form',
-      caption: 'Dvě pole rozhodují o všem: instrukce (a v nich podmínka, kdy neodesílat) a režim povolování.',
-    },
-    {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Instructions — celé zadání',
-          body:
-            'Píše se to jako zpráva do chatu, ne jako příkaz. Odkazuje se na skill, aby se postup neopakoval v zadání.',
-          code: `Postupuj podle skillu logisticke-dostupnosti.
-Vstup je nejnovější export v data/.
-Když protokol hlásí nesrovnalost, nic neodesílej a jenom mi napiš.
-Jinak pošli každému produkťákovi mail s předmětem
-„Magazín <datum> — tvoje položky", v těle tři čísla z protokolu
-a odkaz do knihovny na jeho divizní soubor. Přílohu nepřikládej.`,
-        },
-        {
-          title: 'Folder — nasyncovaná složka',
-          body:
-            'Bez složky se úloha neuloží. Vyber projektovou složku akčního regálu, ne knihovnu jako celek. Když ji Claude Code ještě nezná, zeptá se, jestli jí věříš.',
-        },
-        {
-          title: 'Permission mode — Accept edits',
-          body:
-            'V přísnějším režimu se běh zastaví na dotazu, na který v šest ráno nikdo neodpoví. Úloha pak vypadá, že spadla, přitom jenom čeká.',
-        },
-        {
-          title: 'Schedule — Weekly, pondělí 6:00',
-          body:
-            'Export chodí v neděli večer, ať je hotovo dřív, než někdo přijde do práce. Kdyby to mělo být jinak — třeba prvního v měsíci — řekni si o to Claudovi v chatu vlastními slovy.',
-        },
-        {
-          title: 'Create, a hned Run now',
-          body:
-            'Tohle nepřeskakuj. Při prvním běhu si odklikáš oprávnění a u každého dáš „always allow", ať se ostrý běh nezasekne. Zároveň uvidíš, jestli skill projde na skutečných datech.',
-        },
-      ],
-    },
-    { kind: 'h', text: '6. Co po sobě nechá' },
-    {
-      kind: 'table',
-      head: ['Kde', 'Co tam přibude'],
-      rows: [
-        ['vystupy/', 'čtyři divizní soubory s dnešním datem'],
-        ['vystupy/protokol-<RRRRMMDD>.md', 'počty řádků, nezařazené položky, položky bez skladových dat'],
-        ['knihovna na SharePointu', 'totéž, samo, protože složka je nasyncovaná'],
-        ['plocha', 'notifikace, že běh skončil'],
-        ['schránky produkťáků', 'jedenáct mailů s odkazem na jejich soubor — nebo nic, když protokol nesedí'],
-        ['Routines → detail úlohy', 'záznam běhu; přeskočené běhy i s důvodem'],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Ranní rutina se scvrkne na jednu stránku',
-      text:
-        'V pondělí ráno otevřeš protokol, ne čtyři soubory. Sedí počty, je seznam položek bez produkťáka krátký? Hotovo. Tohle je celý ten posun: rozhoduješ se z jedné stránky místo z tisíce řádků.',
-    },
-    { kind: 'h', text: '7. Když to nevyjde' },
-    {
-      kind: 'table',
-      head: ['Příznak', 'Co se nejspíš stalo'],
-      rows: [
-        ['Nic se nestalo, žádný soubor ani mail', 'počítač spal nebo byla zavřená aplikace — Local běží jen při puštěné appce'],
-        ['Soubory jsou, maily ne', 'nejsou zapnuté write tools u konektoru, nebo protokol našel nesrovnalost'],
-        ['Běh visí a nic nedělá', 'čeká na povolení nástroje. Otevři sezení v postranním panelu a odklikni.'],
-        ['Vyšla pátá divize', 'v exportu je hodnota, kterou slovník nezná. Skill se správně zastavil.'],
-        ['Běh doběhl v jedenáct večer', 'dohnaný zmeškaný běh. Proto do zadání patří pojistka na čas.'],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Runbook',
-      text:
-        'Až tohle pojede měsíc, napiš k tomu jednu stránku podle šablony v lekci Nech to běžet bez sebe. Ne pro sebe — pro toho, kdo to bude řešit ve chvíli, kdy jsi na dovolené a produkťákům nic nepřišlo.',
-    },
-    {
-      kind: 'task',
-      title: 'Cvičení: projdi to na svém',
-      intro: 'Nekopíruj tenhle příklad. Použij ho jako kontrolní seznam nad svojí agendou.',
-      items: [
-        'Napiš jednou větou, který krok ze své mapy chceš takhle dotáhnout.',
-        'Doplň si do CLAUDE.md slovník — tři pojmy, kterým by cizí člověk nerozuměl.',
-        'Napiš skill a v něm sekci „zastav se, když". Bez ní dál nechoď.',
-        'Nastav zábranu a notifikaci.',
-        'Založ úlohu na Manual a pusť ji přes Run now aspoň třikrát na různých datech.',
-        'Teprve pak jí dej rozvrh — a jako první ať jen ukládá soubory, bez odesílání.',
-      ],
-      hint: 'Odesílání zapínej jako poslední, ideálně po měsíci, kdy se maily odklikávaly ručně a nic nepřekvapilo.',
-    },
-  ],
-}
-
 const L2_PLAN: Lesson = {
   slug: 'naplanovana-uloha',
   module: 'potom',
@@ -4092,7 +4154,7 @@ const L2_PLAN: Lesson = {
     {
       kind: 'p',
       text:
-        'Tohle je technická část posledního schodu: samotné založení úlohy, která se spustí sama. Kdy ji pustit a co k tomu musí platit, řeší lekce Nech to běžet bez sebe. Tady jen jak.',
+        'Tohle je technická část posledního schodu: samotné založení úlohy, která se spustí sama. Kdy ji pustit a co k tomu musí platit, řeší lekce Jak se v projektu nastaví automatizace. Tady jen jak.',
     },
     { kind: 'h', text: 'Naplánovaná úloha v Claude Code' },
     {
@@ -4446,170 +4508,6 @@ Když protokol hlásí nesrovnalost, e-mail neposílej a jenom mi to napiš.`,
     },
   ],
 }
-
-const L2_BEH: Lesson = {
-  slug: 'nech-to-bezet-bez-sebe',
-  module: 'potom',
-  title: 'Nech to běžet bez sebe',
-  summary:
-    'Poslední schod. Co musí platit, než něco pustíš na plán, co po sobě má běh nechat a co si napsat pro chvíli, kdy spadne.',
-  minutes: 10,
-  kind: 'lekce',
-  track: 'potom',
-  outcomes: [
-    'ověřit na checklistu, že je úloha připravená běžet bez dozoru',
-    'spustit úlohu bez rozhovoru jedním příkazem',
-    'napsat runbook, kterému bude rozumět i kolega',
-    'vědět, co dělat, když naplánovaný běh selže',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Sem směřovalo všechno předtím. Naplánovaný běh není odměna za odvahu — je to důsledek toho, že postup několikrát doběhl správně a že máš čím poznat, kdy nedoběhl. Když jedna z těch dvou věcí chybí, nepouštěj to.',
-    },
-    {
-      kind: 'checklist',
-      title: 'Než to pustíš na plán',
-      items: [
-        'Skill proběhl třikrát po sobě na různých datech bez opravy',
-        'Poslední krok skillu vyrábí kontrolní protokol',
-        'Ve skillu jsou zastavovací pravidla — ví, kdy se má zastavit místo hádání',
-        'Výstupy jdou do vystupy/, do dat se nezapisuje (a hlídá to hook)',
-        'Umíš jednou větou popsat, jak poznáš, že výsledek je špatně',
-        'Víš, co se stane, když vstupní data ten den nepřijdou',
-      ],
-    },
-    { kind: 'h', text: 'Spuštění bez rozhovoru' },
-    {
-      kind: 'p',
-      text:
-        'Claude Code umí dostat zadání, odpracovat ho a skončit — bez toho, aby u toho někdo seděl. Ta jedna věta je pak to, co se dá naplánovat.',
-    },
-    {
-      kind: 'code',
-      text: `cd <složka projektu — ta nasyncovaná z lekce Sdílená složka>
-claude -p "Postupuj podle skillu logisticke-dostupnosti. Na konec ulož
-kontrolní protokol do vystupy/."`,
-      caption: 'Spusť si to nejdřív ručně přesně takhle. Když to takhle nedoběhne, na plánu to nedoběhne taky.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Jak se úloha zakládá, je v samostatné lekci',
-      text:
-        'Klikání ve formuláři, rozdíl mezi Local a Cloud a to, co se stane, když počítač spal — to všechno je v lekci Naplánovaná úloha v Claude Code. Tady zůstává to, co platí bez ohledu na formulář: kdy to pustit a co po sobě má běh nechat.',
-    },
-    { kind: 'h', text: 'Co ještě může na konci udělat' },
-    {
-      kind: 'table',
-      head: ['Na konci běhu', 'K čemu to je', 'Jak'],
-      rows: [
-        [
-          'Notifikace na plochu',
-          'víš, že doběhlo, i když jsi u něčeho jiného',
-          'hook na události Stop',
-        ],
-        [
-          'Soubor do sdílené složky',
-          'výstup uvidí celý tým, aniž bys ho posílala',
-          'projekt leží v nasyncované knihovně, výstup se nasyncuje sám',
-        ],
-        [
-          'Krátká zpráva o tom, co se stalo',
-          'zůstane stopa i za dny, kdy se nic nezměnilo',
-          'poslední krok skillu zapíše shrnutí do vystupy/',
-        ],
-        [
-          'E-mail příjemcům',
-          'podklad dorazí bez tvého zásahu',
-          'konektor Microsoft 365 — má vlastní lekci E-mail z automatu',
-        ],
-      ],
-    },
-    { kind: 'h', text: 'Runbook' },
-    {
-      kind: 'p',
-      text:
-        'Naplánovaný běh nikdo nesleduje — dokud se něco nepokazí, a to bývá ve chvíli, kdy jsi na dovolené. Runbook je jedna stránka v projektu, která odpoví na to, na co se v tu chvíli někdo bude ptát.',
-    },
-    {
-      kind: 'code',
-      text: `# Runbook: logistické dostupnosti
-
-## Co to dělá
-Z exportu listu Logistika připraví divizní soubory pro produkťáky.
-
-## Kdy to běží
-Každé pondělí v 6:00. Trvá to zhruba čtyři minuty.
-
-## Kde je výsledek
-vystupy/Magazín <MĚSÍC> - <divize>.xlsx
-a vedle toho kontrola-<datum>.md
-
-## Jak poznám, že je něco špatně
-- v kontrole nesedí počet řádků vstupu a výstupu
-- chybí některý ze čtyř divizních souborů
-- v kontrole je víc než 20 položek bez dat
-
-## Co dělat, když to spadne
-1. Podívej se, jestli jsou v data/ soubory z aktuálního týdne.
-2. Pusť to ručně: v terminálu ve složce projektu claude -p "..."
-3. Když to spadne i ručně, běh vypni a napiš Petře (logistika, l. 123).
-
-## Jak to vypnout
-Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
-      caption: 'Šest nadpisů. Kratší runbook nikdo nenapíše, delší nikdo nepřečte.',
-    },
-    { kind: 'h', text: 'Co se stane, když' },
-    {
-      kind: 'table',
-      head: ['Situace', 'Co se má stát', 'Jak to zařídit'],
-      rows: [
-        [
-          'Data ten den nepřijdou',
-          'běh se zastaví a napíše to, nic nevyrobí',
-          'zastavovací pravidlo ve skillu: „když v data/ není soubor z tohohle týdne, zastav se“',
-        ],
-        [
-          'Změní se formát vstupu',
-          'běh se zastaví u kontroly sloupců',
-          'krok „ověř sloupce“ hned na začátku skillu',
-        ],
-        [
-          'Běh spadne uprostřed',
-          'nezůstane po něm polovičatý soubor',
-          'skill zapisuje až na konci, ne průběžně',
-        ],
-        [
-          'Nikdo si týden nevšimne, že to neběželo',
-          'to je ten skutečný problém',
-          'notifikace na Stop hooku, nebo se prostě podívej do vystupy/ na datum',
-        ],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Automat, po kterém nezůstane stopa, se pozná pozdě',
-      text:
-        'Nejhorší varianta není běh, který spadne. Je to běh, který měsíc tiše nedělá nic a nikomu to nedojde, protože nikdo nečeká, že by měl něco přijít. Proto ať po každém běhu zůstane soubor s datem — i když se nic nezměnilo.',
-    },
-    {
-      kind: 'task',
-      title: 'Cvičení: pusť to ručně jako automat',
-      intro: 'Ještě to neplánuj. Nejdřív si to zkus.',
-      items: [
-        'Projdi checklist a čestně si odškrtej, co platí.',
-        'Spusť svůj skill jedním příkazem bez rozhovoru.',
-        'Přečti kontrolní protokol a rozhodni se, jestli by se výsledek dal poslat bez otevření souboru.',
-        'Napiš runbook podle šablony — všech šest nadpisů.',
-        'Teprve pak to naplánuj, a to zatím na den, kdy jsi u počítače.',
-      ],
-    },
-  ],
-}
-
 
 const L2_MCP: Lesson = {
   slug: 'mcp-nad-katalogem',
@@ -5811,7 +5709,7 @@ export const COURSES: Course[] = [
         summary: 'Referenční část. Vracej se sem, až narazíš na to, co lekce řeší.',
       },
     ],
-    lessons: [LESSON_AUTOMATIZACE, L2_TABULKY, L2_KONTROLA, L2_POSTAV, LESSON_SKILL, L2_UKAZKA, L2_ROZBOR, L2_PLAN, L2_BEH, L2_EMAIL, L2_CELY_PRIKLAD, L2_FORMULAR, L2_CVICNY, L2_MCP, L2_DESIGN, L2_NAOSTRO],
+    lessons: [LESSON_AUTOMATIZACE, L2_TABULKY, L2_KONTROLA, L2_POSTAV, LESSON_SKILL, L2_UKAZKA, L2_ROZBOR, L2_PLAN, L2_EMAIL, L2_FORMULAR, L2_CVICNY, L2_MCP, L2_DESIGN, L2_NAOSTRO],
     learn: [
       'napsat zadání nad tabulkou, které projde napoprvé',
       'zkontrolovat výstup třemi čísly místo čtení řádek po řádku',
@@ -5822,7 +5720,6 @@ export const COURSES: Course[] = [
       'projít si celý příklad od složky po rozeslané maily a ověřit si, že ti nic nechybí',
       'připojit MCP server nad katalogem dek.cz a ověřit si, že opravdu odpovídá z katalogu',
       'nahradit pinkání e-mailů formulářem a nechat si hlídat termíny',
-      'zkontrolovat dávku faktur tak, aby výsledku šlo věřit',
       'rozjet hotový cvičný projekt a překlopit ho na vlastní dokumenty',
       'projít si design system DEKu ve Storybooku a přidat do něj kompozici z hotových komponent',
     ],

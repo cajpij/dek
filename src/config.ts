@@ -317,7 +317,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Kdo skončí dřív, ať přidá ke skillu kontrolu na konec',
         'Hotovo je, když to projde dvakrát po sobě bez opravy — ne když to vyjde jednou',
         'Laťka pro skill: má sekci „zastav se, když“ a nechá po sobě kontrolní protokol v souboru, ne v chatu',
-        'Kdo chce vidět celou cestu až po rozeslané maily, má v akademii lekci Celý příklad',
+        'Kdo chce vidět celou cestu až po rozeslané maily, má ji v druhé polovině lekce Jak se v projektu nastaví automatizace',
       ],
     },
     {
@@ -328,7 +328,7 @@ export const DEFAULT_CONFIG: RunConfig = {
       who: 'Lektor',
       steps: [
         { title: 'Naplánovat běh na čas za pět minut', min: 3, detail: 'Větou v chatu, ne formulářem — „založ mi úlohu, která se spustí za pět minut" a zadání. Formulář má sedm polí a sál u toho usne.', lessons: ['od-mapy-k-automatu/ziva-ukazka', 'od-mapy-k-automatu/naplanovana-uloha'] },
-        { title: 'Zavřít to a mluvit o něčem jiném', min: 5, detail: 'Zbylé dva schody: hook a běh bez dozoru', lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace', 'od-mapy-k-automatu/nech-to-bezet-bez-sebe'] },
+        { title: 'Zavřít to a mluvit o něčem jiném', min: 5, detail: 'Zbylé dva schody: hook a běh bez dozoru', lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace'] },
         { title: 'Podívat se, co přibylo', min: 2, detail: 'Notifikace, soubor s dnešním datem, a kolegovi ve schránce zpráva — ať to potvrdí nahlas', lessons: ['od-mapy-k-automatu/email-z-automatu'] },
       ],
       notes: [
@@ -340,7 +340,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Úloha na ukázku: spočítat soubory v data/, zapsat do vystupy/ a dát vědět kolegovi z dvojice',
         'Když write tools nejedou, nechat úlohu jen otevřít rozepsaný mail v Outlooku (mailto:) — na plátně to vypadá stejně',
         'Když padne dotaz na e-mail: konektor M365 odesílat umí, ale write tools musí zapnout správce a nejde přes ně poslat příloha — výstup do knihovny, do mailu odkaz',
-        'Odkázat na lekci Nech to běžet bez sebe — checklist, runbook, co když spadne',
+        'Odkázat na lekci Jak se v projektu nastaví automatizace — checklist před plánem, runbook, co když spadne',
       ],
     },
     {
@@ -360,11 +360,9 @@ export const DEFAULT_CONFIG: RunConfig = {
             'claude-a-firemni-data/slovnicek',
             'claude-a-firemni-data/kolik-to-stoji',
             'claude-a-firemni-data/z-coworku-do-claude-code',
-            'od-mapy-k-automatu/cely-priklad-magazin',
             'od-mapy-k-automatu/rozbor-skillu',
             'od-mapy-k-automatu/jak-se-nastavuje-automatizace',
             'od-mapy-k-automatu/naplanovana-uloha',
-            'od-mapy-k-automatu/nech-to-bezet-bez-sebe',
             'od-mapy-k-automatu/email-z-automatu',
             'od-mapy-k-automatu/formular-misto-emailu',
             'od-mapy-k-automatu/cvicny-projekt-faktury',
@@ -378,7 +376,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Říct nahlas, že „nepustila jsem to a tady je proč“ je platná odpověď — nejcennější z celého úkolu',
         'Lekce označené štítkem potom jsou referenční, ať je nečtou dopředu',
         'Neposílat je na všechny — říct jednu podle toho, co kdo dneska stavěl',
-        'Celý příklad je ta hlavní: hotspot 2 od složky až po naplánovaný běh, s vyplněným formulářem úlohy',
+        'Jak se v projektu nastaví automatizace je ta hlavní: pět schodů a v druhé polovině hotspot 2 od složky až po naplánovaný běh, s vyplněným formulářem úlohy',
         'MCP nad katalogem je bonus pro zvědavé — server je v repu, rozjede se třemi příkazy',
         'Lekci Kolik to stojí poslat všem, ne jen jednomu: limit je společný pro chat, Cowork i Claude Code a ptali se na to',
         'Z Coworku do Claude Code je pro většinu sálu — pracují zatím jen v Coworku',
