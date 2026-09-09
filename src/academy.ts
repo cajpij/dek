@@ -25,7 +25,8 @@ export type Block =
         body: string
         code?: string
         /** Snímek obrazovky ke konkrétnímu kroku — soubor leží v public/. */
-        image?: { src: string; alt: string; caption?: string }
+        /** maxWidth: strop v px pro úzké snímky na výšku, ať se neroztahují nad nativní velikost. */
+        image?: { src: string; alt: string; caption?: string; maxWidth?: number }
         /** Odkazy „jak to vypadá" — obrazovky v cizí nápovědě, ke konkrétnímu kroku. */
         links?: { label: string; href: string; note?: string }[]
       }[]
@@ -55,7 +56,7 @@ export type Block =
       caption: string
     }
   /** Snímek cizí obrazovky. Kreslené schéma patří do 'figure', tohle je fotka. */
-  | { kind: 'image'; src: string; alt: string; caption?: string }
+  | { kind: 'image'; src: string; alt: string; caption?: string; maxWidth?: number }
   | { kind: 'checklist'; title: string; items: string[] }
   | { kind: 'task'; title: string; intro: string; items: string[]; hint?: string }
   | { kind: 'video'; title: string; items: VideoRef[] }
@@ -452,6 +453,13 @@ const LESSON_TOKENY: Lesson = {
           body:
             'Příkaz /usage ukáže vyčerpání přídělu a žebříček toho, co ho bere — podagenti, skilly, konektory, naplánované úlohy.',
           code: '/usage',
+          image: {
+            src: 'usage-panel.webp',
+            maxWidth: 399,
+            alt: 'Panel Usage. Nahoře tři pruhy vyčerpání: pětihodinový limit 6 % s obnovou za 2 h 29 min, týdenní přes všechny modely 32 % a týdenní Fable 23 %, obojí s obnovou v neděli ve 12:00. Sekce This session: Cost 32,24 dolaru, API 48 m 32 s, Active 4 m 26 s, Opus 100 %, Haiku 0 %, Cache hit 99 %. Breakdown pro Opus 5: Input 750, Output 2,2k, Cache read 82,4M, Cache write 692,9k. Sekce What is using your limits za posledních 24 hodin: 90 procent běželo nad 150k kontextu, 32 procent pochází ze sezení s podagenty; žebříček prusa MCP 8 %, Claude Browser MCP 7 %, general-purpose Subagent 3 %, skill xlsx 2 %, plugin anthropic-skills 2 %. Dole tip, že delší sezení jsou dražší i s cache.',
+            caption:
+              'Tři pruhy nahoře říkají, kolik zbývá a kdy se to obnoví. Zajímavější je spodek: „ran above 150k context" u 90 % běhů je diagnóza, ne statistika — příděl nebere jedna drahá otázka, ale to, že sezení běží dlouho a každá další zpráva se posílá i s celou historií. Řádek Active 4 m 26 s proti API 48 m 32 s ukazuje totéž z druhé strany.',
+          },
         },
         {
           title: 'Nech si udělat rozbor návyků',

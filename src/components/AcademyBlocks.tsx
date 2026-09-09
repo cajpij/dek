@@ -174,7 +174,7 @@ function Steps({
     title: string
     body: string
     code?: string
-    image?: { src: string; alt: string; caption?: string }
+    image?: { src: string; alt: string; caption?: string; maxWidth?: number }
     links?: { label: string; href: string; note?: string }[]
   }[]
 }) {
@@ -216,7 +216,7 @@ function Steps({
               {step.body}
             </Typography>
             {step.image ? (
-              <Screenshot src={step.image.src} alt={step.image.alt} caption={step.image.caption} />
+              <Screenshot src={step.image.src} alt={step.image.alt} caption={step.image.caption} maxWidth={step.image.maxWidth} />
             ) : null}
             {step.code ? <Code>{step.code}</Code> : null}
             {step.links?.length ? (
@@ -422,7 +422,7 @@ function Links({ title, items }: { title: string; items: { label: string; href: 
  * screenshot v tmavém režimu „svítí“ jako díra ve stránce. Šířka je omezená,
  * ať se u širokého okna nenafoukne přes celý sloupec textu.
  */
-function Screenshot({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+function Screenshot({ src, alt, caption, maxWidth = 720 }: { src: string; alt: string; caption?: string; maxWidth?: number }) {
   return (
     <Box component="figure" sx={{ my: 3, mx: 0 }}>
       <Box
@@ -432,7 +432,7 @@ function Screenshot({ src, alt, caption }: { src: string; alt: string; caption?:
           borderColor: 'divider',
           overflow: 'hidden',
           bgcolor: '#fff',
-          maxWidth: 720,
+          maxWidth,
         }}
       >
         <Box
@@ -640,7 +640,7 @@ export default function BlockView({ block }: { block: Block }) {
       )
 
     case 'image':
-      return <Screenshot src={block.src} alt={block.alt} caption={block.caption} />
+      return <Screenshot src={block.src} alt={block.alt} caption={block.caption} maxWidth={block.maxWidth} />
 
     case 'checklist':
       return <Checklist title={block.title} items={block.items} />
