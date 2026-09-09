@@ -42,7 +42,7 @@ import type { RunConfig } from './types'
 
 /** Vzor, na kterém se ukazuje všechno ostatní. Opakuje se v několika blocích. */
 const FAKTURY_BRIEF =
-  'Faktura přijde e-mailem do sdílené schránky jako PDF. Účetní z ní ručně přepíše šest údajů do ' +
+  'Faktura přijde e-mailem do sdílené schránky jako PDF. Marie z ní ručně přepíše šest údajů do ' +
   'kontrolní tabulky, dohledá odpovídající objednávku v exportu a porovná základ daně. Když nesedí, ' +
   'jde e-mail tam a zpět s dodavatelem nebo se střediskem. Když sedí, faktura jde e-mailem ke schválení ' +
   'vedoucímu střediska, schválení se ručně zapíše zpátky do tabulky a nakonec se zadá do účetního ' +
@@ -62,17 +62,18 @@ export const DEFAULT_CONFIG: RunConfig = {
       min: 10,
       kind: 'talk',
       who: 'Martin',
-      lessons: ['claude-a-firemni-data/program-dne'],
+      lessons: ['claude-a-firemni-data/program-dne', 'claude-a-firemni-data/co-je-automatizace'],
       steps: [
-        { title: 'Co dnes vznikne', min: 3, detail: 'Mapa vlastního procesu a jedna hotová automatizace' },
+        { title: 'Co dnes vznikne', min: 3, detail: 'Složka, kterou si každý postaví sám, a k ní mapa vlastní práce', lessons: ['claude-a-firemni-data/co-je-automatizace'] },
         { title: 'Pět schodů automatizace', min: 5, detail: 'Zadání → pravidlo → skill → hook → běh bez tebe', lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace'] },
         { title: 'Co je předem hotové a co se dnes nestihne', min: 2 },
       ],
       notes: [
         'Ověřit, že mají všichni nainstalovaný Claude Code — instalace je jediná věc, která měla být předem',
         'Složku nastavujeme hned v dalším bloku, tady jen zjistit, kolik lidí ji nemá',
-        'Ukázat schéma pěti schodů z akademie — vrátíme se k němu na konci',
-        'Říct rovnou, kam den směřuje: naplánovaný běh, který doběhne, když u toho nikdo nesedí',
+        'Ukázat schéma pěti schodů z akademie — v 17:45 se podle něj bude stavět',
+        'Říct rovnou pořadí večera: nejdřív hotový vzor, pak si ho každý postaví sám, a teprve pak hledáme totéž ve vlastní práci',
+        'Ukázat obrázek ručně vs. automat z lekce Co je automatizace — je to nejrychlejší způsob, jak říct, o čem večer je',
         'Odkaz na akademii nechat na plátně',
       ],
     },
@@ -112,7 +113,7 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'work',
       who: 'Lektor + asistence',
       brief:
-        'Než začneme cokoli mapovat, musí mít každý na disku složku se svými daty a v ní projekt. ' +
+        'Než začne kdokoli cokoli stavět, musí mít každý na disku složku se svými daty a v ní projekt. ' +
         'Je to jediná část večera, kde se něco nastavuje — a děláme ji na začátku schválně, ' +
         'aby se případný problém našel teď a ne ve chvíli, kdy má člověk stavět.',
       steps: [
@@ -189,41 +190,16 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'work',
       who: 'Lektor + asistence',
       brief:
-        'Vezmi jedno místo ze své mapy — to, kde se přenáší data ručně — a dotáhni ho do skillu, ' +
-        'který má na konci vlastní kontrolu. Ne to nejbolestivější. Ber ten krok, který se dá dokončit.',
+        'Prázdná složka a šest souborů, jeden po druhém — tytéž, co jsou ve staženém vzoru. ' +
+        'Vzor necháme zavřený: kopírováním se to naučit nedá a utekla by právě ta zajímavá část, ' +
+        'totiž místa, kde se Claude začne ptát. Otevře se až na konci, na porovnání.',
       steps: [
-        { title: 'Vybrat krok a připravit si vstup i výsledek z minula', min: 8 },
-        { title: 'Udělat to jednou zadáním a zapisovat si doříkání', min: 15 },
-        { title: 'Doříkání, která platí pořád, přepsat do CLAUDE.md', min: 5, lessons: ['claude-a-firemni-data/projekt-v-claude-code'] },
-        { title: 'Nechat si napsat skill a opravit mu description', min: 10 },
-        { title: 'Spustit na datech z jiného měsíce', min: 7 },
-      ],
-      examples: [
-        {
-          title: 'Kontrola úplnosti faktur',
-          detail:
-            'Vzor: skill kontrola-faktur. Z PDF faktur ve vstup/ šest povinných údajů do evidence podle dodavatele — kde něco chybí, tam skill sám navrhne žádost o doplnění.',
-        },
-        {
-          title: 'Spojení tří zdrojů k položkám',
-          detail:
-            'Ke každé položce dotáhnout min/max, SD CS a zásobu na CS. Kde údaj chybí, nechat prázdno a vypsat čísla těch položek.',
-        },
-        {
-          title: 'Týdenní přehled z exportu',
-          detail:
-            'Z pravidelného exportu udělat přehled, který jinak skládáš ručně. Autodoprava, BI, marketing — každý má svůj.',
-        },
-        {
-          title: 'Vyčištění tabulky do použitelného tvaru',
-          detail:
-            'Sloučené buňky, hlavička na třetím řádku, kódy jako text. Vyčištěná kopie do vystup/, originál se nesahá.',
-        },
-        {
-          title: 'Kontrolní protokol k hotovému výstupu',
-          detail:
-            'Kdo má hotovo dřív: nechat si k výstupu vyrobit kontrolu — počty, součty, vzorek a seznam položek bez dat.',
-        },
+        { title: 'Prázdná složka, v ní vstup/ a data/, otevřít v Claude Code', min: 5 },
+        { title: 'Napsat zadani.md vlastními slovy — šest odpovědí', min: 12 },
+        { title: 'Nechat podle něj složku postavit a zapisovat si otázky', min: 12 },
+        { title: 'Projít, co vzniklo, a vyzkoušet zábranu nad vstup/', min: 8, lessons: ['claude-a-firemni-data/projekt-v-claude-code'] },
+        { title: 'Pustit dvakrát za sebou — podruhé se nemá stát nic', min: 4 },
+        { title: 'Teprve teď otevřít vzor a porovnat', min: 4 },
       ],
       notes: [
         'Nejdelší blok a hlavní důvod, proč tu lidi jsou',
@@ -270,9 +246,10 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'work',
       who: 'Lektor + asistence',
       brief:
-        'Ve dvojicích si navzájem vyzpovídáte kus vlastní práce — takový, kde někde vstupuje e-mail ' +
-        'nebo tabulka a někam něco posíláte dál. Technika je kontextové dotazování: neptej se „jak to ' +
-        'děláš“, ale „ukaž mi, jak jsi to dělala naposledy“. Uklizená verze bez výjimek je k ničemu.',
+        'Hotovou automatizaci jste právě viděli zevnitř. Teď to samé najděte ve své práci: ve ' +
+        'dvojicích si navzájem vyzpovídáte kus agendy, kde někde vstupuje e-mail nebo tabulka a někam ' +
+        'něco posíláte dál. Technika je kontextové dotazování: neptej se „jak to děláš“, ale „ukaž mi, ' +
+        'jak jsi to dělala naposledy“. Uklizená verze bez výjimek je k ničemu.',
       steps: [
         { title: 'Každý si vybere svůj výsek a napíše ho jednou větou', min: 5 },
         { title: 'A se ptá, B popisuje. Nahrávat na telefon.', min: 15 },
@@ -350,7 +327,7 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'qna',
       who: 'Martin',
       steps: [
-        { title: 'Úkol na týden: pustit to naostro', min: 3 },
+        { title: 'Úkol na týden: tentýž postup na vlastní agendě', min: 3, lessons: ['od-mapy-k-automatu/postav-slozku-sam'] },
         {
           title: 'Kam se vracet v akademii',
           min: 2,
@@ -361,6 +338,7 @@ export const DEFAULT_CONFIG: RunConfig = {
             'claude-a-firemni-data/kolik-to-stoji',
             'claude-a-firemni-data/z-coworku-do-claude-code',
             'od-mapy-k-automatu/jak-se-nastavuje-automatizace',
+            'od-mapy-k-automatu/postav-slozku-sam',
             'od-mapy-k-automatu/naplanovana-uloha',
             'od-mapy-k-automatu/formular-misto-emailu',
             'od-mapy-k-automatu/cvicny-projekt-faktury',
@@ -369,8 +347,35 @@ export const DEFAULT_CONFIG: RunConfig = {
           ],
         },
       ],
+      examples: [
+        {
+          title: 'Kontrola úplnosti faktur',
+          detail:
+            'Vzor: skill kontrola-faktur. Z PDF faktur ve vstup/ šest povinných údajů do evidence podle dodavatele — kde něco chybí, tam skill sám navrhne žádost o doplnění.',
+        },
+        {
+          title: 'Spojení tří zdrojů k položkám',
+          detail:
+            'Ke každé položce dotáhnout min/max, SD CS a zásobu na CS. Kde údaj chybí, nechat prázdno a vypsat čísla těch položek.',
+        },
+        {
+          title: 'Týdenní přehled z exportu',
+          detail:
+            'Z pravidelného exportu udělat přehled, který jinak skládáš ručně. Autodoprava, BI, marketing — každý má svůj.',
+        },
+        {
+          title: 'Vyčištění tabulky do použitelného tvaru',
+          detail:
+            'Sloučené buňky, hlavička na třetím řádku, kódy jako text. Vyčištěná kopie do vystup/, originál se nesahá.',
+        },
+        {
+          title: 'Kontrolní protokol k hotovému výstupu',
+          detail:
+            'Kdo má hotovo dřív: nechat si k výstupu vyrobit kontrolu — počty, součty, vzorek a seznam položek bez dat.',
+        },
+      ],
       notes: [
-        'Úkol je jediný: pustit svoji automatizaci na skutečné práci a přinést zpátky, co se stalo',
+        'Úkol je jediný: vzít jedno místo z dnešní mapy a postavit k němu složku stejně jako v sále — a přinést zpátky, co se stalo',
         'Říct nahlas, že „nepustila jsem to a tady je proč“ je platná odpověď — nejcennější z celého úkolu',
         'Lekce označené štítkem potom jsou referenční, ať je nečtou dopředu',
         'Neposílat je na všechny — říct jednu podle toho, co kdo dneska stavěl',
@@ -381,6 +386,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Formulář místo e-mailů dát tomu, kdo čeká na odpovědi od poboček; Cvičný projekt tomu, kdo řeší faktury nebo dodací listy',
         'Cvičný projekt je hotový ke stažení — kdo si po workshopu neví rady, kde začít, ať začne tam',
         'Design system je pro ty, kdo si staví vlastní aplikace a chtějí, aby vypadaly jako DEK',
+        'Pět tvarů níž je menu k domácímu úkolu — kdo neví, co si vzít, ať si vybere ten, který poznává ze své agendy',
         'Kdo dneska nenašel svoji rutinu, není to selhání — dostane Z Coworku do Claude Code a Kolik to stojí, ty platí pro každého',
         'Nahrávky a přepisy z dnešních rozhovorů ať zůstanou v projektech',
       ],
