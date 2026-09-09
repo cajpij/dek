@@ -5,12 +5,18 @@
  * hluboký odkaz zpátky na index.html. Proto je celá adresa v hashi:
  *
  *   #academy                       rozcestník kurzů
+ *   #academy?q=<dotaz>             výsledky hledání
  *   #academy/<kurz>                detail kurzu se sylabem
  *   #academy/<kurz>/<lekce>        stránka lekce
+ *
+ * Dotaz visí za otazníkem schválně: kdyby měl vlastní segment cesty, srazil
+ * by se s kurzem toho jména. Takhle je adresa výsledků sdílitelná a zpátky
+ * v prohlížeči funguje jako všude jinde.
  */
 
 export type AcademyRoute =
   | { view: 'list' }
+  | { view: 'search'; q: string }
   | { view: 'course'; course: string }
   | { view: 'lesson'; course: string; lesson: string }
 
@@ -18,6 +24,10 @@ const PREFIX = '#academy'
 
 export function readAcademyRoute(hash: string = window.location.hash): AcademyRoute {
   const rest = hash.slice(PREFIX.length).replace(/^\//, '')
+  if (rest.startsWith('?')) {
+    const q = new URLSearchParams(rest.slice(1)).get('q') ?? ''
+    return q ? { view: 'search', q } : { view: 'list' }
+  }
   if (!rest) return { view: 'list' }
   const [course, lesson] = rest.split('/').map(decodeURIComponent)
   if (!course) return { view: 'list' }
@@ -27,6 +37,7 @@ export function readAcademyRoute(hash: string = window.location.hash): AcademyRo
 
 export function academyHref(route: AcademyRoute): string {
   if (route.view === 'list') return PREFIX
+  if (route.view === 'search') return `${PREFIX}?q=${encodeURIComponent(route.q)}`
   if (route.view === 'course') return `${PREFIX}/${route.course}`
   return `${PREFIX}/${route.course}/${route.lesson}`
 }

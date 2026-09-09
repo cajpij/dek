@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
 import Divider from '@mui/material/Divider'
 import LinearProgress from '@mui/material/LinearProgress'
+import InputBase from '@mui/material/InputBase'
 import Link from '@mui/material/Link'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
@@ -19,6 +20,7 @@ import {
   type Lesson,
 } from '../academy'
 import { academyHref, goAcademy, readAcademyRoute, type AcademyRoute } from '../lib/academyRoute'
+import { hledej, vyrizni, zvyrazni, type Vysledek } from '../lib/hledani'
 import { useProgress } from '../lib/academyProgress'
 import BlockView from './AcademyBlocks'
 
@@ -62,7 +64,73 @@ function Crumbs({ items }: { items: { label: string; href?: string }[] }) {
   )
 }
 
-function Shell({ children }: { children: React.ReactNode }) {
+/**
+ * Hledání nad celou akademií.
+ *
+ * Sedí v hlavičce, takže je po ruce i uprostřed lekce. Klávesa „/“ do něj
+ * skočí odkudkoli — kdo hledá, obvykle nesahá po myši.
+ */
+function Hledatko({ vychozi }: { vychozi?: string }) {
+  const [q, setQ] = useState(vychozi ?? '')
+  const pole = useRef<HTMLInputElement>(null)
+
+  useEffect(() => setQ(vychozi ?? ''), [vychozi])
+
+  useEffect(() => {
+    const naKlavesu = (e: KeyboardEvent) => {
+      const kam = e.target as HTMLElement | null
+      const pise = kam && (kam.tagName === 'INPUT' || kam.tagName === 'TEXTAREA' || kam.isContentEditable)
+      if (e.key === '/' && !pise && !e.metaKey && !e.ctrlKey) {
+        e.preventDefault()
+        pole.current?.focus()
+      }
+    }
+    window.addEventListener('keydown', naKlavesu)
+    return () => window.removeEventListener('keydown', naKlavesu)
+  }, [])
+
+  return (
+    <Box
+      component="form"
+      role="search"
+      onSubmit={(e: React.FormEvent) => {
+        e.preventDefault()
+        const dotaz = q.trim()
+        if (dotaz) goAcademy({ view: 'search', q: dotaz })
+      }}
+      sx={{ flex: '1 1 auto', maxWidth: 380, minWidth: { xs: 0, sm: 200 } }}
+    >
+      <InputBase
+        inputRef={pole}
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') {
+            setQ('')
+            pole.current?.blur()
+          }
+        }}
+        placeholder="Hledat v akademii…"
+        inputProps={{ 'aria-label': 'Hledat v akademii' }}
+        title="Zkratka: / odkudkoli"
+
+        sx={{
+          width: '100%',
+          px: 1.5,
+          py: 0.5,
+          fontSize: 14,
+          border: 1,
+          borderColor: 'divider',
+          borderRadius: 1.5,
+          bgcolor: 'background.paper',
+          '&:focus-within': { borderColor: 'primary.main' },
+        }}
+      />
+    </Box>
+  )
+}
+
+function Shell({ children, dotaz }: { children: React.ReactNode; dotaz?: string }) {
   return (
     <Box sx={{ minHeight: '100dvh', bgcolor: 'background.default' }}>
       <Link
@@ -108,7 +176,12 @@ function Shell({ children }: { children: React.ReactNode }) {
           }}
         >
           <Wordmark />
-          <Link href="#" underline="hover" sx={{ fontSize: 14, color: 'text.secondary' }}>
+          <Hledatko vychozi={dotaz} />
+          <Link
+            href="#"
+            underline="hover"
+            sx={{ fontSize: 14, color: 'text.secondary', display: { xs: 'none', md: 'block' }, flexShrink: 0 }}
+          >
             Program dne (pro lektora)
           </Link>
         </Box>
@@ -697,6 +770,77 @@ function LessonPage({ course, lesson }: { course: Course; lesson: Lesson }) {
 
 /* ------------------------------------------------------------- rozcestí */
 
+function VysledekRadek({ v, dotaz }: { v: Vysledek; dotaz: string }) {
+  const u = v.ukazka
+  const kusy = u && u.od >= 0 ? zvyrazni(vyrizni(u.text, u.od, u.do), dotaz) : null
+  return (
+    <Box
+      component="a"
+      href={academyHref({ view: 'lesson', course: v.kurz.slug, lesson: v.lekce.slug })}
+      sx={{
+        display: 'block',
+        textDecoration: 'none',
+        color: 'inherit',
+        borderBottom: 1,
+        borderColor: 'divider',
+        py: 2.25,
+        '&:hover': { bgcolor: 'action.hover' },
+      }}
+    >
+      <Typography sx={{ fontSize: 12.5, color: 'text.disabled', letterSpacing: 0.3 }}>
+        {v.kurz.title}
+      </Typography>
+      <Typography sx={{ fontSize: 17, fontWeight: 660, mt: 0.25 }}>{v.lekce.title}</Typography>
+      {kusy && (
+        <Typography sx={{ fontSize: 14, color: 'text.secondary', mt: 0.75, maxWidth: '78ch' }}>
+          <Box component="span" sx={{ color: 'text.disabled', mr: 0.75 }}>
+            {u!.puvod} ·{' '}
+          </Box>
+          {kusy.map((k, i) =>
+            k.shoda ? (
+              <Box
+                key={i}
+                component="mark"
+                sx={{ bgcolor: 'warning.main', color: 'background.paper', px: 0.25, borderRadius: 0.5 }}
+              >
+                {k.text}
+              </Box>
+            ) : (
+              <span key={i}>{k.text}</span>
+            ),
+          )}
+        </Typography>
+      )}
+      <Typography sx={{ fontSize: 12.5, color: 'text.disabled', mt: 0.75 }}>
+        {plural(v.zasahu, 'zmínka', 'zmínky', 'zmínek')} v lekci · {v.lekce.minutes} min
+        {v.lekce.track ? ` · ${v.lekce.track}` : ''}
+      </Typography>
+    </Box>
+  )
+}
+
+function SearchPage({ q }: { q: string }) {
+  const vysledky = useMemo(() => hledej(q), [q])
+  return (
+    <Box sx={{ maxWidth: 1180, mx: 'auto', px: { xs: 2.5, md: 4 }, pt: 4, pb: 8 }}>
+      <Crumbs items={[{ label: 'Kurzy', href: academyHref({ view: 'list' }) }, { label: 'Hledání' }]} />
+      <Typography variant="h4" component="h1" tabIndex={-1} sx={{ mt: 1, outline: 'none' }}>
+        {q}
+      </Typography>
+      <Typography sx={{ color: 'text.secondary', mt: 1 }}>
+        {vysledky.length === 0
+          ? 'Nic. Zkus jedno slovo místo věty — hledá se přes všechny lekce včetně obsahu souborů na rozkliknutí. Na diakritice nezáleží.'
+          : `${plural(vysledky.length, 'lekce', 'lekce', 'lekcí')}, seřazeno podle toho, jak moc se to tam řeší.`}
+      </Typography>
+      <Box sx={{ mt: 3, borderTop: 1, borderColor: 'divider' }}>
+        {vysledky.map((v) => (
+          <VysledekRadek key={`${v.kurz.slug}/${v.lekce.slug}`} v={v} dotaz={q} />
+        ))}
+      </Box>
+    </Box>
+  )
+}
+
 function NotFound({ what }: { what: string }) {
   return (
     <Box sx={{ maxWidth: 700, mx: 'auto', px: 3, py: 10 }}>
@@ -733,9 +877,11 @@ export default function Academy() {
   }, [])
 
   useEffect(() => {
-    const course = route.view === 'list' ? undefined : findCourse(route.course)
+    const course = route.view === 'list' || route.view === 'search' ? undefined : findCourse(route.course)
     const lesson = route.view === 'lesson' && course ? findLesson(course, route.lesson) : undefined
-    document.title = lesson
+    document.title = route.view === 'search'
+      ? `${route.q} · Hledání · DEK Academy`
+      : lesson
       ? `${lesson.title} · DEK Academy`
       : course
         ? `${course.title} · DEK Academy`
@@ -749,6 +895,14 @@ export default function Academy() {
     return (
       <Shell>
         <CourseList />
+      </Shell>
+    )
+  }
+
+  if (route.view === 'search') {
+    return (
+      <Shell dotaz={route.q}>
+        <SearchPage q={route.q} />
       </Shell>
     )
   }
