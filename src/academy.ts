@@ -2857,6 +2857,20 @@ const L2_PLAN: Lesson = {
       text:
         'Technická část posledního schodu: samotné založení úlohy, která se spustí sama. V desktopové aplikaci Claude Code je to záložka Code → Routines.',
     },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Nemusíš to vyklikávat — řekni si o to',
+      text:
+        'Celý formulář níž umí Claude vyplnit sám. Napiš mu v chatu jednou větou, co má úloha dělat a kdy, a založí ji i s rozvrhem — třeba: „Založ mi naplánovanou úlohu kontrola-faktur nad touhle složkou. Ať běží každých 15 minut v pracovní dny od sedmi do šesti a postupuje podle skillu kontrola-faktur." Rozvrhy, které formulář nenabízí, jdou udělat jen takhle: v nabídce je Manual, Hourly, Daily, Weekdays a Weekly, nic mezi tím. Postup níž si projdi hlavně proto, abys věděl, co se ti tím založilo a kde to zkontrolovat.',
+    },
+    {
+      kind: 'image',
+      src: 'rutina-panel.webp',
+      alt: 'Detail naplánované úlohy kontrola-faktur v Claude Code. Popis říká, že sleduje schránku, eviduje nové faktury a u neúplných pošle dodavateli žádost o doplnění. Stav je Active s dalším během dnes ve 13:24. Je vyplněná pracovní složka faktury-kontrola, rozvrh zní přibližně každých 15 minut mezi 7:00 a 17:59 od pondělí do pátku, historie je zatím prázdná. Vpravo nahoře je tlačítko Run now, vedle něj ikony pro úpravu a smazání.',
+      caption:
+        'Takhle vypadá hotová úloha, kterou Claude založil z jedné věty. Rozvrh „každých 15 minut v pracovní dny" ve formuláři na výběr není — vznikl z toho, jak byl popsaný slovy. Historie je prázdná, protože ještě nic neproběhlo; první běh si vyvoláš tlačítkem Run now vpravo nahoře.',
+    },
     { kind: 'h', text: 'Postup' },
     {
       kind: 'steps',
