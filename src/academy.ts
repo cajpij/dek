@@ -188,7 +188,7 @@ const LESSON_PROGRAM: Lesson = {
         ],
         [
           '5. Postavit to',
-          'Jak se v projektu nastaví automatizace, Postav si první automatizaci, Jak napsat skill',
+          'Jak se v projektu nastaví automatizace, Cvičný projekt: kontrola faktur, Jak napsat skill',
           'skill nad vlastní agendou, který má vlastní kontrolu',
         ],
         [
@@ -2534,7 +2534,7 @@ se spustí, když stejnou úlohu zadám jinými slovy.`,
       kind: 'task',
       title: 'Cvičení: napiš první skill z toho, co právě proběhlo',
       intro:
-        'Vezmi úlohu z cvičení Postav si první automatizaci. Nezakládej nový soubor ručně.',
+        'Vezmi úlohu, kterou jsi právě rozběhl na vlastní agendě. Nezakládej nový soubor ručně.',
       items: [
         'Nech Clauda napsat skill promptem výš a přečti si, co vygeneroval.',
         'Zkontroluj description: trefil by se do zadání, jaké napíšeš příště? Když ne, přepiš ho.',
@@ -3326,117 +3326,6 @@ Nenavrhuj řešení.`,
 }
 
 /* ---------------------------------------------- kurz 2: Od mapy k automatu */
-
-const L2_POSTAV: Lesson = {
-  slug: 'postav-si-prvni-automatizaci',
-  module: 'postav',
-  title: 'Postav si první automatizaci',
-  summary:
-    'Vezmi jedno místo z mapy vlastního procesu a dotáhni ho až do skillu, který má vlastní kontrolu.',
-  minutes: 40,
-  kind: 'zadání',
-  track: 'v sále',
-  outcomes: [
-    'vybrat první krok tak, aby se dal dokončit a nikoho nepoložil',
-    'projít cestu zadání → pravidlo → skill na vlastních datech',
-    'přidat ke skillu kontrolu, aby se dal pustit bez dozoru',
-    'poznat, kdy je hotovo',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Máš mapu procesu s označenými místy, kde se data přenáší ručně. Z jednoho z nich teď uděláš skill — tři čtvrtě hodiny a na konci máš něco, co příště spustíš jednou větou.',
-    },
-    { kind: 'h', text: 'Vyber ten správný první krok' },
-    {
-      kind: 'p',
-      text:
-        'Neber ten nejbolestivější, ber ten, který se dá dokončit. První automatizace má hlavně dokázat, že to jde — bolestivé kroky přijdou, až budeš vědět, jak to celé funguje.',
-    },
-    {
-      kind: 'table',
-      head: ['Dobrý první krok', 'Špatný první krok'],
-      rows: [
-        ['Děláš ho aspoň jednou týdně', 'Děláš ho dvakrát do roka'],
-        ['Vstup i výstup je soubor', 'Vstup je něco, co si pamatuješ z hlavy'],
-        ['Chyba se pozná do minuty', 'Chyba se projeví až na pobočce'],
-        ['Nikdo jiný na tom nestojí', 'Čeká na to půlka oddělení'],
-        ['Umíš ho popsat na pět kroků', 'Má patnáct výjimek'],
-      ],
-    },
-    { kind: 'h', text: 'Postup' },
-    {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Nejdřív si to projdi na vzoru',
-          body:
-            'Pusť si celý postup jednou na datech z cvičného projektu s fakturami, kde víš, jak má výsledek vypadat. Až tenhle průchod vyjde, jdi na svoje.',
-        },
-        {
-          title: 'Připrav si materiál',
-          body:
-            'Do data/ dej reálný vstup a do vystupy/ výsledek z minula, ten správný — bez něj nepoznáš, jestli to vyšlo.',
-        },
-        {
-          title: 'Udělej to jednou zadáním',
-          body:
-            'Napiš zadání podle struktury z lekce Zadání nad tabulkou: co vzít, co udělat, kam uložit, co s výjimkou. Všímej si, kolikrát musíš něco doříct.',
-        },
-        {
-          title: 'Porovnej s tím, co je správně',
-          body:
-            'Použij tři otázky z lekce Jak poznáš, že je to špatně — počty, součty, vzorek. Skoro vždycky se tu ukáže první chybějící pravidlo.',
-        },
-        {
-          title: 'Doříkání přepiš do CLAUDE.md',
-          body:
-            'Všechno, co jsi musela vysvětlit a co platí i mimo tuhle úlohu, je pravidlo — do skillu nepatří.',
-        },
-        {
-          title: 'Nech si napsat skill',
-          body:
-            'Hned po správném doběhnutí vlep do chatu zadání níž. Claude z proběhlého rozhovoru vyrobí SKILL.md — přečti ho a uprav description na slova, kterými bys úlohu zadával příště.',
-          code: `Z toho, co jsme teď udělali, napiš skill do .claude/skills/.
-Dej mu jméno podle úlohy a do description napiš, co dělá a kdy se má
-použít — takovými slovy, jaká bych do zadání napsal já. V postupu drž
-pořadí kroků, které jsme prošli, a z míst, kde jsi se ptal nebo kde jsem
-tě opravoval, udělej krok navíc nebo zastavovací pravidlo. Na konec
-přidej sekci "Na co si dát pozor". Pak mi ho ukaž, než ho uložíš.`,
-        },
-        {
-          title: 'Přidej na konec kontrolu',
-          body:
-            'Poslední krok skillu ať vyrobí kontrolní protokol — díky tomu se to jednou bude dát pustit bez tebe.',
-        },
-        {
-          title: 'Spusť to na jiných datech',
-          body:
-            'Na jiném měsíci. Vyjde-li něco jiného než minule, není to chyba skillu, ale chybějící pravidlo. Doplň ho a zkus to znovu.',
-        },
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Hotovo je, když',
-      text:
-        'Skill projde dvakrát po sobě na různých datech bez jediné opravy a kontrolní protokol ti dá dost na to, abys výsledek poslala dál bez otevírání souboru. Nic víc od prvního skillu nechtěj.',
-    },
-    {
-      kind: 'task',
-      title: 'Co si odnést',
-      intro: 'Na konci bloku ukaž ostatním tři věci.',
-      items: [
-        'Jméno skillu a jeho description — jednou větou, co dělá a kdy se použije.',
-        'Kolik doříkání bylo potřeba, než to vyšlo. To číslo je zajímavější než výsledek.',
-        'Jedno pravidlo, které přibylo do CLAUDE.md a které předtím existovalo jenom v tvojí hlavě.',
-      ],
-    },
-  ],
-}
-
 
 const L2_PLAN: Lesson = {
   slug: 'naplanovana-uloha',
@@ -5072,7 +4961,7 @@ export const COURSES: Course[] = [
       },
     ],
     lessons: [
-      LESSON_AUTOMATIZACE, L2_CVICNY, L2_POSTAV, LESSON_SKILL,
+      LESSON_AUTOMATIZACE, L2_CVICNY, LESSON_SKILL,
       L2_ROZBOR, L2_PLAN, L2_EMAIL, L2_NAOSTRO, L2_MINIMUM,
       L2_FORMULAR, L2_MCP, L2_DESIGN,
       LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI,
