@@ -1,8 +1,9 @@
 # Kontrola faktur — cvičný projekt
 
-Postavený podle lekce **Celý příklad: od magazínu po mail produkťákům**,
-jen na jiné agendě: místo rozpadu magazínu se kontrolují faktury.
-Všechna data jsou vymyšlená.
+Postavený podle lekce **Od e-mailu k platbě** z DEK Academy. Sleduje
+schránku s fakturami, vytáhne z PDF šest povinných údajů a eviduje je podle
+dodavatele. Když něco chybí, sám pošle dodavateli e-mail s žádostí o
+doplnění. Nic neschvaluje, nic neplatí. Všechna data jsou vymyšlená.
 
 ## Co v tom je
 
@@ -10,46 +11,52 @@ Všechna data jsou vymyšlená.
 faktury-kontrola/
 ├── CLAUDE.md                 pravidla a slovník, čtou se při každém spuštění
 ├── vstup/                    5 vzorových faktur v PDF — sem se jen čte
-├── data/objednavky.xlsx      seznam schválených objednávek, proti kterému se kontroluje
+├── data/objednavky.xlsx      evidence přijatých faktur, sešit pro každého dodavatele
 ├── vystup/                   vzorový výstup prvního běhu: tabulka + protokol
 ├── .claude/
 │   ├── skills/kontrola-faktur/SKILL.md    postup, který se spustí jednou větou
-│   ├── hooks/chran-vstup.sh              zábrana: do vstup/ se nesmí zapisovat
+│   ├── hooks/chran-vstup.sh              zábrana: do vstup/ smí přibýt jen nová PDF
 │   └── settings.json                     zapojení hooku
-├── rutina.md                 co vyplnit v naplánované úloze na 7:00
+├── rutina.md                 co vyplnit v naplánované úloze a jaký konektor potřebuje
 └── runbook.md                co dělat, když to spadne
 ```
 
-## Co je ve vzorových fakturách schválně špatně
+## Co je na vzorové faktuře schválně špatně
 
-Aby bylo na čem ukázat, že kontrola něco najde:
+Aby bylo na čem ukázat, že kontrola něco najde — podle nových pravidel se
+kontroluje jen úplnost šesti údajů, ne shoda s objednávkou:
 
-| Faktura | Co s ní je |
-| --- | --- |
-| Stavebniny Morava | v pořádku |
-| Nářadí Profi | v pořádku |
-| Elektro Dvořák | **chybí číslo objednávky** |
-| VTS Technik | **částka nesedí** — 33 100 Kč proti schváleným 31 900 Kč |
-| Barvy Piekarová | **objednávka OBJ-9999-0001 není v seznamu schválených** |
+| Faktura | Kompletní | Co (ne)chybí |
+| --- | --- | --- |
+| Stavebniny Morava | ano | — |
+| Nářadí Profi | ano | — |
+| Elektro Dvořák | **ne** | chybí číslo objednávky |
+| VTS Technik | ano | — |
+| Barvy Piekarová | ano | — |
 
-Vzorový výstup v `vystup/` přesně tyhle tři nálezy obsahuje. Když si to
-pustíš znovu, musí vyjít totéž — a to je zároveň způsob, jak si ověřit,
-že projekt funguje.
+Vzorový výstup v `vystup/` přesně tenhle jeden nález obsahuje: sešit pro
+Elektro Dvořák s navrženým textem žádosti o doplnění. Když si to pustíš
+znovu bez připojeného konektoru, vyjde totéž, jen se e-mail jen navrhne
+(žádný konektor nemá odkud ho fyzicky odeslat) — a to je zároveň způsob,
+jak si ověřit, že projekt funguje.
 
 ## Jak to rozjet
 
-1. Otevři tuhle složku v aplikaci Claude: záložka **Code**, prostředí **Local**,
-   **Select folder**, potvrď důvěru.
+1. Otevři tuhle složku v aplikaci Claude: záložka **Code**, prostředí
+   **Local**, **Select folder**, potvrď důvěru.
 2. Napiš: `Postupuj podle skillu kontrola-faktur.`
 3. Porovnej, co vzniklo, se soubory, které ve `vystup/` už jsou.
-4. Teprve pak nastav naplánovanou úlohu podle `rutina.md`.
+4. Teprve pak, chceš-li to napojit na skutečnou schránku, nastav
+   naplánovanou úlohu podle `rutina.md` — tam je i to, co si zařídit u
+   správce Microsoft 365, aby úloha mohla e-mail fakticky odeslat.
 
-## Jak to překlopit na skutečné faktury
+## Jak to přepnout na svoje faktury
 
-1. Přesuň celou složku do nasyncované knihovny ze SharePointu — projekt je
-   obyčejná složka, takže se nic jiného měnit nemusí.
-2. V naplánované úloze přepiš pole **Folder** na nové umístění.
-3. Do `data/objednavky.xlsx` dej skutečný export objednávek.
-4. `vstup/` vyprázdni a nech do ní chodit opravdové faktury.
-5. **Prvních deset faktur si projdi řádek po řádku**, než tomu začneš věřit.
-   Co Claude přečetl špatně, dopiš do CLAUDE.md nebo do skillu.
+1. Přesuň celou složku do nasyncované knihovny nebo si nastav naplánovanou
+   úlohu nad ní — projekt je obyčejná složka, nic jiného se měnit nemusí.
+2. `vstup/` a `data/objednavky.xlsx` vyprázdni, nech je naplnit skutečnými
+   fakturami.
+3. Uprav v `CLAUDE.md` a `rutina.md` adresu schránky a kopii, kam se posílá
+   žádost o doplnění.
+4. **Prvních deset faktur si projdi řádek po řádku**, než tomu začneš věřit.
+   Co Claude přečetl špatně, dopiš do `CLAUDE.md` nebo do skillu.

@@ -4,46 +4,58 @@ Jedna stránka pro chvíli, kdy něco spadne a ty jsi na dovolené.
 
 ## Co to dělá
 
-Každé ráno v 7:00 projde faktury v PDF ve složce `vstup/`, vytáhne z nich
-povinné údaje, porovná je se seznamem schválených objednávek v
-`data/objednavky.xlsx` a uloží do `vystup/` dva soubory: kontrolní tabulku
-a protokol. Když je v protokolu nález, otevře rozepsaný e-mail.
+Každých 15 minut v pracovní dny 7:00–18:00 zkontroluje schránku
+fakturace@dek.cz. Když najde e-mail s novou fakturou v PDF, uloží ji do
+`vstup/`, vytáhne z ní šest povinných údajů (číslo faktury, dodavatel, IČO,
+číslo objednávky, základ daně, splatnost) a zapíše je do
+`data/objednavky.xlsx`, do sešitu podle dodavatele. Když chybí jeden nebo
+dva údaje, sama pošle dodavateli e-mail s žádostí o doplnění (v kopii
+vedouci-uctarny@dek.cz) a zapíše to do `vystup/kontrola-<datum>.xlsx`.
 
-**Neschvaluje faktury a nic neplatí.** Připravuje podklad, rozhoduje člověk.
+**Posílá jen žádost o doplnění chybějícího údaje na faktuře samotné.**
+Neschvaluje faktury, nic neplatí a nezapisuje nic do účetního systému.
 
 ## Kde to běží
 
-Naplánovaná úloha `kontrola-faktur` v aplikaci Claude, záložka Code → Routines,
-typ Local. Běží na počítači, na kterém je nastavená — ne v cloudu.
+Naplánovaná úloha `kontrola-faktur` v aplikaci Claude, záložka Code →
+Routines, typ Local. Běží na počítači, na kterém je nastavená — ne v cloudu.
+Potřebuje konektor na Microsoft 365 se zapnutými write tools (posílání
+pošty); bez nich přečte schránku, ale e-mail jen navrhne, neodešle.
 
 ## Jak poznám, že to dopadlo
 
-Otevři poslední `vystup/protokol-*.md`. První čtyři řádky stačí:
+Otevři poslední `vystup/protokol-*.md` nebo sešit „Přehled" v posledním
+`vystup/kontrola-*.xlsx`:
 
-- **Zpracováno faktur** — kolik jich bylo. Když je tam 0 a ve `vstup/` něco je,
-  úloha nová PDF nenašla; podívej se, jestli mají čitelný text.
-- **Chybí povinný údaj** — faktura, ze které se nedal přečíst některý údaj.
-- **Částka nesedí na objednávku** — tohle řeš první.
-- **Objednávka není v seznamu schválených** — buď je v `data/objednavky.xlsx`
-  starý export, nebo faktura odkazuje na něco, co nikdo neschválil.
+- **Kompletní = ano** — faktura má všech šest údajů, nic se neposílalo.
+- **Kompletní = ne, e-mail odeslán má čas** — chybělo jedno nebo dvě pole,
+  žádost o doplnění odešla. Zkontroluj v Odeslané poště, že to sedí.
+- **„připraveno, čeká na konektor"** — text je navržený, ale konektor
+  nebyl připojený (nebo neměl write tools), takže se fyzicky neodeslal.
+- **„k ruční kontrole" v protokolu** — chybělo moc údajů najednou nebo se
+  PDF nedalo přečíst. Tohle úloha záměrně nechává na člověku.
 
 ## Když to spadne
 
 | Co se stalo | Čím to bývá | Co s tím |
 | --- | --- | --- |
-| Úloha se ráno nespustila | počítač spal nebo byla zavřená aplikace | běh se dohoní po probuzení, jeden. Když to vadí, zapni v nastavení aplikace „Keep computer awake“. |
-| Běh se zastavil na dotazu | úloha běží v režimu, který se ptá | otevři to sezení v postranním panelu, odpověz a u příště dej „always allow“ |
-| U všech faktur „nenalezeno“ | starý nebo přejmenovaný `data/objednavky.xlsx` | dej tam nový export a pusť **Run now** |
-| Protokol hlásí spoustu nesouladů | většinou se změnil vstup, ne že by bylo pět špatných faktur | nic nerozesílej, projdi dvě tři faktury ručně |
-| Ve `vstup/` zmizel soubor | někdo tam uklidil | soubory ve `vstup/` maže jen člověk; úloha do té složky zapisovat nesmí (hlídá to hook) |
+| Úloha se nespustila | počítač spal nebo byla zavřená aplikace | doženou se jen běhy bezprostředně předtím, ne celá historie |
+| Běh se zastavil na dotazu | konektor ztratil přístup, nebo se ptá poprvé | otevři to sezení v postranním panelu, odpověz a dej „always allow" |
+| E-mail se neodeslal, i když chybělo jen jedno pole | write tools na konektoru M365 nejsou zapnuté | napiš správci, ať je zapne (viz `rutina.md`) |
+| Odešel e-mail se špatným textem nebo špatnému dodavateli | PDF se přečetlo špatně (adresa, jméno) | zkontroluj konkrétní fakturu ručně, oprav v `data/objednavky.xlsx`, případně napiš dodavateli omluvu sama |
+| Protokol hlásí spoustu faktur „k ruční kontrole" | většinou se změnil formát PDF, ne že by bylo najednou hodně špatných faktur | projdi dvě tři faktury ručně, než necháš úlohu pokračovat |
+| Ve `vstup/` zmizel soubor | někdo tam uklidil | soubory ve `vstup/` maže jen člověk; úloha do té složky zapisuje jen nové PDF (hlídá to hook) |
 
 ## Komu napsat
 
-Nejdřív tomu, kdo tuhle úlohu nastavil. Když jde o obsah faktur, účetní.
-Když jde o objednávky, ten, kdo je schvaluje.
+Nejdřív tomu, kdo tuhle úlohu nastavil. Když jde o obsah faktur nebo o to,
+co se poslalo dodavateli, účetní. Když jde o přístup ke schránce nebo
+konektor, správce Microsoft 365.
 
 ## Co dělat, až tomu přeroste hlava
 
-Pokud faktur bude denně desítky, přestane se vyplácet číst každou PDF znovu.
-V tu chvíli si nech napsat malý skript, který vytáhne údaje, a Claudovi nech
-jen posouzení nálezů. Do té doby to nech, jak to je — je to čitelnější.
+Pokud faktur bude denně desítky, přestane se vyplácet nechávat každý běh
+kontrolovat celou schránku znovu. V tu chvíli má smysl nechat si napsat
+malý skript, který hlídá jen nové zprávy, a Claudovi nechat posouzení a
+sepsání odpovědi. Do té doby to nech, jak to je — je to čitelnější a snáz
+se to kontroluje.

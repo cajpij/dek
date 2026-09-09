@@ -4,22 +4,23 @@ import { useFigureColors } from '../lib/figureColors'
 /**
  * Celá smyčka od pošty po proplacení — a kde na ní jsou hranice.
  *
- * Pointa obrázku není postup, ale ty čtyři značky. Když si někdo řekne
- * „nechám to celé běžet samo“, tenhle obrázek ukazuje, které tři kroky
- * se bez povolení nebo bez člověka neobejdou — a proč.
+ * Pointa obrázku není postup, ale ty čtyři značky. Kroky 1–3 dělá projekt
+ * sám a bez rizika. Krok 4 taky běží sám, ale je to vědomá výjimka — proto
+ * má vlastní barvu, ne zelenou jako 1–3. Kroky 5–6 zůstávají nepostavené,
+ * a ne proto, že by to nešlo.
  */
 
 type Krok = {
   n: string
   titul: string[]
-  stav: 'hned' | 'spravce' | 'clovek' | 'it'
+  stav: 'hned' | 'spravce' | 'auto' | 'it'
 }
 
 const KROKY: Krok[] = [
-  { n: '1', titul: ['Najít v poště', 'nové faktury'], stav: 'hned' },
-  { n: '2', titul: ['Dostat přílohy', 'do složky'], stav: 'it' },
-  { n: '3', titul: ['Zkontrolovat', 'je'], stav: 'hned' },
-  { n: '4', titul: ['Napsat dodavateli,', 'co chybí'], stav: 'clovek' },
+  { n: '1', titul: ['Najít fakturu', 'v poště'], stav: 'hned' },
+  { n: '2', titul: ['Stáhnout PDF', 'do vstup/'], stav: 'hned' },
+  { n: '3', titul: ['Vytáhnout údaje', 'a zapsat je'], stav: 'hned' },
+  { n: '4', titul: ['Požádat dodavatele', 'o doplnění'], stav: 'auto' },
   { n: '5', titul: ['Ověřit, jestli', 'je uhrazená'], stav: 'it' },
   { n: '6', titul: ['Poslat účtárně', 'k proplacení'], stav: 'spravce' },
 ]
@@ -27,7 +28,7 @@ const KROKY: Krok[] = [
 const POPIS: Record<Krok['stav'], string> = {
   hned: 'jde hned',
   spravce: 'povoluje správce',
-  clovek: 'schvaluje člověk',
+  auto: 'posílá se samo',
   it: 'potřebuje IT',
 }
 
@@ -36,9 +37,11 @@ export default function FakturySmycka() {
   const barva: Record<Krok['stav'], string> = {
     hned: c.success,
     spravce: c.warning,
-    clovek: c.error,
-    // Pozor: ne text.disabled. Tyhle dva kroky jsou sice „ne o Claudovi“,
-    // ale pořád se musí dát přečíst — ztlumená barva je na ztlumený text,
+    // Vědomě jiná barva než 'hned' — technicky taky běží samo, ale je to
+    // výjimka s odůvodněním, ne bezriziková věc jako kroky 1–3.
+    auto: c.info,
+    // Pozor: ne text.disabled. Tenhle krok je sice „ne o Claudovi“, ale
+    // pořád se musí dát přečíst — ztlumená barva je na ztlumený text,
     // ne na štítek, který něco znamená.
     it: c.textSecondary,
   }
@@ -64,7 +67,7 @@ export default function FakturySmycka() {
         component="svg"
         viewBox="0 0 900 400"
         role="img"
-        aria-label="Šest kroků smyčky od pošty po proplacení. Najít v poště nové faktury jde hned. Dostat přílohy do složky potřebuje IT. Zkontrolovat je jde hned — to je tenhle projekt. Napsat dodavateli, co chybí, schvaluje člověk. Ověřit, jestli je faktura uhrazená, potřebuje IT. Poslat účtárně k proplacení povoluje správce. Rovnou samo tedy běží jen hledání v poště a samotná kontrola; zbytek se musí buď domluvit, nebo zůstane na člověku."
+        aria-label="Šest kroků smyčky od pošty po proplacení. Najít fakturu v poště jde hned. Stáhnout PDF do vstup/ jde hned. Vytáhnout údaje a zapsat je jde hned. Požádat dodavatele o doplnění se posílá samo — to je vědomá výjimka, ne výchozí chování. Ověřit, jestli je faktura uhrazená, potřebuje IT. Poslat účtárně k proplacení povoluje správce. Kroky 1 až 4 tedy tenhle projekt zvládá sám; poslední dva zůstávají nepostavené, protože jejich chyba se nevrátí."
         sx={{ display: 'block', width: '100%', minWidth: 700, height: 'auto' }}
       >
         <text x={20} y={22} fontSize={12.5} fontWeight={700} fill="currentColor" opacity={0.6}>
@@ -138,16 +141,16 @@ export default function FakturySmycka() {
           transform={`rotate(90 ${x0 - 4} ${y0 + h + 14})`}
         />
         <text x={20} y={332} fontSize={13} fill={barva.hned} fontWeight={650}>
-          Samo dnes běží jen 1 a 3.
+          Kroky 1–4 dnes běží samy.
         </text>
         <text x={196} y={332} fontSize={13} fill="currentColor" opacity={0.9}>
-          Krok 3 je přesně tenhle cvičný projekt — a je hotový.
+          Krok 4 je vědomá výjimka, ne výchozí nastavení pro cokoli, co jde ven z firmy.
         </text>
         <text x={20} y={358} fontSize={12.5} fill="currentColor" opacity={0.85}>
-          Kroky 2 a 5 nejsou o Claudovi, ale o tom, jestli přílohy někdo dostane do knihovny a jestli máte,
+          Špatná žádost o doplnění je trapná a dá se omluvit. Špatné „k proplacení“ se může doopravdy zaplatit —
         </text>
         <text x={20} y={376} fontSize={12.5} fill="currentColor" opacity={0.85}>
-          kde zjistit úhradu. Krok 4 míří ven z firmy — ten nechte odklikávat, i kdyby technicky šel sám.
+          proto kroky 5 a 6 zůstávají nepostavené, ne proto, že by technicky nešly.
         </text>
       </Box>
     </Box>

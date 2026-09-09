@@ -1,61 +1,88 @@
-# Naplánovaná úloha: ranní kontrola faktur
+# Naplánovaná úloha: kontrola nových faktur v Outlooku
 
-Co vyplnit v aplikaci Claude → záložka **Code** → **Routines** → **New routine** → **Local**.
-Local, ne Cloud: cloudová varianta nevidí složku na tvém disku.
+Co vyplnit v aplikaci Claude → záložka **Code** → **Routines** → **New routine**.
+
+## Než založíš úlohu: konektor na Microsoft 365
+
+Tahle úloha potřebuje konektor Claude na Microsoft 365 se zapnutými **write
+tools** (posílání pošty) — bez nich přečte schránku, ale e-mail neodešle,
+jenom ho navrhne (viz `CLAUDE.md`, „Když projekt běží bez připojené
+schránky"). Write tools zapíná zvlášť správce Microsoft 365, přihlášený
+pracovním účtem; osobní outlook.com nebo hotmail.com nefunguje. Text, který
+mu poslat, je níž v „Co napsat správci".
 
 ## Formulář
 
 | Pole | Co vyplnit |
 | --- | --- |
 | **Name** | `kontrola-faktur` |
-| **Description** | Ranní kontrola nových faktur a mail s výsledkem |
+| **Description** | Sleduje schránku a doplňuje chybějící údaje na fakturách |
 | **Model** | Sonnet — na tuhle práci stačí a je nejúspornější |
-| **Permission mode** | Accept edits — jinak se běh zastaví na dotazu, na který v sedm ráno nikdo neodpoví |
+| **Permission mode** | Accept edits — jinak se běh zastaví na dotazu, na který nikdo neodpoví |
 | **Folder** | složka tohoto projektu (`faktury-kontrola`) |
-| **Schedule** | Daily, 7:00 |
+| **Schedule** | Every 15 minutes, v pracovní dny 7:00–18:00 |
+
+Proč každých 15 minut, ne jednou denně: tahle úloha nahrazuje ruční
+sledování schránky, takže žádost o doplnění má dodavateli přijít brzy po
+faktuře, ne až druhý den. Claude Code nemá skutečné „hned jak přijde
+e-mail" spouštění — nejblíž tomu je časté opakování. Když ti 15 minut
+připadá zbytečně husté, dej to na 30 nebo na hodinu; nic se tím nerozbije,
+jen se prodlouží čas do odpovědi dodavateli.
 
 ## Instructions
 
 ```
 Postupuj podle skillu kontrola-faktur.
 
-Kdyby bylo po poledni, znamená to, že běh je dohnaný ze zameškaného rána —
-i tak ho normálně dokonči, jen do protokolu napiš, kdy doopravdy běžel.
+Zkontroluj schránku fakturace@dek.cz na nové e-maily s PDF přílohou, které
+ještě nejsou uložené ve vstup/. Když nic nového nepřišlo, nic nedělej a
+nic neposílej.
 
-Když ve vstup/ nepřibyla žádná nová faktura, nic nedělej a nic neposílej.
+Ke každé nové faktuře udělej celý postup ze skillu — uložení, vytažení
+šesti údajů, zápis do evidence, a když něco chybí a je toho jeden nebo dva
+údaje, pošli dodavateli žádost o doplnění v kopii vedouci-uctarny@dek.cz.
 
-Když jsi hotový a v protokolu je aspoň jeden nález, otevři mi rozepsaný
-e-mail. Do těla dej shrnutí z protokolu, ne celou tabulku.
-Nic neodesílej — jenom otevři okno, odeslání zůstává na mně.
+Když u některé faktury chybí tři a víc údajů, nebo se PDF nedá přečíst,
+nic neposílej — zapiš to do protokolu k ruční kontrole.
 
-Na Macu:      open "mailto:ucetni@dek.cz?subject=Kontrola%20faktur&body=<SHRNUTI>"
-Ve Windows:   start "" "mailto:ucetni@dek.cz?subject=Kontrola%20faktur&body=<SHRNUTI>"
-
-Když je nesouladů víc než tři, mail neotvírej a napiš mi to do protokolu.
+Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.
 ```
-
-## Konektor na tohle není potřeba
-
-Faktury i objednávky jsou soubory ve složce a mailto jen otevře rozepsanou
-zprávu. Nic se nepřipojuje a na nic se nečeká. Konektor by byl potřeba, až
-bys chtěl mail odesílat bez potvrzení — a to musí povolit správce.
 
 ## Než to necháš běžet samo
 
-1. Po uložení klikni na **Run now** a projdi si, na co se to zeptá — u každého
-   dotazu vyber „always allow“. Další běhy se pak už neptají.
-2. Zkontroluj, co vzniklo ve `vystup/`.
-3. Teprve pak to nech na ránu.
+1. Po uložení klikni na **Run now** a projdi si, na co se to zeptá — u
+   každého dotazu vyber „always allow". Další běhy se pak už neptají.
+2. Zkontroluj vystup/kontrola-<dnešní datum>.xlsx a fakticky i schránku
+   Odeslaná pošta — porovnej, že text, který se poslal, je ten, co jsi
+   čekal.
+3. Teprve pak to nech běžet samo. **První den to nech běžet vedle sebe a
+   po každém běhu se podívej, co se stalo** — je to jediná úloha v tomhle
+   projektu, která bez tvého kliknutí posílá poštu ven z firmy.
 
 ## Co je dobré vědět
 
 - Místní úloha běží, jen když je aplikace Claude spuštěná a počítač vzhůru.
-  Když počítač v sedm spí, běh se přeskočí.
-- Po probuzení nebo startu aplikace se **jeden** zameškaný běh dožene — ten
-  poslední. Když byl počítač vypnutý týden, nespustí se sedm běhů, ale jeden.
-  Proto je v instrukcích ta věta o poledni.
-- Když chceš, aby to běželo i s vypnutým počítačem, není to tenhle typ úlohy.
-  To už musí běžet někde jinde než na tvém stole.
+  Když počítač spí, běh se přeskočí a doženou se jen ty, co chyběly
+  bezprostředně předtím — ne všechny za celou dobu.
+- Kdyby konektor na M365 spadl nebo přišel o přístup, úloha se zastaví na
+  dotazu, ne že by tiše nic nedělala — sleduj to hlavně první týden.
+- Když chceš, aby tohle běželo i s vypnutým počítačem, není to tenhle typ
+  úlohy. To už musí běžet někde jinde než na tvém stole.
+
+## Co napsat správci
+
+```
+Ahoj, potřeboval bych u konektoru Microsoft 365 pro Claude povolit
+write tools (odesílání pošty) pro schránku fakturace@dek.cz.
+
+K čemu to bude: automatická kontrola došlých faktur. Úloha zkontroluje
+šest povinných údajů a dodavateli automaticky pošle žádost o doplnění,
+když jeden nebo dva chybí. Nic k platbě, schválení ani do účetnictví
+se automaticky neposílá — to zůstává na nás.
+
+Čtecí přístup už mám a funguje. Práva se dědí z účtu, takže Claude uvidí
+přesně to, co já, nic navíc.
+```
 
 ## Kam sáhnout, když se něco pokazí
 

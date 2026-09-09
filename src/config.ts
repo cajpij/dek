@@ -284,9 +284,9 @@ export const DEFAULT_CONFIG: RunConfig = {
       ],
       examples: [
         {
-          title: 'Kontrola faktur proti objednávkám',
+          title: 'Kontrola úplnosti faktur',
           detail:
-            'Vzor: skill kontrola-faktur. Z PDF faktur ve vstup/ a exportu objednávek jedna kontrolní tabulka — kde částka sedí a kde ne.',
+            'Vzor: skill kontrola-faktur. Z PDF faktur ve vstup/ šest povinných údajů do evidence podle dodavatele — kde něco chybí, tam skill sám navrhne žádost o doplnění.',
         },
         {
           title: 'Spojení tří zdrojů k položkám',
