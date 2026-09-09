@@ -202,9 +202,11 @@ export const DEFAULT_CONFIG: RunConfig = {
       notes: [
         'Odkaz na zip je v lekci Cvičný projekt: kontrola faktur ke stažení — nechat ho na plátně',
         'Ve vstup/ leží pět faktur a evidence je prázdná, takže první běh má co dělat',
-        'Odeslaná pošta zůstane prázdná — bez konektoru není kam poslat. Říct to dopředu, jinak to sál bere jako chybu.',
+        'Odeslaná pošta zůstane prázdná a do evidence se zapíše „adresa dodavatele nenalezena, k ruční kontrole" — ne kvůli chybějícímu konektoru, ale proto, že vzorové faktury ve vstup/ leží od začátku a nepřišly e-mailem, takže k nim není adresa. Říct to dopředu, jinak to sál bere jako chybu.',
         'Kdo si to nestihne stáhnout, ať kouká sousedovi. Za chvíli se stejně staví od nuly, tohle je jen ukázka cíle.',
         'Nenechat je to číst řádek po řádku — na to je lekce potom. Tady jen pustit a podívat se na výsledek.',
+        'Až padne dotaz „a jak se tam ta faktura dostane doopravdy": jsou dvě cesty. Naplánovaná automatizace čte Doručenou poštu přes M365 konektor a bere e-mail i přílohu rovnou jako text, nic neukládá. Skill sám umí jen PDF, která už ve vstup/ leží — a adresu k nim dohledává v data/prijate-emaily.xlsx, kam ji zapisuje volitelný Power Automate tok.',
+        'Do vstup/ Claude nezapisuje vůbec, ani novou fakturu — zakazuje mu to hook. Přílohy tam ukládá ten tok přes OneDrive, nebo člověk ručně.',
       ],
     },
     {
@@ -253,7 +255,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Tohle není látka, je to důkaz — nechat to zapůsobit a nekomentovat to moc',
         'Zmínit, že u e-mailu je potřeba opatrnost: odeslaná pošta se nevrací',
         'Automatizace na ukázku: spočítat soubory v data/, zapsat do vystup/ a dát vědět kolegovi z dvojice',
-        'Když write tools nejedou, automatizace text jen navrhne a zapíše „připraveno, čeká na konektor" — ukázat to, je to správný konec běhu, ne chyba',
+        'Dva různé důvody, proč se nic neodeslalo, a je dobré je nesplést: chybí write tools → „připraveno, čeká na konektor"; chybí adresa dodavatele → „adresa dodavatele nenalezena, k ruční kontrole". Obojí je správný konec běhu, ne chyba.',
         'Když padne dotaz na e-mail: konektor M365 odesílat umí, ale write tools musí zapnout správce a nejde přes ně poslat příloha — výstup do knihovny, do mailu odkaz',
         'Odkázat na lekci Jak se v projektu nastaví automatizace — checklist před plánem, runbook, co když spadne',
       ],
