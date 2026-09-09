@@ -70,11 +70,40 @@ function Crumbs({ items }: { items: { label: string; href?: string }[] }) {
  * Sedí v hlavičce, takže je po ruce i uprostřed lekce. Klávesa „/“ do něj
  * skočí odkudkoli — kdo hledá, obvykle nesahá po myši.
  */
+/** Od kolika znaků má smysl napovídat — na dvou písmenech sedí půlka akademie. */
+const OD_ZNAKU = 3
+const NAPOVED = 6
+
 function Hledatko({ vychozi }: { vychozi?: string }) {
   const [q, setQ] = useState(vychozi ?? '')
+  const [otevreno, setOtevreno] = useState(false)
+  const [kurzor, setKurzor] = useState(-1)
   const pole = useRef<HTMLInputElement>(null)
 
-  useEffect(() => setQ(vychozi ?? ''), [vychozi])
+  useEffect(() => {
+    setQ(vychozi ?? '')
+    setOtevreno(false)
+  }, [vychozi])
+
+  const dotaz = q.trim()
+  const nalezeno = useMemo(() => (dotaz.length >= OD_ZNAKU ? hledej(dotaz) : []), [dotaz])
+  const napovedy = nalezeno.slice(0, NAPOVED)
+  const vsech = nalezeno.length
+
+  // Kurzor se po každé změně dotazu vrací nahoru, ať Enter nespustí něco,
+  // co uživatel na očích neměl.
+  useEffect(() => setKurzor(-1), [dotaz])
+
+  const ukazat = otevreno && napovedy.length > 0
+  const naVysledky = () => {
+    if (dotaz) goAcademy({ view: 'search', q: dotaz })
+    setOtevreno(false)
+  }
+  const naLekci = (v: Vysledek) => {
+    setOtevreno(false)
+    pole.current?.blur()
+    goAcademy({ view: 'lesson', course: v.kurz.slug, lesson: v.lekce.slug })
+  }
 
   useEffect(() => {
     const naKlavesu = (e: KeyboardEvent) => {
@@ -95,25 +124,52 @@ function Hledatko({ vychozi }: { vychozi?: string }) {
       role="search"
       onSubmit={(e: React.FormEvent) => {
         e.preventDefault()
-        const dotaz = q.trim()
-        if (dotaz) goAcademy({ view: 'search', q: dotaz })
+        if (kurzor >= 0 && napovedy[kurzor]) naLekci(napovedy[kurzor])
+        else naVysledky()
       }}
-      sx={{ flex: '1 1 auto', maxWidth: 380, minWidth: { xs: 0, sm: 200 } }}
+      // Rozbalený seznam se zavírá až po kliknutí, ne na blur — jinak by
+      // odchod fokusu zavřel nabídku dřív, než klik stihne dopadnout.
+      onBlur={(e: React.FocusEvent<HTMLFormElement>) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOtevreno(false)
+      }}
+      sx={{ flex: '1 1 auto', maxWidth: 380, minWidth: { xs: 0, sm: 200 }, position: 'relative' }}
     >
       <InputBase
         inputRef={pole}
         value={q}
-        onChange={(e) => setQ(e.target.value)}
+        onChange={(e) => {
+          setQ(e.target.value)
+          setOtevreno(true)
+        }}
+        onFocus={() => setOtevreno(true)}
         onKeyDown={(e) => {
           if (e.key === 'Escape') {
-            setQ('')
-            pole.current?.blur()
+            if (ukazat) setOtevreno(false)
+            else {
+              setQ('')
+              pole.current?.blur()
+            }
+            return
+          }
+          if (!ukazat) return
+          if (e.key === 'ArrowDown') {
+            e.preventDefault()
+            setKurzor((k) => (k + 1) % napovedy.length)
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault()
+            setKurzor((k) => (k <= 0 ? napovedy.length - 1 : k - 1))
           }
         }}
         placeholder="Hledat v akademii…"
-        inputProps={{ 'aria-label': 'Hledat v akademii' }}
         title="Zkratka: / odkudkoli"
-
+        inputProps={{
+          'aria-label': 'Hledat v akademii',
+          role: 'combobox',
+          'aria-expanded': ukazat,
+          'aria-controls': 'napovedy-hledani',
+          'aria-autocomplete': 'list',
+          'aria-activedescendant': ukazat && kurzor >= 0 ? `napoveda-${kurzor}` : undefined,
+        }}
         sx={{
           width: '100%',
           px: 1.5,
@@ -126,6 +182,75 @@ function Hledatko({ vychozi }: { vychozi?: string }) {
           '&:focus-within': { borderColor: 'primary.main' },
         }}
       />
+      {ukazat && (
+        <Paper
+          id="napovedy-hledani"
+          role="listbox"
+          aria-label="Návrhy"
+          elevation={8}
+          sx={{
+            position: 'absolute',
+            top: 'calc(100% + 6px)',
+            // Kotví se vpravo a smí být širší než pole — v úzkém okně je
+            // pole samo tak úzké, že by se v něm názvy lekcí lámaly po slovech.
+            right: 0,
+            width: 'max(100%, 320px)',
+            maxWidth: '92vw',
+            maxHeight: 'min(62vh, 440px)',
+            overflowY: 'auto',
+            zIndex: 4,
+            border: 1,
+            borderColor: 'divider',
+          }}
+        >
+          {napovedy.map((v, i) => (
+            <Box
+              key={`${v.kurz.slug}/${v.lekce.slug}`}
+              id={`napoveda-${i}`}
+              role="option"
+              aria-selected={i === kurzor}
+              tabIndex={-1}
+              onMouseDown={(e: React.MouseEvent) => e.preventDefault()}
+              onMouseEnter={() => setKurzor(i)}
+              onClick={() => naLekci(v)}
+              sx={{
+                px: 1.75,
+                py: 1.15,
+                cursor: 'pointer',
+                borderBottom: 1,
+                borderColor: 'divider',
+                bgcolor: i === kurzor ? 'action.hover' : 'transparent',
+              }}
+            >
+              <Typography sx={{ fontSize: 14, fontWeight: 640, lineHeight: 1.3 }}>
+                {v.lekce.title}
+              </Typography>
+              <Typography sx={{ fontSize: 12.5, color: 'text.secondary', mt: 0.25 }}>
+                {v.ukazka ? `${v.ukazka.puvod} · ` : ''}
+                {v.kurz.title}
+              </Typography>
+            </Box>
+          ))}
+          <Box
+            role="option"
+            aria-selected={false}
+            tabIndex={-1}
+            onMouseDown={(e: React.MouseEvent) => e.preventDefault()}
+            onClick={naVysledky}
+            sx={{
+              px: 1.75,
+              py: 1,
+              cursor: 'pointer',
+              fontSize: 13,
+              color: 'primary.main',
+              bgcolor: 'action.hover',
+              '&:hover': { textDecoration: 'underline' },
+            }}
+          >
+            Všechny výsledky pro „{dotaz}“ ({plural(vsech, 'lekce', 'lekce', 'lekcí')})
+          </Box>
+        </Paper>
+      )}
     </Box>
   )
 }
