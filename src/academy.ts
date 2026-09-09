@@ -2860,11 +2860,18 @@ const L2_PLAN: Lesson = {
         'Technická část posledního schodu: samotné založení úlohy, která se spustí sama. V desktopové aplikaci Claude Code je to záložka Code → Routines.',
     },
     {
+      kind: 'image',
+      src: 'routines-formular.webp',
+      alt: 'Formulář nové lokální rutiny v Claude Code. Nahoře upozornění, že lokální rutiny běží, jen když je počítač vzhůru a online. Pole Name a Description jsou povinná, pod nimi velké pole Instructions, pod ním řádek s režimem povolování, výběrem složky a volbou Worktree. Sekce Schedule nabízí Manual, Hourly, Daily, Weekdays, Weekly a Custom; vybráno je Daily s časem 09:00 a poznámkou, že rutiny používají několikaminutové náhodné zpoždění. Vpravo dole tlačítka Cancel a Create.',
+      caption:
+        'Prázdný formulář, jak vypadá po Code → Routines → New routine. Šedý text v polích jsou jen příklady, ne předvyplněné hodnoty. Povinné je jméno a popis; bez vybrané složky se úloha neuloží.',
+    },
+    {
       kind: 'note',
       tone: 'ok',
       title: 'Nemusíš to klikat — stačí si o to říct',
       text:
-        'Celý formulář níž umí Claude vyplnit sám. Napiš mu v chatu jednou větou, co má úloha dělat a kdy, a založí ji i s rozvrhem — třeba: „Založ mi naplánovanou úlohu kontrola-faktur nad touhle složkou. Ať běží každých 15 minut v pracovní dny od sedmi do šesti a postupuje podle skillu kontrola-faktur." Rozvrhy, které formulář nenabízí, jdou udělat jen takhle: v nabídce je Manual, Hourly, Daily, Weekdays a Weekly, nic mezi tím. Stejnou cestou vznikne i jednorázová úloha — „připomeň mi zítra ve tři, ať zkontroluju ten běh" se po odpálení sama vypne — a stejně tak se úlohy pozastavují a vypisují: „pozastav mi úlohu kontrola-faktur", „ukaž mi moje naplánované úlohy". Postup níž si projdi hlavně proto, abys věděl, co se ti tím založilo a kde to zkontrolovat.',
+        'Celý formulář níž umí Claude vyplnit sám. Napiš mu v chatu jednou větou, co má úloha dělat a kdy, a založí ji i s rozvrhem — třeba: „Založ mi naplánovanou úlohu kontrola-faktur nad touhle složkou. Ať běží každých 15 minut v pracovní dny od sedmi do šesti a postupuje podle skillu kontrola-faktur." Přednastavené rozvrhy ve formuláři jsou Manual, Hourly, Daily, Weekdays a Weekly; cokoli jiného se skládá pod volbou Custom. Větou v chatu je to ale rychlejší — „každých 15 minut v pracovní dny od sedmi do šesti" si Claude přeloží sám. Stejnou cestou vznikne i jednorázová úloha — „připomeň mi zítra ve tři, ať zkontroluju ten běh" se po odpálení sama vypne — a stejně tak se úlohy pozastavují a vypisují: „pozastav mi úlohu kontrola-faktur", „ukaž mi moje naplánované úlohy". Postup níž si projdi hlavně proto, abys věděl, co se ti tím založilo a kde to zkontrolovat.',
     },
     {
       kind: 'image',
@@ -3003,7 +3010,7 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
         {
           title: 'Nastavit rozvrh',
           body:
-            'Na výběr Manual, Hourly, Daily, Weekdays, Weekly. Cokoli jinačího — každých patnáct minut, prvního v měsíci — řekni Claudovi v chatu vlastními slovy.',
+            'Přednastavené jsou Manual, Hourly, Daily, Weekdays a Weekly, pod Custom se dá složit i jiný. Rychlejší je říct to Claudovi v chatu vlastními slovy — každých patnáct minut, prvního v měsíci.',
         },
         {
           title: 'Hned kliknout na Run now',
