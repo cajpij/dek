@@ -30,7 +30,6 @@ import SubagentContext from './SubagentContext'
 import ContextWindow from './ContextWindow'
 import TriPrikazy from './TriPrikazy'
 import FakturySezeni from './FakturySezeni'
-import UsageReport from './UsageReport'
 import ConnectorSetup from './ConnectorSetup'
 import FolderPermission from './FolderPermission'
 import FakturySmycka from './FakturySmycka'
@@ -612,8 +611,6 @@ export default function BlockView({ block }: { block: Block }) {
               <SubagentContext />
             ) : block.name === 'context-window' ? (
               <ContextWindow />
-            ) : block.name === 'usage-report' ? (
-              <UsageReport />
             ) : block.name === 'connector-setup' ? (
               <ConnectorSetup />
             ) : block.name === 'folder-permission' ? (

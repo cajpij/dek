@@ -46,7 +46,6 @@ export type Block =
         | 'context-growth'
         | 'subagent-context'
         | 'context-window'
-        | 'usage-report'
         | 'connector-setup'
         | 'folder-permission'
         | 'faktury-smycka'
@@ -467,12 +466,6 @@ const LESSON_TOKENY: Lesson = {
           code: '/insights',
         },
       ],
-    },
-    {
-      kind: 'figure',
-      name: 'usage-report',
-      caption:
-        'Panel po /usage. Příděl má tři pruhy. Cache hit 99 % dole ukazuje, že skoro všechno bylo opakované čtení historie, ne nový vstup.',
     },
     {
       kind: 'checklist',
