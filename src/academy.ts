@@ -819,9 +819,26 @@ const LESSON_PROJEKT: Lesson = {
             'V Průzkumníku nebo Finderu, jméno je jedno. Napoprvé ji dej na plochu a pojmenuj třeba slozka: propojení si na ní vyzkoušíš za deset vteřin a nic nerozbiješ. Ostrá složka agendy pak patří dovnitř nasyncované knihovny — na firemních Windows bývá plocha do OneDrivu přesměrovaná, takže i ta může být uvnitř; pozná se to z cesty, kterou Claude ukáže v dalším kroku. Existovat musí dřív, než ji vybereš: Claude si ji sám nevytvoří, protože neví kam.',
         },
         {
-          title: 'Vyber ji přes Select folder a potvrď důvěru',
+          title: 'Vyber ji přes Select folder',
           body:
-            'Ve výběru složek se proklikej tam, kam jsi ji dal, a vyber ji. Claude se hned zeptá „Trust this workspace?" a napíše, že v té složce smí číst, zapisovat i spouštět soubory — pod tím je celá cesta, ať je vidět, kterou složku vlastně potvrzuješ. Přečti si tu cestu a klikni na Trust workspace. Když se okno neobjeví, složku už jsi jednou potvrzoval a Claude si to pamatuje.',
+            'Otevře se obyčejný výběr složek. Proklikej se tam, kam jsi ji dal — přes OneDrive a Plochu, když je na ploše — a vyber ji. Vybíráš složku samotnou, ne soubor v ní.',
+          image: {
+            src: 'vyber-slozky.webp',
+            alt: 'Výběr složky ve Windows. Ve stromu je OneDrive – DEK a.s. a pod ním Dokumenty, MAGAZÍN, Obrázky a Plocha. Plocha je rozbalená a jsou v ní tři složky: Claude code, faktury-kontrola a archiv. Označená je faktury-kontrola.',
+            caption: 'Takhle to vypadá na Windows. Plocha bývá na firemních počítačích uvnitř OneDrivu, takže je i tahle složka nasyncovaná.',
+            maxWidth: 380,
+          },
+        },
+        {
+          title: 'Potvrď důvěru — mělo by vyskočit tohle okno',
+          body:
+            'Claude se zeptá „Trust this workspace?" a napíše, že v té složce smí číst, zapisovat i spouštět soubory. Pod tím je celá cesta — přečti si ji, je to jediné místo, kde se dá ověřit, kterou složku vlastně potvrzuješ. Pak klikni na Trust workspace. Když se okno vůbec neobjeví, tuhle složku už jsi jednou potvrzoval a Claude si to pamatuje.',
+          image: {
+            src: 'trust-workspace.webp',
+            alt: 'Dialog Trust this workspace? v aplikaci Claude. Píše se v něm, že Claude Code smí v této složce číst, zapisovat i spouštět soubory, a že se má pokračovat jen u složky, které člověk věří. Pod tím je celá cesta ke složce. Dole je řádek Execution allowed by s hodnotou tečka claude lomítko settings tečka json a tlačítka Cancel a Trust workspace.',
+            caption: 'Řádek „Execution allowed by" se objeví jen tehdy, když ve složce leží .claude/settings.json — tedy nastavení, které samo něco spouští. U staženého cvičného projektu je to zábrana nad vstup/ a je to schválně; u složky odjinud je to důvod se do toho souboru podívat, než potvrdíš.',
+            maxWidth: 480,
+          },
         },
       ],
     },
