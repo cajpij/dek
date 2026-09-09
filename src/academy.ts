@@ -4194,6 +4194,13 @@ const L2_CVICNY: Lesson = {
         'Nejrychlejší způsob, jak pochopit, o čem tahle lekce je. Vlevo jak agenda vypadala, když ji Marie dělala ručně, vpravo co z ní převzala hotová úloha. Nad řezem tři kroky, které dělá sama. Pod ním tři, které zatím dělá člověk — u dvou z nich je modře napsaný další schod, na který se dají posunout. Jen ten poslední, schválení a platba, se posouvat nebude, a to je rozhodnutí, ne nedodělek.',
     },
     {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Proč zrovna faktury',
+      text:
+        'Faktury jsou dobrá agenda na cvičení, protože výsledek se dá jasně ověřit — buď to najde tu jednu schválně neúplnou fakturu, nebo ne. Kostru (složka s pravidly, skill, zábrana, kontrolní protokol, naplánovaný běh) jste v akademii viděli pořád stejnou — tohle je verze, kterou si stáhneš a rovnou spustíš.',
+    },
+    {
       kind: 'figure',
       name: 'prvni-beh',
       caption:
@@ -4291,13 +4298,6 @@ ať se v tom vyzná i někdo, kdo u toho nebyl.`,
       title: 'Konektor je potřeba, jen aby žádost doopravdy odešla',
       text:
         'Základní běh — přečíst faktury ve vstup/, vytáhnout z nich údaje, zapsat je do evidence a navrhnout odpověď — nic nepřipojuje, Claude si to bere přímo z disku. Jakmile má chybějící údaj poslat dodavateli doopravdy, potřebuje konektor na Microsoft 365 se zapnutými write tools — bez něj text jen navrhne a do sloupce „Žádost odeslána" v evidenci zapíše „připraveno, čeká na konektor". Zapojení konektoru je popsané v rutina.md, včetně textu, který poslat správci.',
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Proč zrovna faktury',
-      text:
-        'Faktury jsou dobrá agenda na cvičení, protože výsledek se dá jasně ověřit — buď to najde tu jednu schválně neúplnou fakturu, nebo ne. Kostru (složka s pravidly, skill, zábrana, kontrolní protokol, naplánovaný běh) jste v akademii viděli pořád stejnou — tohle je verze, kterou si stáhneš a rovnou spustíš.',
     },
     { kind: 'h', text: '1. Stáhni si to' },
     {
