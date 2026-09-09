@@ -337,7 +337,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Tohle není látka, je to důkaz — nechat to zapůsobit a nekomentovat to moc',
         'Zmínit, že u e-mailu je potřeba opatrnost: odeslaná pošta se nevrací',
         'Úloha na ukázku: spočítat soubory v data/, zapsat do vystupy/ a dát vědět kolegovi z dvojice',
-        'Když write tools nejedou, nechat úlohu jen otevřít rozepsaný mail v Outlooku (mailto:) — na plátně to vypadá stejně',
+        'Když write tools nejedou, úloha text jen navrhne a zapíše „připraveno, čeká na konektor" — ukázat to, je to správný konec běhu, ne chyba',
         'Když padne dotaz na e-mail: konektor M365 odesílat umí, ale write tools musí zapnout správce a nejde přes ně poslat příloha — výstup do knihovny, do mailu odkaz',
         'Odkázat na lekci Jak se v projektu nastaví automatizace — checklist před plánem, runbook, co když spadne',
       ],

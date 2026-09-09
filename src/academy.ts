@@ -423,9 +423,9 @@ const LESSON_TOKENY: Lesson = {
 - Když chybí sloupec, napiš to a zastav se. Nedopočítávej.
 
 # ⬇ TOHLE UŽ NE — patří do skillu, ne sem
-# ## Jak porovnat fakturu s objednávkou
-# 1. Najdi v data/ nejnovější export…
-# 2. Ověř sloupce Číslo objednávky, Základ daně…
+# ## Jak vytáhnout údaje z PDF
+# 1. Otevři fakturu a najdi číslo faktury…
+# 2. Základ daně ber bez DPH, ne částku s DPH…
 # 3. Pro každou fakturu ulož řádek…`,
         },
         {
@@ -912,18 +912,20 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
       text: `# Kontrola faktur
 
 ## Slovník
-- faktura = PDF od dodavatele
-- objednávka = řádek ve schváleném seznamu, na který se faktura odkazuje
-- základ daně = částka bez DPH; kontroluje se právě ta, ne částka s DPH
+- faktura = PDF příloha e-mailu od dodavatele
+- šest povinných údajů = číslo faktury, dodavatel, IČO, číslo objednávky,
+  základ daně (částka bez DPH), splatnost
+- kompletní faktura = má všech šest údajů čitelných
 
 ## Kde jsou data
-- data/ — faktury a seznam objednávek, vždy nejnovější podle data v názvu
-- vystupy/ — sem ukládej všechno, co vytvoříš
+- vstup/ — uložené PDF faktur. Sem se jen čte.
+- data/objednavky.xlsx — evidence, sešit pro každého dodavatele
+- vystup/ — kontrola-<RRRR-MM-DD>.xlsx a protokol, jen dny s nálezem
 
 ## Pravidla
-- Nikdy nepřepisuj soubory v data/. Výsledek ulož jako nový soubor do vystupy/.
-- Názvy výstupů: kontrola-<RRRR-MM-DD>.xlsx
-- Když chybí údaj, nech pole prázdné a napiš to — nedomýšlej si ho.`,
+- Do vstup/ nikdy nezapisuj nic jiného než nově staženou fakturu.
+- Když údaj na faktuře není, nech pole prázdné. Nic nedomýšlej.
+- Fakturu neschvaluj a nezadávej k platbě. To zůstává na člověku.`,
       caption: 'Takhle vypadá CLAUDE.md, který dává smysl. Drž ho pod dvěma sty řádky, piš konkrétně.',
     },
     {
@@ -951,14 +953,14 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
 
 ---
 name: kontrola-faktur
-description: Projde faktury ve složce, vytáhne z nich povinné údaje
-  a porovná je se seznamem schválených objednávek. Použij, když přibyly
+description: Uloží příchozí faktury v PDF, vytáhne z nich šest povinných
+  údajů a zapíše je do evidence podle dodavatele. Použij, když přibyly
   nové faktury nebo když se ptám, co je k vyřízení.
 ---
 
-1. Najdi v data/ faktury, které ještě nemají řádek v poslední kontrole.
-2. Z každé vytáhni číslo faktury, dodavatele, číslo objednávky a částku.
-3. Porovnej se seznamem objednávek a ulož výsledek do vystupy/.
+1. Najdi faktury, které ještě nejsou uložené ve vstup/, a ulož je tam.
+2. Z každé vytáhni šest údajů. Co na faktuře není, nech prázdné.
+3. Zapiš je do data/objednavky.xlsx do sešitu podle dodavatele.
 ...`,
       caption: 'Řádek description rozhoduje, kdy se skill sám nabídne — piš do něj slova, která se běžně říkají v zadání.',
     },
@@ -1007,7 +1009,7 @@ description: Projde faktury ve složce, vytáhne z nich povinné údaje
     {
       kind: 'p',
       text:
-        'Takhle to vypadá u agendy, kterou v akademii rozebíráme do hloubky — kontrola faktur. Projekt přečte PDF faktury, porovná je se schválenými objednávkami a připraví podklad ke schválení; neschvaluje a neplatí, to zůstává na člověku. Stáhneš si ho hotový v lekci Cvičný projekt: kontrola faktur — tady je jen vidět, z čeho se skládá.',
+        'Takhle to vypadá u agendy, kterou v akademii rozebíráme do hloubky — kontrola faktur. Projekt uloží příchozí PDF faktury, vytáhne z nich šest povinných údajů a zapíše je do evidence podle dodavatele; u neúplných napíše dodavateli o doplnění. Neschvaluje a neplatí, to zůstává na člověku. Stáhneš si ho hotový v lekci Cvičný projekt: kontrola faktur — tady je jen vidět, z čeho se skládá.',
     },
     {
       kind: 'code',
@@ -1033,29 +1035,70 @@ description: Projde faktury ve složce, vytáhne z nich povinné údaje
       kind: 'code',
       text: `# Kontrola faktur
 
-Cvičný projekt z workshopu DEK Academy. Každé ráno projde faktury, které
-přes noc přibyly ve vstup/, srovná je se seznamem schválených objednávek
-a připraví podklad ke schválení. Neschvaluje a neplatí — to dělá člověk.
+Cvičný projekt z workshopu DEK Academy. Sleduje schránku fakturace@dek.cz.
+Když přijde e-mail s fakturou v PDF, uloží ji, vytáhne z ní šest povinných
+údajů a zapíše je do evidence podle dodavatele. Když některý údaj chybí, sám
+pošle dodavateli e-mail s žádostí o doplnění.
+
+**Posílá poštu bez potvrzení — ale jenom žádost o doplnění chybějícího údaje,
+nikdy nic k platbě.** Neschvaluje faktury, nezadává je k platbě a nepíše nic
+do účetního systému. To zůstává na člověku.
 
 ## Slovník
-- faktura = PDF od dodavatele ve složce vstup/
-- objednávka = řádek v data/objednavky.xlsx, na který se faktura odkazuje
-- základ daně = částka bez DPH; kontroluje se právě ta, ne částka s DPH
-- protokol = krátký soubor na konci běhu; z něj poznám výsledek bez otevírání faktur
+- faktura = PDF příloha e-mailu, který přijde do schránky fakturace@dek.cz
+- šest povinných údajů = číslo faktury, dodavatel, IČO dodavatele, číslo
+  objednávky, základ daně (částka bez DPH), splatnost
+- IČO = vždycky IČO dodavatele. IČO odběratele (DEK a.s.) je na faktuře taky
+  a nepočítá se — když je u dodavatele jen jméno a adresa, údaj chybí.
+- kompletní faktura = má všech šest údajů čitelných
+- evidence = data/objednavky.xlsx, jeden sešit pro každého dodavatele
 
 ## Kde jsou data
-- vstup/ — faktury v PDF. Sem se jen čte.
-- data/objednavky.xlsx — schválené objednávky: číslo, dodavatel, částka, středisko
-- vystup/ — kontrolní tabulka a protokol, jeden pár souborů na každý běh
+- vstup/ — uložené PDF faktur. Sem se jen čte, nikdy nepřepisuje. Přibýt smí
+  jen nově stažená faktura, nic jiného (hlídá to hook chran-vstup.sh).
+- data/objednavky.xlsx — evidence přijatých faktur, sešit pro každého
+  dodavatele. Sloupce: Soubor / Datum přijetí / Číslo faktury / IČO / Číslo
+  objednávky / Základ daně / Splatnost / Kompletní / Žádost odeslána.
+  Nekontroluje se proti schváleným objednávkám, jen se eviduje, co přišlo,
+  jestli je to kompletní a jestli se u toho dodavatele o doplnění požádalo.
+- vystup/kontrola-<RRRR-MM-DD>.xlsx — jen faktury, kterým ten den něco
+  chybělo: sešit „Přehled" se stavem všech faktur toho dne a pak sešit
+  pro každého dodavatele s navrženým textem a časem odeslání.
+- vystup/protokol-<RRRR-MM-DD>.md — krátký zápis běhu: co se ten den
+  zkontrolovalo, co chybělo, komu se psalo a co zůstalo k ruční kontrole.
 
 ## Pravidla
-- Do vstup/ nikdy nezapisuj, nic v ní nepřejmenovávej ani nemaž. Originály jsou důkaz.
-- Když údaj ve faktuře není, nech pole prázdné a napiš ho do sloupce CHYBÍ. Nedomýšlej si.
-- Prázdno není nula. Chybějící částku nikdy nenahrazuj nulou ani odhadem z jiného pole.
-- Porovnávej vždy základ daně proti schválené částce, ne celkovou částku s DPH.
-- Názvy výstupů: kontrola-<RRRR-MM-DD>.xlsx a protokol-<RRRR-MM-DD>.md
-- Faktury neschvaluj, neposílej do účetnictví a nezadávej k platbě. Ani když je všechno v pořádku.
-- Když je nesouladů víc než tři, nic nerozesílej a napiš mi to.`,
+- Do vstup/ nikdy nezapisuj nic jiného než nově staženou fakturu. Nic v ní
+  nepřejmenovávej ani nemaž — originály jsou důkaz.
+- Když údaj ve faktuře není nebo se nedá přečíst, nech pole v evidenci
+  prázdné. Nic nedomýšlej a nic nedopočítávej.
+- Jméno dodavatele do e-mailu i do názvu sešitu ber přesně tak, jak je
+  napsané na faktuře.
+- E-mail s žádostí o doplnění posílej jen na adresu, ze které faktura
+  přišla, a vždy v kopii vedouci-uctarny@dek.cz.
+- Text, který odejde dodavateli, musí být přesně ten, co je zapsaný jako
+  navržená odpověď v kontrola-<RRRR-MM-DD>.xlsx.
+- Čas odeslání zapiš do kontrola-<RRRR-MM-DD>.xlsx (do sešitu dodavatele i
+  do „Přehledu") a do sloupce „Žádost odeslána" v data/objednavky.xlsx. Bez
+  připojeného konektoru napiš na všechna tři místa „připraveno, čeká na
+  konektor".
+- E-mail posílej jen tehdy, když chybí jeden nebo dva ze šesti údajů. Když
+  jich chybí tři a víc, nebo se z PDF nedá přečíst text vůbec, nic
+  neposílej — napiš to do protokolu a řekni mi to. Tolik chybějících údajů
+  většinou neznamená špatnou fakturu, ale že se nepodařilo PDF správně
+  přečíst, a to se nemá posílat dodavateli jako naše chyba.
+- Nikdy neposílej e-mail, který se týká platby, schválení nebo účetnictví.
+  Jediný důvod k automatickému e-mailu je žádost o doplnění chybějícího
+  údaje na faktuře samotné.
+- Nikdy neschvaluj fakturu, nezadávej ji k platbě a nezapisuj nic do
+  účetního systému.
+
+## Když projekt běží bez připojené schránky
+V cvičné podobě (žádný konektor na Microsoft 365) skill zpracuje, co už
+leží ve vstup/, a e-mail jen navrhne — nemá odkud ho fyzicky odeslat. Jakmile
+je M365 konektor připojený a má write tools, běží to nad živou schránkou a
+navržený text se doopravdy odešle. Postup je v obou případech stejný, mění
+se jen to, odkud faktura přišla a jestli má skill k dispozici odeslání.`,
       caption: 'Celý CLAUDE.md téhle agendy, doslova — je to ten samý soubor, který je v cvičném projektu ke stažení. Většina řádků vznikla tak, že se něco pokazilo a příště se to nemělo opakovat.',
     },
     {
@@ -1077,7 +1120,7 @@ a připraví podklad ke schválení. Neschvaluje a neplatí — to dělá člov�
       rows: [
         [
           '„Zkontroluj mi ty faktury.“',
-          '„Projdi PDF ve vstup/, porovnej je se schválenými objednávkami v data/objednavky.xlsx a ulož výsledek do vystup/.“',
+          '„Projdi PDF ve vstup/, z každé vytáhni šest povinných údajů a zapiš je do data/objednavky.xlsx do sešitu podle dodavatele.“',
           'Pojmenuj vstup, operaci i místo výsledku — jinak hádá všechno tři.',
         ],
         [
@@ -1087,7 +1130,7 @@ a připraví podklad ke schválení. Neschvaluje a neplatí — to dělá člov�
         ],
         [
           '„Doplň, co ve faktuře chybí.“',
-          '„Kde údaj chybí, nech pole prázdné a napiš ho do sloupce CHYBÍ.“',
+          '„Co na faktuře není, nech prázdné a nic nedomýšlej — sloupec Kompletní pak řekne ne.“',
           'Nechceš odhad tam, kde má být otazník.',
         ],
         [
@@ -1787,19 +1830,121 @@ se jen to, odkud faktura přišla a jestli má skill k dispozici odeslání.`,
 
 ---
 name: kontrola-faktur
-description: Projde faktury v PDF ve složce vstup/ a porovná je se
-  seznamem schválených objednávek. Použij, když přibyly nové faktury.
+description: Ukládá příchozí faktury v PDF, vytáhne z nich šest povinných
+  údajů a zapíše je do evidence podle dodavatele. Použij, když se má
+  zkontrolovat schránka na nové faktury.
 ---
 
-1. Najdi ve vstup/ faktury, které ještě nemají řádek v poslední kontrole.
-2. Z každé vytáhni číslo faktury, dodavatele, číslo objednávky a základ daně.
-   Co ve faktuře není, nech prázdné.
-3. Ke každé najdi v data/objednavky.xlsx řádek se stejným číslem objednávky
-   a porovnej základ daně se schválenou částkou.
-4. Ulož výsledek do vystup/kontrola-<RRRR-MM-DD>.xlsx.
-5. Na konci vypiš počet zpracovaných faktur a seznam těch,
-   u kterých něco nesedělo nebo chybělo.`,
+1. Najdi faktury, které ještě nejsou uložené ve vstup/, a ulož je tam.
+2. Z každé vytáhni šest údajů: číslo faktury, dodavatele, IČO dodavatele,
+   číslo objednávky, základ daně a splatnost. Co na faktuře není, nech prázdné.
+3. Zapiš je do data/objednavky.xlsx do sešitu pojmenovaného jménem dodavatele.
+4. Když je vyplněných všech šest, skonči. Nic se neposílá.
+5. Když chybí jeden nebo dva údaje, zapiš to do
+   vystup/kontrola-<RRRR-MM-DD>.xlsx i s návrhem odpovědi dodavateli.
+6. Když chybí tři a víc, neposílej nic — jde to k ruční kontrole.`,
       caption: 'Řádek description rozhoduje o tom, kdy si skill Claude vybere sám. Piš do něj i slova, která do zadání píšeš ty.',
+    },
+    {
+      kind: 'soubor',
+      nazev: 'SKILL.md',
+      popis: 'Ta zkrácená ukázka nahoře v úplné podobě: rozcestí podle počtu chybějících údajů, šablona e-mailu a seznam situací, kdy se nemá poslat nic.',
+      obsah: `---
+name: kontrola-faktur
+description: Sleduje schránku fakturace@dek.cz (přes M365) nebo zpracuje, co
+  leží ve vstup/, ukládá příchozí faktury v PDF, vytáhne z nich šest povinných
+  údajů a zapíše je do evidence podle dodavatele. Když něco chybí, sám pošle
+  dodavateli e-mail s žádostí o doplnění. Použij, když se má zkontrolovat
+  schránka na nové faktury, nebo když se ptám, co je s fakturami k vyřízení.
+---
+
+# Kontrola faktur
+
+## Kdy to spustit
+Při každém běhu naplánované úlohy, nebo kdykoli se řekne „zkontroluj nové
+faktury". Je-li připojený konektor na Microsoft 365, podívej se do schránky
+fakturace@dek.cz na e-maily s PDF přílohou, které ještě nejsou uložené ve
+vstup/. Bez konektoru (třeba při prvním spuštění cvičného projektu) zpracuj
+místo toho PDF, která už ve vstup/ leží a která ještě nemají řádek v evidenci
+— postup je od kroku 2 dál stejný, jen se u odeslání e-mailu jen navrhne text
+(viz krok 6c). Když nic nového nepřišlo, nic nedělej a napiš to.
+
+## Postup pro každou novou fakturu
+
+1. Je-li faktura z e-mailu, ulož PDF přílohu do vstup/ jako
+   \`<RRRR-MM-DD>_<dodavatel>.pdf\` (datum přijetí e-mailu, dodavatele zkrať
+   na jedno slovo bez diakritiky; při shodě přidej \`-2\`, \`-3\`). Faktury, které
+   už ve vstup/ jsou, znovu neukládej.
+2. Z PDF vytáhni šest údajů: číslo faktury, dodavatele (přesně podle
+   faktury), IČO dodavatele, číslo objednávky, základ daně (částku bez DPH —
+   ne částku s DPH) a datum splatnosti. Na faktuře bývají IČO dvě: dodavatele
+   a odběratele (DEK a.s., 27636801). Ber jen to dodavatelovo — když je
+   u dodavatele uvedené jen jméno a adresa, IČO chybí, i kdyby na faktuře
+   jinde nějaké bylo.
+3. Co se nepodaří přečíst, nech prázdné. Nic nedomýšlej.
+4. Najdi v data/objednavky.xlsx sešit se jménem dodavatele; když neexistuje,
+   založ ho s hlavičkou Soubor / Datum přijetí / Číslo faktury / IČO / Číslo
+   objednávky / Základ daně / Splatnost / Kompletní / Žádost odeslána. Přidej
+   řádek s dnešní fakturou. Kompletní = ano, když je vyplněných všech šest
+   údajů, jinak ne. Sloupec „Žádost odeslána" zatím nech prázdný — vyplní se
+   až v kroku 6.
+5. Když je faktura kompletní, tady skončit — nic se neposílá.
+6. Když něco chybí a chybí jen jeden nebo dva údaje:
+   a. Otevři (nebo založ) vystup/kontrola-<RRRR-MM-DD>.xlsx s prvním sešitem
+      „Přehled" (Soubor / Dodavatel / Kompletní / Chybí / E-mail odeslán) a
+      dál sešitem pro každého dodavatele, kterému toho dne něco chybělo
+      (Soubor / Číslo faktury / Chybí / Navržená odpověď / E-mail odeslán).
+      Sešit pojmenuj jménem dodavatele přesně tak, jak je na faktuře.
+   b. Do sešitu dodavatele napiš, který údaj chybí, a navrhni text podle
+      šablony níž.
+   c. Je-li konektor na M365 se zapnutými write tools připojený, pošli ten
+      text z kontrola-<RRRR-MM-DD>.xlsx jako nový e-mail na adresu, ze které
+      faktura přišla, v kopii vedouci-uctarny@dek.cz. Text neměň mezi tím, co
+      je v sešitu, a tím, co odejde — v sešitu musí být přesně to, co
+      dodavatel dostal. Bez připojeného konektoru e-mail neodesílej a nech
+      text tak, jak je navržený; nehledej jinou cestu, jak poštu odeslat.
+      Předmět v obou případech: „Doplnění faktury <číslo faktury>".
+   d. Datum a čas odeslání zapiš na tři místa: do řádku v sešitu dodavatele,
+      do sešitu „Přehled" (obojí v kontrola-<RRRR-MM-DD>.xlsx) a do sloupce
+      „Žádost odeslána" v data/objednavky.xlsx, aby bylo i v evidenci vidět,
+      že se o doplnění už požádalo. Bez konektoru napiš na všechna tři místa
+      „připraveno, čeká na konektor".
+7. Když chybí tři a víc údajů, nebo se z PDF nedal přečíst text vůbec:
+   nic neposílej. Zapiš to do protokolu jako „k ruční kontrole" a řekni mi
+   to — je pravděpodobnější, že se PDF nepodařilo přečíst, než že je špatná
+   faktura, a to není důvod psát dodavateli.
+8. Na konec dne (nebo po každé faktuře) připiš řádek do
+   vystup/protokol-<RRRR-MM-DD>.md: soubor, dodavatel, kompletní ano/ne,
+   co chybělo, jestli se poslal e-mail (nebo jen navrhl) a kdy.
+
+## Šablona e-mailu při chybějícím údaji
+
+\`\`\`
+Předmět: Doplnění faktury <číslo faktury>
+
+Dobrý den, <dodavatel>,
+
+děkujeme za zaslanou fakturu. Při kontrole naším účetním oddělením jsme
+nenalezli <chybějící údaj/e>, které potřebujeme mít na faktuře. Prosíme
+o doplnění a opětovné zaslání faktury zpět.
+
+S pozdravem,
+Účtárna DEK
+\`\`\`
+
+Jméno dodavatele v oslovení ber přesně tak, jak je napsané na faktuře.
+Když chybí víc než jeden údaj, vyjmenuj je („IČO a číslo objednávky").
+
+## Kdy se zastavit a nic neposílat
+- z PDF se nedá přečíst text (sken bez OCR) — zapiš k ruční kontrole, e-mail neposílej
+- chybí tři a víc ze šesti údajů — stejně, jde spíš o špatně přečtené PDF
+- e-mail nemá jasně čitelnou adresu odesílatele, na kterou by šlo odpovědět
+- data/objednavky.xlsx nejde otevřít nebo má jinou strukturu, než čekáš
+
+## Co do skillu nepatří
+Rozhodnutí, jestli fakturu zaplatit, cokoli k jejímu schválení nebo zápis do
+účetního systému. Jediná automatická zpráva, kterou tenhle skill smí poslat,
+je žádost dodavateli o doplnění chybějícího údaje na faktuře samotné.`,
     },
     {
       kind: 'note',
@@ -2073,7 +2218,8 @@ claude -p "Postupuj podle skillu kontrola-faktur a výsledek ulož do vystup/."`
       text: `# Runbook: kontrola faktur
 
 ## Co to dělá
-Projde faktury ve vstup/, porovná je s objednávkami a připraví podklad ke schválení.
+Uloží nové faktury do vstup/, vytáhne z nich šest údajů do evidence
+a u neúplných pošle dodavateli žádost o doplnění.
 
 ## Kdy to běží
 Každé ráno v 7:00. Trvá to pár minut.
@@ -2083,7 +2229,7 @@ vystup/kontrola-<datum>.xlsx
 a vedle toho protokol-<datum>.md
 
 ## Jak poznám, že je něco špatně
-- protokol hlásí víc nesouladů než obvykle
+- protokol hlásí víc faktur k ruční kontrole než obvykle
 - chybí protokol za dnešek, i když ve vstup/ faktury jsou
 - ve vstup/ je faktura, kterou skill přeskočil
 
@@ -2178,7 +2324,7 @@ Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
       tone: 'warn',
       title: 'Když tvoje agenda potřebuje odeslat mail bez potvrzení',
       text:
-        'Kontrola faktur si vystačí s mailto — otevře rozepsanou zprávu a odeslání zůstává na tobě. Když má úloha poslat mail bez toho, aby ses na to dívala, potřebuješ konektor a druhý souhlas správce — čtení a odesílání jsou dvě různá povolení.',
+        'Kontrola faktur to dělá: žádost o doplnění chybějícího údaje odejde dodavateli bez ptaní. Potřebuje k tomu konektor a druhý souhlas správce — čtení a odesílání jsou dvě různá povolení. Je to vědomá výjimka, ne výchozí nastavení: špatná žádost o doplnění je trapná, špatné „k proplacení“ se může zaplatit.',
     },
     {
       kind: 'task',
