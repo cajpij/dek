@@ -25,8 +25,11 @@ místo toho PDF, která už ve vstup/ leží a která ještě nemají řádek v 
    na jedno slovo bez diakritiky; při shodě přidej `-2`, `-3`). Faktury, které
    už ve vstup/ jsou, znovu neukládej.
 2. Z PDF vytáhni šest údajů: číslo faktury, dodavatele (přesně podle
-   faktury), IČO, číslo objednávky, základ daně (částku bez DPH — ne částku
-   s DPH) a datum splatnosti.
+   faktury), IČO dodavatele, číslo objednávky, základ daně (částku bez DPH —
+   ne částku s DPH) a datum splatnosti. Na faktuře bývají IČO dvě: dodavatele
+   a odběratele (DEK a.s., 27636801). Ber jen to dodavatelovo — když je
+   u dodavatele uvedené jen jméno a adresa, IČO chybí, i kdyby na faktuře
+   jinde nějaké bylo.
 3. Co se nepodaří přečíst, nech prázdné. Nic nedomýšlej.
 4. Najdi v data/objednavky.xlsx sešit se jménem dodavatele; když neexistuje,
    založ ho s hlavičkou Soubor / Datum přijetí / Číslo faktury / IČO / Číslo

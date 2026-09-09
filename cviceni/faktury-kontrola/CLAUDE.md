@@ -11,8 +11,10 @@ do účetního systému. To zůstává na člověku.
 
 ## Slovník
 - faktura = PDF příloha e-mailu, který přijde do schránky fakturace@dek.cz
-- šest povinných údajů = číslo faktury, dodavatel, IČO, číslo objednávky,
-  základ daně (částka bez DPH), splatnost
+- šest povinných údajů = číslo faktury, dodavatel, IČO dodavatele, číslo
+  objednávky, základ daně (částka bez DPH), splatnost
+- IČO = vždycky IČO dodavatele. IČO odběratele (DEK a.s.) je na faktuře taky
+  a nepočítá se — když je u dodavatele jen jméno a adresa, údaj chybí.
 - kompletní faktura = má všech šest údajů čitelných
 - evidence = data/objednavky.xlsx, jeden sešit pro každého dodavatele
 

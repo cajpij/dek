@@ -3956,7 +3956,9 @@ navržený — napiš mi to a nehledej jinou cestu, jak poštu poslat.
 2. Ulož přílohu do vstup/ jako <datum přijetí>_<dodavatel>.pdf. Do vstup/
    smí jen přibývat — nic tam nepřepisuj, nepřejmenovávej ani nemaž.
 3. Vytáhni z PDF šest údajů, jeden po druhém: číslo faktury, dodavatele,
-   IČO, číslo objednávky, základ daně (částku bez DPH, ne s DPH) a splatnost.
+   IČO dodavatele, číslo objednávky, základ daně (částku bez DPH, ne s DPH)
+   a splatnost. IČO ber jen dodavatelovo — to odběratele je na faktuře taky
+   a nepočítá se.
 4. Zapiš je do data/objednavky.xlsx do sešitu pojmenovaného jménem
    dodavatele přesně tak, jak je na faktuře. Když takový sešit není, založ ho.
 5. Když je vyplněných všech šest, tady skonči. Nic se neposílá.
