@@ -136,7 +136,7 @@ export const DEFAULT_CONFIG: RunConfig = {
       ],
     },
     {
-      title: 'Vzor: Od e-mailu k platbě',
+      title: 'Vzor: Konec ručního zadávání',
       min: 20,
       lessons: ['claude-a-firemni-data/od-emailu-k-platbe'],
       kind: 'talk',

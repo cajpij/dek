@@ -178,7 +178,7 @@ const LESSON_PROGRAM: Lesson = {
         ],
         [
           '3. Najít, co automatizovat',
-          'Od e-mailu k platbě, pak Cvičení 1, 1b a Sdílení map — všechna v sólo verzi',
+          'Konec ručního zadávání, pak Cvičení 1, 1b a Sdílení map — všechna v sólo verzi',
           'mapu vlastního procesu s označenými místy ručního přenosu',
         ],
         [
@@ -238,7 +238,7 @@ const LESSON_PROGRAM: Lesson = {
         ['16:00', 'Úvod — proč to děláme a co si odnesete'],
         ['16:10', 'Rozehřívačka — postavíme se a řekneme, co jsme dneska dělali ručně'],
         ['16:20', 'Nastavení: sdílená složka a projekt. U vlastního počítače, s asistencí.'],
-        ['16:50', 'Vzor: Od e-mailu k platbě. Projdeme spolu jeden reálný proces.'],
+        ['16:50', 'Vzor: Konec ručního zadávání. Projdeme spolu jeden reálný proces.'],
         ['17:10', 'Cvičení ve dvojicích — rozhovory o vlastní práci'],
         ['17:50', 'Kresba flow a označení míst k automatizaci'],
         ['18:05', 'Pauza'],
@@ -1588,7 +1588,7 @@ const LESSON_CO_VIDI: Lesson = {
 const LESSON_REGAL: Lesson = {
   slug: 'od-emailu-k-platbe',
   module: 'zadani',
-  title: 'Od e-mailu k platbě',
+  title: 'Konec ručního zadávání',
   summary:
     'Typický ruční proces kontroly faktur rozepsaný na kroky. Úkolem je najít místa, kde se dá práce automatizovat.',
   minutes: 25,
@@ -2766,7 +2766,7 @@ const LESSON_CVICENI: Lesson = {
     {
       kind: 'p',
       text:
-        'Stejné cvičení jako v lekci Od e-mailu k platbě, tentokrát na vaší agendě. Ve dvojicích — sami sobě proces nikdo nepopíše dobře, protože se vám dávno slil do jednoho kroku. Vyberte kus práce, který děláte pravidelně a kde vám vstupuje e-mail nebo tabulka a někam posíláte výstup — stačí výsek, ne celá agenda, a ne ten nejsložitější.',
+        'Stejné cvičení jako v lekci Konec ručního zadávání, tentokrát na vaší agendě. Ve dvojicích — sami sobě proces nikdo nepopíše dobře, protože se vám dávno slil do jednoho kroku. Vyberte kus práce, který děláte pravidelně a kde vám vstupuje e-mail nebo tabulka a někam posíláte výstup — stačí výsek, ne celá agenda, a ne ten nejsložitější.',
     },
     { kind: 'h', text: 'Jak to poběží' },
     {
@@ -3083,7 +3083,7 @@ const LESSON_FLOW: Lesson = {
     {
       kind: 'figure',
       name: 'regal-flow',
-      caption: 'Vzor z lekce Od e-mailu k platbě. Vaše kresba nemusí být hezká, musí být čitelná.',
+      caption: 'Vzor z lekce Konec ručního zadávání. Vaše kresba nemusí být hezká, musí být čitelná.',
     },
     { kind: 'h', text: 'Označení míst' },
     {
@@ -3280,7 +3280,7 @@ Nenavrhuj řešení.`,
         {
           title: 'Porovnej tvar s hotovou mapou',
           body:
-            'Otevři mapu kontroly faktur z lekce Od e-mailu k platbě a polož ji vedle svojí. Jde o tvar, ne obsah: tři pruhy, popsané šipky, vidět hranici odpovědností? Rozdíly v tvaru bývají místa, kde jsi něco přeskočil.',
+            'Otevři mapu kontroly faktur z lekce Konec ručního zadávání a polož ji vedle svojí. Jde o tvar, ne obsah: tři pruhy, popsané šipky, vidět hranici odpovědností? Rozdíly v tvaru bývají místa, kde jsi něco přeskočil.',
         },
         {
           title: 'Projdi čtyři vzorce výš a odškrtej, které máš',
