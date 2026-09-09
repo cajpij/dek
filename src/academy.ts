@@ -190,16 +190,6 @@ const LESSON_PROGRAM: Lesson = {
           'Jak se v projektu nastaví automatizace, Cvičný projekt: kontrola faktur, Automatizace pomocí routine',
           'úlohu nad vlastní agendou, která se spustí sama',
         ],
-        [
-          '5. Dotáhnout do provozu',
-          'Rozbor skutečného skillu, E-mail z automatu, Pusť to naostro',
-          'úlohu, která proběhla sama a poslala výsledek dál',
-        ],
-        [
-          '6. Zkontrolovat se',
-          'Máš to minimum?',
-          'jistotu, že ti nic nechybí — a když chybí, víš kam se vrátit',
-        ],
       ],
     },
     {
@@ -213,11 +203,6 @@ const LESSON_PROGRAM: Lesson = {
       kind: 'links',
       title: 'Kontrola na konci celé cesty',
       items: [
-        {
-          label: 'Máš to minimum? Kontrola na konci',
-          href: '#academy/od-mapy-k-automatu/mas-to-minimum',
-          note: 'Osm bodů, u každého věta, kterou si ho ověříš, a odkaz do lekce, kam se vrátit.',
-        },
       ],
     },
     { kind: 'h', text: 'Předem: dvě věci, deset minut' },
@@ -267,7 +252,7 @@ const LESSON_PROGRAM: Lesson = {
       tone: 'info',
       title: 'Mezi setkáními',
       text:
-        'Úkol na týden je jediný: pustit svoji úlohu na skutečné práci a přinést zpátky, co se stalo. Je popsaný v lekci Pusť to naostro. I „nepustila jsem to a tady je proč“ je platná odpověď.',
+        'Úkol na týden je jediný: pustit svoji úlohu na skutečné práci a přinést zpátky, co se stalo. I „nepustila jsem to a tady je proč“ je platná odpověď.',
     },
   ],
 }
@@ -973,7 +958,7 @@ description: Projde faktury ve složce, vytáhne z nich povinné údaje
 2. Z každé vytáhni číslo faktury, dodavatele, číslo objednávky a částku.
 3. Porovnej se seznamem objednávek a ulož výsledek do vystupy/.
 ...`,
-      caption: 'Řádek description rozhoduje, kdy se skill sám nabídne — piš do něj slova, která se běžně říkají v zadání. Celý skill je rozebraný v lekci Rozbor skutečného skillu.',
+      caption: 'Řádek description rozhoduje, kdy se skill sám nabídne — piš do něj slova, která se běžně říkají v zadání.',
     },
     { kind: 'h', text: 'Artefakt je publikovaná stránka' },
     {
@@ -1915,7 +1900,7 @@ claude -p "Postupuj podle skillu kontrola-faktur a výsledek ulož do vystup/."`
         [
           'E-mail příjemcům',
           'podklad dorazí bez tvého zásahu',
-          'konektor Microsoft 365 — má vlastní lekci E-mail z automatu',
+          'konektor Microsoft 365 se zapnutými write tools',
         ],
       ],
     },
@@ -2035,7 +2020,7 @@ Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
       tone: 'warn',
       title: 'Když tvoje agenda potřebuje odeslat mail bez potvrzení',
       text:
-        'Kontrola faktur si vystačí s mailto — otevře rozepsanou zprávu a odeslání zůstává na tobě. Když má úloha poslat mail bez toho, aby ses na to dívala, potřebuješ konektor a druhý souhlas správce — čtení a odesílání jsou dvě různá povolení. Celý postup, včetně toho, kdy se nemá poslat vůbec, je v lekci E-mail z automatu.',
+        'Kontrola faktur si vystačí s mailto — otevře rozepsanou zprávu a odeslání zůstává na tobě. Když má úloha poslat mail bez toho, aby ses na to dívala, potřebuješ konektor a druhý souhlas správce — čtení a odesílání jsou dvě různá povolení.',
     },
     {
       kind: 'task',
@@ -2056,205 +2041,6 @@ Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
       ],
       hint:
         'Když ti u druhého běhu skill vyjde jinak než u prvního, není to chyba skillu — je to chybějící pravidlo. Odesílání zapínej úplně nakonec, ideálně po měsíci, kdy se maily odklikávaly ručně a nic nepřekvapilo.',
-    },
-  ],
-}
-
-const L2_ROZBOR: Lesson = {
-  slug: 'rozbor-skillu',
-  module: 'provoz',
-  title: 'Rozbor skutečného skillu',
-  summary:
-    'Skill kontrola-faktur tak, jak vzniká první verze: co je na něm dobře, čtyři místa, kde selže potichu, a vylepšená verze, která se dá pustit bez dozoru.',
-  minutes: 8,
-  kind: 'lekce',
-  track: 'potom',
-  outcomes: [
-    'poznat na hotovém skillu, co mu chybí, aby mohl běžet bez dozoru',
-    'odlišit chybu, která spadne nahlas, od chyby, která projde potichu',
-    'použít čtyři otázky z rozboru na vlastní skill',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Tenhle skill dneska běží v účtárně a kontroluje faktury proti objednávkám. Napsal ho člověk, který ho používá, a je dobrý — proto se na něm dá ukázat něco cennějšího než na vymyšleném příkladu: kde je hranice mezi „funguje mi to" a „můžu to pustit bez sebe".',
-    },
-    {
-      kind: 'code',
-      text: `.claude/skills/kontrola-faktur/SKILL.md — původní verze
-
----
-name: kontrola-faktur
-description: Zkontroluje faktury ve vstup/ proti objednávkám v
-  data/objednavky.xlsx. Použij, když přibyly nové faktury.
----
-
-# Kontrola faktur
-
-1. Otevři PDF faktury ve vstup/ a vytáhni z každé číslo faktury,
-   dodavatele, číslo objednávky a částku.
-2. Najdi v data/objednavky.xlsx řádek se stejným číslem objednávky
-   a porovnej částku.
-3. Napiš mi, které faktury sedí a které ne.
-
-## Na co si dát pozor
-- Porovnávej základ daně, ne částku s DPH.`,
-      caption: 'Původní verze, tak jak vznikla. Nic na ní neopravuj, dokud si nepřečteš, co je na ní dobře.',
-    },
-    { kind: 'h', text: 'Co je na něm dobře' },
-    {
-      kind: 'list',
-      items: [
-        'Description říká, kdy se má použít, a obsahuje slova, která u toho člověk skutečně použije — „nové faktury". Přesně tak se má psát.',
-        'Krok 2 pojmenovává přesně to porovnání, o které jde — ne „zkontroluj to", ale „stejné číslo objednávky, porovnej částku".',
-        '„Porovnávej základ daně, ne částku s DPH" — jedna věta, která brání chybě, na kterou by se jinak přišlo až omylem.',
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Osmdesát procent práce je hotových',
-      text:
-        'Tohle není ukázka špatného skillu, ale skillu, se kterým se dá pracovat po boku — a který ještě nesnese, aby běžel v šest ráno bez dozoru. Rozdíl jsou čtyři věci.',
-    },
-    { kind: 'h', text: 'Čtyři místa, která ho drží u země' },
-    {
-      kind: 'table',
-      head: ['Co chybí', 'Co se stane', 'Jak se to pozná'],
-      rows: [
-        [
-          'Výstup jde do chatu, ne do souboru',
-          'krok 3 napíše výsledek do rozhovoru, kde se za hodinu ztratí',
-          'nijak — ráno po naplánovaném běhu není co otevřít',
-        ],
-        [
-          'Nikdo neporovná počet faktur na vstupu s počtem zpracovaných',
-          'přeskočená faktura (nečitelný text, chyba) — zbytek doběhne, jako by nechyběla',
-          'až za pár dní, když si dodavatel řekne o zaplacení',
-        ],
-        [
-          'Faktury bez rozpoznaného čísla objednávky se tiše přeskočí',
-          'krok 2 hledá „stejné číslo" — co nenajde, prostě nezmíní',
-          'nijak — chybějící nález po sobě nenechá stopu',
-        ],
-        [
-          '„Nové faktury" není definované',
-          'jednou všechny soubory ve vstup/, podruhé jen ty za dnešek — podle znění zadání',
-          'faktura se zkontroluje dvakrát, nebo naopak žádná',
-        ],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Všechny čtyři mají stejný podpis',
-      text:
-        'Selžou potichu — skill doběhne, soubory vzniknou, nikde není červená hláška, a přesto je výsledek špatně. To je jediný druh chyby, který stojí za to řešit dopředu; toho, co spadne s chybou, se bát nemusíš, to poznáš hned.',
-    },
-    { kind: 'h', text: 'Vylepšená verze' },
-    {
-      kind: 'code',
-      text: `---
-name: kontrola-faktur
-description: Projde faktury v PDF ve složce vstup/, vytáhne z nich povinné údaje
-  a porovná je se seznamem schválených objednávek. Výsledkem je kontrolní tabulka
-  a protokol ve vystup/. Použij, když přibyly nové faktury, když se má udělat ranní
-  kontrola faktur, nebo když se ptám, co je s fakturami k vyřízení.
----
-
-# Kontrola faktur
-
-## Kdy to spustit
-Když ve vstup/ jsou faktury, pro které ještě není řádek v poslední kontrolní
-tabulce ve vystup/. Když nic nového nepřibylo, nic nedělej a napiš to.
-
-## Postup
-
-1. Najdi ve vystup/ nejnovější kontrola-*.xlsx a zapamatuj si, které soubory
-   už v ní mají řádek.
-2. Projdi PDF ve vstup/, která tam ještě nejsou, a z každé vytáhni:
-   soubor, číslo faktury, dodavatele, IČO, číslo objednávky, základ daně
-   (částku bez DPH) a datum splatnosti.
-3. Co ve faktuře není, nech prázdné a název toho údaje připiš do sloupce CHYBÍ.
-   Nic nedomýšlej a nic nedopočítávej.
-4. Ke každé faktuře najdi v data/objednavky.xlsx řádek se stejným číslem
-   objednávky a doplň sloupec SEDÍ:
-   - ano — základ daně se shoduje se schválenou částkou
-   - ne — číslo objednávky sedí, ale částka ne
-   - nenalezeno — faktura číslo objednávky nemá, nebo takové číslo v seznamu není
-5. Ulož vystup/kontrola-<RRRR-MM-DD>.xlsx. Řádky, kde něco chybí, podbarvi
-   žlutě; řádky s ne nebo nenalezeno červeně. První řádek zmraz.
-6. Napiš vystup/protokol-<RRRR-MM-DD>.md: kolik faktur zpracováno, kolik má
-   chybějící údaj, u kolika částka nesedí a u kolika objednávka nebyla nalezena.
-   Pod to seznam konkrétních nálezů, jeden řádek na fakturu.
-
-## Kdy se zastavit a nic neposílat
-- ve vstup/ je faktura, ze které se nedá přečíst text (sken bez OCR) — napiš to a pokračuj u ostatních
-- data/objednavky.xlsx nejde otevřít nebo nemá čekané sloupce
-- nesouladů je víc než tři — to obvykle neznamená pět špatných faktur, ale změnu na vstupu
-
-## Co do skillu nepatří
-Rozhodnutí, jestli fakturu zaplatit. Skill připraví podklad, schvaluje člověk.`,
-      caption: 'Delší o dvě sekce — obě jsou o tom, jak poznat, že výsledek je špatně, ne o tom, jak ho vyrobit. Je to ten samý soubor, který je v cvičném projektu ke stažení.',
-    },
-    { kind: 'h', text: 'Co to způsobí' },
-    {
-      kind: 'table',
-      head: ['', 'Původní', 'Vylepšený'],
-      rows: [
-        [
-          'Ranní kontrola',
-          'projít celý chat a hledat, co bylo řečeno',
-          'otevřít protokol a podívat se na čtyři čísla',
-        ],
-        [
-          'Ztracená faktura',
-          'zjistí se, až se dodavatel zeptá, kdy zaplatíme',
-          'protokol napíše přesně, kolik faktur bylo zpracováno — chybějící je vidět hned',
-        ],
-        [
-          'Faktura bez rozpoznané objednávky',
-          'zmizí beze stopy',
-          'protokol ji uvede jako nenalezeno',
-        ],
-        [
-          'Dva běhy nad stejnými daty',
-          'můžou dopadnout jinak podle toho, co se zrovna myslelo „nové"',
-          'dopadnou stejně — skill sám pozná, co už má řádek v poslední kontrole',
-        ],
-        [
-          'Naplánovaný běh',
-          'nedá se — po běhu nezůstane nic ke kontrole',
-          'dá se — protokol je ta stopa, kterou potřebuje',
-        ],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Vzorec, který platí na každý skill',
-      text:
-        'Přidali jsme jen dvě věci: ať po sobě nechá zapsanou kontrolu a ať se zastaví, když něco nesedí. Nic z toho nemění, co skill dělá — mění to, jestli mu můžeš věřit i ve chvíli, kdy se nedíváš. To je ten jediný rozdíl mezi pomocníkem a automatem.',
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Co jsme naopak nepřidali',
-      text:
-        'Žádná pravidla navíc o formátování, žádné „buď důkladný", žádné vysvětlování, co je objednávka. Skill má být krátký — každá věta navíc jen zvyšuje šanci, že se přehlédne ta, která výsledek doopravdy mění. Když je ti skill dlouhý, škrtej v postupu, ne v kontrolách.',
-    },
-    {
-      kind: 'task',
-      title: 'Cvičení: udělej totéž se svým',
-      intro: 'Vezmi svůj první skill a projdi ho čtyřmi otázkami.',
-      items: [
-        'Zůstane po běhu na disku něco, z čeho poznám, jestli dopadl dobře?',
-        'Existuje číslo, které musí sedět — a porovnává ho skill sám?',
-        'Co se stane s tím, co do žádné z mých škatulek nepatří? Zahodí se to potichu?',
-        'Kdybych to pustila dvakrát nad stejnými daty, dostanu dvakrát totéž?',
-      ],
-      hint: 'Odpověď „nevím" u kterékoli otázky říká, co opravit jako první.',
     },
   ],
 }
@@ -3085,129 +2871,6 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
   ],
 }
 
-const L2_EMAIL: Lesson = {
-  slug: 'email-z-automatu',
-  module: 'provoz',
-  title: 'E-mail z automatu',
-  summary:
-    'Čím se z naplánovaného běhu odešle e-mail, co k tomu musí povolit správce, proč neodejde příloha, a jak napsat zadání, které pošle mail kolegovi.',
-  minutes: 10,
-  kind: 'lekce',
-  track: 'potom',
-  outcomes: [
-    'vybrat cestu, kterou má e-mail odejít, a vědět, kdo ji musí povolit',
-    'rozlišit čtení a odesílání u konektoru Microsoft 365',
-    'napsat zadání úlohy, která pošle mail — včetně podmínky, kdy ho neposlat',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Odeslat e-mail se ptá každý hned po první naplánované úloze. Jde to — ale ne samo od sebe a ne bez správce. Tahle lekce říká, co přesně k tomu musí platit, aby to v pondělí v šest ráno nezůstalo jen u souboru ve složce.',
-    },
-    { kind: 'h', text: 'Čím se ten e-mail vlastně odešle' },
-    {
-      kind: 'p',
-      text:
-        'Claude sám od sebe do pošty nevidí ani do ní nepíše — musí mu to někdo umožnit, tomu napojení se říká konektor: přípojka na službu, přes kterou umí něco udělat mimo tvůj disk. Cesty jsou čtyři, liší se hlavně tím, kdo je musí povolit a jestli přenesou přílohu.',
-    },
-    {
-      kind: 'table',
-      head: ['Cesta', 'Co je k tomu potřeba', 'Kdy ji zvolit'],
-      rows: [
-        [
-          'Nechat rozepsaný koncept',
-          'nic navíc — Claude napíše text do souboru nebo do konceptu, ty ho odklikneš',
-          'vždycky napoprvé. Devadesát procent užitku a nulové riziko.',
-        ],
-        [
-          'Konektor Microsoft 365',
-          'zapnuté write tools — správce Entra k tomu musí dát druhý souhlas',
-          'když má mail odejít z tvojí adresy tvým jménem, i když u toho nejsi. Bez přílohy.',
-        ],
-        [
-          'Outlook na tvém počítači',
-          'skript, který Claude spustí — na Macu AppleScript, na Windows PowerShell',
-          'když musí odejít příloha a Outlook stejně máš puštěný',
-        ],
-        [
-          'Tok v Power Automate',
-          'nastaví IT, jednou. Claude jen položí soubor do knihovny.',
-          'když to má běžet nezávisle na tvém počítači a firma je na M365',
-        ],
-      ],
-    },
-    { kind: 'h', text: 'Konektor na Microsoft 365: čtení a odesílání jsou dvě různá povolení' },
-    {
-      kind: 'p',
-      text:
-        'Konektor umí obojí, ale každé se zapíná zvlášť a odesílání je vypnuté, dokud ho někdo nepovolí. Samé „search" v seznamu nástrojů konektoru znamená první sloupec téhle tabulky — odesílat se z něj nedá, i když je konektor připojený.',
-    },
-    {
-      kind: 'table',
-      head: ['Vlastnost', 'Čtení (read tools)', 'Odesílání (write tools)'],
-      rows: [
-        [
-          'Co to umí',
-          'hledat v poště, kalendáři, Teamsech a na SharePointu a číst, co najde',
-          'napsat koncept, odeslat i přeposlat poštu, zakládat schůzky, ukládat soubory',
-        ],
-        [
-          'Jak se to zapíná',
-          'souhlas správce Entra pro celou firmu, pak se každý přihlásí pracovním účtem',
-          'druhý, samostatný souhlas správce k rozšířeným oprávněním',
-        ],
-        ['Ve výchozím stavu', 'k dispozici', 'zablokované — je potřeba si o to říct'],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Přes konektor neodejde příloha',
-      text:
-        'Nejdůležitější věta z celé lekce. Odesílání přes konektor zatím neumí přílohy — Claude nepošle, nepřepošle ani nerozepíše e-mail s připojeným souborem. „Pošli kolegům výstupní soubory" takhle neuděláš. Uděláš to jinak: výstup ulož do sdílené knihovny (nasyncuje se sama) a e-mail ať nese odkaz, ne přílohu — stejně lepší, všichni pak čtou tu samou verzi.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Konektor si nezapneš sám — a jak si o to říct',
-      text:
-        'Souhlas dává správce Microsoft 365, přihlašuje se pracovním účtem — osobní outlook.com nebo hotmail.com nefungují. Nevidíš-li konektor ve svém Claudovi, není to chyba nastavení, nikdo ho pro firmu nepovolil. Napiš správci konkrétně: „potřebujeme u konektoru Claude na Microsoft 365 zapnout write tools pro odesílání pošty, vyžaduje to druhý souhlas v Entra" — bez té věty se ptáš na něco, co zní jako obecná otázka, a odpověď přijde za měsíc.',
-    },
-    { kind: 'h', text: 'Takže ano — úloha, která ráno pošle kolegovi mail' },
-    {
-      kind: 'p',
-      text:
-        'Když je odesílání zapnuté, jde založit naplánovanou úlohu, která se v šest ráno spustí sama, něco spočítá, uloží výstup do knihovny a pošle e-mail z tvojí adresy tvým jménem. Zadání vypadá takhle:',
-    },
-    {
-      kind: 'code',
-      text: `Postupuj podle skillu tydenni-prehled.
-Výstupy ulož do vystupy/ a kontrolní protokol vedle nich.
-Pak pošli e-mail na jan.novak@dek.cz s předmětem
-„Týdenní přehled — <dnešní datum>". Do těla dej tři čísla
-z protokolu a odkaz do knihovny na SharePointu. Přílohu nepřikládej.
-Když protokol hlásí nesrovnalost, e-mail neposílej a jenom mi to napiš.`,
-      caption:
-        'Všimni si poslední věty. Zadání, které umí odeslat poštu, musí vždycky obsahovat i podmínku, kdy ji neodeslat.',
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Musí platit tři věci najednou',
-      text:
-        'Zapnuté write tools v konektoru. Žádná příloha — v mailu jen odkaz. A protože úloha sahá do složky na disku, běží jako Local: zapnutý počítač, puštěná aplikace. Chybí-li jedna z těch tří, mail neodejde — a dozvíš se to až od kolegy, že mu nic nepřišlo.',
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'S e-mailem opatrně: první měsíc jen koncepty',
-      text:
-        'Odeslaná pošta se nevrací. Než necháš cokoli odesílat samo, nech to měsíc jen připravovat rozepsaný e-mail, který odklikneš ty. Teprve po měsíci bez překvapení přemýšlej o odesílání bez potvrzení — a i pak jen tam, kde nejhorší možný následek je, že někdo dostane zprávu navíc.',
-    },
-  ],
-}
-
 const L2_MCP: Lesson = {
   slug: 'mcp-nad-katalogem',
   module: 'vic',
@@ -3735,173 +3398,6 @@ export const AkcniNabidka: StoryObj = {
           label: 'Storybook — dokumentace',
           href: 'https://storybook.js.org/docs',
           note: 'až budeš chtít se stories víc než jen kompozice',
-        },
-      ],
-    },
-  ],
-}
-
-const L2_MINIMUM: Lesson = {
-  slug: 'mas-to-minimum',
-  module: 'provoz',
-  title: 'Máš to minimum? Kontrola na konci',
-  summary:
-    'Osm bodů, které mají po projití kurzů platit. U každého je věta, kterou si to ověříš na svém počítači, a odkaz do lekce, kam se vrátit, když nesedí.',
-  minutes: 10,
-  kind: 'zadání',
-  track: 'potom',
-  outcomes: [
-    'ověřit na vlastním projektu, že máš hotové všechno, co k běžící automatizaci patří',
-    'poznat u každého chybějícího bodu, do které lekce se vrátit',
-    'odlišit „mám to nastavené" od „viděl jsem to fungovat"',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Poslední lekce minima — nic nového, jen kontrola. Projdi osm bodů níž na svém vlastním projektu, ne na cvičném: u každého je věta, kterou ověříš, že to opravdu platí, a odkaz do lekce, kam se vrátit, když ne. Chybějící kus se sám neozve, jen tiše nefunguje — proto se to jinak nepozná.',
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Odškrtávej jen to, co jsi viděl fungovat',
-      text:
-        'Zábrana, kterou nikdo neviděl odmítnout zápis, je soubor na disku. Úloha, která ještě nikdy neproběhla, je řádek ve formuláři. Odškrtávej podle toho, co se ti opravdu stalo na obrazovce, ne podle toho, co máš nastavené.',
-    },
-    { kind: 'h', text: 'Osm bodů' },
-    {
-      kind: 'checklist',
-      title: 'Minimum, se kterým se dá pracovat dál',
-      items: [
-        'Mám složku s daty, ve které Claude umí číst i psát.',
-        'Mám projekt a v něm CLAUDE.md se slovníkem svojí agendy.',
-        'Mám mapu jednoho svého procesu a v ní označená místa ručního přenosu.',
-        'Mám skill, který jeden z těch kroků udělá celý.',
-        'Skill má sekci „zastav se, když" a po každém běhu nechá kontrolní protokol.',
-        'Mám zábranu, která nepustí zápis tam, kam nemá.',
-        'Mám naplánovanou úlohu, která proběhla aspoň třikrát na různých datech.',
-        'Aspoň jednou to proběhlo na skutečné práci a vím, co se ušetřilo.',
-      ],
-    },
-    { kind: 'h', text: 'Jak si každý bod ověřit' },
-    {
-      kind: 'table',
-      head: ['Bod', 'Ověříš tím, že', 'Když nesedí, vrať se do'],
-      rows: [
-        [
-          'Složka',
-          'napíšeš Claudovi „vypiš, co je ve složce s daty" a dostaneš skutečné názvy souborů, ne prázdný seznam ani placeholdery.',
-          'Sdílená složka ze SharePointu',
-        ],
-        [
-          'Projekt a CLAUDE.md',
-          'otevřeš CLAUDE.md a najdeš v něm aspoň tři pojmy ze své agendy, kterým by cizí člověk nerozuměl. Když jsou tam jen obecné věty, slovník chybí.',
-          'Projekt v Claude Code',
-        ],
-        [
-          'Mapa procesu',
-          'ukážeš kresbu někomu z jiného oddělení a on ti dokáže říct, kde se v ní přepisuje ručně. Když to nepozná, mapa popisuje kroky, ne tok dat.',
-          'Cvičení 1b: kresba flow',
-        ],
-        [
-          'Skill',
-          'spustíš ho jednou větou nad daty z jiného měsíce než z těch, ze kterých vznikl, a vyjde totéž co poprvé.',
-          'Rozbor skutečného skillu',
-        ],
-        [
-          'Kontrola',
-          'otevřeš poslední protokol a rozhodneš z něj, jestli je výsledek v pořádku — bez otevírání samotného výstupu.',
-          'Cvičný projekt: kontrola faktur ke stažení',
-        ],
-        [
-          'Zábrana',
-          'řekneš Claudovi „přidej řádek do souboru ve složce s originály" a uvidíš, že to odmítne. Patnáct vteřin.',
-          'Jak se v projektu nastaví automatizace',
-        ],
-        [
-          'Naplánovaná úloha',
-          'najdeš v Routines tři záznamy o proběhlých bězích na různých datech, ne jeden zkušební.',
-          'Automatizace v Claude Code pomocí routine',
-        ],
-        [
-          'Reálný běh',
-          'umíš říct jedno číslo: kolik minut to dřív trvalo a kolik teď. A jednu věc, která se přitom pokazila.',
-          'Pusť to naostro',
-        ],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Když ti chybí víc než dva body',
-      text:
-        'Nedoháněj to najednou — vezmi ten nejvýš v tabulce, který nesedí, jsou seřazené tak, jak na sobě stojí. Skill bez CLAUDE.md se bude každý týden chovat trochu jinak. Naplánovaná úloha bez kontroly je jen rychlejší způsob, jak si nadělat škodu.',
-    },
-    { kind: 'h', text: 'Co když jeden krok prostě nejde' },
-    {
-      kind: 'table',
-      head: ['Zádrhel', 'Co s tím'],
-      rows: [
-        [
-          'Nemám co automatizovat — moje práce je pokaždé jiná',
-          'Skoro nikdy to není pravda celé. Hledej ne celou agendu, ale jeden opakovaný přenos: export, který někam vkládáš, nebo sestavu, kterou skládáš každé pondělí.',
-        ],
-        [
-          'Skill funguje, ale kontrolu psát neumím',
-          'Začni jedním číslem. Kolik řádků přišlo na vstupu a kolik jich je na výstupu. Když to nesedí, něco se ztratilo — a to je kontrola, která odhalí většinu chyb.',
-        ],
-        [
-          'Zábranu mi nejde nastavit',
-          'Zeptej se Clauda: „napiš mi hook, který odmítne zápis do složky s originály, a zaregistruj ho". Napíše ho i zaregistruje. Pak si ho otestuj.',
-        ],
-        [
-          'Naplánovaná úloha se nespustila',
-          'Místní úloha běží jen se zapnutým počítačem a spuštěnou aplikací. Nejdřív ověř tohle, teprve pak hledej chybu v zadání.',
-        ],
-        [
-          'Bojím se to pustit na ostrá data',
-          'Nepouštěj. Nech ji zatím jen ukládat soubory a maily odklikávej ručně. Měsíc takového provozu je lepší podklad než jakákoli úvaha předem.',
-        ],
-      ],
-    },
-    {
-      kind: 'task',
-      title: 'Zadání: napiš si to na jednu stránku',
-      intro:
-        'Až je osm bodů odškrtaných, zbývá poslední věc: aby to uměl převzít někdo jiný. Bez toho je to tvoje osobní zkratka, ne firemní nástroj.',
-      items: [
-        'Napiš runbook: co to dělá, kdy to běží, kde jsou vstupy a výstupy, jak se pozná, že je výsledek dobře, co dělat, když spadne, a koho se zeptat.',
-        'Dej ho přečíst kolegovi, který tvoji agendu nedělá, a nech ho podle něj úlohu jednou pustit.',
-        'Co se ho musel zeptat, doplň do runbooku.',
-      ],
-      hint:
-        'Otázka, kterou ti položí, je přesně ta věc, kterou máš v hlavě a nikde jinde. Právě kvůli ní se runbook píše.',
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'A odsud dál',
-      text:
-        'Když osm bodů sedí, minimum máš. Modul „Až budeš chtít víc" jsou tři směry k pokračování — žádný z nich nepotřebuješ k tomu, aby ti běželo to, co už máš. Ber je jako inspiraci, ne jako zbytek úkolu.',
-    },
-    {
-      kind: 'links',
-      title: 'Kudy dál',
-      items: [
-        {
-          label: 'Formulář místo pinkání e-mailů',
-          href: '#academy/od-mapy-k-automatu/formular-misto-emailu',
-          note: 'Když ti data mají posílat kolegové a e-mail je ten problém, ne to, co se v něm posílá.',
-        },
-        {
-          label: 'MCP nad katalogem dek.cz',
-          href: '#academy/od-mapy-k-automatu/mcp-nad-katalogem',
-          note: 'Ptát se na sortiment vlastními slovy a kombinovat katalog s vlastní složkou v jednom zadání.',
-        },
-        {
-          label: 'Design system DEK ve Storybooku',
-          href: '#academy/od-mapy-k-automatu/dek-design-system',
-          note: 'Když si stavíš vlastní aplikace a chceš, aby vypadaly jako dek.cz.',
         },
       ],
     },
@@ -4540,83 +4036,6 @@ místo odeslání jen navrhne text a s tou vystačím.`,
   ],
 }
 
-const L2_NAOSTRO: Lesson = {
-  slug: 'pust-to-naostro',
-  module: 'provoz',
-  title: 'Pusť to naostro',
-  summary:
-    'Úkol na týden mezi setkáními. Nechat to běžet na skutečné práci a přinést zpátky, co se stalo.',
-  minutes: 5,
-  kind: 'zadání',
-  track: 'potom',
-  outcomes: [
-    'pustit automatizaci na skutečné práci, ne na cvičných datech',
-    'změřit, co se ušetřilo a co se pokazilo',
-    'přinést zpátky nález, ze kterého se dá poučit celý tým',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Všechno předchozí byla příprava. Teď to pustíš na práci, kterou bys stejně musela udělat — a příští setkání začneme tím, co se stalo. Nejde o to, aby to vyšlo, ale aby bylo z čeho se poučit.',
-    },
-    {
-      kind: 'task',
-      title: 'Zadání na týden',
-      intro: 'Vezmi svůj skill a použij ho na skutečné kolo své agendy.',
-      items: [
-        'Před spuštěním si zapiš, jak dlouho ti to obvykle trvá ručně. Odhad stačí.',
-        'Pusť to. Když se to zasekne, oprav to a zapiš si, co chybělo.',
-        'Zkontroluj výsledek podle kontrolního protokolu a rozhodni se, jestli ho pošleš.',
-        'Když jsi ho poslala, zapiš si, jestli se někdo ozval s chybou.',
-        'Změř, jak dlouho to trvalo celé — včetně oprav a kontroly.',
-        'Když jsi to nepustila vůbec, zapiš proč. To je nejcennější odpověď z celého úkolu.',
-      ],
-    },
-    { kind: 'h', text: 'A ještě jedna věc: předej to' },
-    {
-      kind: 'p',
-      text:
-        'Automatizace, kterou umí spustit jediný člověk, je riziko, ne úspora. Deset minut na test: posaď kolegu k počítači, dej mu projekt a nic neříkej. Každá otázka, kterou položí, je řádek, který v projektu chybí — a chybí i tobě, jen si to pamatuješ, takže to nepoznáš.',
-    },
-    {
-      kind: 'list',
-      items: [
-        'Nech ho úlohu spustit bez nápovědy. Když neví, kde začít, chybí runbook.',
-        'Nech ho výsledek zkontrolovat. Když neví, co znamená „nesedí počty“, chybí věta o tom, jak vypadá výsledek v pořádku.',
-        'Zeptej se ho, co by musel dohledávat, kdybys tam nebyla — ne „bylo to jasné?“.',
-        'Doplň to a nech ho zkusit znovu. Podruhé už by měl projít bez otázky.',
-      ],
-    },
-    { kind: 'h', text: 'Co přinést zpátky' },
-    {
-      kind: 'table',
-      head: ['Otázka', 'Proč se ptáme'],
-      rows: [
-        ['Kolikrát to doběhlo bez zásahu?', 'ukáže, jestli je postup hotový, nebo pořád hledá pravidla'],
-        ['Co bylo potřeba doplnit?', 'chybějící pravidla se u různých lidí opakují — z toho vznikne společná část'],
-        ['Kolik času to zabralo proti ručnímu?', 'první kolo bývá pomalejší. To je v pořádku a je dobré to říct nahlas'],
-        ['Šel výsledek dál, ke kolegům?', 'jestli ne, chybí důvěra — a ta se buduje kontrolou, ne přesvědčováním'],
-        ['Co tě na tom naštvalo?', 'obvykle nejlepší nápad na to, co udělat příště'],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Neúspěch je taky výsledek',
-      text:
-        'Když to nepustíš — nebyl čas, přišel jiný formát dat, nechtělo se do toho — přijď to říct. Tyhle důvody jsou přesně to, co potřebujeme vědět, a bývají užitečnější než tři úspěšné běhy.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Kam to zapsat',
-      text:
-        'Krátce, do souboru v projektu — třeba vystupy/poznamky-<datum>.md. Nemusí to být hezké, musí to existovat, až se na to za týden budeme ptát.',
-    },
-  ],
-}
-
 export const COURSES: Course[] = [
   {
     slug: 'claude-a-firemni-data',
@@ -4639,12 +4058,6 @@ export const COURSES: Course[] = [
         title: 'Nastavení: složka a projekt',
         summary:
           'Jediná část večera, kde se něco nastavuje. Děláme ji hned na začátku, aby se případný zádrhel našel teď a ne ve chvíli, kdy máš stavět.',
-      },
-      {
-        key: 'zadani',
-        title: 'Vzor procesu',
-        summary:
-          'Hotový proces z účtárny rozepsaný na kroky — kde se přepisuje ručně a co z toho může převzít automat.',
       },
     ],
     lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT],
@@ -4681,12 +4094,6 @@ export const COURSES: Course[] = [
           'Nejdřív hotový projekt ke stažení, na kterém je vidět celek, pak jedno místo z vlastní mapy dotažené do skillu, který má vlastní kontrolu a spustí se sám.',
       },
       {
-        key: 'provoz',
-        title: 'Dotáhni to do provozu',
-        summary:
-          'Zbytek minima: dát o běhu vědět mailem a pustit to naostro. Na konci si na checklistu ověříš, že máš všechno.',
-      },
-      {
         key: 'vic',
         title: 'Až budeš chtít víc',
         summary:
@@ -4694,8 +4101,7 @@ export const COURSES: Course[] = [
       },
     ],
     lessons: [
-      LESSON_AUTOMATIZACE, L2_CVICNY, L2_PLAN, L2_ROZBOR, L2_EMAIL, L2_NAOSTRO, L2_MINIMUM,
-      L2_FORMULAR, L2_MCP, L2_DESIGN,
+      LESSON_AUTOMATIZACE, L2_CVICNY, L2_PLAN, L2_FORMULAR, L2_MCP, L2_DESIGN,
       LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI,
     ],
     learn: [

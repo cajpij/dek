@@ -256,7 +256,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Říct nahlas: „neptej se, jestli je to správně“. Odpověď ano je tvrzení o tvrzení.',
         'Ukázat vyplněný kontrolní protokol z kontroly faktur, včetně toho řádku o nesedící částce',
         'Pasti ukázat na exportu objednávek, ne obecně',
-        'Kdo se ptá na skilly: v akademii je lekce Rozbor skutečného skillu — původní verze, čtyři slabiny, vylepšená',
+        'Kdo se ptá na skilly: ukázat rozbor toho skutečného — původní verze, čtyři slabiny, vylepšená',
       ],
     },
     {
@@ -276,7 +276,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         { title: 'Vybrat krok a připravit si vstup i výsledek z minula', min: 8 },
         { title: 'Udělat to jednou zadáním a zapisovat si doříkání', min: 15 },
         { title: 'Doříkání, která platí pořád, přepsat do CLAUDE.md', min: 5, lessons: ['claude-a-firemni-data/projekt-v-claude-code'] },
-        { title: 'Nechat si napsat skill a opravit mu description', min: 10, lessons: ['od-mapy-k-automatu/rozbor-skillu'] },
+        { title: 'Nechat si napsat skill a opravit mu description', min: 10 },
         { title: 'Spustit na datech z jiného měsíce', min: 7 },
       ],
       examples: [
@@ -325,7 +325,7 @@ export const DEFAULT_CONFIG: RunConfig = {
       steps: [
         { title: 'Naplánovat běh na čas za pět minut', min: 3, detail: 'Větou v chatu, ne formulářem — „založ mi úlohu, která se spustí za pět minut" a zadání. Formulář má sedm polí a sál u toho usne.', lessons: ['od-mapy-k-automatu/naplanovana-uloha'] },
         { title: 'Zavřít to a mluvit o něčem jiném', min: 5, detail: 'Zbylé dva schody: hook a běh bez dozoru', lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace'] },
-        { title: 'Podívat se, co přibylo', min: 2, detail: 'Notifikace, soubor s dnešním datem, a kolegovi ve schránce zpráva — ať to potvrdí nahlas', lessons: ['od-mapy-k-automatu/email-z-automatu'] },
+        { title: 'Podívat se, co přibylo', min: 2, detail: 'Notifikace, soubor s dnešním datem, a kolegovi ve schránce zpráva — ať to potvrdí nahlas' },
       ],
       notes: [
         'Zadání úlohy diktovat větou v chatu; formulářová varianta je v lekci Automatizace v Claude Code pomocí routine',
@@ -342,11 +342,10 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Domluva, co do příště',
       min: 5,
-      lessons: ['od-mapy-k-automatu/pust-to-naostro'],
       kind: 'qna',
       who: 'Martin',
       steps: [
-        { title: 'Úkol na týden: pustit to naostro', min: 3, lessons: ['od-mapy-k-automatu/pust-to-naostro'] },
+        { title: 'Úkol na týden: pustit to naostro', min: 3 },
         {
           title: 'Kam se vracet v akademii',
           min: 2,
@@ -356,10 +355,8 @@ export const DEFAULT_CONFIG: RunConfig = {
             'claude-a-firemni-data/slovnicek',
             'claude-a-firemni-data/kolik-to-stoji',
             'claude-a-firemni-data/z-coworku-do-claude-code',
-            'od-mapy-k-automatu/rozbor-skillu',
             'od-mapy-k-automatu/jak-se-nastavuje-automatizace',
             'od-mapy-k-automatu/naplanovana-uloha',
-            'od-mapy-k-automatu/email-z-automatu',
             'od-mapy-k-automatu/formular-misto-emailu',
             'od-mapy-k-automatu/cvicny-projekt-faktury',
             'od-mapy-k-automatu/mcp-nad-katalogem',
