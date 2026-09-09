@@ -814,16 +814,23 @@ const LESSON_PROJEKT: Lesson = {
           ],
         },
         {
-          title: 'Založ prázdnou složku agendy',
+          title: 'Založ prázdnou složku — na zkoušku klidně na ploše',
           body:
-            'V Průzkumníku nebo Finderu, uvnitř nasyncované knihovny — třeba faktury-kontrola. Musí existovat dřív, než ji vybereš; Claude si ji sám nevytvoří, protože neví kam.',
+            'V Průzkumníku nebo Finderu, jméno je jedno. Napoprvé ji dej na plochu a pojmenuj třeba slozka: propojení si na ní vyzkoušíš za deset vteřin a nic nerozbiješ. Ostrá složka agendy pak patří dovnitř nasyncované knihovny — na firemních Windows bývá plocha do OneDrivu přesměrovaná, takže i ta může být uvnitř; pozná se to z cesty, kterou Claude ukáže v dalším kroku. Existovat musí dřív, než ji vybereš: Claude si ji sám nevytvoří, protože neví kam.',
         },
         {
-          title: 'Vyber tu složku v Claudovi',
+          title: 'Vyber ji přes Select folder a potvrď důvěru',
           body:
-            'Klikni na Select folder a najdi složku, kterou jsi právě založil. Když se Claude zeptá, jestli jí věříš, potvrď — od té chvíle v ní smí číst, zapisovat i spouštět soubory.',
+            'Ve výběru složek se proklikej tam, kam jsi ji dal, a vyber ji. Claude se hned zeptá „Trust this workspace?" a napíše, že v té složce smí číst, zapisovat i spouštět soubory — pod tím je celá cesta, ať je vidět, kterou složku vlastně potvrzuješ. Přečti si tu cestu a klikni na Trust workspace. Když se okno neobjeví, složku už jsi jednou potvrzoval a Claude si to pamatuje.',
         },
       ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Zkouška na dvě minuty, než na to pustíš ostrá data',
+      text:
+        'Založ složku na ploše, propoj ji, potvrď důvěru a napiš Claudovi „co je v téhle složce?". Odpoví, že nic — a je to hotová zkouška celého propojení. Teprve pak to samé udělej nad složkou agendy v nasyncované knihovně, kde už jsou soubory, na kterých záleží. Ta zkušební složka na ploše se pak dá smazat.',
     },
     {
       kind: 'p',
