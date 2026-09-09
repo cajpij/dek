@@ -36,6 +36,7 @@ import FakturySmycka from './FakturySmycka'
 import KontrolaFlow from './KontrolaFlow'
 import RucneVsAutomat from './RucneVsAutomat'
 import PrvniBeh from './PrvniBeh'
+import SouborNahled from './SouborNahled'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
@@ -641,6 +642,9 @@ export default function BlockView({ block }: { block: Block }) {
           </Typography>
         </Paper>
       )
+
+    case 'soubor':
+      return <SouborNahled nazev={block.nazev} popis={block.popis} obsah={block.obsah} />
 
     case 'image':
       return <Screenshot src={block.src} alt={block.alt} caption={block.caption} maxWidth={block.maxWidth} />
