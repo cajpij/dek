@@ -75,6 +75,18 @@ def odkazy_na_lekce():
             chyby.append(f'odkaz na lekci {kurz}/{slug}, která neexistuje')
 
 
+def velikost_zipu():
+    """Odkaz na stažení nese velikost v kB — po přebalení zipu zastará."""
+    zip_ = KOREN / 'public/faktury-kontrola.zip'
+    if not zip_.exists():
+        chyby.append('public/faktury-kontrola.zip chybí')
+        return
+    skutecne = zip_.stat().st_size // 1024
+    for m in re.finditer(r"faktury-kontrola\.zip \((\d+) kB\)", AC):
+        if abs(int(m.group(1)) - skutecne) > 2:
+            chyby.append(f'odkaz slibuje {m.group(1)} kB, zip má {skutecne} kB')
+
+
 def prazdne_moduly():
     lekce = {m.group(1): m.group(2) for m in
              re.finditer(r"const (\w+): Lesson = \{\n  slug: '[^']+',\n  module: '(\w+)'", AC)}
@@ -169,7 +181,7 @@ def zastarale_fraze():
                 chyby.append(f'{jmeno}:{cislo} „{m.group(0)}" — {duvod}')
 
 
-for f in (kopie_souboru, odkazy_na_lekce, prazdne_moduly, program_vs_lekce, zastarale_fraze):
+for f in (kopie_souboru, odkazy_na_lekce, velikost_zipu, prazdne_moduly, program_vs_lekce, zastarale_fraze):
     f()
 
 if chyby:
