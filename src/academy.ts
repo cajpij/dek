@@ -4508,7 +4508,7 @@ a u kolika je rozpor. Když nesedí počet sloupců, zastav se a napiš to.`,
 
 const L2_CVICNY: Lesson = {
   slug: 'cvicny-projekt-faktury',
-  module: 'provoz',
+  module: 'postav',
   title: 'Cvičný projekt: kontrola faktur ke stažení',
   summary:
     'Hotový projekt i s fakturami, skillem, zábranou a naplánovanou úlohou. Stáhneš, pustíš, porovnáš s referenčním výstupem — a pak přepneš na svoje faktury.',
@@ -5056,13 +5056,13 @@ export const COURSES: Course[] = [
         key: 'postav',
         title: 'Postav to',
         summary:
-          'Jedno místo z vlastní mapy dotažené do skillu, který má vlastní kontrolu a spustí se sám.',
+          'Nejdřív hotový projekt ke stažení, na kterém je vidět celek, pak jedno místo z vlastní mapy dotažené do skillu, který má vlastní kontrolu a spustí se sám.',
       },
       {
         key: 'provoz',
         title: 'Dotáhni to do provozu',
         summary:
-          'Zbytek minima: naplánovat, dát vědět mailem, projít si to na hotovém projektu a pustit to naostro. Na konci si na checklistu ověříš, že máš všechno.',
+          'Zbytek minima: naplánovat, dát vědět mailem a pustit to naostro. Na konci si na checklistu ověříš, že máš všechno.',
       },
       {
         key: 'vic',
@@ -5072,8 +5072,8 @@ export const COURSES: Course[] = [
       },
     ],
     lessons: [
-      LESSON_AUTOMATIZACE, L2_POSTAV, LESSON_SKILL,
-      L2_ROZBOR, L2_PLAN, L2_EMAIL, L2_CVICNY, L2_NAOSTRO, L2_MINIMUM,
+      LESSON_AUTOMATIZACE, L2_CVICNY, L2_POSTAV, LESSON_SKILL,
+      L2_ROZBOR, L2_PLAN, L2_EMAIL, L2_NAOSTRO, L2_MINIMUM,
       L2_FORMULAR, L2_MCP, L2_DESIGN,
       LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI,
     ],
