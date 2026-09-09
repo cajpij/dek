@@ -2132,15 +2132,15 @@ exit 0`,
     },
     {
       kind: 'code',
-      text: `.claude/hooks/chran-data.sh
+      text: `.claude/hooks/chran-vstup.sh
 
 #!/bin/bash
 VSTUP=$(cat)
 CESTA=$(printf '%s' "$VSTUP" | sed -n 's/.*"file_path"[^"]*"\\([^"]*\\)".*/\\1/p')
 
 case "$CESTA" in
-  */data/*)
-    echo "Blokováno: do data/ se nezapisuje, výstupy patří do vystup/." >&2
+  */vstup/*)
+    echo "Do vstup/ smí jen přibýt nová faktura — přepsat ani smazat nic nejde." >&2
     exit 2
     ;;
 esac
@@ -2150,7 +2150,7 @@ exit 0`,
     },
     {
       kind: 'code',
-      text: `chmod +x .claude/hooks/chran-data.sh
+      text: `chmod +x .claude/hooks/chran-vstup.sh
 
 .claude/settings.json
 
@@ -2162,7 +2162,7 @@ exit 0`,
         "hooks": [
           {
             "type": "command",
-            "command": "\\"$CLAUDE_PROJECT_DIR\\"/.claude/hooks/chran-data.sh"
+            "command": "\\"$CLAUDE_PROJECT_DIR\\"/.claude/hooks/chran-vstup.sh"
           }
         ]
       }
