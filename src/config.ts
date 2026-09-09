@@ -322,16 +322,16 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Živá ukázka: naplánovaný běh',
       min: 10,
-      lessons: ['od-mapy-k-automatu/ziva-ukazka'],
+      lessons: ['od-mapy-k-automatu/naplanovana-uloha'],
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'Naplánovat běh na čas za pět minut', min: 3, detail: 'Větou v chatu, ne formulářem — „založ mi úlohu, která se spustí za pět minut" a zadání. Formulář má sedm polí a sál u toho usne.', lessons: ['od-mapy-k-automatu/ziva-ukazka', 'od-mapy-k-automatu/naplanovana-uloha'] },
+        { title: 'Naplánovat běh na čas za pět minut', min: 3, detail: 'Větou v chatu, ne formulářem — „založ mi úlohu, která se spustí za pět minut" a zadání. Formulář má sedm polí a sál u toho usne.', lessons: ['od-mapy-k-automatu/naplanovana-uloha'] },
         { title: 'Zavřít to a mluvit o něčem jiném', min: 5, detail: 'Zbylé dva schody: hook a běh bez dozoru', lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace'] },
         { title: 'Podívat se, co přibylo', min: 2, detail: 'Notifikace, soubor s dnešním datem, a kolegovi ve schránce zpráva — ať to potvrdí nahlas', lessons: ['od-mapy-k-automatu/email-z-automatu'] },
       ],
       notes: [
-        'Blok má vlastní lekci v akademii: Živá ukázka: za pět minut to doběhne samo — zadání úlohy je tam ve dvou variantách',
+        'Zadání úlohy diktovat větou v chatu; formulářová varianta je v lekci Naplánovaná úloha v Claude Code',
         'Naplánovat hned na začátku bloku, ať to stihne doběhnout',
         'V Claude Code: Code → Routines → New routine → Local. Cloud varianta nevidí složku na disku.',
         'Tohle není látka, je to důkaz — nechat to zapůsobit a nekomentovat to moc',

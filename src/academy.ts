@@ -3872,121 +3872,6 @@ const L2_PLAN: Lesson = {
   ],
 }
 
-const L2_UKAZKA: Lesson = {
-  slug: 'ziva-ukazka',
-  module: 'postav',
-  title: 'Živá ukázka: za pět minut to doběhne samo',
-  summary:
-    'Poslední čtvrthodina workshopu. Naplánujeme úlohu na čas za pět minut, odejdeme od počítače a vrátíme se k hotovému souboru a zprávě kolegovi.',
-  minutes: 10,
-  kind: 'lekce',
-  track: 'v sále',
-  outcomes: [
-    'založit úlohu jednou větou v chatu',
-    'zažít, že běh proběhne bez toho, aby u něj někdo seděl',
-    'poznat výsledek z jedné stránky kontroly, ne z výstupů',
-  ],
-  body: [
-    { kind: 'h', text: 'Živá ukázka: nastav to na za pět minut' },
-    {
-      kind: 'p',
-      text:
-        'Nic z téhle lekce nedocvakne, dokud to člověk jednou neuvidí. Naplánuj běh na za pět minut, nech počítač otevřený a odejdi od něj. Až se vrátíš, bude ve vystupy/ soubor, který jsi nevyrobila — a kolegovi ve schránce zpráva, kterou jsi neposlala.',
-    },
-    { kind: 'h', text: 'Co si na to dát za úlohu' },
-    {
-      kind: 'p',
-      text:
-        'Na první běh nic z ostré práce. Chceš úlohu hotovou do minuty, která nemůže nic pokazit a jejíž výsledek je vidět i z poslední řady: ať spočítá, co má ve složce data/, zapíše to do souboru a dá vědět kolegovi z dvojice, se kterou jste mapovali workflow — ten pak nahlas potvrdí, že mu něco přišlo, i když u toho nikdo neseděl.',
-    },
-    {
-      kind: 'tabs',
-      items: [
-        {
-          label: 'Když konektor odesílat umí',
-          blocks: [
-            {
-              kind: 'code',
-              text: `Založ mi naplánovanou úlohu, která se spustí za pět minut.
-
-Zadání: spočítej, kolik souborů leží ve složce data/ a jaká je
-jejich celková velikost. Zapiš to do vystupy/kontrola-<dnešní datum>.md.
-Pak pošli e-mail na petra.novakova@dek.cz s předmětem
-„Automat doběhl — <datum a čas>". Do těla dej ta dvě čísla a větu,
-že tohle psal automat a nikdo u toho neseděl. Přílohu nepřikládej.
-Když ve složce data/ nic není, e-mail neposílej a jenom mi to napiš.`,
-              caption:
-                'Poslední řádek tam patří i u nevinné ukázky. Zvyk psát podmínku „kdy neodesílat" se buduje od první úlohy, ne až u té ostré.',
-            },
-          ],
-        },
-        {
-          label: 'Když konektor odesílat neumí',
-          blocks: [
-            {
-              kind: 'p',
-              text:
-                'Tohle je pravděpodobnější stav a na plátně vypadá skoro stejně dobře: e-mail neodejde sám, ale sám se otevře rozepsaný v Outlooku. Vidí to celý sál a nepotřebuješ k tomu vůbec nikoho z IT.',
-            },
-            {
-              kind: 'code',
-              text: `Založ mi naplánovanou úlohu, která se spustí za pět minut.
-
-Zadání: spočítej, kolik souborů leží ve složce data/ a jaká je
-jejich celková velikost. Zapiš to do vystupy/kontrola-<dnešní datum>.md.
-Pak mi otevři rozepsaný e-mail pro petra.novakova@dek.cz — na Macu
-příkazem open, na Windows příkazem start, přes odkaz mailto:
-s vyplněným předmětem a tělem. Předmět „Automat doběhl", v těle ta
-dvě čísla. Neodesílej ho, jenom ho otevři.`,
-              caption:
-                'Za pět minut se sama od sebe otevře Outlook s hotovým e-mailem. Odeslání zůstává na člověku — což je stejně ten režim, ve kterém má každý první měsíc jet.',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Proč zrovna počítání souborů',
-      text:
-        'Protože to nemůže dopadnout špatně, doběhne to za vteřinu a každý si výsledek ověří vlastníma očima. Až tenhle běh proběhne, vyměníš zadání za svoji skutečnou úlohu — zbytek zůstane stejný.',
-    },
-    {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Naplánuj to na za pět minut — větou, ne formulářem',
-          body:
-            'Vlep do chatu zadání z předchozí kartičky. Claude si sám doplní čas, složku i rozvrh, úlohu založí a odpoví, kdy poběží.',
-        },
-        {
-          title: 'Nedívej se na to',
-          body:
-            'Zavři okno a dělej něco jiného. Půlka smyslu téhle ukázky je v tom, že u toho nesedíš.',
-        },
-        {
-          title: 'Za pět minut se podívej, co přibylo',
-          body:
-            'Notifikace na ploše, ve vystupy/ soubor s dnešním datem — a kolega vedle tebe ať nahlas řekne, jestli mu něco přišlo.',
-        },
-        {
-          title: 'Otevři jen kontrola-<datum>.md',
-          body:
-            'Ne výstupy, jen ten jeden soubor. Sedí počet souborů s tím, co vidíš ve složce? Tohle je ten trik, který se opakuje u každé skutečné úlohy: rozhoduješ se z jedné stránky místo z tisíce řádků.',
-        },
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Věta je lepší než formulář — a tohle je ta chvíle',
-      text:
-        'Formulář úlohy má sedm polí, napsaná věta je jeden řádek a dělá totéž — s Claudem se mluví jako s člověkem, ne jako s aplikací, kterou musíš umět ovládat. A když lidem po pěti minutách objeví hotový soubor, na kterém nikdo nepracoval, dojde jim to rychleji než z jakéhokoli vysvětlování. Proto je tahle ukázka na konci workshopu — jako důkaz, že těch pět schodů někam vede.',
-    },
-  ],
-}
-
 const L2_EMAIL: Lesson = {
   slug: 'email-z-automatu',
   module: 'provoz',
@@ -5509,7 +5394,7 @@ export const COURSES: Course[] = [
     ],
     lessons: [
       L2_TABULKY, L2_KONTROLA,
-      LESSON_AUTOMATIZACE, L2_POSTAV, LESSON_SKILL, L2_UKAZKA,
+      LESSON_AUTOMATIZACE, L2_POSTAV, LESSON_SKILL,
       L2_ROZBOR, L2_PLAN, L2_EMAIL, L2_CVICNY, L2_NAOSTRO, L2_MINIMUM,
       L2_FORMULAR, L2_MCP, L2_DESIGN,
     ],
