@@ -2860,9 +2860,9 @@ const L2_PLAN: Lesson = {
     {
       kind: 'note',
       tone: 'ok',
-      title: 'Nemusíš to vyklikávat — řekni si o to',
+      title: 'Nemusíš to klikat — stačí si o to říct',
       text:
-        'Celý formulář níž umí Claude vyplnit sám. Napiš mu v chatu jednou větou, co má úloha dělat a kdy, a založí ji i s rozvrhem — třeba: „Založ mi naplánovanou úlohu kontrola-faktur nad touhle složkou. Ať běží každých 15 minut v pracovní dny od sedmi do šesti a postupuje podle skillu kontrola-faktur." Rozvrhy, které formulář nenabízí, jdou udělat jen takhle: v nabídce je Manual, Hourly, Daily, Weekdays a Weekly, nic mezi tím. Postup níž si projdi hlavně proto, abys věděl, co se ti tím založilo a kde to zkontrolovat.',
+        'Celý formulář níž umí Claude vyplnit sám. Napiš mu v chatu jednou větou, co má úloha dělat a kdy, a založí ji i s rozvrhem — třeba: „Založ mi naplánovanou úlohu kontrola-faktur nad touhle složkou. Ať běží každých 15 minut v pracovní dny od sedmi do šesti a postupuje podle skillu kontrola-faktur." Rozvrhy, které formulář nenabízí, jdou udělat jen takhle: v nabídce je Manual, Hourly, Daily, Weekdays a Weekly, nic mezi tím. Stejnou cestou vznikne i jednorázová úloha — „připomeň mi zítra ve tři, ať zkontroluju ten běh" se po odpálení sama vypne — a stejně tak se úlohy pozastavují a vypisují: „pozastav mi úlohu kontrola-faktur", „ukaž mi moje naplánované úlohy". Postup níž si projdi hlavně proto, abys věděl, co se ti tím založilo a kde to zkontrolovat.',
     },
     {
       kind: 'image',
@@ -2870,6 +2870,13 @@ const L2_PLAN: Lesson = {
       alt: 'Detail naplánované úlohy kontrola-faktur v Claude Code. Popis říká, že sleduje schránku, eviduje nové faktury a u neúplných pošle dodavateli žádost o doplnění. Stav je Active s dalším během dnes ve 13:24. Je vyplněná pracovní složka faktury-kontrola, rozvrh zní přibližně každých 15 minut mezi 7:00 a 17:59 od pondělí do pátku, historie je zatím prázdná. Vpravo nahoře je tlačítko Run now, vedle něj ikony pro úpravu a smazání.',
       caption:
         'Takhle vypadá hotová úloha, kterou Claude založil z jedné věty. Rozvrh „každých 15 minut v pracovní dny" ve formuláři na výběr není — vznikl z toho, jak byl popsaný slovy. Historie je prázdná, protože ještě nic neproběhlo; první běh si vyvoláš tlačítkem Run now vpravo nahoře.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Ještě líp: měj rozvrh napsaný ve složce',
+      text:
+        'Úloha založená v aplikaci je jen záznam v ní. Kolega ho nevidí, do zálohy se nedostane, a když přeinstaluješ počítač, je pryč i s tím, jak byla nastavená. Proto si do projektu přidej soubor rutina.md a popiš v něm, co do formuláře patří: název, model, režim povolování, složku, rozvrh — a celé instrukce k překopírování. Cvičný projekt ho takhle má. Založení se tím smrskne na jednu větu: „Založ naplánovanou úlohu podle rutina.md." A hlavně se tím otočí pořadí: když se agenda změní, přepíšeš nejdřív ten soubor a teprve podle něj úlohu, takže popis nikdy nezaostane za tím, co doopravdy běží.',
     },
     { kind: 'h', text: 'Postup' },
     {
@@ -2901,13 +2908,6 @@ const L2_PLAN: Lesson = {
             'Nepřeskakuj. První běh si odklikáš oprávnění a u každého dáš „always allow" — jinak se úloha při ostrém běhu zastaví na dotazu, na který nikdo neodpoví, a bude to vypadat, že spadla.',
         },
       ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Nemusíš to klikat — stačí si o to říct',
-      text:
-        'Úlohu založíš i popsáním v běžném sezení. „Založ mi úlohu, která každé ráno v sedm zkontroluje nové faktury" udělá opakovanou; „připomeň mi zítra ve tři, ať zkontroluju ten běh" jednorázovou, která se po odpálení sama vypne. Stejně tak „pozastav mi úlohu kontrola-faktur" nebo „ukaž mi moje naplánované úlohy".',
     },
     { kind: 'h', text: 'Proč Local, ne Cloud' },
     {
