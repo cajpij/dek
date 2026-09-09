@@ -4191,7 +4191,7 @@ const L2_CVICNY: Lesson = {
       kind: 'figure',
       name: 'rucne-vs-automat',
       caption:
-        'Nejrychlejší způsob, jak pochopit, o čem tahle lekce je. Vlevo jak agenda vypadala, když ji Marie dělala ručně, vpravo co z ní převzala hotová úloha. Nad řezem tři kroky, které dělá sama; pod ním tři, které zůstávají lidem — a je to rozhodnutí, ne nedodělek.',
+        'Nejrychlejší způsob, jak pochopit, o čem tahle lekce je. Vlevo jak agenda vypadala, když ji Marie dělala ručně, vpravo co z ní převzala hotová úloha. Nad řezem tři kroky, které dělá sama. Pod ním tři, které zatím dělá člověk — u dvou z nich je modře napsaný další schod, na který se dají posunout. Jen ten poslední, schválení a platba, se posouvat nebude, a to je rozhodnutí, ne nedodělek.',
     },
     {
       kind: 'figure',

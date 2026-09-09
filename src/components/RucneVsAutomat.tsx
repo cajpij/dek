@@ -10,7 +10,7 @@ import { useFigureColors } from '../lib/figureColors'
  * říká totéž co jedna čára, jen hlučněji.
  */
 
-type Radek = { krok: string; kdo: string; drive: string[]; ted: string[] }
+type Radek = { krok: string; kdo: string; drive: string[]; ted: string[]; posun?: string[] }
 
 const AUTOMAT: Radek[] = [
   {
@@ -39,18 +39,20 @@ const CLOVEK: Radek[] = [
     kdo: 'Marie',
     drive: ['Nerozlišovalo se — Marie řešila', 'každou zvlášť.'],
     ted: ['Chybí tři a víc údajů nebo z PDF nejde', 'přečíst text: neodchází nic, jde to', 'do protokolu k ruční kontrole.'],
+    posun: ['Další schod: nechat sken přečíst OCR', 'a teprve pak to vzdát.'],
   },
   {
     krok: 'Předání účtárně',
     kdo: 'Marie → účtárna',
     drive: ['Marie posílala dál i faktury,', 'kterým něco chybělo — a řešilo se to', 'až v účtárně.'],
     ted: ['Přepošle až tu, která prošla celým', 'během: je kompletní a zaevidovaná.', 'Účtárna nedostane nic k vracení.'],
+    posun: ['Další schod: ať kompletní fakturu', 'přepošle úloha sama.'],
   },
   {
     krok: 'Schválení a platba',
     kdo: 'účtárna a středisko',
     drive: ['Vedoucí odklikne, účetní zadá', 'fakturu do systému.'],
-    ted: ['Beze změny, a schválně. Špatnou žádost', 'o doplnění lze omluvit, špatně zaplacenou', 'fakturu nikdo nevrátí.'],
+    ted: ['Beze změny — a tenhle krok se posouvat', 'nebude. Špatnou žádost o doplnění lze', 'omluvit, špatně zaplacenou fakturu', 'nikdo nevrátí.'],
   },
 ]
 
@@ -63,7 +65,8 @@ const PADDING = 34
 const MEZERA = 14
 const REZ = 46
 
-const vyskaRadku = (r: Radek) => Math.max(r.drive.length, r.ted.length) * RADEK_VYSKA + PADDING
+const vyskaRadku = (r: Radek) =>
+  Math.max(r.drive.length, r.ted.length + (r.posun ? r.posun.length + 0.5 : 0)) * RADEK_VYSKA + PADDING
 
 export default function RucneVsAutomat() {
   const c = useFigureColors()
@@ -85,7 +88,7 @@ export default function RucneVsAutomat() {
     rozvrzeni.push({ r, y, h, auto: false })
     y += h + MEZERA
   }
-  const H = y + 34
+  const H = y + 54
 
   return (
     <Box
@@ -165,6 +168,19 @@ export default function RucneVsAutomat() {
                   {s}
                 </text>
               ))}
+              {r.posun?.map((s, j) => (
+                <text
+                  key={`p${j}`}
+                  x={X_B + 18}
+                  y={ry + 26 + (r.ted.length + 0.6 + j) * RADEK_VYSKA}
+                  fontSize={11.5}
+                  fontWeight={j === 0 ? 650 : 400}
+                  fill={c.info}
+                  opacity={0.95}
+                >
+                  {s}
+                </text>
+              ))}
             </g>
           )
         })}
@@ -172,10 +188,13 @@ export default function RucneVsAutomat() {
         {/* Řez: nad ním to dělá úloha, pod ním člověk. */}
         <line x1={X_KROK} y1={yRez + 14} x2={352} y2={yRez + 14} stroke={clovek} strokeWidth={1} opacity={0.3} />
         <text x={368} y={yRez + 19} fontSize={11.5} fontWeight={700} fill={clovek} letterSpacing={1.2} opacity={0.85}>
-          ODSUD DÁL ZŮSTÁVÁ ČLOVĚKU
+          ODSUD DÁL ZATÍM ČLOVĚK
         </text>
-        <line x1={636} y1={yRez + 14} x2={880} y2={yRez + 14} stroke={clovek} strokeWidth={1} opacity={0.3} />
+        <line x1={610} y1={yRez + 14} x2={880} y2={yRez + 14} stroke={clovek} strokeWidth={1} opacity={0.3} />
 
+        <text x={X_KROK} y={H - 30} fontSize={12} fill="currentColor" opacity={0.85}>
+          Dva z posledních tří kroků nejsou hotové — jen zatím ručně. Jdou posunout po stejných schodech jako ty nahoře.
+        </text>
         <text x={X_KROK} y={H - 10} fontSize={12} fill="currentColor" opacity={0.8}>
           Krok „dohledání objednávky“ v nové podobě není: úloha eviduje, co přišlo, a proti schváleným objednávkám to neporovnává.
         </text>
