@@ -4941,6 +4941,7 @@ const L2_CVICNY: Lesson = {
   track: 'potom',
   outcomes: [
     'rozjet hotový projekt a ověřit si, že u tebe dává stejný výsledek',
+    'popsat celou cestu faktury od e-mailu po zápis do evidence a žádost o doplnění',
     'přečíst kontrolní protokol a poznat z něj, co je k vyřízení',
     'nastavit naplánovanou úlohu, která běží samostatně, včetně chování při vypnutém počítači',
     'poznat rozdíl mezi povolením složky v Coworku a v Claude Code',
@@ -4951,7 +4952,7 @@ const L2_CVICNY: Lesson = {
     {
       kind: 'p',
       text:
-        'Všechno, co jste v akademii četli, je tady dohromady na jedné agendě, ke stažení, takže si nemusíte nic vyrábět. Projekt kontroluje faktury: přečte PDF, vytáhne z nich šest povinných údajů a eviduje je podle dodavatele. Když něco chybí, sám pošle dodavateli e-mail s žádostí o doplnění — to je jediná automatická zpráva, kterou smí poslat; nic neschvaluje, nic neplatí a nic nezapisuje do účetnictví. Ve složce jsou i vzorové faktury, takže si to můžete pustit hned.',
+        'Všechno, co jste v akademii četli, je tady dohromady na jedné agendě, ke stažení, takže si nemusíte nic vyrábět. Projekt hlídá schránku s fakturami: novou PDF přílohu uloží, vytáhne z ní šest povinných údajů a zapíše je do evidence do sešitu podle dodavatele. Když jeden nebo dva údaje chybí, sepíše žádost o doplnění a sám ji dodavateli pošle — to je jediná automatická zpráva, kterou smí poslat; nic neschvaluje, nic neplatí a nic nezapisuje do účetnictví. Krok za krokem je to rozepsané v části „3. Co se v projektu děje“. Ve složce jsou i vzorové faktury, takže si to můžete pustit hned.',
     },
     {
       kind: 'note',
@@ -5023,7 +5024,88 @@ const L2_CVICNY: Lesson = {
         ['Barvy Piekarová', 'ano', '—', '—'],
       ],
     },
-    { kind: 'h', text: '3. Otevři složku a pusť to' },
+    { kind: 'h', text: '3. Co se v projektu děje' },
+    {
+      kind: 'p',
+      text:
+        'Celý postup je napsaný v .claude/skills/kontrola-faktur/SKILL.md — Claude si ho přečte a jde podle něj bod po bodu. Tady je slovy, co se stane od chvíle, kdy dodavatel pošle fakturu, po chvíli, kdy je zaevidovaná.',
+    },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Do schránky přijde e-mail s fakturou v PDF',
+          body:
+            'Naplánovaná úloha se do sledované schránky (v projektu fakturace@dek.cz) dívá každých 15 minut a hledá e-maily s PDF přílohou, které ještě nejsou uložené ve vstup/. Když nic nového nepřišlo, neudělá nic — a hlavně nic nepošle.',
+        },
+        {
+          title: 'Přílohu si vezme přes konektor na Microsoft 365',
+          body:
+            'Jeden konektor, který umí obojí: schránku číst i z ní odeslat poštu. Čtení bývá zapnuté rovnou, odesílání povoluje zvlášť správce — bez něj proběhne celý zbytek postupu, jen se e-mail nakonec neodešle a do evidence se zapíše „připraveno, čeká na konektor".',
+        },
+        {
+          title: 'Fakturu uloží do vstup/',
+          body:
+            'Pod jménem <datum>_<dodavatel>.pdf, třeba 2026-09-03_elektro-dvorak.pdf. Do vstup/ smí jen přibývat — nic se tam nepřepisuje, nepřejmenovává ani nemaže, protože originál faktury je důkaz. Hlídá to zábrana z .claude/hooks/, ne dobrá vůle.',
+        },
+        {
+          title: 'Z PDF vytáhne šest údajů, jeden po druhém',
+          body:
+            'Číslo faktury, dodavatele, IČO, číslo objednávky, základ daně (částku bez DPH, ne částku s DPH) a splatnost. Co na faktuře není nebo se nedá přečíst, zůstane prázdné — nic se nedomýšlí a nic nedopočítává.',
+        },
+        {
+          title: 'Zapíše je do evidence, do sešitu podle dodavatele',
+          body:
+            'V data/objednavky.xlsx má každý dodavatel vlastní sešit, pojmenovaný přesně tak, jak je jeho jméno napsané na faktuře. Když takový sešit ještě není, skill ho založí. Přibude řádek s fakturou a sloupec Kompletní řekne, jestli se povedlo přečíst všech šest údajů.',
+        },
+        {
+          title: 'Kompletní faktura tady končí',
+          body:
+            'Žádný e-mail, žádný výstup. Faktura je zaevidovaná a čeká na člověka, který rozhodne o proplacení — to za něj neudělá nikdo.',
+        },
+        {
+          title: 'Když chybí jeden nebo dva údaje, vznikne výstup',
+          body:
+            'vystup/kontrola-<datum>.xlsx: sešit „Přehled" se stavem všech faktur toho dne a za ním sešit pro každého dodavatele, kterému něco chybělo. V něm stojí, který údaj chybí, a rovnou navržený text odpovědi.',
+        },
+        {
+          title: 'Ten text se pošle dodavateli',
+          body:
+            'Tímtéž konektorem jako nový e-mail — na adresu, ze které faktura přišla, v kopii vedouci-uctarny@dek.cz, s předmětem „Doplnění faktury <číslo faktury>". Text se mezi sešitem a odeslanou poštou nemění, takže je i zpětně dohledatelné, co dodavatel doopravdy dostal.',
+        },
+        {
+          title: 'Zapíše se, kdy to odešlo',
+          body:
+            'Na tři místa: do sešitu dodavatele, do „Přehledu" a do sloupce Žádost odeslána v evidenci. Díky tomu je i po měsících vidět, že se o doplnění už psalo, aniž bys musel hledat den, kdy se to stalo.',
+        },
+        {
+          title: 'Když chybí tři a víc údajů, neposílá se nic',
+          body:
+            'Tolik prázdných polí najednou skoro vždycky znamená, že se nepovedlo přečíst PDF — ne že by dodavatel poslal špatnou fakturu. Jde to do protokolu jako „k ruční kontrole" a rozhodne člověk. Stejně tak, když se z PDF nedá přečíst text vůbec.',
+        },
+      ],
+    },
+    {
+      kind: 'p',
+      text:
+        'Text žádosti je ve skillu jako šablona — chodí tedy pokaždé stejný a opravuje se na jednom místě:',
+    },
+    {
+      kind: 'code',
+      text: `Předmět: Doplnění faktury <číslo faktury>
+
+Dobrý den, <dodavatel>,
+
+děkujeme za zaslanou fakturu. Při kontrole naším účetním oddělením jsme
+nenalezli <chybějící údaj/e>, které potřebujeme mít na faktuře. Prosíme
+o doplnění a opětovné zaslání faktury zpět.
+
+S pozdravem,
+Účtárna DEK`,
+      caption:
+        'Jméno dodavatele se bere přesně tak, jak je napsané na faktuře. Když chybí dva údaje, vyjmenují se oba — „IČO a číslo objednávky".',
+    },
+    { kind: 'h', text: '4. Otevři složku a pusť to' },
     {
       kind: 'steps',
       items: [
@@ -5051,7 +5133,7 @@ const L2_CVICNY: Lesson = {
         },
       ],
     },
-    { kind: 'h', text: '4. Co říká protokol' },
+    { kind: 'h', text: '5. Co říká protokol' },
     {
       kind: 'code',
       text: `# Kontrolní protokol — 2026-09-08
@@ -5074,7 +5156,7 @@ K ruční kontrole: 0
       text:
         'Jestli se ta faktura má zaplatit. Kontrola připraví podklad, rozhoduje člověk. Nikdy nedávejte úloze právo fakturu schválit, poslat do účetnictví nebo zadat k platbě — ani když je všechno v pořádku. Chyba v takovém kroku se pozná pozdě a je drahá.',
     },
-    { kind: 'h', text: '5. Naplánuj to, ať běží samo' },
+    { kind: 'h', text: '6. Naplánuj to, ať běží samo' },
     {
       kind: 'p',
       text:
@@ -5127,7 +5209,7 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.`,
       text:
         'První běh se bude na pár věcí ptát — u každého dotazu vyberte „always allow“, další běhy pak proběhnou bez ptaní. Jinak se úloha zastaví na dotazu a bude čekat, až přijdete.',
     },
-    { kind: 'h', text: '6. Povolení složky: dvakrát jinak' },
+    { kind: 'h', text: '7. Povolení složky: dvakrát jinak' },
     {
       kind: 'p',
       text:
@@ -5146,7 +5228,7 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.`,
       text:
         'Přesně jeden hook: před každým zápisem se spustí skript .claude/hooks/chran-vstup.sh. Do vstup/ smí přibýt jen nová PDF faktura — nic existujícího se nesmí přepsat, přejmenovat ani upravit. Kvůli němu ten dialog ten soubor jmenuje — složka si nese kód, který se spustí sám. Tady je to zábrana, kterou v lekci rozebíráme. Jinde to být nemusí: složka stažená odjinud může spouštět cokoli, a tohle je jediná chvíle, kdy na to aplikace upozorní. Trust workspace znamená „přečetl jsem si, co v tom je“.',
     },
-    { kind: 'h', text: '7. Co ta automatizace (ještě) nedělá' },
+    { kind: 'h', text: '8. Co ta automatizace (ještě) nedělá' },
     {
       kind: 'p',
       text:
@@ -5202,7 +5284,7 @@ místo odeslání jen navrhne text a s tou vystačím.`,
       text:
         'Nejdřív běh nad tím, co už ve vstup/ je — funguje bez konektoru a je vidět, jestli extrakce a evidence sedí. Až ti to vychází, zapoj konektor a nech doopravdy odesílat žádosti o doplnění. Otázku úhrad a účtárny řeš samostatně, teprve když tohle běží bez překvapení aspoň týden.',
     },
-    { kind: 'h', text: '8. Přepni to na svoje faktury' },
+    { kind: 'h', text: '9. Přepni to na svoje faktury' },
     {
       kind: 'steps',
       items: [
