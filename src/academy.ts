@@ -54,6 +54,7 @@ export type Block =
         | 'prvni-beh'
     | 'tri-prikazy'
     | 'faktury-sezeni'
+    | 'akcni-regal'
       caption: string
     }
   /** Snímek cizí obrazovky. Kreslené schéma patří do 'figure', tohle je fotka. */
@@ -4912,16 +4913,25 @@ const LESSON_PROC: Lesson = {
   module: 'start',
   title: 'Co je automatizace a co z ní budeš mít',
   summary:
-    'Jeden příklad na začátek: co dělala Marie v pondělí ráno ručně a co z toho dneska dělá počítač. Bez klikání, jen abys věděl, kam to celé míří.',
-  minutes: 6,
+    'Dva příklady na začátek. První ukazuje hotovou automatizaci, druhý krok před ní — jak se z rozhovoru s kolegou pozná, co se vlastně dá vzít. Bez klikání, jen abys věděl, kam to celé míří.',
+  minutes: 12,
   kind: 'lekce',
   track: 'v sále',
   outcomes: [
     'říct vlastními slovy, co se v téhle akademii myslí automatizací',
     'poznat na svojí práci krok, který je pro ni kandidát',
     'vědět, proč se část procesu schválně neautomatizuje',
+    'popsat, jak se z osmnáctiminutového rozhovoru dostaneš k zadání',
   ],
   body: [
+    {
+      kind: 'sekce',
+      id: 'prvni-priklad',
+      stitek: 'První příklad',
+      titul: 'Kontrola faktur: co z automatizace bude',
+      popis:
+        'Hotová automatizace, na které stojí celý večer. Co dělal člověk před ní a co z toho dneska dělá počítač.',
+    },
     {
       kind: 'p',
       text:
@@ -4949,6 +4959,196 @@ const LESSON_PROC: Lesson = {
       kind: 'p',
       text:
         'Zbytek prvního kurzu je příprava: co která slova znamenají, za co se u Clauda platí a jak mu napojit složku, ve které ta práce žije. Stavět se začne až v druhém kurzu — nejdřív na hotovém vzoru ke stažení, pak tutéž složku postavíš znovu sám a nakonec ji uděláš nad vlastní agendou.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Jenže faktury jsou příklad procesu, který už někdo popsal. Tvůj takový nejspíš není — bude žít v hlavě kolegy, který ho dělá tři roky a nikdy ho nikomu nevysvětloval celý. Druhý příklad je právě o tom: jak se z takové hlavy dostane obrázek, ze kterého se dá psát zadání.',
+    },
+    {
+      kind: 'sekce',
+      id: 'druhy-priklad',
+      stitek: 'Druhý příklad',
+      titul: 'Akční regál: jak se pozná, co automatizovat',
+      popis:
+        'Faktury jsou příklad hotové automatizace. Tenhle je o kroku před ní — jak se vůbec zjistí, co se v cizí agendě dá vzít. Stavět ho nebudeme, je tu jako ukázka toho, co automatizaci předchází.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Akční regál je stojan na prodejně, do kterého se každých pár týdnů skládá zboží z akčního magazínu. Než v něm něco stojí, projde to rukama jedenácti produkťáků, čtyř divizí, tří datových zdrojů a jedné tabulky, kterou nikdo nevlastní celou. Nikdo ten proces nenavrhl — narostl. Takhle vypadal, když se poprvé nakreslil:',
+    },
+    {
+      kind: 'figure',
+      name: 'akcni-regal',
+      caption:
+        'Tři pruhy podle toho, kdo co dělá: produkťáci s marketingem, logistika, výstupy. Oranžově tři místa, kde se práce zadrhává; číslo u nich není pořadí stavby, ale pořadí bolesti. Zeleně jedno místo, které se automatizovat nemá.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Všimni si, že nejhorší místo není to největší. Číslo jedna je přepisování odpovědí z e-mailů zpátky do tabulky — pár minut práce, ale opakovaně, ručně a bez jakéhokoli užitku. V nahrávce to má vlastní jméno: „takový vysírací krok".',
+    },
+    {
+      kind: 'table',
+      head: ['Místo', 'Jak to chodí teď', 'Kam by se to dalo posunout'],
+      rows: [
+        [
+          '1 — sběr odpovědí od produkťáků',
+          'e-mail tam, e-mail zpět, vykopírovat, zkontrolovat, že se řádky neposunuly. Někdo místo tabulky pošle print screen, který se přeťukává ručně.',
+          'zrušit e-mail jako přenos. Sdílený list nebo formulář, kam si produkťák výběr zapíše sám — data neopustí tabulku a je vidět, kdo ještě neodpověděl.',
+        ],
+        [
+          '2 — rozpad na čtyři divizní Excely a rozeslání',
+          'ručně se skládá list, kopíruje se přes „vložit jinak → hodnoty", pak jedenáct e-mailů.',
+          'jeden zdroj na SharePointu, ze kterého se čtyři soubory vygenerují a rozešlou samy. Tenhle návrh zazněl přímo v nahrávce, dřív než ho navrhl kdokoli zvenčí.',
+        ],
+        [
+          '3 — tři finální podklady',
+          'Word a Excel pro marketing, Excel pro centrální sklad, Excel pro backoffice. Ručně, z téhož zdroje, třikrát.',
+          'jeden schválený zdroj a tři šablony. Návrh min/max podle prodejů za posledních dvanáct měsíců se dá předpočítat, člověk ho jen potvrdí.',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Zelený rámeček je stejně důležitý jako ty oranžové',
+      text:
+        'Fyzické vzorování — jestli se tři kufry vejdou vedle sebe — se automatizovat nedá a nemá. Měrné jednotky v systému lžou (jednotkou je vrtačka, ne kufr), takže se to musí naskládat a vyfotit; ta fotka je pak důkaz proti datům. Když mapuješ cizí proces, hledej tohle stejně pečlivě jako místa k automatizaci. Bez toho zbyde plán, který se v praxi zasekne o něco, co nikdo nezmínil, protože to všem přišlo samozřejmé.',
+    },
+    { kind: 'h', text: 'Jak ten obrázek vznikl' },
+    {
+      kind: 'p',
+      text:
+        'Za tím diagramem není workshop ani analytik. Je za ním osmnáctiminutový rozhovor nahraný na telefon a čtyři kroky po něm. Celé to zabralo asi hodinu. Stojí za to si ty kroky projít, protože přesně tohle budeš dělat nad vlastní agendou — a bez toho nemáš co zadat.',
+    },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Nahrát rozhovor, ne dělat si poznámky',
+          body:
+            'Osmnáct minut u stolu a dvě otázky: co s tím děláš a co tě na tom štve. Poznámky si nedělej — nestíháš psát a ptát se zároveň a ujedou ti právě ty věty, o které jde. Nahrávka taky odstraní tvůj vlastní filtr: nezapíšeš jen to, co ti přišlo důležité.',
+        },
+        {
+          title: 'Přepsat nahrávku na text',
+          body:
+            'Claude zvuk nepřečte, potřebuje text. Přepis proto udělá jiný nástroj a Claudovi se pošle až výsledek. Tenhle vznikl Whisperem puštěným lokálně na počítači, takže nahrávka nikam neodešla — u rozhovoru o vnitřních procesech to není maličkost.',
+        },
+        {
+          title: 'Nechat z přepisu udělat rozbor',
+          body:
+            'Přepis se dá Claudovi a řekne se, co z něj chceš: kroky po pořádku, kdo je dělá, kde data mění formu, kde se čeká na člověka a co se v nahrávce označilo za otravné. Tady vznikne ten dokument s označenými místy — druhá karta níž.',
+        },
+        {
+          title: 'Nakreslit to',
+          body:
+            'Teprve z rozboru diagram. Pruhy podle lidí, ne podle systémů — nakreslené podle systémů z toho vyjdou hezké šipky a žádné předávání. Zajímavá jsou právě místa, kde práce přechází z jednoho člověka na druhého: tam se čeká a tam se přepisuje.',
+        },
+        {
+          title: 'Napsat zadání na jedno místo, ne na celý proces',
+          body:
+            'Až z obrázku vzniká zadání — a jen pro jeden oranžový rámeček, ten nejlevnější. Jak takové zadání vypadá, je v lekci Postav si tu složku sám.',
+        },
+      ],
+    },
+    {
+      kind: 'soubor',
+      nazev: 'prepis-ukazka.txt',
+      popis:
+        'Prvních dvacet šest řádků strojového přepisu, jak vylezl. „Google Tabouka" místo tabulky, „produktiák" místo produkťáka — a nevadí to.',
+      obsah: `[00:00] Takže od produktiáku dostanu data do Google Tabouky.
+[00:06] Z Google Tabouky, vezmu část dena.
+[00:10] A ještě si zapoměla jako říct, že ty do té tabouky,
+[00:15] ty je nedostáváš jako, že jo, takže.
+[00:18] Tam je zapisují produktiáce.
+[00:19] Jo, takže do tabouky tam prostě nějaká tabouka, tam ti to zapíše jako produktiák.
+[00:24] Ty jsou tom, jak dozvíš.
+[00:28] Mám tam, oni to tam zapisují průběžně, takže jako nemám žádný termín.
+[00:34] Je to přibližně šestý dnů před začátku magazínu.
+[00:39] Magazín je co ještě?
+[00:40] Normálně letáček, jaký líd leták, tak vlastně.
+[00:44] Akorát co to mene magazín.
+[00:46] Takže vlastně to takový akční leták.
+[00:49] A oni tam dají jako co obsah toho letáčku?
+[00:52] Oni tam dají obsah toho letáčku, co bych chtěli vlastně, co bych chtěli vlastně jako zpropagovat.
+[01:02] Já vezmu ty produkt, který tam dali, a dám je do Excelu, na jeden list.
+[01:10] A na ostatní listy já dám různý datas agendy.
+[01:16] Jednosou, min maxi jednosou, centrální stát, kolik toho má skladem,
+[01:22] a kolik toho je na centrální skladu. To jsou tři různých zdroje,
+[01:26] které mi udělají takovou jako kontingenčku nebo dovyplnějí mi data k těm položkám konkrétu.
+[01:36] A já potom vezmu tu tabulku Excelovskou a rozdělí mý poproduktiák,
+[01:48] který dávají některé položky.
+[01:52] Jak to vypadá to rozdělování?
+[01:54] Udělám vlastně z toho jednoho velkého Excelu, čtyři další Excely.
+[01:59] A to děláš růčně?
+[02:01] Teď mi to dělá klot.
+
+… (dál dalších 295 řádků, celkem 18 minut)`,
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Rozsekaná čeština není problém',
+      text:
+        'Přepis nemá být hezký, má být úplný. „Google Tabouku" si Claude z kontextu přeloží sám a v rozboru už je správně. Čas strávený ručním čištěním přepisu je vyhozený — leda by šlo o názvy systémů nebo divizí, u kterých se vyplatí do zadání připsat, jak se doopravdy jmenují.',
+    },
+    {
+      kind: 'soubor',
+      nazev: 'user-flow.md',
+      popis:
+        'Rozbor, který z toho přepisu vznikl: kontext v číslech, deset kroků, tři místa k automatizaci a jedno, které se automatizovat nemá. Podle tohohle souboru je nakreslený obrázek nahoře.',
+      obsah: `# Akční regál — user flow (modelový příklad pro workshop)
+
+Zdroj: nahrávka rozhovoru s logistikou, 18 min (strojový přepis — názvy divizí a systémů mohou být přeslechnuté).
+Vizualizace: diagram „Od magazínu do regálu" (je v lekci Co je automatizace).
+
+## Kontext v číslech
+
+- ~6 týdnů dopředu, bez pevného termínu
+- 4 divize: nářadí · dekton (pěny, silikony) · elektro · voda-topo
+- 11 produkťáků, každý má svoje značky/sekce
+- regál 130 × 900 cm
+- z ~150 položek magazínu se do regálu vejde ~80
+- 3 datové zdroje: min/max, zásoby poboček, centrální sklad
+
+## Flow
+
+1. **Produkťáci nasypou obsah magazínu do Google Tabulky** — průběžně, ~6 týdnů předem. Kritéria zařazení: sezónnost, dohoda s dodavatelem, potřeba odprodat zásoby.
+2. **Logistika si vezme svých ~7 sloupců** — zbytek tabulky patří marketingu, ostatní divize k ní přístup nemají.
+3. **Vznikne velký Excel** — položky na jeden list, na další listy min/max, zásoby poboček, centrální sklad + status položky (napřímo od dodavatele vs. přes centrální sklad).
+4. **Rozpad na 4 divizní Excely** ← *hotspot 2*. Dnes už s pomocí AI: vkládá se jen složený list („vložit jinak → hodnoty"), celý soubor je moc velký.
+5. **Rozeslání 11 produkťákům e-mailem** ← *hotspot 2*. Každý dostane ~50 položek ze své sekce.
+6. **Produkťák vybere 5–10 položek do regálu** — přidá prioritu a poznámku (titulka / omezené množství → jen 50 poboček).
+7. **Ruční přepis odpovědí zpět do tabulky** ← *hotspot 1, největší bolest*. Kontrola, že se nic neposunulo; jeden produkťák posílá print screeny, které se přeťukávají.
+8. **Fyzické vzorování v regálu** — měrné jednotky neodpovídají realitě (jednotka je vrtačka, ne kufr). Zkouší se, jestli se tři kufry vejdou vedle sebe; fotka slouží jako důkazní materiál.
+9. **Návrh min/max + schválení** — podle prodejů za posledních 12 měsíců a skladových zásob; produkťáci upraví podle dohod s dodavateli.
+10. **Tři finální podklady** ← *hotspot 3*: Word + Excel pro marketing (odtud na web), Excel pro centrální sklad (naskladnění), Excel pro backoffice (nastavení poboček).
+
+## Místa pro automatizaci
+
+**1 — Sběr odpovědí od produkťáků (kroky 6–7).** Teď: e-mail tam, e-mail zpět, vykopírovat, zkontrolovat posuny, přeťukat print screeny. Posun: zrušit e-mail jako přenosový formát — sdílený list nebo formulář, kde produkťák zapíše výběr, prioritu a poznámku přímo. Data nikdy neopustí tabulku, navíc je vidět, kdo neodpověděl.
+
+**2 — Rozpad a rozeslání divizních Excelů (kroky 4–5).** Vlastní návrh z nahrávky: složený list na SharePoint / OneDrive, odtud automaticky vygenerovat 4 soubory podle divize a rozeslat notifikaci na konkrétní adresy.
+
+**3 — Generování finálních podkladů (krok 10).** Jeden schválený zdroj dat + tři šablony. Návrh min/max podle prodejů se dá předpočítat, člověk potvrzuje.
+
+**Co nechat člověku:** vzorování v regálu. Data o měrných jednotkách lžou, fotka je důkaz proti nim. Automatizace tomu má uvolnit místo, ne to nahradit.
+
+## Citace
+
+- „To je takový vysírací krok." (17:42 — o pinkání e-mailů)
+- „Ona mi vždycky udělá print screen, takže já to tam vyťukávám." (17:49)
+- „I když mi agenda říká, že se tam tři vejdou — vyfotím to a mám důkazní materiál." (~05:00)
+- „Tady už by se to mohlo dělat automaticky." (06:42 — vlastní návrh u rozpadu Excelů)`,
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Diktování a přepis nahrávky nejsou totéž',
+      text:
+        'Diktování je jeden hlas do vstupního pole teď; přepis je dvouhlasý rozhovor ze záznamu. Na sběr rozhovoru diktování není. Kde v tomhle postupu pomůže, je krok hned po něm: přijdeš od kolegy a dvě minuty namluvíš, co ti ukázal. Řekneš při tom detaily, které bys do pole nenapsal — a Claude z toho nakreslí první verzi flow, kterou pak opravíš podle přepisu.',
     },
   ],
 }

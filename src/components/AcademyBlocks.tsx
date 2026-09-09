@@ -23,6 +23,7 @@ import { usePlatform } from '../lib/academyPlatform'
 import AutomationLadder from './AutomationLadder'
 import ProjectTree from './ProjectTree'
 import RegalFlow from './RegalFlow'
+import AkcniRegalFlow from './AkcniRegalFlow'
 import RoutineForm from './RoutineForm'
 import TokenDrains from './TokenDrains'
 import ContextGrowth from './ContextGrowth'
@@ -631,6 +632,8 @@ export default function BlockView({ block }: { block: Block }) {
               <TriPrikazy />
             ) : block.name === 'faktury-sezeni' ? (
               <FakturySezeni />
+            ) : block.name === 'akcni-regal' ? (
+              <AkcniRegalFlow />
             ) : (
               <RegalFlow />
             )}

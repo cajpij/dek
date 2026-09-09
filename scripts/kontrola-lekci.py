@@ -21,6 +21,9 @@ SOUBORY = {
     'chran-vstup.sh': Z / '.claude/hooks/chran-vstup.sh',
     'rutina.md': Z / 'rutina.md',
     'runbook.md': Z / 'runbook.md',
+    # druhý příklad v lekci Co je automatizace — podklady, ze kterých vznikl
+    'prepis-ukazka.txt': KOREN / 'cviceni/akcni-regal/prepis-ukazka.txt',
+    'user-flow.md': KOREN / 'cviceni/akcni-regal/user-flow.md',
 }
 
 # Fráze popisující podobu projektu, která už neplatí. Klíč je vzor, hodnota
