@@ -138,11 +138,12 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Vzor: kontrola faktur ručně',
       min: 20,
+      lessons: ['od-mapy-k-automatu/nakresli-flow', 'od-mapy-k-automatu/cvicny-projekt-faktury'],
       kind: 'talk',
       who: 'Lektor',
       brief: FAKTURY_BRIEF,
       steps: [
-        { title: 'Projít proces po krocích', min: 10, detail: 'Osm kroků od e-mailu s fakturou po zadání k platbě' },
+        { title: 'Projít proces po krocích', min: 10, detail: 'Osm kroků od e-mailu s fakturou po zadání k platbě', lessons: ['od-mapy-k-automatu/nakresli-flow'] },
         { title: 'Kde data mění formu ručně', min: 7, detail: 'Nechat sál hádat, než ukážeš tři označená místa' },
         { title: 'Co má zůstat člověku', min: 3, detail: 'Schválení faktury k platbě — i sedící čísla nemusí znamenat zaplať' },
       ],
@@ -244,10 +245,11 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Zadání nad tabulkou a kontrola výsledku',
       min: 25,
+      lessons: ['od-mapy-k-automatu/cvicny-projekt-faktury'],
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'Struktura zadání, které projde napoprvé', min: 8, detail: 'Co vzít, co udělat, kam uložit, co s výjimkou' },
+        { title: 'Struktura zadání, které projde napoprvé', min: 8, detail: 'Co vzít, co udělat, kam uložit, co s výjimkou', lessons: ['od-mapy-k-automatu/cvicny-projekt-faktury'] },
         { title: 'Pasti, které tabulka nastraží', min: 7, detail: 'Kódy jako čísla, prázdno vs. nula, hlavička na třetím řádku' },
         { title: 'Tři otázky na každý výstup', min: 10, detail: 'Sedí počty, sedí součty, sedí vzorek' },
       ],
@@ -267,6 +269,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Cvičení 2 — postav si první automatizaci',
       min: 45,
+      lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace', 'od-mapy-k-automatu/naplanovana-uloha'],
       kind: 'work',
       who: 'Lektor + asistence',
       brief:
