@@ -35,13 +35,17 @@ kontroluje jen úplnost šesti údajů, ne shoda s objednávkou:
 | Barvy Piekarová | ano | — |
 
 Vzorový výstup v `vystup/` přesně tenhle jeden nález obsahuje: sešit pro
-Elektro Dvořák s navrženým textem žádosti o doplnění. Že se o doplnění
-požádalo, je vidět i v evidenci — `data/objednavky.xlsx` má u každého
-dodavatele poslední sloupec „Žádost odeslána", takže nemusíš hledat den, kdy
-se to stalo. Když si to pustíš
-znovu bez připojeného konektoru, vyjde totéž, jen se e-mail jen navrhne
-(žádný konektor nemá odkud ho fyzicky odeslat) — a to je zároveň způsob,
-jak si ověřit, že projekt funguje.
+Elektro Dvořák s navrženým textem žádosti o doplnění. Bez připojeného
+konektoru se e-mail neodešle — text se jen navrhne a do sloupce „Žádost
+odeslána" se zapíše „připraveno, čeká na konektor".
+
+**`data/objednavky.xlsx` je zatím prázdný** — má jen hlavičky sloupců, aby
+bylo předem vidět, co se kam bude zapisovat. Naplní ho až první běh: každá
+faktura dostane řádek v sešitu svého dodavatele. Právě proto se dá porovnat,
+co ti vyšlo, s referenčním výstupem ve `vystup/` — a je to zároveň způsob,
+jak si ověřit, že projekt funguje. Když ho pustíš podruhé, neudělá už nic:
+všechny faktury mají řádek. To je správně — úloha, která běží každých
+15 minut, musí umět nedělat nic.
 
 ## Jak to rozjet
 

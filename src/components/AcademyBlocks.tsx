@@ -34,6 +34,7 @@ import UsageReport from './UsageReport'
 import ConnectorSetup from './ConnectorSetup'
 import FolderPermission from './FolderPermission'
 import FakturySmycka from './FakturySmycka'
+import KontrolaFlow from './KontrolaFlow'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
@@ -619,6 +620,8 @@ export default function BlockView({ block }: { block: Block }) {
               <FolderPermission />
             ) : block.name === 'faktury-smycka' ? (
               <FakturySmycka />
+            ) : block.name === 'kontrola-flow' ? (
+              <KontrolaFlow />
             ) : block.name === 'tri-prikazy' ? (
               <TriPrikazy />
             ) : block.name === 'faktury-sezeni' ? (
