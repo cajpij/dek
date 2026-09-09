@@ -2580,7 +2580,7 @@ se to kontroluje.`,
 
 const LESSON_CVICENI: Lesson = {
   slug: 'zmapuj-kolegovi-workflow',
-  module: 'vic',
+  module: 'agenda',
   title: 'Cvičení 1: rozhovor o kolegově práci',
   summary:
     'Ve dvojici si navzájem vyzpovídáte kus vlastní práce. Rozhovor nahrajete na telefon a přepis i reálné soubory skončí v projektu. Kreslit se bude až v další lekci.',
@@ -2869,7 +2869,7 @@ Ulož to do podklady/rozhovor-<datum>.md.`,
 
 const LESSON_FLOW: Lesson = {
   slug: 'nakresli-flow',
-  module: 'vic',
+  module: 'agenda',
   title: 'Cvičení 1b: kresba flow a označení míst',
   summary:
     'Z rozhovoru nakreslíte flow do tří pruhů, popíšete šipky a každý krok označíte jednou ze tří značek. Kreslí ten, kdo se ptal.',
@@ -3002,7 +3002,7 @@ const LESSON_FLOW: Lesson = {
 
 const LESSON_SDILENI: Lesson = {
   slug: 'sdileni-map',
-  module: 'vic',
+  module: 'agenda',
   title: 'Sdílení map: co si z toho odnese sál',
   summary:
     'Dvě minuty na dvojici. Jak svoji mapu představit, aby to ostatním k něčemu bylo, a co poslouchat u ostatních — protože stejné místo se skoro vždycky opakuje ve třech odděleních najednou.',
@@ -3156,7 +3156,7 @@ Nenavrhuj řešení.`,
   ],
 }
 
-/* ---------------------------------------------- kurz 2: Od mapy k automatu */
+/* --------------------------------- kurz 2: Od vzoru k vlastní automatizaci */
 
 const L2_PLAN: Lesson = {
   slug: 'naplanovana-uloha',
@@ -4677,14 +4677,285 @@ místo odeslání jen navrhne text a s tou vystačím.`,
   ],
 }
 
+const L2_POSTAV: Lesson = {
+  slug: 'postav-slozku-sam',
+  module: 'postav',
+  title: 'Postav si tu složku sám',
+  summary:
+    'Prázdná složka a šest souborů, jeden po druhém. Stažený vzor máš vedle — na porovnání na konci, ne na kopírování.',
+  minutes: 45,
+  kind: 'zadání',
+  track: 'v sále',
+  outcomes: [
+    'dojít od prázdné složky k prvnímu běhu, aniž bys cokoli zkopíroval',
+    'poznat, kdy věta patří do CLAUDE.md, kdy do skillu a kdy nikam',
+    'porovnat svůj výsledek se vzorem a rozhodnout, které rozdíly vadí a které ne',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Předchozí lekci sis stáhl hotovou složku a pustil ji. To je jako přečíst si cizí zápisky — dává to smysl, dokud u toho sedíš. Tahle lekce je o tom postavit tutéž věc znovu, od prázdné složky. Ne proto, že by ten vzor byl špatný, ale proto, že příště ho mít nebudeš: budeš mít svoji agendu a prázdnou složku, a jediné, co se bude hodit, je vědět, v jakém pořadí to vzniká.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Vzor teď zavři',
+      text:
+        'Stažený projekt nech, kde je, ale nedívej se do něj. Kopírováním se tohle naučit nedá — a hlavně by ti utekla ta zajímavá část, totiž místa, kde tě Claude začne prosit o doříkání. Otevřeš ho až v kroku 6, na porovnání.',
+    },
+    {
+      kind: 'figure',
+      name: 'automation-ladder',
+      caption:
+        'Pořadí, ve kterém to budeš stavět. Každý schod je jeden soubor a každý dává smysl jen tehdy, když ten pod ním už stojí. Zadání se dá napsat bez čehokoli dalšího; skill nemá co zabalit, dokud postup jednou neproběhl; hook nemá co hlídat, dokud není co rozbít.',
+    },
+    {
+      kind: 'h',
+      text: '1. Prázdná složka a nic v ní',
+    },
+    {
+      kind: 'steps',
+      items: [
+        {
+          title: 'Založ si složku',
+          body:
+            'Kdekoli na disku, jméno je jedno — třeba faktury-cviceni. Uvnitř udělej podsložky vstup/ a data/. Víc zatím ne: .claude/ ani CLAUDE.md neděláš ručně, ty vzniknou samy.',
+        },
+        {
+          title: 'Dej do vstup/ nějaké faktury',
+          body:
+            'Stačí dvě tři PDF. Můžeš vzít ty ze staženého vzoru — data si půjčit smíš, jde o soubory, které postavíš kolem nich. Když žádné nemáš, řekni Claudovi, ať ti dvě vyrobí; na cvičení to stačí.',
+        },
+        {
+          title: 'Otevři složku v Claude Code',
+          body:
+            'Záložka Code, prostředí Local, Select folder, potvrď důvěru. Ještě nic nezadávej — složka je zatím prázdná a Claude nemá podle čeho pracovat.',
+        },
+      ],
+    },
+    {
+      kind: 'h',
+      text: '2. Zadání — napiš ho svými slovy',
+    },
+    {
+      kind: 'p',
+      text:
+        'První soubor je zadani.md a napíšeš ho ty, ne Claude. Je to jediné místo v celé složce, kde se rozhoduje, co má vzniknout — všechno ostatní z toho jen vyplyne. Nemusí být hezké. Musí odpovědět na šest věcí:',
+    },
+    {
+      kind: 'table',
+      head: ['Na co odpovědět', 'Co je špatná odpověď'],
+      rows: [
+        ['Co je na vstupu a kde to leží', '„faktury“ — čí, v jakém formátu, v jaké složce'],
+        ['Co se z toho má vytáhnout', '„důležité údaje“ — vyjmenuj je, jeden po druhém'],
+        ['Kam se to zapíše a pod jakým jménem', '„do tabulky“ — který soubor, který sešit, jaké sloupce'],
+        ['Kdy se má něco poslat ven a kdy ne', '„když je to potřeba“ — musí to jít poznat počítáním'],
+        ['Co dělat, když se to nepovede', 'nic — bez tohohle odstavce si Claude domyslí vlastní řešení'],
+        ['Co se nesmí nikdy', 'nic — hranice se píše dopředu, ne až se něco stane'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Rozcestí piš číslem, ne úsudkem',
+      text:
+        'Nejčastější chyba v zadání je věta „posuď sám, jestli to za to stojí“. Claude ji poslechne a pokaždé se rozhodne trochu jinak. Ve vzoru je proto napsané „chybí jeden nebo dva údaje — pošli; chybí tři a víc — nic neposílej a napiš to do protokolu“. Stejné rozcestí, ale dá se z něj zpětně poznat, proč běh dopadl, jak dopadl.',
+    },
+    {
+      kind: 'h',
+      text: '3. Nech to podle zadání postavit',
+    },
+    {
+      kind: 'code',
+      caption: 'Tohle je celý příkaz. Odkaz na soubor stačí, číst si ho nahlas nemusíš.',
+      text: 'Postav mi v téhle složce to, co je popsané v zadani.md. Pravidla,\nkterá platí pořád, dej do CLAUDE.md. Postup zabal do skillu.\nNa konec napiš runbook.md pro někoho, kdo u toho nebyl.',
+    },
+    {
+      kind: 'p',
+      text:
+        'A teď to nejdůležitější z celé lekce: bude se ptát. Na jména sloupců, na to, jestli se má sešit zakládat sám, na to, co se stane při druhém běhu. Každá taková otázka je díra v tvém zadání. Nepiš odpověď jen do chatu — dopiš ji do zadani.md a řekni „doplnil jsem to do zadání, pokračuj“. Po pěti takových kolech máš zadání, které by projelo napoprvé.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Otázky si zapisuj',
+      text:
+        'Nech si vedle otevřený prázdný soubor a piš do něj každou otázku, na kterou jsi musel odpovídat. Je to nejlevnější zpětná vazba na vlastní zadání, jakou dostaneš — a příště, u vlastní agendy, tenhle seznam projdeš dopředu a půlku otázek si ušetříš.',
+    },
+    {
+      kind: 'h',
+      text: '4. Projdi, co vzniklo',
+    },
+    {
+      kind: 'p',
+      text:
+        'Otevři každý soubor a přečti ho. Ne proto, abys hledal chyby v Claudovi, ale proto, že tohle je ta složka, kterou budeš za měsíc předávat kolegovi. Co se v ní nedá přečíst, to nefunguje.',
+    },
+    {
+      kind: 'table',
+      head: ['Soubor', 'Co v něm musí být', 'Častá chyba'],
+      rows: [
+        [
+          'CLAUDE.md',
+          'slovník pojmů, kde leží data, a pravidla, která platí pořád',
+          'je v něm postup krok za krokem — ten patří do skillu, ne sem',
+        ],
+        [
+          '.claude/skills/…/SKILL.md',
+          'popis v hlavičce, podle kterého Claude pozná, kdy skill použít, a postup po krocích',
+          'description je jednoslovný, takže se skill nikdy sám nespustí',
+        ],
+        [
+          '.claude/hooks/…',
+          'jedna zábrana nad tím, co se nesmí přepsat ani smazat',
+          'hook nikde nezmíněný v settings.json — leží tam a nespouští se',
+        ],
+        [
+          'rutina.md',
+          'co vyplnit ve formuláři, aby to šlo založit znovu bez hádání',
+          'chybí — rozvrh pak bydlí jen v aplikaci a s přeinstalovaným počítačem je pryč',
+        ],
+        [
+          'runbook.md',
+          'co dělat, když to spadne, a komu to říct',
+          'psaný pro tebe, ne pro náhradu — pozná se podle vět typu „jako obvykle“',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Zábranu si vyzkoušej, ne jen přečti',
+      text:
+        'Řekni Claudovi, ať smaže jednu fakturu ze vstup/. Když se to povede, hook nefunguje — a to je lepší zjistit teď než ve chvíli, kdy ve složce leží jediná kopie účetního dokladu. Ve vzoru tuhle zábranu dělá .claude/hooks/chran-vstup.sh a je zapnutá v .claude/settings.json.',
+    },
+    {
+      kind: 'h',
+      text: '5. Pusť to',
+    },
+    {
+      kind: 'figure',
+      name: 'prvni-beh',
+      caption:
+        'Co má po prvním běhu zůstat. Poslední řádek je ten, na kterém se to nejčastěji láme: odeslaná pošta zůstane prázdná, protože bez konektoru není kam poslat — a to je správný konec běhu, ne chyba.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Pusť to podruhé, hned za sebou. Nemá se stát nic: faktury už jsou zaevidované, takže není co zpracovat. Když se místo toho zapíšou podruhé, chybí v zadání věta o tom, podle čeho se pozná už zpracovaná faktura — a to je přesně ten druh díry, který se v ostrém provozu projeví až po týdnu.',
+    },
+    {
+      kind: 'h',
+      text: '6. Teď teprve otevři vzor',
+    },
+    {
+      kind: 'p',
+      text:
+        'Otevři stažený projekt vedle svého a porovnej je soubor po souboru. Nečekej, že to bude stejné — nebude a nemá. Zajímavé jsou jen dva druhy rozdílů:',
+    },
+    {
+      kind: 'table',
+      head: ['Rozdíl', 'Vadí?'],
+      rows: [
+        ['Jiná jména sloupců, jiné pořadí kroků, jiný sloh', 'ne — je to tvoje složka'],
+        ['Máš navíc něco, co vzor nemá', 'ne, pokud víš proč'],
+        ['Vzor má odstavec „co se nesmí nikdy“ a ty ne', 'ano — dopiš ho'],
+        ['Vzor má rozcestí s čísly a ty „posuď sám“', 'ano — přepiš to na počitatelné'],
+        ['Vzor má runbook a ty ne', 'ano — bez něj to nejde předat'],
+        ['Vzor má zábranu nad vstup/ a ty ne', 'ano — bez ní se nedá pustit bez dozoru'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Když ti něco chybí, nedopisuj to ručně',
+      text:
+        'Dopiš to do zadani.md a nech to postavit znovu. Zvykni si na to hned tady: opravuje se popis, ne výsledek. Jinak se ti za měsíc rozejde složka s tím, co je o ní napsané, a nikdo nepozná, které z toho platí.',
+    },
+    {
+      kind: 'checklist',
+      title: 'Hotovo, když',
+      items: [
+        've složce je zadani.md, CLAUDE.md, skill, hook, rutina.md a runbook.md',
+        'nic z toho jsi nezkopíroval ze vzoru',
+        'druhý běh za sebou neudělal nic',
+        'pokus o smazání faktury ze vstup/ se nepovedl',
+        'runbook by stačil někomu, kdo u toho dneska nebyl',
+      ],
+    },
+    {
+      kind: 'task',
+      title: 'Zadání: tentýž postup na vlastní agendě',
+      intro:
+        'Tohle sis postavil na fakturách, které nejsou tvoje. Teď totéž na něčem, co doopravdy děláš — a nemusí to být to nejbolestivější, ber krok, který se dá dokončit.',
+      items: [
+        'vyber si jeden krok ze své práce, kde se data přenášejí odjinud jinam',
+        'napiš k němu zadani.md podle tabulky z kroku 2 — šest odpovědí',
+        'nech podle něj postavit složku a zapisuj si otázky, na které ses musel doptat',
+        'dopiš odpovědi do zadání a nech to postavit znovu',
+        'pusť to dvakrát za sebou a přines na příště, co se stalo napodruhé',
+      ],
+      hint:
+        'Když nevíš, který krok vzít: ten, který děláš každý týden, trvá pod hodinu a nikdo kromě tebe neví, jak se dělá. Tam je poměr užitku a rizika nejlepší.',
+    },
+  ],
+}
+
+const LESSON_PROC: Lesson = {
+  slug: 'co-je-automatizace',
+  module: 'start',
+  title: 'Co je automatizace a co z ní budeš mít',
+  summary:
+    'Jeden příklad na začátek: co dělala Marie v pondělí ráno ručně a co z toho dneska dělá počítač. Bez klikání, jen abys věděl, kam to celé míří.',
+  minutes: 6,
+  kind: 'lekce',
+  track: 'v sále',
+  outcomes: [
+    'říct vlastními slovy, co se v téhle akademii myslí automatizací',
+    'poznat na svojí práci krok, který je pro ni kandidát',
+    'vědět, proč se část procesu schválně neautomatizuje',
+  ],
+  body: [
+    {
+      kind: 'p',
+      text:
+        'Než se něco nastaví, hodí se vědět, co z toho vlastně bude. Celý večer stojí na jednom příkladu: Marie z DEKu dostává do schránky faktury v PDF a musí z nich přepisovat údaje do tabulky. Nikdo ji o to neprosil, prostě to tak vzniklo. Takhle ta práce vypadala předtím a po tom, co se část převzala:',
+    },
+    {
+      kind: 'figure',
+      name: 'rucne-vs-automat',
+      caption:
+        'Vlevo pondělní ráno, jak ho Marie dělala. Vpravo totéž dneska. Nad řezem tři kroky, které dělá počítač sám; pod ním tři, které pořád dělá člověk. U dvou z nich je modře napsané, na co se dají posunout — a ten poslední, schválení a platba, se posouvat nebude. To není nedodělek, to je rozhodnutí.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Všimni si, co se nezměnilo: faktury pořád chodí mailem, pořád je někdo schvaluje a pořád je za výsledek zodpovědná Marie. Automatizace tu neznamená, že práce zmizí. Znamená, že přepisování mezi dvěma soubory dělá počítač a člověku zůstane to, kde se rozhoduje.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Podle čeho poznáš krok, který se dá vzít',
+      text:
+        'Děje se to opakovaně, dá se to popsat větami bez „to víš, jak to chodí“, a když se to udělá špatně, pozná se to dřív, než to někam odejde. Když jedna z těch tří věcí neplatí, nech ten krok zatím být — vrátíš se k němu, až budeš mít první hotovou automatizaci a budeš vědět, co obnáší.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Zbytek prvního kurzu je příprava: co která slova znamenají, za co se u Clauda platí a jak mu napojit složku, ve které ta práce žije. Stavět se začne až v druhém kurzu — nejdřív na hotovém vzoru ke stažení, pak tutéž složku postavíš znovu sám a nakonec ji uděláš nad vlastní agendou.',
+    },
+  ],
+}
+
 export const COURSES: Course[] = [
   {
     slug: 'claude-a-firemni-data',
     title: 'Claude a firemní data',
     summary:
-      'Napojit Claudovi složku, ve které pracuješ, a naučit se v ní zadávat práci. Končí zadáním nad reálným procesem.',
+      'Napojit Claudovi složku, ve které pracuješ, a ohraničit, co v ní Claude smí. Končí projektem, do kterého se dá začít zadávat.',
     intro:
-      'Kurz pro lidi, kteří každý týden přeskládávají tytéž tabulky a chtějí, aby se to dělalo samo. Nejdřív napojíš Claudovi složku, ve které ta práce žije, ohraničíš si, co v ní smí a nesmí, a založíš nad ní projekt s pravidly, která se nemusí opakovat každé ráno. Pak si na reálném procesu kontroly faktur vyzkoušíš najít místa, kde se dá práce automatizovat — a totéž uděláš na vlastní agendě.',
+      'Kurz pro lidi, kteří každý týden přeskládávají tytéž tabulky a chtějí, aby se to dělalo samo. Nejdřív si ujasníš, co která slova znamenají a za co se u Clauda vlastně platí. Pak napojíš složku, ve které ta práce žije, ohraničíš si, co v ní Claude smí a nesmí, a založíš nad ní projekt s pravidly, která se nemusí opakovat každé ráno. Stavět se bude až ve druhém kurzu — tenhle končí ve chvíli, kdy je kam.',
     level: 'Začátečník',
     section: 'Začni tady',
     modules: [
@@ -4692,7 +4963,7 @@ export const COURSES: Course[] = [
         key: 'start',
         title: 'Orientace',
         summary:
-          'Jak večer poběží — to si otevřeme společně. Zbytek jsou tři referenční lekce: co která slova znamenají, kolik to stojí a jak spolu souvisí Cowork a Claude Code.',
+          'Jak večer poběží a na jednom příkladu, co se tím myslí automatizací — to si otevřeme společně. Zbytek jsou tři referenční lekce: co která slova znamenají, kolik to stojí a jak spolu souvisí Cowork a Claude Code.',
       },
       {
         key: 'napojeni',
@@ -4701,15 +4972,17 @@ export const COURSES: Course[] = [
           'Jediná část večera, kde se něco nastavuje. Děláme ji hned na začátku, aby se případný zádrhel našel teď a ne ve chvíli, kdy máš stavět.',
       },
     ],
-    lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT],
+    lessons: [
+      LESSON_PROGRAM, LESSON_PROC, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK,
+      LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT,
+    ],
     learn: [
+      'říct vlastními slovy, co se tu myslí automatizací, a poznat pro ni kandidáta',
       'vysvětlit, za co se u Clauda platí, a vybrat model i effort podle úkolu',
       'zkrátit dlouhá sezení a zjistit, kam odtéká příděl',
       'vybrat si mezi chatem, Coworkem a Claude Code podle toho, kde leží data',
       'založit projekt tak, aby se pravidla nemusela opakovat každé ráno',
       'nasyncovat knihovnu ze SharePointu do počítače a otevřít ji v Claude Code',
-      'číst pracovní proces jako tok dat mezi lidmi a soubory',
-      'odlišit, co má převzít automatizace a co má zůstat člověku',
     ],
     prerequisites: [
       'Nainstalovaný Claude Code',
@@ -4720,11 +4993,11 @@ export const COURSES: Course[] = [
   },
   {
     slug: 'od-mapy-k-automatu',
-    title: 'Od mapy k automatu',
+    title: 'Od vzoru k vlastní automatizaci',
     summary:
-      'Navazuje tam, kde první kurz skončil mapou procesu. Cílem je automatizace, která doběhne bez tebe a ty poznáš, jestli dopadla dobře.',
+      'Od hotového vzoru přes vlastní stavbu až po vlastní agendu. Cílem je automatizace, která doběhne bez tebe a ty poznáš, jestli dopadla dobře.',
     intro:
-      'Mapu procesu už máš a víš, kde se přepisuje ručně. Tenhle kurz vede od ní až na poslední schod: k úloze, která se spustí sama a po které zůstane kontrola, ze které poznáš, jestli je výsledek v pořádku. Každou věc si nejdřív ukážeme na kontrole faktur, kterou znáš ze vzoru, a pak ji uděláš na vlastní agendě.',
+      'Kurz jde ve čtyřech krocích a v tomhle pořadí: nejdřív se podíváš, z čeho se automatizace skládá, pak si stáhneš hotový cvičný projekt a pustíš ho, pak tutéž složku postavíš znovu sám od prázdné složky — a teprve potom hledáš, kde se to samé dá udělat ve tvojí práci. Poslední modul jsou tři směry, kterými se dá pokračovat, až to minimum funguje.',
     level: 'Navazující',
     section: 'Pokračuj',
     modules: [
@@ -4732,7 +5005,13 @@ export const COURSES: Course[] = [
         key: 'postav',
         title: 'Postav to',
         summary:
-          'Nejdřív hotový projekt ke stažení, na kterém je vidět celek, pak jedno místo z vlastní mapy dotažené do skillu, který má vlastní kontrolu a spustí se sám.',
+          'Z čeho se automatizace skládá, hotový projekt ke stažení na vyzkoušení — a pak tatáž složka postavená znovu od prázdné složky, vlastníma rukama.',
+      },
+      {
+        key: 'agenda',
+        title: 'Na vlastní agendě',
+        summary:
+          'Postavit cizí příklad je jedna věc, najít ten svůj druhá. Rozhovor ve dvojici, kresba flow a společné sdílení — konec večera je mapa vlastní práce s označenými místy.',
       },
       {
         key: 'vic',
@@ -4742,17 +5021,22 @@ export const COURSES: Course[] = [
       },
     ],
     lessons: [
-      LESSON_AUTOMATIZACE, L2_CVICNY, L2_PLAN, L2_FORMULAR, L2_MCP, L2_DESIGN,
+      LESSON_AUTOMATIZACE, L2_CVICNY, L2_POSTAV, L2_PLAN,
       LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI,
+      L2_FORMULAR, L2_MCP, L2_DESIGN,
     ],
     learn: [
-      'napsat runbook a předat automatizaci tak, aby ji zvládl i někdo jiný',
+      'rozeznat pět schodů automatizace a vědět, který soubor je na kterém z nich',
       'rozjet hotový cvičný projekt a překlopit ho na vlastní dokumenty',
+      'postavit tutéž složku od nuly podle vlastního zadání, bez kopírování',
+      'poznat na svém zadání díry dřív, než se projeví v ostrém provozu',
+      'napsat runbook a předat automatizaci tak, aby ji zvládl i někdo jiný',
+      'číst pracovní proces jako tok dat mezi lidmi a soubory',
+      'odlišit, co má převzít automatizace a co má zůstat člověku',
     ],
     prerequisites: [
       'Dokončený kurz Claude a firemní data',
-      'Vlastní projekt se složkou dat a aspoň jedním hotovým zadáním',
-      'Mapa procesu z cvičení ve dvojicích',
+      'Složka projektu otevřená v Claude Code, s CLAUDE.md z minulého kurzu',
     ],
   },
 ]

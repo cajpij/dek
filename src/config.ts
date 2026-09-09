@@ -269,7 +269,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Cvičení 2 — postav si první automatizaci',
       min: 45,
-      lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace', 'od-mapy-k-automatu/naplanovana-uloha'],
+      lessons: ['od-mapy-k-automatu/postav-slozku-sam', 'od-mapy-k-automatu/jak-se-nastavuje-automatizace'],
       kind: 'work',
       who: 'Lektor + asistence',
       brief:
