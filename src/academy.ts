@@ -50,6 +50,7 @@ export type Block =
         | 'folder-permission'
         | 'faktury-smycka'
         | 'kontrola-flow'
+        | 'rucne-vs-automat'
     | 'tri-prikazy'
     | 'faktury-sezeni'
       caption: string
@@ -178,7 +179,7 @@ const LESSON_PROGRAM: Lesson = {
         ],
         [
           '3. Najít, co automatizovat',
-          'Konec ručního zadávání, pak Cvičení 1, 1b a Sdílení map — všechna v sólo verzi',
+          'Cvičení 1, 1b a Sdílení map — všechna v sólo verzi',
           'mapu vlastního procesu s označenými místy ručního přenosu',
         ],
         [
@@ -233,7 +234,7 @@ const LESSON_PROGRAM: Lesson = {
         ['16:00', 'Úvod — proč to děláme a co si odnesete'],
         ['16:10', 'Rozehřívačka — postavíme se a řekneme, co jsme dneska dělali ručně'],
         ['16:20', 'Nastavení: sdílená složka a projekt. U vlastního počítače, s asistencí.'],
-        ['16:50', 'Vzor: Konec ručního zadávání. Projdeme spolu jeden reálný proces.'],
+        ['16:50', 'Vzor: projdeme spolu jeden reálný proces kontroly faktur.'],
         ['17:10', 'Cvičení ve dvojicích — rozhovory o vlastní práci'],
         ['17:50', 'Kresba flow a označení míst k automatizaci'],
         ['18:05', 'Pauza'],
@@ -1580,202 +1581,6 @@ const LESSON_CO_VIDI: Lesson = {
   ],
 }
 
-const LESSON_REGAL: Lesson = {
-  slug: 'od-emailu-k-platbe',
-  module: 'zadani',
-  title: 'Konec ručního zadávání',
-  summary:
-    'Typický ruční proces kontroly faktur rozepsaný na kroky. Úkolem je najít místa, kde se dá práce automatizovat.',
-  minutes: 25,
-  kind: 'zadání',
-  track: 'v sále',
-  outcomes: [
-    'přečíst pracovní proces jako tok dat mezi lidmi a soubory',
-    'poznat kroky, ve kterých data mění formu ručně',
-    'odlišit, co má automatizace převzít a co má zůstat člověku',
-    'navrhnout první krok, který jde zkusit tenhle týden',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Obvyklý tvar kontroly faktur bez automatizace: od e-mailu s PDF fakturou po fakturu zadanou k platbě. Přečti si ho celý, zadání je pod diagramem.',
-    },
-    {
-      kind: 'table',
-      head: ['Parametr', 'Hodnota'],
-      rows: [
-        ['Kanál příjmu', 'e-mail, PDF příloha do sdílené schránky'],
-        ['Kdo kontroluje', '1–2 lidé v účtárně'],
-        ['Povinné údaje', '6 — číslo faktury, dodavatel, IČO, číslo objednávky, základ daně, splatnost'],
-        ['Zdroj k porovnání', 'export schválených objednávek, tabulka'],
-        ['Kdo schvaluje k platbě', 'vedoucí střediska'],
-        ['Objem', 'desítky faktur týdně'],
-      ],
-    },
-    {
-      kind: 'figure',
-      name: 'regal-flow',
-      caption:
-        'Tři účastníci, dvě kolečka přes e-mail. Oranžově místa, kde se údaje přepisují ručně.',
-    },
-    { kind: 'h', text: 'Proces krok za krokem' },
-    {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Faktura přijde e-mailem od dodavatele',
-          body:
-            'PDF příloha do sdílené schránky, mezi desítkami dalších zpráv. Nic ji netřídí — kdo se nepodívá, fakturu nenajde.',
-        },
-        {
-          title: 'Účetní fakturu otevře a ručně přepíše údaje',
-          body:
-            'Číslo faktury, dodavatele, IČO, číslo objednávky, základ daně a splatnost — z PDF do kontrolní tabulky.',
-        },
-        {
-          title: 'Paralelně dohledá odpovídající objednávku',
-          body:
-            'Otevře export schválených objednávek a hledá řádek se stejným číslem — často v jiném formátu, než má faktura.',
-        },
-        {
-          title: 'Porovná základ daně se schválenou částkou',
-          body: 'Ručně, řádek po řádku. Sedí-li, jde faktura dál; nesedí-li, začíná další kolo.',
-        },
-        {
-          title: 'Když něco nesedí, píše se středisku nebo dodavateli',
-          body:
-            'Chybějící číslo objednávky, jiná částka, objednávka, která v seznamu není — na každé se ptá zvlášť a čeká.',
-        },
-        {
-          title: 'Faktury, u kterých vše sedí, jdou ke schválení',
-          body: 'Přeposlané e-mailem vedoucímu střediska, s poznámkou, na co se má podívat.',
-        },
-        {
-          title: 'Schválení se vrátí a zapíše se ručně zpátky',
-          body: 'Účetní odpověď vykopíruje do tabulky a zkontroluje, že se v ní nic neposunulo.',
-        },
-        {
-          title: 'Schválená faktura se zadá do účetního systému k platbě',
-          body:
-            'Ručně, jedna po druhé. Tohle je krok, který rozhoduje — proto zůstává na člověku, i když se všechno předchozí zautomatizuje.',
-        },
-      ],
-    },
-    { kind: 'h', text: 'Soubory, o kterých je řeč' },
-    {
-      kind: 'table',
-      head: ['Soubor', 'Co v něm je', 'Kdo ho vlastní'],
-      rows: [
-        [
-          'Sdílená schránka fakturace@dek.cz',
-          'PDF faktury tak, jak přijdou od dodavatelů — netříděné, mezi ostatní poštou.',
-          'Účtárna',
-        ],
-        [
-          'Kontrolní tabulka',
-          'Jeden řádek na fakturu: číslo, dodavatel, částka, SEDÍ, CHYBÍ, poznámka. Vede se ručně.',
-          'Účetní',
-        ],
-        [
-          'Export schválených objednávek',
-          'Periodicky stažený z objednávkového systému. Číslo objednávky, dodavatel, částka, středisko.',
-          'Nákup',
-        ],
-        [
-          'E-mailová vlákna se schválením',
-          'Jediný záznam o tom, kdo co odsouhlasil. Rozeseté mezi desítkami jiných zpráv.',
-          'Střediska',
-        ],
-      ],
-    },
-    { kind: 'h', text: 'Co se u faktury vlastně porovnává' },
-    {
-      kind: 'table',
-      head: ['Sloupec', 'Odkud se bere'],
-      rows: [
-        ['Základ daně na faktuře', 'z PDF, ručně přečtený'],
-        ['Schválená částka', 'z exportu objednávek podle čísla objednávky'],
-        ['SEDÍ', 'porovnání dvou čísel — ano / ne / nenalezeno'],
-        ['CHYBÍ', 'ručně: název údaje, který na faktuře chybí'],
-        ['Rozhodnutí o schválení k platbě', 'posouzení člověka — dodací list, telefonát, výjimka'],
-      ],
-    },
-    { kind: 'h', text: 'Co vyplňuje účetní' },
-    {
-      kind: 'p',
-      text: 'Čtyři věci, které dnes vznikají ručně.',
-    },
-    {
-      kind: 'table',
-      head: ['Sloupec', 'Co do něj patří'],
-      rows: [
-        ['SEDÍ', 'ano / ne / nenalezeno'],
-        ['CHYBÍ', 'název chybějícího údaje'],
-        ['Schváleno', 'kdo a kdy fakturu odklikl'],
-        ['Poznámka', 'ručně: „čeká na dodací list“, „výjimka schválená telefonicky“'],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Není to nedotčený proces',
-      text:
-        'Účtárna dnes obvykle používá aspoň tabulku se vzorci, která hlídá součty — to je ten kousek, co se dá automatizovat jako první.',
-    },
-    {
-      kind: 'task',
-      title: 'Zadání',
-      intro:
-        'Pracuj s procesem výš. Odpovědi si piš do dokumentu, na konci je porovnáme napříč skupinami.',
-      items: [
-        'Označ každý krok jedním ze tří štítků: data se přenášejí ručně / rozhoduje se člověk / počítá se z pravidel.',
-        'Vyber tři kroky, ve kterých se nejvíc přepisuje. U každého napiš, mezi jakými dvěma formáty se data překlápějí.',
-        'U toho nejhoršího navrhni, co by se muselo změnit, aby přepis úplně zmizel — ne jak to zrychlit, ale jak to zrušit.',
-        'Najdi jeden krok, který má zůstat člověku, a napiš proč. Pojmenuj, co konkrétně tam člověk ví a data ne.',
-        'Podívej se na čtyři sloupce, které vyplňuje účetní. Který z nich by šel předvyplnit z dat, a proč zbylé ne?',
-        'V tabulce porovnání rozděl sloupce na dvě hromádky: co je čistý výpočet a co ne. U té první napiš, co by se muselo zajistit, aby se počítala sama.',
-        'Napiš jednu změnu, kterou by šlo zkusit do týdne bez souhlasu IT.',
-      ],
-      hint:
-        'Nápověda k bodu 3: e-mail není nástroj na sběr dat, je to přenos. Otázka nezní „jak rychleji přepsat odpověď z e-mailu“, ale „proč ta odpověď vůbec opouští tabulku“.',
-    },
-    { kind: 'h', text: 'Kam se to obvykle sejde' },
-    {
-      kind: 'p',
-      text: 'Tři místa, kam skupiny skoro vždy dojdou. Nedívej se, dokud nemáš vlastní odpovědi.',
-    },
-    {
-      kind: 'table',
-      head: ['Místo', 'Jak to je teď', 'Kam to posunout'],
-      rows: [
-        [
-          'Přepis údajů z PDF do tabulky',
-          'Účetní čte fakturu a šest údajů přepisuje ručně',
-          'Vytáhnout údaje přímo z PDF a jen je ověřit — ne přepisovat od nuly',
-        ],
-        [
-          'Zjištění, že na faktuře něco chybí, a vyžádání doplnění',
-          'Účetní si všimne chybějícího údaje sama a píše dodavateli ručně, kdy má čas',
-          'Automatická kontrola úplnosti; když něco chybí, systém sám požádá dodavatele o doplnění',
-        ],
-        [
-          'Zápis schválení zpět do tabulky',
-          'Schválení chodí e-mailem a ručně se přepisuje zpátky',
-          'Schválení rovnou v tabulce, ne přes e-mail jako mezikrok navíc',
-        ],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Co nechat člověku',
-      text:
-        'Rozhodnutí, že se faktura zaplatí, zůstává na člověku — i když všechna čísla sedí, může se čekat na dodací list nebo výjimku, kterou nikdo nezapsal. Automatizace má připravit podklad, ne rozhodnutí udělat za něj.',
-    },
-  ],
-}
-
 const LESSON_AUTOMATIZACE: Lesson = {
   slug: 'jak-se-nastavuje-automatizace',
   module: 'postav',
@@ -2470,7 +2275,7 @@ const LESSON_CVICENI: Lesson = {
     {
       kind: 'p',
       text:
-        'Stejné cvičení jako v lekci Konec ručního zadávání, tentokrát na vaší agendě. Ve dvojicích — sami sobě proces nikdo nepopíše dobře, protože se vám dávno slil do jednoho kroku. Vyberte kus práce, který děláte pravidelně a kde vám vstupuje e-mail nebo tabulka a někam posíláte výstup — stačí výsek, ne celá agenda, a ne ten nejsložitější.',
+        'Totéž, co jsme dělali na vzoru kontroly faktur, tentokrát na vaší agendě. Ve dvojicích — sami sobě proces nikdo nepopíše dobře, protože se vám dávno slil do jednoho kroku. Vyberte kus práce, který děláte pravidelně a kde vám vstupuje e-mail nebo tabulka a někam posíláte výstup — stačí výsek, ne celá agenda, a ne ten nejsložitější.',
     },
     { kind: 'h', text: 'Jak to poběží' },
     {
@@ -2787,7 +2592,7 @@ const LESSON_FLOW: Lesson = {
     {
       kind: 'figure',
       name: 'regal-flow',
-      caption: 'Vzor z lekce Konec ručního zadávání. Vaše kresba nemusí být hezká, musí být čitelná.',
+      caption: 'Vzor mapy ručního procesu — takhle vypadá kontrola faktur, než ji převezme úloha. Vaše kresba nemusí být hezká, musí být čitelná.',
     },
     { kind: 'h', text: 'Označení míst' },
     {
@@ -2984,7 +2789,7 @@ Nenavrhuj řešení.`,
         {
           title: 'Porovnej tvar s hotovou mapou',
           body:
-            'Otevři mapu kontroly faktur z lekce Konec ručního zadávání a polož ji vedle svojí. Jde o tvar, ne obsah: tři pruhy, popsané šipky, vidět hranici odpovědností? Rozdíly v tvaru bývají místa, kde jsi něco přeskočil.',
+            'Otevři vzorovou mapu kontroly faktur z Cvičení 1b a polož ji vedle svojí. Jde o tvar, ne obsah: tři pruhy, popsané šipky, vidět hranici odpovědností? Rozdíly v tvaru bývají místa, kde jsi něco přeskočil.',
         },
         {
           title: 'Projdi čtyři vzorce výš a odškrtej, které máš',
@@ -4354,6 +4159,12 @@ S pozdravem,
       caption:
         'Jméno dodavatele se bere přesně tak, jak je napsané na faktuře. Když chybí dva údaje, vyjmenují se oba — „IČO a číslo objednávky".',
     },
+    {
+      kind: 'figure',
+      name: 'rucne-vs-automat',
+      caption:
+        'Tentýž proces dvakrát: vlevo jak ho dělal člověk, vpravo co z něj převzala hotová úloha. Poslední dva řádky zůstávají člověku — a je to rozhodnutí, ne nedodělek.',
+    },
     { kind: 'h', text: '4. Otevři složku a pusť to' },
     {
       kind: 'steps',
@@ -4695,7 +4506,7 @@ export const COURSES: Course[] = [
           'Hotový proces z účtárny rozepsaný na kroky — kde se přepisuje ručně a co z toho může převzít automat.',
       },
     ],
-    lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL],
+    lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT],
     learn: [
       'vysvětlit, za co se u Clauda platí, a vybrat model i effort podle úlohy',
       'zkrátit dlouhá sezení a zjistit, kam odtéká příděl',

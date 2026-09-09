@@ -136,14 +136,13 @@ export const DEFAULT_CONFIG: RunConfig = {
       ],
     },
     {
-      title: 'Vzor: Konec ručního zadávání',
+      title: 'Vzor: kontrola faktur ručně',
       min: 20,
-      lessons: ['claude-a-firemni-data/od-emailu-k-platbe'],
       kind: 'talk',
       who: 'Lektor',
       brief: FAKTURY_BRIEF,
       steps: [
-        { title: 'Projít proces po krocích', min: 10, detail: 'Osm kroků od e-mailu s fakturou po zadání k platbě', lessons: ['claude-a-firemni-data/od-emailu-k-platbe'] },
+        { title: 'Projít proces po krocích', min: 10, detail: 'Osm kroků od e-mailu s fakturou po zadání k platbě' },
         { title: 'Kde data mění formu ručně', min: 7, detail: 'Nechat sál hádat, než ukážeš tři označená místa' },
         { title: 'Co má zůstat člověku', min: 3, detail: 'Schválení faktury k platbě — i sedící čísla nemusí znamenat zaplať' },
       ],
