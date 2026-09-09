@@ -2945,6 +2945,13 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
         'Když je práce sama o sobě v repozitáři. Tahle akademie je toho příklad: lekce jsou soubory v cajpij/dek, takže cloudová úloha by je uměla upravovat i se zavřeným notebookem — a Actions, které jsi viděl výš, ji po každé změně samy nasadí. Rozhoduje tedy jediná otázka: leží data, se kterými se pracuje, v repozitáři, nebo na disku?',
     },
     {
+      kind: 'note',
+      tone: 'info',
+      title: 'Pro Rossiho: tohle by mohla být dobrá inovace',
+      text:
+        'Tahle akademie není ukázka, je to fungující aplikace — a neběží na žádném našem serveru. Leží v repozitáři, po každém odeslání změny ji GitHub sám postaví a nasadí, do čtyřiceti sekund je venku. Žádná objednávka hostingu, žádná údržba, žádná faktura. Stejně by mohly bydlet interní aplikace, které v DEKu vznikají: kalkulačky, prototypy, přehledy, dokumentace, ukázky design systému. Než se z toho udělá pravidlo, jedna věc k ověření: veřejný repozitář znamená veřejný web, a Pages nad soukromým repozitářem chtějí placený plán. Pro věci bez firemních dat je to hotová věc hned, pro zbytek je to otázka na správce, ne důvod to zahodit.',
+    },
+    {
       kind: 'video',
       title: 'Jak naplánovaná úloha vypadá',
       items: VIDEOS_PLAN,
