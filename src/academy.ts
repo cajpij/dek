@@ -2871,6 +2871,79 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
       text:
         'Cloud zní líp, protože běží i se zavřeným notebookem — jenže data leží jen v nasyncované knihovně na disku, kam se cloudová úloha nedostane. Takže platí Local: zapnutý počítač, puštěná aplikace. Má-li běh vyjít i přes zavřený notebook, musí data přestat žít jen na disku — přes konektor, nebo tokem v Power Automate.',
     },
+    { kind: 'h', text: 'Nutné minimum o GitHubu' },
+    {
+      kind: 'p',
+      text:
+        'Cloudová úloha nepracuje se složkou na disku, ale s repozitářem na GitHubu. Kdo GitHub nezná, tady je minimum, se kterým se dá tenhle rozdíl pochopit — víc na to teď nepotřebuješ.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'GitHub je Disk pro složky projektů',
+      text:
+        'Představ si Google Disk, ale pro celé složky projektů — a s pamětí. Ke každé změně si pamatuje, kdo ji udělal, kdy a hlavně proč: ke každé se píše krátký popisek. Dva rozdíly proti Disku: nesynchronizuje se sám na pozadí, změny se posílají vědomě a po dávkách; a umí spouštět úlohy sám, když se něco stane. Jinak je to pořád jen složka se soubory.',
+    },
+    {
+      kind: 'table',
+      head: ['Slovo, které uslyšíš', 'Co to je'],
+      rows: [
+        ['repozitář (repo)', 'jedna složka projektu i s celou historií. Tahle akademie je repozitář cajpij/dek.'],
+        ['commit', 'jedna uložená změna s popiskem, proč se stala'],
+        ['push', 'odeslání hotových commitů z počítače na GitHub'],
+        ['branch (větev)', 'souběžná verze složky, ať se rozdělaná práce nemíchá do hotové; hlavní se jmenuje main'],
+        ['GitHub Actions', 'úlohy, které GitHub spouští sám — po každém pushi nebo podle času'],
+      ],
+    },
+    {
+      kind: 'image',
+      src: 'github-repozitar.webp',
+      alt: 'Stránka repozitáře cajpij/dek na GitHubu. Nahoře jméno vlastníka a repozitáře se štítkem Public, pod tím záložky Code, Issues, Pull requests, Actions. Uprostřed výpis složek a souborů: .github/workflows, cviceni/faktury-kontrola, mcp-dek, public, scripts, src, .gitignore, README.md, index.html. U každé položky je popisek poslední změny a doba, kdy se stala — od třinácti minut po týden. Vpravo panel About s počty hvězd, sledujících a forků.',
+      caption:
+        'Repozitář téhle akademie. Vypadá jako obyčejný výpis složky — a je to obyčejný výpis složky. U každé položky je navíc vidět, čím se naposledy měnila a jak dávno. Složka cviceni/faktury-kontrola je ten cvičný projekt, co si stahuješ v jiné lekci.',
+    },
+    {
+      kind: 'image',
+      src: 'github-historie.webp',
+      alt: 'Stránka Commits repozitáře cajpij/dek. Seznam uložených změn z 9. září 2026, každá s popiskem, jménem autora, dobou a krátkým identifikátorem: Lekce ukazuje, jak vypadá první běh rutiny; Lekce o routine se dělí na Local a Cloud; Pryč s modulem Dotáhni to do provozu; Snímek formuláře rutiny, a oprava.',
+      caption:
+        'Historie změn. Tohle je ten rozdíl proti Disku: u každé úpravy je věta, proč se stala. Za dvě hodiny práce na téhle lekci jich přibylo pár desítek — a dá se v nich zpětně listovat a vracet se.',
+    },
+    {
+      kind: 'image',
+      src: 'github-actions.webp',
+      alt: 'Stránka Actions repozitáře cajpij/dek se 104 běhy. Každý řádek má zelené kolečko, název odpovídající poslední změně, poznámku Deploy to GitHub Pages s číslem běhu a commitem, větev main, dobu před několika minutami a délku běhu kolem čtyřiceti sekund.',
+      caption:
+        'A tohle je „jak tam něco běží". Po každém odeslání změny spustí GitHub sám úlohu, která z repozitáře postaví web — těch 104 běhů je 104 verzí téhle akademie. Čtyřicet sekund a je venku. Nikdo u toho neseděl.',
+    },
+    { kind: 'h', text: 'Co by to znamenalo pro kontrolu faktur' },
+    {
+      kind: 'p',
+      text:
+        'Formulář cloudové rutiny se ptá na dvě věci, které lokální nechce: na repozitář a na cloudové prostředí. Bez repozitáře se úloha nedá založit — a to je celá odpověď na otázku, jestli by kontrola faktur šla pustit v cloudu.',
+    },
+    {
+      kind: 'image',
+      src: 'routines-cloud-formular.webp',
+      maxWidth: 620,
+      alt: 'Formulář nové cloudové rutiny. Pole Name a Instructions, pod nimi zvýrazněný řádek Select a repository s šipkou a popiskem „sem musí složka projektu", vedle Select a cloud environment. Níž výběr spouštěče: Schedule, GitHub event, API. Dole seznam konektorů a oranžové varování, že Claude smí tyto konektory používat včetně zápisu, aniž by se během běhů ptal.',
+      caption:
+        'Zvýrazněné pole je jádro věci: cloudová úloha nepracuje se složkou na disku, ale s repozitářem. Naše faktury-kontrola by se tedy musela přestěhovat na GitHub.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'A tady to padá',
+      text:
+        'Do repozitáře by musely jít i faktury — tedy PDF od dodavatelů s částkami a IČO, do místa, které je ze své podstaty stavěné na sdílení. To u došlé pošty nechceš, ani když je repozitář soukromý. K tomu by pořád byl potřeba konektor na Microsoft 365, protože faktury chodí e-mailem, ne do repozitáře. Cloud tedy nesedí na naši agendu — ne že by nefungoval.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Kdy cloud naopak sedí',
+      text:
+        'Když je práce sama o sobě v repozitáři. Tahle akademie je toho příklad: lekce jsou soubory v cajpij/dek, takže cloudová úloha by je uměla upravovat i se zavřeným notebookem — a Actions, které jsi viděl výš, ji po každé změně samy nasadí. Rozhoduje tedy jediná otázka: leží data, se kterými se pracuje, v repozitáři, nebo na disku?',
+    },
     {
       kind: 'video',
       title: 'Jak naplánovaná úloha vypadá',
