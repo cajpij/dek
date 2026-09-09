@@ -4967,7 +4967,6 @@ export const COURSES: Course[] = [
       LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI,
     ],
     learn: [
-      'spustit úlohu bez rozhovoru a naplánovat ji',
       'napsat runbook a předat automatizaci tak, aby ji zvládl i někdo jiný',
       'připojit MCP server nad katalogem dek.cz a ověřit si, že opravdu odpovídá z katalogu',
       'rozjet hotový cvičný projekt a překlopit ho na vlastní dokumenty',
