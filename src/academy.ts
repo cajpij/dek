@@ -796,14 +796,9 @@ const LESSON_PROJEKT: Lesson = {
       kind: 'steps',
       items: [
         {
-          title: 'Založ prázdnou složku agendy',
+          title: 'Otevři aplikaci Claude a přepni na záložku Code',
           body:
-            'V Průzkumníku nebo Finderu, uvnitř nasyncované knihovny — třeba faktury-kontrola. Musí existovat dřív, než ji vybereš; Claude si ji sám nevytvoří, protože neví kam.',
-        },
-        {
-          title: 'Otevři ji v aplikaci Claude',
-          body:
-            'Záložka Code, prostředí nech na Local (to znamená „na mém počítači, s mými soubory"), klikni na Select folder a vyber tu složku. Když se zeptá, jestli jí věříš, potvrď. Ve Windows musí být nainstalovaný Git, jinak se místní sezení nespustí — na Macu to řešit nemusíš.',
+            'Prostředí nech na Local — to znamená „na mém počítači, s mými soubory". Ve Windows se hned ozve hláška, že chybí Git: bez něj se místní sezení nespustí. Stáhni ho z git-scm.com, spusť instalátor a nic v něm neměň, pak Claude restartuj. Vypadá to takhle. Na Macu se nic takového neobjeví a tenhle krok přeskakuješ.',
           image: {
             src: 'git-pro-windows.webp',
             alt: 'Stránka git-scm.com se záložkami Windows, macOS, Linux a Build from Source. Na záložce Windows je nahoře odkaz Click here to download, kterým se stáhne poslední udržovaná verze Gitu pro Windows pro procesory x64. Pod ním jsou další možnosti: samostatný instalátor pro x64 i ARM64, přenosná verze na flash disk a příkaz winget install --id Git.Git -e --source winget pro ty, kdo instalují z příkazové řádky.',
@@ -817,6 +812,16 @@ const LESSON_PROJEKT: Lesson = {
               note: 'Stránka pozná, jestli máš x64 nebo ARM64, a nabídne správnou verzi sama.',
             },
           ],
+        },
+        {
+          title: 'Založ prázdnou složku agendy',
+          body:
+            'V Průzkumníku nebo Finderu, uvnitř nasyncované knihovny — třeba faktury-kontrola. Musí existovat dřív, než ji vybereš; Claude si ji sám nevytvoří, protože neví kam.',
+        },
+        {
+          title: 'Vyber tu složku v Claudovi',
+          body:
+            'Klikni na Select folder a najdi složku, kterou jsi právě založil. Když se Claude zeptá, jestli jí věříš, potvrď — od té chvíle v ní smí číst, zapisovat i spouštět soubory.',
         },
       ],
     },
