@@ -166,7 +166,7 @@ const LESSON_PROGRAM: Lesson = {
     {
       kind: 'p',
       text:
-        'Cíl: na konci máš vlastní automatizaci, která běží bez tebe, a víš, jak poznáš, že doběhla dobře. Počítej se třemi až čtyřmi hodinami rozloženými do několika dní a pracuj u každého kroku na vlastních datech, ne na cvičných.',
+        'Cíl: na konci máš vlastní automatizaci, která běží bez tebe, a víš, jak poznáš, že doběhla dobře. Počítej se třemi až čtyřmi hodinami rozloženými do několika dní. Fáze 3 a 4 dělej na cvičném projektu — je to rychlejší a chyby nic nestojí; od fáze 5 už pracuj na vlastních datech.'
     },
     {
       kind: 'table',
@@ -183,14 +183,19 @@ const LESSON_PROGRAM: Lesson = {
           'složku, ve které Claude čte i píše, a projekt s CLAUDE.md',
         ],
         [
-          '3. Najít, co automatizovat',
-          'Cvičení 1, 1b a Sdílení map — všechna v sólo verzi',
-          'mapu vlastního procesu s označenými místy ručního přenosu',
+          '3. Vidět to hotové',
+          'Jak se v projektu nastaví automatizace, Cvičný projekt: kontrola faktur',
+          'staženou složku, kterou jsi pustil a víš, co se v ní stalo',
         ],
         [
-          '4. Postavit to',
-          'Jak se v projektu nastaví automatizace, Cvičný projekt: kontrola faktur, Automatizace pomocí routine',
-          'automatizaci nad vlastní agendou, která se spustí sama',
+          '4. Postavit totéž sám',
+          'Postav si tu složku sám, Automatizace pomocí routine',
+          'tutéž složku znovu, od prázdné a bez kopírování, a v ní běh na rozvrh',
+        ],
+        [
+          '5. Najít to ve vlastní práci',
+          'Rozhovor o kolegově práci, Kresba flow a Sdílení map — všechna v sólo verzi',
+          'mapu vlastního procesu s označenými místy ručního přenosu',
         ],
       ],
     },
@@ -225,14 +230,14 @@ const LESSON_PROGRAM: Lesson = {
         ['16:10', 'Rozehřívačka — postavíme se a řekneme, co jsme dneska dělali ručně'],
         ['16:20', 'Nastavení: sdílená složka a projekt. U vlastního počítače, s asistencí.'],
         ['16:50', 'Vzor: projdeme spolu jeden reálný proces kontroly faktur.'],
-        ['17:10', 'Cvičení ve dvojicích — rozhovory o vlastní práci'],
-        ['17:50', 'Kresba flow a označení míst k automatizaci'],
-        ['18:05', 'Pauza'],
-        ['18:15', 'Sdílení map — každá dvojice dvě minuty'],
-        ['18:25', 'Zadání nad tabulkou a kontrola výsledku'],
-        ['18:50', 'Pauza'],
-        ['19:00', 'Postav si první automatizaci na vlastních datech'],
-        ['19:45', 'Živá ukázka: naplánujeme běh na za pět minut a necháme ho proběhnout'],
+        ['17:10', 'Jak se zadání píše a jak se výsledek kontroluje'],
+        ['17:35', 'Pauza'],
+        ['17:45', 'Postav si tu složku sám — od prázdné složky, každý u sebe'],
+        ['18:30', 'Živá ukázka: naplánujeme běh na za pět minut a necháme ho běžet'],
+        ['18:40', 'Pauza'],
+        ['18:50', 'Rozhovory ve dvojicích — co děláš ručně ty'],
+        ['19:30', 'Kresba flow a označení míst k automatizaci'],
+        ['19:45', 'Sdílení map — každá dvojice dvě minuty'],
         ['19:55', 'Doběhlo to samo. Domluva, co do příště.'],
       ],
     },
@@ -241,7 +246,7 @@ const LESSON_PROGRAM: Lesson = {
       tone: 'ok',
       title: 'Nejdůležitější jsou dva bloky',
       text:
-        'Cvičení ve dvojicích a stavění první automatizace. Když z programu něco vypadne, tyhle dva a nastavení na začátku zůstanou — jsou to jediné části, ze kterých si odnesete něco vlastního.',
+        'Stavění složky a rozhovory ve dvojicích. Když z programu něco vypadne, tyhle dva a nastavení na začátku zůstanou — jsou to jediné části, kde vám něco projde rukama.',
     },
     { kind: 'h', text: 'Po workshopu' },
     {
@@ -2581,7 +2586,7 @@ se to kontroluje.`,
 const LESSON_CVICENI: Lesson = {
   slug: 'zmapuj-kolegovi-workflow',
   module: 'agenda',
-  title: 'Cvičení 1: rozhovor o kolegově práci',
+  title: 'Rozhovor o kolegově práci',
   summary:
     'Ve dvojici si navzájem vyzpovídáte kus vlastní práce. Rozhovor nahrajete na telefon a přepis i reálné soubory skončí v projektu. Kreslit se bude až v další lekci.',
   minutes: 40,
@@ -2858,7 +2863,7 @@ Ulož to do podklady/rozhovor-<datum>.md.`,
       title: 'Pokračuje to tady',
       items: [
         {
-          label: 'Cvičení 1b: kresba flow a označení míst',
+          label: 'Kresba flow a označení míst',
           href: '#academy/od-mapy-k-automatu/nakresli-flow',
           note: 'Druhá část cvičení — z rozhovoru vznikne obrázek a v něm se označí místa k automatizaci.',
         },
@@ -2870,7 +2875,7 @@ Ulož to do podklady/rozhovor-<datum>.md.`,
 const LESSON_FLOW: Lesson = {
   slug: 'nakresli-flow',
   module: 'agenda',
-  title: 'Cvičení 1b: kresba flow a označení míst',
+  title: 'Kresba flow a označení míst',
   summary:
     'Z rozhovoru nakreslíte flow do tří pruhů, popíšete šipky a každý krok označíte jednou ze tří značek. Kreslí ten, kdo se ptal.',
   minutes: 15,
@@ -3111,7 +3116,7 @@ Nenavrhuj řešení.`,
         {
           title: 'Porovnej tvar s hotovou mapou',
           body:
-            'Otevři vzorovou mapu kontroly faktur z Cvičení 1b a polož ji vedle svojí. Jde o tvar, ne obsah: tři pruhy, popsané šipky, vidět hranici odpovědností? Rozdíly v tvaru bývají místa, kde jsi něco přeskočil.',
+            'Otevři vzorovou mapu kontroly faktur z lekce Kresba flow a polož ji vedle svojí. Jde o tvar, ne obsah: tři pruhy, popsané šipky, vidět hranici odpovědností? Rozdíly v tvaru bývají místa, kde jsi něco přeskočil.',
         },
         {
           title: 'Projdi čtyři vzorce výš a odškrtej, které máš',
@@ -3133,7 +3138,7 @@ Nenavrhuj řešení.`,
       items: [
         'Držet dvě minuty tvrdě — třináct dvojic je půl hodiny, když se nechá plynout.',
         'Psát na tabuli, co se opakuje, ne co je zajímavé — seznam opakování je výstup tohohle bloku.',
-        'Hodící se mapu jako vzor pro Cvičení 2 zmínit hned nahlas.',
+        'Hodící se mapu zmínit hned nahlas — je to kandidát na domácí stavbu.',
         'Nekomentovat řešení. Sál je teď sběrač problémů, ne návrhář.',
       ],
     },
@@ -3142,12 +3147,12 @@ Nenavrhuj řešení.`,
       title: 'Odkud to sem vede',
       items: [
         {
-          label: 'Cvičení 1: rozhovor o kolegově práci',
+          label: 'Rozhovor o kolegově práci',
           href: '#academy/od-mapy-k-automatu/zmapuj-kolegovi-workflow',
           note: 'První část cvičení.',
         },
         {
-          label: 'Cvičení 1b: kresba flow a označení míst',
+          label: 'Kresba flow a označení míst',
           href: '#academy/od-mapy-k-automatu/nakresli-flow',
           note: 'Druhá část — mapa, kterou tady představujete.',
         },

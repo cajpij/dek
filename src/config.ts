@@ -15,13 +15,15 @@ import type { RunConfig } from './types'
  *    kdy má člověk stavět. Takhle se problém najde v 16:20 a je celý večer
  *    na to ho obejít. Skilly, hooky a běh bez dozoru zůstávají v samostudiu.
  *  - Celý den stojí na jednom vzoru: proces kontroly faktur z účtárny.
- *    Nejdřív se projde společně, pak si každý zmapuje vlastní agendu a nakonec
- *    z ní postaví první automatizaci.
- *  - Dva bloky jsou nedotknutelné — mapování ve dvojicích a stavění. Když se
- *    program rozjede, škrtá se všechno ostatní. Jsou to jediné části, ze
- *    kterých si lidi odnesou něco vlastního.
- *  - Poslední blok je živá ukázka: naplánovaný běh za pět minut. Není to
- *    látka, je to důkaz, že těch pět schodů někam vede.
+ *    Nejdřív se projde společně, pak ho každý postaví vlastníma rukama od
+ *    prázdné složky — a teprve když ví, jak to vypadá hotové, jde hledat
+ *    totéž ve vlastní práci. Vlastní agenda je proto až v poslední hodině.
+ *  - Dva bloky jsou nedotknutelné — stavění složky a mapování ve dvojicích.
+ *    Když se program rozjede, škrtá se všechno ostatní. Jsou to jediné části,
+ *    kde lidem něco projde rukama.
+ *  - Po stavění jde živá ukázka: naplánovaný běh za pět minut. Není to
+ *    látka, je to důkaz, že těch pět schodů někam vede — a běží na pozadí,
+ *    zatímco sál mapuje vlastní agendu.
  *  - Začíná se po pracovním dni, takže hned po úvodu je rozehřívačka: lidé
  *    se postaví, promluví a rozdělí se do dvojic napříč odděleními. Dvojice
  *    zůstávají na celé odpoledne — cizí člověk se ptá líp než kolega z týmu.
@@ -97,10 +99,10 @@ export const DEFAULT_CONFIG: RunConfig = {
       notes: [
         'Je po pracovním dni — sál potřebuje vstát a promluvit dřív, než začne poslouchat',
         'Dvojice napříč odděleními jsou schválně: cizí člověk se ptá líp než kolega, který to zná',
-        'Tyhle dvojice drží celé odpoledne, včetně obou cvičení — říct to hned',
+        'Tyhle dvojice drží celé odpoledne, včetně rozhovorů v poslední hodině — říct to hned',
         'Nesbírat řešení, jen sbírat. Kdo začne radit, zarazit ho — přijde to za dvě hodiny.',
         'Držet minutu na člověka, jinak se z toho stane porada',
-        'To, co v kolečku zazní, si zapsat — jsou to kandidáti na cvičení 2',
+        'To, co v kolečku zazní, si zapsat — vrátíme se k tomu v rozhovorech ve dvojicích',
       ],
     },
     {
@@ -156,96 +158,9 @@ export const DEFAULT_CONFIG: RunConfig = {
       ],
     },
     {
-      title: 'Cvičení 1 — rozhovory ve dvojicích',
-      min: 40,
-      lessons: ['od-mapy-k-automatu/zmapuj-kolegovi-workflow'],
-      kind: 'work',
-      who: 'Lektor + asistence',
-      brief:
-        'Ve dvojicích si navzájem vyzpovídáte kus vlastní práce — takový, kde někde vstupuje e-mail ' +
-        'nebo tabulka a někam něco posíláte dál. Technika je kontextové dotazování: neptej se „jak to ' +
-        'děláš“, ale „ukaž mi, jak jsi to dělala naposledy“. Uklizená verze bez výjimek je k ničemu.',
-      steps: [
-        { title: 'Každý si vybere svůj výsek a napíše ho jednou větou', min: 5 },
-        { title: 'A se ptá, B popisuje. Nahrávat na telefon.', min: 15 },
-        { title: 'Prohodit se — B se ptá, A popisuje', min: 15 },
-        { title: 'Uložit nahrávku do projektu do podklady/', min: 5 },
-      ],
-      examples: [
-        {
-          title: 'Něco, co děláš každý týden',
-          detail: 'Ne to nejsložitější, co máš. Stačí výsek od „přijde mi to“ po „pošlu to dál“.',
-        },
-        {
-          title: 'Kde vstupuje e-mail nebo tabulka',
-          detail: 'Právě tam se data přelévají ručně a právě to hledáme.',
-        },
-        {
-          title: 'Kde na někoho čekáš',
-          detail: 'Kroky, kde proces stojí a čeká na odpověď, bývají nejdražší.',
-        },
-        {
-          title: 'Co bys musela vysvětlovat náhradě',
-          detail: 'Když si nemůžeš vzpomenout na žádný proces, tohle je ta správná otázka.',
-        },
-      ],
-      notes: [
-        'Kreslí ten, kdo se ptal — ne majitel agendy. Říct to nahlas hned na začátku.',
-        'Připomenout, ať se zeptají, než začnou nahrávat',
-        'Deset otázek a tabulka signálních slov jsou v akademii — nechat odkaz na plátně',
-        'Obcházet a hlídat, jestli se tazatelé neptají obecně místo na poslední konkrétní případ',
-        'Hlídat čas u prohození — druhý rozhovor bývá kratší, protože už vědí jak',
-      ],
-    },
-    {
-      title: 'Cvičení 1b — kresba flow a označení míst',
-      min: 15,
-      lessons: ['od-mapy-k-automatu/nakresli-flow'],
-      kind: 'work',
-      who: 'Lektor + asistence',
-      steps: [
-        { title: 'Nakreslit flow do tří pruhů', min: 9, detail: 'Kdo dodává vstup / ty / kdo dostává výstup' },
-        { title: 'Popsat šipky — čím se co přenáší', min: 2, detail: 'E-mail, sdílená tabulka, print screen, telefon' },
-        { title: 'Označit každý krok jednou ze tří značek', min: 4 },
-      ],
-      examples: [
-        { title: 'Ruční přenos', detail: 'Data mění formu nebo místo a dělá to člověk. Nejsilnější kandidát.' },
-        { title: 'Rozhoduje člověk', detail: 'Krok závisí na něčem, co v datech není. Zapsat, podle čeho se rozhoduje.' },
-        { title: 'Počítá se z pravidel', detail: 'Výsledek jde odvodit ze vstupů, i když se dnes dělá ručně.' },
-      ],
-      notes: [
-        'Papír na šířku, tři barvy fixů. Kresba nemusí být hezká, musí být čitelná pro cizího.',
-        'Popis šipky je důležitější než boxy — automatizuje se přenos, ne práce',
-        'Nejzajímavější je hranice mezi „rozhoduje člověk“ a „počítá se z pravidel“',
-        'Kdo se zasekne, ať označí místo, kde to nejde dokreslit — tam informace chybí i v reálu',
-      ],
-    },
-    {
-      title: 'Pauza',
-      min: 10,
-      kind: 'break',
-      notes: ['Odpočet nechat na plátně', 'Kresby vylepit na zeď, ať jsou po pauze vidět'],
-    },
-    {
-      title: 'Sdílení map',
-      min: 10,
-      lessons: ['od-mapy-k-automatu/sdileni-map'],
-      kind: 'qna',
-      who: 'Martin',
-      steps: [
-        { title: 'Každá dvojice dvě minuty', min: 8, detail: 'Jeden nejhorší krok a jeden nápad' },
-        { title: 'Co se opakuje napříč odděleními', min: 2 },
-      ],
-      notes: [
-        'Držet dvě minuty na dvojici, jinak se to rozjede',
-        'Zapisovat si na flip, co se opakuje — to je materiál pro příště',
-        'Nekomentovat každou mapu, jen si všímat vzorců',
-      ],
-    },
-    {
-      title: 'Zadání nad tabulkou a kontrola výsledku',
+      title: 'Jak se zadání píše a jak se výsledek kontroluje',
       min: 25,
-      lessons: ['od-mapy-k-automatu/cvicny-projekt-faktury'],
+      lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace', 'od-mapy-k-automatu/cvicny-projekt-faktury'],
       kind: 'talk',
       who: 'Lektor',
       steps: [
@@ -265,9 +180,10 @@ export const DEFAULT_CONFIG: RunConfig = {
       title: 'Pauza',
       min: 10,
       kind: 'break',
+      notes: ['Odpočet nechat na plátně', 'Kresby vylepit na zeď, ať jsou po pauze vidět'],
     },
     {
-      title: 'Cvičení 2 — postav si první automatizaci',
+      title: 'Postav si tu složku sám',
       min: 45,
       lessons: ['od-mapy-k-automatu/postav-slozku-sam', 'od-mapy-k-automatu/jak-se-nastavuje-automatizace'],
       kind: 'work',
@@ -340,6 +256,92 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Když write tools nejedou, automatizace text jen navrhne a zapíše „připraveno, čeká na konektor" — ukázat to, je to správný konec běhu, ne chyba',
         'Když padne dotaz na e-mail: konektor M365 odesílat umí, ale write tools musí zapnout správce a nejde přes ně poslat příloha — výstup do knihovny, do mailu odkaz',
         'Odkázat na lekci Jak se v projektu nastaví automatizace — checklist před plánem, runbook, co když spadne',
+      ],
+    },
+    {
+      title: 'Pauza',
+      min: 10,
+      kind: 'break',
+    },
+    {
+      title: 'Rozhovory ve dvojicích: co děláš ručně ty',
+      min: 40,
+      lessons: ['od-mapy-k-automatu/zmapuj-kolegovi-workflow'],
+      kind: 'work',
+      who: 'Lektor + asistence',
+      brief:
+        'Ve dvojicích si navzájem vyzpovídáte kus vlastní práce — takový, kde někde vstupuje e-mail ' +
+        'nebo tabulka a někam něco posíláte dál. Technika je kontextové dotazování: neptej se „jak to ' +
+        'děláš“, ale „ukaž mi, jak jsi to dělala naposledy“. Uklizená verze bez výjimek je k ničemu.',
+      steps: [
+        { title: 'Každý si vybere svůj výsek a napíše ho jednou větou', min: 5 },
+        { title: 'A se ptá, B popisuje. Nahrávat na telefon.', min: 15 },
+        { title: 'Prohodit se — B se ptá, A popisuje', min: 15 },
+        { title: 'Uložit nahrávku do projektu do podklady/', min: 5 },
+      ],
+      examples: [
+        {
+          title: 'Něco, co děláš každý týden',
+          detail: 'Ne to nejsložitější, co máš. Stačí výsek od „přijde mi to“ po „pošlu to dál“.',
+        },
+        {
+          title: 'Kde vstupuje e-mail nebo tabulka',
+          detail: 'Právě tam se data přelévají ručně a právě to hledáme.',
+        },
+        {
+          title: 'Kde na někoho čekáš',
+          detail: 'Kroky, kde proces stojí a čeká na odpověď, bývají nejdražší.',
+        },
+        {
+          title: 'Co bys musela vysvětlovat náhradě',
+          detail: 'Když si nemůžeš vzpomenout na žádný proces, tohle je ta správná otázka.',
+        },
+      ],
+      notes: [
+        'Kreslí ten, kdo se ptal — ne majitel agendy. Říct to nahlas hned na začátku.',
+        'Připomenout, ať se zeptají, než začnou nahrávat',
+        'Deset otázek a tabulka signálních slov jsou v akademii — nechat odkaz na plátně',
+        'Obcházet a hlídat, jestli se tazatelé neptají obecně místo na poslední konkrétní případ',
+        'Hlídat čas u prohození — druhý rozhovor bývá kratší, protože už vědí jak',
+      ],
+    },
+    {
+      title: 'Kresba flow a označení míst',
+      min: 15,
+      lessons: ['od-mapy-k-automatu/nakresli-flow'],
+      kind: 'work',
+      who: 'Lektor + asistence',
+      steps: [
+        { title: 'Nakreslit flow do tří pruhů', min: 9, detail: 'Kdo dodává vstup / ty / kdo dostává výstup' },
+        { title: 'Popsat šipky — čím se co přenáší', min: 2, detail: 'E-mail, sdílená tabulka, print screen, telefon' },
+        { title: 'Označit každý krok jednou ze tří značek', min: 4 },
+      ],
+      examples: [
+        { title: 'Ruční přenos', detail: 'Data mění formu nebo místo a dělá to člověk. Nejsilnější kandidát.' },
+        { title: 'Rozhoduje člověk', detail: 'Krok závisí na něčem, co v datech není. Zapsat, podle čeho se rozhoduje.' },
+        { title: 'Počítá se z pravidel', detail: 'Výsledek jde odvodit ze vstupů, i když se dnes dělá ručně.' },
+      ],
+      notes: [
+        'Papír na šířku, tři barvy fixů. Kresba nemusí být hezká, musí být čitelná pro cizího.',
+        'Popis šipky je důležitější než boxy — automatizuje se přenos, ne práce',
+        'Nejzajímavější je hranice mezi „rozhoduje člověk“ a „počítá se z pravidel“',
+        'Kdo se zasekne, ať označí místo, kde to nejde dokreslit — tam informace chybí i v reálu',
+      ],
+    },
+    {
+      title: 'Sdílení map',
+      min: 10,
+      lessons: ['od-mapy-k-automatu/sdileni-map'],
+      kind: 'qna',
+      who: 'Martin',
+      steps: [
+        { title: 'Každá dvojice dvě minuty', min: 8, detail: 'Jeden nejhorší krok a jeden nápad' },
+        { title: 'Co se opakuje napříč odděleními', min: 2 },
+      ],
+      notes: [
+        'Držet dvě minuty na dvojici, jinak se to rozjede',
+        'Zapisovat si na flip, co se opakuje — to je materiál pro příště',
+        'Nekomentovat každou mapu, jen si všímat vzorců',
       ],
     },
     {
