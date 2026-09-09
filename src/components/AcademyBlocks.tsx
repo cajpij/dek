@@ -35,6 +35,7 @@ import FolderPermission from './FolderPermission'
 import FakturySmycka from './FakturySmycka'
 import KontrolaFlow from './KontrolaFlow'
 import RucneVsAutomat from './RucneVsAutomat'
+import PrvniBeh from './PrvniBeh'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
@@ -622,6 +623,8 @@ export default function BlockView({ block }: { block: Block }) {
               <KontrolaFlow />
             ) : block.name === 'rucne-vs-automat' ? (
               <RucneVsAutomat />
+            ) : block.name === 'prvni-beh' ? (
+              <PrvniBeh />
             ) : block.name === 'tri-prikazy' ? (
               <TriPrikazy />
             ) : block.name === 'faktury-sezeni' ? (

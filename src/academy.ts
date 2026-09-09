@@ -51,6 +51,7 @@ export type Block =
         | 'faktury-smycka'
         | 'kontrola-flow'
         | 'rucne-vs-automat'
+        | 'prvni-beh'
     | 'tri-prikazy'
     | 'faktury-sezeni'
       caption: string
@@ -3927,6 +3928,12 @@ const L2_CVICNY: Lesson = {
       kind: 'p',
       text:
         'Projekt hlídá schránku s fakturami: novou PDF přílohu uloží, vytáhne z ní šest povinných údajů a zapíše je do evidence do sešitu podle dodavatele. Když jeden nebo dva údaje chybí, sepíše žádost o doplnění a sám ji dodavateli pošle — to je jediná automatická zpráva, kterou smí poslat; nic neschvaluje, nic neplatí a nic nezapisuje do účetnictví. Krok za krokem je to rozepsané v části „3. Co se stane, když to pustíš“. Ve složce jsou i vzorové faktury, takže si to můžete pustit hned.',
+    },
+    {
+      kind: 'figure',
+      name: 'prvni-beh',
+      caption:
+        'Pět míst, na kterých po prvním spuštění poznáš, že to proběhlo — a jedno, kde se schválně nic nestane.',
     },
     { kind: 'h', text: 'Zadání, ze kterého projekt vznikl' },
     {
