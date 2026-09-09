@@ -3329,7 +3329,7 @@ Nenavrhuj řešení.`,
 
 const L2_PLAN: Lesson = {
   slug: 'naplanovana-uloha',
-  module: 'provoz',
+  module: 'postav',
   title: 'Naplánovaná úloha v Claude Code',
   summary:
     'Kde se úloha zakládá, proč pro nás platí Local a ne Cloud, co vyplnit, a co se stane, když počítač spal.',
@@ -4951,7 +4951,7 @@ export const COURSES: Course[] = [
         key: 'provoz',
         title: 'Dotáhni to do provozu',
         summary:
-          'Zbytek minima: naplánovat, dát vědět mailem a pustit to naostro. Na konci si na checklistu ověříš, že máš všechno.',
+          'Zbytek minima: dát o běhu vědět mailem a pustit to naostro. Na konci si na checklistu ověříš, že máš všechno.',
       },
       {
         key: 'vic',
@@ -4961,8 +4961,8 @@ export const COURSES: Course[] = [
       },
     ],
     lessons: [
-      LESSON_AUTOMATIZACE, L2_CVICNY, LESSON_SKILL,
-      L2_ROZBOR, L2_PLAN, L2_EMAIL, L2_NAOSTRO, L2_MINIMUM,
+      LESSON_AUTOMATIZACE, L2_CVICNY, L2_PLAN, LESSON_SKILL,
+      L2_ROZBOR, L2_EMAIL, L2_NAOSTRO, L2_MINIMUM,
       L2_FORMULAR, L2_MCP, L2_DESIGN,
       LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI,
     ],
