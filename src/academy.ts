@@ -4417,7 +4417,7 @@ const L2_CVICNY: Lesson = {
     {
       kind: 'p',
       text:
-        'Všechno, co jste v akademii četli, je tady dohromady na jedné agendě, ke stažení, takže si nemusíte nic vyrábět. Projekt hlídá schránku s fakturami: novou PDF přílohu uloží, vytáhne z ní šest povinných údajů a zapíše je do evidence do sešitu podle dodavatele. Když jeden nebo dva údaje chybí, sepíše žádost o doplnění a sám ji dodavateli pošle — to je jediná automatická zpráva, kterou smí poslat; nic neschvaluje, nic neplatí a nic nezapisuje do účetnictví. Krok za krokem je to rozepsané v části „3. Co se stane, když to pustíš“. Ve složce jsou i vzorové faktury, takže si to můžete pustit hned.',
+        'Projekt hlídá schránku s fakturami: novou PDF přílohu uloží, vytáhne z ní šest povinných údajů a zapíše je do evidence do sešitu podle dodavatele. Když jeden nebo dva údaje chybí, sepíše žádost o doplnění a sám ji dodavateli pošle — to je jediná automatická zpráva, kterou smí poslat; nic neschvaluje, nic neplatí a nic nezapisuje do účetnictví. Krok za krokem je to rozepsané v části „3. Co se stane, když to pustíš“. Ve složce jsou i vzorové faktury, takže si to můžete pustit hned.',
     },
     {
       kind: 'note',
