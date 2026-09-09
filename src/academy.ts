@@ -187,7 +187,7 @@ const LESSON_PROGRAM: Lesson = {
         ],
         [
           '4. Postavit to',
-          'Jak se v projektu nastaví automatizace, Cvičný projekt: kontrola faktur, Naplánovaná úloha',
+          'Jak se v projektu nastaví automatizace, Cvičný projekt: kontrola faktur, Automatizace pomocí routine',
           'úlohu nad vlastní agendou, která se spustí sama',
         ],
         [
@@ -1878,7 +1878,7 @@ claude -p "Postupuj podle skillu kontrola-faktur a výsledek ulož do vystup/."`
       tone: 'info',
       title: 'Jak se úloha zakládá, je v samostatné lekci',
       text:
-        'Klikání ve formuláři, rozdíl mezi Local a Cloud a to, co se stane, když počítač spal, je v lekci Naplánovaná úloha v Claude Code. Tady zůstává jen to, co platí bez ohledu na formulář: kdy to pustit a co po sobě má běh nechat.',
+        'Klikání ve formuláři, rozdíl mezi Local a Cloud a to, co se stane, když počítač spal, je v lekci Automatizace v Claude Code pomocí routine. Tady zůstává jen to, co platí bez ohledu na formulář: kdy to pustit a co po sobě má běh nechat.',
     },
     {
       kind: 'checklist',
@@ -2842,7 +2842,7 @@ Nenavrhuj řešení.`,
 const L2_PLAN: Lesson = {
   slug: 'naplanovana-uloha',
   module: 'postav',
-  title: 'Naplánovaná úloha v Claude Code',
+  title: 'Automatizace v Claude Code pomocí routine',
   summary:
     'Kde se úloha zakládá, proč pro nás platí Local a ne Cloud, co vyplnit, a co se stane, když počítač spal.',
   minutes: 10,
@@ -3814,7 +3814,7 @@ const L2_MINIMUM: Lesson = {
         [
           'Naplánovaná úloha',
           'najdeš v Routines tři záznamy o proběhlých bězích na různých datech, ne jeden zkušební.',
-          'Naplánovaná úloha v Claude Code',
+          'Automatizace v Claude Code pomocí routine',
         ],
         [
           'Reálný běh',

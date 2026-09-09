@@ -328,7 +328,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         { title: 'Podívat se, co přibylo', min: 2, detail: 'Notifikace, soubor s dnešním datem, a kolegovi ve schránce zpráva — ať to potvrdí nahlas', lessons: ['od-mapy-k-automatu/email-z-automatu'] },
       ],
       notes: [
-        'Zadání úlohy diktovat větou v chatu; formulářová varianta je v lekci Naplánovaná úloha v Claude Code',
+        'Zadání úlohy diktovat větou v chatu; formulářová varianta je v lekci Automatizace v Claude Code pomocí routine',
         'Naplánovat hned na začátku bloku, ať to stihne doběhnout',
         'V Claude Code: Code → Routines → New routine → Local. Cloud varianta nevidí složku na disku.',
         'Tohle není látka, je to důkaz — nechat to zapůsobit a nekomentovat to moc',
