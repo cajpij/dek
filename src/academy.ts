@@ -3522,6 +3522,22 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
         'Tahle akademie není ukázka, je to fungující aplikace — a neběží na žádném našem serveru. Leží v repozitáři, po každém odeslání změny ji GitHub sám postaví a nasadí, do čtyřiceti sekund je venku. Žádná objednávka hostingu, žádná údržba, žádná faktura. Stejně by mohly bydlet interní aplikace, které v DEKu vznikají: kalkulačky, prototypy, přehledy, dokumentace, ukázky design systému. Než se z toho udělá pravidlo, jedna věc k ověření: veřejný repozitář znamená veřejný web, a Pages nad soukromým repozitářem chtějí placený plán. Pro věci bez firemních dat je to hotová věc hned, pro zbytek je to otázka na správce, ne důvod to zahodit.',
     },
     {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Pro Rossiho: s čím účastníci přijdou na AI HUB',
+      text:
+        'AI HUB 22. září shání konkrétní zkušenosti a hotové výsledky, ne prezentace o tom, že se něco chystá — a přesně to z tohohle workshopu vypadne. Každý účastník odchází s vlastní automatizací: postavil si ji sám, běží na jeho datech, spouští se bez něj a on umí říct, proč je napsaná tak, jak je, i co v ní schválně není. **Z pětaosmdesáti evidovaných iniciativ je tohle ta část, kterou jde pustit rovnou před publikem a nechat doběhnout naživo.** Nemusí se u toho nic slibovat do budoucna.',
+    },
+    {
+      kind: 'image',
+      src: 'ai-hub-pozvanka.webp',
+      alt:
+        'Pozvánka na AI HUB rozeslaná e-mailem. AI HUB je v úterý 22. září od 13 do 15 hodin na centrále DEK nebo online. V e-mailu se píše, že evidovaných AI iniciativ je aktuálně 85, že kdo má zajímavou zkušenost, výsledek nebo projekt, se má přihlásit a ukázat, jak to dělá, a že součástí programu budou i AI strategie DEK a bezpečnost při používání AI.',
+      caption:
+        'Pozvánka na AI HUB. Adresáti a jméno kontaktní osoby jsou začerněné schválně — tahle akademie je veřejná, tak sem nepatří.',
+      maxWidth: 760,
+    },
+    {
       kind: 'video',
       title: 'Jak naplánovaná automatizace vypadá',
       items: VIDEOS_PLAN,
