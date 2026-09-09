@@ -810,7 +810,7 @@ const LESSON_PROJEKT: Lesson = {
         {
           title: 'Otevři aplikaci Claude a přepni na záložku Code',
           body:
-            'Prostředí nech na Local — to znamená „na mém počítači, s mými soubory". Ve Windows se hned ozve hláška, že chybí Git: bez něj se místní sezení nespustí. Stáhni ho z git-scm.com, spusť instalátor a nic v něm neměň, pak Claude restartuj. Vypadá to takhle. Na Macu se nic takového neobjeví a tenhle krok přeskakuješ.',
+            'Prostředí nech na Local — to znamená „na mém počítači, s mými soubory". Ve Windows se hned ozve hláška, že chybí Git: bez něj se místní sezení nespustí. Stáhni ho z git-scm.com, spusť instalátor a nic v něm neměň, pak Claude restartuj. Vypadá to takhle. **Na Macu se nic takového neobjeví a tenhle krok přeskakuješ.**',
           image: {
             src: 'git-pro-windows.webp',
             alt: 'Stránka git-scm.com se záložkami Windows, macOS, Linux a Build from Source. Na záložce Windows je nahoře odkaz Click here to download, kterým se stáhne poslední udržovaná verze Gitu pro Windows pro procesory x64. Pod ním jsou další možnosti: samostatný instalátor pro x64 i ARM64, přenosná verze na flash disk a příkaz winget install --id Git.Git -e --source winget pro ty, kdo instalují z příkazové řádky.',

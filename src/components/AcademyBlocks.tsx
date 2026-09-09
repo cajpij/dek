@@ -218,7 +218,7 @@ function Steps({
           <Box>
             <Typography sx={{ fontWeight: 650, fontSize: 16.5, mb: 0.5 }}>{step.title}</Typography>
             <Typography sx={{ color: 'text.secondary', fontSize: 15.5, maxWidth: '68ch' }}>
-              {step.body}
+              <Text>{step.body}</Text>
             </Typography>
             {step.image ? (
               <Screenshot src={step.image.src} alt={step.image.alt} caption={step.image.caption} maxWidth={step.image.maxWidth} />
@@ -520,13 +520,40 @@ function PlatformSwitch({ mac, win }: { mac: Block[]; win: Block[] }) {
 
 const TONE = { info: 'info', warn: 'warning', ok: 'success' } as const
 
+/**
+ * Tučné uvnitř věty přes **dvě hvězdičky**.
+ *
+ * Lekce jsou data, ne markdown — vykresluje se z nich holý text. Občas ale
+ * jedna věta v odstavci nese celou pointu („na Macu tenhle krok přeskakuješ")
+ * a bez zvýraznění ji čtenář přeskočí spolu s ní. Tohle je nejmenší možná
+ * značka, která to řeší: nic dalšího se nepřekládá, aby se z obsahu lekcí
+ * nestal druhý markdown.
+ */
+export function Text({ children }: { children: string }) {
+  const kusy = children.split(/\*\*(.+?)\*\*/gs)
+  if (kusy.length === 1) return <>{children}</>
+  return (
+    <>
+      {kusy.map((k, i) =>
+        i % 2 === 1 ? (
+          <Box component="strong" key={i} sx={{ fontWeight: 680 }}>
+            {k}
+          </Box>
+        ) : (
+          <span key={i}>{k}</span>
+        ),
+      )}
+    </>
+  )
+}
+
 /** Vykreslí jeden blok obsahu lekce. */
 export default function BlockView({ block }: { block: Block }) {
   switch (block.kind) {
     case 'p':
       return (
         <Typography sx={{ fontSize: 17, lineHeight: 1.65, maxWidth: '68ch', my: 2 }}>
-          {block.text}
+          <Text>{block.text}</Text>
         </Typography>
       )
 
@@ -542,7 +569,7 @@ export default function BlockView({ block }: { block: Block }) {
         <Box component="ul" sx={{ pl: 2.5, my: 2, display: 'flex', flexDirection: 'column', gap: 0.75 }}>
           {block.items.map((item) => (
             <Typography component="li" key={item} sx={{ fontSize: 16.5, maxWidth: '66ch' }}>
-              {item}
+              <Text>{item}</Text>
             </Typography>
           ))}
         </Box>
@@ -565,7 +592,9 @@ export default function BlockView({ block }: { block: Block }) {
       return (
         <Alert severity={TONE[block.tone]} variant="outlined" sx={{ my: 3, borderRadius: 2 }}>
           <AlertTitle sx={{ fontWeight: 680 }}>{block.title}</AlertTitle>
-          <Typography sx={{ fontSize: 15.5, maxWidth: '64ch' }}>{block.text}</Typography>
+          <Typography sx={{ fontSize: 15.5, maxWidth: '64ch' }}>
+            <Text>{block.text}</Text>
+          </Typography>
         </Alert>
       )
 
