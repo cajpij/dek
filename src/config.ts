@@ -245,13 +245,12 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Zadání nad tabulkou a kontrola výsledku',
       min: 25,
-      lessons: ['od-mapy-k-automatu/zadani-nad-tabulkou', 'od-mapy-k-automatu/jak-poznas-ze-je-to-spatne'],
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'Struktura zadání, které projde napoprvé', min: 8, detail: 'Co vzít, co udělat, kam uložit, co s výjimkou', lessons: ['od-mapy-k-automatu/zadani-nad-tabulkou'] },
-        { title: 'Pasti, které tabulka nastraží', min: 7, detail: 'Kódy jako čísla, prázdno vs. nula, hlavička na třetím řádku', lessons: ['od-mapy-k-automatu/zadani-nad-tabulkou'] },
-        { title: 'Tři otázky na každý výstup', min: 10, detail: 'Sedí počty, sedí součty, sedí vzorek', lessons: ['od-mapy-k-automatu/jak-poznas-ze-je-to-spatne'] },
+        { title: 'Struktura zadání, které projde napoprvé', min: 8, detail: 'Co vzít, co udělat, kam uložit, co s výjimkou' },
+        { title: 'Pasti, které tabulka nastraží', min: 7, detail: 'Kódy jako čísla, prázdno vs. nula, hlavička na třetím řádku' },
+        { title: 'Tři otázky na každý výstup', min: 10, detail: 'Sedí počty, sedí součty, sedí vzorek' },
       ],
       notes: [
         'Kontrola je nejdůležitější věc celého dne — bez ní nikdo nikdy nepustí nic bez dozoru',

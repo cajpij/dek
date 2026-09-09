@@ -3327,323 +3327,6 @@ Nenavrhuj řešení.`,
 
 /* ---------------------------------------------- kurz 2: Od mapy k automatu */
 
-const L2_TABULKY: Lesson = {
-  slug: 'zadani-nad-tabulkou',
-  module: 'remeslo',
-  title: 'Zadání práce nad tabulkou',
-  summary:
-    'Devadesát procent téhle práce jsou tabulky. Čím se v nich dá splést a jak napsat zadání, které projde napoprvé.',
-  minutes: 12,
-  kind: 'lekce',
-  track: 'v sále',
-  outcomes: [
-    'nechat si nejdřív popsat strukturu souboru, než se začne počítat',
-    'napsat zadání nad tabulkou tak, aby šlo zkontrolovat',
-    'poznat past, kterou tabulka nastraží — kódy, prázdná pole, hlavičku na třetím řádku',
-    'rozhodnout, kdy chceš hodnoty a kdy vzorce',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Claude s tabulkami umí — problém je, že obě strany o nich mlčky předpokládají něco jiného. Ty víš, že hlavička je na třetím řádku a prázdné pole znamená „nezjištěno“, ne nulu. On to neví, dokud mu to neřekneš, a bez toho si to domyslí.',
-    },
-    { kind: 'h', text: 'Struktura zadání, které projde napoprvé' },
-    {
-      kind: 'p',
-      text:
-        'Čtyři části: co vzít, co s tím udělat, kam to uložit, co dělat s výjimkou. Poslední se nejčastěji vynechává, a přitom rozhoduje o tom, jestli výsledku půjde věřit.',
-    },
-    {
-      kind: 'code',
-      text: `Vezmi nové faktury ze vstup/.
-
-Ke každé dohledej v data/objednavky.xlsx objednávku se stejným číslem
-a porovnej základ daně se schválenou částkou.
-
-Ulož jako vystup/kontrola-<RRRR-MM-DD>.xlsx, sloupce v pořadí
-Faktura, Dodavatel, Základ daně, SEDÍ, CHYBÍ.
-
-Kde údaj chybí, nech prázdno. Na konci mi napiš, kolika faktur
-se to týkalo a vypiš jejich čísla.`,
-      caption: 'Poslední odstavec dělá rozdíl. Bez něj dostaneš tabulku, ve které nepoznáš, co je změřené a co dopočítané.',
-    },
-    { kind: 'h', text: 'Nech si nejdřív popsat, co v tom je' },
-    {
-      kind: 'p',
-      text:
-        'Než zadáš první výpočet, nech si popsat strukturu: kolik listů, kde je hlavička, jaké typy má který sloupec, kde jsou prázdná pole. Trvá to třicet vteřin a hned uvidíš, jestli si soubor přečetl tak, jak čekáš.',
-    },
-    {
-      kind: 'code',
-      text: `Než začneš cokoli počítat, popiš mi strukturu tohohle souboru:
-kolik má listů a jak se jmenují, na kterém řádku začíná hlavička,
-kolik je řádků dat, jaké typy jsou v jednotlivých sloupcích
-a kde jsou prázdná pole.`,
-      caption: 'Když tu něco nesedí, nesedí to ani ve všem, co by následovalo.',
-    },
-    { kind: 'h', text: 'Čím se v tabulce dá splést' },
-    {
-      kind: 'table',
-      head: ['Past', 'Jak se projeví', 'Co napsat do zadání'],
-      rows: [
-        [
-          'Kódy položek jako čísla',
-          'z 0041220 se stane 41220, položka se pak nespáruje',
-          '„Čísla položek a katalogová čísla jsou text. Nepřeváděj je na čísla a nedoplňuj nuly.“',
-        ],
-        [
-          'Hlavička není na prvním řádku',
-          'sloupce se posunou, všechno je o řádek vedle',
-          '„Hlavička je na třetím řádku, nad ní je nadpis a prázdný řádek.“',
-        ],
-        [
-          'Prázdné pole vs. nula',
-          'chybějící údaj se počítá jako nula a průměry lžou',
-          '„Prázdné pole znamená nezjištěno. Nenahrazuj ho nulou a do průměru ho nezapočítávej.“',
-        ],
-        [
-          'Sloučené buňky',
-          'hodnota patří jen prvnímu řádku skupiny, zbytek je prázdný',
-          '„Ve sloupci Středisko jsou sloučené buňky. Hodnota platí až do dalšího vyplněného řádku.“',
-        ],
-        [
-          'Víc listů se stejnými sloupci',
-          'spočítá se jen ten první, nebo se sečtou dohromady',
-          '„Každý list je jedno středisko. Zpracuj je zvlášť a výsledky nesčítej.“',
-        ],
-        [
-          'Filtr nebo skryté řádky',
-          'to, co vidíš na obrazovce, není to, co je v souboru',
-          '„V souboru jsou skryté řádky. Ber všechny, ne jen viditelné.“',
-        ],
-        [
-          'Čísla uložená jako text',
-          'nedá se sečíst a nikdo neví proč',
-          '„Sloupec Množství může být uložený jako text. Před počítáním ho převeď a řekni mi, u kolika řádků to bylo potřeba.“',
-        ],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Pasti patří do CLAUDE.md',
-      text:
-        'Tohle jsou fakta o agendě, ne o jedné úloze. Jakmile na past narazíš podruhé, přesuň ji do CLAUDE.md a přestaň ji psát do zadání. Za měsíc bude tvoje CLAUDE.md z poloviny složené právě z těchhle vět — a to je dobře.',
-    },
-    { kind: 'h', text: 'Na vzoru: co nastraží export objednávek' },
-    {
-      kind: 'p',
-      text:
-        'Stejná tabulka pastí na exportu objednávek z cvičného projektu vyjde na čtyři věci — a všechny čtyři jsou důvod, proč se ruční kontrola nikdy nedala vynechat.',
-    },
-    {
-      kind: 'table',
-      head: ['V exportu objednávek', 'Co se stane bez pravidla'],
-      rows: [
-        ['Řádky za všechna období, ne jen aktuální měsíc', 'porovná se s objednávkou z úplně jiného měsíce, protože sedí jen číslo'],
-        ['Čísla objednávek jako 2026-00043', 'převede se na datum nebo na číslo, ztratí se úvodní nuly a faktura se nespáruje'],
-        ['Prázdná buňka místo nuly, nebo pomlčka', 'pomlčka se počítá jako text, ne jako částka'],
-        ['Stejné číslo objednávky na dvou řádcích (oprava, duplicitní export)', 'najde se první řádek, ne ten platný'],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Nejdřív na vzoru, pak na svém',
-      text:
-        'Celý kurz jede ve dvou krocích: každou věc si ukážeme na kontrole faktur, kterou už znáš, a pak ji uděláš na vlastní agendě.',
-    },
-    { kind: 'h', text: 'Hodnoty, nebo vzorce?' },
-    {
-      kind: 'table',
-      head: ['Chceš', 'Řekni si o', 'Protože'],
-      rows: [
-        ['Podklad, který někomu pošleš', 'hodnoty', 'vzorce se u příjemce rozbijí o chybějící odkazy'],
-        ['Soubor, se kterým budeš dál pracovat ty', 'vzorce', 'uvidíš, jak se k číslu došlo, a půjde přepočítat'],
-        ['Kontrolu, jestli to sedí', 'obojí vedle sebe', 'porovnáš spočítané s tím, co bylo v původním souboru'],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Nikdy nenechávej přepsat originál',
-      text:
-        'Ani když je to „jen doplnění sloupce“. Výsledek patří do vystupy/ jako nový soubor. Když se ukáže, že je něco špatně, chceš mít pořád po ruce to, z čeho se vycházelo.',
-    },
-    {
-      kind: 'task',
-      title: 'Cvičení: projdi si vlastní tabulku',
-      intro: 'Vezmi soubor, se kterým pracuješ každý týden.',
-      items: [
-        'Nech si popsat jeho strukturu a porovnej odpověď s tím, co o něm víš. Co nesedí?',
-        'Projdi tabulku pastí a najdi ty, které se týkají tvého souboru.',
-        'Napiš zadání na jednu operaci podle struktury výš, včetně poslední části o výjimkách.',
-        'Spusť ho a zkontroluj počet řádků na výstupu proti vstupu.',
-        'Věty o pastech, které platí pořád, přepiš do CLAUDE.md.',
-      ],
-    },
-  ],
-}
-
-const L2_KONTROLA: Lesson = {
-  slug: 'jak-poznas-ze-je-to-spatne',
-  module: 'remeslo',
-  title: 'Jak poznáš, že je výsledek špatně',
-  summary:
-    'Dovednost, na které stojí všechno ostatní. Bez ní nikdo nikdy nepustí nic bez dozoru — a pak se nic neušetří.',
-  minutes: 15,
-  kind: 'lekce',
-  track: 'v sále',
-  outcomes: [
-    'zkontrolovat výstup třemi otázkami místo čtení řádek po řádku',
-    'nechat si vyrobit kontrolní protokol jako součást úlohy',
-    'poznat, které chyby se samy neprojeví',
-    'vědět, co porovnávat, aby kontrola nebyla jen dojem',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Nudná lekce, nejdůležitější v kurzu. Dokud neumíš rychle ověřit výsledek, budeš kontrolovat všechno ručně — a pak je jedno, jak dobře to Claude spočítal, protože se neušetřilo nic. Automatizace začne fungovat ve chvíli, kdy kontrola trvá minutu místo hodiny.',
-    },
-    { kind: 'h', text: 'Tři otázky na každý výstup' },
-    {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Sedí počty?',
-          body:
-            'Kolik řádků šlo dovnitř a kolik vyšlo ven? Rozdíl musí mít důvod, který umíš pojmenovat — filtr, deduplikace, rozpad na víc souborů. Když ho neumíš pojmenovat, něco se ztratilo.',
-          code: 'Kolik řádků měl vstup, kolik má výstup a čím se ten rozdíl vysvětluje?',
-        },
-        {
-          title: 'Sedí součty?',
-          body:
-            'Sečti jeden číselný sloupec před a po (u rozpadu na víc souborů součty všech dílů). Tohle chytí většinu chyb v párování a duplicitách.',
-          code: 'Sečti sloupec Kusů na CS ve vstupu a ve všech výstupních souborech. Sedí to?',
-        },
-        {
-          title: 'Sedí vzorek?',
-          body:
-            'Vyber pět řádků — dva náhodné, nejmenší, největší a jeden, u kterého něco chybělo — a projdi je ručně proti originálu. Zabere to dvě minuty a chytí to, co součty přehlédnou.',
-          code: 'Vyber pět položek podle klíče výš a ukaž mi u každé, odkud se každá hodnota vzala.',
-        },
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Neptej se, jestli je to správně',
-      text:
-        'Odpověď „ano, zkontroloval jsem to“ nemá žádnou hodnotu — je to tvrzení o tvrzení. Ptej se na čísla srovnatelná s originálem: počty, součty, konkrétní hodnoty u konkrétních řádků. Kontrola je porovnání, ne ujištění.',
-    },
-    { kind: 'h', text: 'Nech si vyrobit kontrolní protokol' },
-    {
-      kind: 'p',
-      text:
-        'Místo opakování kontroly pokaždé znovu z ní udělej součást úlohy: ke každému výstupu ať vznikne krátký soubor se vším, co potřebuješ k rozhodnutí „můžu to poslat“.',
-    },
-    {
-      kind: 'code',
-      text: `Ke každému výstupu ulož vedle něj kontrolu jako .md soubor:
-
-- počet řádků vstupu a výstupu, a rozdíl s vysvětlením
-- součet číselných sloupců před a po
-- počet položek, u kterých něco chybělo, a jejich čísla
-- pět namátkových řádků s tím, odkud se hodnoty vzaly
-- cokoli, co ti přišlo divné a rozhodl ses to nechat být`,
-      caption: 'Poslední bod bývá nejužitečnější. Věci, které „vypadaly divně“, jsou obvykle první stopa k chybě v datech, ne ve výpočtu.',
-    },
-    { kind: 'h', text: 'Na vzoru: tři čísla u kontroly faktur' },
-    {
-      kind: 'p',
-      text:
-        'U kontroly faktur vypadají ty tři otázky takhle — a žádná z nich nevyžaduje otevřít jedinou fakturu.',
-    },
-    {
-      kind: 'code',
-      text: `protokol-2026-09-08.md
-
-Vstup:  5 PDF ve vstup/
-Výstup: 5 řádků v kontrolní tabulce
-Rozdíl: 0
-
-Součet základů daně: vstup 187 430 Kč / výstup 187 430 Kč
-
-Nálezy: 3 faktury (chybí údaj, nebo částka/objednávka nesedí)
-        elektro-dvorak, vts-technik, barvy-piekarova … (celý seznam níž)
-
-Vzorek:
-  vts-technik       základ daně 33 100 Kč, schváleno 31 900 Kč
-  barvy-piekarova   objednávka OBJ-9999-0001 není v seznamu schválených
-  …
-
-Divné:  U vts-technik je rozdíl přesně 1 200 Kč, což odpovídá ceně
-        montáže navíc. Podle pravidla jsem se měl zastavit — ptám se: pokračovat?`,
-      caption: 'Poslední odstavec je ten, kvůli kterému to celé má smysl. Automat, který si všimne, že něco nesedí, a zeptá se, je použitelný — ten, který to spočítá potichu, není.',
-    },
-    { kind: 'h', text: 'Chyby, které se samy neprojeví' },
-    {
-      kind: 'table',
-      head: ['Chyba', 'Proč ji nevidíš', 'Čím ji chytíš'],
-      rows: [
-        [
-          'Nespárované položky vypadly',
-          'výstup je čitelný a hezký, jen kratší',
-          'porovnání počtu řádků',
-        ],
-        [
-          'Prázdné pole se počítalo jako nula',
-          'čísla vypadají věrohodně',
-          'počet prázdných polí ve vstupu vs. počet nul ve výstupu',
-        ],
-        [
-          'Vzal starší soubor',
-          'všechno sedí, jen data jsou z minulého měsíce',
-          'zkontroluj datum v názvu použitého souboru — nech si ho vypsat',
-        ],
-        [
-          'Kód se změnil na číslo',
-          'v tabulce to vypadá stejně',
-          'porovnej pár konkrétních kódů znak po znaku',
-        ],
-        [
-          'Duplicity po spojení',
-          'součty jsou vyšší, ale kdo je zpaměti zná',
-          'součet číselného sloupce před a po',
-        ],
-        [
-          'Ztratilo se pořadí nebo řazení',
-          'nikdo se na to nedívá',
-          'zkontroluj první a poslední řádek',
-        ],
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Porovnání s minulým měsícem je nejlevnější kontrola',
-      text:
-        'Většina agend se měsíc od měsíce mění málo. Skočí-li počet faktur o třetinu nebo zmizí celé středisko, je to vidět na první pohled — jen když se podíváš. Nech si porovnat nový výstup s minulým a vypsat, co se výrazně změnilo.',
-    },
-    {
-      kind: 'task',
-      title: 'Cvičení: napiš si kontrolu pro svoji úlohu',
-      intro: 'Vezmi výstup, který někomu pravidelně posíláš.',
-      items: [
-        'Napiš tři čísla, která musí sedět, aby se dal s klidem poslat.',
-        'Nech si k poslednímu výstupu vyrobit kontrolní protokol podle šablony výš.',
-        'Porovnej ho s výstupem z minulého měsíce a najdi největší rozdíl.',
-        'Ten rozdíl vysvětli. Když ho vysvětlit neumíš, máš první nález.',
-        'Kontrolu přidej jako poslední krok do svého zadání — a až budeš mít skill, do něj.',
-      ],
-      hint:
-        'Když ti kontrola trvá dýl než samotná úloha, je moc podrobná. Cílem není jistota, ale to, abys chybu chytila dřív než příjemce.',
-    },
-  ],
-}
-
 const L2_POSTAV: Lesson = {
   slug: 'postav-si-prvni-automatizaci',
   module: 'postav',
@@ -5337,9 +5020,9 @@ export const COURSES: Course[] = [
       },
       {
         key: 'zadani',
-        title: 'Zadání a cvičení',
+        title: 'Vzor procesu',
         summary:
-          'Nejdřív hotový proces z účtárny jako vzor, pak totéž ve dvojicích na vlastní agendě.',
+          'Hotový proces z účtárny rozepsaný na kroky — kde se přepisuje ručně a co z toho může převzít automat.',
       },
     ],
     lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL],
@@ -5370,12 +5053,6 @@ export const COURSES: Course[] = [
     section: 'Pokračuj',
     modules: [
       {
-        key: 'remeslo',
-        title: 'Řemeslo',
-        summary:
-          'Dvě dovednosti, bez kterých se nedá pustit nic bez dozoru: napsat zadání nad tabulkou a poznat, že je výsledek špatně.',
-      },
-      {
         key: 'postav',
         title: 'Postav to',
         summary:
@@ -5395,15 +5072,12 @@ export const COURSES: Course[] = [
       },
     ],
     lessons: [
-      L2_TABULKY, L2_KONTROLA,
       LESSON_AUTOMATIZACE, L2_POSTAV, LESSON_SKILL,
       L2_ROZBOR, L2_PLAN, L2_EMAIL, L2_CVICNY, L2_NAOSTRO, L2_MINIMUM,
       L2_FORMULAR, L2_MCP, L2_DESIGN,
       LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI,
     ],
     learn: [
-      'napsat zadání nad tabulkou, které projde napoprvé',
-      'zkontrolovat výstup třemi čísly místo čtení řádek po řádku',
       'dotáhnout jedno místo z mapy až do skillu s vlastní kontrolou',
       'spustit úlohu bez rozhovoru a naplánovat ji',
       'zabalit opakovaný postup do skillu a trefit se v description',
