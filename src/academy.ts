@@ -337,7 +337,7 @@ const LESSON_SLOVNICEK: Lesson = {
       head: ['Slovo', 'Co znamená'],
       rows: [
         ['data/', 'složka v projektu se vstupy. Nikdy se do ní nezapisuje — originál je jediná kopie.'],
-        ['vystupy/', 'složka v projektu, kam jdou výsledky. Když se něco pokazí, smaže se a udělá znovu.'],
+        ['vystup/', 'složka v projektu, kam jdou výsledky. Když se něco pokazí, smaže se a udělá znovu.'],
         ['.claude/', 'skrytá složka v projektu, ve které jsou skilly a nastavení hooků. Tečka na začátku znamená, že ji Průzkumník ani Finder normálně neukazují.'],
         ['.xlsx', 'soubor Excelu. Není to text, proto si na něj Claude napíše kratičký skript — toho si ani nevšimnete.'],
         ['Repozitář (repo)', 'složka projektu uložená na GitHubu, aby se dala stáhnout a sdílet. Potkáte ho jen u MCP serveru — stačí vědět, že „stáhnout repozitář" znamená stáhnout složku.'],
@@ -415,10 +415,10 @@ const LESSON_TOKENY: Lesson = {
 
 ## Kde jsou data
 - data/ — exporty s datem v názvu, ber vždy nejnovější
-- vystupy/ — sem jdou výsledky
+- vystup/ — sem jdou výsledky
 
 ## Pravidla
-- Do data/ nezapisuj. Výsledek ulož jako nový soubor do vystupy/.
+- Do data/ nezapisuj. Výsledek ulož jako nový soubor do vystup/.
 - Čísla objednávek jsou text. Nepřevádět, nedoplňovat nuly.
 - Když chybí sloupec, napiš to a zastav se. Nedopočítávej.
 
@@ -818,10 +818,10 @@ const LESSON_PROJEKT: Lesson = {
     },
     {
       kind: 'code',
-      text: `Založ mi tady projekt faktury-kontrola: složky data a vystupy a soubor
+      text: `Založ mi tady projekt faktury-kontrola: složky data a vystup a soubor
 CLAUDE.md. Do CLAUDE.md napiš slovník téhle agendy — na pojmy se mě
 zeptej — kde jsou data, a pravidlo, že originály v data/ se nikdy
-nepřepisují: všechno nové se ukládá do vystupy/.`,
+nepřepisují: všechno nové se ukládá do vystup/.`,
       caption: 'Dvacet vteřin a struktura stojí. Zbytek lekce vysvětluje, co vzniklo a proč — až se něco pokazí, budeš to potřebovat vědět.',
     },
     {
@@ -857,7 +857,7 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
 └── faktury-kontrola/
     ├── CLAUDE.md
     ├── data/
-    ├── vystupy/
+    ├── vystup/
     └── .claude/skills/`,
           caption: 'Library je na Macu skrytá — do Finderu se dostaneš přes ⇧⌘G. .claude začíná tečkou, takže ji skryje taky; ⇧⌘. skryté soubory přepne.',
         },
@@ -869,7 +869,7 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
 └── faktury-kontrola\\
     ├── CLAUDE.md
     ├── data\\
-    ├── vystupy\\
+    ├── vystup\\
     └── .claude\\skills\\`,
           caption: 'Ve Windows je knihovna pod profilem uživatele, v Průzkumníku s ikonou budovy. Složku .claude Průzkumník normálně ukazuje.',
         },
@@ -884,7 +884,7 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
           'Většinou výhoda — pravidla jsou týmová. Zároveň do nich nepiš nic osobního.',
         ],
         [
-          'Všechno ve vystupy/ uvidí ostatní',
+          'Všechno ve vystup/ uvidí ostatní',
           'Rozpracované věci pojmenovávej tak, aby to bylo poznat.',
         ],
         [
@@ -977,7 +977,7 @@ description: Uloží příchozí faktury v PDF, vytáhne z nich šest povinných
         ['pravidlo, které platí pořád', 'řádek v CLAUDE.md'],
         ['postup, který opakuješ každý týden', 'skill v .claude/skills/'],
         ['přehled, do kterého se bude někdo dívat', 'artefakt'],
-        ['soubor, který někomu pošleš mailem', 'obyčejný výstup do vystupy/'],
+        ['soubor, který někomu pošleš mailem', 'obyčejný výstup do vystup/'],
         ['přístup do systému, kde data žijí', 'konektor'],
       ],
     },
@@ -1156,7 +1156,7 @@ se jen to, odkud faktura přišla a jestli má skill k dispozici odeslání.`,
               text: `svozy/
 ├── CLAUDE.md      # turnus, dispečer, prázdný km, kdo je dopravce
 ├── data/          # export z knihy jízd, CSV po týdnech
-└── vystupy/       # týdenní přehledy
+└── vystup/       # týdenní přehledy
 
 Zadání na začátek:
 - „Spočítej z jízd za minulý týden podíl prázdných kilometrů po vozidlech.“
@@ -1172,7 +1172,7 @@ Zadání na začátek:
               text: `bi-logistika/
 ├── CLAUDE.md      # zkratky ŘZ, CS, ARG, SD_CZ; co musí obsahovat požadavek
 ├── data/          # export požadavků z nástěnky, exporty k modelům
-└── vystupy/       # zadání pro realizaci, datové slovníky
+└── vystup/       # zadání pro realizaci, datové slovníky
 
 Zadání na začátek:
 - „Vezmi tenhle požadavek a napiš ho ve tvaru, který projde ze Specifikace
@@ -1189,7 +1189,7 @@ Zadání na začátek:
               text: `magazin/
 ├── CLAUDE.md      # tón, délky textů, zakázaná slova, jak píšeme ceny
 ├── data/          # tabulka položek, podklady od dodavatelů
-└── vystupy/       # texty pro web a leták
+└── vystup/       # texty pro web a leták
 
 Zadání na začátek:
 - „Z tabulky položek napiš popisky pro web, každý do 200 znaků, podle tónu z CLAUDE.md.“
@@ -1205,7 +1205,7 @@ Zadání na začátek:
               text: `porady/
 ├── CLAUDE.md      # kdo je kdo, co sledujeme, jak vypadá úkol
 ├── data/          # přepisy porad, podklady
-└── vystupy/       # zápisy a přehledy
+└── vystup/       # zápisy a přehledy
 
 Zadání na začátek:
 - „Z přepisu porady vytáhni rozhodnutí, úkoly a kdo je vlastní. Co není jasné, označ.“
@@ -1222,7 +1222,7 @@ Zadání na začátek:
         'Složka pojmenovaná po agendě, ne po nástroji',
         'CLAUDE.md se slovníkem, cestami k datům a zákazy',
         'Podsložka data/ s reálným vzorkem, ne s celou databází',
-        'Podsložka vystupy/, kam jdou výsledky',
+        'Podsložka vystup/, kam jdou výsledky',
         'První skill na postup, který děláš každý týden',
         'Jeden artefakt jako živý přehled pro tým',
         'Zapojený konektor, pokud data žijí v systému',
@@ -2727,7 +2727,7 @@ Na konec vypiš tři místa, kde se nejvíc přepisuje.`,
 │   ├── Magazin2026_Logistika_kopie.xlsx ← kopie sdílené tabulky
 │   ├── zadani-od-produktaka.eml         ← jeden reálný e-mail
 │   └── vystup-zari.xlsx                 ← jak to vypadalo minule
-├── vystupy/
+├── vystup/
 └── .claude/skills/prepis-rozhovoru/SKILL.md`,
       caption:
         'Podklady zůstávají u nahrávky, ze které vznikly. Sdílený soubor ze SharePointu se sem kopíruje — originál zůstává na místě.',
@@ -3340,7 +3340,7 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
         {
           title: 'Vybrat pracovní složku',
           body:
-            'Bez složky se automatizace nedá uložit. Vyber projektovou — tu s CLAUDE.md, data/ a vystupy/. Bez označení jako důvěryhodná se na to aplikace zeptá.',
+            'Bez složky se automatizace nedá uložit. Vyber projektovou — tu s CLAUDE.md, data/ a vystup/. Bez označení jako důvěryhodná se na to aplikace zeptá.',
         },
         {
           title: 'Nastavit rozvrh',
@@ -3788,7 +3788,7 @@ claude mcp remove dek`,
       tone: 'ok',
       title: 'Sílu to dostane až ve spojení s tvojí složkou',
       text:
-        'Katalog sám o sobě je hezký, ale sílu dostane až propojený s tvými daty: „vezmi exportovaný soubor z vystupy/, ke každé položce dohledej v katalogu aktuální název a zařazení a rozdíly zapiš do nového sloupce". Tohle je ten okamžik, kdy MCP přestane být hračka.',
+        'Katalog sám o sobě je hezký, ale sílu dostane až propojený s tvými daty: „vezmi exportovaný soubor z vystup/, ke každé položce dohledej v katalogu aktuální název a zařazení a rozdíly zapiš do nového sloupce". Tohle je ten okamžik, kdy MCP přestane být hračka.',
     },
     { kind: 'h', text: 'Co nezvládne' },
     {
@@ -4129,7 +4129,7 @@ const L2_FORMULAR: Lesson = {
     {
       kind: 'code',
       text: `Vezmi v data/ nejnovější export odpovědí z formuláře a porovnej ho
-se seznamem, který jsem rozeslal. Připrav mi do vystupy/ dva soubory:
+se seznamem, který jsem rozeslal. Připrav mi do vystup/ dva soubory:
 schvaleni-<RRRR-MM-DD>.xlsx s řádky, které mám odsouhlasit,
 a chybi-<RRRR-MM-DD>.xlsx s tím, kdo ještě neodpověděl.
 Na konec napiš, kolik řádků přišlo, kolik jich sedí na rozeslaný seznam

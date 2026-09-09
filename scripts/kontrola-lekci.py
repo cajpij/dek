@@ -31,6 +31,8 @@ ZASTARALE = {
     r'sloupc[ei] CHYBÍ': 'evidence má sloupce Kompletní a Žádost odeslána',
     r'\bmailto\b': 'automatizace posílá poštu doopravdy, mailto už není náhradní plán',
     r'chran-data\.sh': 'hook ve cvičném projektu se jmenuje chran-vstup.sh',
+    r'\bvystupy\b': 'cvičný projekt má dvojici vstup/ a vystup/, bez ypsilonu',
+    r'\b[Úú]loh\w*\b': 'tomu, co běží samo, se říká automatizace; kus práce je úkol',
 }
 
 chyby = []

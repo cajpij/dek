@@ -116,7 +116,7 @@ export const DEFAULT_CONFIG: RunConfig = {
       steps: [
         { title: 'Nasyncovat knihovnu ze SharePointu', min: 10, detail: 'Přidat zástupce do OneDrivu, počkat, až se stáhne', lessons: ['claude-a-firemni-data/sdilena-slozka-sharepoint'] },
         { title: 'Vždy ponechat v tomto zařízení a připojit složku v Claudovi', min: 5, detail: 'Bez toho jsou na disku jen zástupci a Claude nic nepřečte', lessons: ['claude-a-firemni-data/sdilena-slozka-sharepoint', 'claude-a-firemni-data/co-claude-ve-slozce-vidi'] },
-        { title: 'Založit projekt: složka agendy, data/ a vystupy/', min: 5, lessons: ['claude-a-firemni-data/projekt-v-claude-code'] },
+        { title: 'Založit projekt: složka agendy, data/ a vystup/', min: 5, lessons: ['claude-a-firemni-data/projekt-v-claude-code'] },
         { title: 'Napsat CLAUDE.md', min: 10, detail: 'Pět řádků slovníku, kde jsou data, dvě pravidla co se nesmí', lessons: ['claude-a-firemni-data/projekt-v-claude-code'] },
       ],
       examples: [
@@ -301,7 +301,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         {
           title: 'Vyčištění tabulky do použitelného tvaru',
           detail:
-            'Sloučené buňky, hlavička na třetím řádku, kódy jako text. Vyčištěná kopie do vystupy/, originál se nesahá.',
+            'Sloučené buňky, hlavička na třetím řádku, kódy jako text. Vyčištěná kopie do vystup/, originál se nesahá.',
         },
         {
           title: 'Kontrolní protokol k hotovému výstupu',
@@ -336,7 +336,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'V Claude Code: Code → Routines → New routine → Local. Cloud varianta nevidí složku na disku.',
         'Tohle není látka, je to důkaz — nechat to zapůsobit a nekomentovat to moc',
         'Zmínit, že u e-mailu je potřeba opatrnost: odeslaná pošta se nevrací',
-        'Automatizace na ukázku: spočítat soubory v data/, zapsat do vystupy/ a dát vědět kolegovi z dvojice',
+        'Automatizace na ukázku: spočítat soubory v data/, zapsat do vystup/ a dát vědět kolegovi z dvojice',
         'Když write tools nejedou, automatizace text jen navrhne a zapíše „připraveno, čeká na konektor" — ukázat to, je to správný konec běhu, ne chyba',
         'Když padne dotaz na e-mail: konektor M365 odesílat umí, ale write tools musí zapnout správce a nejde přes ně poslat příloha — výstup do knihovny, do mailu odkaz',
         'Odkázat na lekci Jak se v projektu nastaví automatizace — checklist před plánem, runbook, co když spadne',
