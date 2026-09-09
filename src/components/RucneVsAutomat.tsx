@@ -15,20 +15,20 @@ type Radek = { krok: string; kdo: string; drive: string[]; ted: string[] }
 const AUTOMAT: Radek[] = [
   {
     krok: 'Faktura přijde',
-    kdo: 'dodavatel → účtárna',
-    drive: ['Účetní ji musí najít ve schránce mezi', 'desítkami zpráv a stáhnout přílohu.'],
+    kdo: 'dodavatel → Marie',
+    drive: ['Marie ji musí najít ve schránce mezi', 'desítkami zpráv a stáhnout přílohu.'],
     ted: ['Úloha kouká do schránky každých 15 minut', 'a PDF uloží do vstup/ pod datem', 'a jménem dodavatele.'],
   },
   {
     krok: 'Šest údajů',
-    kdo: 'účtárna',
-    drive: ['Přepis z PDF do kontrolní tabulky,', 'řádek po řádku.'],
+    kdo: 'Marie',
+    drive: ['Přepis z PDF do tabulky,', 'řádek po řádku.'],
     ted: ['Vytáhne je z PDF a zapíše do', 'objednavky.xlsx, do sešitu pojmenovaného', 'jménem dodavatele z faktury.'],
   },
   {
     krok: 'Chybí údaj',
-    kdo: 'účtárna → dodavatel',
-    drive: ['Účetní napíše dodavateli a čeká.', 'E-mail chodí tam a zpět.'],
+    kdo: 'Marie → dodavatel',
+    drive: ['Marie napíše dodavateli a čeká.', 'E-mail chodí tam a zpět.'],
     ted: ['Chybí-li jeden nebo dva: text vznikne', 'v kontrola-<datum>.xlsx a týmž textem', 'odejde e-mail. Čas se zapíše na tři místa.'],
   },
 ]
@@ -36,20 +36,20 @@ const AUTOMAT: Radek[] = [
 const CLOVEK: Radek[] = [
   {
     krok: 'Nečitelná faktura',
-    kdo: 'účtárna',
-    drive: ['Nerozlišovalo se — účetní řešila', 'každou zvlášť.'],
+    kdo: 'Marie',
+    drive: ['Nerozlišovalo se — Marie řešila', 'každou zvlášť.'],
     ted: ['Chybí tři a víc údajů nebo z PDF nejde', 'přečíst text: neodchází nic, jde to', 'do protokolu k ruční kontrole.'],
   },
   {
-    krok: 'Schválení',
-    kdo: 'středisko',
-    drive: ['Vedoucí odklikne, účetní zapíše', 'odpověď zpátky do tabulky.'],
-    ted: ['Beze změny. Úloha do schvalování', 'vůbec nesahá.'],
+    krok: 'Předání účtárně',
+    kdo: 'Marie → účtárna',
+    drive: ['Marie posílala dál i faktury,', 'kterým něco chybělo — a řešilo se to', 'až v účtárně.'],
+    ted: ['Přepošle až tu, která prošla celým', 'během: je kompletní a zaevidovaná.', 'Účtárna nedostane nic k vracení.'],
   },
   {
-    krok: 'Zadání k platbě',
-    kdo: 'účtárna',
-    drive: ['Účetní zadá fakturu ručně', 'do účetního systému.'],
+    krok: 'Schválení a platba',
+    kdo: 'účtárna a středisko',
+    drive: ['Vedoucí odklikne, účetní zadá', 'fakturu do systému.'],
     ted: ['Beze změny, a schválně. Špatnou žádost', 'o doplnění lze omluvit, špatně zaplacenou', 'fakturu nikdo nevrátí.'],
   },
 ]
@@ -100,7 +100,7 @@ export default function RucneVsAutomat() {
         component="svg"
         viewBox={`0 0 900 ${H}`}
         role="img"
-        aria-label="Srovnání ručního procesu a hotové úlohy v šesti krocích, rozdělené řezem. Nad řezem tři kroky, které převzala úloha: fakturu dřív musela účetní najít ve schránce a stáhnout, teď se do schránky dívá úloha každých 15 minut a PDF uloží do složky vstup. Šest údajů dřív přepisovala z PDF do tabulky, teď je úloha vytáhne a zapíše do objednavky.xlsx do sešitu podle dodavatele. Když údaj chyběl, účetní psala dodavateli a čekala; teď při jednom nebo dvou chybějících vznikne text v souboru kontrola a týmž textem odejde e-mail, čas se zapíše na tři místa. Pod řezem tři kroky, které zůstávají člověku: nečitelná faktura nebo tři a víc chybějících údajů jde do protokolu k ruční kontrole a neodchází nic; schválení vedoucím střediska a zadání k platbě zůstávají beze změny, protože špatnou žádost o doplnění lze omluvit, ale špatně zaplacenou fakturu nikdo nevrátí."
+        aria-label="Srovnání toho, co Marie dělala ručně, a co dělá hotová úloha, v šesti krocích rozdělených řezem. Nad řezem tři kroky, které převzala úloha: fakturu dřív musela Marie najít ve schránce a stáhnout, teď se do schránky dívá úloha každých 15 minut a PDF uloží do složky vstup. Šest údajů dřív přepisovala z PDF do tabulky, teď je úloha vytáhne a zapíše do objednavky.xlsx do sešitu podle dodavatele. Když údaj chyběl, Marie psala dodavateli a čekala; teď při jednom nebo dvou chybějících vznikne text v souboru kontrola a týmž textem odejde e-mail, čas se zapíše na tři místa. Pod řezem tři kroky, které zůstávají lidem: nečitelná faktura nebo tři a víc chybějících údajů jde do protokolu k ruční kontrole a neodchází nic; předání účtárně dělá Marie, ale teprve u faktury, která prošla celým během a je kompletní a zaevidovaná; a schválení s platbou zůstávají na účtárně a středisku beze změny, protože špatnou žádost o doplnění lze omluvit, ale špatně zaplacenou fakturu nikdo nevrátí."
         sx={{ display: 'block', width: '100%', minWidth: 780, height: 'auto' }}
       >
         <defs>

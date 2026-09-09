@@ -4189,6 +4189,12 @@ const L2_CVICNY: Lesson = {
     },
     {
       kind: 'figure',
+      name: 'rucne-vs-automat',
+      caption:
+        'Nejrychlejší způsob, jak pochopit, o čem tahle lekce je. Vlevo jak agenda vypadala, když ji Marie dělala ručně, vpravo co z ní převzala hotová úloha. Nad řezem tři kroky, které dělá sama; pod ním tři, které zůstávají lidem — a je to rozhodnutí, ne nedodělek.',
+    },
+    {
+      kind: 'figure',
       name: 'prvni-beh',
       caption:
         'Pět míst, na kterých po prvním spuštění poznáš, že to proběhlo — a jedno, kde se schválně nic nestane.',
@@ -4433,12 +4439,6 @@ S pozdravem,
 Účtárna DEK`,
       caption:
         'Jméno dodavatele se bere přesně tak, jak je napsané na faktuře. Když chybí dva údaje, vyjmenují se oba — „IČO a číslo objednávky".',
-    },
-    {
-      kind: 'figure',
-      name: 'rucne-vs-automat',
-      caption:
-        'Tentýž proces dvakrát: vlevo jak ho dělal člověk, vpravo co s ním je teď. Nad řezem tři kroky, které převzala úloha; pod ním tři, které zůstávají člověku — a je to rozhodnutí, ne nedodělek.',
     },
     { kind: 'h', text: '4. Otevři složku a pusť to' },
     {
