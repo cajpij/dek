@@ -2201,6 +2201,13 @@ claude -p "Postupuj podle skillu kontrola-faktur a výsledek ulož do vystup/."`
       caption: 'Spusť si to nejdřív ručně přesně takhle. Tahle věta pak jde do naplánované úlohy — v Claude Code záložka Code → Routines → New routine → Local. Když to takhle nedoběhne, na plánu to nedoběhne taky.',
     },
     {
+      kind: 'image',
+      src: 'routines-seznam.webp',
+      alt: 'Seznam rutin v Claude Code. Nahoře pole „What do you want automated" s příklady úloh a tlačítkem Draft routine. Pod ním upozornění, že lokální rutiny běží, jen když je počítač vzhůru a online. Dole jediný záznam: kontrola-faktur, přibližně každých 15 minut mezi 7:00 a 17:59 od pondělí do pátku, další běh dnes v 16:09.',
+      caption:
+        'Takhle ta věta vypadá, když se z ní stane úloha. Rozvrh i čas dalšího běhu jsou vidět na jednom řádku — a hlášku nahoře si přečti: lokální rutina běží, jen když je počítač vzhůru a aplikace puštěná.',
+    },
+    {
       kind: 'note',
       tone: 'info',
       title: 'Vždycky nech po sobě stopu',
