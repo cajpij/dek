@@ -991,12 +991,12 @@ nepřepisují: všechno nové se ukládá do vystup/.`,
 
 ---
 name: kontrola-faktur
-description: Uloží příchozí faktury v PDF, vytáhne z nich šest povinných
-  údajů a zapíše je do evidence podle dodavatele. Použij, když přibyly
-  nové faktury nebo když se ptám, co je k vyřízení.
+description: Zpracuje PDF faktury, které přibyly ve vstup/ a ještě nemají
+  řádek v evidenci. Použij, když přibyly nové faktury nebo když se ptám,
+  co je k vyřízení.
 ---
 
-1. Najdi faktury, které ještě nejsou uložené ve vstup/, a ulož je tam.
+1. Projdi PDF ve vstup/. Nová je ta, která ještě nemá řádek v evidenci.
 2. Z každé vytáhni šest údajů. Co na faktuře není, nech prázdné.
 3. Zapiš je do data/objednavky.xlsx do sešitu podle dodavatele.
 ...`,
@@ -2127,19 +2127,22 @@ vstup/ (nebo naopak) se podruhé nezapíše ani neodešle.
 
 ---
 name: kontrola-faktur
-description: Ukládá příchozí faktury v PDF, vytáhne z nich šest povinných
-  údajů a zapíše je do evidence podle dodavatele. Použij, když se má
-  zkontrolovat schránka na nové faktury.
+description: Zpracuje PDF faktury, které přibyly ve vstup/ a ještě nemají
+  řádek v evidenci — vytáhne z nich šest povinných údajů a zapíše je podle
+  dodavatele. Když něco chybí, dohledá odesílatele v prijate-emaily.xlsx
+  a pošle mu žádost o doplnění. Použij, když se má zkontrolovat vstup/.
 ---
 
-1. Najdi faktury, které ještě nejsou uložené ve vstup/, a ulož je tam.
+1. Projdi PDF ve vstup/. Nová je ta faktura, která ještě nemá řádek v evidenci.
 2. Z každé vytáhni šest údajů: číslo faktury, dodavatele, IČO dodavatele,
    číslo objednávky, základ daně a splatnost. Co na faktuře není, nech prázdné.
-3. Zapiš je do data/objednavky.xlsx do sešitu pojmenovaného jménem dodavatele.
-4. Když je vyplněných všech šest, skonči. Nic se neposílá.
-5. Když chybí jeden nebo dva údaje, zapiš to do
-   vystup/kontrola-<RRRR-MM-DD>.xlsx i s návrhem odpovědi dodavateli.
-6. Když chybí tři a víc, neposílej nic — jde to k ruční kontrole.`,
+3. Ověř duplicitu podle čísla faktury napříč všemi sešity evidence.
+4. Zapiš je do data/objednavky.xlsx do sešitu pojmenovaného jménem dodavatele.
+5. Když je vyplněných všech šest, skonči. Nic se neposílá.
+6. Když chybí jeden nebo dva údaje, zapiš to do
+   vystup/kontrola-<RRRR-MM-DD>.xlsx i s návrhem odpovědi a adresu dodavatele
+   dohledej v data/prijate-emaily.xlsx.
+7. Když chybí tři a víc, neposílej nic — jde to k ruční kontrole.`,
       caption: 'Řádek description rozhoduje o tom, kdy si skill Claude vybere sám. Piš do něj i slova, která do zadání píšeš ty.',
     },
     {
@@ -2335,7 +2338,8 @@ automatizace popsaná v \`rutina.md\`.`,
     {
       kind: 'soubor',
       nazev: 'chran-vstup.sh',
-      popis: 'Ten skript. Třicet řádků, které hlídají, aby do složky s originály faktur směla jen přibýt nová faktura — nic se nepřepsalo ani nesmazalo.',
+      popis:
+        'Ten skript celý. Hlídá jedinou věc: z Claude Code se do složky s originály faktur nezapisuje. Ani nová faktura — ta se tam objeví přes synchronizaci OneDrivu, ne přes Claude.',
       obsah: `#!/bin/bash
 # Zábrana nad složkou vstup/: Claude do ní nesmí sám nic zapsat, přepsat,
 # přejmenovat ani smazat. Originály jsou důkaz.
@@ -2867,8 +2871,8 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
       text: `# Runbook: kontrola faktur
 
 ## Co to dělá
-Uloží nové faktury do vstup/, vytáhne z nich šest údajů do evidence
-a u neúplných pošle dodavateli žádost o doplnění.
+Vezme nové faktury — z Doručené pošty nebo ze vstup/ — vytáhne z nich
+šest údajů do evidence a u neúplných pošle dodavateli žádost o doplnění.
 
 ## Kdy to běží
 Každých 15 minut v pracovní dny 7:00–18:00. Jeden běh trvá pár minut.
