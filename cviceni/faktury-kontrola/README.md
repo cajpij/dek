@@ -64,7 +64,12 @@ všechny faktury mají řádek. To je správně — úloha, která běží každ
    úlohu nad ní — projekt je obyčejná složka, nic jiného se měnit nemusí.
 2. `vstup/` a `data/objednavky.xlsx` vyprázdni, nech je naplnit skutečnými
    fakturami.
-3. Uprav v `CLAUDE.md`, `rutina.md` a ve skillu adresu schránky a kopii, kam
-   se posílá žádost o doplnění — jsou na několika místech, projdi je všechny.
+3. Přepiš adresy na svoje. Ve složce jsou na **třinácti místech v pěti
+   souborech**: `CLAUDE.md` (3×), `rutina.md` (3×), `SKILL.md` (3×),
+   `runbook.md` (2×) a `zadani.md` (2×). Nehledej je ručně — řekni Claudovi:
+
+   > V celé téhle složce nahraď fakturace@dek.cz mojí schránkou
+   > a vedouci-uctarny@dek.cz adresou, kam chci kopii. Podpis
+   > „Účtárna DEK" změň na moje jméno. Vypiš, co jsi kde změnil.
 4. **Prvních deset faktur si projdi řádek po řádku**, než tomu začneš věřit.
    Co Claude přečetl špatně, dopiš do `CLAUDE.md` nebo do skillu.

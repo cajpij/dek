@@ -4364,7 +4364,7 @@ místo odeslání jen navrhne text a s tou vystačím.`,
         {
           title: 'Vyprázdni vstup/ a data/',
           body:
-            'Sešity v objednavky.xlsx si skill zakládá sám podle dodavatele — nic tam ručně nepřipravuješ. Vyprázdni vstup/ a nech do ní chodit opravdové faktury; adresu schránky a kopii uprav v CLAUDE.md a rutina.md.',
+            'Sešity v objednavky.xlsx si skill zakládá sám podle dodavatele — nic tam ručně nepřipravuješ. Vyprázdni vstup/ a nech do ní chodit opravdové faktury. Adresy jsou ve složce na třinácti místech v pěti souborech, takže je nehledej ručně: řekni Claudovi, ať v celé složce nahradí fakturace@dek.cz tvojí schránkou, vedouci-uctarny@dek.cz adresou pro kopii a podpis „Účtárna DEK" tvým jménem — a ať vypíše, co kde změnil.',
         },
         {
           title: 'Prvních deset faktur si projdi řádek po řádku',
