@@ -2749,7 +2749,7 @@ Rozhodnutí, jestli fakturu zaplatit. Skill připraví podklad, schvaluje člov�
 
 const LESSON_CVICENI: Lesson = {
   slug: 'zmapuj-kolegovi-workflow',
-  module: 'zadani',
+  module: 'vic',
   title: 'Cvičení 1: rozhovor o kolegově práci',
   summary:
     'Ve dvojici si navzájem vyzpovídáte kus vlastní práce. Rozhovor nahrajete na telefon a přepis i reálné soubory skončí v projektu. Kreslit se bude až v další lekci.',
@@ -3028,7 +3028,7 @@ Ulož to do podklady/rozhovor-<datum>.md.`,
       items: [
         {
           label: 'Cvičení 1b: kresba flow a označení míst',
-          href: '#academy/claude-a-firemni-data/nakresli-flow',
+          href: '#academy/od-mapy-k-automatu/nakresli-flow',
           note: 'Druhá část cvičení — z rozhovoru vznikne obrázek a v něm se označí místa k automatizaci.',
         },
       ],
@@ -3038,7 +3038,7 @@ Ulož to do podklady/rozhovor-<datum>.md.`,
 
 const LESSON_FLOW: Lesson = {
   slug: 'nakresli-flow',
-  module: 'zadani',
+  module: 'vic',
   title: 'Cvičení 1b: kresba flow a označení míst',
   summary:
     'Z rozhovoru nakreslíte flow do tří pruhů, popíšete šipky a každý krok označíte jednou ze tří značek. Kreslí ten, kdo se ptal.',
@@ -3161,7 +3161,7 @@ const LESSON_FLOW: Lesson = {
       items: [
         {
           label: 'Sdílení map: co si z toho odnese sál',
-          href: '#academy/claude-a-firemni-data/sdileni-map',
+          href: '#academy/od-mapy-k-automatu/sdileni-map',
           note: 'Třetí část — dvě minuty na dvojici a hledání toho, co se opakuje napříč odděleními.',
         },
       ],
@@ -3171,7 +3171,7 @@ const LESSON_FLOW: Lesson = {
 
 const LESSON_SDILENI: Lesson = {
   slug: 'sdileni-map',
-  module: 'zadani',
+  module: 'vic',
   title: 'Sdílení map: co si z toho odnese sál',
   summary:
     'Dvě minuty na dvojici. Jak svoji mapu představit, aby to ostatním k něčemu bylo, a co poslouchat u ostatních — protože stejné místo se skoro vždycky opakuje ve třech odděleních najednou.',
@@ -3312,12 +3312,12 @@ Nenavrhuj řešení.`,
       items: [
         {
           label: 'Cvičení 1: rozhovor o kolegově práci',
-          href: '#academy/claude-a-firemni-data/zmapuj-kolegovi-workflow',
+          href: '#academy/od-mapy-k-automatu/zmapuj-kolegovi-workflow',
           note: 'První část cvičení.',
         },
         {
           label: 'Cvičení 1b: kresba flow a označení míst',
-          href: '#academy/claude-a-firemni-data/nakresli-flow',
+          href: '#academy/od-mapy-k-automatu/nakresli-flow',
           note: 'Druhá část — mapa, kterou tady představujete.',
         },
       ],
@@ -5342,7 +5342,7 @@ export const COURSES: Course[] = [
           'Nejdřív hotový proces z účtárny jako vzor, pak totéž ve dvojicích na vlastní agendě.',
       },
     ],
-    lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL, LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI],
+    lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT, LESSON_REGAL],
     learn: [
       'vysvětlit, za co se u Clauda platí, a vybrat model i effort podle úlohy',
       'zkrátit dlouhá sezení a zjistit, kam odtéká příděl',
@@ -5399,6 +5399,7 @@ export const COURSES: Course[] = [
       LESSON_AUTOMATIZACE, L2_POSTAV, LESSON_SKILL,
       L2_ROZBOR, L2_PLAN, L2_EMAIL, L2_CVICNY, L2_NAOSTRO, L2_MINIMUM,
       L2_FORMULAR, L2_MCP, L2_DESIGN,
+      LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI,
     ],
     learn: [
       'napsat zadání nad tabulkou, které projde napoprvé',

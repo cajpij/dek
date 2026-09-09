@@ -158,7 +158,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Cvičení 1 — rozhovory ve dvojicích',
       min: 40,
-      lessons: ['claude-a-firemni-data/zmapuj-kolegovi-workflow'],
+      lessons: ['od-mapy-k-automatu/zmapuj-kolegovi-workflow'],
       kind: 'work',
       who: 'Lektor + asistence',
       brief:
@@ -200,7 +200,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Cvičení 1b — kresba flow a označení míst',
       min: 15,
-      lessons: ['claude-a-firemni-data/nakresli-flow'],
+      lessons: ['od-mapy-k-automatu/nakresli-flow'],
       kind: 'work',
       who: 'Lektor + asistence',
       steps: [
@@ -229,7 +229,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Sdílení map',
       min: 10,
-      lessons: ['claude-a-firemni-data/sdileni-map'],
+      lessons: ['od-mapy-k-automatu/sdileni-map'],
       kind: 'qna',
       who: 'Martin',
       steps: [
