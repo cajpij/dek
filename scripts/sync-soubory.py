@@ -19,6 +19,8 @@ SOUBORY = {
     'chran-vstup.sh': Z / '.claude/hooks/chran-vstup.sh',
     'rutina.md': Z / 'rutina.md',
     'runbook.md': Z / 'runbook.md',
+    'prepis-ukazka.txt': KOREN / 'cviceni/akcni-regal/prepis-ukazka.txt',
+    'user-flow.md': KOREN / 'cviceni/akcni-regal/user-flow.md',
 }
 
 

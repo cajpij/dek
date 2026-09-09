@@ -1,16 +1,21 @@
 # Kontrola faktur
 
-Cvičný projekt z workshopu DEK Academy. Sleduje schránku fakturace@dek.cz.
-Když přijde e-mail s fakturou v PDF, uloží ji, vytáhne z ní šest povinných
-údajů a zapíše je do evidence podle dodavatele. Když některý údaj chybí, sám
-pošle dodavateli e-mail s žádostí o doplnění.
+Cvičný projekt z workshopu DEK Academy. Zpracovává faktury dodavatelů —
+buď přímo z e-mailu v Doručené poště (to dělá naplánovaná automatizace,
+`rutina.md`), nebo z PDF, které přibylo ve složce vstup/ (to dělá i skill
+sám, viz `.claude/skills/kontrola-faktur/`) — vytáhne z nich šest povinných
+údajů a zapíše je do evidence podle dodavatele. Když některý údaj chybí,
+sám pošle dodavateli e-mail s žádostí o doplnění.
 
 **Posílá poštu bez potvrzení — ale jenom žádost o doplnění chybějícího údaje,
 nikdy nic k platbě.** Neschvaluje faktury, nezadává je k platbě a nepíše nic
 do účetního systému. To zůstává na člověku.
 
 ## Slovník
-- faktura = PDF příloha e-mailu, který přijde do schránky fakturace@dek.cz
+- faktura = buď e-mail s PDF přílohou v Doručené poště fakturace@dek.cz
+  od odesílatele mimo dek.cz/dek-cz.com, nebo PDF soubor ve vstup/ — obojí
+  se zpracovává stejným postupem, jen z jiného zdroje (viz „Dvě cesty..."
+  níž)
 - šest povinných údajů = číslo faktury, dodavatel, IČO dodavatele, číslo
   objednávky, základ daně (částka bez DPH), splatnost
 - IČO = vždycky IČO dodavatele. IČO odběratele (DEK a.s.) je na faktuře taky
@@ -18,14 +23,51 @@ do účetního systému. To zůstává na člověku.
 - kompletní faktura = má všech šest údajů čitelných
 - evidence = data/objednavky.xlsx, jeden sešit pro každého dodavatele
 
+## Dvě cesty, jak se faktura zpracuje
+
+**Hlavní cesta — přímo z Doručené pošty (od 2026-09-09), jen v naplánované
+automatizaci.** M365 konektor umí e-mail i jeho PDF přílohu přečíst jako
+text, a to na vytažení šesti údajů stačí — nepotřebuje se surová binární
+data přílohy, ani uložený soubor na disku. Naplánovaná automatizace
+(`rutina.md`, blok Instructions) proto při každém běhu projde Doručenou
+poštu, najde e-maily s přílohou od odesílatele mimo dek.cz/dek-cz.com a
+zpracuje je rovnou: vytáhne šest údajů, zapíše řádek do evidence (i bez
+souboru ve vstup/) a při chybějícím údaji pošle žádost o doplnění přímo
+na adresu z hlavičky e-mailu. Tahle cesta nepoužívá
+data/prijate-emaily.xlsx. **Je to krok v zadání automatizace, ne v tomhle
+skillu** — schválně, aby šel skill bezpečně spustit i samostatně (např.
+podle `README.md`), bez vedlejšího efektu na reálnou schránku.
+
+**Doplňková cesta — PDF ve vstup/, i v samotném skillu.** Skill (viz
+`.claude/skills/kontrola-faktur/`) zpracuje cokoli, co se objeví jako
+soubor ve vstup/ a ještě nemá řádek v evidenci — typicky fakturu vhozenou
+tam ručně. Protože u týhle cesty není živý e-mail, adresu na doplnění
+skill dohledá v data/prijate-emaily.xlsx podle jména souboru. Tahle
+tabulka se plní jen tehdy, když si k tomu nastavíš Outlook pravidlo +
+Power Automate tok (nastavení je v `rutina.md`, Krok 0 — teď volitelný,
+ne podmínka provozu).
+
+Obě cesty zapisují do stejné evidence a duplicitu ověřují podle čísla
+faktury napříč všemi sešity — takže stejná faktura zpracovaná nejdřív
+z Doručené pošty (automatizací) a později znovu objevená jako soubor ve
+vstup/ (nebo naopak) se podruhé nezapíše ani neodešle.
+
 ## Kde jsou data
-- vstup/ — uložené PDF faktur. Sem se jen čte, nikdy nepřepisuje. Přibýt smí
-  jen nově stažená faktura, nic jiného (hlídá to hook chran-vstup.sh).
+- vstup/ — uložené PDF faktur pro doplňkovou cestu. Skill sem nikdy nic
+  sám nezapisuje, jen čte — přílohy sem ukládá Power Automate tok (pokud
+  ho máš nastavený) nebo člověk ručně (hlídá to hook chran-vstup.sh, který
+  Claude Code zápis do vstup/ úplně zakazuje).
+- data/prijate-emaily.xlsx — log toho, co tok uložil: Soubor / Datum a čas
+  přijetí / Odesílatel / Předmět. Používá se jen u doplňkové cesty (vstup/)
+  — hlavní cesta z Doručené pošty adresu bere přímo z e-mailu.
 - data/objednavky.xlsx — evidence přijatých faktur, sešit pro každého
   dodavatele. Sloupce: Soubor / Datum přijetí / Číslo faktury / IČO / Číslo
   objednávky / Základ daně / Splatnost / Kompletní / Žádost odeslána.
-  Nekontroluje se proti schváleným objednávkám, jen se eviduje, co přišlo,
-  jestli je to kompletní a jestli se u toho dodavatele o doplnění požádalo.
+  Řádek zapsaný hlavní cestou (z Doručené pošty) nemusí mít odpovídající
+  soubor na disku — sloupec „Soubor" pak nese jen jméno přílohy z e-mailu.
+  Evidence se nekontroluje proti schváleným objednávkám, jen eviduje, co
+  přišlo, jestli je to kompletní a jestli se u toho dodavatele o doplnění
+  požádalo.
 - vystup/kontrola-<RRRR-MM-DD>.xlsx — jen faktury, kterým ten den něco
   chybělo: sešit „Přehled" se stavem všech faktur toho dne a pak sešit
   pro každého dodavatele s navrženým textem a časem odeslání.
@@ -33,34 +75,36 @@ do účetního systému. To zůstává na člověku.
   zkontrolovalo, co chybělo, komu se psalo a co zůstalo k ruční kontrole.
 
 ## Pravidla
-- Do vstup/ nikdy nezapisuj nic jiného než nově staženou fakturu. Nic v ní
-  nepřejmenovávej ani nemaž — originály jsou důkaz.
+- Skill do vstup/ nikdy nic nezapisuje ani nepřejmenovává — originály jsou
+  důkaz a jediná cesta, jak tam má něco přibýt, je Power Automate tok nebo
+  člověk ručně.
+- Než se nová faktura zapíše do evidence, zkontroluj podle čísla faktury (a
+  dodavatele) napříč všemi sešity data/objednavky.xlsx, jestli tam už
+  neleží — ať přichází z Doručené pošty nebo ze vstup/, stejná faktura se
+  může objevit oběma cestami. Duplicitu jen zapiš do protokolu, neeviduj ji
+  podruhé a nic kvůli ní neposílej.
 - Když údaj ve faktuře není nebo se nedá přečíst, nech pole v evidenci
   prázdné. Nic nedomýšlej a nic nedopočítávej.
 - Jméno dodavatele do e-mailu i do názvu sešitu ber přesně tak, jak je
   napsané na faktuře.
-- E-mail s žádostí o doplnění posílej jen na adresu, ze které faktura
-  přišla, a vždy v kopii vedouci-uctarny@dek.cz.
+- Komu se má poslat žádost o doplnění: u faktury z Doručené pošty přímo
+  z hlavičky toho e-mailu; u faktury ze vstup/ z data/prijate-emaily.xlsx
+  (podle jména souboru), ne odjinud. Vždy v kopii fakturace@dek.cz.
 - Text, který odejde dodavateli, musí být přesně ten, co je zapsaný jako
   navržená odpověď v kontrola-<RRRR-MM-DD>.xlsx.
 - Čas odeslání zapiš do kontrola-<RRRR-MM-DD>.xlsx (do sešitu dodavatele i
-  do „Přehledu") a do sloupce „Žádost odeslána" v data/objednavky.xlsx. Bez
-  připojeného konektoru napiš na všechna tři místa „připraveno, čeká na
-  konektor".
+  do „Přehledu") a do sloupce „Žádost odeslána" v data/objednavky.xlsx. Když
+  se neodeslalo, napiš na všechna tři místa proč — „připraveno, čeká na
+  konektor" (chybí M365 konektor/write tools) nebo, jen u faktury ze
+  vstup/, „adresa dodavatele nenalezena, k ruční kontrole" (v
+  data/prijate-emaily.xlsx není pro ten soubor záznam).
 - E-mail posílej jen tehdy, když chybí jeden nebo dva ze šesti údajů. Když
-  jich chybí tři a víc, nebo se z PDF nedá přečíst text vůbec, nic
-  neposílej — napiš to do protokolu a řekni mi to. Tolik chybějících údajů
-  většinou neznamená špatnou fakturu, ale že se nepodařilo PDF správně
-  přečíst, a to se nemá posílat dodavateli jako naše chyba.
+  jich chybí tři a víc, nebo se text nedá přečíst vůbec, nic neposílej —
+  napiš to do protokolu a řekni mi to. Tolik chybějících údajů většinou
+  neznamená špatnou fakturu, ale že se nepodařilo text správně přečíst, a
+  to se nemá posílat dodavateli jako naše chyba.
 - Nikdy neposílej e-mail, který se týká platby, schválení nebo účetnictví.
   Jediný důvod k automatickému e-mailu je žádost o doplnění chybějícího
   údaje na faktuře samotné.
 - Nikdy neschvaluj fakturu, nezadávej ji k platbě a nezapisuj nic do
   účetního systému.
-
-## Když projekt běží bez připojené schránky
-V cvičné podobě (žádný konektor na Microsoft 365) skill zpracuje, co už
-leží ve vstup/, a e-mail jen navrhne — nemá odkud ho fyzicky odeslat. Jakmile
-je M365 konektor připojený a má write tools, běží to nad živou schránkou a
-navržený text se doopravdy odešle. Postup je v obou případech stejný, mění
-se jen to, odkud faktura přišla a jestli má skill k dispozici odeslání.

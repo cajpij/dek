@@ -1070,20 +1070,28 @@ description: Uloží příchozí faktury v PDF, vytáhne z nich šest povinných
       caption: 'Reálné názvy z té agendy. Faktury zůstávají ve vstup/ nedotčené, všechno nové vzniká ve vystup/.',
     },
     {
-      kind: 'code',
-      text: `# Kontrola faktur
+      kind: 'soubor',
+      nazev: 'CLAUDE.md',
+      popis:
+        'Celý CLAUDE.md téhle agendy, doslova — je to ten samý soubor, který je v cvičném projektu ke stažení. Většina řádků vznikla tak, že se něco pokazilo a příště se to nemělo opakovat.',
+      obsah: `# Kontrola faktur
 
-Cvičný projekt z workshopu DEK Academy. Sleduje schránku fakturace@dek.cz.
-Když přijde e-mail s fakturou v PDF, uloží ji, vytáhne z ní šest povinných
-údajů a zapíše je do evidence podle dodavatele. Když některý údaj chybí, sám
-pošle dodavateli e-mail s žádostí o doplnění.
+Cvičný projekt z workshopu DEK Academy. Zpracovává faktury dodavatelů —
+buď přímo z e-mailu v Doručené poště (to dělá naplánovaná automatizace,
+\`rutina.md\`), nebo z PDF, které přibylo ve složce vstup/ (to dělá i skill
+sám, viz \`.claude/skills/kontrola-faktur/\`) — vytáhne z nich šest povinných
+údajů a zapíše je do evidence podle dodavatele. Když některý údaj chybí,
+sám pošle dodavateli e-mail s žádostí o doplnění.
 
 **Posílá poštu bez potvrzení — ale jenom žádost o doplnění chybějícího údaje,
 nikdy nic k platbě.** Neschvaluje faktury, nezadává je k platbě a nepíše nic
 do účetního systému. To zůstává na člověku.
 
 ## Slovník
-- faktura = PDF příloha e-mailu, který přijde do schránky fakturace@dek.cz
+- faktura = buď e-mail s PDF přílohou v Doručené poště fakturace@dek.cz
+  od odesílatele mimo dek.cz/dek-cz.com, nebo PDF soubor ve vstup/ — obojí
+  se zpracovává stejným postupem, jen z jiného zdroje (viz „Dvě cesty..."
+  níž)
 - šest povinných údajů = číslo faktury, dodavatel, IČO dodavatele, číslo
   objednávky, základ daně (částka bez DPH), splatnost
 - IČO = vždycky IČO dodavatele. IČO odběratele (DEK a.s.) je na faktuře taky
@@ -1091,14 +1099,51 @@ do účetního systému. To zůstává na člověku.
 - kompletní faktura = má všech šest údajů čitelných
 - evidence = data/objednavky.xlsx, jeden sešit pro každého dodavatele
 
+## Dvě cesty, jak se faktura zpracuje
+
+**Hlavní cesta — přímo z Doručené pošty (od 2026-09-09), jen v naplánované
+automatizaci.** M365 konektor umí e-mail i jeho PDF přílohu přečíst jako
+text, a to na vytažení šesti údajů stačí — nepotřebuje se surová binární
+data přílohy, ani uložený soubor na disku. Naplánovaná automatizace
+(\`rutina.md\`, blok Instructions) proto při každém běhu projde Doručenou
+poštu, najde e-maily s přílohou od odesílatele mimo dek.cz/dek-cz.com a
+zpracuje je rovnou: vytáhne šest údajů, zapíše řádek do evidence (i bez
+souboru ve vstup/) a při chybějícím údaji pošle žádost o doplnění přímo
+na adresu z hlavičky e-mailu. Tahle cesta nepoužívá
+data/prijate-emaily.xlsx. **Je to krok v zadání automatizace, ne v tomhle
+skillu** — schválně, aby šel skill bezpečně spustit i samostatně (např.
+podle \`README.md\`), bez vedlejšího efektu na reálnou schránku.
+
+**Doplňková cesta — PDF ve vstup/, i v samotném skillu.** Skill (viz
+\`.claude/skills/kontrola-faktur/\`) zpracuje cokoli, co se objeví jako
+soubor ve vstup/ a ještě nemá řádek v evidenci — typicky fakturu vhozenou
+tam ručně. Protože u týhle cesty není živý e-mail, adresu na doplnění
+skill dohledá v data/prijate-emaily.xlsx podle jména souboru. Tahle
+tabulka se plní jen tehdy, když si k tomu nastavíš Outlook pravidlo +
+Power Automate tok (nastavení je v \`rutina.md\`, Krok 0 — teď volitelný,
+ne podmínka provozu).
+
+Obě cesty zapisují do stejné evidence a duplicitu ověřují podle čísla
+faktury napříč všemi sešity — takže stejná faktura zpracovaná nejdřív
+z Doručené pošty (automatizací) a později znovu objevená jako soubor ve
+vstup/ (nebo naopak) se podruhé nezapíše ani neodešle.
+
 ## Kde jsou data
-- vstup/ — uložené PDF faktur. Sem se jen čte, nikdy nepřepisuje. Přibýt smí
-  jen nově stažená faktura, nic jiného (hlídá to hook chran-vstup.sh).
+- vstup/ — uložené PDF faktur pro doplňkovou cestu. Skill sem nikdy nic
+  sám nezapisuje, jen čte — přílohy sem ukládá Power Automate tok (pokud
+  ho máš nastavený) nebo člověk ručně (hlídá to hook chran-vstup.sh, který
+  Claude Code zápis do vstup/ úplně zakazuje).
+- data/prijate-emaily.xlsx — log toho, co tok uložil: Soubor / Datum a čas
+  přijetí / Odesílatel / Předmět. Používá se jen u doplňkové cesty (vstup/)
+  — hlavní cesta z Doručené pošty adresu bere přímo z e-mailu.
 - data/objednavky.xlsx — evidence přijatých faktur, sešit pro každého
   dodavatele. Sloupce: Soubor / Datum přijetí / Číslo faktury / IČO / Číslo
   objednávky / Základ daně / Splatnost / Kompletní / Žádost odeslána.
-  Nekontroluje se proti schváleným objednávkám, jen se eviduje, co přišlo,
-  jestli je to kompletní a jestli se u toho dodavatele o doplnění požádalo.
+  Řádek zapsaný hlavní cestou (z Doručené pošty) nemusí mít odpovídající
+  soubor na disku — sloupec „Soubor" pak nese jen jméno přílohy z e-mailu.
+  Evidence se nekontroluje proti schváleným objednávkám, jen eviduje, co
+  přišlo, jestli je to kompletní a jestli se u toho dodavatele o doplnění
+  požádalo.
 - vystup/kontrola-<RRRR-MM-DD>.xlsx — jen faktury, kterým ten den něco
   chybělo: sešit „Přehled" se stavem všech faktur toho dne a pak sešit
   pro každého dodavatele s navrženým textem a časem odeslání.
@@ -1106,38 +1151,39 @@ do účetního systému. To zůstává na člověku.
   zkontrolovalo, co chybělo, komu se psalo a co zůstalo k ruční kontrole.
 
 ## Pravidla
-- Do vstup/ nikdy nezapisuj nic jiného než nově staženou fakturu. Nic v ní
-  nepřejmenovávej ani nemaž — originály jsou důkaz.
+- Skill do vstup/ nikdy nic nezapisuje ani nepřejmenovává — originály jsou
+  důkaz a jediná cesta, jak tam má něco přibýt, je Power Automate tok nebo
+  člověk ručně.
+- Než se nová faktura zapíše do evidence, zkontroluj podle čísla faktury (a
+  dodavatele) napříč všemi sešity data/objednavky.xlsx, jestli tam už
+  neleží — ať přichází z Doručené pošty nebo ze vstup/, stejná faktura se
+  může objevit oběma cestami. Duplicitu jen zapiš do protokolu, neeviduj ji
+  podruhé a nic kvůli ní neposílej.
 - Když údaj ve faktuře není nebo se nedá přečíst, nech pole v evidenci
   prázdné. Nic nedomýšlej a nic nedopočítávej.
 - Jméno dodavatele do e-mailu i do názvu sešitu ber přesně tak, jak je
   napsané na faktuře.
-- E-mail s žádostí o doplnění posílej jen na adresu, ze které faktura
-  přišla, a vždy v kopii vedouci-uctarny@dek.cz.
+- Komu se má poslat žádost o doplnění: u faktury z Doručené pošty přímo
+  z hlavičky toho e-mailu; u faktury ze vstup/ z data/prijate-emaily.xlsx
+  (podle jména souboru), ne odjinud. Vždy v kopii fakturace@dek.cz.
 - Text, který odejde dodavateli, musí být přesně ten, co je zapsaný jako
   navržená odpověď v kontrola-<RRRR-MM-DD>.xlsx.
 - Čas odeslání zapiš do kontrola-<RRRR-MM-DD>.xlsx (do sešitu dodavatele i
-  do „Přehledu") a do sloupce „Žádost odeslána" v data/objednavky.xlsx. Bez
-  připojeného konektoru napiš na všechna tři místa „připraveno, čeká na
-  konektor".
+  do „Přehledu") a do sloupce „Žádost odeslána" v data/objednavky.xlsx. Když
+  se neodeslalo, napiš na všechna tři místa proč — „připraveno, čeká na
+  konektor" (chybí M365 konektor/write tools) nebo, jen u faktury ze
+  vstup/, „adresa dodavatele nenalezena, k ruční kontrole" (v
+  data/prijate-emaily.xlsx není pro ten soubor záznam).
 - E-mail posílej jen tehdy, když chybí jeden nebo dva ze šesti údajů. Když
-  jich chybí tři a víc, nebo se z PDF nedá přečíst text vůbec, nic
-  neposílej — napiš to do protokolu a řekni mi to. Tolik chybějících údajů
-  většinou neznamená špatnou fakturu, ale že se nepodařilo PDF správně
-  přečíst, a to se nemá posílat dodavateli jako naše chyba.
+  jich chybí tři a víc, nebo se text nedá přečíst vůbec, nic neposílej —
+  napiš to do protokolu a řekni mi to. Tolik chybějících údajů většinou
+  neznamená špatnou fakturu, ale že se nepodařilo text správně přečíst, a
+  to se nemá posílat dodavateli jako naše chyba.
 - Nikdy neposílej e-mail, který se týká platby, schválení nebo účetnictví.
   Jediný důvod k automatickému e-mailu je žádost o doplnění chybějícího
   údaje na faktuře samotné.
 - Nikdy neschvaluj fakturu, nezadávej ji k platbě a nezapisuj nic do
-  účetního systému.
-
-## Když projekt běží bez připojené schránky
-V cvičné podobě (žádný konektor na Microsoft 365) skill zpracuje, co už
-leží ve vstup/, a e-mail jen navrhne — nemá odkud ho fyzicky odeslat. Jakmile
-je M365 konektor připojený a má write tools, běží to nad živou schránkou a
-navržený text se doopravdy odešle. Postup je v obou případech stejný, mění
-se jen to, odkud faktura přišla a jestli má skill k dispozici odeslání.`,
-      caption: 'Celý CLAUDE.md téhle agendy, doslova — je to ten samý soubor, který je v cvičném projektu ke stažení. Většina řádků vznikla tak, že se něco pokazilo a příště se to nemělo opakovat.',
+  účetního systému.`,
     },
     {
       kind: 'h',
@@ -1740,7 +1786,7 @@ navržený — napiš mi to a nehledej jinou cestu, jak poštu poslat.
    všech faktur toho dne a sešit dodavatele s chybějícím údajem a s návrhem
    odpovědi podle šablony níž.
 7. Ten text pošli jako nový e-mail na adresu, ze které faktura přišla,
-   v kopii vedouci-uctarny@dek.cz. Předmět: Doplnění faktury <číslo faktury>.
+   v kopii fakturace@dek.cz. Předmět: Doplnění faktury <číslo faktury>.
    Text mezi sešitem a odeslanou poštou neměň — v sešitu musí být přesně to,
    co dodavatel dostal.
 8. Datum a čas odeslání zapiš na tři místa: do sešitu dodavatele, do
@@ -1778,7 +1824,175 @@ dva údaje, vyjmenuj oba.
 
 ## Až to bude fungovat
 Popiš postup a pravidla do CLAUDE.md, README.md, rutina.md a runbook.md,
-ať se v tom vyzná i někdo, kdo u toho nebyl.`,
+ať se v tom vyzná i někdo, kdo u toho nebyl.
+
+---
+
+## Aktualizace 2026-09-09 — M365 konektor neumí stáhnout přílohu
+
+Po nasazení se ukázalo, že M365 konektor, který Claude má, umí e-mail i PDF
+přílohu **přečíst jako text**, ale nemá nástroj, který by vrátil surová
+binární data přílohy — takže krok 2 původního zadání („Ulož přílohu do
+vstup/") nejde nástroji, co má Claude k dispozici, splnit. Zkoušet to
+obcházet přes přihlášení do webového Outlooku nebo přes export z Wordu
+nemá smysl (první chce heslo, které se nemá zadávat, druhé blokuje
+bezpečnostní filtr) — je to mezera v sadě nástrojů, ne něco, co se dá
+doprosit.
+
+Řešení: ukládání PDF do vstup/ dělá od teď **Outlook pravidlo + Power
+Automate tok mimo Claude Code**, ne Claude sám. Protože je celá tahle
+složka uvnitř \`OneDrive - DEK a.s\`, stačí, aby tok uložil přílohu do
+odpovídajícího místa v OneDrive — na disk k Marii se soubor dostane běžnou
+synchronizací, bez jakéhokoli zásahu Claude. Tok zároveň zapisuje řádek do
+nového \`data/prijate-emaily.xlsx\` (odesílatel, čas přijetí, předmět), aby
+skill věděl, komu poslat žádost o doplnění, i když samotnou přílohu
+nestáhl.
+
+Důsledky pro postup:
+- Skill (krok 1) už nerozlišuje „s konektorem" / „bez konektoru" při
+  hledání nové faktury — nová faktura je vždycky PDF ve vstup/ bez řádku
+  v evidenci, ať konektor běží nebo ne. Konektor je potřeba jen na
+  odeslání e-mailu (krok 7 dál).
+- Jméno souboru ve vstup/ už neurčuje skill (dodavatele nezná, dokud PDF
+  nepřečte) — určuje ho tok, typicky \`<datum přijetí>_<původní název
+  přílohy>.pdf\`. Skill s tímhle jménem jen pracuje, nevynucuje formát
+  \`<datum>_<dodavatel>\`.
+- Přibyl krok „zkontroluj duplicitu": protože tok může stejnou fakturu
+  uložit dvakrát pod jiným jménem souboru, skill před zápisem do evidence
+  porovnává číslo faktury napříč sešity, ne jen jméno souboru.
+- Adresu, na kterou jde žádost o doplnění, skill hledá v
+  \`data/prijate-emaily.xlsx\` podle jména souboru — ne živým hledáním
+  v poštovní schránce.
+- Hook \`chran-vstup.sh\` teď zakazuje Claude Code zápis do vstup/ úplně,
+  i pro nové PDF — jediná cesta, jak tam má něco přibýt, je ten tok nebo
+  člověk ručně.
+
+Popsáno dál v \`CLAUDE.md\`, \`.claude/skills/kontrola-faktur/SKILL.md\`,
+\`rutina.md\`, \`runbook.md\` a \`README.md\`.
+
+---
+
+## Aktualizace 2026-09-09 — doplňková kontrola schránky před zpracováním vstup/
+
+Naplánovaná automatizace (\`rutina.md\`) teď na začátku každého běhu, ještě
+před spuštěním skillu \`kontrola-faktur\`, udělá vlastní krátkou kontrolu
+schránky fakturace@dek.cz přes M365 konektor (jen čtení) — za
+posledních pár dní najde e-maily s PDF přílohou, které ještě nejsou
+v \`data/prijate-emaily.xlsx\`. Najde-li takový, jehož příloha ještě není
+ani uložená ve \`vstup/\`, nic nestahuje ani neukládá (na to nástroj pořád
+nemá — viz aktualizace výše) — jen to nahlásí k ruční kontrole.
+
+Důvod: Outlook pravidlo + Power Automate tok je hlavní a jediná cesta, jak
+se PDF dostane do \`vstup/\`, ale může se stát, že na konkrétní e-mail
+nesedí filtr pravidla nebo tok zrovna vypadl — a bez týhle pojistky by si
+toho automatizace všimla až s velkým zpožděním (teprve když by si někdo
+ručně zkontroloval schránku).
+
+Důsledky pro postup:
+- Tahle kontrola je krok navíc v **zadání naplánované automatizace**
+  (\`rutina.md\`, blok Instructions), ne součást skillu
+  \`kontrola-faktur\` samotného — skill dál pozná novou fakturu výhradně
+  podle souboru ve \`vstup/\` bez řádku v evidenci, přesně jako dřív.
+- Nález z týhle kontroly jde jen do \`vystup/protokol-<datum>.md\` jako
+  „k ruční kontrole" — nikdy nezakládá řádek v \`data/objednavky.xlsx\` ani
+  neposílá žádost o doplnění. To se stane až běžným postupem, jakmile
+  tok (nebo člověk ručně) přílohu skutečně uloží do \`vstup/\`.
+
+Popsáno dál v \`rutina.md\`, \`CLAUDE.md\`,
+\`.claude/skills/kontrola-faktur/SKILL.md\` a \`runbook.md\`. Do \`README.md\`
+se nepromítá — jeho ukázkový běh je přímé spuštění skillu bez tohohle
+kroku automatizace navíc.
+
+### Doplnění téhož dne — kontrola schránky má i vytáhnout údaje a napsat proč
+
+Ověřeno na živém příkladu (e-mail od fakturace@baranek.cz, příloha
+\`novafaktura.pdf\`, faktura 2026-114): konektor na M365 přílohu skutečně
+umí přečíst jako text (přes \`read_resource\` na URI přílohy), jen nemá
+způsob, jak vrátit surová binární data souboru — potvrzuje to, co říká
+aktualizace výše, ne novou možnost.
+
+Kontrola schránky z aktualizace výše proto nemá jen nahlásit, že e-mail
+existuje, ale rovnou z něj — stejně jako u faktury ve \`vstup/\` — zkusit
+vytáhnout všech šest údajů, a k nálezu napsat i odhad, proč to Outlook
+pravidlo / Power Automate tok ještě nezachytilo samo (tok neproběhl, nesedí
+filtr, nebo Krok 0 v \`rutina.md\` ještě vůbec není nastavený — což je
+v tomhle cvičném projektu, kde tok nikdy nebyl reálně zapojený, ten
+nejpravděpodobnější důvod). Pořád platí, že se nic nestahuje, neukládá do
+\`vstup/\` ani nezapisuje do evidence — jde jen o bohatší nález v protokolu
+k ruční kontrole.
+
+Popsáno v \`rutina.md\`, \`CLAUDE.md\` a
+\`.claude/skills/kontrola-faktur/SKILL.md\`.
+
+### Doplnění téhož dne — Krok 0, část 1 (Outlook pravidlo) hotová
+
+V Outlooku je založená podsložka \`faktury ke zpracování\` pod Doručenou
+poštou. Pravidlo, které do ní přesouvá poštu, jsem založila já přes M365
+konektor (\`outlook_create_filter\`), ne ona ručně — proto má oproti
+původnímu zadání (Krok 0, „PDF příloha, odesílatel mimo dek.cz /
+dek-cz.com") dvě omezení, daná tím, co tenhle nástroj na pravidla umí:
+
+- Podmínky jde skládat jen jako „obsahuje/rovná se", ne jako negaci —
+  „odesílatel NENÍ dek.cz" se tímhle nástrojem nedá vyjádřit. Pravidlo
+  proto místo toho kombinuje „má přílohu" + „předmět obsahuje faktura",
+  což riziko zachycení interní pošty sníží, ale nevyloučí úplně.
+- „Má přílohu" je obecné, ne specificky PDF — typ přílohy se přes tenhle
+  nástroj filtrovat nedá.
+
+Protože pravidlo neumí vyloučit interní odesílatele, dostala tenhle úkol
+naplánovaná automatizace: při kontrole podsložky \`faktury ke zpracování\`
+(viz aktualizace výše) nejdřív přeskočí e-maily od dek.cz/dek-cz.com a
+dál se dívá jen na externí odesílatele. Krok 2 z Kroku 0 (Power Automate
+tok, který by z týhle podsložky uložil přílohu do vstup/ a zapsal řádek
+do data/prijate-emaily.xlsx) pořád není nastavený — bez něj se do vstup/
+z týhle podsložky nic samo nedostane.
+
+Popsáno v \`rutina.md\` (Krok 0, „Jak celý proces zjišťuje...", Instructions,
+„Co je dobré vědět"), \`CLAUDE.md\` a
+\`.claude/skills/kontrola-faktur/SKILL.md\`.
+
+### Doplnění téhož dne — hlavní cesta je teď přímo z Doručené pošty, Krok 0 volitelný
+
+Zásadní změna proti celému dosavadnímu zadání: naplánovaná automatizace už
+nečeká, až se PDF fyzicky uloží do \`vstup/\`. Místo toho při každém běhu
+přečte přímo z Doručené pošty \`fakturace@dek.cz\` e-maily s přílohou od
+odesílatele mimo dek.cz/dek-cz.com, a u nových (podle čísla faktury a
+dodavatele v \`data/objednavky.xlsx\`) rovnou: vytáhne šest údajů z textu
+přílohy, zapíše řádek do evidence (i bez souboru na disku), a při
+chybějícím údaji pošle žádost o doplnění přímo na adresu z hlavičky
+e-mailu — bez použití \`data/prijate-emaily.xlsx\`.
+
+Důsledky:
+- **Krok 0 (Outlook pravidlo + Power Automate tok) přestává být podmínkou
+  provozu** — je to teď jen volitelná doplňková cesta pro fakturu vhozenou
+  ručně do \`vstup/\`, ne nutný předpoklad. Motivace: tok stejně nikdy
+  nebyl reálně zapojený a jeho zprovoznění je mimo možnosti Claude
+  (Power Automate nemá žádný nástroj/konektor) — dávalo tedy smysl přesunout
+  těžiště na to, co Claude už umí (číst e-mail jako text).
+- **\`data/objednavky.xlsx\` může mít řádek bez odpovídajícího PDF na
+  disku** — u faktur zpracovaných hlavní cestou. Sloupec „Soubor" nese jen
+  jméno přílohy z e-mailu. Vlastnice si tohle riziko vyžádala vědomě (viz
+  odpověď „ano" na otázku, jestli tohle fakt chce, položenou předtím, než
+  se to implementovalo) — přijala, že tím padá dřívější princip „faktura =
+  PDF soubor ve vstup/, je to fyzický důkaz".
+- **Pravidlo z předchozí aktualizace (přesun do \`faktury ke zpracování\`)
+  se teď s hlavní cestou kříží** — kontroluje se přímo Doručená pošta, ne
+  podsložka, takže dokud pravidlo běží, přesouvá z Doručené pošty pryč
+  přesně to, co by tam hlavní cesta měla najít. Řešení (vypnout pravidlo,
+  nebo rozšířit kontrolu i na podsložku) zůstává otevřené — zapsáno jako
+  upozornění v \`rutina.md\` a jako řádek v \`runbook.md\`.
+- Skill (\`.claude/skills/kontrola-faktur/SKILL.md\`) i \`CLAUDE.md\` byly
+  schválně upravené tak, aby čtení přímo z Doručené pošty zůstalo
+  výhradně krokem v zadání automatizace (\`rutina.md\`, Instructions), ne
+  součástí toho, co skill dělá sám o sobě — jinak by i obyčejné spuštění
+  „Postupuj podle skillu kontrola-faktur." (např. podle \`README.md\`)
+  mohlo poslat e-mail na základě toho, co zrovna leží v reálné schránce.
+  \`data/prijate-emaily.xlsx\` zůstává v provozu jen kvůli doplňkové cestě
+  ze vstup/.
+
+Popsáno v \`rutina.md\` (celý přepis), \`CLAUDE.md\`, \`runbook.md\` a
+\`.claude/skills/kontrola-faktur/SKILL.md\`. Do \`README.md\` se nepromítá —
+jeho ukázkový běh je pořád jen skill nad vzorovými PDF ve vstup/.`,
     },
     { kind: 'h', text: '2. Pravidlo — ať to nemusíš vysvětlovat podruhé' },
     {
@@ -1792,17 +2006,22 @@ ať se v tom vyzná i někdo, kdo u toho nebyl.`,
       popis: 'Pravidla kontroly faktur, jak vypadají po pár týdnech provozu. Slovník, kde jsou data, a čeho se automatizace nesmí dotknout.',
       obsah: `# Kontrola faktur
 
-Cvičný projekt z workshopu DEK Academy. Sleduje schránku fakturace@dek.cz.
-Když přijde e-mail s fakturou v PDF, uloží ji, vytáhne z ní šest povinných
-údajů a zapíše je do evidence podle dodavatele. Když některý údaj chybí, sám
-pošle dodavateli e-mail s žádostí o doplnění.
+Cvičný projekt z workshopu DEK Academy. Zpracovává faktury dodavatelů —
+buď přímo z e-mailu v Doručené poště (to dělá naplánovaná automatizace,
+\`rutina.md\`), nebo z PDF, které přibylo ve složce vstup/ (to dělá i skill
+sám, viz \`.claude/skills/kontrola-faktur/\`) — vytáhne z nich šest povinných
+údajů a zapíše je do evidence podle dodavatele. Když některý údaj chybí,
+sám pošle dodavateli e-mail s žádostí o doplnění.
 
 **Posílá poštu bez potvrzení — ale jenom žádost o doplnění chybějícího údaje,
 nikdy nic k platbě.** Neschvaluje faktury, nezadává je k platbě a nepíše nic
 do účetního systému. To zůstává na člověku.
 
 ## Slovník
-- faktura = PDF příloha e-mailu, který přijde do schránky fakturace@dek.cz
+- faktura = buď e-mail s PDF přílohou v Doručené poště fakturace@dek.cz
+  od odesílatele mimo dek.cz/dek-cz.com, nebo PDF soubor ve vstup/ — obojí
+  se zpracovává stejným postupem, jen z jiného zdroje (viz „Dvě cesty..."
+  níž)
 - šest povinných údajů = číslo faktury, dodavatel, IČO dodavatele, číslo
   objednávky, základ daně (částka bez DPH), splatnost
 - IČO = vždycky IČO dodavatele. IČO odběratele (DEK a.s.) je na faktuře taky
@@ -1810,14 +2029,51 @@ do účetního systému. To zůstává na člověku.
 - kompletní faktura = má všech šest údajů čitelných
 - evidence = data/objednavky.xlsx, jeden sešit pro každého dodavatele
 
+## Dvě cesty, jak se faktura zpracuje
+
+**Hlavní cesta — přímo z Doručené pošty (od 2026-09-09), jen v naplánované
+automatizaci.** M365 konektor umí e-mail i jeho PDF přílohu přečíst jako
+text, a to na vytažení šesti údajů stačí — nepotřebuje se surová binární
+data přílohy, ani uložený soubor na disku. Naplánovaná automatizace
+(\`rutina.md\`, blok Instructions) proto při každém běhu projde Doručenou
+poštu, najde e-maily s přílohou od odesílatele mimo dek.cz/dek-cz.com a
+zpracuje je rovnou: vytáhne šest údajů, zapíše řádek do evidence (i bez
+souboru ve vstup/) a při chybějícím údaji pošle žádost o doplnění přímo
+na adresu z hlavičky e-mailu. Tahle cesta nepoužívá
+data/prijate-emaily.xlsx. **Je to krok v zadání automatizace, ne v tomhle
+skillu** — schválně, aby šel skill bezpečně spustit i samostatně (např.
+podle \`README.md\`), bez vedlejšího efektu na reálnou schránku.
+
+**Doplňková cesta — PDF ve vstup/, i v samotném skillu.** Skill (viz
+\`.claude/skills/kontrola-faktur/\`) zpracuje cokoli, co se objeví jako
+soubor ve vstup/ a ještě nemá řádek v evidenci — typicky fakturu vhozenou
+tam ručně. Protože u týhle cesty není živý e-mail, adresu na doplnění
+skill dohledá v data/prijate-emaily.xlsx podle jména souboru. Tahle
+tabulka se plní jen tehdy, když si k tomu nastavíš Outlook pravidlo +
+Power Automate tok (nastavení je v \`rutina.md\`, Krok 0 — teď volitelný,
+ne podmínka provozu).
+
+Obě cesty zapisují do stejné evidence a duplicitu ověřují podle čísla
+faktury napříč všemi sešity — takže stejná faktura zpracovaná nejdřív
+z Doručené pošty (automatizací) a později znovu objevená jako soubor ve
+vstup/ (nebo naopak) se podruhé nezapíše ani neodešle.
+
 ## Kde jsou data
-- vstup/ — uložené PDF faktur. Sem se jen čte, nikdy nepřepisuje. Přibýt smí
-  jen nově stažená faktura, nic jiného (hlídá to hook chran-vstup.sh).
+- vstup/ — uložené PDF faktur pro doplňkovou cestu. Skill sem nikdy nic
+  sám nezapisuje, jen čte — přílohy sem ukládá Power Automate tok (pokud
+  ho máš nastavený) nebo člověk ručně (hlídá to hook chran-vstup.sh, který
+  Claude Code zápis do vstup/ úplně zakazuje).
+- data/prijate-emaily.xlsx — log toho, co tok uložil: Soubor / Datum a čas
+  přijetí / Odesílatel / Předmět. Používá se jen u doplňkové cesty (vstup/)
+  — hlavní cesta z Doručené pošty adresu bere přímo z e-mailu.
 - data/objednavky.xlsx — evidence přijatých faktur, sešit pro každého
   dodavatele. Sloupce: Soubor / Datum přijetí / Číslo faktury / IČO / Číslo
   objednávky / Základ daně / Splatnost / Kompletní / Žádost odeslána.
-  Nekontroluje se proti schváleným objednávkám, jen se eviduje, co přišlo,
-  jestli je to kompletní a jestli se u toho dodavatele o doplnění požádalo.
+  Řádek zapsaný hlavní cestou (z Doručené pošty) nemusí mít odpovídající
+  soubor na disku — sloupec „Soubor" pak nese jen jméno přílohy z e-mailu.
+  Evidence se nekontroluje proti schváleným objednávkám, jen eviduje, co
+  přišlo, jestli je to kompletní a jestli se u toho dodavatele o doplnění
+  požádalo.
 - vystup/kontrola-<RRRR-MM-DD>.xlsx — jen faktury, kterým ten den něco
   chybělo: sešit „Přehled" se stavem všech faktur toho dne a pak sešit
   pro každého dodavatele s navrženým textem a časem odeslání.
@@ -1825,37 +2081,39 @@ do účetního systému. To zůstává na člověku.
   zkontrolovalo, co chybělo, komu se psalo a co zůstalo k ruční kontrole.
 
 ## Pravidla
-- Do vstup/ nikdy nezapisuj nic jiného než nově staženou fakturu. Nic v ní
-  nepřejmenovávej ani nemaž — originály jsou důkaz.
+- Skill do vstup/ nikdy nic nezapisuje ani nepřejmenovává — originály jsou
+  důkaz a jediná cesta, jak tam má něco přibýt, je Power Automate tok nebo
+  člověk ručně.
+- Než se nová faktura zapíše do evidence, zkontroluj podle čísla faktury (a
+  dodavatele) napříč všemi sešity data/objednavky.xlsx, jestli tam už
+  neleží — ať přichází z Doručené pošty nebo ze vstup/, stejná faktura se
+  může objevit oběma cestami. Duplicitu jen zapiš do protokolu, neeviduj ji
+  podruhé a nic kvůli ní neposílej.
 - Když údaj ve faktuře není nebo se nedá přečíst, nech pole v evidenci
   prázdné. Nic nedomýšlej a nic nedopočítávej.
 - Jméno dodavatele do e-mailu i do názvu sešitu ber přesně tak, jak je
   napsané na faktuře.
-- E-mail s žádostí o doplnění posílej jen na adresu, ze které faktura
-  přišla, a vždy v kopii vedouci-uctarny@dek.cz.
+- Komu se má poslat žádost o doplnění: u faktury z Doručené pošty přímo
+  z hlavičky toho e-mailu; u faktury ze vstup/ z data/prijate-emaily.xlsx
+  (podle jména souboru), ne odjinud. Vždy v kopii fakturace@dek.cz.
 - Text, který odejde dodavateli, musí být přesně ten, co je zapsaný jako
   navržená odpověď v kontrola-<RRRR-MM-DD>.xlsx.
 - Čas odeslání zapiš do kontrola-<RRRR-MM-DD>.xlsx (do sešitu dodavatele i
-  do „Přehledu") a do sloupce „Žádost odeslána" v data/objednavky.xlsx. Bez
-  připojeného konektoru napiš na všechna tři místa „připraveno, čeká na
-  konektor".
+  do „Přehledu") a do sloupce „Žádost odeslána" v data/objednavky.xlsx. Když
+  se neodeslalo, napiš na všechna tři místa proč — „připraveno, čeká na
+  konektor" (chybí M365 konektor/write tools) nebo, jen u faktury ze
+  vstup/, „adresa dodavatele nenalezena, k ruční kontrole" (v
+  data/prijate-emaily.xlsx není pro ten soubor záznam).
 - E-mail posílej jen tehdy, když chybí jeden nebo dva ze šesti údajů. Když
-  jich chybí tři a víc, nebo se z PDF nedá přečíst text vůbec, nic
-  neposílej — napiš to do protokolu a řekni mi to. Tolik chybějících údajů
-  většinou neznamená špatnou fakturu, ale že se nepodařilo PDF správně
-  přečíst, a to se nemá posílat dodavateli jako naše chyba.
+  jich chybí tři a víc, nebo se text nedá přečíst vůbec, nic neposílej —
+  napiš to do protokolu a řekni mi to. Tolik chybějících údajů většinou
+  neznamená špatnou fakturu, ale že se nepodařilo text správně přečíst, a
+  to se nemá posílat dodavateli jako naše chyba.
 - Nikdy neposílej e-mail, který se týká platby, schválení nebo účetnictví.
   Jediný důvod k automatickému e-mailu je žádost o doplnění chybějícího
   údaje na faktuře samotné.
 - Nikdy neschvaluj fakturu, nezadávej ji k platbě a nezapisuj nic do
-  účetního systému.
-
-## Když projekt běží bez připojené schránky
-V cvičné podobě (žádný konektor na Microsoft 365) skill zpracuje, co už
-leží ve vstup/, a e-mail jen navrhne — nemá odkud ho fyzicky odeslat. Jakmile
-je M365 konektor připojený a má write tools, běží to nad živou schránkou a
-navržený text se doopravdy odešle. Postup je v obou případech stejný, mění
-se jen to, odkud faktura přišla a jestli má skill k dispozici odeslání.`,
+  účetního systému.`,
     },
     { kind: 'h', text: '3. Skill — zabal celý postup' },
     {
@@ -1890,30 +2148,63 @@ description: Ukládá příchozí faktury v PDF, vytáhne z nich šest povinnýc
       popis: 'Ta zkrácená ukázka nahoře v úplné podobě: rozcestí podle počtu chybějících údajů, šablona e-mailu a seznam situací, kdy se nemá poslat nic.',
       obsah: `---
 name: kontrola-faktur
-description: Sleduje schránku fakturace@dek.cz (přes M365) nebo zpracuje, co
-  leží ve vstup/, ukládá příchozí faktury v PDF, vytáhne z nich šest povinných
-  údajů a zapíše je do evidence podle dodavatele. Když něco chybí, sám pošle
-  dodavateli e-mail s žádostí o doplnění. Použij, když se má zkontrolovat
-  schránka na nové faktury, nebo když se ptám, co je s fakturami k vyřízení.
+description: Zpracuje PDF faktury, které přibyly ve vstup/ a ještě nemají řádek
+  v evidenci — vytáhne z nich šest povinných údajů a zapíše je podle dodavatele.
+  Když něco chybí, dohledá odesílatele v data/prijate-emaily.xlsx a pošle mu
+  e-mail s žádostí o doplnění. Přílohy do vstup/ ukládá volitelný Power
+  Automate tok, ne tenhle skill. Použij, když se má zkontrolovat vstup/
+  na nové faktury, nebo když se ptám, co je s fakturami k vyřízení.
 ---
 
 # Kontrola faktur
 
 ## Kdy to spustit
 Při každém běhu naplánované automatizace, nebo kdykoli se řekne „zkontroluj
-nové faktury". Je-li připojený konektor na Microsoft 365, podívej se do schránky
-fakturace@dek.cz na e-maily s PDF přílohou, které ještě nejsou uložené ve
-vstup/. Bez konektoru (třeba při prvním spuštění cvičného projektu) zpracuj
-místo toho PDF, která už ve vstup/ leží a která ještě nemají řádek v evidenci
-— postup je od kroku 2 dál stejný, jen se u odeslání e-mailu jen navrhne text
-(viz krok 6c). Když nic nového nepřišlo, nic nedělej a napiš to.
+nové faktury".
+
+Tenhle skill sám o sobě zpracovává jen PDF ve vstup/ — bezpečně i jako
+samostatný test/demo (viz \`README.md\`), bez rizika, že by kvůli tomu
+odešel e-mail na základě něčeho, co zrovna leží v reálné schránce. Čtení
+a zpracování přímo z Doručené pošty (viz níž) je krok navíc, který dělá
+až naplánovaná automatizace (\`rutina.md\`), ne tenhle skill.
+
+## Odkud se bere PDF ve vstup/
+Tenhle skill přílohy ze schránky **sám nestahuje ani neukládá** — M365
+konektor, který má Claude k dispozici, umí e-mail a jeho přílohu přečíst jako
+text, ale nemá nástroj, který by vrátil surová binární data PDF, aby šlo
+uložit jako soubor. Ukládání do vstup/ je teď volitelné (Krok 0
+v \`rutina.md\`, Power Automate tok): sleduje schránku, PDF přílohu uloží
+přímo do vstup/ (je to synchronizovaná OneDrive složka, takže soubor se tu
+objeví sám) a zároveň připíše řádek do \`data/prijate-emaily.xlsx\` — odkud
+faktura přišla, kdy a s jakým předmětem. Skill tenhle soubor jen čte,
+nikdy do něj nezapisuje.
+
+Proto tenhle skill sám nikdy nerozlišuje „s konektorem" / „bez konektoru" při
+hledání nové faktury — nová faktura je vždycky PDF ve vstup/, které ještě
+nemá řádek v evidenci. Konektor na M365 je potřeba jen na samotné odeslání
+e-mailu dodavateli (krok 6d), ne na zjištění, že faktura dorazila.
+
+**Naplánovaná automatizace (\`rutina.md\`) navíc — od 2026-09-09 jako svoje
+hlavní, ne jen doplňkové zjišťování — čte a rovnou zpracovává faktury přímo
+z Doručené pošty**, dřív než se vůbec dostane k tomuhle skillu a ke vstup/.
+Prohlédne poštu, vybere e-maily s přílohou od odesílatele mimo
+dek.cz/dek-cz.com, a u těch, které ještě nejsou v evidenci, udělá stejný
+postup jako níž (vytažení šesti údajů, kontrola duplicity, zápis do
+evidence, případná žádost o doplnění) — jen s tím rozdílem, že adresu na
+doplnění bere přímo z hlavičky e-mailu, ne z \`data/prijate-emaily.xlsx\`,
+a že do evidence zapisuje, i když PDF nikde na disku neleží. To je celé
+popsané v \`rutina.md\` (sekce „Hlavní cesta"), je to krok v zadání
+automatizace, ne v tomhle skillu — proto to sem, ani do postupu níž,
+záměrně nezasahuje. Tenhle skill (a jeho postup níž) zůstává jen pro
+vstup/, aby šel bezpečně spustit i samostatně, bez vedlejšího efektu na
+reálnou schránku.
 
 ## Postup pro každou novou fakturu
 
-1. Je-li faktura z e-mailu, ulož PDF přílohu do vstup/ jako
-   \`<RRRR-MM-DD>_<dodavatel>.pdf\` (datum přijetí e-mailu, dodavatele zkrať
-   na jedno slovo bez diakritiky; při shodě přidej \`-2\`, \`-3\`). Faktury, které
-   už ve vstup/ jsou, znovu neukládej.
+1. Projdi PDF soubory ve vstup/. Nová faktura je ten soubor, jehož jméno
+   ještě není v žádném sešitu \`data/objednavky.xlsx\` ve sloupci „Soubor".
+   Skill do vstup/ nic neukládá, nepřejmenovává ani nemaže (hlídá to i hook
+   \`chran-vstup.sh\`) — pracuje jen s tím, co tam už leží.
 2. Z PDF vytáhni šest údajů: číslo faktury, dodavatele (přesně podle
    faktury), IČO dodavatele, číslo objednávky, základ daně (částku bez DPH —
    ne částku s DPH) a datum splatnosti. Na faktuře bývají IČO dvě: dodavatele
@@ -1921,40 +2212,56 @@ místo toho PDF, která už ve vstup/ leží a která ještě nemají řádek v 
    u dodavatele uvedené jen jméno a adresa, IČO chybí, i kdyby na faktuře
    jinde nějaké bylo.
 3. Co se nepodaří přečíst, nech prázdné. Nic nedomýšlej.
-4. Najdi v data/objednavky.xlsx sešit se jménem dodavatele; když neexistuje,
-   založ ho s hlavičkou Soubor / Datum přijetí / Číslo faktury / IČO / Číslo
-   objednávky / Základ daně / Splatnost / Kompletní / Žádost odeslána. Přidej
-   řádek s dnešní fakturou. Kompletní = ano, když je vyplněných všech šest
-   údajů, jinak ne. Sloupec „Žádost odeslána" zatím nech prázdný — vyplní se
-   až v kroku 6.
-5. Když je faktura kompletní, tady skončit — nic se neposílá.
-6. Když něco chybí a chybí jen jeden nebo dva údaje:
-   a. Otevři (nebo založ) vystup/kontrola-<RRRR-MM-DD>.xlsx s prvním sešitem
+4. **Zkontroluj duplicitu.** Projdi všechny sešity v \`data/objednavky.xlsx\` a
+   podívej se, jestli už tam neleží řádek se stejným číslem faktury (a
+   stejným dodavatelem) — může tam být i díky hlavní cestě z Doručené
+   pošty popsané výše, ne jen díky Outlook toku. Pokud ano, jde o stejnou
+   fakturu podruhé — nový řádek nepřidávej, nic neposílej, do protokolu
+   napiš, že jde o duplicitu s odkazem na původní řádek/soubor.
+5. Když nejde o duplicitu, najdi v \`data/objednavky.xlsx\` sešit se jménem
+   dodavatele; když neexistuje, založ ho s hlavičkou Soubor / Datum přijetí /
+   Číslo faktury / IČO / Číslo objednávky / Základ daně / Splatnost /
+   Kompletní / Žádost odeslána. Přidej řádek s dnešní fakturou — do „Soubor"
+   napiš přesně to jméno souboru, jaké má ve vstup/ (skill ho nevymýšlí,
+   jméno dává Power Automate tok). Kompletní = ano, když je vyplněných
+   všech šest údajů, jinak ne. Sloupec „Žádost odeslána" zatím nech
+   prázdný.
+6. Když je faktura kompletní, tady skončit — nic se neposílá.
+7. Když něco chybí a chybí jen jeden nebo dva údaje:
+   a. V \`data/prijate-emaily.xlsx\` najdi řádek se stejným jménem souboru ve
+      sloupci „Soubor" a přečti si z něj odesílatele. Nenajdeš-li takový
+      řádek (soubor tam nepřidal Power Automate tok, ale třeba člověk
+      ručně), adresa chybí — postupuj jako v sekci „Kdy se zastavit" a nic
+      neposílej.
+   b. Otevři (nebo založ) vystup/kontrola-<RRRR-MM-DD>.xlsx s prvním sešitem
       „Přehled" (Soubor / Dodavatel / Kompletní / Chybí / E-mail odeslán) a
       dál sešitem pro každého dodavatele, kterému toho dne něco chybělo
       (Soubor / Číslo faktury / Chybí / Navržená odpověď / E-mail odeslán).
       Sešit pojmenuj jménem dodavatele přesně tak, jak je na faktuře.
-   b. Do sešitu dodavatele napiš, který údaj chybí, a navrhni text podle
+   c. Do sešitu dodavatele napiš, který údaj chybí, a navrhni text podle
       šablony níž.
-   c. Je-li konektor na M365 se zapnutými write tools připojený, pošli ten
-      text z kontrola-<RRRR-MM-DD>.xlsx jako nový e-mail na adresu, ze které
-      faktura přišla, v kopii vedouci-uctarny@dek.cz. Text neměň mezi tím, co
-      je v sešitu, a tím, co odejde — v sešitu musí být přesně to, co
-      dodavatel dostal. Bez připojeného konektoru e-mail neodesílej a nech
-      text tak, jak je navržený; nehledej jinou cestu, jak poštu odeslat.
-      Předmět v obou případech: „Doplnění faktury <číslo faktury>".
-   d. Datum a čas odeslání zapiš na tři místa: do řádku v sešitu dodavatele,
+   d. Je-li konektor na M365 se zapnutými write tools připojený **a** adresa
+      z kroku 7a existuje, pošli ten text z kontrola-<RRRR-MM-DD>.xlsx jako
+      nový e-mail na tuhle adresu, v kopii fakturace@dek.cz. Text neměň
+      mezi tím, co je v sešitu, a tím, co odejde — v sešitu musí být přesně
+      to, co dodavatel dostal. Předmět: „Doplnění faktury <číslo faktury>".
+      Nehledej jinou cestu, jak poštu odeslat, ani odeslání nijak
+      nenahrazuj.
+   e. Datum a čas odeslání zapiš na tři místa: do řádku v sešitu dodavatele,
       do sešitu „Přehled" (obojí v kontrola-<RRRR-MM-DD>.xlsx) a do sloupce
-      „Žádost odeslána" v data/objednavky.xlsx, aby bylo i v evidenci vidět,
-      že se o doplnění už požádalo. Bez konektoru napiš na všechna tři místa
-      „připraveno, čeká na konektor".
-7. Když chybí tři a víc údajů, nebo se z PDF nedal přečíst text vůbec:
+      „Žádost odeslána" v data/objednavky.xlsx. Podle toho, proč se
+      neodeslalo, napiš na všechna tři místa jednu z těchto hlášek:
+      - konektor není připojený nebo nemá write tools: „připraveno, čeká na
+        konektor",
+      - adresa odesílatele se nenašla (krok 7a): „adresa dodavatele
+        nenalezena, k ruční kontrole".
+8. Když chybí tři a víc údajů, nebo se z PDF nedal přečíst text vůbec:
    nic neposílej. Zapiš to do protokolu jako „k ruční kontrole" a řekni mi
    to — je pravděpodobnější, že se PDF nepodařilo přečíst, než že je špatná
    faktura, a to není důvod psát dodavateli.
-8. Na konec dne (nebo po každé faktuře) připiš řádek do
+9. Na konec dne (nebo po každé faktuře) připiš řádek do
    vystup/protokol-<RRRR-MM-DD>.md: soubor, dodavatel, kompletní ano/ne,
-   co chybělo, jestli se poslal e-mail (nebo jen navrhl) a kdy.
+   co chybělo, jestli se poslal e-mail (nebo proč ne) a kdy.
 
 ## Šablona e-mailu při chybějícím údaji
 
@@ -1977,13 +2284,18 @@ Když chybí víc než jeden údaj, vyjmenuj je („IČO a číslo objednávky")
 ## Kdy se zastavit a nic neposílat
 - z PDF se nedá přečíst text (sken bez OCR) — zapiš k ruční kontrole, e-mail neposílej
 - chybí tři a víc ze šesti údajů — stejně, jde spíš o špatně přečtené PDF
-- e-mail nemá jasně čitelnou adresu odesílatele, na kterou by šlo odpovědět
-- data/objednavky.xlsx nejde otevřít nebo má jinou strukturu, než čekáš
+- v data/prijate-emaily.xlsx není pro ten soubor řádek, nebo je v něm
+  nečitelná/chybějící adresa — nemáš komu poslat, e-mail neposílej
+- data/objednavky.xlsx nebo data/prijate-emaily.xlsx nejde otevřít nebo má
+  jinou strukturu, než čekáš
 
 ## Co do skillu nepatří
 Rozhodnutí, jestli fakturu zaplatit, cokoli k jejímu schválení nebo zápis do
 účetního systému. Jediná automatická zpráva, kterou tenhle skill smí poslat,
-je žádost dodavateli o doplnění chybějícího údaje na faktuře samotné.`,
+je žádost dodavateli o doplnění chybějícího údaje na faktuře samotné.
+Ukládání PDF do vstup/, zjišťování, kdo fakturu poslal, a čtení přímo
+z Doručené pošty taky nepatří do skillu — o to se stará naplánovaná
+automatizace popsaná v \`rutina.md\`.`,
     },
     {
       kind: 'note',
@@ -2025,34 +2337,26 @@ je žádost dodavateli o doplnění chybějícího údaje na faktuře samotné.`
       nazev: 'chran-vstup.sh',
       popis: 'Ten skript. Třicet řádků, které hlídají, aby do složky s originály faktur směla jen přibýt nová faktura — nic se nepřepsalo ani nesmazalo.',
       obsah: `#!/bin/bash
-# Zábrana nad složkou vstup/: smí do ní přibýt nová PDF faktura, ale nic
-# existujícího se nesmí přepsat, přejmenovat ani smazat. Originály jsou důkaz.
+# Zábrana nad složkou vstup/: Claude do ní nesmí sám nic zapsat, přepsat,
+# přejmenovat ani smazat. Originály jsou důkaz.
+#
+# Přílohy faktur sem od 2026-09 ukládá Outlook pravidlo + Power Automate tok
+# mimo Claude Code (viz rutina.md) — soubor se objeví přes synchronizaci
+# OneDrive, ne přes nástroj Write/Edit. Proto už tenhle hook nikoho
+# nevýjimkuje ani pro nové PDF: jediná cesta, jak má do vstup/ něco přibýt,
+# je ta automatizace nebo člověk ručně. Claude smí vstup/ jen číst.
 #
 # Claude Code pošle hooku na vstup JSON s popisem toho, co se chystá udělat.
 # Vytáhneme z něj jméno nástroje a cestu k souboru. Schválně bez nástroje jq
 # — ten na Macu ani na Windows standardně není a hook, který se nespustí,
 # nic nechrání.
 VSTUP_JSON=$(cat)
-NASTROJ=$(printf '%s' "$VSTUP_JSON" | sed -n 's/.*"tool_name"[[:space:]]*:[[:space:]]*"\\([^"]*\\)".*/\\1/p')
 CESTA=$(printf '%s' "$VSTUP_JSON" | sed -n 's/.*"file_path"[[:space:]]*:[[:space:]]*"\\([^"]*\\)".*/\\1/p')
 
 case "$CESTA" in
   */vstup/*)
-    if [ "$NASTROJ" = "Edit" ]; then
-      echo "Úprava souboru ve vstup/ je zakázaná — leží tam originály faktur, nic se v nich nesmí měnit." >&2
-      exit 2
-    fi
-    if [ -e "$CESTA" ]; then
-      echo "Přepsání souboru ve vstup/ je zakázané — tam smí jen přibýt nová faktura, ne se přepsat stará." >&2
-      exit 2
-    fi
-    case "$CESTA" in
-      *.pdf) exit 0 ;;
-      *)
-        echo "Do vstup/ smí přibýt jen nová PDF faktura." >&2
-        exit 2
-        ;;
-    esac
+    echo "Zápis do vstup/ z Claude Code je zakázaný — přílohy sem ukládá jen Outlook/Power Automate tok (nebo člověk ručně), nikdy skill sám. Originály jsou důkaz." >&2
+    exit 2
     ;;
 esac
 exit 0`,
@@ -2166,7 +2470,7 @@ exit 0`,
     {
       kind: 'p',
       text:
-        'Druhý hook je zábrana. Zapisuje se do `vystup/`, do složky s originály nikdy — jenže „nikdy" napsané v CLAUDE.md je doporučení, ne zámek. Tohle je zámek: skript, který se spustí před každým zápisem a nepovolený zápis rovnou odmítne.',
+        'Druhý hook je zábrana. Zapisuje se do `vystup/`, do složky s originály nikdy — jenže „nikdy" napsané v CLAUDE.md je doporučení, ne zámek. Tohle je zámek: skript, který se spustí před každým zápisem a nepovolený zápis rovnou odmítne. Ve cvičném projektu zakazuje zápis do `vstup/` **úplně**, i pro novou fakturu: přílohy tam ukládá Outlook s Power Automate přes synchronizaci OneDrivu, ne Claude. Co do složky nemá co zapisovat vůbec nic, se hlídá snáz než „smí přidat, ale nesmí přepsat".',
     },
     {
       kind: 'code',
@@ -2178,7 +2482,7 @@ CESTA=$(printf '%s' "$VSTUP" | sed -n 's/.*"file_path"[^"]*"\\([^"]*\\)".*/\\1/p
 
 case "$CESTA" in
   */vstup/*)
-    echo "Do vstup/ smí jen přibýt nová faktura — přepsat ani smazat nic nejde." >&2
+    echo "Zápis do vstup/ z Claude Code je zakázaný — přílohy sem ukládá jen tok, nikdy skill sám. Originály jsou důkaz." >&2
     exit 2
     ;;
 esac
@@ -2264,34 +2568,158 @@ claude -p "Postupuj podle skillu kontrola-faktur a výsledek ulož do vystup/."`
       kind: 'soubor',
       nazev: 'rutina.md',
       popis: 'Rozvrh napsaný ve složce: co vyplnit ve formuláři, co zařídit u správce a co zkontrolovat, než to poběží samo. Založení se tím smrskne na větu „Založ automatizaci podle rutina.md".',
-      obsah: `# Naplánovaná automatizace: kontrola nových faktur v Outlooku
+      obsah: `# Naplánovaná automatizace: kontrola nových faktur
 
 Co vyplnit v aplikaci Claude → záložka **Code** → **Routines** → **New routine**.
 
-## Než založíš automatizaci: konektor na Microsoft 365
+## Aktualizace 2026-09-09: hlavní cesta je teď přímo z Doručené pošty
+
+Automatizace teď čte a rovnou zpracovává faktury přímo z Doručené pošty
+\`fakturace@dek.cz\` — nečeká, až se PDF fyzicky uloží jako soubor do
+\`vstup/\`. M365 konektor přílohu přečíst jako text umí, a na vytažení šesti
+údajů to stačí; jen ji neumí stáhnout jako binární soubor. Ukládání do
+\`vstup/\` (Krok 0 níž) proto pro běžný provoz **není potřeba** — zůstává
+jen jako doplňková cesta pro fakturu vhozenou ručně.
+
+**Důsledek, který si pohlídej:** V Outlooku už existuje pravidlo „Faktury ke
+zpracování — příloha PDF + předmět faktura" (založené 2026-09-09), které
+e-maily s přílohou a slovem „faktura" v předmětu přesouvá z Doručené pošty
+do podsložky \`faktury ke zpracování\` — **dřív, než automatizace stihne
+Doručenou poštu prohlédnout.** Dokud tohle pravidlo běží, hlavní cesta níž
+takové e-maily v Doručené poště vůbec neuvidí. Buď to pravidlo vypni/smaž
+(Outlook → Pravidla → Spravovat pravidla), nebo počítej s tím, že
+automatizace musí prohlížet i podsložku \`faktury ke zpracování\`, ne jen
+Doručenou poštu — momentálně (viz Instructions níž) kontroluje jen
+Doručenou poštu, takže dokud pravidlo běží, je potřeba ho vypnout.
+
+## Hlavní cesta: zpracování přímo z Doručené pošty
+
+1. E-mail s fakturou dorazí do \`fakturace@dek.cz\`.
+2. Naplánovaná automatizace v Claude (formulář a instrukce níž) při každém
+   běhu přes M365 konektor projde Doručenou poštu za posledních pár dní
+   a vybere e-maily s PDF přílohou od odesílatele mimo dek.cz / dek-cz.com.
+3. U každého takového e-mailu, jehož faktura (podle čísla faktury a
+   dodavatele) ještě není zapsaná v žádném sešitu \`data/objednavky.xlsx\`,
+   přečte přílohu jako text a vytáhne šest povinných údajů — stejným
+   postupem jako skill \`kontrola-faktur\` u faktury ve \`vstup/\` (číslo
+   faktury, dodavatel, IČO dodavatele, číslo objednávky, základ daně,
+   splatnost).
+4. Zapíše řádek do sešitu dodavatele v \`data/objednavky.xlsx\` — i bez
+   fyzického souboru ve \`vstup/\`. Do sloupce „Soubor" napíše jméno přílohy
+   z e-mailu, i když na disku nic neleží; „Datum přijetí" je datum
+   doručení e-mailu.
+5. Je-li vyplněných všech šest údajů, tady to končí — nic se neposílá.
+6. Chybí-li jeden nebo dva údaje: zapíše návrh do
+   \`vystup/kontrola-<dnešní datum>.xlsx\` (sešit „Přehled" + sešit
+   dodavatele, text podle šablony v \`.claude/skills/kontrola-faktur/\`) a
+   rovnou pošle e-mail z \`fakturace@dek.cz\` zpátky na adresu, ze které
+   faktura přišla (přímo z hlavičky e-mailu), v kopii
+   \`fakturace@dek.cz\`. Předmět: „Doplnění faktury <číslo faktury>".
+   Čas odeslání zapíše do \`kontrola-<dnešní datum>.xlsx\` i do sloupce
+   „Žádost odeslána" v \`data/objednavky.xlsx\`.
+7. Chybí-li tři a víc údajů, nebo se příloha nedá přečíst jako text: nic
+   neposílá, jen to zapíše do \`vystup/protokol-<dnešní datum>.md\` jako
+   „k ruční kontrole".
+
+Tahle cesta **nepoužívá \`data/prijate-emaily.xlsx\`** — adresu, na kterou
+jde žádost o doplnění, bere přímo z hlavičky e-mailu, ne z tabulky. Tabulka
+zůstává v provozu jen kvůli doplňkové cestě níž.
+
+## Doplňková cesta: PDF uložené ručně do vstup/
+
+Beze změny oproti dřívějšku: cokoli, co se objeví jako soubor ve \`vstup/\`
+a ještě nemá řádek v evidenci, skill \`kontrola-faktur\` zpracuje — typicky
+fakturu, kterou tam někdo vhodil ručně. Protože u týhle cesty nemáme
+živý e-mail, ze kterého by šlo vzít adresu, skill ji dohledává v
+\`data/prijate-emaily.xlsx\` podle jména souboru; není-li tam řádek, zapíše
+se „adresa dodavatele nenalezena, k ruční kontrole" (beze změny oproti
+dřívějšku).
+
+**Duplicita mezi oběma cestami:** obě zapisují do stejné evidence
+(\`data/objednavky.xlsx\`) a duplicitu ověřují podle čísla faktury napříč
+všemi sešity — takže když stejnou fakturu nejdřív zpracuje hlavní cesta
+z Doručené pošty (bez souboru na disku) a později se stejné PDF objeví i
+ve \`vstup/\` (ručně nebo přes Krok 0), skill ho pozná jako duplicitu podle
+čísla faktury a nezapíše ani neodešle nic podruhé.
+
+## Krok 0 (volitelně): Outlook pravidlo + Power Automate tok
+
+Pro běžný provoz už tohle není potřeba — hlavní cesta výše žádný uložený
+soubor nevyžaduje. Nech si tenhle krok jen tehdy, když chceš mít PDF faktur
+navíc fyzicky archivované ve \`vstup/\` (například kvůli auditu), nebo jako
+druhou cestu pro fakturu, kterou chceš vhodit ručně a nechat projít stejným
+zpracováním jako výše.
+
+M365 konektor, který Claude v téhle automatizaci používá, umí e-mail i PDF
+přílohu **přečíst jako text**, ale nemá nástroj na stažení surových
+binárních dat přílohy — takže PDF soubor sám uložit nedokáže (to je i
+důvod, proč hlavní cesta výše nezávisí na uloženém souboru). Ukládání do
+vstup/ proto musí zařídit něco jiného v M365, ne Claude. Postup:
+
+1. **Pravidlo, které oddělí faktury od zbytku pošty — HOTOVO (2026-09-09),
+   ale s výhradou výše.** Podsložka **„faktury ke zpracování"** je
+   založená pod Doručenou poštou a pravidlo **„Faktury ke zpracování —
+   příloha PDF + předmět faktura"** (Outlook → Pravidla → Spravovat
+   pravidla) do ní přesouvá e-maily, které mají přílohu **a** mají
+   v předmětu slovo „faktura". Pokud u sebe tenhle krok nechceš (viz
+   aktualizace nahoře), pravidlo smaž nebo vypni.
+
+   Založila jsem ho přes M365 konektor (\`outlook_create_filter\`), ne ručně
+   v Outlooku — a proto má dvě omezení, o kterých by ses měla vědět a
+   případně je doladit ručně v Outlooku (rozhraní tam na rozdíl od tohohle
+   nástroje umí i výjimky „Kromě případů, kdy..."):
+   - **Neumí vyloučit odesílatele z dek.cz / dek-cz.com** — nástroj na
+     pravidla, který mám k dispozici, podporuje jen podmínky typu
+     „obsahuje/rovná se", ne negaci. E-mail od kolegy s přílohou a slovem
+     „faktura" v předmětu by se taky přesunul.
+   - **„má přílohu" je obecné, ne specificky PDF** — typ přílohy se přes
+     tenhle nástroj filtrovat nedá.
+2. **Tok, který uloží přílohu.** V Power Automate (nebo přes tlačítko
+   „Automatizovat" přímo v Outlooku) založ tok:
+   - Spouštěč: „Když dorazí nový e-mail" (V3), omezený na podsložku
+     „faktury ke zpracování" (do ní přesouvá e-maily pravidlo z kroku 1
+     výše — tenhle tok jen navazuje na to, co v ní přibude).
+   - Akce „Uložit přílohu": cíl je OneDrive složka, která odpovídá
+     \`...\\Plocha\\faktury-kontrola\\vstup\\\` (je uvnitř \`OneDrive - DEK a.s\`,
+     najdeš ji ve výběru složky pod stejnou cestou). Jméno souboru nastav
+     jako \`<datum přijetí ve tvaru RRRR-MM-DD>_<původní název přílohy>\`.
+   - Akce „Přidat řádek do tabulky" (konektor Excel Online (Business)):
+     cíl je \`data/prijate-emaily.xlsx\`, tabulka \`PrijateEmaily\`. Zapiš
+     Soubor (stejné jméno jako v předchozí akci), Datum a čas přijetí,
+     Odesílatel (e-mailová adresa) a Předmět. Tahle tabulka se používá jen
+     u doplňkové cesty výše.
+   - Volitelně na konec přidej přesun zpracovaného e-mailu do archivní
+     podsložky, ať se tok nespouští na tu samou zprávu podruhé.
+3. Tenhle krok zvládneš sama v rámci běžné M365 licence, není potřeba
+   správce — psát mu je potřeba až kvůli **write tools** níž.
+
+Jakmile tok jednou uloží zkušební přílohu, zkontroluj, že se soubor
+opravdu objevil ve \`vstup/\` na disku (počkej na synchronizaci OneDrive) a
+že přibyl řádek v \`data/prijate-emaily.xlsx\`.
+
+## Než založíš automatizaci v Claude: konektor na Microsoft 365
 
 Tahle automatizace potřebuje konektor Claude na Microsoft 365 se zapnutými
-**write tools** (posílání pošty) — bez nich přečte schránku, ale e-mail
-neodešle,
-jenom ho navrhne (viz \`CLAUDE.md\`, „Když projekt běží bez připojené
-schránky"). Write tools zapíná zvlášť správce Microsoft 365, přihlášený
-pracovním účtem; osobní outlook.com nebo hotmail.com nefunguje. Text, který
-mu poslat, je níž v „Co napsat správci".
+**write tools** (posílání pošty) — bez nich Doručenou poštu i vstup/
+zkontroluje, ale e-mail neodešle, jenom ho navrhne (viz \`CLAUDE.md\`). Write
+tools zapíná zvlášť správce Microsoft 365, přihlášený pracovním účtem;
+osobní outlook.com nebo hotmail.com nefunguje. Text, který mu poslat, je
+níž v „Co napsat správci". Čtecí přístup na M365 je teď hlavní cestou, jak
+automatizace faktury vůbec najde — ne jen doplňková kontrola.
 
 ## Formulář
 
 | Pole | Co vyplnit |
 | --- | --- |
 | **Name** | \`kontrola-faktur\` |
-| **Description** | Sleduje schránku a doplňuje chybějící údaje na fakturách |
+| **Description** | Zpracuje nové faktury z Doručené pošty a ze vstup/ a doplňuje chybějící údaje |
 | **Model** | Sonnet — na tuhle práci stačí a je nejúspornější |
 | **Permission mode** | Accept edits — jinak se běh zastaví na dotazu, na který nikdo neodpoví |
 | **Folder** | složka tohoto projektu (\`faktury-kontrola\`) |
 | **Schedule** | Every 15 minutes, v pracovní dny 7:00–18:00 |
 
-Proč každých 15 minut, ne jednou denně: tahle automatizace nahrazuje ruční
-sledování schránky, takže žádost o doplnění má dodavateli přijít brzy po
-faktuře, ne až druhý den. Claude Code nemá skutečné „hned jak přijde
+Proč každých 15 minut, ne jednou denně: žádost o doplnění má dodavateli
+přijít brzy, ne až druhý den. Claude Code nemá skutečné „hned jak přijde
 e-mail" spouštění — nejblíž tomu je časté opakování. Když ti 15 minut
 připadá zbytečně husté, dej to na 30 nebo na hodinu; nic se tím nerozbije,
 jen se prodlouží čas do odpovědi dodavateli.
@@ -2299,22 +2727,36 @@ jen se prodlouží čas do odpovědi dodavateli.
 ## Instructions
 
 \`\`\`
-Postupuj podle skillu kontrola-faktur.
+Postupuj podle skillu kontrola-faktur pro pravidla o šesti údajích,
+duplicitě a šabloně e-mailu.
 
-Zkontroluj schránku fakturace@dek.cz na nové e-maily s PDF přílohou, které
-ještě nejsou uložené ve vstup/. Když nic nového nepřišlo, nic nedělej a
-nic neposílej.
+Hlavní krok — zpracuj faktury přímo z Doručené pošty fakturace@dek.cz:
+projdi Doručenou poštu za posledních N dní a vyber e-maily s PDF přílohou
+od odesílatele mimo dek.cz a dek-cz.com. U každého, jehož faktura (podle
+čísla faktury a dodavatele) ještě není v žádném sešitu data/objednavky.xlsx,
+přečti přílohu jako text a vytáhni šest povinných údajů (číslo faktury,
+dodavatel, IČO dodavatele, číslo objednávky, základ daně, splatnost).
+Zapiš řádek do sešitu dodavatele v data/objednavky.xlsx — do sloupce
+Soubor napiš jméno přílohy z e-mailu, i když PDF nikde na disku neleží.
 
-Ke každé nové faktuře udělej celý postup ze skillu — uložení do vstup/,
-vytažení šesti údajů, zápis do data/objednavky.xlsx do sešitu podle
-dodavatele, a když něco chybí a je toho jeden nebo dva údaje, zapiš to do
-vystup/kontrola-<dnešní datum>.xlsx i s navrženým textem a ten text pošli
-dodavateli na adresu, ze které faktura přišla, v kopii
-vedouci-uctarny@dek.cz. Čas odeslání zapiš do kontrola-<dnešní datum>.xlsx
-i do sloupce „Žádost odeslána" v data/objednavky.xlsx.
+Když je faktura kompletní, tím pro ni končí. Když chybí jeden nebo dva
+údaje, zapiš návrh do vystup/kontrola-<dnešní datum>.xlsx (sešit „Přehled"
+i sešit dodavatele) a rovnou pošli e-mail z fakturace@dek.cz zpátky na
+adresu, ze které faktura přišla (podle hlavičky e-mailu, ne podle
+data/prijate-emaily.xlsx), v kopii fakturace@dek.cz, textem podle
+šablony ve skillu. Čas odeslání zapiš do kontrola-<dnešní datum>.xlsx i do
+sloupce „Žádost odeslána" v data/objednavky.xlsx.
 
-Když u některé faktury chybí tři a víc údajů, nebo se PDF nedá přečíst,
-nic neposílej — zapiš to do protokolu k ruční kontrole.
+Když chybí tři a víc údajů, nebo se příloha nedá přečíst jako text, nic
+neposílej — zapiš to do protokolu k ruční kontrole.
+
+Doplňkový krok — zkontroluj i vstup/ a zpracuj PDF faktury, které tam
+přibyly a ještě nemají řádek v data/objednavky.xlsx (typicky ručně vhozené).
+Postupuj stejně, ale adresu na doplnění dohledej v data/prijate-emaily.xlsx
+podle jména souboru; není-li tam řádek, nic neposílej a zapiš „adresa
+dodavatele nenalezena, k ruční kontrole".
+
+Když ani jedna z cest nenajde nic nového, nic nedělej a nic neposílej.
 
 Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.
 \`\`\`
@@ -2329,17 +2771,30 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.
 3. Mrkni i do data/objednavky.xlsx: nová faktura má mít řádek v sešitu svého
    dodavatele a u té, které něco chybělo, má být vyplněný sloupec „Žádost
    odeslána".
-4. Teprve pak to nech běžet samo. **První den to nech běžet vedle sebe a
+4. Používáš-li i Krok 0, ověř i tok samotný: v Power Automate → Historie
+   běhu zkontroluj, že se spustil na správný e-mail a že řádek v
+   \`data/prijate-emaily.xlsx\` souhlasí s tím, co je ve \`vstup/\`.
+5. Teprve pak to nech běžet samo. **První den to nech běžet vedle sebe a
    po každém běhu se podívej, co se stalo** — je to jediná automatizace
    v tomhle projektu, která bez tvého kliknutí posílá poštu ven z firmy.
 
 ## Co je dobré vědět
 
-- Místní automatizace běží, jen když je aplikace Claude spuštěná a počítač
-  vzhůru. Když počítač spí, běh se přeskočí a doženou se jen ty, co chyběly
+- Řádek v \`data/objednavky.xlsx\` teď může existovat bez odpovídajícího
+  PDF souboru na disku — hlavní cesta píše přímo z obsahu e-mailu. Sloupec
+  „Soubor" u takového řádku je jen jméno přílohy z e-mailu, ne cesta
+  k reálnému souboru ve \`vstup/\`.
+- Pravidlo z Kroku 0 (pokud ho necháš zapnuté) nerozlišuje odesílatele —
+  e-mail od kolegy z dek.cz s přílohou a slovem „faktura" v předmětu se
+  přesune do „faktury ke zpracování" stejně jako od dodavatele, a hlavní
+  cesta ho v Doručené poště pak nenajde. Buď pravidlo vypni, nebo do
+  podsložky občas nakoukni ručně.
+- Automatizace běží, jen když je aplikace Claude spuštěná a počítač vzhůru.
+  Když počítač spí, běh se přeskočí a doženou se jen e-maily, které přišly
   bezprostředně předtím — ne všechny za celou dobu.
 - Kdyby konektor na M365 spadl nebo přišel o přístup, automatizace se
-  zastaví na dotazu, ne že by tiše nic nedělala — sleduj to hlavně první týden.
+  zastaví na dotazu, ne že by tiše nic nedělala — sleduj to hlavně první
+  týden.
 - Když chceš, aby tohle běželo i s vypnutým počítačem, není to tenhle typ
   automatizace. To už musí běžet někde jinde než na tvém stole.
 
@@ -2446,24 +2901,42 @@ Jedna stránka pro chvíli, kdy něco spadne a ty jsi na dovolené.
 
 ## Co to dělá
 
-Každých 15 minut v pracovní dny 7:00–18:00 zkontroluje schránku
-fakturace@dek.cz. Když najde e-mail s novou fakturou v PDF, uloží ji do
-\`vstup/\`, vytáhne z ní šest povinných údajů (číslo faktury, dodavatel, IČO,
-číslo objednávky, základ daně, splatnost) a zapíše je do
-\`data/objednavky.xlsx\`, do sešitu podle dodavatele. Když chybí jeden nebo
-dva údaje, sama pošle dodavateli e-mail s žádostí o doplnění (v kopii
-vedouci-uctarny@dek.cz), zapíše to do \`vystup/kontrola-<datum>.xlsx\` a čas
-odeslání doplní i do evidence, do sloupce „Žádost odeslána“.
+Naplánovaná automatizace \`kontrola-faktur\` v Claude každých 15 minut
+v pracovní dny 7:00–18:00 zkontroluje faktury dvěma cestami:
+
+- **Hlavní cesta — přímo z Doručené pošty.** Přes M365 konektor projde
+  Doručenou poštu \`fakturace@dek.cz\`, najde e-maily s přílohou od
+  odesílatele mimo dek.cz/dek-cz.com a u těch, které ještě nejsou
+  v evidenci, přečte přílohu jako text (M365 konektor umí přílohu přečíst,
+  ne stáhnout jako soubor — na text ale stačí) a rovnou je zpracuje.
+  Adresu na žádost o doplnění bere přímo z hlavičky e-mailu.
+- **Doplňková cesta — vstup/.** Zkontroluje i složku \`vstup/\` — PDF, které
+  tam někdo vhodí ručně (nebo pokud si navíc nastavíš volitelný Power
+  Automate tok, viz \`rutina.md\`, Krok 0). Adresu na doplnění u týhle cesty
+  dohledá v \`data/prijate-emaily.xlsx\` podle jména souboru.
+
+U obou cest: vytáhne šest povinných údajů (číslo faktury, dodavatel, IČO,
+číslo objednávky, základ daně, splatnost), nejdřív zkontroluje podle čísla
+faktury napříč všemi sešity \`data/objednavky.xlsx\`, že nejde o duplicitu,
+a zapíše je do sešitu podle dodavatele. Když chybí jeden nebo dva údaje,
+pošle e-mail s žádostí o doplnění (v kopii fakturace@dek.cz), zapíše
+to do \`vystup/kontrola-<datum>.xlsx\` a čas odeslání doplní i do evidence,
+do sloupce „Žádost odeslána".
 
 **Posílá jen žádost o doplnění chybějícího údaje na faktuře samotné.**
 Neschvaluje faktury, nic neplatí a nezapisuje nic do účetního systému.
 
 ## Kde to běží
 
-Naplánovaná automatizace \`kontrola-faktur\` v aplikaci Claude, záložka Code →
-Routines, typ Local. Běží na počítači, na kterém je nastavená — ne v cloudu.
-Potřebuje konektor na Microsoft 365 se zapnutými write tools (posílání
-pošty); bez nich přečte schránku, ale e-mail jen navrhne, neodešle.
+Naplánovaná automatizace \`kontrola-faktur\` v aplikaci Claude, záložka
+Code → Routines, typ Local. Běží na počítači, na kterém je nastavená — ne
+v cloudu. Potřebuje konektor na Microsoft 365 se zapnutými write tools
+(posílání pošty); bez nich Doručenou poštu i vstup/ zkontroluje, ale
+e-mail jen navrhne, neodešle.
+
+Používáš-li navíc volitelný Krok 0 (Outlook pravidlo + Power Automate tok,
+\`rutina.md\`) pro doplňkovou cestu, tak to běží nezávisle v M365 cloudu,
+bez ohledu na to, jestli je počítač nebo aplikace Claude zapnutá.
 
 ## Jak poznám, že to dopadlo
 
@@ -2473,10 +2946,20 @@ Otevři poslední \`vystup/protokol-*.md\` nebo sešit „Přehled" v posledním
 - **Kompletní = ano** — faktura má všech šest údajů, nic se neposílalo.
 - **Kompletní = ne, e-mail odeslán má čas** — chybělo jedno nebo dvě pole,
   žádost o doplnění odešla. Zkontroluj v Odeslané poště, že to sedí.
-- **„připraveno, čeká na konektor"** — text je navržený, ale konektor
-  nebyl připojený (nebo neměl write tools), takže se fyzicky neodeslal.
+- **„připraveno, čeká na konektor"** — text je navržený, ale M365 konektor
+  v Claude nebyl připojený (nebo neměl write tools), takže se fyzicky
+  neodeslal.
+- **„adresa dodavatele nenalezena, k ruční kontrole"** — jen u faktury ze
+  vstup/: v \`data/prijate-emaily.xlsx\` není pro ten soubor záznam (typicky
+  proto, že se PDF do vstup/ dostalo ručně, ne přes volitelný tok), takže
+  automatizace nevěděla, komu psát. U faktury z Doručené pošty tohle
+  nemůže nastat — adresu bere přímo z e-mailu.
 - **„k ruční kontrole" v protokolu** — chybělo moc údajů najednou nebo se
-  PDF nedalo přečíst. Tohle automatizace záměrně nechává na člověku.
+  text nedal přečíst. Tohle automatizace záměrně nechává na člověku.
+- **Řádek v \`data/objednavky.xlsx\` beze souboru ve \`vstup/\`** — není chyba.
+  Faktura zpracovaná hlavní cestou z Doručené pošty nemá fyzický soubor na
+  disku, jen řádek v evidenci; sloupec „Soubor" nese jméno přílohy z
+  e-mailu.
 
 Když chceš vidět jen to, jestli se u konkrétního dodavatele o doplnění už
 psalo, nemusíš hledat den, kdy se to stalo: stačí sloupec „Žádost odeslána"
@@ -2486,28 +2969,34 @@ v jeho sešitu v \`data/objednavky.xlsx\`.
 
 | Co se stalo | Čím to bývá | Co s tím |
 | --- | --- | --- |
-| Automatizace se nespustila | počítač spal nebo byla zavřená aplikace | doženou se jen běhy bezprostředně předtím, ne celá historie |
+| Automatizace nenašla fakturu, o které víš, že dorazila e-mailem | Je starší než „posledních N dní" v Instructions, nebo je od odesílatele z dek.cz/dek-cz.com (ty automatizace na hlavní cestě záměrně přeskakuje) | zkontroluj hlavičku e-mailu; případně spusť běh s ručním pokynem na konkrétní e-mail |
+| Do vstup/ nepřibyl nový soubor, i když faktura evidentně dorazila (a používáš Krok 0) | Outlook pravidlo nebo Power Automate tok je vypnutý, spadlý, nebo nesedí filtr pravidla | v Power Automate zkontroluj Historii běhu toku; spusť ho ručně na tu zprávu. Bez Kroku 0 tohle stejně nevadí — hlavní cesta fakturu zpracuje přímo z pošty |
+| Soubor je ve vstup/, ale automatizace v Claude ho nezpracovala | OneDrive ho ještě nestihl synchronizovat na tenhle počítač | zkontroluj stav synchronizace OneDrive, případně počkej na další běh |
+| Automatizace v Claude se nespustila | počítač spal nebo byla zavřená aplikace | doženou se jen běhy bezprostředně předtím, ne celá historie |
 | Běh se zastavil na dotazu | konektor ztratil přístup, nebo se ptá poprvé | otevři to sezení v postranním panelu, odpověz a dej „always allow" |
-| E-mail se neodeslal, i když chybělo jen jedno pole | write tools na konektoru M365 nejsou zapnuté | napiš správci, ať je zapne (viz \`rutina.md\`) |
-| Odešel e-mail se špatným textem nebo špatnému dodavateli | PDF se přečetlo špatně (adresa, jméno) | zkontroluj konkrétní fakturu ručně, oprav v \`data/objednavky.xlsx\`, případně napiš dodavateli omluvu sama |
-| Protokol hlásí spoustu faktur „k ruční kontrole" | většinou se změnil formát PDF, ne že by bylo najednou hodně špatných faktur | projdi dvě tři faktury ručně, než necháš automatizaci pokračovat |
-| Ve \`vstup/\` zmizel soubor | někdo tam uklidil | soubory ve \`vstup/\` maže jen člověk; automatizace do té složky zapisuje jen nové PDF (hlídá to hook). V evidenci řádek zůstává — je to záznam běhu, který se stal. |
-| Jedna faktura je v evidenci dvakrát | přišla do schránky podruhé a její PDF mezitím ze \`vstup/\` zmizelo | nechej nový řádek být a starý si označ; automatizace pozná už zpracovanou fakturu podle toho, co leží ve \`vstup/\` |
+| E-mail se neodeslal, i když chybělo jen jedno pole, a v protokolu je „čeká na konektor" | write tools na konektoru M365 nejsou zapnuté | napiš správci, ať je zapne (viz \`rutina.md\`) |
+| E-mail se neodeslal a v protokolu je „adresa nenalezena" (jen u faktury ze vstup/) | v \`data/prijate-emaily.xlsx\` chybí řádek pro ten soubor | dohledej odesílatele ručně a buď doplň řádek do \`data/prijate-emaily.xlsx\` a spusť běh znovu, nebo pošli žádost sama |
+| Odešel e-mail se špatným textem nebo špatnému dodavateli | příloha se přečetla špatně (adresa, jméno), nebo je špatný záznam v \`data/prijate-emaily.xlsx\` (u vstup/) | zkontroluj konkrétní fakturu ručně, oprav v \`data/objednavky.xlsx\`, případně napiš dodavateli omluvu sama |
+| Protokol hlásí spoustu faktur „k ruční kontrole" | většinou se změnil formát faktury, ne že by bylo najednou hodně špatných faktur | projdi dvě tři faktury ručně, než necháš automatizaci pokračovat |
+| Ve \`vstup/\` zmizel soubor | někdo tam uklidil | soubory ve \`vstup/\` maže jen člověk; Claude Code do té složky nezapisuje vůbec (hlídá to hook). V evidenci řádek zůstává — je to záznam běhu, který se stal. |
+| Jedna faktura je v evidenci dvakrát | kontrola duplicity podle čísla faktury selhala nebo byla obejita — může se stát i mezi hlavní a doplňkovou cestou (stejná faktura přišla e-mailem i skončila jako soubor ve vstup/) | nechej nový řádek být a starý si označ; zkontroluj, že obě verze mají opravdu stejné číslo faktury |
+| Podsložka \`faktury ke zpracování\` se plní, ale automatizace ji nekontroluje | Instructions teď kontrolují jen Doručenou poštu, ne tuhle podsložku (viz \`rutina.md\`, aktualizace nahoře) | buď vypni pravidlo, které do ní přesouvá poštu, nebo dej Claudovi vědět, ať do Instructions přidá i kontrolu týhle podsložky |
 
 ## Komu napsat
 
 Nejdřív tomu, kdo tuhle automatizaci nastavil. Když jde o obsah faktur nebo
-o to,
-co se poslalo dodavateli, účetní. Když jde o přístup ke schránce nebo
-konektor, správce Microsoft 365.
+o to, co se poslalo dodavateli, účetní. Když jde o přístup ke schránce nebo
+konektor Claude, správce Microsoft 365. Používáš-li Krok 0 a do vstup/
+nepřibývají soubory vůbec, tomu, kdo spravuje Power Automate tok (může být
+stejná osoba jako ta, kdo agendu dělá, pokud si tok založila sama — viz \`rutina.md\`).
 
 ## Co dělat, až tomu přeroste hlava
 
 Pokud faktur bude denně desítky, přestane se vyplácet nechávat každý běh
-kontrolovat celou schránku znovu. V tu chvíli má smysl nechat si napsat
-malý skript, který hlídá jen nové zprávy, a Claudovi nechat posouzení a
-sepsání odpovědi. Do té doby to nech, jak to je — je to čitelnější a snáz
-se to kontroluje.`,
+kontrolovat celou Doručenou poštu a složku vstup/ znovu. V tu chvíli má
+smysl nechat si napsat malý skript, který hlídá jen nové zprávy/soubory, a
+Claudovi nechat posouzení a sepsání odpovědi. Do té doby to nech, jak to
+je — je to čitelnější a snáz se to kontroluje.`,
     },
     { kind: 'h', text: 'Co se stane, když' },
     {
@@ -3263,34 +3752,158 @@ const L2_PLAN: Lesson = {
       kind: 'soubor',
       nazev: 'rutina.md',
       popis: 'Přesně tenhle soubor je v cvičném projektu. Takhle vypadá rozvrh napsaný ve složce.',
-      obsah: `# Naplánovaná automatizace: kontrola nových faktur v Outlooku
+      obsah: `# Naplánovaná automatizace: kontrola nových faktur
 
 Co vyplnit v aplikaci Claude → záložka **Code** → **Routines** → **New routine**.
 
-## Než založíš automatizaci: konektor na Microsoft 365
+## Aktualizace 2026-09-09: hlavní cesta je teď přímo z Doručené pošty
+
+Automatizace teď čte a rovnou zpracovává faktury přímo z Doručené pošty
+\`fakturace@dek.cz\` — nečeká, až se PDF fyzicky uloží jako soubor do
+\`vstup/\`. M365 konektor přílohu přečíst jako text umí, a na vytažení šesti
+údajů to stačí; jen ji neumí stáhnout jako binární soubor. Ukládání do
+\`vstup/\` (Krok 0 níž) proto pro běžný provoz **není potřeba** — zůstává
+jen jako doplňková cesta pro fakturu vhozenou ručně.
+
+**Důsledek, který si pohlídej:** V Outlooku už existuje pravidlo „Faktury ke
+zpracování — příloha PDF + předmět faktura" (založené 2026-09-09), které
+e-maily s přílohou a slovem „faktura" v předmětu přesouvá z Doručené pošty
+do podsložky \`faktury ke zpracování\` — **dřív, než automatizace stihne
+Doručenou poštu prohlédnout.** Dokud tohle pravidlo běží, hlavní cesta níž
+takové e-maily v Doručené poště vůbec neuvidí. Buď to pravidlo vypni/smaž
+(Outlook → Pravidla → Spravovat pravidla), nebo počítej s tím, že
+automatizace musí prohlížet i podsložku \`faktury ke zpracování\`, ne jen
+Doručenou poštu — momentálně (viz Instructions níž) kontroluje jen
+Doručenou poštu, takže dokud pravidlo běží, je potřeba ho vypnout.
+
+## Hlavní cesta: zpracování přímo z Doručené pošty
+
+1. E-mail s fakturou dorazí do \`fakturace@dek.cz\`.
+2. Naplánovaná automatizace v Claude (formulář a instrukce níž) při každém
+   běhu přes M365 konektor projde Doručenou poštu za posledních pár dní
+   a vybere e-maily s PDF přílohou od odesílatele mimo dek.cz / dek-cz.com.
+3. U každého takového e-mailu, jehož faktura (podle čísla faktury a
+   dodavatele) ještě není zapsaná v žádném sešitu \`data/objednavky.xlsx\`,
+   přečte přílohu jako text a vytáhne šest povinných údajů — stejným
+   postupem jako skill \`kontrola-faktur\` u faktury ve \`vstup/\` (číslo
+   faktury, dodavatel, IČO dodavatele, číslo objednávky, základ daně,
+   splatnost).
+4. Zapíše řádek do sešitu dodavatele v \`data/objednavky.xlsx\` — i bez
+   fyzického souboru ve \`vstup/\`. Do sloupce „Soubor" napíše jméno přílohy
+   z e-mailu, i když na disku nic neleží; „Datum přijetí" je datum
+   doručení e-mailu.
+5. Je-li vyplněných všech šest údajů, tady to končí — nic se neposílá.
+6. Chybí-li jeden nebo dva údaje: zapíše návrh do
+   \`vystup/kontrola-<dnešní datum>.xlsx\` (sešit „Přehled" + sešit
+   dodavatele, text podle šablony v \`.claude/skills/kontrola-faktur/\`) a
+   rovnou pošle e-mail z \`fakturace@dek.cz\` zpátky na adresu, ze které
+   faktura přišla (přímo z hlavičky e-mailu), v kopii
+   \`fakturace@dek.cz\`. Předmět: „Doplnění faktury <číslo faktury>".
+   Čas odeslání zapíše do \`kontrola-<dnešní datum>.xlsx\` i do sloupce
+   „Žádost odeslána" v \`data/objednavky.xlsx\`.
+7. Chybí-li tři a víc údajů, nebo se příloha nedá přečíst jako text: nic
+   neposílá, jen to zapíše do \`vystup/protokol-<dnešní datum>.md\` jako
+   „k ruční kontrole".
+
+Tahle cesta **nepoužívá \`data/prijate-emaily.xlsx\`** — adresu, na kterou
+jde žádost o doplnění, bere přímo z hlavičky e-mailu, ne z tabulky. Tabulka
+zůstává v provozu jen kvůli doplňkové cestě níž.
+
+## Doplňková cesta: PDF uložené ručně do vstup/
+
+Beze změny oproti dřívějšku: cokoli, co se objeví jako soubor ve \`vstup/\`
+a ještě nemá řádek v evidenci, skill \`kontrola-faktur\` zpracuje — typicky
+fakturu, kterou tam někdo vhodil ručně. Protože u týhle cesty nemáme
+živý e-mail, ze kterého by šlo vzít adresu, skill ji dohledává v
+\`data/prijate-emaily.xlsx\` podle jména souboru; není-li tam řádek, zapíše
+se „adresa dodavatele nenalezena, k ruční kontrole" (beze změny oproti
+dřívějšku).
+
+**Duplicita mezi oběma cestami:** obě zapisují do stejné evidence
+(\`data/objednavky.xlsx\`) a duplicitu ověřují podle čísla faktury napříč
+všemi sešity — takže když stejnou fakturu nejdřív zpracuje hlavní cesta
+z Doručené pošty (bez souboru na disku) a později se stejné PDF objeví i
+ve \`vstup/\` (ručně nebo přes Krok 0), skill ho pozná jako duplicitu podle
+čísla faktury a nezapíše ani neodešle nic podruhé.
+
+## Krok 0 (volitelně): Outlook pravidlo + Power Automate tok
+
+Pro běžný provoz už tohle není potřeba — hlavní cesta výše žádný uložený
+soubor nevyžaduje. Nech si tenhle krok jen tehdy, když chceš mít PDF faktur
+navíc fyzicky archivované ve \`vstup/\` (například kvůli auditu), nebo jako
+druhou cestu pro fakturu, kterou chceš vhodit ručně a nechat projít stejným
+zpracováním jako výše.
+
+M365 konektor, který Claude v téhle automatizaci používá, umí e-mail i PDF
+přílohu **přečíst jako text**, ale nemá nástroj na stažení surových
+binárních dat přílohy — takže PDF soubor sám uložit nedokáže (to je i
+důvod, proč hlavní cesta výše nezávisí na uloženém souboru). Ukládání do
+vstup/ proto musí zařídit něco jiného v M365, ne Claude. Postup:
+
+1. **Pravidlo, které oddělí faktury od zbytku pošty — HOTOVO (2026-09-09),
+   ale s výhradou výše.** Podsložka **„faktury ke zpracování"** je
+   založená pod Doručenou poštou a pravidlo **„Faktury ke zpracování —
+   příloha PDF + předmět faktura"** (Outlook → Pravidla → Spravovat
+   pravidla) do ní přesouvá e-maily, které mají přílohu **a** mají
+   v předmětu slovo „faktura". Pokud u sebe tenhle krok nechceš (viz
+   aktualizace nahoře), pravidlo smaž nebo vypni.
+
+   Založila jsem ho přes M365 konektor (\`outlook_create_filter\`), ne ručně
+   v Outlooku — a proto má dvě omezení, o kterých by ses měla vědět a
+   případně je doladit ručně v Outlooku (rozhraní tam na rozdíl od tohohle
+   nástroje umí i výjimky „Kromě případů, kdy..."):
+   - **Neumí vyloučit odesílatele z dek.cz / dek-cz.com** — nástroj na
+     pravidla, který mám k dispozici, podporuje jen podmínky typu
+     „obsahuje/rovná se", ne negaci. E-mail od kolegy s přílohou a slovem
+     „faktura" v předmětu by se taky přesunul.
+   - **„má přílohu" je obecné, ne specificky PDF** — typ přílohy se přes
+     tenhle nástroj filtrovat nedá.
+2. **Tok, který uloží přílohu.** V Power Automate (nebo přes tlačítko
+   „Automatizovat" přímo v Outlooku) založ tok:
+   - Spouštěč: „Když dorazí nový e-mail" (V3), omezený na podsložku
+     „faktury ke zpracování" (do ní přesouvá e-maily pravidlo z kroku 1
+     výše — tenhle tok jen navazuje na to, co v ní přibude).
+   - Akce „Uložit přílohu": cíl je OneDrive složka, která odpovídá
+     \`...\\Plocha\\faktury-kontrola\\vstup\\\` (je uvnitř \`OneDrive - DEK a.s\`,
+     najdeš ji ve výběru složky pod stejnou cestou). Jméno souboru nastav
+     jako \`<datum přijetí ve tvaru RRRR-MM-DD>_<původní název přílohy>\`.
+   - Akce „Přidat řádek do tabulky" (konektor Excel Online (Business)):
+     cíl je \`data/prijate-emaily.xlsx\`, tabulka \`PrijateEmaily\`. Zapiš
+     Soubor (stejné jméno jako v předchozí akci), Datum a čas přijetí,
+     Odesílatel (e-mailová adresa) a Předmět. Tahle tabulka se používá jen
+     u doplňkové cesty výše.
+   - Volitelně na konec přidej přesun zpracovaného e-mailu do archivní
+     podsložky, ať se tok nespouští na tu samou zprávu podruhé.
+3. Tenhle krok zvládneš sama v rámci běžné M365 licence, není potřeba
+   správce — psát mu je potřeba až kvůli **write tools** níž.
+
+Jakmile tok jednou uloží zkušební přílohu, zkontroluj, že se soubor
+opravdu objevil ve \`vstup/\` na disku (počkej na synchronizaci OneDrive) a
+že přibyl řádek v \`data/prijate-emaily.xlsx\`.
+
+## Než založíš automatizaci v Claude: konektor na Microsoft 365
 
 Tahle automatizace potřebuje konektor Claude na Microsoft 365 se zapnutými
-**write tools** (posílání pošty) — bez nich přečte schránku, ale e-mail
-neodešle,
-jenom ho navrhne (viz \`CLAUDE.md\`, „Když projekt běží bez připojené
-schránky"). Write tools zapíná zvlášť správce Microsoft 365, přihlášený
-pracovním účtem; osobní outlook.com nebo hotmail.com nefunguje. Text, který
-mu poslat, je níž v „Co napsat správci".
+**write tools** (posílání pošty) — bez nich Doručenou poštu i vstup/
+zkontroluje, ale e-mail neodešle, jenom ho navrhne (viz \`CLAUDE.md\`). Write
+tools zapíná zvlášť správce Microsoft 365, přihlášený pracovním účtem;
+osobní outlook.com nebo hotmail.com nefunguje. Text, který mu poslat, je
+níž v „Co napsat správci". Čtecí přístup na M365 je teď hlavní cestou, jak
+automatizace faktury vůbec najde — ne jen doplňková kontrola.
 
 ## Formulář
 
 | Pole | Co vyplnit |
 | --- | --- |
 | **Name** | \`kontrola-faktur\` |
-| **Description** | Sleduje schránku a doplňuje chybějící údaje na fakturách |
+| **Description** | Zpracuje nové faktury z Doručené pošty a ze vstup/ a doplňuje chybějící údaje |
 | **Model** | Sonnet — na tuhle práci stačí a je nejúspornější |
 | **Permission mode** | Accept edits — jinak se běh zastaví na dotazu, na který nikdo neodpoví |
 | **Folder** | složka tohoto projektu (\`faktury-kontrola\`) |
 | **Schedule** | Every 15 minutes, v pracovní dny 7:00–18:00 |
 
-Proč každých 15 minut, ne jednou denně: tahle automatizace nahrazuje ruční
-sledování schránky, takže žádost o doplnění má dodavateli přijít brzy po
-faktuře, ne až druhý den. Claude Code nemá skutečné „hned jak přijde
+Proč každých 15 minut, ne jednou denně: žádost o doplnění má dodavateli
+přijít brzy, ne až druhý den. Claude Code nemá skutečné „hned jak přijde
 e-mail" spouštění — nejblíž tomu je časté opakování. Když ti 15 minut
 připadá zbytečně husté, dej to na 30 nebo na hodinu; nic se tím nerozbije,
 jen se prodlouží čas do odpovědi dodavateli.
@@ -3298,22 +3911,36 @@ jen se prodlouží čas do odpovědi dodavateli.
 ## Instructions
 
 \`\`\`
-Postupuj podle skillu kontrola-faktur.
+Postupuj podle skillu kontrola-faktur pro pravidla o šesti údajích,
+duplicitě a šabloně e-mailu.
 
-Zkontroluj schránku fakturace@dek.cz na nové e-maily s PDF přílohou, které
-ještě nejsou uložené ve vstup/. Když nic nového nepřišlo, nic nedělej a
-nic neposílej.
+Hlavní krok — zpracuj faktury přímo z Doručené pošty fakturace@dek.cz:
+projdi Doručenou poštu za posledních N dní a vyber e-maily s PDF přílohou
+od odesílatele mimo dek.cz a dek-cz.com. U každého, jehož faktura (podle
+čísla faktury a dodavatele) ještě není v žádném sešitu data/objednavky.xlsx,
+přečti přílohu jako text a vytáhni šest povinných údajů (číslo faktury,
+dodavatel, IČO dodavatele, číslo objednávky, základ daně, splatnost).
+Zapiš řádek do sešitu dodavatele v data/objednavky.xlsx — do sloupce
+Soubor napiš jméno přílohy z e-mailu, i když PDF nikde na disku neleží.
 
-Ke každé nové faktuře udělej celý postup ze skillu — uložení do vstup/,
-vytažení šesti údajů, zápis do data/objednavky.xlsx do sešitu podle
-dodavatele, a když něco chybí a je toho jeden nebo dva údaje, zapiš to do
-vystup/kontrola-<dnešní datum>.xlsx i s navrženým textem a ten text pošli
-dodavateli na adresu, ze které faktura přišla, v kopii
-vedouci-uctarny@dek.cz. Čas odeslání zapiš do kontrola-<dnešní datum>.xlsx
-i do sloupce „Žádost odeslána" v data/objednavky.xlsx.
+Když je faktura kompletní, tím pro ni končí. Když chybí jeden nebo dva
+údaje, zapiš návrh do vystup/kontrola-<dnešní datum>.xlsx (sešit „Přehled"
+i sešit dodavatele) a rovnou pošli e-mail z fakturace@dek.cz zpátky na
+adresu, ze které faktura přišla (podle hlavičky e-mailu, ne podle
+data/prijate-emaily.xlsx), v kopii fakturace@dek.cz, textem podle
+šablony ve skillu. Čas odeslání zapiš do kontrola-<dnešní datum>.xlsx i do
+sloupce „Žádost odeslána" v data/objednavky.xlsx.
 
-Když u některé faktury chybí tři a víc údajů, nebo se PDF nedá přečíst,
-nic neposílej — zapiš to do protokolu k ruční kontrole.
+Když chybí tři a víc údajů, nebo se příloha nedá přečíst jako text, nic
+neposílej — zapiš to do protokolu k ruční kontrole.
+
+Doplňkový krok — zkontroluj i vstup/ a zpracuj PDF faktury, které tam
+přibyly a ještě nemají řádek v data/objednavky.xlsx (typicky ručně vhozené).
+Postupuj stejně, ale adresu na doplnění dohledej v data/prijate-emaily.xlsx
+podle jména souboru; není-li tam řádek, nic neposílej a zapiš „adresa
+dodavatele nenalezena, k ruční kontrole".
+
+Když ani jedna z cest nenajde nic nového, nic nedělej a nic neposílej.
 
 Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.
 \`\`\`
@@ -3328,17 +3955,30 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.
 3. Mrkni i do data/objednavky.xlsx: nová faktura má mít řádek v sešitu svého
    dodavatele a u té, které něco chybělo, má být vyplněný sloupec „Žádost
    odeslána".
-4. Teprve pak to nech běžet samo. **První den to nech běžet vedle sebe a
+4. Používáš-li i Krok 0, ověř i tok samotný: v Power Automate → Historie
+   běhu zkontroluj, že se spustil na správný e-mail a že řádek v
+   \`data/prijate-emaily.xlsx\` souhlasí s tím, co je ve \`vstup/\`.
+5. Teprve pak to nech běžet samo. **První den to nech běžet vedle sebe a
    po každém běhu se podívej, co se stalo** — je to jediná automatizace
    v tomhle projektu, která bez tvého kliknutí posílá poštu ven z firmy.
 
 ## Co je dobré vědět
 
-- Místní automatizace běží, jen když je aplikace Claude spuštěná a počítač
-  vzhůru. Když počítač spí, běh se přeskočí a doženou se jen ty, co chyběly
+- Řádek v \`data/objednavky.xlsx\` teď může existovat bez odpovídajícího
+  PDF souboru na disku — hlavní cesta píše přímo z obsahu e-mailu. Sloupec
+  „Soubor" u takového řádku je jen jméno přílohy z e-mailu, ne cesta
+  k reálnému souboru ve \`vstup/\`.
+- Pravidlo z Kroku 0 (pokud ho necháš zapnuté) nerozlišuje odesílatele —
+  e-mail od kolegy z dek.cz s přílohou a slovem „faktura" v předmětu se
+  přesune do „faktury ke zpracování" stejně jako od dodavatele, a hlavní
+  cesta ho v Doručené poště pak nenajde. Buď pravidlo vypni, nebo do
+  podsložky občas nakoukni ručně.
+- Automatizace běží, jen když je aplikace Claude spuštěná a počítač vzhůru.
+  Když počítač spí, běh se přeskočí a doženou se jen e-maily, které přišly
   bezprostředně předtím — ne všechny za celou dobu.
 - Kdyby konektor na M365 spadl nebo přišel o přístup, automatizace se
-  zastaví na dotazu, ne že by tiše nic nedělala — sleduj to hlavně první týden.
+  zastaví na dotazu, ne že by tiše nic nedělala — sleduj to hlavně první
+  týden.
 - Když chceš, aby tohle běželo i s vypnutým počítačem, není to tenhle typ
   automatizace. To už musí běžet někde jinde než na tvém stole.
 
@@ -4354,7 +4994,7 @@ ať se v tom vyzná i někdo, kdo u toho nebyl.`,
       tone: 'ok',
       title: 'Konektor je potřeba, jen aby žádost doopravdy odešla',
       text:
-        'Základní běh — přečíst faktury ve vstup/, vytáhnout z nich údaje, zapsat je do evidence a navrhnout odpověď — nic nepřipojuje, Claude si to bere přímo z disku. Jakmile má chybějící údaj poslat dodavateli doopravdy, potřebuje konektor na Microsoft 365 se zapnutými write tools — bez něj text jen navrhne a do sloupce „Žádost odeslána" v evidenci zapíše „připraveno, čeká na konektor". Zapojení konektoru je popsané v rutina.md, včetně textu, který poslat správci.',
+        'Základní běh — přečíst faktury ve vstup/, vytáhnout z nich údaje, zapsat je do evidence a navrhnout odpověď — nic nepřipojuje, Claude si to bere přímo z disku. Odeslat žádost dodavateli potřebuje dvě věci navíc: konektor na Microsoft 365 se zapnutými write tools a adresu, na kterou psát. U pěti vzorových faktur chybí to druhé — leží ve vstup/ od začátku, nepřišly e-mailem, takže nemají řádek v data/prijate-emaily.xlsx a do sloupce „Žádost odeslána" se zapíše „adresa dodavatele nenalezena, k ruční kontrole". Zapojení konektoru i toho toku je popsané v rutina.md, včetně textu, který poslat správci.',
     },
     { kind: 'h', text: '1. Stáhni si to' },
     {
@@ -4384,16 +5024,26 @@ ať se v tom vyzná i někdo, kdo u toho nebyl.`,
     },
     { kind: 'h', text: '2. Co v tom je' },
     {
+      kind: 'note',
+      tone: 'info',
+      title: 'Faktura se dovnitř dostane dvěma cestami',
+      text:
+        'Hlavní cesta vede přímo z Doručené pošty: konektor na Microsoft 365 přečte e-mail i jeho PDF přílohu jako text, takže se na vytažení šesti údajů nemusí nic ukládat na disk. Tuhle cestu dělá jen naplánovaná automatizace, ne skill sám — schválně, aby šlo skill bezpečně spustit i ručně, bez vedlejšího účinku na živou schránku. Doplňková cesta je PDF, které leží ve vstup/; tam adresu na doplnění není odkud vzít, tak si ji skill dohledá v data/prijate-emaily.xlsx podle jména souboru. **Obě cesty zapisují do stejné evidence a duplicitu poznají podle čísla faktury**, takže táž faktura zpracovaná nejdřív ze schránky a později nalezená jako soubor se podruhé nezapíše.',
+    },
+
+    {
       kind: 'code',
       text: `faktury-kontrola/
-├── zadani.md                  ← text, ze kterého celá složka vznikla
+├── zadani.md                  ← text, ze kterého celá složka vznikla (+ revize)
 ├── CLAUDE.md                  ← pravidla a slovník, čtou se pokaždé
 ├── vstup/                     ← 5 vzorových faktur v PDF, sem se jen čte
-├── data/objednavky.xlsx       ← evidence faktur, sešit pro každého dodavatele, poslední sloupec drží stav žádosti
+├── data/objednavky.xlsx       ← evidence faktur, sešit pro každého dodavatele
+├── data/prijate-emaily.xlsx   ← log toho, co uložil tok: kdo, kdy, jaký soubor
 ├── vystup/                    ← referenční výstup: tabulka + protokol
 ├── .claude/skills/kontrola-faktur/SKILL.md
-├── .claude/hooks/chran-vstup.sh
-├── rutina.md                  ← co vyplnit v naplánované úloze a jaký konektor potřebuje
+├── .claude/hooks/chran-vstup.sh   ← zakazuje Claude Code jakýkoli zápis do vstup/
+├── .claude/settings.json
+├── rutina.md                  ← co vyplnit v naplánované automatizaci a jaký konektor potřebuje
 └── runbook.md                 ← co dělat, když to spadne`,
       caption: 'Pět částí, o kterých byla řeč v předchozích lekcích, pohromadě na jedné agendě.',
     },
@@ -4408,7 +5058,7 @@ ať se v tom vyzná i někdo, kdo u toho nebyl.`,
       rows: [
         ['Stavebniny Morava', 'ano', '—', '—'],
         ['Nářadí Profi', 'ano', '—', '—'],
-        ['Elektro Dvořák', 'ne', 'chybí číslo objednávky', 'připraveno, čeká na konektor'],
+        ['Elektro Dvořák', 'ne', 'chybí číslo objednávky', 'adresa dodavatele nenalezena'],
         ['VTS Technik', 'ano', '—', '—'],
         ['Barvy Piekarová', 'ano', '—', '—'],
       ],
@@ -4454,9 +5104,9 @@ ať se v tom vyzná i někdo, kdo u toho nebyl.`,
             'Založí se vystup/kontrola-<dnešní datum>.xlsx: sešit „Přehled" se stavem všech pěti faktur toho dne a za ním sešit „Elektro Dvořák" s tím, který údaj chybí, a rovnou s navrženým textem odpovědi. Chybí jeden údaj ze šesti, tedy pásmo, ve kterém se dodavateli píše.',
         },
         {
-          title: 'E-mail se ale neodešle — nemá odkud',
+          title: 'E-mail se ale neodešle — není komu',
           body:
-            'Bez konektoru na Microsoft 365 Claude poštu odeslat nemůže a nehledá jinou cestu. Text nechá navržený a do sloupce E-mail odeslán i do sloupce Žádost odeslána v evidenci napíše „připraveno, čeká na konektor". Tohle není chyba běhu, je to jeho správný konec.',
+            'Adresu, na kterou psát, si skill dohledává v data/prijate-emaily.xlsx podle jména souboru — a pro pět vzorových faktur ji tam nenajde, protože ty ve vstup/ leží od začátku a nepřišly e-mailem. Text tedy nechá navržený a do sloupce Žádost odeslána napíše „adresa dodavatele nenalezena, k ruční kontrole". Tohle není chyba běhu, je to jeho správný konec — a platí i tehdy, když máš konektor připojený.',
         },
         {
           title: 'Napíše protokol',
@@ -4475,7 +5125,7 @@ ať se v tom vyzná i někdo, kdo u toho nebyl.`,
       tone: 'info',
       title: 'Co se změní, až to napojíš na schránku',
       text:
-        'Kroky 2 až 7 zůstanou úplně stejné. Mění se jen začátek a konec: místo procházení vstup/ se automatizace podívá do schránky na e-maily s PDF přílohou, které ještě nejsou uložené, a novou fakturu si do vstup/ sama uloží pod jménem <datum>_<dodavatel>.pdf. A místo „připraveno, čeká na konektor" se navržený text doopravdy odešle — na adresu, ze které faktura přišla, v kopii vedouci-uctarny@dek.cz, s předmětem „Doplnění faktury <číslo faktury>". Čas odeslání se pak zapíše na tři místa: do sešitu dodavatele, do „Přehledu" a do sloupce Žádost odeslána v evidenci.',
+        'Vytažení údajů, zápis do evidence i sepsání odpovědi zůstanou úplně stejné. Mění se začátek a konec. Začátek: naplánovaná automatizace projde Doručenou poštu, najde e-maily s přílohou od odesílatele mimo firmu a zpracuje je rovnou z e-mailu — **nečeká, až se PDF někam uloží, a do vstup/ sama nic nezapisuje** (to jí hook stejně nedovolí). Konec: adresa je tentokrát po ruce, je v hlavičce toho e-mailu, takže se navržený text doopravdy odešle — v kopii vedouci-uctarny@dek.cz, s předmětem „Doplnění faktury <číslo faktury>". Čas odeslání se pak zapíše na tři místa: do sešitu dodavatele, do „Přehledu" a do sloupce Žádost odeslána v evidenci.',
     },
     {
       kind: 'p',
@@ -4892,7 +5542,7 @@ const L2_POSTAV: Lesson = {
       kind: 'figure',
       name: 'prvni-beh',
       caption:
-        'Co má po prvním běhu zůstat. Poslední řádek je ten, na kterém se to nejčastěji láme: odeslaná pošta zůstane prázdná, protože bez konektoru není kam poslat — a to je správný konec běhu, ne chyba.',
+        'Co má po prvním běhu zůstat. Poslední řádek je ten, na kterém se to nejčastěji láme: odeslaná pošta zůstane prázdná, protože u vzorových faktur není komu psát — nepřišly e-mailem, takže k nim není adresa. Je to správný konec běhu, ne chyba.',
     },
     {
       kind: 'p',

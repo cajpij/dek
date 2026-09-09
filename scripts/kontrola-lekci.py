@@ -153,7 +153,7 @@ def program_vs_lekce():
 
 # Věty, které o zastaralé podobě mluví proto, aby ji vyvrátily. Bez toho
 # by kontrola hlásila právě ta místa, která jsou napsaná správně.
-POPIRA = ('Nekontroluje se proti', 'neporovnává', 'v nové podobě není')
+POPIRA = ('ekontroluje', 'neporovnává', 'v nové podobě není')
 
 
 def zastarale_fraze():
