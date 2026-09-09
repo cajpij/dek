@@ -35,7 +35,10 @@ kontroluje jen úplnost šesti údajů, ne shoda s objednávkou:
 | Barvy Piekarová | ano | — |
 
 Vzorový výstup v `vystup/` přesně tenhle jeden nález obsahuje: sešit pro
-Elektro Dvořák s navrženým textem žádosti o doplnění. Když si to pustíš
+Elektro Dvořák s navrženým textem žádosti o doplnění. Že se o doplnění
+požádalo, je vidět i v evidenci — `data/objednavky.xlsx` má u každého
+dodavatele poslední sloupec „Žádost odeslána", takže nemusíš hledat den, kdy
+se to stalo. Když si to pustíš
 znovu bez připojeného konektoru, vyjde totéž, jen se e-mail jen navrhne
 (žádný konektor nemá odkud ho fyzicky odeslat) — a to je zároveň způsob,
 jak si ověřit, že projekt funguje.
@@ -56,7 +59,7 @@ jak si ověřit, že projekt funguje.
    úlohu nad ní — projekt je obyčejná složka, nic jiného se měnit nemusí.
 2. `vstup/` a `data/objednavky.xlsx` vyprázdni, nech je naplnit skutečnými
    fakturami.
-3. Uprav v `CLAUDE.md` a `rutina.md` adresu schránky a kopii, kam se posílá
-   žádost o doplnění.
+3. Uprav v `CLAUDE.md`, `rutina.md` a ve skillu adresu schránky a kopii, kam
+   se posílá žádost o doplnění — jsou na několika místech, projdi je všechny.
 4. **Prvních deset faktur si projdi řádek po řádku**, než tomu začneš věřit.
    Co Claude přečetl špatně, dopiš do `CLAUDE.md` nebo do skillu.

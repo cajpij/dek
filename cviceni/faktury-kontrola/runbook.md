@@ -35,6 +35,10 @@ Otevři poslední `vystup/protokol-*.md` nebo sešit „Přehled" v posledním
 - **„k ruční kontrole" v protokolu** — chybělo moc údajů najednou nebo se
   PDF nedalo přečíst. Tohle úloha záměrně nechává na člověku.
 
+Když chceš vidět jen to, jestli se u konkrétního dodavatele o doplnění už
+psalo, nemusíš hledat den, kdy se to stalo: stačí sloupec „Žádost odeslána"
+v jeho sešitu v `data/objednavky.xlsx`.
+
 ## Když to spadne
 
 | Co se stalo | Čím to bývá | Co s tím |
@@ -44,7 +48,8 @@ Otevři poslední `vystup/protokol-*.md` nebo sešit „Přehled" v posledním
 | E-mail se neodeslal, i když chybělo jen jedno pole | write tools na konektoru M365 nejsou zapnuté | napiš správci, ať je zapne (viz `rutina.md`) |
 | Odešel e-mail se špatným textem nebo špatnému dodavateli | PDF se přečetlo špatně (adresa, jméno) | zkontroluj konkrétní fakturu ručně, oprav v `data/objednavky.xlsx`, případně napiš dodavateli omluvu sama |
 | Protokol hlásí spoustu faktur „k ruční kontrole" | většinou se změnil formát PDF, ne že by bylo najednou hodně špatných faktur | projdi dvě tři faktury ručně, než necháš úlohu pokračovat |
-| Ve `vstup/` zmizel soubor | někdo tam uklidil | soubory ve `vstup/` maže jen člověk; úloha do té složky zapisuje jen nové PDF (hlídá to hook) |
+| Ve `vstup/` zmizel soubor | někdo tam uklidil | soubory ve `vstup/` maže jen člověk; úloha do té složky zapisuje jen nové PDF (hlídá to hook). V evidenci řádek zůstává — je to záznam běhu, který se stal. |
+| Jedna faktura je v evidenci dvakrát | přišla do schránky podruhé a její PDF mezitím ze `vstup/` zmizelo | nechej nový řádek být a starý si označ; úloha pozná už zpracovanou fakturu podle toho, co leží ve `vstup/` |
 
 ## Komu napsat
 

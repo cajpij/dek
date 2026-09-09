@@ -4958,7 +4958,7 @@ const L2_CVICNY: Lesson = {
       tone: 'ok',
       title: 'Konektor je potřeba, jen aby žádost doopravdy odešla',
       text:
-        'Základní běh — přečíst faktury ve vstup/, vytáhnout z nich údaje, zapsat je do evidence a navrhnout odpověď — nic nepřipojuje, Claude si to bere přímo z disku. Jakmile má chybějící údaj poslat dodavateli doopravdy, potřebuje konektor na Microsoft 365 se zapnutými write tools — bez něj text jen navrhne a do evidence zapíše „připraveno, čeká na konektor". Zapojení konektoru je popsané v rutina.md, včetně textu, který poslat správci.',
+        'Základní běh — přečíst faktury ve vstup/, vytáhnout z nich údaje, zapsat je do evidence a navrhnout odpověď — nic nepřipojuje, Claude si to bere přímo z disku. Jakmile má chybějící údaj poslat dodavateli doopravdy, potřebuje konektor na Microsoft 365 se zapnutými write tools — bez něj text jen navrhne a do sloupce „Žádost odeslána" v evidenci zapíše „připraveno, čeká na konektor". Zapojení konektoru je popsané v rutina.md, včetně textu, který poslat správci.',
     },
     {
       kind: 'note',
@@ -4999,7 +4999,7 @@ const L2_CVICNY: Lesson = {
       text: `faktury-kontrola/
 ├── CLAUDE.md                  ← pravidla a slovník, čtou se pokaždé
 ├── vstup/                     ← 5 vzorových faktur v PDF, sem se jen čte
-├── data/objednavky.xlsx       ← evidence přijatých faktur, sešit pro každého dodavatele
+├── data/objednavky.xlsx       ← evidence faktur, sešit pro každého dodavatele, poslední sloupec drží stav žádosti
 ├── vystup/                    ← referenční výstup: tabulka + protokol
 ├── .claude/skills/kontrola-faktur/SKILL.md
 ├── .claude/hooks/chran-vstup.sh
@@ -5100,9 +5100,12 @@ Zkontroluj schránku fakturace@dek.cz na nové e-maily s PDF přílohou, které
 ještě nejsou uložené ve vstup/. Když nic nového nepřišlo, nic nedělej a
 nic neposílej.
 
-Ke každé nové faktuře udělej celý postup ze skillu — uložení, vytažení
-šesti údajů, zápis do evidence, a když něco chybí a je toho jeden nebo dva
-údaje, pošli dodavateli žádost o doplnění v kopii vedouci-uctarny@dek.cz.
+Ke každé nové faktuře udělej celý postup ze skillu — uložení do vstup/,
+vytažení šesti údajů, zápis do data/objednavky.xlsx do sešitu podle
+dodavatele, a když něco chybí a je toho jeden nebo dva údaje, zapiš to do
+vystup/kontrola-<dnešní datum>.xlsx i s navrženým textem a ten text pošli
+dodavateli v kopii vedouci-uctarny@dek.cz. Čas odeslání zapiš do
+kontrola-<dnešní datum>.xlsx i do sloupce „Žádost odeslána" v evidenci.
 
 Když u některé faktury chybí tři a víc údajů, nebo se PDF nedá přečíst,
 nic neposílej — zapiš to do protokolu k ruční kontrole.

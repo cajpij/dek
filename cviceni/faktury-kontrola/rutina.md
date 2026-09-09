@@ -38,9 +38,13 @@ Zkontroluj schránku fakturace@dek.cz na nové e-maily s PDF přílohou, které
 ještě nejsou uložené ve vstup/. Když nic nového nepřišlo, nic nedělej a
 nic neposílej.
 
-Ke každé nové faktuře udělej celý postup ze skillu — uložení, vytažení
-šesti údajů, zápis do evidence, a když něco chybí a je toho jeden nebo dva
-údaje, pošli dodavateli žádost o doplnění v kopii vedouci-uctarny@dek.cz.
+Ke každé nové faktuře udělej celý postup ze skillu — uložení do vstup/,
+vytažení šesti údajů, zápis do data/objednavky.xlsx do sešitu podle
+dodavatele, a když něco chybí a je toho jeden nebo dva údaje, zapiš to do
+vystup/kontrola-<dnešní datum>.xlsx i s navrženým textem a ten text pošli
+dodavateli na adresu, ze které faktura přišla, v kopii
+vedouci-uctarny@dek.cz. Čas odeslání zapiš do kontrola-<dnešní datum>.xlsx
+i do sloupce „Žádost odeslána" v data/objednavky.xlsx.
 
 Když u některé faktury chybí tři a víc údajů, nebo se PDF nedá přečíst,
 nic neposílej — zapiš to do protokolu k ruční kontrole.
@@ -53,9 +57,12 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.
 1. Po uložení klikni na **Run now** a projdi si, na co se to zeptá — u
    každého dotazu vyber „always allow". Další běhy se pak už neptají.
 2. Zkontroluj vystup/kontrola-<dnešní datum>.xlsx a fakticky i schránku
-   Odeslaná pošta — porovnej, že text, který se poslal, je ten, co jsi
-   čekal.
-3. Teprve pak to nech běžet samo. **První den to nech běžet vedle sebe a
+   Odeslaná pošta — porovnej, že text, který se poslal, je slovo od slova
+   ten, co je v sešitu dodavatele.
+3. Mrkni i do data/objednavky.xlsx: nová faktura má mít řádek v sešitu svého
+   dodavatele a u té, které něco chybělo, má být vyplněný sloupec „Žádost
+   odeslána".
+4. Teprve pak to nech běžet samo. **První den to nech běžet vedle sebe a
    po každém běhu se podívej, co se stalo** — je to jediná úloha v tomhle
    projektu, která bez tvého kliknutí posílá poštu ven z firmy.
 

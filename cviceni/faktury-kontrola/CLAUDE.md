@@ -19,11 +19,15 @@ do účetního systému. To zůstává na člověku.
 ## Kde jsou data
 - vstup/ — uložené PDF faktur. Sem se jen čte, nikdy nepřepisuje.
 - data/objednavky.xlsx — evidence přijatých faktur, sešit pro každého
-  dodavatele. Nekontroluje se proti schváleným objednávkám, jen se eviduje,
-  co přišlo a jestli je to kompletní.
+  dodavatele. Sloupce: Soubor / Datum přijetí / Číslo faktury / IČO / Číslo
+  objednávky / Základ daně / Splatnost / Kompletní / Žádost odeslána.
+  Nekontroluje se proti schváleným objednávkám, jen se eviduje, co přišlo,
+  jestli je to kompletní a jestli se u toho dodavatele o doplnění požádalo.
 - vystup/kontrola-<RRRR-MM-DD>.xlsx — jen faktury, kterým ten den něco
   chybělo: sešit „Přehled" se stavem všech faktur toho dne a pak sešit
   pro každého dodavatele s navrženým textem a časem odeslání.
+- vystup/protokol-<RRRR-MM-DD>.md — krátký zápis běhu: co se ten den
+  zkontrolovalo, co chybělo, komu se psalo a co zůstalo k ruční kontrole.
 
 ## Pravidla
 - Do vstup/ nikdy nezapisuj nic jiného než nově staženou fakturu. Nic v ní
@@ -34,6 +38,12 @@ do účetního systému. To zůstává na člověku.
   napsané na faktuře.
 - E-mail s žádostí o doplnění posílej jen na adresu, ze které faktura
   přišla, a vždy v kopii vedouci-uctarny@dek.cz.
+- Text, který odejde dodavateli, musí být přesně ten, co je zapsaný jako
+  navržená odpověď v kontrola-<RRRR-MM-DD>.xlsx.
+- Čas odeslání zapiš do kontrola-<RRRR-MM-DD>.xlsx (do sešitu dodavatele i
+  do „Přehledu") a do sloupce „Žádost odeslána" v data/objednavky.xlsx. Bez
+  připojeného konektoru napiš na všechna tři místa „připraveno, čeká na
+  konektor".
 - E-mail posílej jen tehdy, když chybí jeden nebo dva ze šesti údajů. Když
   jich chybí tři a víc, nebo se z PDF nedá přečíst text vůbec, nic
   neposílej — napiš to do protokolu a řekni mi to. Tolik chybějících údajů

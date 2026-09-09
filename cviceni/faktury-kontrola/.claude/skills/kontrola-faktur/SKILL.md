@@ -30,22 +30,31 @@ místo toho PDF, která už ve vstup/ leží a která ještě nemají řádek v 
 3. Co se nepodaří přečíst, nech prázdné. Nic nedomýšlej.
 4. Najdi v data/objednavky.xlsx sešit se jménem dodavatele; když neexistuje,
    založ ho s hlavičkou Soubor / Datum přijetí / Číslo faktury / IČO / Číslo
-   objednávky / Základ daně / Splatnost / Kompletní. Přidej řádek s dnešní
-   fakturou. Kompletní = ano, když jsou vyplněných všech šest údajů, jinak ne.
+   objednávky / Základ daně / Splatnost / Kompletní / Žádost odeslána. Přidej
+   řádek s dnešní fakturou. Kompletní = ano, když je vyplněných všech šest
+   údajů, jinak ne. Sloupec „Žádost odeslána" zatím nech prázdný — vyplní se
+   až v kroku 6.
 5. Když je faktura kompletní, tady skončit — nic se neposílá.
 6. Když něco chybí a chybí jen jeden nebo dva údaje:
    a. Otevři (nebo založ) vystup/kontrola-<RRRR-MM-DD>.xlsx s prvním sešitem
       „Přehled" (Soubor / Dodavatel / Kompletní / Chybí / E-mail odeslán) a
       dál sešitem pro každého dodavatele, kterému toho dne něco chybělo
       (Soubor / Číslo faktury / Chybí / Navržená odpověď / E-mail odeslán).
+      Sešit pojmenuj jménem dodavatele přesně tak, jak je na faktuře.
    b. Do sešitu dodavatele napiš, který údaj chybí, a navrhni text podle
       šablony níž.
-   c. Je-li konektor na M365 se zapnutými write tools připojený, pošli e-mail
-      na adresu, ze které faktura přišla, v kopii vedouci-uctarny@dek.cz, s
-      tím textem, a do stejného řádku zapiš datum a čas odeslání. Bez
-      připojeného konektoru e-mail neodešli — do sloupce E-mail odeslán napiš
-      „připraveno, čeká na konektor" a nech text tak, jak je navržený.
+   c. Je-li konektor na M365 se zapnutými write tools připojený, pošli ten
+      text z kontrola-<RRRR-MM-DD>.xlsx jako nový e-mail na adresu, ze které
+      faktura přišla, v kopii vedouci-uctarny@dek.cz. Text neměň mezi tím, co
+      je v sešitu, a tím, co odejde — v sešitu musí být přesně to, co
+      dodavatel dostal. Bez připojeného konektoru e-mail neodesílej a nech
+      text tak, jak je navržený; nehledej jinou cestu, jak poštu odeslat.
       Předmět v obou případech: „Doplnění faktury <číslo faktury>".
+   d. Datum a čas odeslání zapiš na tři místa: do řádku v sešitu dodavatele,
+      do sešitu „Přehled" (obojí v kontrola-<RRRR-MM-DD>.xlsx) a do sloupce
+      „Žádost odeslána" v data/objednavky.xlsx, aby bylo i v evidenci vidět,
+      že se o doplnění už požádalo. Bez konektoru napiš na všechna tři místa
+      „připraveno, čeká na konektor".
 7. Když chybí tři a víc údajů, nebo se z PDF nedal přečíst text vůbec:
    nic neposílej. Zapiš to do protokolu jako „k ruční kontrole" a řekni mi
    to — je pravděpodobnější, že se PDF nepodařilo přečíst, než že je špatná
@@ -69,6 +78,7 @@ S pozdravem,
 Účtárna DEK
 ```
 
+Jméno dodavatele v oslovení ber přesně tak, jak je napsané na faktuře.
 Když chybí víc než jeden údaj, vyjmenuj je („IČO a číslo objednávky").
 
 ## Kdy se zastavit a nic neposílat
