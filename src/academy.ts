@@ -787,6 +787,18 @@ const LESSON_PROJEKT: Lesson = {
       text:
         'Pro logistiku, dopravu, BI, marketing a vedení — bez programování. Všechno níž jsou textové soubory a složky, ne kód.',
     },
+    { kind: 'h', text: 'Projekt je složka' },
+    {
+      kind: 'p',
+      text:
+        'Claude vidí obsah složky, ve které ho spustíš, a nic nad ní. Proto: jedna agenda = jedna složka, ne jedna velká „AI“ složka se vším dohromady. Zvlášť kontrola faktur, zvlášť reporty, zvlášť ceníky — každý projekt si drží svoje pravidla.',
+    },
+    {
+      kind: 'figure',
+      name: 'project-tree',
+      caption:
+        'Takhle vypadá hotový projekt. Za chvíli ho takhle Claude založí sám — nic z toho není povinné a přesto se to vyplatí.',
+    },
     { kind: 'h', text: 'Založení nech na Claudovi' },
     {
       kind: 'p',
@@ -867,17 +879,6 @@ nepřepisují: všechno nové se ukládá do vystup/.`,
       title: 'Projekt a nasyncovaná složka nestojí vedle sebe',
       text:
         'Projekt v Claude Code není nic zvláštního — je to prostě složka, kterou otevřeš. „Projekt v nasyncované knihovně“ tak znamená obyčejnou podsložku v ní. Claude přitom vidí jen otevřenou složku a to, co je pod ní.',
-    },
-    { kind: 'h', text: 'Projekt je složka' },
-    {
-      kind: 'p',
-      text:
-        'Claude vidí obsah složky, ve které ho spustíš, a nic nad ní. Proto: jedna agenda = jedna složka, ne jedna velká „AI“ složka se vším dohromady. Zvlášť kontrola faktur, zvlášť reporty, zvlášť ceníky — každý projekt si drží svoje pravidla.',
-    },
-    {
-      kind: 'figure',
-      name: 'project-tree',
-      caption: 'Tohle právě vzniklo. Nic z toho není povinné — a přesto se to vyplatí.',
     },
     { kind: 'h', text: 'A když ta složka je sdílená knihovna?' },
     {
