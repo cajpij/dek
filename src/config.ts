@@ -139,15 +139,15 @@ export const DEFAULT_CONFIG: RunConfig = {
       ],
     },
     {
-      title: 'Vzor: kontrola faktur ručně',
-      min: 20,
-      lessons: ['od-mapy-k-automatu/nakresli-flow', 'od-mapy-k-automatu/cvicny-projekt-faktury'],
+      title: 'Vzor: kontrola faktur ručně a co z ní zbude',
+      min: 15,
+      lessons: ['claude-a-firemni-data/co-je-automatizace'],
       kind: 'talk',
       who: 'Lektor',
       brief: FAKTURY_BRIEF,
       steps: [
-        { title: 'Projít proces po krocích', min: 10, detail: 'Osm kroků od e-mailu s fakturou po zadání k platbě', lessons: ['od-mapy-k-automatu/nakresli-flow'] },
-        { title: 'Kde data mění formu ručně', min: 7, detail: 'Nechat sál hádat, než ukážeš tři označená místa' },
+        { title: 'Projít proces po krocích', min: 7, detail: 'Osm kroků od e-mailu s fakturou po zadání k platbě', lessons: ['claude-a-firemni-data/co-je-automatizace'] },
+        { title: 'Ukázat obrázek ručně vs. automat', min: 5, detail: 'Nad řezem to, co dělá počítač, pod ním člověk — nechat sál hádat, kudy ten řez vede' },
         { title: 'Co má zůstat člověku', min: 3, detail: 'Schválení faktury k platbě — i sedící čísla nemusí znamenat zaplať' },
       ],
       notes: [
@@ -159,15 +159,15 @@ export const DEFAULT_CONFIG: RunConfig = {
       ],
     },
     {
-      title: 'Jak se zadání píše a jak se výsledek kontroluje',
-      min: 25,
-      lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace', 'od-mapy-k-automatu/cvicny-projekt-faktury'],
+      title: 'Pět schodů: z čeho se automatizace skládá',
+      min: 20,
+      lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace'],
       kind: 'talk',
       who: 'Lektor',
       steps: [
-        { title: 'Struktura zadání, které projde napoprvé', min: 8, detail: 'Co vzít, co udělat, kam uložit, co s výjimkou', lessons: ['od-mapy-k-automatu/cvicny-projekt-faktury'] },
-        { title: 'Pasti, které tabulka nastraží', min: 7, detail: 'Kódy jako čísla, prázdno vs. nula, hlavička na třetím řádku' },
-        { title: 'Tři otázky na každý výstup', min: 10, detail: 'Sedí počty, sedí součty, sedí vzorek' },
+        { title: 'Zadání → pravidlo → skill → hook → běh bez tebe', min: 6, detail: 'Každý schod je jeden soubor a dává smysl, jen když ten pod ním už stojí', lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace'] },
+        { title: 'Struktura zadání, které projde napoprvé', min: 6, detail: 'Co vzít, co udělat, kam uložit, co s výjimkou — a rozcestí číslem, ne úsudkem' },
+        { title: 'Tři otázky na každý výstup', min: 8, detail: 'Sedí počty, sedí součty, sedí vzorek' },
       ],
       notes: [
         'Kontrola je nejdůležitější věc celého dne — bez ní nikdo nikdy nepustí nic bez dozoru',
@@ -182,6 +182,30 @@ export const DEFAULT_CONFIG: RunConfig = {
       min: 10,
       kind: 'break',
       notes: ['Odpočet nechat na plátně', 'Kresby vylepit na zeď, ať jsou po pauze vidět'],
+    },
+    {
+      title: 'Stáhnout cvičný projekt a pustit ho',
+      min: 15,
+      lessons: ['od-mapy-k-automatu/cvicny-projekt-faktury'],
+      kind: 'work',
+      who: 'Lektor + asistence',
+      brief:
+        'Hotový projekt ke stažení: rozbalit, otevřít v Claude Code a pustit jednou větou. ' +
+        'Nic se v něm nepíše — jde o to vidět, co má na konci vzniknout, než to za chvíli ' +
+        'budete stavět od prázdné složky.',
+      steps: [
+        { title: 'Stáhnout zip a rozbalit — i skrytou složku .claude', min: 4 },
+        { title: 'Otevřít složku v Claude Code, potvrdit důvěru', min: 3 },
+        { title: 'Napsat: Postupuj podle skillu kontrola-faktur.', min: 5 },
+        { title: 'Projít, co přibylo v data/ a ve vystup/', min: 3, detail: 'Pět faktur v evidenci, u jedné chybí číslo objednávky' },
+      ],
+      notes: [
+        'Odkaz na zip je v lekci Cvičný projekt: kontrola faktur ke stažení — nechat ho na plátně',
+        'Ve vstup/ leží pět faktur a evidence je prázdná, takže první běh má co dělat',
+        'Odeslaná pošta zůstane prázdná — bez konektoru není kam poslat. Říct to dopředu, jinak to sál bere jako chybu.',
+        'Kdo si to nestihne stáhnout, ať kouká sousedovi. Za chvíli se stejně staví od nuly, tohle je jen ukázka cíle.',
+        'Nenechat je to číst řádek po řádku — na to je lekce potom. Tady jen pustit a podívat se na výsledek.',
+      ],
     },
     {
       title: 'Postav si tu složku sám',
@@ -241,7 +265,7 @@ export const DEFAULT_CONFIG: RunConfig = {
     },
     {
       title: 'Rozhovory ve dvojicích: co děláš ručně ty',
-      min: 40,
+      min: 35,
       lessons: ['od-mapy-k-automatu/zmapuj-kolegovi-workflow'],
       kind: 'work',
       who: 'Lektor + asistence',
@@ -251,10 +275,10 @@ export const DEFAULT_CONFIG: RunConfig = {
         'něco posíláte dál. Technika je kontextové dotazování: neptej se „jak to děláš“, ale „ukaž mi, ' +
         'jak jsi to dělala naposledy“. Uklizená verze bez výjimek je k ničemu.',
       steps: [
-        { title: 'Každý si vybere svůj výsek a napíše ho jednou větou', min: 5 },
-        { title: 'A se ptá, B popisuje. Nahrávat na telefon.', min: 15 },
-        { title: 'Prohodit se — B se ptá, A popisuje', min: 15 },
-        { title: 'Uložit nahrávku do projektu do podklady/', min: 5 },
+        { title: 'Každý si vybere svůj výsek a napíše ho jednou větou', min: 4 },
+        { title: 'A se ptá, B popisuje. Nahrávat na telefon.', min: 14 },
+        { title: 'Prohodit se — B se ptá, A popisuje', min: 14 },
+        { title: 'Uložit nahrávku do projektu do podklady/', min: 3 },
       ],
       examples: [
         {

@@ -93,6 +93,64 @@ def prazdne_moduly():
             chyby.append(f'lekce v kurzu {m.group(2)} leží v nedeklarovaném modulu „{chybi}"')
 
 
+def bloky_programu():
+    """Bloky agendy v pořadí — název a lekce, na které blok odkazuje."""
+    zac = CFG.index('  agenda: [\n')
+    kon = CFG.index('\n  ],\n', zac)
+    radky = CFG[zac:kon].split('\n')
+    hranice, hloubka, start = [], 0, None
+    for i, r in enumerate(radky):
+        if r == '    {':
+            if hloubka == 0:
+                start = i
+            hloubka += 1
+        elif r in ('    },', '    }'):
+            hloubka -= 1
+            if hloubka == 0:
+                hranice.append((start, i))
+    out = []
+    for a, b in hranice:
+        blok = '\n'.join(radky[a:b + 1])
+        nazev = re.search(r"title: '([^']+)'", blok).group(1)
+        out.append((nazev, re.findall(r"'([a-z-]+/[a-z0-9-]+)'", blok)))
+    return out
+
+
+def program_vs_lekce():
+    """Program dne musí projít lekce druhého kurzu ve stejném pořadí jako akademie.
+
+    Rozešlo se to už dvakrát: pořadí lekcí se změnilo a program zůstal, jak byl.
+    První kurz se nekontroluje — nastavení je v sále schválně hned na začátku,
+    i když v akademii leží až za orientací.
+    """
+    poradi, i = {}, 0
+    for kurz in re.finditer(r"    slug: '([a-z-]+)',[\s\S]*?lessons: \[([^\]]*)\]", AC):
+        for v in re.findall(r'\b(L\w+|LESSON_\w+)\b', kurz.group(2)):
+            poradi[v] = (kurz.group(1), i)
+            i += 1
+    lekce = {}
+    for m in re.finditer(r"const (\w+): Lesson = \{\n  slug: '([^']+)',[\s\S]{0,1200}?track: '([^']+)'", AC):
+        if m.group(1) in poradi:
+            kurz, poz = poradi[m.group(1)]
+            lekce[f'{kurz}/{m.group(2)}'] = (poz, m.group(3), kurz)
+
+    bloky = bloky_programu()
+    odkazane = {s for _, ss in bloky for s in ss}
+    for s, (_, stopa, _) in lekce.items():
+        if stopa == 'v sále' and s not in odkazane:
+            chyby.append(f'lekce {s} je „v sále", ale žádný blok programu na ni neodkazuje')
+
+    # pořadí kontroluju jen u druhého kurzu — tam jde o ten oblouk
+    videno = []
+    for nazev, odkazy in bloky:
+        for s in odkazy:
+            if s in lekce and lekce[s][2] == 'od-mapy-k-automatu':
+                if s not in [x[0] for x in videno]:
+                    videno.append((s, lekce[s][0], nazev))
+    for a, b in zip(videno, videno[1:]):
+        if a[1] > b[1]:
+            chyby.append(f'program má „{b[2]}" ({b[0]}) až po „{a[2]}" ({a[0]}), v lekcích je to obráceně')
+
 # Věty, které o zastaralé podobě mluví proto, aby ji vyvrátily. Bez toho
 # by kontrola hlásila právě ta místa, která jsou napsaná správně.
 POPIRA = ('Nekontroluje se proti', 'neporovnává', 'v nové podobě není')
@@ -111,7 +169,7 @@ def zastarale_fraze():
                 chyby.append(f'{jmeno}:{cislo} „{m.group(0)}" — {duvod}')
 
 
-for f in (kopie_souboru, odkazy_na_lekce, prazdne_moduly, zastarale_fraze):
+for f in (kopie_souboru, odkazy_na_lekce, prazdne_moduly, program_vs_lekce, zastarale_fraze):
     f()
 
 if chyby:
