@@ -257,7 +257,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Říct nahlas: „neptej se, jestli je to správně“. Odpověď ano je tvrzení o tvrzení.',
         'Ukázat vyplněný kontrolní protokol z kontroly faktur, včetně toho řádku o nesedící částce',
         'Pasti ukázat na exportu objednávek, ne obecně',
-        'Kdo se ptá na skilly: v akademii je rozbor toho skutečného (Jak napsat skill) — původní verze, čtyři slabiny, vylepšená',
+        'Kdo se ptá na skilly: v akademii je lekce Rozbor skutečného skillu — původní verze, čtyři slabiny, vylepšená',
       ],
     },
     {
@@ -268,7 +268,6 @@ export const DEFAULT_CONFIG: RunConfig = {
     {
       title: 'Cvičení 2 — postav si první automatizaci',
       min: 45,
-      lessons: ['od-mapy-k-automatu/jak-napsat-skill'],
       kind: 'work',
       who: 'Lektor + asistence',
       brief:
@@ -278,7 +277,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         { title: 'Vybrat krok a připravit si vstup i výsledek z minula', min: 8 },
         { title: 'Udělat to jednou zadáním a zapisovat si doříkání', min: 15 },
         { title: 'Doříkání, která platí pořád, přepsat do CLAUDE.md', min: 5, lessons: ['claude-a-firemni-data/projekt-v-claude-code'] },
-        { title: 'Nechat si napsat skill a opravit mu description', min: 10, lessons: ['od-mapy-k-automatu/jak-napsat-skill', 'od-mapy-k-automatu/rozbor-skillu'] },
+        { title: 'Nechat si napsat skill a opravit mu description', min: 10, lessons: ['od-mapy-k-automatu/rozbor-skillu'] },
         { title: 'Spustit na datech z jiného měsíce', min: 7 },
       ],
       examples: [

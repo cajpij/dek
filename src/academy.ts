@@ -182,22 +182,17 @@ const LESSON_PROGRAM: Lesson = {
           'mapu vlastního procesu s označenými místy ručního přenosu',
         ],
         [
-          '4. Naučit se řemeslo',
-          'Zadání práce nad tabulkou, Jak poznáš, že je výsledek špatně',
-          'umíš napsat zadání, které projde napoprvé, a zkontrolovat výsledek',
+          '4. Postavit to',
+          'Jak se v projektu nastaví automatizace, Cvičný projekt: kontrola faktur, Naplánovaná úloha',
+          'úlohu nad vlastní agendou, která se spustí sama',
         ],
         [
-          '5. Postavit to',
-          'Jak se v projektu nastaví automatizace, Cvičný projekt: kontrola faktur, Jak napsat skill',
-          'skill nad vlastní agendou, který má vlastní kontrolu',
-        ],
-        [
-          '6. Dotáhnout do provozu',
-          'Rozbor skutečného skillu, Naplánovaná úloha, E-mail z automatu, Cvičný projekt, Pusť to naostro',
+          '5. Dotáhnout do provozu',
+          'Rozbor skutečného skillu, E-mail z automatu, Pusť to naostro',
           'úlohu, která proběhla sama a poslala výsledek dál',
         ],
         [
-          '7. Zkontrolovat se',
+          '6. Zkontrolovat se',
           'Máš to minimum?',
           'jistotu, že ti nic nechybí — a když chybí, víš kam se vrátit',
         ],
@@ -2257,297 +2252,6 @@ Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
   ],
 }
 
-const LESSON_SKILL: Lesson = {
-  slug: 'jak-napsat-skill',
-  module: 'postav',
-  title: 'Jak napsat skill (a nechat si ho napsat)',
-  summary:
-    'Z čeho se skill skládá, proč o všem rozhoduje jediný řádek, a co dát Claudovi, aby ti skill napsal sám a dobře.',
-  minutes: 10,
-  kind: 'lekce',
-  track: 'v sále',
-  outcomes: [
-    'poznat, kdy je čas udělat ze zadání skill',
-    'napsat description tak, aby se skill spouštěl ve správnou chvíli',
-    'rozdělit obsah mezi SKILL.md a přílohy',
-    'dát Claudovi podklady, ze kterých ti skill napíše sám',
-    'ověřit, že skill funguje i na jiných datech než na těch, ze kterých vznikl',
-    'vědět, kdy skill povýšit na plugin, aby ho měl celý tým',
-  ],
-  body: [
-    {
-      kind: 'p',
-      text:
-        'Skill je zabalený postup: složka se souborem SKILL.md, nahoře pár řádků o tom, co dělá a kdy se má použít, pod tím samotný postup. Nic víc. Celá dovednost je napsat ty dvě části tak, aby si je Claude vybral ve správnou chvíli a odpracoval je pokaždé stejně.',
-    },
-    { kind: 'h', text: 'Kdy z toho udělat skill' },
-    {
-      kind: 'list',
-      items: [
-        'Stejné zadání píšeš potřetí.',
-        'Postup má víc než tři kroky a pořadí na nich záleží.',
-        'Existuje způsob, jak se v tom splést, a ty ho pokaždé připomínáš.',
-        'Chceš, aby to uměl i někdo jiný než ty.',
-      ],
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Co skill není',
-      text:
-        'Není to místo na fakta o agendě — ta patří do CLAUDE.md a platí pořád. Skill je postup, který se spustí, jen když je potřeba. Test: platí to i ve chvíli, kdy tenhle úkol nedělám? Když ano, je to pravidlo, ne skill.',
-    },
-    { kind: 'h', text: 'Kam skill patří' },
-    {
-      kind: 'code',
-      text: `.claude/skills/<jmeno-skillu>/SKILL.md     ← platí jen v tomhle projektu
-~/.claude/skills/<jmeno-skillu>/SKILL.md   ← platí ve všech tvých projektech`,
-      caption: 'Začni v projektu. Když se skill osvědčí a používáš ho i jinde, přesuň složku do domovské.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Třetí patro: plugin',
-      text:
-        'Skill v projektu platí v projektu, skill v domovské složce jen u tebe. Jakmile má stejný postup používat víc týmů, zabalí se skilly do pluginu — balíčku, který se instaluje jedním příkazem a spravuje na jednom místě: autor opraví postup jednou a oprava dojde všem, místo aby po firmě žilo pět různě starých kopií. Plugin unese i hooky a konektory, takže se dá rozdat celá automatizace najednou.',
-    },
-    {
-      kind: 'code',
-      text: `/plugin marketplace add dek/claude-pluginy   ← firemní katalog (repozitář na GitHubu)
-/plugin install kontrola-faktur@dek          ← instalace balíčku z katalogu
-/kontrola-faktur:kontrola-faktur             ← skill z pluginu se volá se jménem balíčku`,
-      caption:
-        'Takhle by to vypadalo s firemním katalogem pluginů. Nezakládej ho kvůli prvnímu skillu — plugin má smysl, až když se postup měsíc osvědčil a chce ho další tým. Katalog pak spravuje jeden člověk, typicky IT; příkaz /plugin bez ničeho otevře přehled, kde se dá katalog procházet i klikáním.',
-    },
-    { kind: 'h', text: 'Anatomie souboru' },
-    {
-      kind: 'code',
-      text: `---
-name: kontrola-faktur
-description: Projde faktury v PDF ve složce vstup/ a porovná je se
-  seznamem schválených objednávek. Použij, když přibyly nové faktury.
----
-
-# Kontrola faktur
-
-1. Najdi ve vstup/ faktury, které ještě nemají řádek v poslední kontrole.
-   Když nejdou přečíst, napiš to a pokračuj u ostatních.
-2. Z každé vytáhni číslo faktury, dodavatele, číslo objednávky a základ daně.
-3. …
-
-## Na co si dát pozor
-- Porovnávej základ daně, ne částku s DPH.`,
-      caption: 'Otevírací --- musí být úplně první řádek souboru, jinak se hlavička nenačte.',
-    },
-    { kind: 'h', text: 'Description rozhoduje o všem' },
-    {
-      kind: 'p',
-      text:
-        'Tělo skillu se načte, až když si ho Claude vybere — a vybírá si ho podle jednoho jediného řádku, description. Vágní description znamená, že se skill nespustí nikdy, nebo se naopak plete do věcí, kam nepatří. Piš do něj dvě věci: co skill dělá a kdy se má použít, slovy, která do zadání běžně píšeš.',
-    },
-    {
-      kind: 'table',
-      head: ['Špatně', 'Dobře', 'V čem je rozdíl'],
-      rows: [
-        [
-          'description: Zpracuje faktury',
-          'description: Zkontroluje faktury ve vstup/ proti objednávkám v data/objednavky.xlsx. Použij, když přibyly nové faktury.',
-          'Vágní popis se netrefí do žádného zadání. Konkrétní se trefí do toho svého.',
-        ],
-        [
-          'description: Skill na PDF',
-          'description: Vytáhne z faktury povinné údaje a porovná je se schválenou objednávkou. Použij před přeposláním ke schválení.',
-          'Nástroj není spouštěč. Spouštěč je situace.',
-        ],
-        [
-          'description: Pro účtárnu',
-          'description: Připraví podklad ke schválení ze seznamu nových faktur.',
-          'Claude nezná účtárnu jako oddělení lidí. Zná úlohu.',
-        ],
-      ],
-    },
-    { kind: 'h', text: 'Jak psát tělo' },
-    {
-      kind: 'list',
-      items: [
-        'Kroky, ne esej — číslovaný seznam, jedna akce na krok.',
-        'Ověřitelně: „Sloupce v pořadí Kód, Název, Divize“ místo „správně naformátovat“.',
-        'Se zastavovacími pravidly — kdy se má zastavit a zeptat, místo aby hádal.',
-        'S pastmi. Sekce „na co si dát pozor“ ušetří víc než tři kroky navíc.',
-        'Krátce. Když SKILL.md přeroste pár set řádků, přesuň detaily do souboru vedle a odkaž na něj.',
-      ],
-    },
-    {
-      kind: 'code',
-      text: `.claude/skills/kontrola-faktur/
-├── SKILL.md          ← postup, krátký
-├── references/
-│   └── sloupce.md    ← úplný popis povinných údajů, načte se až když je potřeba
-└── scripts/
-    └── kontrola.py   ← pokud postup potřebuje něco spustit`,
-      caption: 'Přílohy jsou volitelné. Většina užitečných skillů je jen SKILL.md.',
-    },
-    { kind: 'h', text: 'Nech si ho napsat' },
-    {
-      kind: 'p',
-      text:
-        'Nejrychlejší cesta k prvnímu skillu není psát ho na prázdno, ale udělat tu úlohu jednou ručně se zadáním a pak říct Claudovi, ať z toho, co se právě stalo, udělá skill. On zná celý průběh — včetně toho, co jsi mu musela doříct.',
-    },
-    {
-      kind: 'code',
-      text: `Z toho, co jsme teď udělali, napiš skill do .claude/skills/.
-
-Dej mu jméno podle úlohy a do description napiš, co dělá a kdy se má
-použít — takovými slovy, jaká bych do zadání napsala já.
-
-V postupu drž pořadí kroků, které jsme prošli, a doplň místa, kde ses
-mě ptal nebo kde jsem tě opravovala — z nich udělej buď krok navíc,
-nebo zastavovací pravidlo.
-
-Na konec přidej sekci "Na co si dát pozor" s věcmi, které se tady dají
-splést. Pak mi ho ukaž, ať ho projdu, než ho uložíš.`,
-      caption: 'Tenhle prompt napiš hned po tom, co úloha doběhla správně. Ne druhý den — kontext je to nejcennější, co v tu chvíli máš.',
-    },
-    { kind: 'h', text: 'Zkratka: skill na psaní skillů' },
-    {
-      kind: 'p',
-      text:
-        'Nemusíš na to být sám či sama. V Claude Code je skill-creator — napiš lomítko a jeho jméno a provede tě založením skillu, úpravou existujícího i ověřením, jestli se spouští ve správných situacích. Výsledek si vždycky nejdřív projdeš na kartě, ne že by ti někdo psal do souborů za zády.',
-    },
-    {
-      kind: 'code',
-      text: `muj-skill/
-├── SKILL.md          ← povinné, jediné co musí být
-├── references/       ← delší dokumentace, načte se až když je potřeba
-├── scripts/          ← spustitelné skripty
-└── assets/           ← šablony, obrázky`,
-      caption: 'Obsah se načítá postupně: nejdřív jen description, pak SKILL.md, a přílohy teprve když na ně dojde. Proto drž SKILL.md stručný — pod pět set řádků — a detaily odsuň do references/.',
-    },
-    {
-      kind: 'p',
-      text:
-        'Nemusíš vědět, co po něm chceš technicky. Řekni mu to vlastními slovy — umí skill založit, opravit i vyzkoušet, jestli se vůbec spouští.',
-    },
-    {
-      kind: 'code',
-      text: `/skill-creator
-Chci skill, který mi z nových faktur ve vstup/ udělá kontrolní
-tabulku proti objednávkám.
-
-/skill-creator
-Mám skill kontrola-faktur, ale nespustí se, když napíšu
-„zkontroluj mi ty nové faktury". Sprav mi to.
-
-/skill-creator
-Z toho, co jsme právě udělali, udělej skill. Pak mi řekni, jestli
-se spustí, když stejnou úlohu zadám jinými slovy.`,
-      caption: 'Tři věci, na které se hodí: založit nový, opravit spouštění existujícího, a zabalit něco, co jsi právě odpracovala.',
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Tři věci, které rozhodují o kvalitě',
-      text:
-        'Jméno složky = jméno skillu. Description říká co to dělá i kdy to použít, slovy, která uživatel opravdu napíše. A tělo drž krátké — každý řádek navíc soutěží o pozornost s tím podstatným.',
-    },
-    {
-      kind: 'links',
-      title: 'Oficiální dokumentace',
-      items: [
-        {
-          label: 'Skill authoring best practices',
-          href: 'https://docs.claude.com/en/docs/agents-and-tools/agent-skills/best-practices',
-          note: 'Nejužitečnější stránka z celé čtveřice. Začni tady.',
-        },
-        {
-          label: 'Agent Skills — overview',
-          href: 'https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview',
-          note: 'Co skilly jsou a jak se načítají.',
-        },
-        {
-          label: 'Extend Claude with skills (Claude Code)',
-          href: 'https://code.claude.com/docs/en/skills',
-          note: 'Umístění složek a všechna pole hlavičky.',
-        },
-        {
-          label: 'The Complete Guide to Building Skills for Claude (PDF)',
-          href: 'https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf',
-          note: 'Delší materiál na jedno odpoledne.',
-        },
-      ],
-    },
-    { kind: 'h', text: 'Co Claudovi dát, aby vyšel dobře' },
-    {
-      kind: 'p',
-      text:
-        'Kvalita skillu se odvíjí od toho, kolik ze svého tichého vědění mu předáš. Tohle je pořadí podle užitku.',
-    },
-    {
-      kind: 'table',
-      head: ['Dej mu', 'Co z toho vytěží'],
-      rows: [
-        ['Reálný vstupní soubor a hotový výstup z minula', 'Pozná formát, pojmenování i to, co se ve výstupu očekává. Nic z toho nemusí hádat.'],
-        ['Průběh jedné ruční úlohy', 'Zná pořadí kroků i všechna tvá doříkání — ta jsou v postupu nejcennější.'],
-        ['Seznam věcí, které se dají splést', 'Vznikne sekce „na co si dát pozor“, díky které skill nespadne u kolegy.'],
-        ['Kdy se má zastavit a zeptat', 'Skill přestane hádat tam, kde je odhad horší než otázka.'],
-        ['Jak poznáš, že je výsledek špatně', 'Přidá si kontrolní krok na konec a sám ti řekne, když něco nesedí.'],
-        ['Kdo ho bude spouštět a jak to řekne', 'Trefí se v description do slov, která ti lidé opravdu píšou.'],
-      ],
-    },
-    { kind: 'h', text: 'Otestuj ho' },
-    {
-      kind: 'steps',
-      items: [
-        {
-          title: 'Pusť ho na jiných datech',
-          body:
-            'Ne na těch, ze kterých vznikl. Skill, který funguje jen na zářijovém exportu, není skill, ale poznámka.',
-        },
-        {
-          title: 'Zkus ho vyvolat nepřímo',
-          body:
-            'Napiš úlohu vlastními slovy, jméno skillu nezmiňuj. Když se nespustí, problém je v description, ne v postupu.',
-        },
-        {
-          title: 'Nech ho spustit někoho jiného',
-          body:
-            'Co je pro tebe samozřejmé, v postupu chybí — pozná se to jen tak, že to zkusí člověk, který agendu nedělá.',
-        },
-        {
-          title: 'Když vyjde jinak než minule, doplň pravidlo',
-          body:
-            'Rozdíl mezi dvěma běhy je skoro vždycky chybějící informace, ne chyba postupu.',
-        },
-      ],
-    },
-    {
-      kind: 'table',
-      head: ['Častá chyba', 'Jak se projeví', 'Oprava'],
-      rows: [
-        ['Postup jako souvislý text', 'kroky se přeskakují', 'rozepiš na číslovaný seznam'],
-        ['Skill napsaný na jeden soubor', 'příští měsíc nefunguje', 'popiš vzor názvu, ne konkrétní jméno'],
-        ['Žádné zastavovací pravidlo', 'dopočítá si, co nemá', 'napiš, kdy se má zastavit a zeptat'],
-        ['Příliš dlouhý SKILL.md', 'kroky se ztrácejí', 'detaily do souboru vedle, odkaz v postupu'],
-      ],
-    },
-    {
-      kind: 'task',
-      title: 'Cvičení: napiš první skill z toho, co právě proběhlo',
-      intro:
-        'Vezmi úlohu, kterou jsi právě rozběhl na vlastní agendě. Nezakládej nový soubor ručně.',
-      items: [
-        'Nech Clauda napsat skill promptem výš a přečti si, co vygeneroval.',
-        'Zkontroluj description: trefil by se do zadání, jaké napíšeš příště? Když ne, přepiš ho.',
-        'Projdi kroky a doplň jedno zastavovací pravidlo, které tam chybí.',
-        'Spusť skill na datech z jiného měsíce.',
-        'Vyvolej ho podruhé bez toho, aby zaznělo jeho jméno — jen popiš úlohu.',
-      ],
-      hint:
-        'Když se skill nespustí sám, nepiš delší postup. Přepiš description. Devět z deseti případů je tam.',
-    },
-  ],
-}
-
 const L2_ROZBOR: Lesson = {
   slug: 'rozbor-skillu',
   module: 'provoz',
@@ -4172,12 +3876,12 @@ const L2_MINIMUM: Lesson = {
         [
           'Skill',
           'spustíš ho jednou větou nad daty z jiného měsíce než z těch, ze kterých vznikl, a vyjde totéž co poprvé.',
-          'Jak napsat skill',
+          'Rozbor skutečného skillu',
         ],
         [
           'Kontrola',
           'otevřeš poslední protokol a rozhodneš z něj, jestli je výsledek v pořádku — bez otevírání samotného výstupu.',
-          'Jak poznáš, že je výsledek špatně',
+          'Cvičný projekt: kontrola faktur ke stažení',
         ],
         [
           'Zábrana',
@@ -5038,8 +4742,7 @@ export const COURSES: Course[] = [
       },
     ],
     lessons: [
-      LESSON_AUTOMATIZACE, L2_CVICNY, L2_PLAN, LESSON_SKILL,
-      L2_ROZBOR, L2_EMAIL, L2_NAOSTRO, L2_MINIMUM,
+      LESSON_AUTOMATIZACE, L2_CVICNY, L2_PLAN, L2_ROZBOR, L2_EMAIL, L2_NAOSTRO, L2_MINIMUM,
       L2_FORMULAR, L2_MCP, L2_DESIGN,
       LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI,
     ],
