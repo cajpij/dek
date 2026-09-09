@@ -102,7 +102,7 @@ export default function KnowledgeBase() {
         Claude v naší práci
       </Typography>
       <Typography sx={{ color: 'text.secondary', mt: 1.5, maxWidth: '68ch' }}>
-        Co si tým odnesl z workshopu a k čemu se vracet, až bude potřeba. Úlohy jsou psané tak,
+        Co si tým odnesl z workshopu a k čemu se vracet, až bude potřeba. Zadání jsou psaná tak,
         aby šly zadat rovnou — je u nich, co Claude dostane na vstupu a co má vypadnout. Časy
         platí pro člověka, který to dělá poprvé.
       </Typography>
@@ -116,7 +116,7 @@ export default function KnowledgeBase() {
 
       <Box sx={{ mt: 6 }}>
         <Typography variant="h6" component="h2" sx={{ fontWeight: 660 }}>
-          Úlohy podle agendy
+          Zadání podle agendy
         </Typography>
         <Tabs
           value={tab}

@@ -1,11 +1,11 @@
 /**
  * Knowledge base pro DEK — co si tým odnese z workshopu a k čemu se bude vracet.
  *
- * Forma je vzatá z Claude Academy (rozcestník, kartičky „začni tady“, úlohy
+ * Forma je vzatá z Claude Academy (rozcestník, kartičky „začni tady“, zadání
  * po agendách), obsah je z DEK: prodejny, centrální sklad, palety, rozvoz,
  * objednávky, reklamace, technické listy, zákaznické centrum.
  *
- * Úlohy jsou psané tak, aby šly zadat rovnou — co Claude dostane na vstupu
+ * Zadání jsou psaná tak, aby šla zadat rovnou — co Claude dostane na vstupu
  * a co má vypadnout. Odhad času je pro člověka, který to dělá poprvé.
  */
 

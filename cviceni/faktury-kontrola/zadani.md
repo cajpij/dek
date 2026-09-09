@@ -11,7 +11,7 @@ Postav mi v téhle složce kontrolu došlých faktur.
 ## K čemu to je
 Do schránky fakturace@dek.cz chodí od dodavatelů faktury v PDF. Někdo
 je musí otevřít, opsat z nich šest údajů do evidence a u neúplných napsat
-dodavateli o doplnění. Tohle má dělat úloha místo mě.
+dodavateli o doplnění. Tohle má dělat automatizace místo mě.
 
 ## Co potřebuješ
 Konektor na Microsoft 365, který schránku umí **číst i z ní odesílat poštu**.

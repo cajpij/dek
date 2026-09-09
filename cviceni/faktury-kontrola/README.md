@@ -25,7 +25,7 @@ ve `vstup/`. Mělo by se stát tohle:
 
 Porovnej to se soubory, které ve `vystup/` už leží — musí vyjít tentýž
 jeden nález. Když to pustíš podruhé, neudělá nic: všechny faktury už mají
-řádek. To je taky správně — úloha, která běží každých 15 minut, musí umět
+řádek. To je taky správně — automatizace, která běží každých 15 minut, musí umět
 nedělat nic.
 
 ## Co v tom je
@@ -40,7 +40,7 @@ faktury-kontrola/
 ├── .claude/skills/kontrola-faktur/SKILL.md
 ├── .claude/hooks/chran-vstup.sh
 ├── .claude/settings.json
-├── rutina.md                  ← co vyplnit v naplánované úloze
+├── rutina.md                  ← co vyplnit v naplánované automatizaci
 └── runbook.md                 ← co dělat, když to spadne
 ```
 
@@ -67,7 +67,7 @@ bylo předem vidět, co se kam bude zapisovat. Naplní ho až první běh: každ
 faktura dostane řádek v sešitu svého dodavatele. Právě proto se dá porovnat,
 co ti vyšlo, s referenčním výstupem ve `vystup/` — a je to zároveň způsob,
 jak si ověřit, že projekt funguje. Když ho pustíš podruhé, neudělá už nic:
-všechny faktury mají řádek. To je správně — úloha, která běží každých
+všechny faktury mají řádek. To je správně — automatizace, která běží každých
 15 minut, musí umět nedělat nic.
 
 ## Jak to rozjet
@@ -77,13 +77,13 @@ všechny faktury mají řádek. To je správně — úloha, která běží každ
 2. Napiš: `Postupuj podle skillu kontrola-faktur.`
 3. Porovnej, co vzniklo, se soubory, které ve `vystup/` už jsou.
 4. Teprve pak, chceš-li to napojit na skutečnou schránku, nastav
-   naplánovanou úlohu podle `rutina.md` — tam je i to, co si zařídit u
-   správce Microsoft 365, aby úloha mohla e-mail fakticky odeslat.
+   naplánovanou automatizaci podle `rutina.md` — tam je i to, co si zařídit u
+   správce Microsoft 365, aby automatizace mohla e-mail fakticky odeslat.
 
 ## Jak to přepnout na svoje faktury
 
 1. Přesuň celou složku do nasyncované knihovny nebo si nastav naplánovanou
-   úlohu nad ní — projekt je obyčejná složka, nic jiného se měnit nemusí.
+   automatizaci nad ní — projekt je obyčejná složka, nic jiného se měnit nemusí.
 2. `vstup/` a `data/objednavky.xlsx` vyprázdni, nech je naplnit skutečnými
    fakturami.
 3. Přepiš adresy na svoje. Ve složce jsou na **třinácti místech v pěti

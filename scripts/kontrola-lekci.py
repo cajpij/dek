@@ -29,7 +29,7 @@ ZASTARALE = {
     r'schválen[ýéoa]\w* objednávk': 'projekt se proti schváleným objednávkám neporovnává',
     r'porovn\w+ (?:je )?se? seznamem objednávek': 'totéž — jen se eviduje, co přišlo',
     r'sloupc[ei] CHYBÍ': 'evidence má sloupce Kompletní a Žádost odeslána',
-    r'\bmailto\b': 'úloha posílá poštu doopravdy, mailto už není náhradní plán',
+    r'\bmailto\b': 'automatizace posílá poštu doopravdy, mailto už není náhradní plán',
     r'chran-data\.sh': 'hook ve cvičném projektu se jmenuje chran-vstup.sh',
 }
 

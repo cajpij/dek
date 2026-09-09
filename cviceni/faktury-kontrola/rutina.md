@@ -1,11 +1,12 @@
-# Naplánovaná úloha: kontrola nových faktur v Outlooku
+# Naplánovaná automatizace: kontrola nových faktur v Outlooku
 
 Co vyplnit v aplikaci Claude → záložka **Code** → **Routines** → **New routine**.
 
-## Než založíš úlohu: konektor na Microsoft 365
+## Než založíš automatizaci: konektor na Microsoft 365
 
-Tahle úloha potřebuje konektor Claude na Microsoft 365 se zapnutými **write
-tools** (posílání pošty) — bez nich přečte schránku, ale e-mail neodešle,
+Tahle automatizace potřebuje konektor Claude na Microsoft 365 se zapnutými
+**write tools** (posílání pošty) — bez nich přečte schránku, ale e-mail
+neodešle,
 jenom ho navrhne (viz `CLAUDE.md`, „Když projekt běží bez připojené
 schránky"). Write tools zapíná zvlášť správce Microsoft 365, přihlášený
 pracovním účtem; osobní outlook.com nebo hotmail.com nefunguje. Text, který
@@ -22,7 +23,7 @@ mu poslat, je níž v „Co napsat správci".
 | **Folder** | složka tohoto projektu (`faktury-kontrola`) |
 | **Schedule** | Every 15 minutes, v pracovní dny 7:00–18:00 |
 
-Proč každých 15 minut, ne jednou denně: tahle úloha nahrazuje ruční
+Proč každých 15 minut, ne jednou denně: tahle automatizace nahrazuje ruční
 sledování schránky, takže žádost o doplnění má dodavateli přijít brzy po
 faktuře, ne až druhý den. Claude Code nemá skutečné „hned jak přijde
 e-mail" spouštění — nejblíž tomu je časté opakování. Když ti 15 minut
@@ -63,18 +64,18 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.
    dodavatele a u té, které něco chybělo, má být vyplněný sloupec „Žádost
    odeslána".
 4. Teprve pak to nech běžet samo. **První den to nech běžet vedle sebe a
-   po každém běhu se podívej, co se stalo** — je to jediná úloha v tomhle
-   projektu, která bez tvého kliknutí posílá poštu ven z firmy.
+   po každém běhu se podívej, co se stalo** — je to jediná automatizace
+   v tomhle projektu, která bez tvého kliknutí posílá poštu ven z firmy.
 
 ## Co je dobré vědět
 
-- Místní úloha běží, jen když je aplikace Claude spuštěná a počítač vzhůru.
-  Když počítač spí, běh se přeskočí a doženou se jen ty, co chyběly
+- Místní automatizace běží, jen když je aplikace Claude spuštěná a počítač
+  vzhůru. Když počítač spí, běh se přeskočí a doženou se jen ty, co chyběly
   bezprostředně předtím — ne všechny za celou dobu.
-- Kdyby konektor na M365 spadl nebo přišel o přístup, úloha se zastaví na
-  dotazu, ne že by tiše nic nedělala — sleduj to hlavně první týden.
+- Kdyby konektor na M365 spadl nebo přišel o přístup, automatizace se
+  zastaví na dotazu, ne že by tiše nic nedělala — sleduj to hlavně první týden.
 - Když chceš, aby tohle běželo i s vypnutým počítačem, není to tenhle typ
-  úlohy. To už musí běžet někde jinde než na tvém stole.
+  automatizace. To už musí běžet někde jinde než na tvém stole.
 
 ## Co napsat správci
 
@@ -82,7 +83,7 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.
 Ahoj, potřeboval bych u konektoru Microsoft 365 pro Claude povolit
 write tools (odesílání pošty) pro schránku fakturace@dek.cz.
 
-K čemu to bude: automatická kontrola došlých faktur. Úloha zkontroluje
+K čemu to bude: automatická kontrola došlých faktur. Automatizace zkontroluje
 šest povinných údajů a dodavateli automaticky pošle žádost o doplnění,
 když jeden nebo dva chybí. Nic k platbě, schválení ani do účetnictví
 se automaticky neposílá — to zůstává na nás.

@@ -89,7 +89,7 @@ export default function TokenDrains() {
     },
     {
       n: '3',
-      title: ['Větší model nebo effort,', 'než úloha potřebuje'],
+      title: ['Větší model nebo effort,', 'než úkol potřebuje'],
       body: [
         'Násobí se tím všechno ostatní — a obě nastavení',
         'zůstávají zapnutá i do dalších sezení.',
@@ -98,7 +98,7 @@ export default function TokenDrains() {
         <g>
           <rect x={x} y={y} width={80} height={13} rx={4} fill={color} opacity={0.9} />
           <text x={x + 92} y={y + 11} fontSize={12} fontFamily="ui-monospace, Menlo, monospace" fill="currentColor">
-            ×1 co úloha potřebuje
+            ×1 co úkol potřebuje
           </text>
           <rect x={x} y={y + 24} width={330} height={13} rx={4} fill={color} opacity={0.55} />
           <text
@@ -158,7 +158,7 @@ export default function TokenDrains() {
         component="svg"
         viewBox="0 0 900 614"
         role="img"
-        aria-label="Čtyři místa, kudy odtéká příděl. Za prvé dlouhá sezení: každá zpráva posílá znovu všechno před sebou. Za druhé moc věcí v kontextu: nepotřebné soubory, upovídané výpisy, zbytky po minulé úloze a nepoužívané konektory. Za třetí větší model nebo vyšší effort, než úloha potřebuje — násobí se tím všechno ostatní. Za čtvrté rozbitá cache: změna modelu, effortu nebo fast mode uprostřed práce nechá celou konverzaci projít znovu plnou cenou místo desetiny."
+        aria-label="Čtyři místa, kudy odtéká příděl. Za prvé dlouhá sezení: každá zpráva posílá znovu všechno před sebou. Za druhé moc věcí v kontextu: nepotřebné soubory, upovídané výpisy, zbytky po minulé úloze a nepoužívané konektory. Za třetí větší model nebo vyšší effort, než úkol potřebuje — násobí se tím všechno ostatní. Za čtvrté rozbitá cache: změna modelu, effortu nebo fast mode uprostřed práce nechá celou konverzaci projít znovu plnou cenou místo desetiny."
         sx={{ display: 'block', width: '100%', minWidth: 720, height: 'auto' }}
       >
         {cards.map((card, i) => {

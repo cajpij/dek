@@ -187,7 +187,7 @@ export default function SettingsPanel({ run }: { run: RunSheet }) {
             </Box>
 
             <Typography sx={{ fontSize: 13, color: 'text.secondary', mt: 2, mb: 1 }}>
-              Knowledge base — úlohy podle agendy a pravidla, ke kterým se tým vrací po workshopu.
+              Knowledge base — zadání podle agendy a pravidla, ke kterým se tým vrací po workshopu.
               Nejsou v ní žádná firemní data ani jména.
             </Typography>
             <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap' }}>

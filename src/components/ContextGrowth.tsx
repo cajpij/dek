@@ -4,7 +4,7 @@ import { useFigureColors } from '../lib/figureColors'
 /**
  * Proč dlouhé sezení stojí víc než několik krátkých.
  *
- * Levý sloupec: jedno sezení, ve kterém se vystřídají tři úlohy. Každá další
+ * Levý sloupec: jedno sezení, ve kterém se vystřídají tři úkoly. Každá další
  * zpráva s sebou táhne všechny předchozí, takže roste to, co se posílá znovu.
  * Pravý: totéž rozdělené na tři sezení — po každé úloze /clear a začíná se
  * odznova.
@@ -13,7 +13,7 @@ import { useFigureColors } from '../lib/figureColors'
  * ne konkrétní hodnota, která by za měsíc stejně neplatila.
  */
 
-/** Kolik toho každá zpráva přidá. Tři úlohy po pěti zprávách. */
+/** Kolik toho každá zpráva přidá. Tři úkoly po pěti zprávách. */
 const ADDED = [4, 3, 5, 3, 4, 5, 3, 4, 4, 3, 4, 5, 3, 4, 4]
 const TASK_AT = [0, 5, 10]
 
@@ -72,7 +72,7 @@ export default function ContextGrowth() {
         opacity={0.35}
       />
       <text x={x0} y={baseY + 22} fontSize={12.5} fill="currentColor" opacity={0.8}>
-        15 zpráv, tři úlohy
+        15 zpráv, tři úkoly
       </text>
       <text x={x0} y={baseY + 44} fontSize={13.5} fontWeight={650} fill={color}>
         celkem {sum} dílků
@@ -93,7 +93,7 @@ export default function ContextGrowth() {
         component="svg"
         viewBox="0 0 900 280"
         role="img"
-        aria-label={`Dva sloupcové grafy vedle sebe. Vlevo jedno dlouhé sezení: každá další zpráva posílá znovu všechny předchozí, sloupce rostou až do konce a dohromady dají ${sumLong} dílků. Vpravo totéž rozdělené na tři sezení s příkazem lomítko clear mezi úlohami: sloupce třikrát spadnou na začátek a dohromady dají ${sumShort} dílků, tedy zhruba polovinu.`}
+        aria-label={`Dva sloupcové grafy vedle sebe. Vlevo jedno dlouhé sezení: každá další zpráva posílá znovu všechny předchozí, sloupce rostou až do konce a dohromady dají ${sumLong} dílků. Vpravo totéž rozdělené na tři sezení s příkazem lomítko clear mezi úkoly: sloupce třikrát spadnou na začátek a dohromady dají ${sumShort} dílků, tedy zhruba polovinu.`}
         sx={{ display: 'block', width: '100%', minWidth: 760, height: 'auto' }}
       >
         <text x={20} y={20} fontSize={12.5} fill="currentColor" opacity={0.75}>

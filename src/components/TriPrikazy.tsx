@@ -150,7 +150,7 @@ export default function TriPrikazy() {
         component="svg"
         viewBox="0 0 900 336"
         role="img"
-        aria-label="Tři způsoby, jak zkrátit dlouhé sezení, nakreslené jako pásek devíti zpráv a to, co s ním každý příkaz udělá. Lomítko clear historii celou zahodí a zůstane prázdno; nic to nestojí a použije se, jakmile jdeš na jinou úlohu. Lomítko compact historii slisuje do jednoho souhrnu, na který pak navazují nové zprávy; něco to stojí, protože shrnutí musí celou konverzaci nejdřív přečíst, takže se dělá v přestávce mezi kroky, ne uprostřed. Lomítko rewind ukrojí jen pár posledních kroků a zbytek historie nechá; je levné, protože se vrací do historie, kterou už má cache přečtenou, a hodí se, když se práce vydala špatným směrem."
+        aria-label="Tři způsoby, jak zkrátit dlouhé sezení, nakreslené jako pásek devíti zpráv a to, co s ním každý příkaz udělá. Lomítko clear historii celou zahodí a zůstane prázdno; nic to nestojí a použije se, jakmile jdeš na jiný úkol. Lomítko compact historii slisuje do jednoho souhrnu, na který pak navazují nové zprávy; něco to stojí, protože shrnutí musí celou konverzaci nejdřív přečíst, takže se dělá v přestávce mezi kroky, ne uprostřed. Lomítko rewind ukrojí jen pár posledních kroků a zbytek historie nechá; je levné, protože se vrací do historie, kterou už má cache přečtenou, a hodí se, když se práce vydala špatným směrem."
         sx={{ display: 'block', width: '100%', minWidth: 800, height: 'auto' }}
       >
         <text x={LEFT_X} y={20} fontSize={12.5} fill="currentColor" opacity={0.75}>
@@ -164,7 +164,7 @@ export default function TriPrikazy() {
           ok,
           'nic nestojí',
           'prázdno, začínáš načisto',
-          ['Jakmile jdeš na jinou úlohu.', 'Nejúčinnější věc z celé lekce.'],
+          ['Jakmile jdeš na jiný úkol.', 'Nejúčinnější věc z celé lekce.'],
           <g>{ghost(AFTER_X, blockY(0), BEFORE)}</g>,
         )}
 
@@ -175,7 +175,7 @@ export default function TriPrikazy() {
           warn,
           'něco stojí',
           'jeden souhrn + nové zprávy',
-          ['Táž úloha, ale historie je moc dlouhá.', 'Shrnutí musí celou konverzaci přečíst,', 'takže dělej v přestávce, ne uprostřed.'],
+          ['Týž úkol, ale historie je moc dlouhá.', 'Shrnutí musí celou konverzaci přečíst,', 'takže dělej v přestávce, ne uprostřed.'],
           <g>
             <rect x={AFTER_X} y={blockY(1)} width={62} height={BLOCK_H} rx={3} fill={warn} opacity={0.85} />
             <text

@@ -4,7 +4,7 @@ import { useFigureColors } from '../lib/figureColors'
 /**
  * Dvě různá povolení složky — a proč na tom rozdílu záleží.
  *
- * Vlevo dialog, který ukáže Cowork: úloha běží v cloudu, takže soubory
+ * Vlevo dialog, který ukáže Cowork: automatizace běží v cloudu, takže soubory
  * odcházejí z počítače. Vpravo dialog Claude Code v režimu Local — „Trust this
  * workspace?“. Soubory zůstávají na disku, ale je v něm řádek, který se snadno
  * přehlédne: „Execution allowed by: .claude/settings.json“. Ten řádek se objeví
@@ -41,12 +41,12 @@ export default function FolderPermission() {
         component="svg"
         viewBox="0 0 900 450"
         role="img"
-        aria-label="Dvě různá povolení složky vedle sebe. Vlevo dialog Coworku: Allow this Cowork session to access this folder, s upozorněním, že úloha běží v cloudu a soubory tedy odcházejí z počítače. Vpravo skutečný dialog Claude Code v režimu Local: Trust this workspace, s vysvětlením, že Claude Code smí v té složce číst, zapisovat i spouštět soubory, a proto se má pokračovat jen u složky, které člověk věří. Pod cestou ke složce je věta, že se macOS může zeptat na přístup a je potřeba kliknout na Allow, a odkaz na bezpečnostní příručku. Dole je řádek Execution allowed by s hodnotou tečka claude lomítko settings tečka json: ve složce leží nastavení, které samo spouští příkaz. U staženého cvičného projektu je to zábrana nad složkou vstup a je to schválně, u složky odjinud je to důvod se do toho souboru podívat. Tlačítka jsou Cancel a Trust workspace."
+        aria-label="Dvě různá povolení složky vedle sebe. Vlevo dialog Coworku: Allow this Cowork session to access this folder, s upozorněním, že automatizace běží v cloudu a soubory tedy odcházejí z počítače. Vpravo skutečný dialog Claude Code v režimu Local: Trust this workspace, s vysvětlením, že Claude Code smí v té složce číst, zapisovat i spouštět soubory, a proto se má pokračovat jen u složky, které člověk věří. Pod cestou ke složce je věta, že se macOS může zeptat na přístup a je potřeba kliknout na Allow, a odkaz na bezpečnostní příručku. Dole je řádek Execution allowed by s hodnotou tečka claude lomítko settings tečka json: ve složce leží nastavení, které samo spouští příkaz. U staženého cvičného projektu je to zábrana nad složkou vstup a je to schválně, u složky odjinud je to důvod se do toho souboru podívat. Tlačítka jsou Cancel a Trust workspace."
         sx={{ display: 'block', width: '100%', minWidth: 800, height: 'auto' }}
       >
         {/* ---------------------------------------------------------- Cowork */}
         <text x={leftX} y={18} fontSize={12.5} fontWeight={700} fill={warn}>
-          COWORK — ÚLOHA BĚŽÍ V CLOUDU
+          COWORK — BĚŽÍ V CLOUDU
         </text>
         <rect
           x={leftX}

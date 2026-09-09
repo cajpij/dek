@@ -18,7 +18,7 @@ Neschvaluje faktury, nic neplatí a nezapisuje nic do účetního systému.
 
 ## Kde to běží
 
-Naplánovaná úloha `kontrola-faktur` v aplikaci Claude, záložka Code →
+Naplánovaná automatizace `kontrola-faktur` v aplikaci Claude, záložka Code →
 Routines, typ Local. Běží na počítači, na kterém je nastavená — ne v cloudu.
 Potřebuje konektor na Microsoft 365 se zapnutými write tools (posílání
 pošty); bez nich přečte schránku, ale e-mail jen navrhne, neodešle.
@@ -34,7 +34,7 @@ Otevři poslední `vystup/protokol-*.md` nebo sešit „Přehled" v posledním
 - **„připraveno, čeká na konektor"** — text je navržený, ale konektor
   nebyl připojený (nebo neměl write tools), takže se fyzicky neodeslal.
 - **„k ruční kontrole" v protokolu** — chybělo moc údajů najednou nebo se
-  PDF nedalo přečíst. Tohle úloha záměrně nechává na člověku.
+  PDF nedalo přečíst. Tohle automatizace záměrně nechává na člověku.
 
 Když chceš vidět jen to, jestli se u konkrétního dodavatele o doplnění už
 psalo, nemusíš hledat den, kdy se to stalo: stačí sloupec „Žádost odeslána"
@@ -44,17 +44,18 @@ v jeho sešitu v `data/objednavky.xlsx`.
 
 | Co se stalo | Čím to bývá | Co s tím |
 | --- | --- | --- |
-| Úloha se nespustila | počítač spal nebo byla zavřená aplikace | doženou se jen běhy bezprostředně předtím, ne celá historie |
+| Automatizace se nespustila | počítač spal nebo byla zavřená aplikace | doženou se jen běhy bezprostředně předtím, ne celá historie |
 | Běh se zastavil na dotazu | konektor ztratil přístup, nebo se ptá poprvé | otevři to sezení v postranním panelu, odpověz a dej „always allow" |
 | E-mail se neodeslal, i když chybělo jen jedno pole | write tools na konektoru M365 nejsou zapnuté | napiš správci, ať je zapne (viz `rutina.md`) |
 | Odešel e-mail se špatným textem nebo špatnému dodavateli | PDF se přečetlo špatně (adresa, jméno) | zkontroluj konkrétní fakturu ručně, oprav v `data/objednavky.xlsx`, případně napiš dodavateli omluvu sama |
-| Protokol hlásí spoustu faktur „k ruční kontrole" | většinou se změnil formát PDF, ne že by bylo najednou hodně špatných faktur | projdi dvě tři faktury ručně, než necháš úlohu pokračovat |
-| Ve `vstup/` zmizel soubor | někdo tam uklidil | soubory ve `vstup/` maže jen člověk; úloha do té složky zapisuje jen nové PDF (hlídá to hook). V evidenci řádek zůstává — je to záznam běhu, který se stal. |
-| Jedna faktura je v evidenci dvakrát | přišla do schránky podruhé a její PDF mezitím ze `vstup/` zmizelo | nechej nový řádek být a starý si označ; úloha pozná už zpracovanou fakturu podle toho, co leží ve `vstup/` |
+| Protokol hlásí spoustu faktur „k ruční kontrole" | většinou se změnil formát PDF, ne že by bylo najednou hodně špatných faktur | projdi dvě tři faktury ručně, než necháš automatizaci pokračovat |
+| Ve `vstup/` zmizel soubor | někdo tam uklidil | soubory ve `vstup/` maže jen člověk; automatizace do té složky zapisuje jen nové PDF (hlídá to hook). V evidenci řádek zůstává — je to záznam běhu, který se stal. |
+| Jedna faktura je v evidenci dvakrát | přišla do schránky podruhé a její PDF mezitím ze `vstup/` zmizelo | nechej nový řádek být a starý si označ; automatizace pozná už zpracovanou fakturu podle toho, co leží ve `vstup/` |
 
 ## Komu napsat
 
-Nejdřív tomu, kdo tuhle úlohu nastavil. Když jde o obsah faktur nebo o to,
+Nejdřív tomu, kdo tuhle automatizaci nastavil. Když jde o obsah faktur nebo
+o to,
 co se poslalo dodavateli, účetní. Když jde o přístup ke schránce nebo
 konektor, správce Microsoft 365.
 

@@ -20,7 +20,7 @@ const KROKY: Krok[] = [
   {
     n: '1',
     titul: 'Do schránky přijde e-mail s fakturou v PDF',
-    detail: 'úloha se dívá každých 15 minut · bez konektoru bere místo toho PDF, která leží ve vstup/',
+    detail: 'automatizace se dívá každých 15 minut · bez konektoru bere místo toho PDF, která leží ve vstup/',
   },
   {
     n: '2',

@@ -10,8 +10,8 @@ description: Sleduje schránku fakturace@dek.cz (přes M365) nebo zpracuje, co
 # Kontrola faktur
 
 ## Kdy to spustit
-Při každém běhu naplánované úlohy, nebo kdykoli se řekne „zkontroluj nové
-faktury". Je-li připojený konektor na Microsoft 365, podívej se do schránky
+Při každém běhu naplánované automatizace, nebo kdykoli se řekne „zkontroluj
+nové faktury". Je-li připojený konektor na Microsoft 365, podívej se do schránky
 fakturace@dek.cz na e-maily s PDF přílohou, které ještě nejsou uložené ve
 vstup/. Bez konektoru (třeba při prvním spuštění cvičného projektu) zpracuj
 místo toho PDF, která už ve vstup/ leží a která ještě nemají řádek v evidenci

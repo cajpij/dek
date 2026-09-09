@@ -2,10 +2,10 @@ import Box from '@mui/material/Box'
 import { useFigureColors } from '../lib/figureColors'
 
 /**
- * Co z ručního procesu převzala úloha a co zůstalo člověku.
+ * Co z ručního procesu převzala automatizace a co zůstalo člověku.
  *
  * Pointa není v krocích — ta je vidět jinde. Pointa je ten řez uprostřed:
- * nad ním to dělá úloha, pod ním člověk, a je to rozhodnutí, ne nedodělek.
+ * nad ním to dělá automatizace, pod ním člověk, a je to rozhodnutí, ne nedodělek.
  * Proto řez místo štítku u každého řádku: šestkrát zopakovaná nálepka
  * říká totéž co jedna čára, jen hlučněji.
  */
@@ -17,7 +17,7 @@ const AUTOMAT: Radek[] = [
     krok: 'Faktura přijde',
     kdo: 'dodavatel → Marie',
     drive: ['Marie ji musí najít ve schránce mezi', 'desítkami zpráv a stáhnout přílohu.'],
-    ted: ['Úloha kouká do schránky každých 15 minut', 'a PDF uloží do vstup/ pod datem', 'a jménem dodavatele.'],
+    ted: ['Automatizace kouká do schránky každých 15 minut', 'a PDF uloží do vstup/ pod datem', 'a jménem dodavatele.'],
   },
   {
     krok: 'Šest údajů',
@@ -46,7 +46,7 @@ const CLOVEK: Radek[] = [
     kdo: 'Marie → účtárna',
     drive: ['Marie posílala dál i faktury,', 'kterým něco chybělo — a řešilo se to', 'až v účtárně.'],
     ted: ['Přepošle až tu, která prošla celým', 'během: je kompletní a zaevidovaná.', 'Účtárna nedostane nic k vracení.'],
-    posun: ['Další schod: ať kompletní fakturu', 'přepošle úloha sama.'],
+    posun: ['Další schod: ať kompletní fakturu', 'přepošle automatizace sama.'],
   },
   {
     krok: 'Schválení a platba',
@@ -103,7 +103,7 @@ export default function RucneVsAutomat() {
         component="svg"
         viewBox={`0 0 900 ${H}`}
         role="img"
-        aria-label="Srovnání toho, co Marie dělala ručně, a co dělá hotová úloha, v šesti krocích rozdělených řezem. Nad řezem tři kroky, které převzala úloha: fakturu dřív musela Marie najít ve schránce a stáhnout, teď se do schránky dívá úloha každých 15 minut a PDF uloží do složky vstup. Šest údajů dřív přepisovala z PDF do tabulky, teď je úloha vytáhne a zapíše do objednavky.xlsx do sešitu podle dodavatele. Když údaj chyběl, Marie psala dodavateli a čekala; teď při jednom nebo dvou chybějících vznikne text v souboru kontrola a týmž textem odejde e-mail, čas se zapíše na tři místa. Pod řezem tři kroky, které zůstávají lidem: nečitelná faktura nebo tři a víc chybějících údajů jde do protokolu k ruční kontrole a neodchází nic; předání účtárně dělá Marie, ale teprve u faktury, která prošla celým během a je kompletní a zaevidovaná; a schválení s platbou zůstávají na účtárně a středisku beze změny, protože špatnou žádost o doplnění lze omluvit, ale špatně zaplacenou fakturu nikdo nevrátí."
+        aria-label="Srovnání toho, co Marie dělala ručně, a co dělá hotová automatizace, v šesti krocích rozdělených řezem. Nad řezem tři kroky, které převzala automatizace: fakturu dřív musela Marie najít ve schránce a stáhnout, teď se do schránky dívá automatizace každých 15 minut a PDF uloží do složky vstup. Šest údajů dřív přepisovala z PDF do tabulky, teď je automatizace vytáhne a zapíše do objednavky.xlsx do sešitu podle dodavatele. Když údaj chyběl, Marie psala dodavateli a čekala; teď při jednom nebo dvou chybějících vznikne text v souboru kontrola a týmž textem odejde e-mail, čas se zapíše na tři místa. Pod řezem tři kroky, které zůstávají lidem: nečitelná faktura nebo tři a víc chybějících údajů jde do protokolu k ruční kontrole a neodchází nic; předání účtárně dělá Marie, ale teprve u faktury, která prošla celým během a je kompletní a zaevidovaná; a schválení s platbou zůstávají na účtárně a středisku beze změny, protože špatnou žádost o doplnění lze omluvit, ale špatně zaplacenou fakturu nikdo nevrátí."
         sx={{ display: 'block', width: '100%', minWidth: 780, height: 'auto' }}
       >
         <defs>
@@ -185,7 +185,7 @@ export default function RucneVsAutomat() {
           )
         })}
 
-        {/* Řez: nad ním to dělá úloha, pod ním člověk. */}
+        {/* Řez: nad ním to dělá automatizace, pod ním člověk. */}
         <line x1={X_KROK} y1={yRez + 14} x2={352} y2={yRez + 14} stroke={clovek} strokeWidth={1} opacity={0.3} />
         <text x={368} y={yRez + 19} fontSize={11.5} fontWeight={700} fill={clovek} letterSpacing={1.2} opacity={0.85}>
           ODSUD DÁL ZATÍM ČLOVĚK
@@ -196,7 +196,7 @@ export default function RucneVsAutomat() {
           Dva z posledních tří kroků nejsou hotové — jen zatím ručně. Jdou posunout po stejných schodech jako ty nahoře.
         </text>
         <text x={X_KROK} y={H - 10} fontSize={12} fill="currentColor" opacity={0.8}>
-          Krok „dohledání objednávky“ v nové podobě není: úloha eviduje, co přišlo, a proti schváleným objednávkám to neporovnává.
+          Krok „dohledání objednávky“ v nové podobě není: automatizace eviduje, co přišlo, a proti schváleným objednávkám to neporovnává.
         </text>
       </Box>
     </Box>

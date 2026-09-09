@@ -11,7 +11,7 @@ type Field = {
   warn?: boolean
 }
 
-/** Vyplněný formulář nové úlohy pro kontrolu faktur. Hodnoty jsou reálné, ne ilustrační — je to ten samý cvičný projekt, který je ke stažení. */
+/** Vyplněný formulář nové automatizace pro kontrolu faktur. Hodnoty jsou reálné, ne ilustrační — je to ten samý cvičný projekt, který je ke stažení. */
 const FIELDS: Field[] = [
   {
     label: 'Name',
@@ -56,7 +56,7 @@ const FIELDS: Field[] = [
     y: 390,
     h: 32,
     mono: true,
-    note: 'Ta nasyncovaná složka. Bez ní se úloha neuloží.',
+    note: 'Ta nasyncovaná složka. Bez ní se automatizace neuloží.',
   },
   {
     label: 'Schedule',
@@ -86,7 +86,7 @@ export default function RoutineForm() {
         component="svg"
         viewBox="0 0 900 560"
         role="img"
-        aria-label="Vyplněný formulář nové naplánované úlohy: název kontrola-faktur, popis ranní kontrola nových faktur a mail s výsledkem, instrukce odkazující na skill kontrola-faktur s podmínkou nic neodesílat a jen otevřít rozepsaný e-mail, model Sonnet a režim Accept edits, složka faktury-kontrola na OneDrive a rozvrh denně v sedm ráno."
+        aria-label="Vyplněný formulář nové naplánované automatizace: název kontrola-faktur, popis ranní kontrola nových faktur a mail s výsledkem, instrukce odkazující na skill kontrola-faktur s podmínkou nic neodesílat a jen otevřít rozepsaný e-mail, model Sonnet a režim Accept edits, složka faktury-kontrola na OneDrive a rozvrh denně v sedm ráno."
         sx={{ display: 'block', width: '100%', minWidth: 720, height: 'auto' }}
       >
         {/* rám okna */}

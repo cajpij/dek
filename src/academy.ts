@@ -190,7 +190,7 @@ const LESSON_PROGRAM: Lesson = {
         [
           '4. Postavit to',
           'Jak se v projektu nastaví automatizace, Cvičný projekt: kontrola faktur, Automatizace pomocí routine',
-          'úlohu nad vlastní agendou, která se spustí sama',
+          'automatizaci nad vlastní agendou, která se spustí sama',
         ],
       ],
     },
@@ -254,7 +254,7 @@ const LESSON_PROGRAM: Lesson = {
       tone: 'info',
       title: 'Mezi setkáními',
       text:
-        'Úkol na týden je jediný: pustit svoji úlohu na skutečné práci a přinést zpátky, co se stalo. I „nepustila jsem to a tady je proč“ je platná odpověď.',
+        'Úkol na týden je jediný: pustit svoji automatizaci na skutečné práci a přinést zpátky, co se stalo. I „nepustila jsem to a tady je proč“ je platná odpověď.',
     },
   ],
 }
@@ -264,7 +264,7 @@ const VIDEOS_CLAUDE_CODE: VideoRef[] = [
     id: 'inxAjCRHe2o',
     title: 'Claude Code Tutorial for Non-Coders',
     author: 'Kevin Stratvert',
-    note: 'Od instalace po první úlohu, bez předpokladu, že umíš programovat.',
+    note: 'Od instalace po první zadání, bez předpokladu, že umíš programovat.',
   },
   {
     id: 'cV52QdcfA0s',
@@ -313,8 +313,8 @@ const LESSON_SLOVNICEK: Lesson = {
         ['description', 'jeden řádek na začátku skillu, který říká, co skill dělá a kdy se má použít. Podle něj Claude pozná, že ho má sáhnout.'],
         ['Plugin', 'balíček skillů (případně i hooků a konektorů), který se instaluje jedním příkazem. Takhle se osvědčený postup rozdá celému týmu, místo aby se kopírovaly složky.'],
         ['Hook', 'příkaz, který se spustí sám při určité události — třeba před každým zápisem souboru. Nemá úsudek, proto se hodí na zámky a upozornění, ne na rozhodování.'],
-        ['Naplánovaná úloha (routine)', 'zadání, které se spustí samo v daný čas — v pondělí v šest, každou hodinu. Local běží na vašem počítači, Cloud na serveru.'],
-        ['Kontrolní protokol', 'krátký soubor, který úloha zapíše na konec běhu: kolik čeho bylo na vstupu, kolik na výstupu, co nesedělo. Z něj poznáte, jestli to dopadlo, aniž byste otevírali výstupy.'],
+        ['Naplánovaná automatizace (routine)', 'zadání, které se spustí samo v daný čas — v pondělí v šest, každou hodinu. Local běží na vašem počítači, Cloud na serveru.'],
+        ['Kontrolní protokol', 'krátký soubor, který automatizace zapíše na konec běhu: kolik čeho bylo na vstupu, kolik na výstupu, co nesedělo. Z něj poznáte, jestli to dopadlo, aniž byste otevírali výstupy.'],
         ['Runbook', 'jedna stránka pro chvíli, kdy něco spadne a vy jste na dovolené: co to dělá, kdy běží, co zkontrolovat, komu napsat.'],
       ],
     },
@@ -364,7 +364,7 @@ const LESSON_TOKENY: Lesson = {
   track: 'potom',
   outcomes: [
     'vysvětlit vlastními slovy, za co se vlastně platí',
-    'vybrat model a effort podle toho, co má úloha zač',
+    'vybrat model a effort podle toho, co má úkol zač',
     'zkrátit dlouhé sezení pomocí /clear, /compact a /rewind',
     'poznat, co rozbíjí cache, a nedělat to uprostřed práce',
     'zjistit přes /usage a /context, kam limit odtekl',
@@ -436,7 +436,7 @@ const LESSON_TOKENY: Lesson = {
         {
           title: 'Podívej se, kam to odtéká',
           body:
-            'Příkaz /usage ukáže vyčerpání přídělu a žebříček toho, co ho bere — podagenti, skilly, konektory, naplánované úlohy.',
+            'Příkaz /usage ukáže vyčerpání přídělu a žebříček toho, co ho bere — podagenti, skilly, konektory, naplánované automatizace.',
           code: '/usage',
           image: {
             src: 'usage-panel.webp',
@@ -457,7 +457,7 @@ const LESSON_TOKENY: Lesson = {
       kind: 'checklist',
       title: 'Šest návyků, které stačí',
       items: [
-        '/clear při přechodu na jinou úlohu — největší efekt ze všeho',
+        '/clear při přechodu na jiný úkol — největší efekt ze všeho',
         'model a effort nastavit na začátku sezení a pak na ně nesahat',
         'na soubory odkazovat zavináčem místo opisování cesty',
         'upovídané příkazy ztišit přepínačem, nebo je nechat na podagentovi',
@@ -525,13 +525,13 @@ const LESSON_TOKENY: Lesson = {
     {
       kind: 'p',
       text:
-        'Nejčastější důvod, proč limit mizí rychle: jedno sezení otevřené celý den, ve kterém se vystřídalo pět nesouvisejících úloh. Každá další zpráva táhne s sebou všechny předchozí.',
+        'Nejčastější důvod, proč limit mizí rychle: jedno sezení otevřené celý den, ve kterém se vystřídalo pět nesouvisejících úkolů. Každá další zpráva táhne s sebou všechny předchozí.',
     },
     {
       kind: 'figure',
       name: 'context-growth',
       caption:
-        'Táž práce, tytéž otázky — vlevo jedno sezení celý den, vpravo tři sezení s /clear mezi úlohami.',
+        'Táž práce, tytéž otázky — vlevo jedno sezení celý den, vpravo tři sezení s /clear mezi úkoly.',
     },
     {
       kind: 'figure',
@@ -566,7 +566,7 @@ const LESSON_TOKENY: Lesson = {
         {
           label: 'Cvičný projekt: kontrola faktur ke stažení',
           href: '#academy/od-mapy-k-automatu/cvicny-projekt-faktury',
-          note: 'Hotový projekt i s fakturami, skillem a naplánovanou úlohou — stáhneš a pustíš.',
+          note: 'Hotový projekt i s fakturami, skillem a naplánovanou automatizací — stáhneš a pustíš.',
         },
       ],
     },
@@ -597,7 +597,7 @@ const LESSON_TOKENY: Lesson = {
         'CLAUDE.md drž do dvou set řádků — delší postupy patří do skillu, který se načte, jen když je potřeba.',
         'Do projektu nedávej celou databázi, ale reálný vzorek.',
         'Odkazuj na soubory zavináčem (@nazev-souboru) místo opisování cesty.',
-        'U velkých úloh si nech nejdřív napsat plán (Shift+Tab, plan mode) — levnější než dvakrát dělat špatnou věc.',
+        'U velkých úkolů si nech nejdřív napsat plán (Shift+Tab, plan mode) — levnější než dvakrát dělat špatnou věc.',
       ],
     },
     {
@@ -614,7 +614,7 @@ const LESSON_TOKENY: Lesson = {
     {
       kind: 'note',
       tone: 'warn',
-      title: 'Naplánované úlohy nespí',
+      title: 'Naplánované automatizace nespí',
       text:
         'Spustí se i bez tebe u počítače a posílají s sebou celý svůj kontext. Po týdnu zkontroluj v /usage, kolik si vzaly.',
     },
@@ -669,7 +669,7 @@ const LESSON_COWORK: Lesson = {
     'vysvětlit rozdíl mezi chatem, Coworkem a Claude Code',
     'vybrat si pro konkrétní úkol tu správnou ze tří záložek',
     'vědět, co se mezi nimi přenáší a co ne',
-    'poznat úlohy, u kterých se Cowork hodí víc než Claude Code',
+    'poznat úkoly, u kterých se Cowork hodí víc než Claude Code',
   ],
   body: [
     {
@@ -703,7 +703,7 @@ const LESSON_COWORK: Lesson = {
       kind: 'list',
       items: [
         'Práce, která nemá co dělat s vašimi soubory: rešerše, sepsání podkladu, projití něčeho, co jste dostali odjinud.',
-        'Dlouhá úloha, u které nechcete sedět a nevadí, že poběží ve vlastním prostředí.',
+        'Dlouhá práce, u které nechcete sedět a nevadí, že poběží ve vlastním prostředí.',
         'Něco, co chcete rozjet z telefonu nebo z jiného počítače, než na kterém máte složku.',
       ],
     },
@@ -939,7 +939,7 @@ nepřepisují: všechno nové se ukládá do vystupy/.`,
     {
       kind: 'p',
       text:
-        'Nový rozhovor nezná ten předchozí — kromě CLAUDE.md a poznámek, které si Claude zapsal sám. Je to ochrana: dlouhé sezení s pěti různými úlohami dává horší výsledky než pět krátkých. Jedna úloha = jedno sezení, mezi nimi /clear.',
+        'Nový rozhovor nezná ten předchozí — kromě CLAUDE.md a poznámek, které si Claude zapsal sám. Je to ochrana: dlouhé sezení s pěti různými úkoly dává horší výsledky než pět krátkých. Jeden úkol = jedno sezení, mezi nimi /clear.',
     },
     { kind: 'h', text: 'Skill je zabalený postup' },
     {
@@ -1238,7 +1238,7 @@ Zadání na začátek:
         'Otevři tam Claude Code a nech ho projekt založit — zadáním jako výš, jen s názvem tvojí agendy. Na otázky ke slovníku odpovídej konkrétně, píše se to rovnou do CLAUDE.md.',
         'Do data/ dej jeden reálný soubor, se kterým běžně pracuješ.',
         'Nech Clauda popsat vlastními slovy, čemu ta agenda slouží. Co nesedí, dopiš do CLAUDE.md.',
-        'Zadej mu první úlohu a všímej si, kolikrát mu musíš něco vysvětlit. Každé takové vysvětlení je kandidát na řádek v CLAUDE.md.',
+        'Zadej mu první úkol a všímej si, kolikrát mu musíš něco vysvětlit. Každé takové vysvětlení je kandidát na řádek v CLAUDE.md.',
       ],
       hint:
         'Nesnaž se napsat dokonalé CLAUDE.md napoprvé. Vzniká tak, že do něj týden dopisuješ věci, u kterých se přistihneš, že je vysvětluješ podruhé.',
@@ -1251,7 +1251,7 @@ const VIDEOS_PLAN: VideoRef[] = [
     id: 'U_cDKkDvPAQ',
     title: 'Claude Code Scheduled Tasks Are Insane',
     author: 'Tyler Germain | AI Automation',
-    note: 'Naplánované úlohy v Claude Code od nuly. Nejblíž tomu, co budeme dělat.',
+    note: 'Naplánované automatizace v Claude Code od nuly. Nejblíž tomu, co budeme dělat.',
   },
   {
     id: 'ZbawXiYm4Go',
@@ -1263,7 +1263,7 @@ const VIDEOS_PLAN: VideoRef[] = [
     id: 'xIjUdWMgzbM',
     title: 'Turn Claude Code Into an Employee That Works 24/7',
     author: 'Achuth G. Ramesh',
-    note: 'Až budeš mít první úlohu a začneš přemýšlet, co dál.',
+    note: 'Až budeš mít první automatizaci a začneš přemýšlet, co dál.',
   },
 ]
 
@@ -1627,10 +1627,10 @@ const LESSON_AUTOMATIZACE: Lesson = {
     'popsat pět stupňů, po kterých se z ruční práce stane automatizace',
     'napsat skill, který spustí celý postup jednou větou',
     'nastavit hook, který se spustí sám při konkrétní události',
-    'ověřit na checklistu, že je úloha připravená běžet bez dozoru, a napsat k ní runbook',
+    'ověřit na checklistu, že je automatizace připravená běžet bez dozoru, a napsat k ní runbook',
     'poznat, kdy je na další stupeň brzo — a co nikdy neautomatizovat',
     'projít si celou cestu na jednom hotovém příkladu a ověřit si, že nic nechybí',
-    'vědět, co vyplnit do formuláře naplánované úlohy a které konektory připojit',
+    'vědět, co vyplnit do formuláře naplánované automatizace a které konektory připojit',
   ],
   body: [
     {
@@ -1675,7 +1675,7 @@ Postav mi v téhle složce kontrolu došlých faktur.
 ## K čemu to je
 Do schránky fakturace@dek.cz chodí od dodavatelů faktury v PDF. Někdo
 je musí otevřít, opsat z nich šest údajů do evidence a u neúplných napsat
-dodavateli o doplnění. Tohle má dělat úloha místo mě.
+dodavateli o doplnění. Tohle má dělat automatizace místo mě.
 
 ## Co potřebuješ
 Konektor na Microsoft 365, který schránku umí **číst i z ní odesílat poštu**.
@@ -1751,7 +1751,7 @@ ať se v tom vyzná i někdo, kdo u toho nebyl.`,
     {
       kind: 'soubor',
       nazev: 'CLAUDE.md',
-      popis: 'Pravidla kontroly faktur, jak vypadají po pár týdnech provozu. Slovník, kde jsou data, a čeho se úloha nesmí dotknout.',
+      popis: 'Pravidla kontroly faktur, jak vypadají po pár týdnech provozu. Slovník, kde jsou data, a čeho se automatizace nesmí dotknout.',
       obsah: `# Kontrola faktur
 
 Cvičný projekt z workshopu DEK Academy. Sleduje schránku fakturace@dek.cz.
@@ -1862,8 +1862,8 @@ description: Sleduje schránku fakturace@dek.cz (přes M365) nebo zpracuje, co
 # Kontrola faktur
 
 ## Kdy to spustit
-Při každém běhu naplánované úlohy, nebo kdykoli se řekne „zkontroluj nové
-faktury". Je-li připojený konektor na Microsoft 365, podívej se do schránky
+Při každém běhu naplánované automatizace, nebo kdykoli se řekne „zkontroluj
+nové faktury". Je-li připojený konektor na Microsoft 365, podívej se do schránky
 fakturace@dek.cz na e-maily s PDF přílohou, které ještě nejsou uložené ve
 vstup/. Bez konektoru (třeba při prvním spuštění cvičného projektu) zpracuj
 místo toho PDF, která už ve vstup/ leží a která ještě nemají řádek v evidenci
@@ -2176,7 +2176,7 @@ exit 0`,
       tone: 'ok',
       title: 'Tohle je ta dvojice, o kterou jde',
       text:
-        'Zábrana plus notifikace: zábrana je důvod, proč se dá běh pustit bez dozoru — nemůže se stát to nejhorší; notifikace je důvod, proč se pozná, že doběhl. Bez nich je naplánovaná úloha jen rychlejší způsob, jak si nadělat škodu.',
+        'Zábrana plus notifikace: zábrana je důvod, proč se dá běh pustit bez dozoru — nemůže se stát to nejhorší; notifikace je důvod, proč se pozná, že doběhl. Bez nich je naplánovaná automatizace jen rychlejší způsob, jak si nadělat škodu.',
     },
     {
       kind: 'links',
@@ -2199,14 +2199,14 @@ exit 0`,
       kind: 'code',
       text: `cd <složka projektu — ta nasyncovaná z lekce Sdílená složka>
 claude -p "Postupuj podle skillu kontrola-faktur a výsledek ulož do vystup/."`,
-      caption: 'Spusť si to nejdřív ručně přesně takhle. Tahle věta pak jde do naplánované úlohy — v Claude Code záložka Code → Routines → New routine → Local. Když to takhle nedoběhne, na plánu to nedoběhne taky.',
+      caption: 'Spusť si to nejdřív ručně přesně takhle. Tahle věta pak jde do naplánované automatizace — v Claude Code záložka Code → Routines → New routine → Local. Když to takhle nedoběhne, na plánu to nedoběhne taky.',
     },
     {
       kind: 'image',
       src: 'routines-seznam.webp',
-      alt: 'Seznam rutin v Claude Code. Nahoře pole „What do you want automated" s příklady úloh a tlačítkem Draft routine. Pod ním upozornění, že lokální rutiny běží, jen když je počítač vzhůru a online. Dole jediný záznam: kontrola-faktur, přibližně každých 15 minut mezi 7:00 a 17:59 od pondělí do pátku, další běh dnes v 16:09.',
+      alt: 'Seznam rutin v Claude Code. Nahoře pole „What do you want automated" s příklady automatizací a tlačítkem Draft routine. Pod ním upozornění, že lokální rutiny běží, jen když je počítač vzhůru a online. Dole jediný záznam: kontrola-faktur, přibližně každých 15 minut mezi 7:00 a 17:59 od pondělí do pátku, další běh dnes v 16:09.',
       caption:
-        'Takhle ta věta vypadá, když se z ní stane úloha. Rozvrh i čas dalšího běhu jsou vidět na jednom řádku — a hlášku nahoře si přečti: lokální rutina běží, jen když je počítač vzhůru a aplikace puštěná.',
+        'Takhle ta věta vypadá, když se z ní stane automatizace. Rozvrh i čas dalšího běhu jsou vidět na jednom řádku — a hlášku nahoře si přečti: lokální rutina běží, jen když je počítač vzhůru a aplikace puštěná.',
     },
     {
       kind: 'note',
@@ -2218,22 +2218,23 @@ claude -p "Postupuj podle skillu kontrola-faktur a výsledek ulož do vystup/."`
     {
       kind: 'note',
       tone: 'info',
-      title: 'Jak se úloha zakládá, je v samostatné lekci',
+      title: 'Jak se automatizace zakládá, je v samostatné lekci',
       text:
-        'Klikání ve formuláři, rozdíl mezi Local a Cloud a to, co se stane, když počítač spal, je v lekci Automatizace v Claude Code pomocí routine. Tady zůstává jen to, co platí bez ohledu na formulář: kdy to pustit, co po sobě má běh nechat — a že rozvrh nemá bydlet jen v aplikaci. Úloha založená klikáním je záznam, který kolega nevidí a který zmizí s přeinstalovaným počítačem. Zapiš ji proto do složky jako rutina.md, ať se dá znovu založit podle popisu.',
+        'Klikání ve formuláři, rozdíl mezi Local a Cloud a to, co se stane, když počítač spal, je v lekci Automatizace v Claude Code pomocí routine. Tady zůstává jen to, co platí bez ohledu na formulář: kdy to pustit, co po sobě má běh nechat — a že rozvrh nemá bydlet jen v aplikaci. Automatizace založená klikáním je záznam, který kolega nevidí a který zmizí s přeinstalovaným počítačem. Zapiš ji proto do složky jako rutina.md, ať se dá znovu založit podle popisu.',
     },
     {
       kind: 'soubor',
       nazev: 'rutina.md',
-      popis: 'Rozvrh napsaný ve složce: co vyplnit ve formuláři, co zařídit u správce a co zkontrolovat, než to poběží samo. Založení se tím smrskne na větu „Založ úlohu podle rutina.md".',
-      obsah: `# Naplánovaná úloha: kontrola nových faktur v Outlooku
+      popis: 'Rozvrh napsaný ve složce: co vyplnit ve formuláři, co zařídit u správce a co zkontrolovat, než to poběží samo. Založení se tím smrskne na větu „Založ automatizaci podle rutina.md".',
+      obsah: `# Naplánovaná automatizace: kontrola nových faktur v Outlooku
 
 Co vyplnit v aplikaci Claude → záložka **Code** → **Routines** → **New routine**.
 
-## Než založíš úlohu: konektor na Microsoft 365
+## Než založíš automatizaci: konektor na Microsoft 365
 
-Tahle úloha potřebuje konektor Claude na Microsoft 365 se zapnutými **write
-tools** (posílání pošty) — bez nich přečte schránku, ale e-mail neodešle,
+Tahle automatizace potřebuje konektor Claude na Microsoft 365 se zapnutými
+**write tools** (posílání pošty) — bez nich přečte schránku, ale e-mail
+neodešle,
 jenom ho navrhne (viz \`CLAUDE.md\`, „Když projekt běží bez připojené
 schránky"). Write tools zapíná zvlášť správce Microsoft 365, přihlášený
 pracovním účtem; osobní outlook.com nebo hotmail.com nefunguje. Text, který
@@ -2250,7 +2251,7 @@ mu poslat, je níž v „Co napsat správci".
 | **Folder** | složka tohoto projektu (\`faktury-kontrola\`) |
 | **Schedule** | Every 15 minutes, v pracovní dny 7:00–18:00 |
 
-Proč každých 15 minut, ne jednou denně: tahle úloha nahrazuje ruční
+Proč každých 15 minut, ne jednou denně: tahle automatizace nahrazuje ruční
 sledování schránky, takže žádost o doplnění má dodavateli přijít brzy po
 faktuře, ne až druhý den. Claude Code nemá skutečné „hned jak přijde
 e-mail" spouštění — nejblíž tomu je časté opakování. Když ti 15 minut
@@ -2291,18 +2292,18 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.
    dodavatele a u té, které něco chybělo, má být vyplněný sloupec „Žádost
    odeslána".
 4. Teprve pak to nech běžet samo. **První den to nech běžet vedle sebe a
-   po každém běhu se podívej, co se stalo** — je to jediná úloha v tomhle
-   projektu, která bez tvého kliknutí posílá poštu ven z firmy.
+   po každém běhu se podívej, co se stalo** — je to jediná automatizace
+   v tomhle projektu, která bez tvého kliknutí posílá poštu ven z firmy.
 
 ## Co je dobré vědět
 
-- Místní úloha běží, jen když je aplikace Claude spuštěná a počítač vzhůru.
-  Když počítač spí, běh se přeskočí a doženou se jen ty, co chyběly
+- Místní automatizace běží, jen když je aplikace Claude spuštěná a počítač
+  vzhůru. Když počítač spí, běh se přeskočí a doženou se jen ty, co chyběly
   bezprostředně předtím — ne všechny za celou dobu.
-- Kdyby konektor na M365 spadl nebo přišel o přístup, úloha se zastaví na
-  dotazu, ne že by tiše nic nedělala — sleduj to hlavně první týden.
+- Kdyby konektor na M365 spadl nebo přišel o přístup, automatizace se
+  zastaví na dotazu, ne že by tiše nic nedělala — sleduj to hlavně první týden.
 - Když chceš, aby tohle běželo i s vypnutým počítačem, není to tenhle typ
-  úlohy. To už musí běžet někde jinde než na tvém stole.
+  automatizace. To už musí běžet někde jinde než na tvém stole.
 
 ## Co napsat správci
 
@@ -2310,7 +2311,7 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.
 Ahoj, potřeboval bych u konektoru Microsoft 365 pro Claude povolit
 write tools (odesílání pošty) pro schránku fakturace@dek.cz.
 
-K čemu to bude: automatická kontrola došlých faktur. Úloha zkontroluje
+K čemu to bude: automatická kontrola došlých faktur. Automatizace zkontroluje
 šest povinných údajů a dodavateli automaticky pošle žádost o doplnění,
 když jeden nebo dva chybí. Nic k platbě, schválení ani do účetnictví
 se automaticky neposílá — to zůstává na nás.
@@ -2391,10 +2392,10 @@ a vedle toho protokol-<datum>.md
 ## Co dělat, když to spadne
 1. Podívej se, jestli jsou ve vstup/ soubory z posledních dnů.
 2. Pusť to ručně: v terminálu ve složce projektu claude -p "..."
-3. Když to spadne i ručně, běh vypni a napiš tomu, kdo úlohu nastavil.
+3. Když to spadne i ručně, běh vypni a napiš tomu, kdo automatizaci nastavil.
 
 ## Jak to vypnout
-Claude Code → Code → Routines → u úlohy přepnout Status na Paused.`,
+Claude Code → Code → Routines → u automatizace přepnout Status na Paused.`,
       caption: 'Šest nadpisů. Kratší runbook nikdo nenapíše, delší nikdo nepřečte.',
     },
     {
@@ -2421,7 +2422,7 @@ Neschvaluje faktury, nic neplatí a nezapisuje nic do účetního systému.
 
 ## Kde to běží
 
-Naplánovaná úloha \`kontrola-faktur\` v aplikaci Claude, záložka Code →
+Naplánovaná automatizace \`kontrola-faktur\` v aplikaci Claude, záložka Code →
 Routines, typ Local. Běží na počítači, na kterém je nastavená — ne v cloudu.
 Potřebuje konektor na Microsoft 365 se zapnutými write tools (posílání
 pošty); bez nich přečte schránku, ale e-mail jen navrhne, neodešle.
@@ -2437,7 +2438,7 @@ Otevři poslední \`vystup/protokol-*.md\` nebo sešit „Přehled" v posledním
 - **„připraveno, čeká na konektor"** — text je navržený, ale konektor
   nebyl připojený (nebo neměl write tools), takže se fyzicky neodeslal.
 - **„k ruční kontrole" v protokolu** — chybělo moc údajů najednou nebo se
-  PDF nedalo přečíst. Tohle úloha záměrně nechává na člověku.
+  PDF nedalo přečíst. Tohle automatizace záměrně nechává na člověku.
 
 Když chceš vidět jen to, jestli se u konkrétního dodavatele o doplnění už
 psalo, nemusíš hledat den, kdy se to stalo: stačí sloupec „Žádost odeslána"
@@ -2447,17 +2448,18 @@ v jeho sešitu v \`data/objednavky.xlsx\`.
 
 | Co se stalo | Čím to bývá | Co s tím |
 | --- | --- | --- |
-| Úloha se nespustila | počítač spal nebo byla zavřená aplikace | doženou se jen běhy bezprostředně předtím, ne celá historie |
+| Automatizace se nespustila | počítač spal nebo byla zavřená aplikace | doženou se jen běhy bezprostředně předtím, ne celá historie |
 | Běh se zastavil na dotazu | konektor ztratil přístup, nebo se ptá poprvé | otevři to sezení v postranním panelu, odpověz a dej „always allow" |
 | E-mail se neodeslal, i když chybělo jen jedno pole | write tools na konektoru M365 nejsou zapnuté | napiš správci, ať je zapne (viz \`rutina.md\`) |
 | Odešel e-mail se špatným textem nebo špatnému dodavateli | PDF se přečetlo špatně (adresa, jméno) | zkontroluj konkrétní fakturu ručně, oprav v \`data/objednavky.xlsx\`, případně napiš dodavateli omluvu sama |
-| Protokol hlásí spoustu faktur „k ruční kontrole" | většinou se změnil formát PDF, ne že by bylo najednou hodně špatných faktur | projdi dvě tři faktury ručně, než necháš úlohu pokračovat |
-| Ve \`vstup/\` zmizel soubor | někdo tam uklidil | soubory ve \`vstup/\` maže jen člověk; úloha do té složky zapisuje jen nové PDF (hlídá to hook). V evidenci řádek zůstává — je to záznam běhu, který se stal. |
-| Jedna faktura je v evidenci dvakrát | přišla do schránky podruhé a její PDF mezitím ze \`vstup/\` zmizelo | nechej nový řádek být a starý si označ; úloha pozná už zpracovanou fakturu podle toho, co leží ve \`vstup/\` |
+| Protokol hlásí spoustu faktur „k ruční kontrole" | většinou se změnil formát PDF, ne že by bylo najednou hodně špatných faktur | projdi dvě tři faktury ručně, než necháš automatizaci pokračovat |
+| Ve \`vstup/\` zmizel soubor | někdo tam uklidil | soubory ve \`vstup/\` maže jen člověk; automatizace do té složky zapisuje jen nové PDF (hlídá to hook). V evidenci řádek zůstává — je to záznam běhu, který se stal. |
+| Jedna faktura je v evidenci dvakrát | přišla do schránky podruhé a její PDF mezitím ze \`vstup/\` zmizelo | nechej nový řádek být a starý si označ; automatizace pozná už zpracovanou fakturu podle toho, co leží ve \`vstup/\` |
 
 ## Komu napsat
 
-Nejdřív tomu, kdo tuhle úlohu nastavil. Když jde o obsah faktur nebo o to,
+Nejdřív tomu, kdo tuhle automatizaci nastavil. Když jde o obsah faktur nebo
+o to,
 co se poslalo dodavateli, účetní. Když jde o přístup ke schránce nebo
 konektor, správce Microsoft 365.
 
@@ -2537,14 +2539,14 @@ se to kontroluje.`,
         {
           label: 'Cvičný projekt: kontrola faktur ke stažení',
           href: '#academy/od-mapy-k-automatu/cvicny-projekt-faktury',
-          note: 'Folder, CLAUDE.md, skill, hook, vyplněná naplánovaná úloha — všechno pohromadě.',
+          note: 'Folder, CLAUDE.md, skill, hook, vyplněná naplánovaná automatizace — všechno pohromadě.',
         },
       ],
     },
     {
       kind: 'figure',
       name: 'routine-form',
-      caption: 'Takhle vypadá vyplněný formulář naplánované úlohy v tom cvičném projektu. Hodnoty jsou reálné, ne ilustrační.',
+      caption: 'Takhle vypadá vyplněný formulář naplánované automatizace v tom cvičném projektu. Hodnoty jsou reálné, ne ilustrační.',
     },
     {
       kind: 'note',
@@ -2568,7 +2570,7 @@ se to kontroluje.`,
         'Nastav zábranu a notifikaci a zábranu si otestuj — chtěj vidět, že zápis odmítne.',
         'Projdi checklist „Než to pustíš na plán" a čestně si odškrtej, co platí. Pak spusť skill jedním příkazem bez rozhovoru.',
         'Napiš runbook podle šablony.',
-        'Založ úlohu na Manual a pusť ji přes Run now aspoň třikrát na různých datech. Teprve pak jí dej rozvrh, nejdřív na den, kdy jsi u počítače — a jako první ať jen ukládá soubory, bez odesílání.',
+        'Založ automatizaci na Manual a pusť ji přes Run now aspoň třikrát na různých datech. Teprve pak jí dej rozvrh, nejdřív na den, kdy jsi u počítače — a jako první ať jen ukládá soubory, bez odesílání.',
       ],
       hint:
         'Když ti u druhého běhu skill vyjde jinak než u prvního, není to chyba skillu — je to chybějící pravidlo. Odesílání zapínej úplně nakonec, ideálně po měsíci, kdy se maily odklikávaly ručně a nic nepřekvapilo.',
@@ -2912,7 +2914,7 @@ const LESSON_FLOW: Lesson = {
     {
       kind: 'figure',
       name: 'regal-flow',
-      caption: 'Vzor mapy ručního procesu — takhle vypadá kontrola faktur, než ji převezme úloha. Vaše kresba nemusí být hezká, musí být čitelná.',
+      caption: 'Vzor mapy ručního procesu — takhle vypadá kontrola faktur, než ji převezme automatizace. Vaše kresba nemusí být hezká, musí být čitelná.',
     },
     { kind: 'h', text: 'Označení míst' },
     {
@@ -3050,7 +3052,7 @@ Jeden krok tam musí zůstat člověku: <který> — protože <co ten člověk v
       rows: [
         [
           'export z jednoho systému, který se vkládá do druhého',
-          'ruční přenos mezi dvěma soubory — stejný tvar úlohy má logistika i marketing',
+          'ruční přenos mezi dvěma soubory — stejný tvar úkolu má logistika i marketing',
         ],
         [
           'čekání na odpovědi od poboček nebo kolegů',
@@ -3062,7 +3064,7 @@ Jeden krok tam musí zůstat člověku: <který> — protože <co ten člověk v
         ],
         [
           'sestava, kterou někdo skládá každé pondělí ráno',
-          'kandidát na naplánovanou úlohu — přesně to, co se staví po pauze',
+          'kandidát na naplánovanou automatizaci — přesně to, co se staví po pauze',
         ],
       ],
     },
@@ -3161,12 +3163,12 @@ const L2_PLAN: Lesson = {
   module: 'postav',
   title: 'Automatizace v Claude Code pomocí routine',
   summary:
-    'Kde se úloha zakládá, proč pro nás platí Local a ne Cloud, co vyplnit, a co se stane, když počítač spal.',
+    'Kde se automatizace zakládá, proč pro nás platí Local a ne Cloud, co vyplnit, a co se stane, když počítač spal.',
   minutes: 10,
   kind: 'lekce',
   track: 'potom',
   outcomes: [
-    'založit naplánovanou úlohu v Claude Code — klikáním i větou',
+    'založit naplánovanou automatizaci v Claude Code — klikáním i větou',
     'rozhodnout mezi Local a Cloud a vědět, proč je pro nás skoro vždycky Local',
     'vědět, co se stane se zmeškaným během a jak na to napsat zadání',
   ],
@@ -3174,7 +3176,7 @@ const L2_PLAN: Lesson = {
     {
       kind: 'p',
       text:
-        'Technická část posledního schodu: samotné založení úlohy, která se spustí sama. V desktopové aplikaci Claude Code je to záložka Code → Routines.',
+        'Technická část posledního schodu: samotné založení automatizace, která se spustí sama. V desktopové aplikaci Claude Code je to záložka Code → Routines.',
     },
     {
       kind: 'sekce',
@@ -3182,55 +3184,56 @@ const L2_PLAN: Lesson = {
       stitek: 'Část 1',
       titul: 'Local — běží na tvém počítači',
       popis:
-        'Varianta, kterou u nás chceš skoro vždycky: úloha pracuje přímo ve tvojí složce na disku. Cenou za to je zapnutý počítač a puštěná aplikace.',
+        'Varianta, kterou u nás chceš skoro vždycky: automatizace pracuje přímo ve tvojí složce na disku. Cenou za to je zapnutý počítač a puštěná aplikace.',
     },
     {
       kind: 'image',
       src: 'routines-formular.webp',
       alt: 'Formulář nové lokální rutiny v Claude Code. Nahoře upozornění, že lokální rutiny běží, jen když je počítač vzhůru a online. Pole Name a Description jsou povinná, pod nimi velké pole Instructions, pod ním řádek s režimem povolování, výběrem složky a volbou Worktree. Sekce Schedule nabízí Manual, Hourly, Daily, Weekdays, Weekly a Custom; vybráno je Daily s časem 09:00 a poznámkou, že rutiny používají několikaminutové náhodné zpoždění. Vpravo dole tlačítka Cancel a Create.',
       caption:
-        'Prázdný formulář, jak vypadá po Code → Routines → New routine. Šedý text v polích jsou jen příklady, ne předvyplněné hodnoty. Povinné je jméno a popis; bez vybrané složky se úloha neuloží.',
+        'Prázdný formulář, jak vypadá po Code → Routines → New routine. Šedý text v polích jsou jen příklady, ne předvyplněné hodnoty. Povinné je jméno a popis; bez vybrané složky se automatizace neuloží.',
     },
     {
       kind: 'note',
       tone: 'ok',
       title: 'Nemusíš to klikat — stačí si o to říct',
       text:
-        'Celý formulář níž umí Claude vyplnit sám. Napiš mu v chatu jednou větou, co má úloha dělat a kdy, a založí ji i s rozvrhem — třeba: „Založ mi naplánovanou úlohu kontrola-faktur nad touhle složkou. Ať běží každých 15 minut v pracovní dny od sedmi do šesti a postupuje podle skillu kontrola-faktur." Přednastavené rozvrhy ve formuláři jsou Manual, Hourly, Daily, Weekdays a Weekly; cokoli jiného se skládá pod volbou Custom. Větou v chatu je to ale rychlejší — „každých 15 minut v pracovní dny od sedmi do šesti" si Claude přeloží sám. Stejnou cestou vznikne i jednorázová úloha — „připomeň mi zítra ve tři, ať zkontroluju ten běh" se po odpálení sama vypne — a stejně tak se úlohy pozastavují a vypisují: „pozastav mi úlohu kontrola-faktur", „ukaž mi moje naplánované úlohy". Postup níž si projdi hlavně proto, abys věděl, co se ti tím založilo a kde to zkontrolovat.',
+        'Celý formulář níž umí Claude vyplnit sám. Napiš mu v chatu jednou větou, co má automatizace dělat a kdy, a založí ji i s rozvrhem — třeba: „Založ mi naplánovanou automatizaci kontrola-faktur nad touhle složkou. Ať běží každých 15 minut v pracovní dny od sedmi do šesti a postupuje podle skillu kontrola-faktur." Přednastavené rozvrhy ve formuláři jsou Manual, Hourly, Daily, Weekdays a Weekly; cokoli jiného se skládá pod volbou Custom. Větou v chatu je to ale rychlejší — „každých 15 minut v pracovní dny od sedmi do šesti" si Claude přeloží sám. Stejnou cestou vznikne i jednorázová automatizace — „připomeň mi zítra ve tři, ať zkontroluju ten běh" se po odpálení sama vypne — a stejně tak se automatizace pozastavují a vypisují: „pozastav mi automatizaci kontrola-faktur", „ukaž mi moje naplánované automatizace". Postup níž si projdi hlavně proto, abys věděl, co se ti tím založilo a kde to zkontrolovat.',
     },
     {
       kind: 'image',
       src: 'rutina-panel.webp',
-      alt: 'Detail naplánované úlohy kontrola-faktur v Claude Code. Popis říká, že sleduje schránku, eviduje nové faktury a u neúplných pošle dodavateli žádost o doplnění. Stav je Active s dalším během dnes ve 13:24. Je vyplněná pracovní složka faktury-kontrola, rozvrh zní přibližně každých 15 minut mezi 7:00 a 17:59 od pondělí do pátku, historie je zatím prázdná. Vpravo nahoře je tlačítko Run now, vedle něj ikony pro úpravu a smazání.',
+      alt: 'Detail naplánované automatizace kontrola-faktur v Claude Code. Popis říká, že sleduje schránku, eviduje nové faktury a u neúplných pošle dodavateli žádost o doplnění. Stav je Active s dalším během dnes ve 13:24. Je vyplněná pracovní složka faktury-kontrola, rozvrh zní přibližně každých 15 minut mezi 7:00 a 17:59 od pondělí do pátku, historie je zatím prázdná. Vpravo nahoře je tlačítko Run now, vedle něj ikony pro úpravu a smazání.',
       caption:
-        'Takhle vypadá hotová úloha, kterou Claude založil z jedné věty. Rozvrh „každých 15 minut v pracovní dny" ve formuláři na výběr není — vznikl z toho, jak byl popsaný slovy. Historie je prázdná, protože ještě nic neproběhlo; první běh si vyvoláš tlačítkem Run now vpravo nahoře.',
+        'Takhle vypadá hotová automatizace, kterou Claude založil z jedné věty. Rozvrh „každých 15 minut v pracovní dny" ve formuláři na výběr není — vznikl z toho, jak byl popsaný slovy. Historie je prázdná, protože ještě nic neproběhlo; první běh si vyvoláš tlačítkem Run now vpravo nahoře.',
     },
     {
       kind: 'image',
       src: 'routines-prvni-beh.webp',
       alt: 'První běh rutiny kontrola-faktur. Vpravo panel Runs se záznamem Today at 1:24 PM ve stavu Running. Uprostřed průběh: Claude čte pokyny projektu a soubor skillu, přečetl dva soubory, spustil dva příkazy z toho jeden neúspěšně, a hlásí, že mezi dostupnými nástroji není konektor na Microsoft 365, takže si to chce ověřit, než z toho udělá závěr. Dole dotaz na oprávnění „Allow Claude to use list connectors" s tlačítky Deny, Always allow a Allow once.',
       caption:
-        'První běh po Run now. Na každý nástroj se úloha zeptá — „Always allow" si odpověď uloží a další běhy už se neptají; bez toho se běh ve tři ráno zastaví na dotazu a nikdo neodpoví. Všimni si i řádku o chybějícím konektoru: úloha nepředstírá, že mail odešle, a jde to ověřit, než něco tvrdí.',
+        'První běh po Run now. Na každý nástroj se automatizace zeptá — „Always allow" si odpověď uloží a další běhy už se neptají; bez toho se běh ve tři ráno zastaví na dotazu a nikdo neodpoví. Všimni si i řádku o chybějícím konektoru: automatizace nepředstírá, že mail odešle, a jde to ověřit, než něco tvrdí.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Ještě líp: měj rozvrh napsaný ve složce',
       text:
-        'Úloha založená v aplikaci je jen záznam v ní. Kolega ho nevidí, do zálohy se nedostane, a když přeinstaluješ počítač, je pryč i s tím, jak byla nastavená. Proto si do projektu přidej soubor rutina.md a popiš v něm, co do formuláře patří: název, model, režim povolování, složku, rozvrh — a celé instrukce k překopírování. Cvičný projekt ho takhle má. Založení se tím smrskne na jednu větu: „Založ naplánovanou úlohu podle rutina.md." A hlavně se tím otočí pořadí: když se agenda změní, přepíšeš nejdřív ten soubor a teprve podle něj úlohu, takže popis nikdy nezaostane za tím, co doopravdy běží.',
+        'Automatizace založená v aplikaci je jen záznam v ní. Kolega ho nevidí, do zálohy se nedostane, a když přeinstaluješ počítač, je pryč i s tím, jak byla nastavená. Proto si do projektu přidej soubor rutina.md a popiš v něm, co do formuláře patří: název, model, režim povolování, složku, rozvrh — a celé instrukce k překopírování. Cvičný projekt ho takhle má. Založení se tím smrskne na jednu větu: „Založ naplánovanou automatizaci podle rutina.md." A hlavně se tím otočí pořadí: když se agenda změní, přepíšeš nejdřív ten soubor a teprve podle něj automatizaci, takže popis nikdy nezaostane za tím, co doopravdy běží.',
     },
     {
       kind: 'soubor',
       nazev: 'rutina.md',
       popis: 'Přesně tenhle soubor je v cvičném projektu. Takhle vypadá rozvrh napsaný ve složce.',
-      obsah: `# Naplánovaná úloha: kontrola nových faktur v Outlooku
+      obsah: `# Naplánovaná automatizace: kontrola nových faktur v Outlooku
 
 Co vyplnit v aplikaci Claude → záložka **Code** → **Routines** → **New routine**.
 
-## Než založíš úlohu: konektor na Microsoft 365
+## Než založíš automatizaci: konektor na Microsoft 365
 
-Tahle úloha potřebuje konektor Claude na Microsoft 365 se zapnutými **write
-tools** (posílání pošty) — bez nich přečte schránku, ale e-mail neodešle,
+Tahle automatizace potřebuje konektor Claude na Microsoft 365 se zapnutými
+**write tools** (posílání pošty) — bez nich přečte schránku, ale e-mail
+neodešle,
 jenom ho navrhne (viz \`CLAUDE.md\`, „Když projekt běží bez připojené
 schránky"). Write tools zapíná zvlášť správce Microsoft 365, přihlášený
 pracovním účtem; osobní outlook.com nebo hotmail.com nefunguje. Text, který
@@ -3247,7 +3250,7 @@ mu poslat, je níž v „Co napsat správci".
 | **Folder** | složka tohoto projektu (\`faktury-kontrola\`) |
 | **Schedule** | Every 15 minutes, v pracovní dny 7:00–18:00 |
 
-Proč každých 15 minut, ne jednou denně: tahle úloha nahrazuje ruční
+Proč každých 15 minut, ne jednou denně: tahle automatizace nahrazuje ruční
 sledování schránky, takže žádost o doplnění má dodavateli přijít brzy po
 faktuře, ne až druhý den. Claude Code nemá skutečné „hned jak přijde
 e-mail" spouštění — nejblíž tomu je časté opakování. Když ti 15 minut
@@ -3288,18 +3291,18 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.
    dodavatele a u té, které něco chybělo, má být vyplněný sloupec „Žádost
    odeslána".
 4. Teprve pak to nech běžet samo. **První den to nech běžet vedle sebe a
-   po každém běhu se podívej, co se stalo** — je to jediná úloha v tomhle
-   projektu, která bez tvého kliknutí posílá poštu ven z firmy.
+   po každém běhu se podívej, co se stalo** — je to jediná automatizace
+   v tomhle projektu, která bez tvého kliknutí posílá poštu ven z firmy.
 
 ## Co je dobré vědět
 
-- Místní úloha běží, jen když je aplikace Claude spuštěná a počítač vzhůru.
-  Když počítač spí, běh se přeskočí a doženou se jen ty, co chyběly
+- Místní automatizace běží, jen když je aplikace Claude spuštěná a počítač
+  vzhůru. Když počítač spí, běh se přeskočí a doženou se jen ty, co chyběly
   bezprostředně předtím — ne všechny za celou dobu.
-- Kdyby konektor na M365 spadl nebo přišel o přístup, úloha se zastaví na
-  dotazu, ne že by tiše nic nedělala — sleduj to hlavně první týden.
+- Kdyby konektor na M365 spadl nebo přišel o přístup, automatizace se
+  zastaví na dotazu, ne že by tiše nic nedělala — sleduj to hlavně první týden.
 - Když chceš, aby tohle běželo i s vypnutým počítačem, není to tenhle typ
-  úlohy. To už musí běžet někde jinde než na tvém stole.
+  automatizace. To už musí běžet někde jinde než na tvém stole.
 
 ## Co napsat správci
 
@@ -3307,7 +3310,7 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.
 Ahoj, potřeboval bych u konektoru Microsoft 365 pro Claude povolit
 write tools (odesílání pošty) pro schránku fakturace@dek.cz.
 
-K čemu to bude: automatická kontrola došlých faktur. Úloha zkontroluje
+K čemu to bude: automatická kontrola došlých faktur. Automatizace zkontroluje
 šest povinných údajů a dodavateli automaticky pošle žádost o doplnění,
 když jeden nebo dva chybí. Nic k platbě, schválení ani do účetnictví
 se automaticky neposílá — to zůstává na nás.
@@ -3327,7 +3330,7 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
         {
           title: 'Routines → New routine → Local',
           body:
-            'Cloud si na úlohu klonuje repozitář z GitHubu a do tvojí složky se nedostane — pro práci nad vlastní složkou proto chceš Local (víc v tabulce níž).',
+            'Cloud si na automatizaci klonuje repozitář z GitHubu a do tvojí složky se nedostane — pro práci nad vlastní složkou proto chceš Local (víc v tabulce níž).',
         },
         {
           title: 'Vyplnit název, popis a instrukce',
@@ -3337,7 +3340,7 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
         {
           title: 'Vybrat pracovní složku',
           body:
-            'Bez složky se úloha nedá uložit. Vyber projektovou — tu s CLAUDE.md, data/ a vystupy/. Bez označení jako důvěryhodná se na to aplikace zeptá.',
+            'Bez složky se automatizace nedá uložit. Vyber projektovou — tu s CLAUDE.md, data/ a vystupy/. Bez označení jako důvěryhodná se na to aplikace zeptá.',
         },
         {
           title: 'Nastavit rozvrh',
@@ -3347,7 +3350,7 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
         {
           title: 'Hned kliknout na Run now',
           body:
-            'Nepřeskakuj. První běh si odklikáš oprávnění a u každého dáš „always allow" — jinak se úloha při ostrém běhu zastaví na dotazu, na který nikdo neodpoví, a bude to vypadat, že spadla.',
+            'Nepřeskakuj. První běh si odklikáš oprávnění a u každého dáš „always allow" — jinak se automatizace při ostrém běhu zastaví na dotazu, na který nikdo neodpoví, a bude to vypadat, že spadla.',
         },
       ],
     },
@@ -3356,14 +3359,14 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
       tone: 'warn',
       title: 'Když počítač spal, běh se přeskočí',
       text:
-        'Úloha běží jen při puštěné aplikaci a probuzeném počítači. Zaspaný běh se zahodí, po probuzení se dohání jen ten poslední zmeškaný — úloha, která nešla šest dní, doběhne jednou. Ranní úloha se tak může spustit v jedenáct večer. Piš proto zadání s tím, že počítá: „Pracuj jenom s dnešním exportem. Po páté odpoledne nic nepočítej, jen napiš, že se to nestihlo." V Nastavení → Aplikace → Obecné jde zapnout Keep computer awake, ale zavřené víko uspí počítač tak jako tak.',
+        'Automatizace běží jen při puštěné aplikaci a probuzeném počítači. Zaspaný běh se zahodí, po probuzení se dohání jen ten poslední zmeškaný — automatizace, která nešla šest dní, doběhne jednou. Ranní automatizace se tak může spustit v jedenáct večer. Piš proto zadání s tím, že počítá: „Pracuj jenom s dnešním exportem. Po páté odpoledne nic nepočítej, jen napiš, že se to nestihlo." V Nastavení → Aplikace → Obecné jde zapnout Keep computer awake, ale zavřené víko uspí počítač tak jako tak.',
     },
     {
       kind: 'note',
       tone: 'info',
-      title: 'Zadání úlohy je obyčejný SKILL.md',
+      title: 'Zadání automatizace je obyčejný SKILL.md',
       text:
-        'Text úlohy leží na disku v ~/.claude/scheduled-tasks/<název>/SKILL.md — stejný formát jako u skillů, YAML hlavička s name a description a pod tím zadání. Dá se editovat ručně, projeví se to při dalším běhu. Rozvrh, složka a model se mění ve formuláři, ne v souboru.',
+        'Text automatizace leží na disku v ~/.claude/scheduled-tasks/<název>/SKILL.md — stejný formát jako u skillů, YAML hlavička s name a description a pod tím zadání. Dá se editovat ručně, projeví se to při dalším běhu. Rozvrh, složka a model se mění ve formuláři, ne v souboru.',
     },
     {
       kind: 'sekce',
@@ -3376,7 +3379,7 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
     {
       kind: 'p',
       text:
-        'Cloudová úloha běží na serveru, takže doběhne i se zavřeným notebookem. Nevidí ale na tvůj disk: pracuje nad repozitářem, který si naklonuje z GitHubu. Tabulka je rozdíl po rozdílu.',
+        'Cloudová automatizace běží na serveru, takže doběhne i se zavřeným notebookem. Nevidí ale na tvůj disk: pracuje nad repozitářem, který si naklonuje z GitHubu. Tabulka je rozdíl po rozdílu.',
     },
     {
       kind: 'table',
@@ -3398,20 +3401,20 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
       tone: 'warn',
       title: 'Pro naši práci je správně Local — a to je ta nepříjemná zpráva',
       text:
-        'Cloud zní líp, protože běží i se zavřeným notebookem — jenže data leží jen v nasyncované knihovně na disku, kam se cloudová úloha nedostane. Takže platí Local: zapnutý počítač, puštěná aplikace. Má-li běh vyjít i přes zavřený notebook, musí data přestat žít jen na disku — přes konektor, nebo tokem v Power Automate.',
+        'Cloud zní líp, protože běží i se zavřeným notebookem — jenže data leží jen v nasyncované knihovně na disku, kam se cloudová automatizace nedostane. Takže platí Local: zapnutý počítač, puštěná aplikace. Má-li běh vyjít i přes zavřený notebook, musí data přestat žít jen na disku — přes konektor, nebo tokem v Power Automate.',
     },
     { kind: 'h', text: 'Nutné minimum o GitHubu' },
     {
       kind: 'p',
       text:
-        'Cloudová úloha nepracuje se složkou na disku, ale s repozitářem na GitHubu. Kdo GitHub nezná, tady je minimum, se kterým se dá tenhle rozdíl pochopit — víc na to teď nepotřebuješ.',
+        'Cloudová automatizace nepracuje se složkou na disku, ale s repozitářem na GitHubu. Kdo GitHub nezná, tady je minimum, se kterým se dá tenhle rozdíl pochopit — víc na to teď nepotřebuješ.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'GitHub je Disk pro složky projektů',
       text:
-        'Představ si Google Disk, ale pro celé složky projektů — a s pamětí. Ke každé změně si pamatuje, kdo ji udělal, kdy a hlavně proč: ke každé se píše krátký popisek. Dva rozdíly proti Disku: nesynchronizuje se sám na pozadí, změny se posílají vědomě a po dávkách; a umí spouštět úlohy sám, když se něco stane. Jinak je to pořád jen složka se soubory.',
+        'Představ si Google Disk, ale pro celé složky projektů — a s pamětí. Ke každé změně si pamatuje, kdo ji udělal, kdy a hlavně proč: ke každé se píše krátký popisek. Dva rozdíly proti Disku: nesynchronizuje se sám na pozadí, změny se posílají vědomě a po dávkách; a umí spouštět automatizace sám, když se něco stane. Jinak je to pořád jen složka se soubory.',
     },
     {
       kind: 'table',
@@ -3421,7 +3424,7 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
         ['commit', 'jedna uložená změna s popiskem, proč se stala'],
         ['push', 'odeslání hotových commitů z počítače na GitHub'],
         ['branch (větev)', 'souběžná verze složky, ať se rozdělaná práce nemíchá do hotové; hlavní se jmenuje main'],
-        ['GitHub Actions', 'úlohy, které GitHub spouští sám — po každém pushi nebo podle času'],
+        ['GitHub Actions', 'automatizace, které GitHub spouští sám — po každém pushi nebo podle času'],
       ],
     },
     {
@@ -3443,13 +3446,13 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
       src: 'github-actions.webp',
       alt: 'Stránka Actions repozitáře cajpij/dek se 104 běhy. Každý řádek má zelené kolečko, název odpovídající poslední změně, poznámku Deploy to GitHub Pages s číslem běhu a commitem, větev main, dobu před několika minutami a délku běhu kolem čtyřiceti sekund.',
       caption:
-        'A tohle je „jak tam něco běží". Po každém odeslání změny spustí GitHub sám úlohu, která z repozitáře postaví web — těch 104 běhů je 104 verzí téhle akademie. Čtyřicet sekund a je venku. Nikdo u toho neseděl.',
+        'A tohle je „jak tam něco běží". Po každém odeslání změny spustí GitHub sám automatizaci, která z repozitáře postaví web — těch 104 běhů je 104 verzí téhle akademie. Čtyřicet sekund a je venku. Nikdo u toho neseděl.',
     },
     { kind: 'h', text: 'Co by to znamenalo pro kontrolu faktur' },
     {
       kind: 'p',
       text:
-        'Formulář cloudové rutiny se ptá na dvě věci, které lokální nechce: na repozitář a na cloudové prostředí. Bez repozitáře se úloha nedá založit — a to je celá odpověď na otázku, jestli by kontrola faktur šla pustit v cloudu.',
+        'Formulář cloudové rutiny se ptá na dvě věci, které lokální nechce: na repozitář a na cloudové prostředí. Bez repozitáře se automatizace nedá založit — a to je celá odpověď na otázku, jestli by kontrola faktur šla pustit v cloudu.',
     },
     {
       kind: 'image',
@@ -3457,7 +3460,7 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
       maxWidth: 620,
       alt: 'Formulář nové cloudové rutiny. Pole Name a Instructions, pod nimi zvýrazněný řádek Select a repository s šipkou a popiskem „sem musí složka projektu", vedle Select a cloud environment. Níž výběr spouštěče: Schedule, GitHub event, API. Dole seznam konektorů a oranžové varování, že Claude smí tyto konektory používat včetně zápisu, aniž by se během běhů ptal.',
       caption:
-        'Zvýrazněné pole je jádro věci: cloudová úloha nepracuje se složkou na disku, ale s repozitářem. Naše faktury-kontrola by se tedy musela přestěhovat na GitHub.',
+        'Zvýrazněné pole je jádro věci: cloudová automatizace nepracuje se složkou na disku, ale s repozitářem. Naše faktury-kontrola by se tedy musela přestěhovat na GitHub.',
     },
     {
       kind: 'note',
@@ -3471,7 +3474,7 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
       tone: 'ok',
       title: 'Kdy cloud naopak sedí',
       text:
-        'Když je práce sama o sobě v repozitáři. Tahle akademie je toho příklad: lekce jsou soubory v cajpij/dek, takže cloudová úloha by je uměla upravovat i se zavřeným notebookem — a Actions, které jsi viděl výš, ji po každé změně samy nasadí. Rozhoduje tedy jediná otázka: leží data, se kterými se pracuje, v repozitáři, nebo na disku?',
+        'Když je práce sama o sobě v repozitáři. Tahle akademie je toho příklad: lekce jsou soubory v cajpij/dek, takže cloudová automatizace by je uměla upravovat i se zavřeným notebookem — a Actions, které jsi viděl výš, ji po každé změně samy nasadí. Rozhoduje tedy jediná otázka: leží data, se kterými se pracuje, v repozitáři, nebo na disku?',
     },
     {
       kind: 'note',
@@ -3482,7 +3485,7 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
     },
     {
       kind: 'video',
-      title: 'Jak naplánovaná úloha vypadá',
+      title: 'Jak naplánovaná automatizace vypadá',
       items: VIDEOS_PLAN,
     },
     {
@@ -4168,7 +4171,7 @@ const L2_CVICNY: Lesson = {
   module: 'postav',
   title: 'Cvičný projekt: kontrola faktur ke stažení',
   summary:
-    'Hotový projekt i s fakturami, skillem, zábranou a naplánovanou úlohou. Stáhneš, pustíš, porovnáš s referenčním výstupem — a pak přepneš na svoje faktury.',
+    'Hotový projekt i s fakturami, skillem, zábranou a naplánovanou automatizací. Stáhneš, pustíš, porovnáš s referenčním výstupem — a pak přepneš na svoje faktury.',
   minutes: 20,
   kind: 'zadání',
   track: 'potom',
@@ -4176,7 +4179,7 @@ const L2_CVICNY: Lesson = {
     'rozjet hotový projekt a ověřit si, že u tebe dává stejný výsledek',
     'popsat celou cestu faktury od e-mailu po zápis do evidence a žádost o doplnění',
     'přečíst kontrolní protokol a poznat z něj, co je k vyřízení',
-    'nastavit naplánovanou úlohu, která běží samostatně, včetně chování při vypnutém počítači',
+    'nastavit naplánovanou automatizaci, která běží samostatně, včetně chování při vypnutém počítači',
     'poznat rozdíl mezi povolením složky v Coworku a v Claude Code',
     'napojit projekt na skutečnou schránku, aniž bys musel cokoli přepisovat',
     'vědět, proč žádost o doplnění jde automaticky a platba účtárně ne',
@@ -4191,7 +4194,7 @@ const L2_CVICNY: Lesson = {
       kind: 'figure',
       name: 'rucne-vs-automat',
       caption:
-        'Nejrychlejší způsob, jak pochopit, o čem tahle lekce je. Vlevo jak agenda vypadala, když ji Marie dělala ručně, vpravo co z ní převzala hotová úloha. Nad řezem tři kroky, které dělá sama. Pod ním tři, které zatím dělá člověk — u dvou z nich je modře napsaný další schod, na který se dají posunout. Jen ten poslední, schválení a platba, se posouvat nebude, a to je rozhodnutí, ne nedodělek.',
+        'Nejrychlejší způsob, jak pochopit, o čem tahle lekce je. Vlevo jak agenda vypadala, když ji Marie dělala ručně, vpravo co z ní převzala hotová automatizace. Nad řezem tři kroky, které dělá sama. Pod ním tři, které zatím dělá člověk — u dvou z nich je modře napsaný další schod, na který se dají posunout. Jen ten poslední, schválení a platba, se posouvat nebude, a to je rozhodnutí, ne nedodělek.',
     },
     {
       kind: 'note',
@@ -4210,7 +4213,7 @@ const L2_CVICNY: Lesson = {
     {
       kind: 'p',
       text:
-        'Než se pustíš do stahování, přečti si, čím to začalo. Nejdřív byla mapa procesu z účtárny, z ní sled kroků — rozkreslený je v části „3. Co se stane, když to pustíš" — a teprve pak tohle zadání. Podle něj Claude celou složku vyrobil: skill, zábranu, evidenci i naplánovanou úlohu. Nic z toho jsem neskládal ručně. Tohle je ten soubor, slovo od slova — leží ve složce jako zadani.md, jen s obecnými adresami:',
+        'Než se pustíš do stahování, přečti si, čím to začalo. Nejdřív byla mapa procesu z účtárny, z ní sled kroků — rozkreslený je v části „3. Co se stane, když to pustíš" — a teprve pak tohle zadání. Podle něj Claude celou složku vyrobil: skill, zábranu, evidenci i naplánovanou automatizaci. Nic z toho jsem neskládal ručně. Tohle je ten soubor, slovo od slova — leží ve složce jako zadani.md, jen s obecnými adresami:',
     },
     {
       kind: 'code',
@@ -4219,7 +4222,7 @@ const L2_CVICNY: Lesson = {
 ## K čemu to je
 Do schránky fakturace@dek.cz chodí od dodavatelů faktury v PDF. Někdo
 je musí otevřít, opsat z nich šest údajů do evidence a u neúplných napsat
-dodavateli o doplnění. Tohle má dělat úloha místo mě.
+dodavateli o doplnění. Tohle má dělat automatizace místo mě.
 
 ## Co potřebuješ
 Konektor na Microsoft 365, který schránku umí **číst i z ní odesílat poštu**.
@@ -4290,7 +4293,7 @@ ať se v tom vyzná i někdo, kdo u toho nebyl.`,
       tone: 'ok',
       title: 'Čtyři věci, které z toho dělají zadání a ne přání',
       text:
-        'Napsat „hlídej mi faktury a když něco chybí, napiš dodavateli" by nestačilo. Za prvé jsou tam jména souborů a sešitů, takže není co hádat. Za druhé je tam rozcestí s čísly — jeden nebo dva údaje se posílají, tři a víc ne — místo „posuď to sám". Za třetí je tam napsané, co se má stát, když se něco nepovede: prázdné pole zůstane prázdné a nedomýšlí se. A za čtvrté je tam odstavec „co nesmíš nikdy", protože tahle úloha posílá poštu ven z firmy — a hranice se píše dopředu, ne až se něco stane.',
+        'Napsat „hlídej mi faktury a když něco chybí, napiš dodavateli" by nestačilo. Za prvé jsou tam jména souborů a sešitů, takže není co hádat. Za druhé je tam rozcestí s čísly — jeden nebo dva údaje se posílají, tři a víc ne — místo „posuď to sám". Za třetí je tam napsané, co se má stát, když se něco nepovede: prázdné pole zůstane prázdné a nedomýšlí se. A za čtvrté je tam odstavec „co nesmíš nikdy", protože tahle automatizace posílá poštu ven z firmy — a hranice se píše dopředu, ne až se něco stane.',
     },
     {
       kind: 'note',
@@ -4409,7 +4412,7 @@ ať se v tom vyzná i někdo, kdo u toho nebyl.`,
         {
           title: 'Když to pustíš podruhé, neudělá nic',
           body:
-            'Všech pět už má řádek v evidenci, takže není co zpracovat — a Claude to řekne. Je to nuda, a přesně tak to má vypadat: úloha, která běží každých 15 minut, musí umět nedělat nic.',
+            'Všech pět už má řádek v evidenci, takže není co zpracovat — a Claude to řekne. Je to nuda, a přesně tak to má vypadat: automatizace, která běží každých 15 minut, musí umět nedělat nic.',
         },
       ],
     },
@@ -4418,7 +4421,7 @@ ať se v tom vyzná i někdo, kdo u toho nebyl.`,
       tone: 'info',
       title: 'Co se změní, až to napojíš na schránku',
       text:
-        'Kroky 2 až 7 zůstanou úplně stejné. Mění se jen začátek a konec: místo procházení vstup/ se úloha podívá do schránky na e-maily s PDF přílohou, které ještě nejsou uložené, a novou fakturu si do vstup/ sama uloží pod jménem <datum>_<dodavatel>.pdf. A místo „připraveno, čeká na konektor" se navržený text doopravdy odešle — na adresu, ze které faktura přišla, v kopii vedouci-uctarny@dek.cz, s předmětem „Doplnění faktury <číslo faktury>". Čas odeslání se pak zapíše na tři místa: do sešitu dodavatele, do „Přehledu" a do sloupce Žádost odeslána v evidenci.',
+        'Kroky 2 až 7 zůstanou úplně stejné. Mění se jen začátek a konec: místo procházení vstup/ se automatizace podívá do schránky na e-maily s PDF přílohou, které ještě nejsou uložené, a novou fakturu si do vstup/ sama uloží pod jménem <datum>_<dodavatel>.pdf. A místo „připraveno, čeká na konektor" se navržený text doopravdy odešle — na adresu, ze které faktura přišla, v kopii vedouci-uctarny@dek.cz, s předmětem „Doplnění faktury <číslo faktury>". Čas odeslání se pak zapíše na tři místa: do sešitu dodavatele, do „Přehledu" a do sloupce Žádost odeslána v evidenci.',
     },
     {
       kind: 'p',
@@ -4495,7 +4498,7 @@ K ruční kontrole: 0
     {
       kind: 'p',
       text:
-        'Až vám to dvakrát vyjde ručně, udělejte z toho úlohu: Code → Routines → New routine → Local. Cloudová varianta by nefungovala, nevidí složku na disku. Ať doopravdy odešle žádost o doplnění, potřebuje navíc konektor na Microsoft 365 se zapnutými write tools — bez nich poběží dál, jen bude text jen navrhovat (viz „Co napsat správci“ níž).',
+        'Až vám to dvakrát vyjde ručně, udělejte z toho automatizaci: Code → Routines → New routine → Local. Cloudová varianta by nefungovala, nevidí složku na disku. Ať doopravdy odešle žádost o doplnění, potřebuje navíc konektor na Microsoft 365 se zapnutými write tools — bez nich poběží dál, jen bude text jen navrhovat (viz „Co napsat správci“ níž).',
     },
     {
       kind: 'table',
@@ -4528,21 +4531,21 @@ Když u některé faktury chybí tři a víc údajů, nebo se PDF nedá přečí
 nic neposílej — zapiš to do protokolu k ruční kontrole.
 
 Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.`,
-      caption: 'Celé zadání úlohy. Poslední dvě věty jsou pojistky — bez nich je to hezký nápad, ne provoz.',
+      caption: 'Celé zadání automatizace. Poslední dvě věty jsou pojistky — bez nich je to hezký nápad, ne provoz.',
     },
     {
       kind: 'note',
       tone: 'info',
       title: 'Jak se to chová, když počítač spí',
       text:
-        'Místní úloha běží, jen když je počítač vzhůru a aplikace spuštěná. Když zrovna spí, ten běh se přeskočí a doženou se jen běhy bezprostředně předtím — ne celá zameškaná historie. Po nočním vypnutí se nespustí padesát běhů najednou, jen ten poslední.',
+        'Místní automatizace běží, jen když je počítač vzhůru a aplikace spuštěná. Když zrovna spí, ten běh se přeskočí a doženou se jen běhy bezprostředně předtím — ne celá zameškaná historie. Po nočním vypnutí se nespustí padesát běhů najednou, jen ten poslední.',
     },
     {
       kind: 'note',
       tone: 'ok',
       title: 'Hned po uložení dej Run now',
       text:
-        'První běh se bude na pár věcí ptát — u každého dotazu vyberte „always allow“, další běhy pak proběhnou bez ptaní. Jinak se úloha zastaví na dotazu a bude čekat, až přijdete.',
+        'První běh se bude na pár věcí ptát — u každého dotazu vyberte „always allow“, další běhy pak proběhnou bez ptaní. Jinak se automatizace zastaví na dotazu a bude čekat, až přijdete.',
     },
     { kind: 'h', text: '7. Povolení složky: dvakrát jinak' },
     {
@@ -4600,7 +4603,7 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.`,
       text: `Ahoj, potřeboval bych u konektoru Microsoft 365 pro Claude povolit
 write tools (odesílání pošty) pro schránku fakturace@dek.cz.
 
-K čemu to bude: automatická kontrola došlých faktur. Úloha zkontroluje
+K čemu to bude: automatická kontrola došlých faktur. Automatizace zkontroluje
 šest povinných údajů a dodavateli automaticky pošle žádost o doplnění,
 když jeden nebo dva chybí. Nic k platbě, schválení ani do účetnictví
 se automaticky neposílá — to zůstává na nás.
@@ -4651,7 +4654,7 @@ místo odeslání jen navrhne text a s tou vystačím.`,
       items: [
         'projekt u tebe našel tentýž jeden nález jako referenční výstup',
         'zápis textového souboru do vstup/ ti Claude odmítl',
-        'úloha je založená, proběhla přes Run now a všechna oprávnění jsou odsouhlasená',
+        'automatizace je založená, proběhla přes Run now a všechna oprávnění jsou odsouhlasená',
         'víš, co se stane, když počítač zrovna spí',
         'víš, proč tvoje faktury nebudou v Coworku, ale v Claude Code',
       ],
@@ -4700,7 +4703,7 @@ export const COURSES: Course[] = [
     ],
     lessons: [LESSON_PROGRAM, LESSON_SLOVNICEK, LESSON_TOKENY, LESSON_COWORK, LESSON_SHAREPOINT, LESSON_CO_VIDI, LESSON_PROJEKT],
     learn: [
-      'vysvětlit, za co se u Clauda platí, a vybrat model i effort podle úlohy',
+      'vysvětlit, za co se u Clauda platí, a vybrat model i effort podle úkolu',
       'zkrátit dlouhá sezení a zjistit, kam odtéká příděl',
       'vybrat si mezi chatem, Coworkem a Claude Code podle toho, kde leží data',
       'založit projekt tak, aby se pravidla nemusela opakovat každé ráno',
@@ -4719,7 +4722,7 @@ export const COURSES: Course[] = [
     slug: 'od-mapy-k-automatu',
     title: 'Od mapy k automatu',
     summary:
-      'Navazuje tam, kde první kurz skončil mapou procesu. Cílem je úloha, která doběhne bez tebe a ty poznáš, jestli dopadla dobře.',
+      'Navazuje tam, kde první kurz skončil mapou procesu. Cílem je automatizace, která doběhne bez tebe a ty poznáš, jestli dopadla dobře.',
     intro:
       'Mapu procesu už máš a víš, kde se přepisuje ručně. Tenhle kurz vede od ní až na poslední schod: k úloze, která se spustí sama a po které zůstane kontrola, ze které poznáš, jestli je výsledek v pořádku. Každou věc si nejdřív ukážeme na kontrole faktur, kterou znáš ze vzoru, a pak ji uděláš na vlastní agendě.',
     level: 'Navazující',
