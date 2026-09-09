@@ -2677,6 +2677,13 @@ const L2_PLAN: Lesson = {
         'Takhle vypadá hotová úloha, kterou Claude založil z jedné věty. Rozvrh „každých 15 minut v pracovní dny" ve formuláři na výběr není — vznikl z toho, jak byl popsaný slovy. Historie je prázdná, protože ještě nic neproběhlo; první běh si vyvoláš tlačítkem Run now vpravo nahoře.',
     },
     {
+      kind: 'image',
+      src: 'routines-prvni-beh.webp',
+      alt: 'První běh rutiny kontrola-faktur. Vpravo panel Runs se záznamem Today at 1:24 PM ve stavu Running. Uprostřed průběh: Claude čte pokyny projektu a soubor skillu, přečetl dva soubory, spustil dva příkazy z toho jeden neúspěšně, a hlásí, že mezi dostupnými nástroji není konektor na Microsoft 365, takže si to chce ověřit, než z toho udělá závěr. Dole dotaz na oprávnění „Allow Claude to use list connectors" s tlačítky Deny, Always allow a Allow once.',
+      caption:
+        'První běh po Run now. Na každý nástroj se úloha zeptá — „Always allow" si odpověď uloží a další běhy už se neptají; bez toho se běh ve tři ráno zastaví na dotazu a nikdo neodpoví. Všimni si i řádku o chybějícím konektoru: úloha nepředstírá, že mail odešle, a jde to ověřit, než něco tvrdí.',
+    },
+    {
       kind: 'note',
       tone: 'info',
       title: 'Ještě líp: měj rozvrh napsaný ve složce',
