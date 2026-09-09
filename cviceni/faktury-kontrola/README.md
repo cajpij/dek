@@ -1,25 +1,47 @@
 # Kontrola faktur — cvičný projekt
 
-Postavený podle lekce **Od e-mailu k platbě** z DEK Academy. Sleduje
-schránku s fakturami, vytáhne z PDF šest povinných údajů a eviduje je podle
-dodavatele. Když něco chybí, sám pošle dodavateli e-mail s žádostí o
-doplnění. Nic neschvaluje, nic neplatí. Všechna data jsou vymyšlená.
+Postavený podle lekce **Cvičný projekt: kontrola faktur** z DEK Academy.
+Sleduje schránku s fakturami, vytáhne z PDF šest povinných údajů a eviduje
+je podle dodavatele. Když něco chybí, sám pošle dodavateli e-mail s žádostí
+o doplnění. Nic neschvaluje, nic neplatí. Všechna data jsou vymyšlená.
+
+## Co to udělá, až to pustíš
+
+Otevři složku v Claude Code a napiš `Postupuj podle skillu kontrola-faktur.`
+Konektor na schránku k tomu není potřeba — poprvé se jede nad tím, co leží
+ve `vstup/`. Mělo by se stát tohle:
+
+1. Projde pět PDF ve `vstup/`. Evidence je zatím prázdná, takže je vezme
+   všechny.
+2. Z každé faktury vytáhne šest údajů a založí v `data/objednavky.xlsx`
+   sešit pojmenovaný jménem dodavatele.
+3. Čtyři faktury jsou kompletní a tím pro ně končí — nic se neposílá.
+4. U **Elektro Dvořák** chybí číslo objednávky, takže vznikne
+   `vystup/kontrola-<dnešní datum>.xlsx` s návrhem odpovědi.
+5. E-mail se **neodešle** — bez konektoru nemá odkud. Do sloupce „Žádost
+   odeslána" se zapíše „připraveno, čeká na konektor". To je správný konec,
+   ne chyba.
+6. Vznikne `vystup/protokol-<dnešní datum>.md` se shrnutím běhu.
+
+Porovnej to se soubory, které ve `vystup/` už leží — musí vyjít tentýž
+jeden nález. Když to pustíš podruhé, neudělá nic: všechny faktury už mají
+řádek. To je taky správně — úloha, která běží každých 15 minut, musí umět
+nedělat nic.
 
 ## Co v tom je
 
 ```
 faktury-kontrola/
-├── zadani.md                 text, ze kterého celá složka vznikla
-├── CLAUDE.md                 pravidla a slovník, čtou se při každém spuštění
-├── vstup/                    5 vzorových faktur v PDF — sem se jen čte
-├── data/objednavky.xlsx      evidence přijatých faktur, sešit pro každého dodavatele
-├── vystup/                   vzorový výstup prvního běhu: tabulka + protokol
-├── .claude/
-│   ├── skills/kontrola-faktur/SKILL.md    postup, který se spustí jednou větou
-│   ├── hooks/chran-vstup.sh              zábrana: do vstup/ smí přibýt jen nová PDF
-│   └── settings.json                     zapojení hooku
-├── rutina.md                 co vyplnit v naplánované úloze a jaký konektor potřebuje
-└── runbook.md                co dělat, když to spadne
+├── zadani.md                  ← text, ze kterého celá složka vznikla
+├── CLAUDE.md                  ← pravidla a slovník, čtou se pokaždé
+├── vstup/                     ← 5 vzorových faktur v PDF, sem se jen čte
+├── data/objednavky.xlsx       ← evidence faktur, sešit pro každého dodavatele
+├── vystup/                    ← referenční výstup: tabulka + protokol
+├── .claude/skills/kontrola-faktur/SKILL.md
+├── .claude/hooks/chran-vstup.sh
+├── .claude/settings.json
+├── rutina.md                  ← co vyplnit v naplánované úloze
+└── runbook.md                 ← co dělat, když to spadne
 ```
 
 ## Co je na vzorové faktuře schválně špatně

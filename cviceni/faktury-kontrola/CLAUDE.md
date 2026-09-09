@@ -19,7 +19,8 @@ do účetního systému. To zůstává na člověku.
 - evidence = data/objednavky.xlsx, jeden sešit pro každého dodavatele
 
 ## Kde jsou data
-- vstup/ — uložené PDF faktur. Sem se jen čte, nikdy nepřepisuje.
+- vstup/ — uložené PDF faktur. Sem se jen čte, nikdy nepřepisuje. Přibýt smí
+  jen nově stažená faktura, nic jiného (hlídá to hook chran-vstup.sh).
 - data/objednavky.xlsx — evidence přijatých faktur, sešit pro každého
   dodavatele. Sloupce: Soubor / Datum přijetí / Číslo faktury / IČO / Číslo
   objednávky / Základ daně / Splatnost / Kompletní / Žádost odeslána.

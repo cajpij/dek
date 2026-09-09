@@ -10,7 +10,8 @@ fakturace@dek.cz. Když najde e-mail s novou fakturou v PDF, uloží ji do
 číslo objednávky, základ daně, splatnost) a zapíše je do
 `data/objednavky.xlsx`, do sešitu podle dodavatele. Když chybí jeden nebo
 dva údaje, sama pošle dodavateli e-mail s žádostí o doplnění (v kopii
-vedouci-uctarny@dek.cz) a zapíše to do `vystup/kontrola-<datum>.xlsx`.
+vedouci-uctarny@dek.cz), zapíše to do `vystup/kontrola-<datum>.xlsx` a čas
+odeslání doplní i do evidence, do sloupce „Žádost odeslána“.
 
 **Posílá jen žádost o doplnění chybějícího údaje na faktuře samotné.**
 Neschvaluje faktury, nic neplatí a nezapisuje nic do účetního systému.
