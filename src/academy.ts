@@ -55,6 +55,7 @@ export type Block =
     | 'tri-prikazy'
     | 'faktury-sezeni'
     | 'akcni-regal'
+    | 'akcni-regal-po-rutine'
       caption: string
     }
   /** Snímek cizí obrazovky. Kreslené schéma patří do 'figure', tohle je fotka. */
@@ -5149,6 +5150,53 @@ Vizualizace: diagram „Od magazínu do regálu" (je v lekci Co je automatizace)
       title: 'Diktování a přepis nahrávky nejsou totéž',
       text:
         'Diktování je jeden hlas do vstupního pole teď; přepis je dvouhlasý rozhovor ze záznamu. Na sběr rozhovoru diktování není. Kde v tomhle postupu pomůže, je krok hned po něm: přijdeš od kolegy a dvě minuty namluvíš, co ti ukázal. Řekneš při tom detaily, které bys do pole nenapsal — a Claude z toho nakreslí první verzi flow, kterou pak opravíš podle přepisu.',
+    },
+    { kind: 'h', text: 'Co z toho vezme naplánovaná automatizace' },
+    {
+      kind: 'p',
+      text:
+        'Obrázek nahoře ukazuje, kde to bolí. Tenhle ukazuje tentýž proces od začátku do konce s odpovědí, kdo který krok dělá potom. Podstatné je, že se to nerozpadne na jednu automatizaci, ale na tři — každá má svůj vlastní vstup, svůj výstup a jde postavit i pustit samostatně.',
+    },
+    {
+      kind: 'figure',
+      name: 'akcni-regal-po-rutine',
+      caption:
+        'Modře to, co přebírá automatizace, a svorky vlevo říkají která. Oranžově jediný ruční krok, který v procesu zůstane, protože bez něj nemá první automatizace odkud brát. Zeleně vzorování v regálu — to zůstává člověku schválně. Šedé kroky jsou beze změny: úsudek a schválení nikdo nepřebírá.',
+    },
+    {
+      kind: 'table',
+      head: ['Automatizace', 'Co dělá', 'Co k tomu potřebuje'],
+      rows: [
+        [
+          'A — rozeslat',
+          'Ráno se podívá, jestli ve složce přibyl nový složený list. Když ano, rozpadne ho na čtyři soubory podle divize a rozešle jedenáct e-mailů podle sekcí.',
+          'složka na SharePointu a konektor na Microsoft 365 se zapnutými write tools — stavebně tatáž věc jako kontrola faktur',
+        ],
+        [
+          'B — posbírat zpátky',
+          'Čte odpovědi ze schránky a zapisuje výběr, prioritu a poznámku do hlavní tabulky. Print screen si přečte taky. Páruje podle kódu položky a hlídá, od koho nic nepřišlo.',
+          'týž konektor, zábrana nad hlavní tabulkou a seznam jedenácti adres',
+        ],
+        [
+          'C — vygenerovat',
+          'Z jednoho schváleného zdroje vyrobí Word a tři Excely podle šablon. Min/max předpočítá z prodejů za dvanáct měsíců.',
+          'tři šablony a jasné místo, kde je vidět, že už je schváleno',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Nejužitečnější není ta, kterou stavět první',
+      text:
+        'Nejvíc práce ušetří B, protože bere ten nejotravnější krok. Začít se ale má A: není v ní žádné rozcestí, výsledek je vidět hned (odešlo jedenáct e-mailů, nebo ne) a když se pokazí, nic se neztratí. B má víc situací, které mohou nastat — nečitelný print screen, kód, který nesedí — a chce zábranu. C běží nejmíň často a až po schválení, takže je poslední.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: '„Bez pevného termínu“ automatizaci nevadí',
+      text:
+        'V rozboru je napsané, že produkťáci zapisují průběžně a žádný termín není. Naplánovaná automatizace se s tím vyrovná tak, že běží často a většinou neudělá vůbec nic — přesně jako kontrola faktur ve dnech, kdy žádná nepřijde. Běh, po kterém nic nepřibylo, je správný konec, ne planý poplach.',
     },
   ],
 }

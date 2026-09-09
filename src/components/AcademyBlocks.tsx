@@ -24,6 +24,7 @@ import AutomationLadder from './AutomationLadder'
 import ProjectTree from './ProjectTree'
 import RegalFlow from './RegalFlow'
 import AkcniRegalFlow from './AkcniRegalFlow'
+import AkcniRegalPoRutine from './AkcniRegalPoRutine'
 import RoutineForm from './RoutineForm'
 import TokenDrains from './TokenDrains'
 import ContextGrowth from './ContextGrowth'
@@ -634,6 +635,8 @@ export default function BlockView({ block }: { block: Block }) {
               <FakturySezeni />
             ) : block.name === 'akcni-regal' ? (
               <AkcniRegalFlow />
+            ) : block.name === 'akcni-regal-po-rutine' ? (
+              <AkcniRegalPoRutine />
             ) : (
               <RegalFlow />
             )}
