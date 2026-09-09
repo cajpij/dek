@@ -4419,6 +4419,82 @@ const L2_CVICNY: Lesson = {
       text:
         'Projekt hlídá schránku s fakturami: novou PDF přílohu uloží, vytáhne z ní šest povinných údajů a zapíše je do evidence do sešitu podle dodavatele. Když jeden nebo dva údaje chybí, sepíše žádost o doplnění a sám ji dodavateli pošle — to je jediná automatická zpráva, kterou smí poslat; nic neschvaluje, nic neplatí a nic nezapisuje do účetnictví. Krok za krokem je to rozepsané v části „3. Co se stane, když to pustíš“. Ve složce jsou i vzorové faktury, takže si to můžete pustit hned.',
     },
+    { kind: 'h', text: 'Zadání, ze kterého projekt vznikl' },
+    {
+      kind: 'p',
+      text:
+        'Než se pustíš do stahování, přečti si, čím to začalo. Nejdřív byla mapa procesu z účtárny, z ní sled kroků — rozkreslený je v části „3. Co se stane, když to pustíš" — a teprve pak tohle zadání. Podle něj Claude celou složku vyrobil: skill, zábranu, evidenci i naplánovanou úlohu. Nic z toho jsem neskládal ručně. Adresy jsou v ukázce obecné, jinak je to celé zadání:',
+    },
+    {
+      kind: 'code',
+      text: `Postav mi v téhle složce kontrolu došlých faktur.
+
+Do schránky fakturace@dek.cz chodí od dodavatelů faktury v PDF. Někdo je
+musí otevřít, opsat z nich šest údajů do evidence a u neúplných napsat
+dodavateli o doplnění. Tohle má dělat úloha místo mě.
+
+Potřebuješ konektor na Microsoft 365, který schránku umí číst i z ní
+odesílat poštu. Když právo odesílat chybí, udělej všechno ostatní a e-mail
+nechej jen navržený — napiš mi to a nehledej jinou cestu, jak poštu poslat.
+
+Postup pro každou novou fakturu:
+1. Najdi ve schránce e-maily s PDF přílohou, které ještě nejsou ve vstup/.
+   Další faktura od téhož dodavatele je nová faktura.
+2. Ulož přílohu do vstup/ jako <datum přijetí>_<dodavatel>.pdf. Do vstup/
+   smí jen přibývat — nic tam nepřepisuj, nepřejmenovávej ani nemaž.
+3. Vytáhni z PDF šest údajů, jeden po druhém: číslo faktury, dodavatele,
+   IČO, číslo objednávky, základ daně (částku bez DPH) a splatnost.
+4. Zapiš je do data/objednavky.xlsx do sešitu pojmenovaného jménem
+   dodavatele přesně tak, jak je na faktuře. Když sešit není, založ ho.
+5. Když je vyplněných všech šest, tady skonči. Nic se neposílá.
+
+Když chybí jeden nebo dva údaje:
+6. Do vystup/kontrola-<datum>.xlsx zapiš, co chybí: sešit „Přehled" se
+   stavem všech faktur toho dne a sešit dodavatele s chybějícím údajem
+   a s návrhem odpovědi podle šablony níž.
+7. Ten text pošli jako nový e-mail na adresu, ze které faktura přišla,
+   v kopii vedouci-uctarny@dek.cz. Předmět: Doplnění faktury <číslo>.
+   Text mezi sešitem a odeslanou poštou neměň.
+8. Čas odeslání zapiš na tři místa: do sešitu dodavatele, do „Přehledu"
+   a do sloupce „Žádost odeslána" v evidenci.
+
+Kdy nedělat nic:
+- Chybí tři a víc údajů, nebo z PDF nejde přečíst text: neposílej nic,
+  zapiš to do protokolu jako „k ruční kontrole" a řekni mi to. Tolik
+  prázdných polí většinou neznamená špatnou fakturu, ale špatně přečtené
+  PDF — a to není naše právo dávat za vinu dodavateli.
+- Adresa odesílatele není čitelná: stejně tak.
+- Údaj na faktuře chybí nebo je nečitelný: nech pole prázdné. Nic
+  nedomýšlej a nic nedopočítávej.
+
+Co nesmíš nikdy:
+Schválit fakturu, zadat ji k platbě, zapsat cokoli do účetního systému
+nebo poslat zprávu, která se týká platby či schválení. Jediná automatická
+zpráva, kterou smíš odeslat, je žádost o doplnění údaje na faktuře.
+
+Šablona e-mailu:
+  Předmět: Doplnění faktury <číslo faktury>
+
+  Dobrý den, <dodavatel>,
+
+  děkujeme za zaslanou fakturu. Při kontrole naším účetním oddělením jsme
+  nenalezli <chybějící údaj/e>, které potřebujeme mít na faktuře. Prosíme
+  o doplnění a opětovné zaslání faktury zpět.
+
+  S pozdravem,
+  Účtárna DEK
+
+Až to bude fungovat, popiš postup a pravidla do CLAUDE.md, README.md,
+rutina.md a runbook.md, ať se v tom vyzná i někdo, kdo u toho nebyl.`,
+      caption: 'Zadání zůstává ve složce jako zadani.md. Když se agenda změní, mění se nejdřív ono a teprve podle něj soubory.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Čtyři věci, které z toho dělají zadání a ne přání',
+      text:
+        'Napsat „hlídej mi faktury a když něco chybí, napiš dodavateli" by nestačilo. Za prvé jsou tam jména souborů a sešitů, takže není co hádat. Za druhé je tam rozcestí s čísly — jeden nebo dva údaje se posílají, tři a víc ne — místo „posuď to sám". Za třetí je tam napsané, co se má stát, když se něco nepovede: prázdné pole zůstane prázdné a nedomýšlí se. A za čtvrté je tam odstavec „co nesmíš nikdy", protože tahle úloha posílá poštu ven z firmy — a hranice se píše dopředu, ne až se něco stane.',
+    },
     {
       kind: 'note',
       tone: 'ok',
@@ -4463,6 +4539,7 @@ const L2_CVICNY: Lesson = {
     {
       kind: 'code',
       text: `faktury-kontrola/
+├── zadani.md                  ← text, ze kterého celá složka vznikla
 ├── CLAUDE.md                  ← pravidla a slovník, čtou se pokaždé
 ├── vstup/                     ← 5 vzorových faktur v PDF, sem se jen čte
 ├── data/objednavky.xlsx       ← evidence faktur, sešit pro každého dodavatele, poslední sloupec drží stav žádosti
@@ -4572,82 +4649,6 @@ S pozdravem,
 Účtárna DEK`,
       caption:
         'Jméno dodavatele se bere přesně tak, jak je napsané na faktuře. Když chybí dva údaje, vyjmenují se oba — „IČO a číslo objednávky".',
-    },
-    { kind: 'h', text: 'Jak z téhle mapy vzniklo zadání' },
-    {
-      kind: 'p',
-      text:
-        'Obrázek nahoře není ilustrace k hotové věci — je to podklad, ze kterého projekt vznikl. Nejdřív byla mapa procesu z účtárny, z ní tenhle sled kroků, a teprve pak zadání, které jsem napsal Claudovi. Složku vyrobil podle něj: skill, zábranu, evidenci i naplánovanou úlohu. Tohle je celé to zadání, zkráceně o adresy:',
-    },
-    {
-      kind: 'code',
-      text: `Postav mi v téhle složce kontrolu došlých faktur.
-
-Do schránky fakturace@dek.cz chodí od dodavatelů faktury v PDF. Někdo je
-musí otevřít, opsat z nich šest údajů do evidence a u neúplných napsat
-dodavateli o doplnění. Tohle má dělat úloha místo mě.
-
-Potřebuješ konektor na Microsoft 365, který schránku umí číst i z ní
-odesílat poštu. Když právo odesílat chybí, udělej všechno ostatní a e-mail
-nechej jen navržený — napiš mi to a nehledej jinou cestu, jak poštu poslat.
-
-Postup pro každou novou fakturu:
-1. Najdi ve schránce e-maily s PDF přílohou, které ještě nejsou ve vstup/.
-   Další faktura od téhož dodavatele je nová faktura.
-2. Ulož přílohu do vstup/ jako <datum přijetí>_<dodavatel>.pdf. Do vstup/
-   smí jen přibývat — nic tam nepřepisuj, nepřejmenovávej ani nemaž.
-3. Vytáhni z PDF šest údajů, jeden po druhém: číslo faktury, dodavatele,
-   IČO, číslo objednávky, základ daně (částku bez DPH) a splatnost.
-4. Zapiš je do data/objednavky.xlsx do sešitu pojmenovaného jménem
-   dodavatele přesně tak, jak je na faktuře. Když sešit není, založ ho.
-5. Když je vyplněných všech šest, tady skonči. Nic se neposílá.
-
-Když chybí jeden nebo dva údaje:
-6. Do vystup/kontrola-<datum>.xlsx zapiš, co chybí: sešit „Přehled" se
-   stavem všech faktur toho dne a sešit dodavatele s chybějícím údajem
-   a s návrhem odpovědi podle šablony níž.
-7. Ten text pošli jako nový e-mail na adresu, ze které faktura přišla,
-   v kopii vedouci-uctarny@dek.cz. Předmět: Doplnění faktury <číslo>.
-   Text mezi sešitem a odeslanou poštou neměň.
-8. Čas odeslání zapiš na tři místa: do sešitu dodavatele, do „Přehledu"
-   a do sloupce „Žádost odeslána" v evidenci.
-
-Kdy nedělat nic:
-- Chybí tři a víc údajů, nebo z PDF nejde přečíst text: neposílej nic,
-  zapiš to do protokolu jako „k ruční kontrole" a řekni mi to. Tolik
-  prázdných polí většinou neznamená špatnou fakturu, ale špatně přečtené
-  PDF — a to není naše právo dávat za vinu dodavateli.
-- Adresa odesílatele není čitelná: stejně tak.
-- Údaj na faktuře chybí nebo je nečitelný: nech pole prázdné. Nic
-  nedomýšlej a nic nedopočítávej.
-
-Co nesmíš nikdy:
-Schválit fakturu, zadat ji k platbě, zapsat cokoli do účetního systému
-nebo poslat zprávu, která se týká platby či schválení. Jediná automatická
-zpráva, kterou smíš odeslat, je žádost o doplnění údaje na faktuře.
-
-Šablona e-mailu:
-  Předmět: Doplnění faktury <číslo faktury>
-
-  Dobrý den, <dodavatel>,
-
-  děkujeme za zaslanou fakturu. Při kontrole naším účetním oddělením jsme
-  nenalezli <chybějící údaj/e>, které potřebujeme mít na faktuře. Prosíme
-  o doplnění a opětovné zaslání faktury zpět.
-
-  S pozdravem,
-  Účtárna DEK
-
-Až to bude fungovat, popiš postup a pravidla do CLAUDE.md, README.md,
-rutina.md a runbook.md, ať se v tom vyzná i někdo, kdo u toho nebyl.`,
-      caption: 'Zadání zůstává ve složce jako zadani.md. Když se agenda změní, mění se nejdřív ono a teprve podle něj soubory.',
-    },
-    {
-      kind: 'note',
-      tone: 'ok',
-      title: 'Čtyři věci, které z toho dělají zadání a ne přání',
-      text:
-        'Napsat „hlídej mi faktury a když něco chybí, napiš dodavateli" by nestačilo. Za prvé jsou tam jména souborů a sešitů, takže není co hádat. Za druhé je tam rozcestí s čísly — jeden nebo dva údaje se posílají, tři a víc ne — místo „posuď to sám". Za třetí je tam napsané, co se má stát, když se něco nepovede: prázdné pole zůstane prázdné a nedomýšlí se. A za čtvrté je tam odstavec „co nesmíš nikdy", protože tahle úloha posílá poštu ven z firmy — a hranice se píše dopředu, ne až se něco stane.',
     },
     { kind: 'h', text: '4. Otevři složku a pusť to' },
     {

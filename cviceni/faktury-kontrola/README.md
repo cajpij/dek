@@ -9,6 +9,7 @@ doplnění. Nic neschvaluje, nic neplatí. Všechna data jsou vymyšlená.
 
 ```
 faktury-kontrola/
+├── zadani.md                 text, ze kterého celá složka vznikla
 ├── CLAUDE.md                 pravidla a slovník, čtou se při každém spuštění
 ├── vstup/                    5 vzorových faktur v PDF — sem se jen čte
 ├── data/objednavky.xlsx      evidence přijatých faktur, sešit pro každého dodavatele
