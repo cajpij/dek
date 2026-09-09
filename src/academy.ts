@@ -4967,15 +4967,10 @@ export const COURSES: Course[] = [
       LESSON_CVICENI, LESSON_FLOW, LESSON_SDILENI,
     ],
     learn: [
-      'dotáhnout jedno místo z mapy až do skillu s vlastní kontrolou',
       'spustit úlohu bez rozhovoru a naplánovat ji',
-      'zabalit opakovaný postup do skillu a trefit se v description',
       'napsat runbook a předat automatizaci tak, aby ji zvládl i někdo jiný',
-      'projít si celý příklad od složky po rozeslané maily a ověřit si, že ti nic nechybí',
       'připojit MCP server nad katalogem dek.cz a ověřit si, že opravdu odpovídá z katalogu',
-      'nahradit pinkání e-mailů formulářem a nechat si hlídat termíny',
       'rozjet hotový cvičný projekt a překlopit ho na vlastní dokumenty',
-      'projít si design system DEKu ve Storybooku a přidat do něj kompozici z hotových komponent',
     ],
     prerequisites: [
       'Dokončený kurz Claude a firemní data',
