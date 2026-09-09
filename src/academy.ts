@@ -408,6 +408,12 @@ const LESSON_TOKENY: Lesson = {
           body:
             'Ukáže, co všechno se posílá s každou zprávou: systémovou část, tvůj CLAUDE.md, připojené konektory, skilly.',
           code: '/context',
+          image: {
+            src: 'context-okno.webp',
+            alt: 'Výpis Context window: zabráno 360,1k z 1M, tedy 36 %. Messages 282,6k (28,3 %), System tools 19,2k (1,9 %), MCP tools 13,3k (1,3 %), Skills 6,3k (0,6 %), System prompt 4,5k (0,4 %), Memory files 1,2k (0,1 %), Autocompact buffer 33k (3,3 %), Free space 639,9k (64 %). Pod čarou MCP tools (deferred) 191,8k a System tools (deferred) 14,7k, obojí bez procenta, a řádek MCP tools s 205k a 399 nástroji.',
+            caption:
+              'Takhle to vypadá po pár hodinách práce. Messages je 28 % a roste s každou zprávou — to je ta položka, kterou zkrátíš zavřením sezení, ne úklidem nastavení. Deferred řádky nemají procento schválně: konektory čekají stranou a načtou se, až jsou potřeba.',
+          },
         },
         {
           title: 'Zkrať CLAUDE.md',
