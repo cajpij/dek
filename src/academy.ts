@@ -1957,7 +1957,7 @@ je žádost dodavateli o doplnění chybějícího údaje na faktuře samotné.`
     {
       kind: 'p',
       text:
-        'Skill se pořád musí vyvolat. Hook ne — spustí se vždycky, když nastane daná událost, bez ohledu na to, co si Claude zrovna myslí. Hodí se na kontroly a zábrany, ne na složité úvahy: zálohuj před zápisem, odmítni sáhnout do data/, dej vědět, že je hotovo.',
+        'Skill je postup, který někdo musí vyvolat. Hook je zábrana, která se spustí sama — pokaždé, když nastane určitá situace, ať si o ní kdo chce myslí co chce. Nejblíž tomu je turniket: nepřemýšlí, jestli máš dobrý důvod, prostě tě bez lístku nepustí. Proto se hodí na jednoduché „tohle se nesmí“ a na věci, na které se zapomíná — zálohuj před přepsáním, do téhle složky nesahej, dej vědět, že je hotovo. Ne na nic, co se musí posoudit.',
     },
     {
       kind: 'code',
@@ -1965,13 +1965,13 @@ je žádost dodavateli o doplnění chybějícího údaje na faktuře samotné.`
 
 {
   "hooks": {
-    "PostToolUse": [
+    "PreToolUse": [
       {
-        "matcher": "Edit|Write",
+        "matcher": "Write|Edit",
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.file_path' | xargs -I{} cp {} ~/zalohy/"
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/chran-vstup.sh"
           }
         ]
       }
@@ -1979,7 +1979,51 @@ je žádost dodavateli o doplnění chybějícího údaje na faktuře samotné.`
   }
 }`,
       caption:
-        'Po každém zápisu souboru se udělá kopie. Hook je shellový příkaz — na vstup dostane JSON s tím, co se právě dělo, a `jq` z něj vytáhne cestu k souboru.',
+        'Zábrana z cvičného projektu. Čtou se z toho dvě věci: kdy se má spustit — PreToolUse znamená před každým zápisem souboru — a co se spustí, tedy skript ve složce projektu. Víc v tom nastavení není.',
+    },
+    {
+      kind: 'soubor',
+      nazev: 'chran-vstup.sh',
+      popis: 'Ten skript. Třicet řádků, které hlídají, aby do složky s originály faktur směla jen přibýt nová faktura — nic se nepřepsalo ani nesmazalo.',
+      obsah: `#!/bin/bash
+# Zábrana nad složkou vstup/: smí do ní přibýt nová PDF faktura, ale nic
+# existujícího se nesmí přepsat, přejmenovat ani smazat. Originály jsou důkaz.
+#
+# Claude Code pošle hooku na vstup JSON s popisem toho, co se chystá udělat.
+# Vytáhneme z něj jméno nástroje a cestu k souboru. Schválně bez nástroje jq
+# — ten na Macu ani na Windows standardně není a hook, který se nespustí,
+# nic nechrání.
+VSTUP_JSON=$(cat)
+NASTROJ=$(printf '%s' "$VSTUP_JSON" | sed -n 's/.*"tool_name"[[:space:]]*:[[:space:]]*"\\([^"]*\\)".*/\\1/p')
+CESTA=$(printf '%s' "$VSTUP_JSON" | sed -n 's/.*"file_path"[[:space:]]*:[[:space:]]*"\\([^"]*\\)".*/\\1/p')
+
+case "$CESTA" in
+  */vstup/*)
+    if [ "$NASTROJ" = "Edit" ]; then
+      echo "Úprava souboru ve vstup/ je zakázaná — leží tam originály faktur, nic se v nich nesmí měnit." >&2
+      exit 2
+    fi
+    if [ -e "$CESTA" ]; then
+      echo "Přepsání souboru ve vstup/ je zakázané — tam smí jen přibýt nová faktura, ne se přepsat stará." >&2
+      exit 2
+    fi
+    case "$CESTA" in
+      *.pdf) exit 0 ;;
+      *)
+        echo "Do vstup/ smí přibýt jen nová PDF faktura." >&2
+        exit 2
+        ;;
+    esac
+    ;;
+esac
+exit 0`,
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Nemusíš umět shell',
+      text:
+        'Ten skript vypadá odborně, ale ručně ho nikdo neťukal. Vznikl z jedné věty: „Nechci, aby se cokoli ve složce vstup/ přepsalo nebo smazalo — smí tam jen přibýt nová faktura v PDF." Zábranu popisuješ slovy, ne kódem. Co si ale přečti a zkontroluj, co ti vzniklo — spouští se to pak samo při každém zápisu.',
     },
     {
       kind: 'note',
@@ -2090,16 +2134,18 @@ je žádost dodavateli o doplnění chybějícího údaje na faktuře samotné.`
       text: `.claude/hooks/chran-data.sh
 
 #!/bin/bash
-INPUT=$(cat)
-FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
-FILE_PATH="\${FILE_PATH//\\//}"
+VSTUP=$(cat)
+CESTA=$(printf '%s' "$VSTUP" | sed -n 's/.*"file_path"[^"]*"\\([^"]*\\)".*/\\1/p')
 
-if [[ "$FILE_PATH" == *"/data/"* ]]; then
-  echo "Blokováno: do data/ se nezapisuje, výstupy patří do vystupy/" >&2
-  exit 2
-fi
+case "$CESTA" in
+  */data/*)
+    echo "Blokováno: do data/ se nezapisuje, výstupy patří do vystup/." >&2
+    exit 2
+    ;;
+esac
 exit 0`,
-      caption: 'Návratový kód 2 zápis zastaví a text z chybového výstupu se vrátí Claudovi jako vysvětlení, proč to nešlo.',
+      caption:
+        'Celá zábrana. Claude hooku pošle popis toho, co se chystá udělat; skript z něj vytáhne cestu k souboru a když v ní je data/, skončí kódem 2 — to zápis zastaví a text z chybové hlášky se Claudovi vrátí jako vysvětlení. Schválně bez nástroje jq: ten na Macu ani na Windows standardně není a zábrana, která se nespustí, nic nechrání.',
     },
     {
       kind: 'code',
