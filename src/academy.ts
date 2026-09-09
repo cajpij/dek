@@ -4438,7 +4438,7 @@ S pozdravem,
       kind: 'figure',
       name: 'rucne-vs-automat',
       caption:
-        'Tentýž proces dvakrát: vlevo jak ho dělal člověk, vpravo co z něj převzala hotová úloha. Poslední dva řádky zůstávají člověku — a je to rozhodnutí, ne nedodělek.',
+        'Tentýž proces dvakrát: vlevo jak ho dělal člověk, vpravo co s ním je teď. Nad řezem tři kroky, které převzala úloha; pod ním tři, které zůstávají člověku — a je to rozhodnutí, ne nedodělek.',
     },
     { kind: 'h', text: '4. Otevři složku a pusť to' },
     {

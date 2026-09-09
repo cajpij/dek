@@ -4,78 +4,88 @@ import { useFigureColors } from '../lib/figureColors'
 /**
  * Co z ručního procesu převzala úloha a co zůstalo člověku.
  *
- * Navazuje na regal-flow: ten kreslí proces, jak vypadal bez automatizace,
- * tenhle ho staví vedle toho, co dělá hotová úloha z cvičného projektu.
- * Pointa nejsou kroky — ta je vidět jinde. Pointa je poslední sloupec:
- * dva řádky zůstávají člověku a je to rozhodnutí, ne nedodělek.
+ * Pointa není v krocích — ta je vidět jinde. Pointa je ten řez uprostřed:
+ * nad ním to dělá úloha, pod ním člověk, a je to rozhodnutí, ne nedodělek.
+ * Proto řez místo štítku u každého řádku: šestkrát zopakovaná nálepka
+ * říká totéž co jedna čára, jen hlučněji.
  */
 
-type Radek = {
-  krok: string
-  kdo: string
-  drive: string[]
-  ted: string[]
-  stav: 'automat' | 'clovek'
-}
+type Radek = { krok: string; kdo: string; drive: string[]; ted: string[] }
 
-const RADKY: Radek[] = [
+const AUTOMAT: Radek[] = [
   {
     krok: 'Faktura přijde',
     kdo: 'dodavatel → účtárna',
     drive: ['Účetní ji musí najít ve schránce mezi', 'desítkami zpráv a stáhnout přílohu.'],
     ted: ['Úloha kouká do schránky každých 15 minut', 'a PDF uloží do vstup/ pod datem', 'a jménem dodavatele.'],
-    stav: 'automat',
   },
   {
     krok: 'Šest údajů',
     kdo: 'účtárna',
     drive: ['Přepis z PDF do kontrolní tabulky,', 'řádek po řádku.'],
     ted: ['Vytáhne je z PDF a zapíše do', 'objednavky.xlsx, do sešitu pojmenovaného', 'jménem dodavatele z faktury.'],
-    stav: 'automat',
   },
   {
     krok: 'Chybí údaj',
     kdo: 'účtárna → dodavatel',
     drive: ['Účetní napíše dodavateli a čeká.', 'E-mail chodí tam a zpět.'],
     ted: ['Chybí-li jeden nebo dva: text vznikne', 'v kontrola-<datum>.xlsx a týmž textem', 'odejde e-mail. Čas se zapíše na tři místa.'],
-    stav: 'automat',
   },
+]
+
+const CLOVEK: Radek[] = [
   {
     krok: 'Nečitelná faktura',
     kdo: 'účtárna',
     drive: ['Nerozlišovalo se — účetní řešila', 'každou zvlášť.'],
     ted: ['Chybí tři a víc údajů nebo z PDF nejde', 'přečíst text: neodchází nic, jde to', 'do protokolu k ruční kontrole.'],
-    stav: 'clovek',
   },
   {
     krok: 'Schválení',
     kdo: 'středisko',
     drive: ['Vedoucí odklikne, účetní zapíše', 'odpověď zpátky do tabulky.'],
     ted: ['Beze změny. Úloha do schvalování', 'vůbec nesahá.'],
-    stav: 'clovek',
   },
   {
     krok: 'Zadání k platbě',
     kdo: 'účtárna',
     drive: ['Účetní zadá fakturu ručně', 'do účetního systému.'],
     ted: ['Beze změny, a schválně. Špatnou žádost', 'o doplnění lze omluvit, špatně zaplacenou', 'fakturu nikdo nevrátí.'],
-    stav: 'clovek',
   },
 ]
+
+const X_KROK = 20
+const X_A = 188
+const X_B = 528
+const W = 302
+const RADEK_VYSKA = 17
+const PADDING = 34
+const MEZERA = 14
+const REZ = 46
+
+const vyskaRadku = (r: Radek) => Math.max(r.drive.length, r.ted.length) * RADEK_VYSKA + PADDING
 
 export default function RucneVsAutomat() {
   const c = useFigureColors()
   const rucne = c.warning
-  const barva: Record<Radek['stav'], string> = { automat: c.success, clovek: c.textSecondary }
-  const stitek: Record<Radek['stav'], string> = { automat: 'DĚLÁ ÚLOHA', clovek: 'ZŮSTÁVÁ ČLOVĚKU' }
+  const uloha = c.success
+  const clovek = c.textSecondary
 
-  const xKrok = 20
-  const xA = 210
-  const xB = 552
-  const w = 328
-  const h = 96
-  const rozestup = 108
-  const y0 = 76
+  let y = 72
+  const rozvrzeni: { r: Radek; y: number; h: number; auto: boolean }[] = []
+  for (const r of AUTOMAT) {
+    const h = vyskaRadku(r)
+    rozvrzeni.push({ r, y, h, auto: true })
+    y += h + MEZERA
+  }
+  const yRez = y + 4
+  y += REZ
+  for (const r of CLOVEK) {
+    const h = vyskaRadku(r)
+    rozvrzeni.push({ r, y, h, auto: false })
+    y += h + MEZERA
+  }
+  const H = y + 34
 
   return (
     <Box
@@ -88,75 +98,85 @@ export default function RucneVsAutomat() {
     >
       <Box
         component="svg"
-        viewBox="0 0 900 762"
+        viewBox={`0 0 900 ${H}`}
         role="img"
-        aria-label="Srovnání ručního procesu a hotové úlohy v šesti krocích. Faktura přijde: dřív ji účetní hledala ve schránce a stahovala, teď úloha kouká do schránky každých 15 minut a PDF uloží do složky vstup — dělá úloha. Šest údajů: dřív přepis z PDF do tabulky, teď je vytáhne a zapíše do objednavky.xlsx do sešitu podle dodavatele — dělá úloha. Chybí údaj: dřív účetní psala dodavateli a čekala, teď při jednom nebo dvou chybějících vznikne text v souboru kontrola a týmž textem odejde e-mail, čas se zapíše na tři místa — dělá úloha. Nečitelná faktura: dřív se nerozlišovalo, teď při třech a více chybějících údajích nebo nečitelném PDF neodchází nic a případ jde do protokolu k ruční kontrole — zůstává člověku. Schválení vedoucím střediska a zadání k platbě zůstávají beze změny na člověku, protože špatně zaplacenou fakturu nikdo nevrátí."
+        aria-label="Srovnání ručního procesu a hotové úlohy v šesti krocích, rozdělené řezem. Nad řezem tři kroky, které převzala úloha: fakturu dřív musela účetní najít ve schránce a stáhnout, teď se do schránky dívá úloha každých 15 minut a PDF uloží do složky vstup. Šest údajů dřív přepisovala z PDF do tabulky, teď je úloha vytáhne a zapíše do objednavky.xlsx do sešitu podle dodavatele. Když údaj chyběl, účetní psala dodavateli a čekala; teď při jednom nebo dvou chybějících vznikne text v souboru kontrola a týmž textem odejde e-mail, čas se zapíše na tři místa. Pod řezem tři kroky, které zůstávají člověku: nečitelná faktura nebo tři a víc chybějících údajů jde do protokolu k ruční kontrole a neodchází nic; schválení vedoucím střediska a zadání k platbě zůstávají beze změny, protože špatnou žádost o doplnění lze omluvit, ale špatně zaplacenou fakturu nikdo nevrátí."
         sx={{ display: 'block', width: '100%', minWidth: 780, height: 'auto' }}
       >
-        <text x={xA} y={30} fontSize={12} fontWeight={700} fill={rucne} letterSpacing={1.4}>
+        <defs>
+          <marker id="rva-sipka" viewBox="0 0 10 10" refX={9} refY={5} markerWidth={6} markerHeight={6} orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" opacity={0.35} />
+          </marker>
+        </defs>
+
+        <text x={X_A} y={30} fontSize={12} fontWeight={700} fill={rucne} letterSpacing={1.5}>
           DŘÍV — RUČNĚ
         </text>
-        <text x={xB} y={30} fontSize={12} fontWeight={700} fill={c.success} letterSpacing={1.4}>
-          TEĎ — S HOTOVOU ÚLOHOU
+        <text x={X_B} y={30} fontSize={12} fontWeight={700} fill={uloha} letterSpacing={1.5}>
+          TEĎ
         </text>
-        <line x1={20} y1={44} x2={880} y2={44} stroke="currentColor" strokeWidth={1} opacity={0.25} />
+        <line x1={X_KROK} y1={46} x2={880} y2={46} stroke="currentColor" strokeWidth={1} opacity={0.22} />
 
-        {RADKY.map((r, i) => {
-          const y = y0 + i * rozestup
-          const col = barva[r.stav]
+        {rozvrzeni.map(({ r, y: ry, h, auto }) => {
+          const col = auto ? uloha : clovek
+          const stred = ry + h / 2
           return (
             <g key={r.krok}>
-              <text x={xKrok} y={y + 24} fontSize={13} fontWeight={700} fill="currentColor" opacity={0.95}>
+              <text x={X_KROK} y={ry + 22} fontSize={13.5} fontWeight={700} fill="currentColor" opacity={0.95}>
                 {r.krok}
               </text>
-              <text x={xKrok} y={y + 42} fontSize={11} fill="currentColor" opacity={0.6}>
+              <text x={X_KROK} y={ry + 40} fontSize={11} fill="currentColor" opacity={0.55}>
                 {r.kdo}
               </text>
 
-              <rect x={xA} y={y} width={w} height={h} rx={9} fill={rucne} opacity={0.07} />
-              <rect x={xA} y={y} width={w} height={h} rx={9} fill="none" stroke={rucne} strokeWidth={1.1} opacity={0.5} />
-              {r.drive.map((t, j) => (
-                <text key={`d${j}`} x={xA + 16} y={y + 30 + j * 16} fontSize={11.5} fill="currentColor" opacity={0.85}>
-                  {t}
-                </text>
-              ))}
-
-              <rect x={xB} y={y} width={w} height={h} rx={9} fill={col} opacity={r.stav === 'clovek' ? 0.05 : 0.09} />
-              <rect
-                x={xB}
-                y={y}
-                width={w}
-                height={h}
-                rx={9}
-                fill="none"
-                stroke={col}
-                strokeWidth={1.2}
-                opacity={0.65}
-                strokeDasharray={r.stav === 'clovek' ? '5 4' : undefined}
-              />
-              <text x={xB + 16} y={y + 22} fontSize={10} fontWeight={700} fill={col} letterSpacing={0.8}>
-                {stitek[r.stav]}
-              </text>
-              {r.ted.map((t, j) => (
-                <text key={`t${j}`} x={xB + 16} y={y + 42 + j * 16} fontSize={11.5} fill="currentColor" opacity={0.85}>
-                  {t}
+              <rect x={X_A} y={ry} width={W} height={h} rx={10} fill={rucne} opacity={0.055} />
+              {r.drive.map((s, j) => (
+                <text key={`d${j}`} x={X_A + 18} y={ry + 26 + j * RADEK_VYSKA} fontSize={12} fill="currentColor" opacity={0.7}>
+                  {s}
                 </text>
               ))}
 
               <line
-                x1={xA + w + 6}
-                y1={y + h / 2}
-                x2={xB - 6}
-                y2={y + h / 2}
+                x1={X_A + W + 8}
+                y1={stred}
+                x2={X_B - 8}
+                y2={stred}
                 stroke="currentColor"
-                strokeWidth={1}
-                opacity={0.3}
+                strokeWidth={1.2}
+                opacity={0.35}
+                markerEnd="url(#rva-sipka)"
               />
+
+              <rect x={X_B} y={ry} width={W} height={h} rx={10} fill={col} opacity={auto ? 0.1 : 0.04} />
+              <rect
+                x={X_B}
+                y={ry}
+                width={W}
+                height={h}
+                rx={10}
+                fill="none"
+                stroke={col}
+                strokeWidth={auto ? 1.6 : 1.2}
+                opacity={auto ? 0.75 : 0.45}
+                strokeDasharray={auto ? undefined : '5 4'}
+              />
+              {r.ted.map((s, j) => (
+                <text key={`t${j}`} x={X_B + 18} y={ry + 26 + j * RADEK_VYSKA} fontSize={12} fill="currentColor" opacity={0.88}>
+                  {s}
+                </text>
+              ))}
             </g>
           )
         })}
 
-        <text x={20} y={744} fontSize={12} fill="currentColor" opacity={0.85}>
+        {/* Řez: nad ním to dělá úloha, pod ním člověk. */}
+        <line x1={X_KROK} y1={yRez + 14} x2={352} y2={yRez + 14} stroke={clovek} strokeWidth={1} opacity={0.3} />
+        <text x={368} y={yRez + 19} fontSize={11.5} fontWeight={700} fill={clovek} letterSpacing={1.2} opacity={0.85}>
+          ODSUD DÁL ZŮSTÁVÁ ČLOVĚKU
+        </text>
+        <line x1={636} y1={yRez + 14} x2={880} y2={yRez + 14} stroke={clovek} strokeWidth={1} opacity={0.3} />
+
+        <text x={X_KROK} y={H - 10} fontSize={12} fill="currentColor" opacity={0.8}>
           Krok „dohledání objednávky“ v nové podobě není: úloha eviduje, co přišlo, a proti schváleným objednávkám to neporovnává.
         </text>
       </Box>
