@@ -2,11 +2,11 @@ import Box from '@mui/material/Box'
 import { useFigureColors } from '../lib/figureColors'
 
 const STEPS = [
-  { label: 'Zadání', note: 'uděláš to ručně' },
-  { label: 'Pravidlo', note: 'do CLAUDE.md' },
-  { label: 'Skill', note: 'postup na jednu větu' },
-  { label: 'Hook', note: 'spustí se sám' },
-  { label: 'Běh bez tebe', note: 'naplánovaně' },
+  { label: 'Zadání', note: 'uděláš to ručně', file: 'zadani.md' },
+  { label: 'Pravidlo', note: 'zapíšeš, co platí vždycky', file: 'CLAUDE.md' },
+  { label: 'Skill', note: 'postup na jednu větu', file: 'SKILL.md' },
+  { label: 'Hook', note: 'spustí se sám', file: 'chran-vstup.sh' },
+  { label: 'Běh bez tebe', note: 'naplánovaně', file: 'rutina.md' },
 ]
 
 /**
@@ -19,7 +19,8 @@ export default function AutomationLadder() {
   const c = useFigureColors()
   const accent = c.primary
   const stepW = 168
-  const stepH = 46
+  const stepH = 62
+  const rise = 52
   const baseY = 300
 
   return (
@@ -28,12 +29,12 @@ export default function AutomationLadder() {
         component="svg"
         viewBox="0 0 900 340"
         role="img"
-        aria-label="Pět stupňů automatizace: zadání, pravidlo v CLAUDE.md, skill, hook a nakonec běh bez tebe. Každý stupeň staví na tom předchozím."
+        aria-label="Pět stupňů automatizace, každý se souborem, který po něm zůstane: zadání jako zadani.md, pravidlo v CLAUDE.md, skill jako SKILL.md, hook jako skript chran-vstup.sh a nakonec běh bez tebe popsaný v rutina.md. Každý stupeň staví na tom předchozím."
         sx={{ display: 'block', width: '100%', minWidth: 700, height: 'auto' }}
       >
         {STEPS.map((s, i) => {
           const x = 20 + i * 172
-          const y = baseY - (i + 1) * 46
+          const y = baseY - stepH - i * rise
           const isLast = i === STEPS.length - 1
           return (
             <g key={s.label} color={isLast ? accent : undefined}>
@@ -62,6 +63,16 @@ export default function AutomationLadder() {
               </text>
               <text x={x + 14} y={y + 38} fontSize={11.5} fill="currentColor" opacity={0.8}>
                 {s.note}
+              </text>
+              <text
+                x={x + 14}
+                y={y + 54}
+                fontSize={11}
+                fontFamily="ui-monospace, Menlo, monospace"
+                fill="currentColor"
+                opacity={0.55}
+              >
+                {s.file}
               </text>
               {i < STEPS.length - 1 ? (
                 <line

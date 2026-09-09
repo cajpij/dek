@@ -1641,7 +1641,8 @@ const LESSON_AUTOMATIZACE: Lesson = {
     {
       kind: 'figure',
       name: 'automation-ladder',
-      caption: 'Každý stupeň staví na tom předchozím. Na další jdeš, až když ten současný funguje bez oprav.',
+      caption:
+        'Každý stupeň staví na tom předchozím. Na další jdeš, až když ten současný funguje bez oprav. Pod každým je soubor, který po tom stupni zůstane ve složce — a k nim ještě runbook.md, který není stupeň, ale stránka pro chvíli, kdy to spadne a ty jsi na dovolené.',
     },
     { kind: 'h', text: '1. Zadání — udělej to jednou ručně' },
     {
