@@ -37,6 +37,7 @@ import KontrolaFlow from './KontrolaFlow'
 import RucneVsAutomat from './RucneVsAutomat'
 import PrvniBeh from './PrvniBeh'
 import SouborNahled from './SouborNahled'
+import SekceHlavicka from './SekceHlavicka'
 import SyncMap from './SyncMap'
 
 /** Blok kódu nebo cesty, který si člověk odnese přes schránku. */
@@ -642,6 +643,9 @@ export default function BlockView({ block }: { block: Block }) {
           </Typography>
         </Paper>
       )
+
+    case 'sekce':
+      return <SekceHlavicka id={block.id} stitek={block.stitek} titul={block.titul} popis={block.popis} />
 
     case 'soubor':
       return <SouborNahled nazev={block.nazev} popis={block.popis} obsah={block.obsah} />

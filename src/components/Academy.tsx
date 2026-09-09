@@ -517,9 +517,12 @@ function LessonSidebar({ course, current }: { course: Course; current: Lesson })
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               {lessons.map((lesson) => {
                 const active = lesson.slug === current.slug
+                const sekce = active
+                  ? lesson.body.flatMap((b) => (b.kind === 'sekce' ? [b] : []))
+                  : []
                 return (
+                  <Box key={lesson.slug} sx={{ display: 'contents' }}>
                   <Link
-                    key={lesson.slug}
                     href={academyHref({ view: 'lesson', course: course.slug, lesson: lesson.slug })}
                     underline="none"
                     aria-current={active ? 'page' : undefined}
@@ -547,6 +550,43 @@ function LessonSidebar({ course, current }: { course: Course; current: Lesson })
                     </Box>
                     {lesson.title}
                   </Link>
+                  {sekce.map((s) => (
+                    <Box
+                      key={s.id}
+                      component="button"
+                      type="button"
+                      onClick={() => {
+                        const el = document.getElementById(s.id)
+                        if (!el) return
+                        const pred = window.scrollY
+                        el.scrollIntoView({ behavior: 'smooth' })
+                        // Plynulé rolování někde tiše neudělá nic. Když se po
+                        // chvíli nic nepohne, doskoč natvrdo — odrážka, která
+                        // po kliknutí nic neudělá, je horší než skok.
+                        window.setTimeout(() => {
+                          if (Math.abs(window.scrollY - pred) < 4) el.scrollIntoView()
+                        }, 250)
+                      }}
+                      sx={{
+                        font: 'inherit',
+                        textAlign: 'left',
+                        cursor: 'pointer',
+                        bgcolor: 'transparent',
+                        border: 0,
+                        borderLeft: 2,
+                        borderColor: 'divider',
+                        color: 'text.secondary',
+                        fontSize: 13.5,
+                        py: 0.6,
+                        pl: 3.5,
+                        '&:hover': { color: 'text.primary' },
+                        '&:focus-visible': { outline: '2px solid', outlineColor: 'primary.main', outlineOffset: -2 },
+                      }}
+                    >
+                      · {s.titul}
+                    </Box>
+                  ))}
+                  </Box>
                 )
               })}
             </Box>

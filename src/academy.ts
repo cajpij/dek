@@ -58,6 +58,8 @@ export type Block =
     }
   /** Snímek cizí obrazovky. Kreslené schéma patří do 'figure', tohle je fotka. */
   | { kind: 'image'; src: string; alt: string; caption?: string; maxWidth?: number }
+  /** Předěl uvnitř lekce — dvě varianty téhož, každá se svou odrážkou v nabídce. */
+  | { kind: 'sekce'; id: string; stitek: string; titul: string; popis: string }
   /** Soubor z projektu k nahlédnutí — klik otevře dialog s jeho obsahem. */
   | { kind: 'soubor'; nazev: string; popis: string; obsah: string }
   | { kind: 'checklist'; title: string; items: string[] }
@@ -2646,6 +2648,14 @@ const L2_PLAN: Lesson = {
         'Technická část posledního schodu: samotné založení úlohy, která se spustí sama. V desktopové aplikaci Claude Code je to záložka Code → Routines.',
     },
     {
+      kind: 'sekce',
+      id: 'local',
+      stitek: 'Část 1',
+      titul: 'Local — běží na tvém počítači',
+      popis:
+        'Varianta, kterou u nás chceš skoro vždycky: úloha pracuje přímo ve tvojí složce na disku. Cenou za to je zapnutý počítač a puštěná aplikace.',
+    },
+    {
       kind: 'image',
       src: 'routines-formular.webp',
       alt: 'Formulář nové lokální rutiny v Claude Code. Nahoře upozornění, že lokální rutiny běží, jen když je počítač vzhůru a online. Pole Name a Description jsou povinná, pod nimi velké pole Instructions, pod ním řádek s režimem povolování, výběrem složky a volbou Worktree. Sekce Schedule nabízí Manual, Hourly, Daily, Weekdays, Weekly a Custom; vybráno je Daily s časem 09:00 a poznámkou, že rutiny používají několikaminutové náhodné zpoždění. Vpravo dole tlačítka Cancel a Create.',
@@ -2805,7 +2815,33 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
         },
       ],
     },
-    { kind: 'h', text: 'Proč Local, ne Cloud' },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Když počítač spal, běh se přeskočí',
+      text:
+        'Úloha běží jen při puštěné aplikaci a probuzeném počítači. Zaspaný běh se zahodí, po probuzení se dohání jen ten poslední zmeškaný — úloha, která nešla šest dní, doběhne jednou. Ranní úloha se tak může spustit v jedenáct večer. Piš proto zadání s tím, že počítá: „Pracuj jenom s dnešním exportem. Po páté odpoledne nic nepočítej, jen napiš, že se to nestihlo." V Nastavení → Aplikace → Obecné jde zapnout Keep computer awake, ale zavřené víko uspí počítač tak jako tak.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Zadání úlohy je obyčejný SKILL.md',
+      text:
+        'Text úlohy leží na disku v ~/.claude/scheduled-tasks/<název>/SKILL.md — stejný formát jako u skillů, YAML hlavička s name a description a pod tím zadání. Dá se editovat ručně, projeví se to při dalším běhu. Rozvrh, složka a model se mění ve formuláři, ne v souboru.',
+    },
+    {
+      kind: 'sekce',
+      id: 'cloud',
+      stitek: 'Část 2',
+      titul: 'Cloud — běží na serveru',
+      popis:
+        'Druhá varianta, která nepotřebuje tvůj počítač. Zní líp, ale na naši práci nesedí — a stojí za to vědět proč, ne to jen slyšet.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Cloudová úloha běží na serveru, takže doběhne i se zavřeným notebookem. Nevidí ale na tvůj disk: pracuje nad repozitářem, který si naklonuje z GitHubu. Tabulka je rozdíl po rozdílu.',
+    },
     {
       kind: 'table',
       head: ['Vlastnost', 'Local — na tvém počítači', 'Cloud — na serveru'],
@@ -2827,20 +2863,6 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
       title: 'Pro naši práci je správně Local — a to je ta nepříjemná zpráva',
       text:
         'Cloud zní líp, protože běží i se zavřeným notebookem — jenže data leží jen v nasyncované knihovně na disku, kam se cloudová úloha nedostane. Takže platí Local: zapnutý počítač, puštěná aplikace. Má-li běh vyjít i přes zavřený notebook, musí data přestat žít jen na disku — přes konektor, nebo tokem v Power Automate.',
-    },
-    {
-      kind: 'note',
-      tone: 'info',
-      title: 'Zadání úlohy je obyčejný SKILL.md',
-      text:
-        'Text úlohy leží na disku v ~/.claude/scheduled-tasks/<název>/SKILL.md — stejný formát jako u skillů, YAML hlavička s name a description a pod tím zadání. Dá se editovat ručně, projeví se to při dalším běhu. Rozvrh, složka a model se mění ve formuláři, ne v souboru.',
-    },
-    {
-      kind: 'note',
-      tone: 'warn',
-      title: 'Když počítač spal, běh se přeskočí',
-      text:
-        'Úloha běží jen při puštěné aplikaci a probuzeném počítači. Zaspaný běh se zahodí, po probuzení se dohání jen ten poslední zmeškaný — úloha, která nešla šest dní, doběhne jednou. Ranní úloha se tak může spustit v jedenáct večer. Piš proto zadání s tím, že počítá: „Pracuj jenom s dnešním exportem. Po páté odpoledne nic nepočítej, jen napiš, že se to nestihlo." V Nastavení → Aplikace → Obecné jde zapnout Keep computer awake, ale zavřené víko uspí počítač tak jako tak.',
     },
     {
       kind: 'video',
