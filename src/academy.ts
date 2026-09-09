@@ -4968,7 +4968,6 @@ export const COURSES: Course[] = [
     ],
     learn: [
       'napsat runbook a předat automatizaci tak, aby ji zvládl i někdo jiný',
-      'připojit MCP server nad katalogem dek.cz a ověřit si, že opravdu odpovídá z katalogu',
       'rozjet hotový cvičný projekt a překlopit ho na vlastní dokumenty',
     ],
     prerequisites: [
