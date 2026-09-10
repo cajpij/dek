@@ -66,7 +66,8 @@ export const DEFAULT_CONFIG: RunConfig = {
       steps: [
         { title: 'Co dnes vznikne', min: 3, detail: 'Složka, kterou si každý postaví sám, a k ní mapa vlastní práce', lessons: ['claude-a-firemni-data/co-je-automatizace'] },
         { title: 'Pět schodů automatizace', min: 5, detail: 'Zadání → pravidlo → skill → hook → běh bez tebe', lessons: ['od-mapy-k-automatu/jak-se-nastavuje-automatizace'] },
-        { title: 'Co je předem hotové a co se dnes nestihne', min: 2 },
+        { title: 'Co je předem hotové a co se dnes nestihne', min: 1 },
+        { title: 'Ukázat nástěnku a nechat ji otevřenou', min: 1, detail: 'Tlačítko Nástěnka v hlavičce akademie — otázka, kterou se někdo bojí říct nahlas, tam jde napsat kdykoli' },
       ],
       notes: [
         'Ověřit, že mají všichni nainstalovaný Claude Code — instalace je jediná věc, která měla být předem',
@@ -75,6 +76,8 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Říct rovnou pořadí večera: nejdřív hotový vzor, pak si ho každý postaví sám, a teprve pak hledáme totéž ve vlastní práci',
         'Ukázat obrázek ručně vs. automat z lekce Co je automatizace — je to nejrychlejší způsob, jak říct, o čem večer je',
         'Odkaz na akademii nechat na plátně',
+        'Nástěnku otevřít na plátně hned na začátku a nechat ji tam — kdo nechce přerušovat, napíše tam. Vybere se jméno z nabídky, nic se nepřihlašuje.',
+        'Během cvičení do ní koukat: co se ptají dva lidi, se vyplatí vysvětlit celému sálu',
       ],
     },
     {
@@ -251,6 +254,7 @@ export const DEFAULT_CONFIG: RunConfig = {
       notes: [
         'Zadání automatizace diktovat větou v chatu; formulářová varianta je v lekci Automatizace v Claude Code pomocí routine',
         'Naplánovat hned na začátku bloku, ať to stihne doběhnout',
+        'Kdyby padl dotaz na Custom: je pod ním cron, pět políček — minuta, hodina, den v měsíci, měsíc, den v týdnu. Náš rozvrh je */15 7-18 * * 1-5. Rozepsané je to v lekci Automatizace pomocí routine.',
         'V Claude Code: Code → Routines → New routine → Local. Cloud varianta nevidí složku na disku.',
         'Tohle není látka, je to důkaz — nechat to zapůsobit a nekomentovat to moc',
         'Zmínit, že u e-mailu je potřeba opatrnost: odeslaná pošta se nevrací',
@@ -410,7 +414,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Lekce označené štítkem potom jsou referenční, ať je nečtou dopředu',
         'Neposílat je na všechny — říct jednu podle toho, co kdo dneska stavěl',
         'Jak se v projektu nastaví automatizace je ta hlavní: pět schodů a v druhé polovině hotspot 2 od složky až po naplánovaný běh, s vyplněným formulářem automatizace',
-        'MCP nad katalogem je bonus pro zvědavé — server je v repu, rozjede se třemi příkazy',
+        'MCP nad katalogem je bonus pro zvědavé — server je v repu, rozjede se jednou větou v chatu. Rejstřík má 80 969 produktů a 4 661 kategorií a leží na disku, takže dotaz do katalogu stojí zlomek toho, co čtení stránek z webu.',
         'Lekci Kolik to stojí poslat všem, ne jen jednomu: limit je společný pro chat, Cowork i Claude Code a ptali se na to',
         'Z Coworku do Claude Code je pro většinu sálu — pracují zatím jen v Coworku',
         'Formulář místo e-mailů dát tomu, kdo čeká na odpovědi od poboček; Cvičný projekt tomu, kdo řeší faktury nebo dodací listy',

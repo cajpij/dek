@@ -17,8 +17,8 @@
  *   anon public  →  KLIC
  * Dokud jsou prázdné, nástěnka to řekne a nikam se neptá.
  */
-export const ADRESA = ''
-export const KLIC = ''
+export const ADRESA = 'https://gilcqpndhpxqphydpueb.supabase.co'
+export const KLIC = 'sb_publishable_LMv4M3wkJzzQkhGPjl1MVg_HtG3Grit'
 
 export const JMENA = [
   'Darina',
