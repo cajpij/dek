@@ -21,6 +21,62 @@ const OBNOVA_MS = 4000
 const cas = (s: string) =>
   new Date(s).toLocaleTimeString('cs-CZ', { hour: '2-digit', minute: '2-digit' })
 
+/** Adresa ve zprávě. Jen http(s) a www — nic jiného se na odkaz nepřevádí. */
+const ODKAZ = /(https?:\/\/[^\s<>]+|www\.[^\s<>]+)/gi
+
+/** Tečka nebo závorka na konci věty do adresy nepatří — vrátí se zpátky do textu. */
+function orizni(nalez: string) {
+  let adresa = nalez
+  let zbytek = ''
+  for (;;) {
+    const p = adresa[adresa.length - 1]
+    if (!p) break
+    const interpunkce = /[.,;:!?'"„“”»]/.test(p)
+    const nesparovana = (p === ')' && !adresa.includes('(')) || (p === ']' && !adresa.includes('['))
+    if (!interpunkce && !nesparovana) break
+    zbytek = p + zbytek
+    adresa = adresa.slice(0, -1)
+  }
+  return { adresa, zbytek }
+}
+
+/**
+ * Zpráva s odkazy. Text se jen rozseká podle adres a poskládá zpátky z Reactu —
+ * nikde se nevkládá HTML, takže do nástěnky nejde propašovat značka ani
+ * javascript: adresa. Odkaz se otevře v nové záložce, ať člověk nepřijde
+ * o rozepsanou otázku.
+ */
+function TextSOdkazy({ text }: { text: string }) {
+  const kusy = useMemo(() => {
+    const out: (string | { adresa: string; popis: string })[] = []
+    let i = 0
+    for (const m of text.matchAll(ODKAZ)) {
+      const zacatek = m.index ?? 0
+      if (zacatek > i) out.push(text.slice(i, zacatek))
+      const { adresa, zbytek } = orizni(m[0])
+      out.push({ adresa: adresa.startsWith('www.') ? `https://${adresa}` : adresa, popis: adresa })
+      if (zbytek) out.push(zbytek)
+      i = zacatek + m[0].length
+    }
+    if (i < text.length) out.push(text.slice(i))
+    return out
+  }, [text])
+
+  return (
+    <>
+      {kusy.map((k, i) =>
+        typeof k === 'string' ? (
+          <span key={i}>{k}</span>
+        ) : (
+          <Link key={i} href={k.adresa} target="_blank" rel="noopener noreferrer">
+            {k.popis}
+          </Link>
+        ),
+      )}
+    </>
+  )
+}
+
 function Jmenovka({ jmeno, odpoved }: { jmeno: string; odpoved?: boolean }) {
   return (
     <Box
@@ -125,7 +181,7 @@ function Vlakno({
     <Paper variant="outlined" sx={{ p: 2.25, borderRadius: 2 }}>
       <Hlavicka z={koren} />
       <Typography sx={{ mt: 1, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>
-        {koren.text}
+        <TextSOdkazy text={koren.text} />
       </Typography>
 
       {odpovedi.length > 0 ? (
@@ -144,7 +200,7 @@ function Vlakno({
             <Box key={o.id}>
               <Hlavicka z={o} odpoved />
               <Typography sx={{ mt: 0.5, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>
-                {o.text}
+                <TextSOdkazy text={o.text} />
               </Typography>
             </Box>
           ))}
