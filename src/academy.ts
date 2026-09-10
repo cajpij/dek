@@ -6062,8 +6062,13 @@ Vizualizace: diagram „Od magazínu do regálu" (je v lekci Co je automatizace)
 /** Co je hotové na GitHubu — rozcestník pod kurzy. */
 export interface Repo {
   nazev: string
+  /** Popisek odkazu; když repozitář nemá vlastní, je to cesta uvnitř jiného. */
   repo: string
+  /** Celá adresa, když nestačí github.com/<repo> — třeba podsložka. */
+  odkazRepo?: string
   web?: string
+  /** Lekce, která to vysvětluje. */
+  lekce?: { label: string; href: string }
   co: string
   jak: string
 }
@@ -6073,13 +6078,28 @@ export const REPOS: Repo[] = [
     nazev: 'Akademie a program dne',
     repo: 'cajpij/dek',
     web: 'https://cajpij.github.io/dek/',
-    co: 'Tenhle web. Lekce jsou obyčejné soubory v repozitáři, po každém odeslání změny se web postaví a nasadí sám. Uvnitř je i cviceni/faktury-kontrola, tedy ta složka ke stažení, a mcp-dek, konektor nad katalogem.',
+    co: 'Tenhle web. Lekce jsou obyčejné soubory v repozitáři, po každém odeslání změny se web postaví a nasadí sám. Uvnitř je i cviceni/faktury-kontrola, tedy ta složka ke stažení.',
     jak: 'Code → Download ZIP, nebo git clone. Rozjede se npm install a npm run dev.',
+  },
+  {
+    nazev: 'MCP server nad katalogem dek.cz',
+    repo: 'cajpij/dek → mcp-dek',
+    odkazRepo: 'https://github.com/cajpij/dek/tree/main/mcp-dek',
+    lekce: {
+      label: 'MCP nad katalogem dek.cz',
+      href: '#academy/od-mapy-k-automatu/mcp-nad-katalogem',
+    },
+    co: 'Dá Claudovi pět nástrojů nad katalogem: hledání produktů a kategorií, detail, výpis kategorie. Rejstřík se staví ze sitemap — 80 969 produktů a 4 661 kategorií — a leží u tebe na disku, takže se dek.cz při každém dotazu nikam neptá.',
+    jak: 'Jeden soubor a oficiální SDK. Připojí se přes claude mcp add se scope user, pak ho vidíš ve všech projektech.',
   },
   {
     nazev: 'Design system DEK',
     repo: 'cajpij/dek-design-system',
     web: 'https://cajpij.github.io/dek-design-system/',
+    lekce: {
+      label: 'Design system DEK ve Storybooku',
+      href: '#academy/od-mapy-k-automatu/dek-design-system',
+    },
     co: 'Storybook s komponentami a tokeny DEK. Když si stavíš vlastní aplikaci a chceš, aby vypadala jako od nás, bereš si komponenty odtud.',
     jak: 'Claudovi stačí říct adresu repozitáře — načte si tokeny, téma i komponenty sám.',
   },

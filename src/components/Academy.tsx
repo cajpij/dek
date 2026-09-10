@@ -488,7 +488,7 @@ function RepoKarta({ r }: { r: (typeof REPOS)[number] }) {
       <Typography sx={{ fontSize: 13.5, color: 'text.disabled', maxWidth: '62ch' }}>{r.jak}</Typography>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mt: 0.5 }}>
         <Link
-          href={`https://github.com/${r.repo}`}
+          href={r.odkazRepo ?? `https://github.com/${r.repo}`}
           target="_blank"
           rel="noopener"
           sx={{ fontSize: 14, fontFamily: 'ui-monospace, Menlo, monospace' }}
@@ -498,6 +498,11 @@ function RepoKarta({ r }: { r: (typeof REPOS)[number] }) {
         {r.web ? (
           <Link href={r.web} target="_blank" rel="noopener" sx={{ fontSize: 14 }}>
             živý web ↗
+          </Link>
+        ) : null}
+        {r.lekce ? (
+          <Link href={r.lekce.href} sx={{ fontSize: 14 }}>
+            lekce
           </Link>
         ) : null}
       </Box>
