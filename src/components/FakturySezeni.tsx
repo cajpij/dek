@@ -7,8 +7,10 @@ import { useFigureColors } from '../lib/figureColors'
  *
  * Předchozí obrázek ukazuje, co ty tři příkazy udělají s historií. Tenhle
  * ukazuje, kdy se který hodí, na práci, kterou účastníci opravdu řeší a řeší
- * ji dlouho: rozkoukání ve složce, psaní skillu, doladění, naplánování rutiny
- * a mezitím dotaz od kolegy na něco úplně jiného.
+ * ji dlouho: rozkoukání nad pěti fakturami ve vstup/, psaní skillu
+ * kontrola-faktur, doladění toho, že IČO se bere dodavatelovo a ne
+ * odběratelovo, naplánování rutiny — a mezitím dotaz od kolegy na něco
+ * úplně jiného.
  *
  * Poslední fáze (dotaz na rozpis dovolených) je schválně z jiné agendy —
  * ukazuje, že /clear se použije při každé změně úkolu, ne jen na konci dne.
@@ -40,14 +42,14 @@ const BARS: Bar[] = [
   { v: 48 },
   // /compact → vlastní špička, pak souhrn
   { v: 48, tone: 'spike' },
-  // 15:05 — doladění
+  // 15:05 — doladění: IČO dodavatele, ne odběratele
   { v: 18 },
   { v: 23 },
   { v: 27 },
   { v: 30 },
   { v: 34 },
   // /clear
-  // 15:40 — rutina na 7:00
+  // 15:40 — rutina každých 15 minut v pracovní dny
   { v: 4 },
   { v: 7 },
   { v: 11 },
@@ -60,10 +62,10 @@ const BARS: Bar[] = [
 ]
 
 const PHASES = [
-  { from: 0, to: 5, label: '14:00 · Co je ve složce' },
+  { from: 0, to: 5, label: '14:00 · Pět faktur ve vstup/' },
   { from: 5, to: 11, label: '14:20 · Píšeš skill' },
-  { from: 12, to: 17, label: '15:05 · Doladění' },
-  { from: 17, to: 21, label: '15:40 · Rutina 7:00' },
+  { from: 12, to: 17, label: '15:05 · IČO dodavatele' },
+  { from: 17, to: 21, label: '15:40 · Rutina po 15 min' },
   { from: 21, to: 24, label: '16:10 · Dovolené' },
 ]
 
@@ -131,7 +133,7 @@ export default function FakturySezeni() {
         component="svg"
         viewBox="0 0 900 372"
         role="img"
-        aria-label="Jedno odpoledne nad automatizací kontroly faktur jako sloupcový graf: každý sloupec je jedna zpráva a jeho výška to, kolik se u ní posílá znovu. Od dvou hodin se rozkoukáváš ve složce a Claude čte pět PDF, takže sloupce rychle rostou. Práce se vydá špatným směrem, takže lomítko rewind ukrojí poslední dva kroky a křivka spadne o kousek. Ve dvacet po druhé píšeš skill a sloupce zase rostou až na maximum. V přestávce dáš lomítko compact: má vlastní špičku, protože shrnutí musí celou historii nejdřív přečíst, ale hned po ní se pokračuje z mnohem nižší hladiny. V pět po třetí doladíš, co skill hlásí. Pak přecházíš na jiný úkol, naplánovat rutinu na sedmou ráno, a lomítko clear srazí historii na nulu zadarmo. V deset po čtvrté se kolega ptá na rozpis dovolených, tedy zase jiný úkol, a znovu lomítko clear. Bez těch čtyř zásahů by poslední zpráva odpoledne táhla s sebou všech třiadvacet předchozích."
+        aria-label="Jedno odpoledne nad automatizací kontroly faktur jako sloupcový graf: každý sloupec je jedna zpráva a jeho výška to, kolik se u ní posílá znovu. Od dvou hodin se rozkoukáváš ve složce a Claude čte pět PDF, takže sloupce rychle rostou. Práce se vydá špatným směrem, takže lomítko rewind ukrojí poslední dva kroky a křivka spadne o kousek. Ve dvacet po druhé píšeš skill a sloupce zase rostou až na maximum. V přestávce dáš lomítko compact: má vlastní špičku, protože shrnutí musí celou historii nejdřív přečíst, ale hned po ní se pokračuje z mnohem nižší hladiny. V pět po třetí doladíš, že IČO se bere dodavatelovo, ne odběratelovo. Pak přecházíš na jiný úkol, naplánovat rutinu na každých patnáct minut v pracovní dny, a lomítko clear srazí historii na nulu zadarmo. V deset po čtvrté se kolega ptá na rozpis dovolených, tedy zase jiný úkol, a znovu lomítko clear. Bez těch čtyř zásahů by poslední zpráva odpoledne táhla s sebou všech třiadvacet předchozích, včetně celého skillu a pěti faktur."
         sx={{ display: 'block', width: '100%', minWidth: 820, height: 'auto' }}
       >
         <text x={X0} y={18} fontSize={12.5} fill="currentColor" opacity={0.8}>
@@ -200,7 +202,7 @@ export default function FakturySezeni() {
 
         {/* co by bylo bez zásahů */}
         <text x={X0} y={362} fontSize={12.5} fill="currentColor" opacity={0.85}>
-          Bez těch čtyř zásahů by poslední zpráva odpoledne táhla s sebou všech 23 předchozích — včetně pěti faktur a dotazu na dovolené.
+          Bez těch čtyř zásahů by poslední zpráva odpoledne táhla s sebou všech 23 předchozích — včetně pěti faktur, celého skillu a dotazu na dovolené.
         </text>
       </Box>
     </Box>
