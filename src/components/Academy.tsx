@@ -24,6 +24,7 @@ import { academyHref, goAcademy, readAcademyRoute, type AcademyRoute } from '../
 import { hledej, vyrizni, zvyrazni, type Vysledek } from '../lib/hledani'
 import { useProgress } from '../lib/academyProgress'
 import BlockView from './AcademyBlocks'
+import Nastenka from './Nastenka'
 
 /* --------------------------------------------------------------- shell */
 
@@ -73,8 +74,6 @@ function Crumbs({ items }: { items: { label: string; href?: string }[] }) {
  */
 /** Od kolika znaků má smysl napovídat — na dvou písmenech sedí půlka akademie. */
 /** Sdílená nástěnka — běží jako artifact, protože statický web sdílený stav neumí. */
-const NASTENKA = 'https://claude.ai/code/artifact/c4497645-dfa7-4a9e-8f59-e219509157b3'
-
 const OD_ZNAKU = 3
 const NAPOVED = 6
 
@@ -316,9 +315,7 @@ function Shell({
           <Wordmark />
           <Hledatko vychozi={dotaz} />
           <Link
-            href={lekce ? `${NASTENKA}#lekce=${encodeURIComponent(lekce)}` : NASTENKA}
-            target="_blank"
-            rel="noopener"
+            href={academyHref({ view: 'nastenka' }) + (lekce ? `&lekce=${encodeURIComponent(lekce)}` : '')}
             underline="none"
             sx={{
               flexShrink: 0,
@@ -334,7 +331,7 @@ function Shell({
               '&:hover': { borderColor: 'primary.main', color: 'primary.main' },
             }}
           >
-            Nástěnka ↗
+            Nástěnka
           </Link>
           <Link
             href="#"
@@ -1076,9 +1073,14 @@ export default function Academy() {
   }, [])
 
   useEffect(() => {
-    const course = route.view === 'list' || route.view === 'search' ? undefined : findCourse(route.course)
+    const course =
+      route.view === 'list' || route.view === 'search' || route.view === 'nastenka'
+        ? undefined
+        : findCourse(route.course)
     const lesson = route.view === 'lesson' && course ? findLesson(course, route.lesson) : undefined
-    document.title = route.view === 'search'
+    document.title = route.view === 'nastenka'
+      ? 'Nástěnka · DEK Academy'
+      : route.view === 'search'
       ? `${route.q} · Hledání · DEK Academy`
       : lesson
       ? `${lesson.title} · DEK Academy`
@@ -1102,6 +1104,15 @@ export default function Academy() {
     return (
       <Shell dotaz={route.q}>
         <SearchPage q={route.q} />
+      </Shell>
+    )
+  }
+
+  if (route.view === 'nastenka') {
+    const zLekce = new URLSearchParams(window.location.hash.split('?')[1] ?? '').get('lekce')
+    return (
+      <Shell>
+        <Nastenka lekce={zLekce ?? undefined} />
       </Shell>
     )
   }

@@ -6,6 +6,7 @@
  *
  *   #academy                       rozcestník kurzů
  *   #academy?q=<dotaz>             výsledky hledání
+ *   #academy?nastenka             sdílené otázky ze sálu
  *   #academy/<kurz>                detail kurzu se sylabem
  *   #academy/<kurz>/<lekce>        stránka lekce
  *
@@ -17,6 +18,7 @@
 export type AcademyRoute =
   | { view: 'list' }
   | { view: 'search'; q: string }
+  | { view: 'nastenka' }
   | { view: 'course'; course: string }
   | { view: 'lesson'; course: string; lesson: string }
 
@@ -25,7 +27,9 @@ const PREFIX = '#academy'
 export function readAcademyRoute(hash: string = window.location.hash): AcademyRoute {
   const rest = hash.slice(PREFIX.length).replace(/^\//, '')
   if (rest.startsWith('?')) {
-    const q = new URLSearchParams(rest.slice(1)).get('q') ?? ''
+    const p = new URLSearchParams(rest.slice(1))
+    if (p.has('nastenka')) return { view: 'nastenka' }
+    const q = p.get('q') ?? ''
     return q ? { view: 'search', q } : { view: 'list' }
   }
   if (!rest) return { view: 'list' }
@@ -38,6 +42,7 @@ export function readAcademyRoute(hash: string = window.location.hash): AcademyRo
 export function academyHref(route: AcademyRoute): string {
   if (route.view === 'list') return PREFIX
   if (route.view === 'search') return `${PREFIX}?q=${encodeURIComponent(route.q)}`
+  if (route.view === 'nastenka') return `${PREFIX}?nastenka`
   if (route.view === 'course') return `${PREFIX}/${route.course}`
   return `${PREFIX}/${route.course}/${route.lesson}`
 }
