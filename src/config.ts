@@ -272,6 +272,7 @@ export const DEFAULT_CONFIG: RunConfig = {
       kind: 'work',
       who: 'Lektor + asistence',
       brief:
+        'Osmdesát procent automatizace je tahle hodina, ne formulář — nastavit routine je deset minut. ' +
         'Hotovou automatizaci jste právě viděli zevnitř. Teď to samé najděte ve své práci: ve ' +
         'dvojicích si navzájem vyzpovídáte kus agendy, kde někde vstupuje e-mail nebo tabulka a někam ' +
         'něco posíláte dál. Technika je kontextové dotazování: neptej se „jak to děláš“, ale „ukaž mi, ' +
@@ -301,6 +302,9 @@ export const DEFAULT_CONFIG: RunConfig = {
         },
       ],
       notes: [
+        'Říct nahlas ten poměr: osmdesát procent práce je pochopit proces, dvacet procent je nastavit routine — jinak si sál myslí, že tahle hodina je vata před tím pravým',
+        'Technika má jméno — kontextové dotazování. Čtyři pravidla jsou v lekci: kontext, partnerství, ověřování, zaměření. Stačí říct to první: nejsi auditor, jsi učeň.',
+        'Zapisuje se mapa úkolu, ne věty: krok / kdo / čím to přijde / co vypadne / kde se čeká / podle čeho se rozhoduje',
         'Kreslí ten, kdo se ptal — ne majitel agendy. Říct to nahlas hned na začátku.',
         'Připomenout, ať se zeptají, než začnou nahrávat',
         'Deset otázek a tabulka signálních slov jsou v akademii — nechat odkaz na plátně',

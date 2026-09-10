@@ -3063,12 +3063,14 @@ const LESSON_CVICENI: Lesson = {
   module: 'agenda',
   title: 'Rozhovor o kolegově práci',
   summary:
-    'Ve dvojici si navzájem vyzpovídáte kus vlastní práce. Rozhovor nahrajete na telefon a přepis i reálné soubory skončí v projektu. Kreslit se bude až v další lekci.',
+    'Nejdelší část celé automatizace: pochopit, co se doopravdy děje ručně. Ve dvojici si navzájem vyzpovídáte kus vlastní práce technikou kontextového dotazování a zapíšete ji jako mapu úkolu. Kreslit se bude až v další lekci.',
   minutes: 40,
   kind: 'zadání',
   track: 'v sále',
   outcomes: [
+    'vysvětlit, proč je nastavení automatizace ta menší část práce',
     'vést rozhovor o práci tak, aby vyšlo najevo i to, co je pro majitele agendy neviditelné',
+    'zapsat cizí práci jako mapu úkolu: krok, kdo, čím přijde, co vypadne, kde se čeká',
     'zapsat cizí proces jako tok dat mezi lidmi a soubory',
     'poznat ve větě kolegy místo, kde se data přenášejí ručně',
     'dostat nahrávku, přepis i reálné soubory do projektu, aby se s nimi dalo dál pracovat',
@@ -3079,31 +3081,70 @@ const LESSON_CVICENI: Lesson = {
       text:
         'Totéž, co jsme dělali na vzoru kontroly faktur, tentokrát na vaší agendě. Ve dvojicích — sami sobě proces nikdo nepopíše dobře, protože se vám dávno slil do jednoho kroku. Vyberte kus práce, který děláte pravidelně a kde vám vstupuje e-mail nebo tabulka a někam posíláte výstup — stačí výsek, ne celá agenda, a ne ten nejsložitější.',
     },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Tohle je ta velká část, i když u toho není počítač',
+      text:
+        'Nastavit routine je otázka deseti minut a sedmi políček ve formuláři — **to je těch dvacet procent.** Zbylých osmdesát je tahle lekce a ta další: zjistit, co se v tom procesu doopravdy děje, kde se data přenášejí rukama a co z toho má smysl vzít. Automatizace, která běží nad špatně pochopeným procesem, není poloviční úspěch — je to rychlejší způsob, jak dělat chybu. Proto se to tady dělá pomalu a s tužkou, ne u formuláře.',
+    },
     { kind: 'h', text: 'Jak to poběží' },
     {
       kind: 'table',
       head: ['Čas', 'Co se děje', 'Kdo mluví'],
       rows: [
         ['5 min', 'Každý si vybere svůj výsek a napíše ho jednou větou', 'oba'],
-        ['15 min', 'Rozhovor: A se ptá, B popisuje svoji práci. A si zapisuje.', 'B'],
+        ['15 min', 'Rozhovor: A se ptá, B popisuje svoji práci. A si zapisuje mapu úkolu.', 'B'],
         ['15 min', 'Prohodíte se. B se ptá, A popisuje.', 'A'],
         ['5 min', 'Nahrávku a reálné soubory uložit do projektu do podklady/', 'oba'],
       ],
     },
-    { kind: 'h', text: 'Jak se ptát' },
+    { kind: 'h', text: 'Jak se ptát: kontextové dotazování' },
     {
       kind: 'p',
       text:
-        'Lidé popisují práci jinak, než ji dělají: „jak to děláš“ dá uklizenou verzi, „ukaž mi, jak to bylo naposledy“ tu skutečnou, s print screeny a ručním přeťukáváním.',
+        'Ta technika má jméno — **kontextové dotazování** (contextual inquiry) — a v UX výzkumu se používá padesát let na přesně tenhle problém: člověk popíše svoji práci jinak, než ji dělá. „Jak to děláš“ dá uklizenou verzi bez výjimek. „Ukaž mi, jak to bylo naposledy“ tu skutečnou, s print screeny a ručním přeťukáváním.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Stojí na jedné představě: **nejsi auditor, jsi učeň.** Mistr pracuje a při tom vysvětluje, učeň se dívá a ptá se na to, co zrovna vidí. Ne na to, jak by to mělo být. Z toho plynou čtyři pravidla:',
+    },
+    {
+      kind: 'table',
+      head: ['Pravidlo', 'Co to znamená u stolu'],
+      rows: [
+        [
+          'Kontext',
+          'Ptej se tam, kde ta práce žije, nad otevřeným souborem. Ne v zasedačce nad prázdným papírem — tam si člověk vybaví postup, ne skutečnost.',
+        ],
+        [
+          'Partnerství',
+          'On dělá, ty se ptáš na to, co vidíš. Nezkoušej ho a neraď mu. Jakmile začneš radit, přestane popisovat a začne se obhajovat.',
+        ],
+        [
+          'Ověřování',
+          'Co pochopíš, řekni nahlas vlastními slovy: „takže ty vezmeš ten export a ručně dopíšeš čísla objednávek?" Nechej se opravit hned, ne až u kreslení.',
+        ],
+        [
+          'Zaměření',
+          'Máš jednu otázku: kudy tečou data a kde je přenáší člověk. Historky o reorganizaci před dvěma lety poslouchej, ale nezapisuj.',
+        ],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Nejcennější věta padne, když mlčíš',
+      text:
+        'Po odpovědi počkej tři vteřiny, než se zeptáš dál. Do toho ticha se vejde „no a pak tam ještě musím…" — a to je obvykle přesně ten krok, který je pro majitele agendy tak samozřejmý, že ho v první odpovědi vynechal. Ticho je nepříjemné jen tazateli.',
     },
     {
       kind: 'list',
       items: [
-        'Ptej se na poslední konkrétní případ, ne jak se to dělá obecně.',
-        'Nech ho otevřít ten soubor — papír zapomíná, obrazovka ne.',
         'Po každém kroku: „a co se stane pak?“ Dokud nedojdete na konec.',
         'Když přeskočí dva kroky najednou, vrať se: „a to se stane kde?“',
-        'Nenavrhuj řešení. Jakmile začneš radit, druhý přestane popisovat a začne se obhajovat.',
+        'Když padne „to je jasný“ nebo „to zná každý“, ptej se právě na to.',
         'Nahraj si to na telefon — ale zeptej se, jestli může.',
       ],
     },
@@ -3113,6 +3154,31 @@ const LESSON_CVICENI: Lesson = {
       title: 'Ptej se pořádně — kreslit budeš ty',
       text:
         'V další části kreslí flow ten, kdo se ptal, ne majitel agendy — co tazatel nedokáže nakreslit, to se v rozhovoru nedozvěděl. Ptej se tak, abys to za chvíli uměl nakreslit.',
+    },
+    { kind: 'h', text: 'Co si zapisovat: mapa úkolu' },
+    {
+      kind: 'p',
+      text:
+        'Nepiš si větný zápis, ten se pak nedá použít. Piš tabulku, kde je jeden řádek jeden krok — **mapa úkolu.** Tyhle sloupce jsou přesně to, co bude za chvíli potřeba na nakreslení flow, a zároveň to, z čeho se pozná kandidát na automatizaci:',
+    },
+    {
+      kind: 'table',
+      head: ['Sloupec', 'Otázka, kterou si tím odpovídáš', 'Proč to je důležité'],
+      rows: [
+        ['Krok', 'Co se v téhle chvíli děje?', 'jedna věta v činném rodě — „vytáhne export z Heliosu"'],
+        ['Kdo', 'Čí ruce to dělají?', 'změna jména mezi řádky = předání, a tam se čeká'],
+        ['Čím to přijde', 'E-mail, tabulka, telefon, print screen?', 'ruční přenos se pozná právě tady'],
+        ['Co z toho vypadne', 'Soubor, řádek, zpráva, rozhodnutí?', 'co nemá výstup, není krok, ale čekání'],
+        ['Kde se čeká', 'Na koho nebo na co?', 'nejdelší část procesu bývá tady, ne v práci samotné'],
+        ['Podle čeho se rozhoduje', 'Je to pravidlo, nebo úsudek?', 'pravidlo jde napsat do zadání, úsudek zůstává člověku'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Poslední sloupec rozhoduje o tom, co se dá vzít',
+      text:
+        'Když na otázku „podle čeho ses rozhodl" přijde odpověď, která se dá napsat jako pravidlo — „když je částka nad padesát tisíc, jde to na vedoucího" — je ten krok kandidát. Když přijde „to já poznám" nebo „to záleží", nech ho člověku a zapiš, **podle čeho to pozná**; může se ukázat, že je to pravidlo, které jen nikdo nevyslovil. A někdy se ukáže, že opravdu není — a to je taky výsledek.',
     },
     { kind: 'h', text: 'Otázky, které se dají použít rovnou' },
     {
