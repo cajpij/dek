@@ -4336,6 +4336,61 @@ se serverem   hledat_kategorii „cihly"    →  3 kategorie
       text:
         'Nástroje si Claude vybírá sám podle toho, na co se ptáš — tabulky jsou tu jen aby bylo poznat, co se přitom děje. Ptej se jako člověka, ne jako vyhledávače.',
     },
+    { kind: 'h', text: 'Jak to vypadá na skutečném dotazu' },
+    {
+      kind: 'p',
+      text:
+        'Otázka jednou větou, žádné ID ani jméno nástroje. Claude si sám vybral `hledat_kategorii` a pustil ho několikrát za sebou, protože první odpověď nedávala smysl:',
+    },
+    {
+      kind: 'code',
+      text: 'jaké jsou kategorie cihel',
+      caption: 'Celý dotaz. Zbytek si Claude odvodil.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Slovo „cihly" je v názvu jen u tří kategorií — a hned je vidět, že katalog má stejný název na dvou různých místech stromu:',
+    },
+    {
+      kind: 'table',
+      head: ['ID', 'Název v rejstříku', 'Co to je'],
+      rows: [
+        ['16127', 'plne cihly', 'jen dvě položky: ZOPY a Polom, plná P20 290×140×65'],
+        ['17903', 'zdici betonove cihly', '—'],
+        ['11436', 'zdici betonove cihly', 'týž název, druhá větev stromu'],
+      ],
+    },
+    {
+      kind: 'p',
+      text:
+        'Jenže cihly nejsou pod „cihlami" — katalog je dělí **podle materiálu**, pod nadřazenou kategorií 4208 zdicí materiály:',
+    },
+    {
+      kind: 'table',
+      head: ['ID', 'Kategorie'],
+      rows: [
+        ['13702', 'keramické zdicí materiály — Porotherm cihly, překlady, spony'],
+        ['13732', 'porobetonové zdicí materiály'],
+        ['985', 'vápenopískové zdicí materiály'],
+        ['60209', 'betonové zdicí materiály'],
+        ['58809', 'liaporbetonové zdicí materiály'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Dvě věci, které z té odpovědi vypadly — a jsou důležitější než ta odpověď',
+      text:
+        '**Rejstřík je bez diakritiky a hledá podřetězcem.** Proto `cihel` nevrátí vůbec nic a `cihly` jen tři kategorie — server nezná skloňování. Když ti dotaz nic nevrátí, zkus první pád a kratší kus slova, ne synonymum. **A „plné cihly" mají dvě položky**, což je na jedenaosmdesát tisíc produktů podezřele málo. Sortiment plných cihel bude viset i jinde ve stromu pod jiným názvem. Takhle vypadá poctivá odpověď: neposkládá si chybějící zboží, ale řekne, že to číslo nesedí.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Stejný název na osmi místech',
+      text:
+        'U obecných názvů to je pravidlo, ne výjimka — „nosné zdivo" má v katalogu osm různých ID (1296, 7397, 11817, 22978, 40867, 60231, 66131, 72173), protože týž název visí pod různými větvemi. Proto se odpověď vždycky vrací s ID a odkazem: bez nich se nedá poznat, o kterou z těch osmi jde.',
+    },
     { kind: 'h', text: 'Jak ho rozjet lokálně' },
     {
       kind: 'p',
