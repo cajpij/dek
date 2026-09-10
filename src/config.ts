@@ -205,8 +205,8 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Odeslaná pošta zůstane prázdná a do evidence se zapíše „adresa dodavatele nenalezena, k ruční kontrole" — ne kvůli chybějícímu konektoru, ale proto, že vzorové faktury ve vstup/ leží od začátku a nepřišly e-mailem, takže k nim není adresa. Říct to dopředu, jinak to sál bere jako chybu.',
         'Kdo si to nestihne stáhnout, ať kouká sousedovi. Za chvíli se stejně staví od nuly, tohle je jen ukázka cíle.',
         'Nenechat je to číst řádek po řádku — na to je lekce potom. Tady jen pustit a podívat se na výsledek.',
-        'Až padne dotaz „a jak se tam ta faktura dostane doopravdy": jsou dvě cesty. Naplánovaná automatizace čte Doručenou poštu přes M365 konektor a bere e-mail i přílohu rovnou jako text, nic neukládá. Skill sám umí jen PDF, která už ve vstup/ leží — a adresu k nim dohledává v data/prijate-emaily.xlsx, kam ji zapisuje volitelný Power Automate tok.',
-        'Do vstup/ Claude nezapisuje vůbec, ani novou fakturu — zakazuje mu to hook. Přílohy tam ukládá ten tok přes OneDrive, nebo člověk ručně.',
+        'Až padne dotaz „a jak se tam ta faktura dostane doopravdy": jsou dvě cesty. Naplánovaná automatizace čte Doručenou poštu přes M365 konektor a bere e-mail i přílohu rovnou jako text, nic neukládá — a jen z týhle cesty se odesílá, protože jen tady je adresa. Skill sám umí jen PDF, která už ve vstup/ leží; ta nemají odesílatele, takže u nich odpověď vždycky skončí k ruční kontrole.',
+        'Do vstup/ Claude nezapisuje vůbec, ani novou fakturu — zakazuje mu to hook. Soubory tam dává jen člověk.',
       ],
     },
     {

@@ -2,10 +2,10 @@
 name: kontrola-faktur
 description: Zpracuje PDF faktury, které přibyly ve vstup/ a ještě nemají řádek
   v evidenci — vytáhne z nich šest povinných údajů a zapíše je podle dodavatele.
-  Když něco chybí, dohledá odesílatele v data/prijate-emaily.xlsx a pošle mu
-  e-mail s žádostí o doplnění. Přílohy do vstup/ ukládá volitelný Power
-  Automate tok, ne tenhle skill. Použij, když se má zkontrolovat vstup/
-  na nové faktury, nebo když se ptám, co je s fakturami k vyřízení.
+  Když něco chybí, sepíše návrh žádosti o doplnění — odeslat ho ale z týhle
+  cesty nejde, protože k souboru ve vstup/ není adresa. Použij, když se má
+  zkontrolovat vstup/ na nové faktury, nebo když se ptám, co je s fakturami
+  k vyřízení.
 ---
 
 # Kontrola faktur
@@ -24,12 +24,8 @@ až naplánovaná automatizace (`rutina.md`), ne tenhle skill.
 Tenhle skill přílohy ze schránky **sám nestahuje ani neukládá** — M365
 konektor, který má Claude k dispozici, umí e-mail a jeho přílohu přečíst jako
 text, ale nemá nástroj, který by vrátil surová binární data PDF, aby šlo
-uložit jako soubor. Ukládání do vstup/ je teď volitelné (Krok 0
-v `rutina.md`, Power Automate tok): sleduje schránku, PDF přílohu uloží
-přímo do vstup/ (je to synchronizovaná OneDrive složka, takže soubor se tu
-objeví sám) a zároveň připíše řádek do `data/prijate-emaily.xlsx` — odkud
-faktura přišla, kdy a s jakým předmětem. Skill tenhle soubor jen čte,
-nikdy do něj nezapisuje.
+uložit jako soubor. Do vstup/ proto soubory dává člověk ručně — a je to
+jediná cesta, jak tam něco přibude.
 
 Proto tenhle skill sám nikdy nerozlišuje „s konektorem" / „bez konektoru" při
 hledání nové faktury — nová faktura je vždycky PDF ve vstup/, které ještě
@@ -43,8 +39,8 @@ Prohlédne poštu, vybere e-maily s přílohou od odesílatele mimo
 dek.cz/dek-cz.com, a u těch, které ještě nejsou v evidenci, udělá stejný
 postup jako níž (vytažení šesti údajů, kontrola duplicity, zápis do
 evidence, případná žádost o doplnění) — jen s tím rozdílem, že adresu na
-doplnění bere přímo z hlavičky e-mailu, ne z `data/prijate-emaily.xlsx`,
-a že do evidence zapisuje, i když PDF nikde na disku neleží. To je celé
+doplnění bere přímo z hlavičky e-mailu — což je taky jediné místo, kde ta
+adresa vůbec je — a že do evidence zapisuje, i když PDF nikde na disku neleží. To je celé
 popsané v `rutina.md` (sekce „Hlavní cesta"), je to krok v zadání
 automatizace, ne v tomhle skillu — proto to sem, ani do postupu níž,
 záměrně nezasahuje. Tenhle skill (a jeho postup níž) zůstává jen pro
@@ -74,17 +70,16 @@ reálnou schránku.
    dodavatele; když neexistuje, založ ho s hlavičkou Soubor / Datum přijetí /
    Číslo faktury / IČO / Číslo objednávky / Základ daně / Splatnost /
    Kompletní / Žádost odeslána. Přidej řádek s dnešní fakturou — do „Soubor"
-   napiš přesně to jméno souboru, jaké má ve vstup/ (skill ho nevymýšlí,
-   jméno dává Power Automate tok). Kompletní = ano, když je vyplněných
+   napiš přesně to jméno souboru, jaké má ve vstup/ (skill ho nevymýšlí).
+   Kompletní = ano, když je vyplněných
    všech šest údajů, jinak ne. Sloupec „Žádost odeslána" zatím nech
    prázdný.
 6. Když je faktura kompletní, tady skončit — nic se neposílá.
 7. Když něco chybí a chybí jen jeden nebo dva údaje:
-   a. V `data/prijate-emaily.xlsx` najdi řádek se stejným jménem souboru ve
-      sloupci „Soubor" a přečti si z něj odesílatele. Nenajdeš-li takový
-      řádek (soubor tam nepřidal Power Automate tok, ale třeba člověk
-      ručně), adresa chybí — postupuj jako v sekci „Kdy se zastavit" a nic
-      neposílej.
+   a. Adresu, na kterou by se psalo, nemáš — soubor ve vstup/ přišel bez
+      e-mailu. Odpověď proto jen sepiš a nic neodesílej; do sloupců
+      „E-mail odeslán" a „Žádost odeslána" napiš „adresa dodavatele
+      nenalezena, k ruční kontrole".
    b. Otevři (nebo založ) vystup/kontrola-<RRRR-MM-DD>.xlsx s prvním sešitem
       „Přehled" (Soubor / Dodavatel / Kompletní / Chybí / E-mail odeslán) a
       dál sešitem pro každého dodavatele, kterému toho dne něco chybělo
@@ -136,10 +131,9 @@ Když chybí víc než jeden údaj, vyjmenuj je („IČO a číslo objednávky")
 ## Kdy se zastavit a nic neposílat
 - z PDF se nedá přečíst text (sken bez OCR) — zapiš k ruční kontrole, e-mail neposílej
 - chybí tři a víc ze šesti údajů — stejně, jde spíš o špatně přečtené PDF
-- v data/prijate-emaily.xlsx není pro ten soubor řádek, nebo je v něm
-  nečitelná/chybějící adresa — nemáš komu poslat, e-mail neposílej
-- data/objednavky.xlsx nebo data/prijate-emaily.xlsx nejde otevřít nebo má
-  jinou strukturu, než čekáš
+- faktura přišla ze vstup/, ne z Doručené pošty — nemáš komu poslat,
+  odpověď jen sepiš a označ ji k ruční kontrole
+- data/objednavky.xlsx nejde otevřít nebo má jinou strukturu, než čekáš
 
 ## Co do skillu nepatří
 Rozhodnutí, jestli fakturu zaplatit, cokoli k jejímu schválení nebo zápis do

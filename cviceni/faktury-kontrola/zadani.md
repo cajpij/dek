@@ -245,3 +245,32 @@ Důsledky:
 Popsáno v `rutina.md` (celý přepis), `CLAUDE.md`, `runbook.md` a
 `.claude/skills/kontrola-faktur/SKILL.md`. Do `README.md` se nepromítá —
 jeho ukázkový běh je pořád jen skill nad vzorovými PDF ve vstup/.
+
+## Aktualizace 2026-09-10 — Power Automate se nepoužívá, prijate-emaily.xlsx pryč
+
+Rozhodnutí: **Power Automate v DEKu nepoužíváme.** Krok 0 (Outlook pravidlo
++ tok, který ukládá přílohu do vstup/ a připisuje řádek do
+`data/prijate-emaily.xlsx`) tedy nikdy nasazený nebude a všechno, co na něm
+viselo, jde ze složky pryč.
+
+Co to mění:
+- `data/prijate-emaily.xlsx` se maže. Byl to log toho, co uložil tok — bez
+  toku se nikdy nenaplní, takže dohledání adresy v něm nemohlo dopadnout
+  jinak než nenálezem.
+- **Doplňková cesta (PDF ve vstup/) už nikdy neodesílá.** Fakturu zaeviduje,
+  chybějící údaj sepíše do `vystup/kontrola-<datum>.xlsx` a zapíše „adresa
+  dodavatele nenalezena, k ruční kontrole". Není to porucha, je to jediný
+  možný konec: soubor vhozený do složky s sebou nenese odesílatele. Kdo ho
+  tam vhodil, ví, od koho je, a odpoví sám.
+- **Hlavní cesta se nemění.** Automatizace čte Doručenou poštu, adresu bere
+  z hlavičky e-mailu a odesílá — to je nadále jediná cesta, ze které se
+  žádost o doplnění posílá.
+- Do `vstup/` tím pádem dává soubory výhradně člověk ručně. Hook to hlídá
+  stejně jako dosud.
+
+Nic se tím neztratilo: odesílat uměla vždycky jen hlavní cesta.
+
+Popsáno v `CLAUDE.md`, `rutina.md` (sekce Krok 0 smazána), `README.md`,
+`runbook.md` a `.claude/skills/kontrola-faktur/SKILL.md`. Historie výš
+zůstává, jak byla — je to záznam toho, co se kdy rozhodlo, ne návod.
+
