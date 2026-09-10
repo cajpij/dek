@@ -4228,6 +4228,16 @@ const L2_MCP: Lesson = {
       text:
         '„Projdi tenhle seznam kódů a řekni, které už nevedeme.“ „Vezmi kategorii technických izolací a udělej z ní tabulku.“ Tohle jde napsat rovnou Claudovi, jakmile má připojený MCP server nad katalogem dek.cz — žádné klikání ve webu, žádné kopírování jednoho produktu po druhém. Konektor je přípojka na službu mimo tvůj disk, to už znáš. MCP je způsob, jak se taková přípojka píše: server nabídne pár nástrojů a Claude si mezi nimi sám vybere ten, který se hodí na tvůj dotaz.',
     },
+    {
+      kind: 'p',
+      text:
+        'Bez MCP je AI klient jen mozkem bez těla, bez možnosti přístupu k vnějšímu světu. S MCP může být klient AI agentem! LLM mohou poskytovat inteligentní a užitečné odpovědi na vstupy uživatelů. Nemají však přístup k externím službám, nemohou komunikovat s jiným softwarem a nemají možnost získávat aktuální informace.',
+    },
+    {
+      kind: 'p',
+      text:
+        'MCP dává jakémukoli povrchu AI schopnost odesílat požadavky na jakoukoli softwarovou službu a získávat odpovědi. Poskytuje agentovi AI standardní prostředky pro přístup k externím nástrojům, zdrojům a datům.',
+    },
     { kind: 'h', text: '„A bez serveru to nejde?"' },
     {
       kind: 'p',
