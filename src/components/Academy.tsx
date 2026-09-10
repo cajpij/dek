@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import {
   COURSES,
+  REPOS,
   UPCOMING,
   courseMinutes,
   findCourse,
@@ -442,6 +443,35 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   )
 }
 
+/** Co je hotové na GitHubu — aby se to nemuselo hledat po lekcích. */
+function RepoKarta({ r }: { r: (typeof REPOS)[number] }) {
+  return (
+    <Paper
+      variant="outlined"
+      sx={{ p: { xs: 2.5, md: 3 }, borderRadius: 2, display: 'flex', flexDirection: 'column', gap: 1 }}
+    >
+      <Typography sx={{ fontSize: 18, fontWeight: 680 }}>{r.nazev}</Typography>
+      <Typography sx={{ fontSize: 15, color: 'text.secondary', maxWidth: '62ch' }}>{r.co}</Typography>
+      <Typography sx={{ fontSize: 13.5, color: 'text.disabled', maxWidth: '62ch' }}>{r.jak}</Typography>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mt: 0.5 }}>
+        <Link
+          href={`https://github.com/${r.repo}`}
+          target="_blank"
+          rel="noopener"
+          sx={{ fontSize: 14, fontFamily: 'ui-monospace, Menlo, monospace' }}
+        >
+          {r.repo} ↗
+        </Link>
+        {r.web ? (
+          <Link href={r.web} target="_blank" rel="noopener" sx={{ fontSize: 14 }}>
+            živý web ↗
+          </Link>
+        ) : null}
+      </Box>
+    </Paper>
+  )
+}
+
 function CourseList() {
   const { doneCount } = useProgress()
   const sections = useMemo(() => {
@@ -481,6 +511,12 @@ function CourseList() {
           ))}
         </Section>
       ))}
+
+      <Section title="Co je hotové na GitHubu">
+        {REPOS.map((r) => (
+          <RepoKarta key={r.repo} r={r} />
+        ))}
+      </Section>
 
       {UPCOMING.length > 0 ? (
         <Section title="Připravujeme">

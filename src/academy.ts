@@ -5893,6 +5893,32 @@ Vizualizace: diagram „Od magazínu do regálu" (je v lekci Co je automatizace)
   ],
 }
 
+/** Co je hotové na GitHubu — rozcestník pod kurzy. */
+export interface Repo {
+  nazev: string
+  repo: string
+  web?: string
+  co: string
+  jak: string
+}
+
+export const REPOS: Repo[] = [
+  {
+    nazev: 'Akademie a program dne',
+    repo: 'cajpij/dek',
+    web: 'https://cajpij.github.io/dek/',
+    co: 'Tenhle web. Lekce jsou obyčejné soubory v repozitáři, po každém odeslání změny se web postaví a nasadí sám. Uvnitř je i cviceni/faktury-kontrola, tedy ta složka ke stažení, a mcp-dek, konektor nad katalogem.',
+    jak: 'Code → Download ZIP, nebo git clone. Rozjede se npm install a npm run dev.',
+  },
+  {
+    nazev: 'Design system DEK',
+    repo: 'cajpij/dek-design-system',
+    web: 'https://cajpij.github.io/dek-design-system/',
+    co: 'Storybook s komponentami a tokeny DEK. Když si stavíš vlastní aplikaci a chceš, aby vypadala jako od nás, bereš si komponenty odtud.',
+    jak: 'Claudovi stačí říct adresu repozitáře — načte si tokeny, téma i komponenty sám.',
+  },
+]
+
 export const COURSES: Course[] = [
   {
     slug: 'claude-a-firemni-data',
