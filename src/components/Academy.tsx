@@ -72,6 +72,9 @@ function Crumbs({ items }: { items: { label: string; href?: string }[] }) {
  * skočí odkudkoli — kdo hledá, obvykle nesahá po myši.
  */
 /** Od kolika znaků má smysl napovídat — na dvou písmenech sedí půlka akademie. */
+/** Sdílená nástěnka — běží jako artifact, protože statický web sdílený stav neumí. */
+const NASTENKA = 'https://claude.ai/code/artifact/c4497645-dfa7-4a9e-8f59-e219509157b3'
+
 const OD_ZNAKU = 3
 const NAPOVED = 6
 
@@ -256,7 +259,16 @@ function Hledatko({ vychozi }: { vychozi?: string }) {
   )
 }
 
-function Shell({ children, dotaz }: { children: React.ReactNode; dotaz?: string }) {
+function Shell({
+  children,
+  dotaz,
+  lekce,
+}: {
+  children: React.ReactNode
+  dotaz?: string
+  /** Titulek lekce, ze které se ptáš — nástěnka ho u otázky ukáže. */
+  lekce?: string
+}) {
   return (
     <Box sx={{ minHeight: '100dvh', bgcolor: 'background.default' }}>
       <Link
@@ -304,9 +316,30 @@ function Shell({ children, dotaz }: { children: React.ReactNode; dotaz?: string 
           <Wordmark />
           <Hledatko vychozi={dotaz} />
           <Link
+            href={lekce ? `${NASTENKA}#lekce=${encodeURIComponent(lekce)}` : NASTENKA}
+            target="_blank"
+            rel="noopener"
+            underline="none"
+            sx={{
+              flexShrink: 0,
+              fontSize: 14,
+              fontWeight: 600,
+              px: 1.5,
+              py: 0.6,
+              borderRadius: 1.5,
+              border: 1,
+              borderColor: 'divider',
+              color: 'text.primary',
+              whiteSpace: 'nowrap',
+              '&:hover': { borderColor: 'primary.main', color: 'primary.main' },
+            }}
+          >
+            Nástěnka ↗
+          </Link>
+          <Link
             href="#"
             underline="hover"
-            sx={{ fontSize: 14, color: 'text.secondary', display: { xs: 'none', md: 'block' }, flexShrink: 0 }}
+            sx={{ fontSize: 14, color: 'text.secondary', display: { xs: 'none', lg: 'block' }, flexShrink: 0 }}
           >
             Program dne (pro lektora)
           </Link>
@@ -1095,7 +1128,7 @@ export default function Academy() {
   }
 
   return (
-    <Shell>
+    <Shell lekce={lesson.title}>
       <LessonPage course={course} lesson={lesson} />
     </Shell>
   )
