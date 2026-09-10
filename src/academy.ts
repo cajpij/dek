@@ -4296,6 +4296,17 @@ se serverem   hledat_kategorii „cihly"    →  3 kategorie
         'Poměr sám o sobě neohromí — jenže těch 2 187 tokenů je **jedna stránka výpisu**, tedy jedna větev katalogu. Ty čtyři dotazy do rejstříku prohledaly **všech 4 661 kategorií**. Aby se z webu poskládala stejná odpověď, muselo by se načíst několik stránek za sebou a pořád by chybělo to hlavní: že „cihly" jsou v názvu jen třikrát a že sortiment visí jinde. Rozdíl tedy není v ceně jednoho dotazu, ale v tom, na co se vůbec dá zeptat — a zároveň se s každou další stránkou zkracuje sezení, protože kontext ubývá.',
     },
     {
+      kind: 'links',
+      title: 'Proč na tom vůbec záleží',
+      items: [
+        {
+          label: 'Kolik to stojí a jak platit míň',
+          href: '#academy/claude-a-firemni-data/kolik-to-stoji',
+          note: 'Za co se u Clauda platí, kudy příděl odtéká a proč je délka sezení ta hlavní páka. Tenhle rozdíl je jeden z těch kohoutků.',
+        },
+      ],
+    },
+    {
       kind: 'note',
       tone: 'warn',
       title: 'Na povídání stačí web. Do automatizace ne.',
