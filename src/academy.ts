@@ -4686,14 +4686,15 @@ const L2_DESIGN: Lesson = {
   module: 'vic',
   title: 'Design system DEK ve Storybooku',
   summary:
-    'Stavebnice barev, písem a komponent, ze které jde složit cokoli, co má vypadat jako dek.cz. Kde bydlí, jak vznikla, jak do ní přidat vlastní kompozici a jak ji předat Claude Designu.',
-  minutes: 15,
+    'Stavebnice barev, písem a komponent, ze které jde složit cokoli, co má vypadat jako dek.cz. Kde bydlí, jak vznikla, jak z ní složit vlastní stránku — včetně formuláře pro pobočky, který vznikl z nápadu na workshopu — a jak ji předat Claude Designu.',
+  minutes: 18,
   kind: 'lekce',
   track: 'potom',
   outcomes: [
     'vysvětlit, co je design system a co je Storybook',
     'otevřít Storybook DEKu a najít v něm komponentu i celou stránku',
     'spustit si ho na svém počítači a přidat kompozici z hotových komponent',
+    'poznat, kde design system končí a kde začínají pravidla provozu',
     'napojit design system do Claude Design, aby návrhy vznikaly rovnou ve stylu DEKu',
   ],
   body: [
@@ -4836,6 +4837,72 @@ export const AkcniNabidka: StoryObj = {
       text:
         'Nemusíš to ale psát sám — otevři složku dek-design-system v Claude Code a řekni: „Přidej do Pages DEK story Akční nabídka — banner Mega akce a pod ním mřížka pěti produktů z FEATURED.“ Kód komponent už zná, tak se trefí do stejného stylu.',
     },
+    { kind: 'h', text: 'Nápad ze sálu: formulář pro pobočky' },
+    {
+      kind: 'p',
+      text:
+        'Na workshopu padl konkrétní nápad: „Chtěl bych udělat stránku, kam pobočky vyplní číslo objednávky, částku a termín vývozu.“ Přesně ten typ věci, kvůli které design system je — vnitřní nástroj, který nikdo nebude kreslit, a přesto má vypadat jako DEK. Tady je hotový, poskládaný z dílků, které ve stavebnici už byly.',
+    },
+    {
+      kind: 'image',
+      src: 'ds-formular-pobocky.webp',
+      alt: 'Stránka Hlášení vývozu objednávky. Nahoře červená hlavička DEK s vyhledávacím polem, telefonem a košíkem. Pod nadpisem vlevo formulář s poli Pobočka, Číslo objednávky, Částka s DPH, Termín vývozu a Poznámka pro řidiče, zaškrtávátkem Poslat kopii na centrální dispečink a zeleným tlačítkem Nahlásit vývoz vedle bílého Vymazat. Vpravo šedý pruh se souhrnem: 3 nahlášené vývozy, celkem 255 915,50 Kč, 1 po termínu. Pod ním tabulka nahlášených vývozů se sloupci Objednávka, Pobočka, Částka s DPH, Termín vývozu a Stav; stavy jsou zítra, za 4 dny a červeně po termínu. Dole tmavá patička DEK s odkazy.',
+      caption:
+        'Hotová stránka. Vlastního CSS je na ní jediná věc — barevný štítek ve sloupci Stav, a i ten bere barvy z tokenů.',
+    },
+    {
+      kind: 'table',
+      head: ['Co je na stránce vidět', 'Odkud to je'],
+      rows: [
+        ['Červená hlavička s logem, hledáním a košíkem', 'komponenta Header — jeden řádek'],
+        ['Zelený pruh „vývoz nahlášen“ po odeslání', 'komponenta Message'],
+        ['Pole s popiskem nad rámečkem, modrý rámeček ve fokusu', 'téma dekTheme nad obyčejným polem z MUI'],
+        ['Zelené „Nahlásit vývoz“, bílé „Vymazat“', 'komponenta Button, tone="green" a variant="outlined"'],
+        ['Tabulka nahlášených vývozů', 'téma dekTheme — hlavička i buňky sedí na .dek-table z webu'],
+        ['Tmavá patička s odkazy', 'komponenta Footer — jeden řádek'],
+        ['Štítky „zítra“, „za 3 dny“, „po termínu“', 'vlastní, ale z barev v tokenech'],
+      ],
+    },
+    {
+      kind: 'p',
+      text:
+        'Co design system nevyřeší, je pravidlo. Že číslo objednávky má deset číslic, že termín nesmí být v minulosti a že jedna objednávka nesmí jít nahlásit dvakrát — to ví pobočka, ne stavebnice. Stavebnice dá jistotu, že chybová hláška bude vypadat jako chybová hláška; co v ní stojí, musíš říct ty.',
+    },
+    {
+      kind: 'image',
+      src: 'ds-formular-chyby.webp',
+      alt: 'Tentýž formulář po odeslání s chybami. Všechna čtyři povinná pole mají červený rámeček a červený popisek. U pole Pobočka stojí Vyber pobočku, ze které se vyváží. U čísla objednávky 4501298877 je hláška, že objednávka už je nahlášená a je v tabulce níž. U částky vyplněné slovem nevim stojí, že částka musí být číslo větší než nula, třeba 12 480,50. U termínu 08.09.2026 stojí, že termín vývozu nemůže být v minulosti.',
+      caption:
+        'Tři pravidla z provozu, obarvená stavebnicí. Prostřední hláška je ta cenná: formulář ví, co už v tabulce je, a nepustí to tam podruhé.',
+    },
+    {
+      kind: 'code',
+      text: `Ve složce dek-design-system přidej aplikaci „Hlášení vývozu objednávky“:
+formulář, kde pobočka vybere sebe a vyplní číslo objednávky, částku s DPH
+a termín vývozu, a pod ním tabulku už nahlášených vývozů.
+
+Poskládej to z komponent, které v repozitáři jsou — Header, Message,
+Button, Footer — a nepiš vlastní CSS.
+
+Pravidla: číslo objednávky má deset číslic, termín nesmí být v minulosti
+a stejná objednávka nesmí jít nahlásit dvakrát.`,
+      caption:
+        'Zadání, ze kterého ta stránka vznikla. Prostřední odstavec je ten, kvůli kterému výsledek vypadá jako DEK; poslední je ten, který z toho dělá použitelný nástroj.',
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Tohle je ukázka stavebnice, ne doporučení stavět',
+      text:
+        'Sběr údajů od poboček má v akademii vlastní lekci — Formulář místo pinkání e-mailů — a ta radí sáhnout nejdřív po formuláři na SharePointu: nikdo ho neudržuje a nespadne s jedním člověkem. Vlastní aplikace dává smysl až tam, kde formulář nestačí. Tahle stránka odpovídá na jinou otázku: až na vlastní aplikaci dojde, jak jí dát vzhled DEKu, aniž by ho někdo překresloval.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Stavebnice se používáním opravuje',
+      text:
+        'Při stavění se ukázalo, že popisek pole po kliknutí zčervenal — knihovna ho barví značkovou barvou a ta je u DEKu červená, takže vypadal jako chyba. Na webu je popisek pořád šedý. Oprava šla do tématu, ne do formuláře, takže správnou barvu mají od té chvíle všechna pole ve všech stránkách. To je celý smysl té prostřední vrstvy.',
+    },
     { kind: 'h', text: 'A teď Claude Design' },
     {
       kind: 'p',
@@ -4883,6 +4950,16 @@ export const AkcniNabidka: StoryObj = {
           label: 'Storybook DEK — nasazená verze',
           href: 'https://cajpij.github.io/dek-design-system/',
           note: 'komponenty, reference i celé stránky, bez instalace',
+        },
+        {
+          label: 'Formulář místo pinkání e-mailů',
+          href: '#academy/od-mapy-k-automatu/formular-misto-emailu',
+          note: 'nejdřív si přečti tuhle — odpovídá, jestli vlastní aplikaci vůbec stavět',
+        },
+        {
+          label: 'Hlášení vývozu objednávky — živá aplikace',
+          href: 'https://cajpij.github.io/dek-design-system/?path=/story/aplikace--hlaseni-vyvozu-objednavky',
+          note: 'formulář z nápadu na sále — dá se v něm klikat',
         },
         {
           label: 'Repozitář dek-design-system',
@@ -4965,6 +5042,22 @@ const L2_FORMULAR: Lesson = {
       title: 'Na sběr nepotřebujete nic nového kupovat',
       text:
         'Máte Microsoft 365 — formulář nebo seznam na SharePointu je přesně na tohle: vyplní ho kdokoli, výsledek je tabulka a vidíte, kdo chybí. Claude ji přečte jako každý jiný soubor v nasyncované knihovně. Vlastní aplikaci kvůli tomu nestavte, udržoval by ji jeden člověk a spadla by s ním.',
+    },
+    {
+      kind: 'p',
+      text:
+        'Když formulář z Microsoftu opravdu nestačí — potřebujete vlastní kontrolu nad tím, co jde vyplnit, nebo to má být součást většího nástroje — pak platí aspoň to, že vlastní aplikace nemusí vypadat jako cizí těleso. V lekci o design systemu je přesně tenhle případ postavený: pobočka hlásí číslo objednávky, částku a termín vývozu, a stránka vypadá jako DEK, protože je poskládaná z hotových dílků.',
+    },
+    {
+      kind: 'links',
+      title: 'Kdyby na vlastní aplikaci došlo',
+      items: [
+        {
+          label: 'Design system DEK ve Storybooku',
+          href: '#academy/od-mapy-k-automatu/dek-design-system',
+          note: 'sekce Nápad ze sálu — formulář na hlášení vývozu poskládaný z komponent',
+        },
+      ],
     },
     { kind: 'h', text: 'Co z toho zvládne Claude a co ne' },
     {

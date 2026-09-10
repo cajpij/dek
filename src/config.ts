@@ -419,7 +419,7 @@ export const DEFAULT_CONFIG: RunConfig = {
         'Z Coworku do Claude Code je pro většinu sálu — pracují zatím jen v Coworku',
         'Formulář místo e-mailů dát tomu, kdo čeká na odpovědi od poboček; Cvičný projekt tomu, kdo řeší faktury nebo dodací listy',
         'Cvičný projekt je hotový ke stažení — kdo si po workshopu neví rady, kde začít, ať začne tam',
-        'Design system je pro ty, kdo si staví vlastní aplikace a chtějí, aby vypadaly jako DEK',
+        'Design system je pro ty, kdo si staví vlastní aplikace a chtějí, aby vypadaly jako DEK — je v něm i formulář na hlášení vývozu z dnešního nápadu na sále. Kdo to chce doopravdy, ať dostane i Formulář místo pinkání e-mailů: odpovídá, jestli vlastní aplikaci vůbec stavět.',
         'Pět tvarů níž je menu k domácímu úkolu — kdo neví, co si vzít, ať si vybere ten, který poznává ze své agendy',
         'Kdo dneska nenašel svoji rutinu, není to selhání — dostane Z Coworku do Claude Code a Kolik to stojí, ty platí pro každého',
         'Nahrávky a přepisy z dnešních rozhovorů ať zůstanou v projektech',
