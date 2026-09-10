@@ -4296,7 +4296,7 @@ const L2_MCP: Lesson = {
       tone: 'warn',
       title: 'Jenom ne do nasyncované knihovny',
       text:
-        'Instalace vyrobí složku node_modules s tisícovkami drobných souborů, které by OneDrive začal syncovat kolegům. Dej mcp-dek mimo nasyncované složky — nic tím neztratíš, díky --scope user ho Claude stejně vidí ve všech projektech včetně toho na SharePointu.',
+        'Instalace vyrobí složku node_modules s tisícovkami drobných souborů, které by OneDrive začal syncovat kolegům. Dej mcp-dek mimo nasyncované složky — nic tím neztratíš, díky --scope user ho Claude stejně vidí ve všech projektech včetně toho na SharePointu. **Jak poznáš, která složka je nasyncovaná:** na Macu leží všechny pod `~/Library/CloudStorage` a nikde jinde, takže co je v `~/Documents` nebo `~/Downloads`, je lokální. Ve Windows má taková složka v Průzkumníku ikonu mráčku nebo budovy a v cestě slovo OneDrive. Když si nejsi jistý, zeptej se Clauda — podívá se za tebe.',
     },
     {
       kind: 'tabs',
@@ -4319,6 +4319,31 @@ Nedávej to do nasyncované složky na OneDrivu. Pak mi napiš, kam jsi
 to dala a jestli se to povedlo.`,
               caption:
                 'Claude si stažení, instalaci i připojení udělá sám a řekne ti, kde to skončilo. Když se něco nepovede, rovnou to i vysvětlí.',
+            },
+            {
+              kind: 'p',
+              text:
+                'Takhle to dopadlo, když jsme to touhle větou pustili naposledy. Ani jeden z těch příkazů se nepsal ručně:',
+            },
+            {
+              kind: 'code',
+              text: `git clone --depth 1                ✔
+npm install                        ✔  33 balíčků, 0 zranitelností
+npm run index                      ✔  80 969 produktů, 4 661 kategorií
+claude mcp add dek --scope user    ✔  zapsáno do ~/.claude.json
+
+Repozitář:  ~/Documents/dek                 29 MB i s node_modules
+Rejstřík:   ~/.cache/mcp-dek/index.json     19 MB, mimo repozitář
+Kontrola:   claude mcp list  →  dek  ✔ Connected`,
+              caption:
+                'Počty produktů a kategorií se budou lišit — rejstřík se staví ze živého katalogu. Zbytek sedí pokaždé.',
+            },
+            {
+              kind: 'note',
+              tone: 'warn',
+              title: 'V tom sezení, kde jsi to pustil, ho ještě mít nebudeš',
+              text:
+                'Claude Code si seznam MCP serverů načítá při **startu sezení**, takže nově připojený server v té konverzaci nevidí — ani když hlásí „Connected". Otevři nové sezení (nová karta v záložce Code), nebo v terminálu `claude --continue`, což naváže na tutéž konverzaci i s historií. Poznáš to snadno: zeptej se „najdi v katalogu tepelnou izolaci" a Claude má sáhnout po nástroji `hledat_produkt`, ne nabízet prohledání webu.',
             },
           ],
         },
