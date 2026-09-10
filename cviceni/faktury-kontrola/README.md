@@ -100,8 +100,8 @@ všechny faktury mají řádek. To je správně — automatizace, která běží
    a nech je naplnit skutečnými fakturami.
 3. Přepiš adresy na svoje. Sledovaná schránka `fakturace@dek.cz` (a
    zároveň adresa, v jejíž kopii chodí každá žádost o doplnění) je na
-   **deseti místech v pěti souborech**: `CLAUDE.md` (2×), `rutina.md` (2×),
-   `SKILL.md` (2×), `runbook.md` (2×) a `zadani.md` (2×). Podpis „Účtárna
+   **sedmnácti místech v pěti souborech**: `CLAUDE.md` (2×), `rutina.md` (8×),
+   `SKILL.md` (1×), `runbook.md` (2×) a `zadani.md` (4×). Podpis „Účtárna
    DEK" je navíc v `zadani.md` a `SKILL.md`. Nehledej je ručně — řekni
    Claudovi:
 

@@ -4890,7 +4890,7 @@ ať se v tom vyzná i někdo, kdo u toho nebyl.`,
       title: 'Cvičný projekt',
       items: [
         {
-          label: 'faktury-kontrola.zip (253 kB)',
+          label: 'faktury-kontrola.zip (252 kB)',
           href: 'faktury-kontrola.zip',
           note: 'stáhni, rozbal do vlastní složky — třeba do Dokumentů',
         },
