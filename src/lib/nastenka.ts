@@ -44,11 +44,19 @@ export interface Zprava {
 
 export const nastaveno = () => Boolean(ADRESA && KLIC)
 
-const hlavicky = () => ({
-  apikey: KLIC,
-  Authorization: `Bearer ${KLIC}`,
-  'Content-Type': 'application/json',
-})
+/**
+ * Supabase má dvě generace klíčů a posílají se jinak.
+ *
+ * Starý `anon` je JWT (začíná `eyJ`) a chce ho i hlavička Authorization.
+ * Nový `sb_publishable_…` JWT není — když se pošle jako Bearer token,
+ * PostgREST ho neumí přečíst a vrátí 401. Proto se podle tvaru rozhoduje,
+ * jestli tu druhou hlavičku vůbec přidat.
+ */
+const hlavicky = (): Record<string, string> => {
+  const h: Record<string, string> = { apikey: KLIC, 'Content-Type': 'application/json' }
+  if (KLIC.startsWith('eyJ')) h.Authorization = `Bearer ${KLIC}`
+  return h
+}
 
 export async function nacti(): Promise<Zprava[]> {
   const r = await fetch(`${ADRESA}/rest/v1/zpravy?select=*&order=cas.asc`, {
