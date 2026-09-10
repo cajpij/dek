@@ -3928,6 +3928,45 @@ Runbook je v \`runbook.md\` vedle tohoto souboru.`,
     },
     {
       kind: 'note',
+      tone: 'info',
+      title: 'Custom znamená cron — pět políček oddělených mezerou',
+      text:
+        'Když v rozvrhu vybereš Custom, objeví se pole „Cron expression". Je to zápis, který se v jiných nástrojích používá už padesát let: pět políček za sebou, každé je jedna jednotka času, a hvězdička znamená „na tomhle mi nezáleží". Přednastavená hodnota `0 9 * * *` čte se jako „v nultou minutu deváté hodiny, každý den" — tedy denně v devět ráno.',
+    },
+    {
+      kind: 'code',
+      caption:
+        'Nahoře co které políčko znamená, dole rozvrh kontroly faktur: každých patnáct minut, v pracovní dny, od sedmi do osmnácti.',
+      text: `minuta  hodina  den v měsíci  měsíc  den v týdnu
+
+*/15    7-18         *          *       1-5`,
+    },
+    {
+      kind: 'table',
+      head: ['Zápis', 'Znamená'],
+      rows: [
+        ['*/15', 'v minutách 0, 15, 30 a 45 — tedy čtyřikrát za hodinu'],
+        ['7-18', 'od sedmé do osmnácté hodiny včetně'],
+        ['*', 'každý den v měsíci · každý měsíc'],
+        ['1-5', 'pondělí až pátek (neděle je 0)'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Dvě věci, které překvapí',
+      text:
+        '**`7-18` běží až do 18:45**, protože osmnáctá hodina se bere celá — poslední běh tedy vyjde na 18:45, ne na 18:00. Když chceš tvrdý konec v šest, napiš `7-17` a poslední běh bude v 17:45. A za druhé: pod polem stojí, že rutiny startují s **náhodným zpožděním několika minut**, aby se servery nezahltily všechny v celou. U denního běhu to nepoznáš, u patnáctiminutového cyklu to znamená, že rozestupy přesně patnáctiminutové nebudou.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Nebo to prostě řekni',
+      text:
+        'Cron se učit nemusíš. „Ať běží každých 15 minut v pracovní dny od sedmi do šesti" si Claude přeloží sám a vyplní celý formulář — sedm polí ručně je zbytečná práce. Cron je tu proto, abys věděl, co se ti do toho pole napsalo a jak si to opravit.',
+    },
+    {
+      kind: 'note',
       tone: 'warn',
       title: 'Když počítač spal, běh se přeskočí',
       text:
