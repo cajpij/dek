@@ -530,13 +530,45 @@ const TONE = { info: 'info', warn: 'warning', ok: 'success' } as const
  * nestal druhý markdown.
  */
 export function Text({ children }: { children: string }) {
+  // Nejdřív tučné, uvnitř každého kusu ještě jména souborů v \`apostrofech\`.
   const kusy = children.split(/\*\*(.+?)\*\*/gs)
-  if (kusy.length === 1) return <>{children}</>
   return (
     <>
       {kusy.map((k, i) =>
         i % 2 === 1 ? (
           <Box component="strong" key={i} sx={{ fontWeight: 680 }}>
+            <Kod>{k}</Kod>
+          </Box>
+        ) : (
+          <span key={i}>
+            <Kod>{k}</Kod>
+          </span>
+        ),
+      )}
+    </>
+  )
+}
+
+/** Jméno souboru nebo příkaz uvnitř věty. */
+function Kod({ children }: { children: string }) {
+  const kusy = children.split(/`([^`]+)`/g)
+  if (kusy.length === 1) return <>{children}</>
+  return (
+    <>
+      {kusy.map((k, i) =>
+        i % 2 === 1 ? (
+          <Box
+            component="code"
+            key={i}
+            sx={{
+              fontFamily: 'ui-monospace, Menlo, monospace',
+              fontSize: '0.88em',
+              px: 0.5,
+              py: 0.15,
+              borderRadius: 0.75,
+              bgcolor: 'action.hover',
+            }}
+          >
             {k}
           </Box>
         ) : (
