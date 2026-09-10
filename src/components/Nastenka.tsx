@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Paper from '@mui/material/Paper'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { JMENA, nacti, nastaveno, posli, type Zprava } from '../lib/nastenka'
+import { JMENA, mojeZpravy, nacti, nastaveno, posli, smaz, type Zprava } from '../lib/nastenka'
 
 /**
  * Nástěnka — otázky ze sálu, které vidí všichni.
@@ -113,6 +113,63 @@ function Hlavicka({ z, odpoved }: { z: Zprava; odpoved?: boolean }) {
   )
 }
 
+/**
+ * Smazat svoji zprávu. Nabídne se jen tam, kde prohlížeč zná tajemství —
+ * tedy tomu, kdo ji odtud napsal. Ptá se dvakrát, protože zpátky to nejde.
+ */
+function Smazat({
+  id,
+  tajemstvi,
+  naSmazani,
+}: {
+  id: string
+  tajemstvi: string
+  naSmazani: (id: string, tajemstvi: string) => Promise<boolean>
+}) {
+  const [pta, setPta] = useState(false)
+  const [maze, setMaze] = useState(false)
+  const [chyba, setChyba] = useState(false)
+
+  if (chyba) {
+    return (
+      <Typography sx={{ fontSize: 13, color: 'error.main' }}>
+        Nepovedlo se smazat — načti stránku znovu a zkus to.
+      </Typography>
+    )
+  }
+
+  if (!pta) {
+    return (
+      <Button size="small" color="inherit" sx={{ color: 'text.disabled' }} onClick={() => setPta(true)}>
+        Smazat
+      </Button>
+    )
+  }
+
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, flexWrap: 'wrap' }}>
+      <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>Smazat napořád?</Typography>
+      <Button
+        size="small"
+        color="error"
+        disabled={maze}
+        onClick={async () => {
+          setMaze(true)
+          if (!(await naSmazani(id, tajemstvi))) {
+            setChyba(true)
+            setMaze(false)
+          }
+        }}
+      >
+        Ano
+      </Button>
+      <Button size="small" color="inherit" sx={{ color: 'text.disabled' }} onClick={() => setPta(false)}>
+        Zpět
+      </Button>
+    </Box>
+  )
+}
+
 function Psat({
   jmeno,
   placeholder,
@@ -169,14 +226,21 @@ function Vlakno({
   koren,
   odpovedi,
   jmeno,
+  moje,
   naOdpoved,
+  naSmazani,
 }: {
   koren: Zprava
   odpovedi: Zprava[]
   jmeno: string
+  moje: Record<string, string>
   naOdpoved: (text: string, vlakno: string) => Promise<void>
+  naSmazani: (id: string, tajemstvi: string) => Promise<boolean>
 }) {
   const [pise, setPise] = useState(false)
+  // Kořen s odpovědmi se nemaže: databáze maže vlákno celé, a odpovědi
+  // jsou cizí. Kdo chce zmizet, smaže si svoji odpověď.
+  const smazatKoren = odpovedi.length === 0 ? moje[koren.id] : undefined
   return (
     <Paper variant="outlined" sx={{ p: 2.25, borderRadius: 2 }}>
       <Hlavicka z={koren} />
@@ -202,12 +266,17 @@ function Vlakno({
               <Typography sx={{ mt: 0.5, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>
                 <TextSOdkazy text={o.text} />
               </Typography>
+              {moje[o.id] ? (
+                <Box sx={{ mt: 0.25 }}>
+                  <Smazat id={o.id} tajemstvi={moje[o.id]} naSmazani={naSmazani} />
+                </Box>
+              ) : null}
             </Box>
           ))}
         </Box>
       ) : null}
 
-      <Box sx={{ mt: 1.5 }}>
+      <Box sx={{ mt: 1.5, display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
         {pise ? (
           <Psat
             jmeno={jmeno}
@@ -219,9 +288,12 @@ function Vlakno({
             }}
           />
         ) : (
-          <Button size="small" onClick={() => setPise(true)} disabled={!jmeno}>
-            Odpovědět
-          </Button>
+          <>
+            <Button size="small" onClick={() => setPise(true)} disabled={!jmeno}>
+              Odpovědět
+            </Button>
+            {smazatKoren ? <Smazat id={koren.id} tajemstvi={smazatKoren} naSmazani={naSmazani} /> : null}
+          </>
         )}
       </Box>
     </Paper>
@@ -237,6 +309,7 @@ export default function Nastenka({ lekce }: { lekce?: string }) {
     }
   })
   const [zpravy, setZpravy] = useState<Zprava[]>([])
+  const [moje, setMoje] = useState<Record<string, string>>(() => mojeZpravy())
   const [chyba, setChyba] = useState('')
   const bezi = useRef(true)
 
@@ -277,7 +350,15 @@ export default function Nastenka({ lekce }: { lekce?: string }) {
 
   const pridej = async (text: string, vlakno: string | null) => {
     await posli({ jmeno, text, vlakno, lekce: vlakno ? null : (lekce ?? null) })
+    setMoje(mojeZpravy())
     await obnov()
+  }
+
+  const smazZpravu = async (id: string, tajemstvi: string) => {
+    if (!(await smaz(id, tajemstvi))) return false
+    setMoje(mojeZpravy())
+    await obnov()
+    return true
   }
 
   return (
@@ -348,7 +429,9 @@ export default function Nastenka({ lekce }: { lekce?: string }) {
                   koren={koren}
                   odpovedi={odpovedi}
                   jmeno={jmeno}
+                  moje={moje}
                   naOdpoved={(t, v) => pridej(t, v)}
+                  naSmazani={smazZpravu}
                 />
               ))
             )}
@@ -357,7 +440,8 @@ export default function Nastenka({ lekce }: { lekce?: string }) {
       )}
 
       <Typography sx={{ fontSize: 13, color: 'text.disabled', mt: 5 }}>
-        Zprávy se nemažou a nepřepisují — <Link href="#academy">zpátky na kurzy</Link>.
+        Smazat jde jen vlastní zpráva, a jen z prohlížeče, ze kterého jsi ji napsal —{' '}
+        <Link href="#academy">zpátky na kurzy</Link>.
       </Typography>
     </Box>
   )
