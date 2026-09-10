@@ -3677,7 +3677,7 @@ const L2_PLAN: Lesson = {
     {
       kind: 'image',
       src: 'rutina-panel.webp',
-      alt: 'Detail naplánované automatizace kontrola-faktur v Claude Code. Popis říká, že sleduje schránku, eviduje nové faktury a u neúplných pošle dodavateli žádost o doplnění. Stav je Active s dalším během dnes ve 13:24. Je vyplněná pracovní složka faktury-kontrola, rozvrh zní přibližně každých 15 minut mezi 7:00 a 17:59 od pondělí do pátku, historie je zatím prázdná. Vpravo nahoře je tlačítko Run now, vedle něj ikony pro úpravu a smazání.',
+      alt: 'Detail naplánované automatizace kontrola-faktur v Claude Code. Popis říká, že zpracuje nové faktury z Doručené pošty i ze vstup a doplňuje chybějící údaje. Stav je Active s dalším během dnes ve 13:24. Je vyplněná pracovní složka faktury-kontrola, rozvrh zní přibližně každých 15 minut mezi 7:00 a 17:59 od pondělí do pátku, historie je zatím prázdná. Vpravo nahoře je tlačítko Run now, vedle něj ikony pro úpravu a smazání.',
       caption:
         'Takhle vypadá hotová automatizace, kterou Claude založil z jedné věty. Rozvrh „každých 15 minut v pracovní dny" ve formuláři na výběr není — vznikl z toho, jak byl popsaný slovy. Historie je prázdná, protože ještě nic neproběhlo; první běh si vyvoláš tlačítkem Run now vpravo nahoře.',
     },
@@ -5161,7 +5161,7 @@ Nikdy neposílej nic, co se týká platby, schválení nebo účetnictví.`,
     {
       kind: 'p',
       text:
-        'Tenhle cvičný projekt už doopravdy dělá víc, než jen tabulku a protokol: sleduje schránku, ukládá přílohy a dodavateli sám pošle žádost o doplnění. Přirozená další otázka je: proč rovnou neověřit v bance, co je zaplacené, a zbytek neposlat účtárně? Jde to, ale ne to samé rozhodnutí — tady je, kde je hranice a proč zrovna tam.',
+        'Tenhle cvičný projekt už doopravdy dělá víc, než jen tabulku a protokol: čte faktury přímo z Doručené pošty a dodavateli sám pošle žádost o doplnění. Přirozená další otázka je: proč rovnou neověřit v bance, co je zaplacené, a zbytek neposlat účtárně? Jde to, ale ne to samé rozhodnutí — tady je, kde je hranice a proč zrovna tam.',
     },
     {
       kind: 'figure',
