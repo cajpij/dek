@@ -1,0 +1,4 @@
+# Otázky z nástěnky, které se nezodpovídají — id na řádek, za ním důvod.
+# Sem si zapisuje naplánovaná automatizace, co vyhodnotila jako věc mimo
+# akademii (pozdrav, vtip, zpráva jen pro lektora). Bez tohohle seznamu by
+# se k nim vracela při každém běhu znovu.

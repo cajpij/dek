@@ -440,7 +440,9 @@ export default function Nastenka({ lekce }: { lekce?: string }) {
       )}
 
       <Typography sx={{ fontSize: 13, color: 'text.disabled', mt: 5 }}>
-        Smazat jde jen vlastní zpráva, a jen z prohlížeče, ze kterého jsi ji napsal —{' '}
+        Smazat jde jen vlastní zpráva, a jen z prohlížeče, ze kterého jsi ji napsal.
+        Odpovědi na otázky odsud se sbírají do{' '}
+        <Link href="#academy?odpovedi">zodpovězených otázek</Link> —{' '}
         <Link href="#academy">zpátky na kurzy</Link>.
       </Typography>
     </Box>

@@ -25,6 +25,7 @@ import { hledej, vyrizni, zvyrazni, type Vysledek } from '../lib/hledani'
 import { useProgress } from '../lib/academyProgress'
 import BlockView from './AcademyBlocks'
 import Nastenka from './Nastenka'
+import Odpovedi from './Odpovedi'
 
 /* --------------------------------------------------------------- shell */
 
@@ -1074,12 +1075,17 @@ export default function Academy() {
 
   useEffect(() => {
     const course =
-      route.view === 'list' || route.view === 'search' || route.view === 'nastenka'
+      route.view === 'list' ||
+      route.view === 'search' ||
+      route.view === 'nastenka' ||
+      route.view === 'odpovedi'
         ? undefined
         : findCourse(route.course)
     const lesson = route.view === 'lesson' && course ? findLesson(course, route.lesson) : undefined
     document.title = route.view === 'nastenka'
       ? 'Nástěnka · DEK Academy'
+      : route.view === 'odpovedi'
+      ? 'Zodpovězené otázky · DEK Academy'
       : route.view === 'search'
       ? `${route.q} · Hledání · DEK Academy`
       : lesson
@@ -1113,6 +1119,14 @@ export default function Academy() {
     return (
       <Shell>
         <Nastenka lekce={zLekce ?? undefined} />
+      </Shell>
+    )
+  }
+
+  if (route.view === 'odpovedi') {
+    return (
+      <Shell>
+        <Odpovedi />
       </Shell>
     )
   }
