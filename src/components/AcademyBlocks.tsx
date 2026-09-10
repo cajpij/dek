@@ -25,6 +25,7 @@ import ProjectTree from './ProjectTree'
 import RegalFlow from './RegalFlow'
 import AkcniRegalFlow from './AkcniRegalFlow'
 import AkcniRegalPoRutine from './AkcniRegalPoRutine'
+import TokenyMcp from './TokenyMcp'
 import RoutineForm from './RoutineForm'
 import TokenDrains from './TokenDrains'
 import ContextGrowth from './ContextGrowth'
@@ -698,6 +699,8 @@ export default function BlockView({ block }: { block: Block }) {
               <AkcniRegalFlow />
             ) : block.name === 'akcni-regal-po-rutine' ? (
               <AkcniRegalPoRutine />
+            ) : block.name === 'tokeny-mcp' ? (
+              <TokenyMcp />
             ) : (
               <RegalFlow />
             )}

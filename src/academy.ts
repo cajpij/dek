@@ -56,6 +56,7 @@ export type Block =
     | 'faktury-sezeni'
     | 'akcni-regal'
     | 'akcni-regal-po-rutine'
+    | 'tokeny-mcp'
       caption: string
     }
   /** Snímek cizí obrazovky. Kreslené schéma patří do 'figure', tohle je fotka. */
@@ -4270,6 +4271,19 @@ se serverem   hledat_kategorii „cihly"    →  3 kategorie
         ['Diakritika a ceny', 'má obojí, čte vykreslenou stránku', 'názvy bez háčků, ze sitemap'],
         ['Přihlášení a zápis', 'jen čte, co je veřejné', 'může nést login i akce'],
       ],
+    },
+    {
+      kind: 'figure',
+      name: 'tokeny-mcp',
+      caption:
+        'Rozdíl, který v tabulce vidět není: kolik z toho, co Claude přečte, je k věci. Čísla jsou naměřená na dotazu z předchozí sekce, ne odhadnutá.',
+    },
+    {
+      kind: 'note',
+      tone: 'info',
+      title: 'Proč je to víc než dva a půl násobek',
+      text:
+        'Poměr sám o sobě neohromí — jenže těch 2 187 tokenů je **jedna stránka výpisu**, tedy jedna větev katalogu. Ty čtyři dotazy do rejstříku prohledaly **všech 4 661 kategorií**. Aby se z webu poskládala stejná odpověď, muselo by se načíst několik stránek za sebou a pořád by chybělo to hlavní: že „cihly" jsou v názvu jen třikrát a že sortiment visí jinde. Rozdíl tedy není v ceně jednoho dotazu, ale v tom, na co se vůbec dá zeptat — a zároveň se s každou další stránkou zkracuje sezení, protože kontext ubývá.',
     },
     {
       kind: 'note',
