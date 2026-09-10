@@ -5200,11 +5200,8 @@ když jeden nebo dva chybí. Nic k platbě, schválení ani do účetnictví
 se automaticky neposílá — to zůstává na nás.
 
 Čtecí přístup už mám a funguje. Práva se dědí z účtu, takže Claude uvidí
-přesně to, co já, nic navíc.
-
-Kdyby write tools nešly zapnout, řekni mi to prosím — mám variantu, která
-místo odeslání jen navrhne text a s tou vystačím.`,
-      caption: 'Poslední věta je důležitá: dává správci možnost říct ne, aniž by tím projekt padl.',
+přesně to, co já, nic navíc.`,
+      caption: 'Ten samý text je i v rutina.md ve cvičném projektu, aby se nemusel psát znovu.',
     },
     {
       kind: 'note',
