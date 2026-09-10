@@ -1746,6 +1746,12 @@ Tohle je text, který dostal Claude. Je tu schválně i po dokončení projektu 
 když se agenda změní, upravuje se nejdřív tenhle popis, a teprve podle něj
 soubory ve složce.
 
+> **Čti to ve znění revizí níž.** Zadání zůstává, jak bylo napsané první den,
+> a co se od té doby změnilo, stojí v sekcích „Aktualizace" na konci souboru —
+> ne přepsané zpátky sem. Platí tedy poslední revize, ne první verze. Nejvíc
+> se to týká kroku 2: ukládání příloh do vstup/ dneska nedělá nikdo, hook ho
+> Claudovi zakazuje a faktury se čtou rovnou z Doručené pošty.
+
 ---
 
 Postav mi v téhle složce kontrolu došlých faktur.
