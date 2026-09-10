@@ -4227,6 +4227,57 @@ const L2_MCP: Lesson = {
       text:
         '„Projdi tenhle seznam kódů a řekni, které už nevedeme.“ „Vezmi kategorii technických izolací a udělej z ní tabulku.“ Tohle jde napsat rovnou Claudovi, jakmile má připojený MCP server nad katalogem dek.cz — žádné klikání ve webu, žádné kopírování jednoho produktu po druhém. Konektor je přípojka na službu mimo tvůj disk, to už znáš. MCP je způsob, jak se taková přípojka píše: server nabídne pár nástrojů a Claude si mezi nimi sám vybere ten, který se hodí na tvůj dotaz.',
     },
+    { kind: 'h', text: '„A bez serveru to nejde?"' },
+    {
+      kind: 'p',
+      text:
+        'Nejčastější námitka, a je oprávněná: Claude přece umí prohledat web i bez jakéhokoli serveru. Umí. Zkusili jsme obojí na stejném dotazu a ve stejnou minutu — „jaké jsou kategorie cihel" — a rozdíl není v tom, že by jedna cesta odpověděla a druhá ne.',
+    },
+    {
+      kind: 'code',
+      text: `Dotaz:  „jaké jsou kategorie cihel"
+
+bez serveru   WebSearch  →  našel adresu výpisu 4208-zdici-materialy
+              WebFetch   →  6 podkategorií podle materiálu
+                            6 cihel i s cenami, s diakritikou
+                            …a „vybrané produkty". Kolik jich tam bylo?
+
+se serverem   hledat_kategorii „cihly"    →  3 kategorie
+              hledat_kategorii „zdici"    →  9 kategorií podle materiálu
+              hledat_kategorii „zdivo"    →  25, z toho 8× „nosne zdivo"
+                                             pod různými ID ve stromu
+              produkty_v_kategorii 16127  →  pocet: 2`,
+      caption:
+        'Stejný dotaz, stejná minuta. Web odpověděl hezčím textem, server odpověděl čísly, která si můžeš ověřit. A adresu, kterou WebFetch potřeboval, jsme předtím dostali od serveru.',
+    },
+    {
+      kind: 'note',
+      tone: 'ok',
+      title: 'Web v jedné věci vyhrál',
+      text:
+        'Vrátil názvy s diakritikou a k tomu ceny, protože čte vykreslenou stránku. Rejstřík serveru se staví ze sitemap, kde je „plne cihly" bez háčků. Není to tak, že by byl server ve všem lepší — je lepší v tom, co se dá spočítat a ověřit.',
+    },
+    {
+      kind: 'table',
+      head: ['', 'Bez serveru, přes web', 'S MCP serverem'],
+      rows: [
+        ['Jak najdu, kam sáhnout', 'vygooglím a hádám adresu', 'podstring přes 4 661 kategorií, hned a lokálně'],
+        ['Co přijde zpátky', 'text, který napsal shrnovací model', 'kód, název, odkaz — rovnou do tabulky'],
+        ['Úplnost', '„vybrané produkty" — kolik jich tam bylo, nevím', 'přesný počet a celý výpis'],
+        ['Dotaz přes celý katalog', 'nejde bez procházení stránku po stránce', 'jedno volání'],
+        ['Zátěž dek.cz', 'request na každý dotaz', 'žádný, rejstřík leží na disku'],
+        ['Dvakrát tentýž dotaz', 'může vrátit jiný výběr', 'vrátí totéž'],
+        ['Diakritika a ceny', 'má obojí, čte vykreslenou stránku', 'názvy bez háčků, ze sitemap'],
+        ['Přihlášení a zápis', 'jen čte, co je veřejné', 'může nést login i akce'],
+      ],
+    },
+    {
+      kind: 'note',
+      tone: 'warn',
+      title: 'Na povídání stačí web. Do automatizace ne.',
+      text:
+        'Odpověď z webu prochází přes shrnovací model, takže dvakrát tentýž dotaz může vrátit jiný výběr. Dokud si povídáš, je to jedno. Ve chvíli, kdy je to krok v naplánované automatizaci, je nedeterministický krok chyba, ne detail. **Bez serveru dostaneš pravděpodobně správnou odpověď, se serverem ověřitelně stejnou.**',
+    },
     { kind: 'h', text: 'Dvě varianty, se kterými se potkáš' },
     {
       kind: 'table',
